@@ -7,6 +7,8 @@ module uim.bim.materials.material;
 
 import uim.bim;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

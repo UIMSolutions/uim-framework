@@ -13,5 +13,7 @@ public { // Helper modules
   // import uim.errors.errors.handler;    
   import uim.errors.classes.errors.error;
   import uim.errors.classes.errors.renderers;
+  import uim.errors.classes.errors.invalidargument;
+  import uim.errors.classes.errors.unknowneditor;
 }
 

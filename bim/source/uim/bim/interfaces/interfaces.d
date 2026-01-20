@@ -3,170 +3,20 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.bim.interfaces;
+module uim.bim.interfaces.interfaces;
 
 import uim.bim;
 
 @safe:
 
-/**
- * Base interface for all BIM elements.
- */
-interface IBIMElement : IObject {
-  string name();
-  void name(string value);
 
-  /**
-   * Get the globally unique identifier (GUID).
-   */
-  string guid();
 
-  /**
-   * Set the globally unique identifier.
-   */
-  void guid(string value);
 
-  /**
-   * Get the element type classification.
-   */
-  string elementType();
 
-  /**
-   * Get all properties of this element.
-   */
-  IBIMProperty[] properties();
 
-  /**
-   * Add a property to this element.
-   */
-  void addProperty(IBIMProperty property);
 
-  /**
-   * Get a property by name.
-   */
-  IBIMProperty getProperty(string name);
 
-  /**
-   * Get the geometry representation.
-   */
-  IBIMGeometry geometry();
 
-  /**
-   * Set the geometry representation.
-   */
-  void geometry(IBIMGeometry geom);
-}
-
-/**
- * Interface for BIM properties.
- */
-interface IBIMProperty : IObject {
-  string name();
-  void name(string value);
-  /**
-   * Get the property value.
-   */
-  Json value();
-
-  /**
-   * Set the property value.
-   */
-  void value(Json val);
-
-  /**
-   * Get the property unit.
-   */
-  string unit();
-
-  /**
-   * Get the property data type.
-   */
-  string dataType();
-}
-
-/**
- * Interface for geometry representations.
- */
-interface IBIMGeometry {
-  string name();
-  void name(string value);
-  /**
-   * Get the geometry type (e.g., "Box", "Cylinder", "Mesh").
-   */
-  string geometryType();
-
-  /**
-   * Get the bounding box dimensions.
-   */
-  BoundingBox boundingBox();
-
-  /**
-   * Calculate the volume.
-   */
-  double volume();
-
-  /**
-   * Calculate the surface area.
-   */
-  double surfaceArea();
-}
-
-/**
- * Interface for materials.
- */
-interface IBIMMaterial : IObject {
-  string name();
-  void name(string value);
-  /**
-   * Get material properties.
-   */
-  Json[string] materialProperties();
-
-  /**
-   * Get thermal conductivity.
-   */
-  double thermalConductivity();
-
-  /**
-   * Get density.
-   */
-  double density();
-
-  /**
-   * Get cost per unit.
-   */
-  double costPerUnit();
-}
-
-/**
- * Interface for spatial elements (spaces, zones, buildings).
- */
-interface IBIMSpatialElement : IBIMElement {
-  /**
-   * Get the floor level.
-   */
-  int floorLevel();
-
-  /**
-   * Get child spatial elements.
-   */
-  IBIMSpatialElement[] children();
-
-  /**
-   * Add a child spatial element.
-   */
-  void addChild(IBIMSpatialElement child);
-
-  /**
-   * Get the parent spatial element.
-   */
-  IBIMSpatialElement parent();
-
-  /**
-   * Set the parent spatial element.
-   */
-  void parent(IBIMSpatialElement value);
-}
 
 /**
  * Interface for building elements (walls, doors, windows, etc.).
