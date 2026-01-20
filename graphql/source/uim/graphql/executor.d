@@ -166,7 +166,7 @@ class GraphQLExecutor {
         } else {
             // Default resolver: try to get field from source object
             if (source.type == Json.Type.object) {
-                resolvedValue = () @trusted { return source.object.get(field.name, Json(null)); }();
+                resolvedValue = () @trusted { return field.name in source ? source[field.name] : Json(null); }();
             } else {
                 resolvedValue = Json(null);
             }
@@ -193,9 +193,9 @@ class GraphQLExecutor {
     }
     
     private Json resolveArgumentValue(ExecutionContext context, Json value) @safe {
-        if (value.type == Json.Type.string && value.str.startsWith("$")) {
+        if (value.type == Json.Type.string && value.get!string.startsWith("$")) {
             // Variable reference
-            string varName = value.str[1 .. $];
+            string varName = value.get!string[1 .. $];
             return context.variables.get(varName, Json(null));
         }
         return value;

@@ -9,6 +9,8 @@ import uim.odata.exceptions;
 import vibe.data.json;
 import std.conv;
 import std.datetime;
+import std.algorithm : map;
+import std.array : array;
 
 @safe:
 
@@ -66,7 +68,7 @@ class ODataEntity {
      * Gets a property value as JSON
      */
     Json get(string propertyName) const @trusted {
-        if (propertyName !in _properties.object) {
+        if (propertyName !in _properties) {
             throw new ODataEntityException("Property not found: " ~ propertyName);
         }
         return _properties[propertyName];
@@ -78,7 +80,7 @@ class ODataEntity {
     string getString(string propertyName) const {
         auto value = get(propertyName);
         if (value.type == Json.Type.string) {
-            return value.str;
+            return value.get!string;
         }
         return value.toString();
     }
@@ -88,11 +90,11 @@ class ODataEntity {
      */
     long getInt(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == Json.Type.integer) {
-            return value.integer;
+        if (value.type == Json.Type.int_) {
+            return value.get!long;
         }
         if (value.type == Json.Type.string) {
-            return value.str.to!long;
+            return value.get!string.to!long;
         }
         throw new ODataEntityException("Cannot convert property to integer: " ~ propertyName);
     }
@@ -103,13 +105,13 @@ class ODataEntity {
     double getFloat(string propertyName) const {
         auto value = get(propertyName);
         if (value.type == Json.Type.float_) {
-            return value.floating;
+            return value.get!double;
         }
-        if (value.type == Json.Type.integer) {
-            return cast(double)value.integer;
+        if (value.type == Json.Type.int_) {
+            return cast(double)value.get!long;
         }
         if (value.type == Json.Type.string) {
-            return value.str.to!double;
+            return value.get!string.to!double;
         }
         throw new ODataEntityException("Cannot convert property to float: " ~ propertyName);
     }
@@ -119,10 +121,10 @@ class ODataEntity {
      */
     bool getBool(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == Json.Type.true_) {
+        if (value.type == Json.Type.bool_) {
             return true;
         }
-        if (value.type == Json.Type.false_) {
+        if (value.type == Json.Type.bool_) {
             return false;
         }
         throw new ODataEntityException("Cannot convert property to boolean: " ~ propertyName);
@@ -132,14 +134,14 @@ class ODataEntity {
      * Checks if a property exists
      */
     bool has(string propertyName) const @trusted {
-        return (propertyName in _properties.object) !is null;
+        return (propertyName in _properties) !is null;
     }
 
     /**
      * Removes a property
      */
     void remove(string propertyName) @trusted {
-        _properties.object.remove(propertyName);
+        _properties.remove(propertyName);
     }
 
     /**
@@ -181,7 +183,8 @@ class ODataEntity {
      * Gets all property names
      */
     string[] propertyNames() const @trusted {
-        return _properties.object.keys;
+        import std.array : array;
+        return _properties.byKeyValue.map!(kv => kv.key).array.dup;
     }
 
     /**
@@ -217,8 +220,8 @@ class ODataEntity {
      * Merges properties from another entity
      */
     void merge(ODataEntity other) @trusted {
-        foreach (key, value; other._properties.object) {
-            _properties[key] = value;
+        foreach (kv; other._properties.byKeyValue) {
+            _properties[kv.key] = kv.value;
         }
     }
 

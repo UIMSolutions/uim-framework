@@ -109,17 +109,17 @@ class DJsonRpcRequest : UIMObject {
     if (_method.length == 0) return false;
     
     // Params must be array or object if present
-    if (_params.type != Json.Type.null_ && 
-        _params.type != Json.Type.array && 
-        _params.type != Json.Type.object) {
+    if (!_params.isNull && 
+        !_params.isArray && 
+        !_params.isObject) {
       return false;
     }
     
     // ID must be string, number or null
-    if (_id.type != Json.Type.null_ &&
-        _id.type != Json.Type.string &&
-        _id.type != Json.Type.int_ &&
-        _id.type != Json.Type.float_) {
+    if (!_id.isNull &&
+        !_id.isString &&
+        !_id.isInteger &&
+        !_id.isDouble) {
       return false;
     }
     

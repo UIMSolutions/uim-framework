@@ -54,16 +54,16 @@ class DJSONLDDocument : UIMObject {
     auto result = Json.emptyObject;
     
     // Add context
-    if (_context.context.type != Json.Type.object || 
-        _context.context.get!(Json[string]).length > 0) {
+    if (!_context.context.isObject || 
+        _context.context.toMap.length > 0) {
       result[JSONLDKeywords.context] = _context.toJson();
     }
     
     // Add graph
     auto graphJson = _graph.toJson();
     
-    if (graphJson.type == Json.Type.array) {
-      auto arr = graphJson.get!(Json[]);
+    if (graphJson.isArray) {
+      auto arr = graphJson.toArray;
       if (arr.length == 1) {
         // Single node - merge into document
         auto nodeObj = arr[0].get!(Json[string]);
@@ -74,7 +74,7 @@ class DJSONLDDocument : UIMObject {
         // Multiple nodes - use @graph
         result[JSONLDKeywords.graph] = graphJson;
       }
-    } else if (graphJson.type == Json.Type.object) {
+    } else if (graphJson.isObject) {
       auto obj = graphJson.get!(Json[string]);
       foreach (key, value; obj) {
         result[key] = value;

@@ -146,12 +146,12 @@ class DJSONLDGraph : UIMObject {
   static DJSONLDGraph fromJson(Json json) {
     auto graph = new DJSONLDGraph();
     
-    if (json.type == Json.Type.array) {
+    if (json.isArray) {
       // Array of nodes
-      foreach (item; json.get!(Json[])) {
+      foreach (item; json.toArray) {
         graph.addNode(DJSONLDNode.fromJson(item));
       }
-    } else if (json.type == Json.Type.object) {
+    } else if (json.isObject) {
       auto obj = json.get!(Json[string]);
       
       // Check for @id
@@ -161,8 +161,8 @@ class DJSONLDGraph : UIMObject {
       
       // Check for @graph
       if (auto graphValue = JSONLDKeywords.graph in obj) {
-        if (graphValue.type == Json.Type.array) {
-          foreach (item; graphValue.get!(Json[])) {
+        if ((*graphValue).isArray) {
+          foreach (item; (*graphValue).toArray) {
             graph.addNode(DJSONLDNode.fromJson(item));
           }
         }

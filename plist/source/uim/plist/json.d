@@ -33,7 +33,7 @@ class JSONPlistConverter {
     PropertyList fromJSON(string jsonContent) @trusted {
         auto json = parseJsonString(jsonContent);
         
-        if (json.type != Json.Type.object) {
+        if (!json.isObject) {
             throw new PlistParseException("JSON root must be an object");
         }
         

@@ -116,18 +116,18 @@ class DJSONSchemaValidator : UIMObject {
     }
 
     // Number validations
-    if (data.type == Json.Type.int_ || data.type == Json.Type.float_) {
-      double value = data.type == Json.Type.int_ ? data.get!long : data.get!double;
+    if (data.isInteger || data.isDouble) {
+      double value = data.isInteger ? data.get!long : data.get!double;
       valid = validateNumberConstraints(value, schemaJson, errors) && valid;
     }
 
     // Array validations
-    if (data.type == Json.Type.array) {
+    if (data.isArray) {
       valid = validateArrayConstraints(data, schemaJson, errors) && valid;
     }
 
     // Object validations
-    if (data.type == Json.Type.object) {
+    if (data.isObject) {
       valid = validateObjectConstraints(data, schemaJson, errors) && valid;
     }
 

@@ -292,13 +292,13 @@ private GraphQLValue floatSerialize(GraphQLValue v) @safe {
 }
 
 private GraphQLValue stringSerialize(GraphQLValue v) @safe {
-    if (v.type == JSONType.string) return v;
+    if (v.type == Json.Type.string) return v;
     return Json(v.toString());
 }
 
 private GraphQLValue boolSerialize(GraphQLValue v) @safe {
-    if (v.type == JSONType.true_ || v.type == JSONType.false_) return v;
-    return Json(null);
+    if (v.type == Json.Type.bool_) return v;
+    return Json.undefined;
 }
 
 __gshared GraphQLScalarType GraphQLInt;
