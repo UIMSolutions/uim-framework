@@ -6,7 +6,10 @@
 module uim.entities;
 
 public {
-  import uim.entities.helpers;
+  import uim.core;
+  import uim.oop;
+  import uim.core;
+  import uim.events;
 }
 
 public {

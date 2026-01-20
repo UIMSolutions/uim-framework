@@ -5,11 +5,12 @@
 *****************************************************************************************************************/
 module uim.entities.events;
 
-import uim.core;
-import uim.events;
-import uim.entities.entity;
+import uim.entities;
+
+mixin(ShowModule());
 
 @safe:
+
 
 /**
  * Entity lifecycle events

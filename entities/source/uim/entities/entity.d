@@ -5,13 +5,12 @@
 *****************************************************************************************************************/
 module uim.entities.entity;
 
-import uim.core;
-import uim.oop;
+import uim.entities;
 
-import std.datetime : SysTime, Clock;
-import std.uuid : UUID, randomUUID;
+mixin(ShowModule());
 
 @safe:
+
 
 /**
  * Entity state enumeration

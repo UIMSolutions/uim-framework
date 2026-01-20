@@ -5,10 +5,12 @@
 *****************************************************************************************************************/
 module uim.entities.attributes;
 
-import uim.core;
-import std.traits;
+import uim.entities;
+
+mixin(ShowModule());
 
 @safe:
+
 
 /**
  * UDA to mark a field as an entity attribute

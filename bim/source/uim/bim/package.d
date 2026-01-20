@@ -6,6 +6,12 @@
 module uim.bim;
 
 public {
+  import uim.core;
+  import uim.oop;
+  import uim.entities;  
+}
+
+public {
   import uim.bim.core;
   import uim.bim.elements;
   import uim.bim.materials;

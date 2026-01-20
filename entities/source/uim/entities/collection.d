@@ -5,15 +5,12 @@
 *****************************************************************************************************************/
 module uim.entities.collection;
 
-import uim.core;
-import uim.oop;
-import uim.entities.entity;
+import uim.entities;
 
-import std.uuid : UUID;
-import std.algorithm : filter, map, canFind;
-import std.array : array;
+mixin(ShowModule());
 
 @safe:
+
 
 /**
  * Entity collection interface

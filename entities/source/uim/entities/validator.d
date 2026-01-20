@@ -5,16 +5,12 @@
 *****************************************************************************************************************/
 module uim.entities.validator;
 
-import uim.core;
-import uim.oop;
-import uim.entities.entity;
-import uim.entities.attributes;
+import uim.entities;
 
-import std.regex : regex, matchFirst;
-import std.conv : to;
-import std.traits;
+mixin(ShowModule());
 
 @safe:
+
 
 /**
  * Validation rule interface

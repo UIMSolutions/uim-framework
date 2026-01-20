@@ -5,13 +5,9 @@
 *****************************************************************************************************************/
 module uim.entities.manager;
 
-import uim.core;
-import uim.oop;
-import uim.events;
-import uim.entities.entity;
-import uim.entities.repository;
-import uim.entities.validator;
-import uim.entities.events;
+import uim.entities;
+
+mixin(ShowModule());
 
 @safe:
 

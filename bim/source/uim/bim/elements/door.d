@@ -17,7 +17,7 @@ class DBIMDoor : DBIMElement, IBIMBuildingElement {
   protected double _width;
   protected double _height;
   protected string _openingType; // "Single", "Double", "Sliding", etc.
-  protected bool _isFire rated;
+  protected bool _isFireRated;
   protected string _fireResistance;
 
   this() {
