@@ -7,8 +7,9 @@ module uim.jsons.rpc.response;
 
 import uim.jsons;
 
-@safe:
+mixin(ShowModule!());
 
+@safe:
 /**
  * JSON-RPC 2.0 response.
  */

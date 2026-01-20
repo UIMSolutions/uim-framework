@@ -7,6 +7,8 @@ module uim.jsons.schema.errors;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

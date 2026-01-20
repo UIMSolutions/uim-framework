@@ -7,6 +7,8 @@ module uim.jsons.schema.builder;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

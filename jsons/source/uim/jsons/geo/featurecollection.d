@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.jsons.geo.featurecollection;
 
-import uim.jsons.geo;
-import vibe.data.json;
+import uim.jsons;
+
+mixin(ShowModule!());
 
 @safe:
 

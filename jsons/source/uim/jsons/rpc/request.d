@@ -7,6 +7,8 @@ module uim.jsons.rpc.request;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

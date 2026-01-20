@@ -7,6 +7,8 @@ module uim.jsons.schema.validator;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

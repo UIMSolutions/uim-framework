@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.jsons.geo.types;
 
-import uim.jsons.geo;
+import uim.jsons;
+
+mixin(ShowModule!());
 
 @safe:
 

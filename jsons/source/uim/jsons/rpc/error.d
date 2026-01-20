@@ -7,6 +7,8 @@ module uim.jsons.rpc.error;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

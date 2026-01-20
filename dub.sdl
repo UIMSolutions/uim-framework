@@ -16,6 +16,7 @@ dependency "vibe-d" version="~>0.10.3"
 dependency "dyaml" version="~>0.10.0"
 
 // uim dependencies
+dependency ":cdm" version="*"
 dependency ":compilers" version="*"
 dependency ":core" version="*"
 dependency ":css" version="*"
@@ -23,7 +24,6 @@ dependency ":edm" version="*"
 dependency ":errors" version="*"
 dependency ":events" version="*"
 dependency ":entities" version="*"
-dependency ":geojson" version="*"
 dependency ":graphql" version="*"
 dependency ":html" version="*"
 dependency ":i18n" version="*"
@@ -48,6 +48,7 @@ configuration "test_all" {
 }
 
 // Subpackages
+subPackage "cdm"
 subPackage "compilers"
 subPackage "core"
 subPackage "css"
@@ -55,7 +56,6 @@ subPackage "edm"
 subPackage "errors"
 subPackage "events"
 subPackage "entities"
-subPackage "geojson"
 subPackage "graphql"
 subPackage "html"
 subPackage "i18n"

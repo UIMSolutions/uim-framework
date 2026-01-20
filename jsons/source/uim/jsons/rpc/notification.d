@@ -7,6 +7,8 @@ module uim.jsons.rpc.notification;
 
 import uim.jsons;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**
