@@ -101,16 +101,17 @@ class FilteringMiddleware : ErrorMiddleware {
   // #endregion filterPredicate
 
   override bool shouldProcess(IError error) {
-    if (!_enabled) {
-      return false;
-    }
-
-    // Check if error should be blocked
-    return !isBlocked(error);
+    // Always process if enabled
+    return _enabled;
   }
 
   override IError process(IError error, IError delegate(IError) @safe next) {
-    if (!shouldProcess(error)) {
+    if (!_enabled) {
+      return next(error);
+    }
+
+    // Check if error should be blocked
+    if (isBlocked(error)) {
       // Filter out this error
       return null;
     }

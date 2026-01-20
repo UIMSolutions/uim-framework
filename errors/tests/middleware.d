@@ -13,19 +13,19 @@ import std.stdio;
 void testBasicMiddleware() {
   writeln("Testing basic middleware functionality...");
 
-  auto error = createError()
-    .message("Test error")
-    .errorCode(100)
-    .severity("ERROR");
+  auto error = new UIMError();
+  error.message("Test error");
+  error.errorCode(100);
+  error.severity("ERROR");
 
-  auto next = (IError err) @safe => err;
+  IError next(IError err) @safe { return err; }
 
   // Test logging middleware
   auto logger = loggingMiddleware();
   assert(logger.isEnabled());
   assert(logger.priority() == 100);
   
-  auto result = logger.process(error, next);
+  auto result = logger.process(error, &next);
   assert(result !is null);
   assert(result.message() == "Test error");
 
@@ -35,23 +35,23 @@ void testBasicMiddleware() {
 void testFilteringMiddleware() {
   writeln("Testing filtering middleware...");
 
-  auto error = createError()
-    .message("Test error")
-    .errorCode(404)
-    .severity("ERROR");
+  auto error = new UIMError();
+  error.message("Test error");
+  error.errorCode(404);
+  error.severity("ERROR");
 
-  auto next = (IError err) @safe => err;
+  IError next(IError err) @safe { return err; }
 
   // Test code blocking
   auto filter = filteringMiddleware()
     .addBlockedCode(404);
 
-  auto result = filter.process(error, next);
+  auto result = filter.process(error, &next);
   assert(result is null, "Error should be filtered");
 
   // Test code allowing
   error.errorCode(200);
-  result = filter.process(error, next);
+  result = filter.process(error, &next);
   assert(result !is null, "Error should pass through");
 
   // Test severity blocking
@@ -59,11 +59,11 @@ void testFilteringMiddleware() {
     .addBlockedSeverity("DEBUG");
 
   error.severity("DEBUG");
-  result = severityFilter.process(error, next);
+  result = severityFilter.process(error, &next);
   assert(result is null, "DEBUG error should be filtered");
 
   error.severity("ERROR");
-  result = severityFilter.process(error, next);
+  result = severityFilter.process(error, &next);
   assert(result !is null, "ERROR should pass through");
 
   // Test whitelist
@@ -71,11 +71,11 @@ void testFilteringMiddleware() {
     .allowedCodes([100, 200, 300]);
 
   error.errorCode(200);
-  result = whitelist.process(error, next);
+  result = whitelist.process(error, &next);
   assert(result !is null, "Code 200 should be allowed");
 
   error.errorCode(404);
-  result = whitelist.process(error, next);
+  result = whitelist.process(error, &next);
   assert(result is null, "Code 404 should be blocked");
 
   writeln("✓ Filtering middleware test passed");
@@ -84,11 +84,11 @@ void testFilteringMiddleware() {
 void testTransformingMiddleware() {
   writeln("Testing transforming middleware...");
 
-  auto error = createError()
-    .message("Original message")
-    .severity("WARNING");
+  auto error = new UIMError();
+  error.message("Original message");
+  error.severity("WARNING");
 
-  auto next = (IError err) @safe => err;
+  IError next(IError err) @safe { return err; }
 
   // Test message transformation
   auto transformer = transformingMiddleware((IError err) @safe {
@@ -96,14 +96,14 @@ void testTransformingMiddleware() {
     return err;
   });
 
-  auto result = transformer.process(error, next);
+  auto result = transformer.process(error, &next);
   assert(result !is null);
   assert(result.message() == "Transformed: Original message");
 
   // Test severity upgrade
   error.severity("INFO");
   auto upgrader = severityUpgradeMiddleware("INFO", "WARNING");
-  result = upgrader.process(error, next);
+  result = upgrader.process(error, &next);
   assert(result.severity() == "WARNING");
 
   writeln("✓ Transforming middleware test passed");
@@ -116,7 +116,9 @@ void testMiddlewarePipeline() {
 
   // Add middleware in random order
   auto logger = loggingMiddleware().priority(100);
-  auto filter = filteringMiddleware().priority(50).addBlockedCode(999);
+  auto filter = new FilteringMiddleware();
+  filter.priority(50);
+  filter.addBlockedCode(999);
   auto transformer = transformingMiddleware((IError err) @safe {
     err.message("[PROCESSED] " ~ err.message());
     return err;
@@ -129,19 +131,27 @@ void testMiddlewarePipeline() {
   assert(pipeline.middleware().length == 3);
 
   // Test normal processing
-  auto error = createError()
-    .message("Test")
-    .errorCode(100)
-    .severity("ERROR");
+  {
+    auto error = new UIMError();
+    error.message("Test");
+    error.errorCode(100);
+    error.severity("ERROR");
 
-  auto result = pipeline.process(error);
-  assert(result !is null);
-  assert(result.message() == "[PROCESSED] Test");
+    auto result = pipeline.process(error);
+    assert(result !is null);
+    assert(result.message() == "[PROCESSED] Test");
+  }
 
   // Test filtering
-  error.errorCode(999);
-  result = pipeline.process(error);
-  assert(result is null, "Error with code 999 should be filtered");
+  {
+    auto error = new UIMError();
+    error.message("Filtered");
+    error.errorCode(999);
+    error.severity("ERROR");
+    
+    auto result = pipeline.process(error);
+    assert(result is null, "Error with code 999 should be filtered");
+  }
 
   // Test pipeline clearing
   pipeline.clear();
@@ -176,11 +186,13 @@ void testMiddlewarePriority() {
   pipeline.add(mid2);
   pipeline.add(mid3);
 
-  auto error = createError()
-    .message("Test")
-    .severity("ERROR");
+  {
+    auto error = new UIMError();
+    error.message("Test");
+    error.severity("ERROR");
 
-  pipeline.process(error);
+    pipeline.process(error);
+  }
 
   assert(executionOrder.length == 3);
   assert(executionOrder[0] == "mid3", "Highest priority should execute first");
@@ -193,11 +205,11 @@ void testMiddlewarePriority() {
 void testMiddlewareEnableDisable() {
   writeln("Testing middleware enable/disable...");
 
-  auto error = createError()
-    .message("Test")
-    .severity("ERROR");
+  auto error = new UIMError();
+  error.message("Test");
+  error.severity("ERROR");
 
-  auto next = (IError err) @safe => err;
+  IError next(IError err) @safe { return err; }
 
   auto middleware = transformingMiddleware((IError err) @safe {
     err.message("TRANSFORMED");
@@ -205,7 +217,7 @@ void testMiddlewareEnableDisable() {
   });
 
   // Test enabled
-  auto result = middleware.process(error, next);
+  auto result = middleware.process(error, &next);
   assert(result.message() == "TRANSFORMED");
 
   // Test disabled
@@ -213,7 +225,7 @@ void testMiddlewareEnableDisable() {
   assert(!middleware.isEnabled());
   
   error.message("Test");
-  result = middleware.process(error, next);
+  result = middleware.process(error, &next);
   assert(result.message() == "Test", "Disabled middleware should not transform");
 
   writeln("✓ Enable/disable test passed");
