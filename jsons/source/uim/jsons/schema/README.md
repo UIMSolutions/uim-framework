@@ -33,7 +33,7 @@ dependency "uim-jsonschema" path="../jsonschema"
 ### Basic Schema Creation
 
 ```d
-import uim.jsonschema;
+import uim.jsons;;
 
 // Create a string schema
 auto schema = new DJSONSchema();
@@ -92,7 +92,7 @@ auto validator = new DJSONSchemaValidator(userSchema);
 ### Type Helper Functions
 
 ```d
-import uim.jsonschema;
+import uim.jsons;;
 
 // Quick type schemas
 auto stringSchema = SchemaTypes.string_(5, 100);
@@ -284,7 +284,7 @@ auto validator = new DJSONSchemaValidator(schema);
 ### Complete Example: User Registration
 
 ```d
-import uim.jsonschema;
+import uim.jsons;;
 import std.stdio;
 
 void main() {
@@ -383,7 +383,7 @@ void main() {
 ## Architecture
 
 ```
-uim.jsonschema
+uim.jsons;
 ├── schema.d       - Schema definition and manipulation
 ├── validator.d    - Validation engine
 ├── types.d        - Type helpers and shortcuts

@@ -5,13 +5,8 @@
 *****************************************************************************************************************/
 module uim.plist.xml;
 
-import uim.plist.propertylist;
-import uim.plist.value;
-import uim.plist.exceptions;
-import std.conv;
-import std.string;
-import std.array;
-import std.algorithm;
+import uim.plist;
+
 
 @safe:
 

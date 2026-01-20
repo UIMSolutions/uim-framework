@@ -2,7 +2,7 @@ name "errors"
 description "Errorhandling for the uim framework"
 homepage "https://www.sueel.de"
 authors "Ozan Nurettin Süel"
-copyright "Copyright © 2018 - 2025, ONS"
+copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
 // target

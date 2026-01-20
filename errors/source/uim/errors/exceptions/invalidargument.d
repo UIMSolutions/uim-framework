@@ -6,6 +6,7 @@
 module uim.errors.exceptions.invalidargument;
 
 import uim.errors;
+
 mixin(ShowModule!());
 
 @safe:

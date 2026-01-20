@@ -44,6 +44,9 @@ module uim.plist;
  */
 
 public {
+    import uim.oop;
+    import uim.jsons;
+
     import uim.plist.exceptions;
     import uim.plist.value;
     import uim.plist.propertylist;

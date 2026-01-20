@@ -1,8 +1,8 @@
 # UIM-JSONLD - JSON-LD Library
 
-**Version**: 1.0.0  
-**Author**: Ozan Nurettin Süel (aka UIManufaktur)  
-**License**: Apache 2.0  
+**Version**: 1.0.0
+**Author**: Ozan Nurettin Süel (aka UIManufaktur)
+**License**: Apache 2.0
 **Language**: D
 
 ## Overview
@@ -25,7 +25,7 @@ UIM-JSONLD is a comprehensive JSON-LD (JSON for Linking Data) library for the D 
 Add to your `dub.sdl`:
 
 ```sdl
-dependency "uim-jsonld" path="../jsonld"
+dependency "uim-jsons" path=".."
 ```
 
 ## JSON-LD Overview
@@ -401,12 +401,12 @@ import uim.jsons;
 
 try {
     auto doc = DJSONLDDocument.loadFile("config.jsonld");
-    
+  
     auto node = doc.graph.getNode("http://example.com/missing");
     if (node is null) {
         writeln("Node not found");
     }
-    
+  
 } catch (JSONLDException e) {
     writeln("JSON-LD error: ", e.msg);
 } catch (InvalidDocumentException e) {
@@ -419,6 +419,7 @@ try {
 ## API Reference
 
 ### DJSONLDDocument
+
 - `context()` / `context(DJSONLDContext)` - Get/set context
 - `graph()` / `graph(DJSONLDGraph)` - Get/set graph
 - `addNode(DJSONLDNode)` - Add node to document
@@ -429,6 +430,7 @@ try {
 - `loadFile(string)` / `saveFile(string)` - File I/O
 
 ### DJSONLDContext
+
 - `vocab()` / `vocab(string)` - Get/set vocabulary
 - `base()` / `base(string)` - Get/set base IRI
 - `addTerm(string, string)` - Add term mapping
@@ -438,6 +440,7 @@ try {
 - `merge(DJSONLDContext)` - Merge contexts
 
 ### DJSONLDNode
+
 - `id()` / `id(string)` - Get/set node ID
 - `types()` - Get all types
 - `addType(string)` - Add type
@@ -448,6 +451,7 @@ try {
 - `toJson()` / `fromJson(Json)` - JSON conversion
 
 ### DJSONLDGraph
+
 - `id()` / `id(string)` - Get/set graph ID
 - `addNode(DJSONLDNode)` - Add node
 - `getNode(string)` - Get node by ID
@@ -459,6 +463,7 @@ try {
 - `count()` - Get node count
 
 ### DJSONLDBuilder
+
 - `vocab(string)` - Set vocabulary
 - `base(string)` - Set base IRI
 - `term(string, string)` - Add term
@@ -485,6 +490,7 @@ try {
 ## XSD Datatypes
 
 Commonly used XML Schema datatypes available via `XSDTypes`:
+
 - `string`, `boolean`, `integer`, `double`, `float`
 - `date`, `dateTime`, `time`
 - `anyURI`

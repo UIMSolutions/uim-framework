@@ -5,10 +5,8 @@
 *****************************************************************************************************************/
 module uim.plist.value;
 
-import uim.plist.exceptions;
-import std.datetime;
-import std.conv;
-import std.base64;
+import uim.plist;
+
 
 @safe:
 
@@ -220,12 +218,20 @@ struct PlistValue {
         throw new PlistTypeException("Cannot convert " ~ _type.to!string ~ " to data");
     }
 
+    private static PlistValue trustCast(const PlistValue value) @trusted {
+        return cast(PlistValue)value;
+    }
+
     /**
      * Converts this value to an array
      */
     PlistValue[] asArray() const {
         if (_type == PlistType.Array) {
-            return _arrayValue.dup;
+            PlistValue[] result;
+            foreach (item; _arrayValue) {
+                result ~= trustCast(item);
+            }
+            return result;
         }
         throw new PlistTypeException("Cannot convert " ~ _type.to!string ~ " to array");
     }
@@ -235,7 +241,11 @@ struct PlistValue {
      */
     PlistValue[string] asDict() const {
         if (_type == PlistType.Dict) {
-            return _dictValue.dup;
+            PlistValue[string] result;
+            foreach (key, value; _dictValue) {
+                result[key] = trustCast(value);
+            }
+            return result;
         }
         throw new PlistTypeException("Cannot convert " ~ _type.to!string ~ " to dictionary");
     }

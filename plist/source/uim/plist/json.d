@@ -5,12 +5,7 @@
 *****************************************************************************************************************/
 module uim.plist.json;
 
-import uim.plist.propertylist;
-import uim.plist.value;
-import uim.plist.exceptions;
-import std.json;
-import std.conv;
-import std.datetime;
+import uim.plist;
 
 @safe:
 
@@ -22,7 +17,7 @@ class JSONPlistConverter {
      * Converts a PropertyList to JSON format
      */
     string toJSON(const PropertyList plist) {
-        JSONValue root = JSONValue.emptyObject;
+        Json root = Json.emptyObject;
         
         auto data = plist.getData();
         foreach (key, value; data) {
@@ -35,51 +30,51 @@ class JSONPlistConverter {
     /**
      * Parses a PropertyList from JSON format
      */
-    PropertyList fromJSON(string jsonContent) {
-        auto json = parseJSON(jsonContent);
+    PropertyList fromJSON(string jsonContent) @trusted {
+        auto json = parseJsonString(jsonContent);
         
-        if (json.type != JSONType.object) {
+        if (json.type != Json.Type.object) {
             throw new PlistParseException("JSON root must be an object");
         }
         
         PlistValue[string] data;
-        foreach (key, value; json.object) {
+        foreach (string key, value; json) {
             data[key] = jsonToValue(value);
         }
         
         return new PropertyList(data);
     }
 
-    private JSONValue valueToJSON(PlistValue value) const {
+    private Json valueToJSON(PlistValue value) const {
         switch (value.type) {
             case PlistType.String:
-                return JSONValue(value.asString());
+                return Json(value.asString());
                 
             case PlistType.Integer:
-                return JSONValue(value.asInt());
+                return Json(value.asInt());
                 
             case PlistType.Float:
-                return JSONValue(value.asFloat());
+                return Json(value.asFloat());
                 
             case PlistType.Boolean:
-                return JSONValue(value.asBool());
+                return Json(value.asBool());
                 
             case PlistType.Date:
-                return JSONValue(value.asString());
+                return Json(value.asString());
                 
             case PlistType.Data:
                 // Store data as base64 string in JSON
-                return JSONValue(value.asString());
+                return Json(value.asString());
                 
             case PlistType.Array:
-                JSONValue[] arr;
+                Json[] arr;
                 foreach (item; value.asArray()) {
                     arr ~= valueToJSON(item);
                 }
-                return JSONValue(arr);
+                return Json(arr);
                 
             case PlistType.Dict:
-                JSONValue dict = JSONValue.emptyObject;
+                Json dict = Json.emptyObject;
                 auto dictData = value.asDict();
                 foreach (key, val; dictData) {
                     dict[key] = valueToJSON(val);
@@ -91,38 +86,35 @@ class JSONPlistConverter {
         }
     }
 
-    private PlistValue jsonToValue(JSONValue json) const {
+    private PlistValue jsonToValue(Json json) const @trusted {
         switch (json.type) {
-            case JSONType.string:
-                return PlistValue(json.str);
+            case Json.Type.string:
+                return PlistValue(json.get!string);
                 
-            case JSONType.integer:
-                return PlistValue(json.integer);
+            case Json.Type.int_:
+                return PlistValue(json.get!long);
                 
-            case JSONType.float_:
-                return PlistValue(json.floating);
+            case Json.Type.float_:
+                return PlistValue(json.get!double);
                 
-            case JSONType.true_:
-                return PlistValue(true);
+            case Json.Type.bool_:
+                return PlistValue(json.get!bool);
                 
-            case JSONType.false_:
-                return PlistValue(false);
-                
-            case JSONType.array:
+            case Json.Type.array:
                 PlistValue[] arr;
-                foreach (item; json.array) {
+                foreach (item; json) {
                     arr ~= jsonToValue(item);
                 }
                 return PlistValue(arr);
                 
-            case JSONType.object:
+            case Json.Type.object:
                 PlistValue[string] dict;
-                foreach (key, value; json.object) {
+                foreach (string key, value; json) {
                     dict[key] = jsonToValue(value);
                 }
                 return PlistValue(dict);
                 
-            case JSONType.null_:
+            case Json.Type.null_:
                 return PlistValue("");
                 
             default:
@@ -142,9 +134,9 @@ unittest {
     auto converter = new JSONPlistConverter();
     auto json = converter.toJSON(plist);
     
-    assert(json.indexOf("\"name\"") > 0);
-    assert(json.indexOf("\"Test\"") > 0);
-    assert(json.indexOf("42") > 0);
+    assert(json.canFind("\"name\""));
+    assert(json.canFind("\"Test\""));
+    assert(json.canFind("42"));
 }
 
 unittest {
