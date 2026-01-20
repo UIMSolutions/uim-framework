@@ -17,6 +17,6 @@ public {
 
   // 
   import uim.errors.interfaces.errors;
-  import uim.errors.interfaces.exceptions;
+  import uim.errors.interfaces.middlewares;
 }
 

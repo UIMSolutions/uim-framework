@@ -3,12 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.errors.classes.middlewares;
+module uim.errors.interfaces.middlewares;
 
 public {
-  import uim.errors.classes.middlewares.middleware;
-  import uim.errors.classes.middlewares.filtering;
-  import uim.errors.classes.middlewares.logging;
-  import uim.errors.classes.middlewares.pipeline;
-  import uim.errors.classes.middlewares.transforming;
+  import uim.errors.interfaces.middlewares.middleware;
 }

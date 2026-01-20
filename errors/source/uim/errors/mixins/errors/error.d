@@ -9,19 +9,19 @@ import uim.errors;
 
 @safe:
 string errorThis(string name = null, bool overrideMemberNames = true) {
-    string fullName = name ~ "Error";
-    return objThis(fullName, overrideMemberNames);
+  string fullName = name ~ "Error";
+  return objThis(fullName, overrideMemberNames);
 }
 
 template ErrorThis(string name = null, bool overrideMemberNames = true) {
-    const char[] ErrorThis = errorThis(name, overrideMemberNames);
+  const char[] ErrorThis = errorThis(name, overrideMemberNames);
 }
 
 string errorCalls(string name) {
-    string fullName = name ~ "Error";
-    return objCalls(fullName);
+  string fullName = name ~ "Error";
+  return objCalls(fullName);
 }
 
 template ErrorCalls(string name) {
-    const char[] ErrorCalls = errorCalls(name);
+  const char[] ErrorCalls = errorCalls(name);
 }

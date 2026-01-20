@@ -5,9 +5,3 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.middleware;
 
-import uim.errors;
-mixin(ShowModule!());
-@safe:
-
-interface IErrorMiddleware : IObject {
-}

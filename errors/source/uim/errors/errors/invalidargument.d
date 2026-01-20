@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class DInvalidArgumentError : UIMError {
-  mixin(ErrorThis!());
+  mixin(ErrorThis!("InvalidArgument"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -23,7 +23,7 @@ class DInvalidArgumentError : UIMError {
     return true;
   }
 
-  this(string errorMessage = "Invalid Argument", string fileName = null, size_t lineNumber = 0) {
+  this(string errorMessage, string fileName = null, size_t lineNumber = 0) {
     super();
     _loglabel = "InvalidArgument";
     _message = errorMessage;

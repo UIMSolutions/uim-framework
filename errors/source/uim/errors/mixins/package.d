@@ -10,6 +10,6 @@ public {
   import uim.errors.mixins.trap;
 
   import uim.errors.mixins.errors;
-  import uim.errors.mixins.exceptions;
+
 }
 

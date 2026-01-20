@@ -64,10 +64,10 @@ class VersionedMemento : Memento, IVersionedMemento {
  * History manager for text editor with undo support.
  */
 class EditorHistory : IHistoryManager {
-    private TextEditor _editor;
+    private uim.oop.patterns.mementos.texteditor.TextEditor _editor;
     private IMemento[] _history;
     
-    this(TextEditor editor) @safe {
+    this(uim.oop.patterns.mementos.texteditor.TextEditor editor) @safe {
         _editor = editor;
     }
     
