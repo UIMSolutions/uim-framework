@@ -3,12 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.compilers.classes.compiler;
+module uim.compilers.classes.compilers.compiler;
 
 import uim.compilers;
-import uim.oop;
-import std.datetime.stopwatch : StopWatch;
-import core.time : Duration;
 
 @safe:
 
