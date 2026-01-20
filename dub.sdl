@@ -33,7 +33,7 @@ dependency ":po" version="*"
 dependency ":services" version="*"
 dependency ":yaml" version="*"
 
-sourceFiles "./source/uim/base.d"
+sourceFiles "./source/uim/framework.d"
 
 configuration "test_all" {
 	targetType "library"
