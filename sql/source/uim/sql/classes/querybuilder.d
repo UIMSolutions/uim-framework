@@ -9,8 +9,6 @@ import uim.sql;
 import std.array : join;
 import std.conv : to;
 
-@safe:
-
 /**
  * Implementation of fluent query builder
  */
@@ -248,7 +246,7 @@ class QueryBuilder : UIMObject, IQueryBuilder {
         return _queryType;
     }
 
-    void reset() {
+    void reset() @trusted {
         _queryType = QueryType.SELECT;
         _selectColumns = [];
         _tableName = null;

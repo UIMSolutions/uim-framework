@@ -7,8 +7,6 @@ module uim.sql.interfaces.querybuilder;
 
 import uim.sql;
 
-@safe:
-
 /**
  * Interface for fluent SQL query building
  */
