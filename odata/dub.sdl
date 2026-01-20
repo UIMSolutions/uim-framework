@@ -1,0 +1,44 @@
+name "odata"
+description "OData (Open Data Protocol) client and server library for UIM framework"
+authors "Ozan Nurettin Süel (aka UIManufaktur)"
+license "Apache-2.0"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+
+dependency "uim-jsons" path="../jsons"
+
+// target
+targetName "uim-odata"
+targetType "library"
+
+// uim dependencies
+dependency "uim-base:oops" path=".."
+dependency "uim-base:jsons" path=".."
+
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}

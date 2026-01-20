@@ -1,0 +1,49 @@
+name "oop"
+description "uim library to work with OOP"
+homepage "https://www.sueel.de"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-oop"
+targetType "library"
+
+// uim dependencies
+dependency "uim-base:core" path=".."
+
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
+
+configuration "runtests" {
+  targetType "executable"
+  sourcePaths "source" "tests"
+  importPaths "source" "tests"
+  mainSourceFile "tests/runner.d"
+}

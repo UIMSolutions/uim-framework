@@ -1,0 +1,37 @@
+name "htmls"
+description "uim library to work with HTMLS"
+homepage "https://www.sueel.de"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-htmls"
+targetType "library"
+
+// uim dependencies
+dependency "uim-base:oop" path=".."
+
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}

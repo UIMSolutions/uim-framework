@@ -1,0 +1,12 @@
+{
+  "title": "UIM Base Library Documentation",
+  "author": "Ozan Nurettin Süel",
+  "description": "This is the documentation for the UIM Base Library, a foundational library for my UIM projects.",
+  "outputDir": "docs",
+  "packages": [
+    "source",
+    "phobos/source",
+    "core/source",
+    "oop/source"    
+  ]
+}

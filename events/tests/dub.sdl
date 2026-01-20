@@ -1,0 +1,10 @@
+name "events-tests"
+description "Test suite for uim-events library"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2026, ONS"
+license "Apache-2.0"
+
+dependency "uim-base:events" path=".."
+
+targetType "executable"
+targetName "test-events"

@@ -1,0 +1,11 @@
+name "entities-tests"
+description "Test suite for uim-entities library"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2026, ONS"
+license "Apache-2.0"
+
+dependency "uim-base:entities" path=".."
+dependency "uim-base:events" path="../.."
+
+targetType "executable"
+targetName "test-entities"

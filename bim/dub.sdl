@@ -1,0 +1,16 @@
+name "bim"
+description "Building Information Modeling library for UIM framework"
+authors "Ozan Nurettin Süel (aka UIManufaktur)"
+license "Apache-2.0"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+
+dependency "uim-oop" path="../oop"
+dependency "uim-core" path="../core"
+dependency "uim-entities" path="../entities"
+
+targetType "library"
+targetPath "lib"
+
+configuration "library" {
+    targetType "library"
+}

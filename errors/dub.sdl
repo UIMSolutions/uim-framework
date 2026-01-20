@@ -1,0 +1,43 @@
+name "errors"
+description "Errorhandling for the uim framework"
+homepage "https://www.sueel.de"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2025, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-errors"
+targetType "library"
+
+// uim dependencies
+dependency "uim-base:oops" path=".."
+dependency "uim-base:jsons" path=".."
+
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}

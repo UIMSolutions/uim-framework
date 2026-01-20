@@ -1,0 +1,5 @@
+name "graphql-example"
+targetType "executable"
+sourcePaths "."
+importPaths "../source"
+sourceFiles "example.d"

@@ -1,0 +1,15 @@
+name "ini"
+description "INI file parser and writer library for UIM framework"
+authors "Ozan Nurettin Süel (aka UIManufaktur)"
+license "Apache-2.0"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+
+dependency "uim-oop" path="../oop"
+dependency "uim-core" path="../core"
+
+targetType "library"
+targetPath "lib"
+
+configuration "library" {
+    targetType "library"
+}
