@@ -29,28 +29,28 @@ class SchemaValidator : UIMObject {
         }
 
         // Check required fields
-        foreach (field; _schema.fields) {
-            if (field.required && (field.name !in data || data[field.name].type == Json.Type.null_)) {
-                result.addFieldError(field.name, "Field is required");
+        foreach (name, field; _schema.fields) {
+            if (field.required && (name !in data || data[name].type == Json.Type.null_)) {
+                result.addFieldError(name, "Field is required");
                 continue;
             }
 
             // Skip validation if field is not present and not required
-            if (field.name !in data) {
+            if (name !in data) {
                 continue;
             }
 
-            auto value = data[field.name];
+            auto value = data[name];
 
             // Check nullable
             if (value.type == Json.Type.null_ && !field.nullable) {
-                result.addFieldError(field.name, "Field cannot be null");
+                result.addFieldError(name, "Field cannot be null");
                 continue;
             }
 
             // Type-specific validation
             if (value.type != Json.Type.null_) {
-                validateFieldValue(field, value, result);
+                validateFieldValue(cast(SchemaField)field, value, result);
             }
         }
 

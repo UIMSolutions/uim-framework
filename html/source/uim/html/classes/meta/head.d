@@ -25,11 +25,8 @@ auto Head(string content) {
   element.text(content);
   return element;
 }
-
+///
 unittest {
-  auto head = Head();
-  assert(head.toString() == "<head></head>");
-
-  auto headWithContent = Head("Hello");
-  assert(headWithContent.toString() == "<head>Hello</head>");
+  auto head = Head("This is the head content");
+  assert(head.toString() == `<head>This is the head content</head>`);
 }

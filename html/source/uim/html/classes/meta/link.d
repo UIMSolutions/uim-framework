@@ -132,10 +132,6 @@ class DBase : DHtmlElement {
     return this;
   }
 
-  IHtmlAttribute media() {
-    return attribute("media");
-  }
-
   IHtmlElement sizes(string value) {
     attribute("sizes", value);
     return this;
@@ -163,19 +159,14 @@ class DBase : DHtmlElement {
     return attribute("type");
   }
 }
+/// 
+unittest {
+  auto link = new DBase();
+  link.href("https://example.com");
+  link.rel("stylesheet");
+  assert(link.toString() == `<base href="https://example.com" rel="stylesheet">`);
+}
 
 auto Base() {
   return new DBase();
-}
-
-auto Base(string height, string width) {
-  auto element = new DBase();
-  element.height(height);
-  element.width(width);
-  return element;
-}
-
-unittest {
-  auto base = Base("https://example.com", "Example");
-  assert(base.toString() == `<base cite="https://example.com">Example</base>`);
 }

@@ -43,13 +43,6 @@ auto Base() {
   return new DBase();
 }
 
-auto Base(string height, string width) {
-  auto element = new DBase();
-  element.height(height);
-  element.width(width);
-  return element;
-}
-
 unittest {
   auto base = Base("https://example.com", "Example");
   assert(base.toString() == `<base cite="https://example.com">Example</base>`);

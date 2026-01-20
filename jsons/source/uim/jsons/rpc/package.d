@@ -10,6 +10,7 @@ public {
   import uim.jsons.rpc.exceptions;
   import uim.jsons.rpc.helpers;
   import uim.jsons.rpc.interfaces;
+  import uim.jsons.rpc.tests;
 }
 
 public {
