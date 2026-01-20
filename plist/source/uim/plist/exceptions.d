@@ -12,7 +12,7 @@ import uim.core;
 /**
  * Base exception for property list operations
  */
-class PlistException : UIMException {
+class PlistException : Exception {
     this(string msg, string file = __FILE__, size_t line = __LINE__) {
         super(msg, file, line);
     }

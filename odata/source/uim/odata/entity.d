@@ -65,7 +65,7 @@ class ODataEntity {
     /**
      * Gets a property value as JSON
      */
-    JSONValue get(string propertyName) const {
+    JSONValue get(string propertyName) const @trusted {
         if (propertyName !in _properties.object) {
             throw new ODataEntityException("Property not found: " ~ propertyName);
         }
@@ -131,14 +131,14 @@ class ODataEntity {
     /**
      * Checks if a property exists
      */
-    bool has(string propertyName) const {
+    bool has(string propertyName) const @trusted {
         return (propertyName in _properties.object) !is null;
     }
 
     /**
      * Removes a property
      */
-    void remove(string propertyName) {
+    void remove(string propertyName) @trusted {
         _properties.object.remove(propertyName);
     }
 
@@ -180,7 +180,7 @@ class ODataEntity {
     /**
      * Gets all property names
      */
-    string[] propertyNames() const {
+    string[] propertyNames() const @trusted {
         return _properties.object.keys;
     }
 
@@ -216,7 +216,7 @@ class ODataEntity {
     /**
      * Merges properties from another entity
      */
-    void merge(ODataEntity other) {
+    void merge(ODataEntity other) @trusted {
         foreach (key, value; other._properties.object) {
             _properties[key] = value;
         }

@@ -12,6 +12,7 @@ import std.json;
 import std.conv;
 import std.net.curl;
 import std.string;
+import core.time;
 
 @safe:
 
@@ -196,7 +197,7 @@ class ODataClient {
             foreach (key, value; _headers) {
                 http.addRequestHeader(key, value);
             }
-            http.dataTimeout = _timeout.seconds;
+            http.dataTimeout = dur!"seconds"(_timeout);
             
             char[] content;
             http.onReceive = (ubyte[] data) {
@@ -223,7 +224,7 @@ class ODataClient {
             foreach (key, value; _headers) {
                 http.addRequestHeader(key, value);
             }
-            http.dataTimeout = _timeout.seconds;
+            http.dataTimeout = dur!"seconds"(_timeout);
             
             char[] content;
             http.onReceive = (ubyte[] responseData) {
@@ -252,7 +253,7 @@ class ODataClient {
             foreach (key, value; _headers) {
                 http.addRequestHeader(key, value);
             }
-            http.dataTimeout = _timeout.seconds;
+            http.dataTimeout = dur!"seconds"(_timeout);
             
             char[] content;
             http.onReceive = (ubyte[] responseData) {
@@ -281,7 +282,7 @@ class ODataClient {
             foreach (key, value; _headers) {
                 http.addRequestHeader(key, value);
             }
-            http.dataTimeout = _timeout.seconds;
+            http.dataTimeout = dur!"seconds"(_timeout);
             http.method = HTTP.Method.del;
             http.perform();
             

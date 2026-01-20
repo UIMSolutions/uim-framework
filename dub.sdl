@@ -18,6 +18,7 @@ dependency "dyaml" version="~>0.10.0"
 // uim dependencies
 dependency ":core" version="*"
 dependency ":css" version="*"
+dependency ":errors" version="*"
 dependency ":events" version="*"
 dependency ":entities" version="*"
 dependency ":graphql" version="*"
@@ -42,6 +43,7 @@ configuration "test_all" {
 // Subpackages
 subPackage "core"
 subPackage "css"
+subPackage "errors"
 subPackage "events"
 subPackage "entities"
 subPackage "graphql"
