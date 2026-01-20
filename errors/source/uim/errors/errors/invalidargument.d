@@ -20,34 +20,41 @@ class DInvalidArgumentError : UIMError {
     }
 
     this.loglabel("InvalidArgument");
-    return true;
-  }
 
-  this(string errorMessage, string fileName = null, size_t lineNumber = 0) {
-    super();
-    _loglabel = "InvalidArgument";
-    _message = errorMessage;
-    if (fileName) {
-      _fileName = fileName;
+    if (initData.hasKey("message")) {
+      _message = initData["message"].get!string;
     }
-    if (lineNumber > 0) {
-      _lineNumber = lineNumber;
+
+    if (initData.hasKey("fileName")) {
+      _fileName = initData["fileName"].get!string;
     }
+    if (initData.hasKey("lineNumber")) {
+      _lineNumber = initData["lineNumber"].get!size_t;
+    }
+    return true;
   }
 }
 
 auto invalidArgumentError() {
-  return new DInvalidArgumentError("Invalid Argument");
+  Json[string] initData;
+  initData["message"] = "Invalid Argument";
+  return new DInvalidArgumentError(initData);
 }
 
 auto invalidArgumentError(string message) {
-  return new DInvalidArgumentError(message);
+  Json[string] initData;
+  initData["message"] = message;
+  return new DInvalidArgumentError(initData);
 }
 
 auto invalidArgumentError(string message, string fileName, size_t lineNumber = 0) {
-  return new DInvalidArgumentError(message, fileName, lineNumber);
+  Json[string] initData;
+  initData["message"] = message;
+  initData["fileName"] = fileName;
+  initData["lineNumber"] = lineNumber;
+  return new DInvalidArgumentError(initData);
 }
-
+///
 unittest {
   auto error = invalidArgumentError();
   assert(error !is null, "Failed to create InvalidArgumentError instance");

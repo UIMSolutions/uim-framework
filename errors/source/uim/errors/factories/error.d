@@ -11,52 +11,51 @@ import uim.errors;
 
 @safe:
 
-class UIMErrorFactory : UIMFactory!(string, UIMError) {
-    this() {
-        super(() => new UIMError());
-        registerCommonErrors();
-    }
+class ErrorFactory : UIMFactory!(string, IError) {
+  this() {
+    super(() => new UIMError());
+    registerCommonErrors();
+  }
 
-    // Register common error types
-    private void registerCommonErrors() {
-        registerError("InvalidArgument", () => new DInvalidArgumentError());
-        registerError("UnknownEditor", () => new DUnknownEditorError());
-    }
+  // Register common error types
+  private void registerCommonErrors() {
+    register("InvalidArgument", () => new DInvalidArgumentError());
+    register("UnknownEditor", () => new DUnknownEditorError());
+  }
 
-    // Register a custom error type
-    UIMErrorFactory registerError(string errorType, UIMError delegate() creator) {
-        this.register(errorType, creator);
-        return this;
-    }
+  // Register a custom error type
+  override ErrorFactory register(string name, IError delegate() creator) {
+    this.register(name, creator);
+    return this;
+  }
 
-    // Create error with specific type and message
-    UIMError createError(string errorType, string message = null) {
-        auto error = create(errorType);
-        if (error && message) {
-            error.message(message);
-        }
-        return error;
+  // Create error with full parameters
+  IError create(string name, string message, string fileName = null, size_t lineNumber = 0) {
+    auto error = create(name, message);
+    if (error) {
+      error.fileName(fileName);
+      error.lineNumber(lineNumber);
     }
+    return error;
+  }
 
-    // Create error with full parameters
-    UIMError createError(string errorType, string message, string fileName, size_t lineNumber) {
-        auto error = createError(errorType, message);
-        if (error) {
-            error.fileName(fileName);
-            error.lineNumber(lineNumber);
-        }
-        return error;
+  // Create error with specific type and message
+  override IError create(string name, Json[string] initData = null) {
+    if (auto error = super.create(name)) {
+      return (error.initialize(initData)) ? error : null;
     }
+    return null;
+  }
 
-    private static UIMErrorFactory _instance;
-    static UIMErrorFactory instance() {
-        if (_instance is null) {
-            _instance = new UIMErrorFactory();
-        }
-        return _instance;
+  private static ErrorFactory _instance;
+  static ErrorFactory instance() {
+    if (_instance is null) {
+      _instance = new ErrorFactory();
     }
+    return _instance;
+  }
 }
 
 auto errorFactory() {
-    return UIMErrorFactory.instance;
+  return ErrorFactory.instance();
 }

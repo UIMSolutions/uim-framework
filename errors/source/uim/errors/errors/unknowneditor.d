@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class DUnknownEditorError : UIMError {
-  mixin(ErrorThis!());
+  mixin(ErrorThis!("UnknownEditor"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
@@ -20,34 +20,48 @@ class DUnknownEditorError : UIMError {
     }
 
     this.loglabel("UnknownEditor");
+
+    if (initData.hasKey("message")) {
+      _message = initData["message"].get!string;
+    }
+    if (initData.hasKey("fileName")) {
+      _fileName = initData["fileName"].get!string;
+    }
+    if (initData.hasKey("lineNumber")) {
+      _lineNumber = initData["lineNumber"].get!size_t;
+    }
     return true;
   }
-
-  this(string errorMessage = "Unknown Editor", string fileName = null, size_t lineNumber = 0) {
-    super();
-    _loglabel = "UnknownEditor";
-    _message = errorMessage;
-    if (fileName) {
-      _fileName = fileName;
-    }
-    if (lineNumber > 0) {
-      _lineNumber = lineNumber;
-    }
-  }
 }
-
+/** 
+  * Creates and returns a new UnknownEditorError instance with default message.
+  */
 auto unknownEditorError() {
-  return new DUnknownEditorError("Unknown Editor");
+  Json[string] initData;
+  initData["message"] = "Unknown Editor";
+  return new DUnknownEditorError(initData);
 }
 
+/** 
+  * Creates and returns a new UnknownEditorError instance with specified message.
+  */
 auto unknownEditorError(string message) {
-  return new DUnknownEditorError(message);
+  Json[string] initData;
+  initData["message"] = message;
+  return new DUnknownEditorError(initData);
 }
 
+/** 
+  * Creates and returns a new UnknownEditorError instance with specified message, file name and line number.
+  */
 auto unknownEditorError(string message, string fileName, size_t lineNumber = 0) {
-  return new DUnknownEditorError(message, fileName, lineNumber);
+  Json[string] initData;
+  initData["message"] = message;
+  initData["fileName"] = fileName;
+  initData["lineNumber"] = lineNumber;
+  return new DUnknownEditorError(initData);
 }
-
+/// 
 unittest {
   auto error = unknownEditorError();
   assert(error !is null, "Failed to create DUnknownEditorError instance");

@@ -46,13 +46,13 @@ Create errors efficiently using the factory pattern:
 auto factory = errorFactory();
 
 // Create error by type
-auto error = factory.createError("InvalidArgument", "Value must be positive");
+auto error = factory.create("InvalidArgument", "Value must be positive");
 
 // Register custom error types
-factory.registerError("CustomError", () => new MyCustomError());
+factory.register("CustomError", () => new MyCustomError());
 
 // Create with full parameters
-auto error2 = factory.createError("UnknownEditor", "Editor not found", "editor.d", 100);
+auto error2 = factory.create("UnknownEditor", "Editor not found", "editor.d", 100);
 ```
 
 ### Predefined Error Types
@@ -180,7 +180,7 @@ auto myCustomError(string message = "Custom error occurred") {
 }
 
 // Register with factory
-errorFactory().registerError("CustomError", () => new MyCustomError());
+errorFactory().register("CustomError", () => new MyCustomError());
 ```
 
 ## Migration from Exceptions

@@ -6,8 +6,6 @@
 module uim.errors.classes.middlewares.pipeline;
 
 import uim.errors;
-import std.algorithm : sort;
-import std.array : array;
 
 @safe:
 
@@ -62,10 +60,13 @@ class ErrorMiddlewarePipeline : UIMObject {
   ErrorMiddlewarePipeline remove(IErrorMiddleware middleware) {
     import std.algorithm : remove, countUntil;
     
+    // TODO : Syntax issue with remove, needs investigation
+    /* 
     auto index = _middleware.countUntil(middleware);
     if (index >= 0) {
       _middleware = _middleware.remove(index);
     }
+    */ 
     
     return this;
   }

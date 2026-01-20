@@ -79,7 +79,7 @@ class DJSONSchemaValidator : UIMObject {
     
     if (auto typeField = "type" in schemaJson) {
       string expectedType = typeField.get!string;
-      string actualType = data.type.to!string.toLower;
+      string actualType = data.to!string.toLower;
 
       // Map JSON types
       if (data.isInteger || data.isDouble) {

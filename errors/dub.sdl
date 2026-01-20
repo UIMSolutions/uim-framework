@@ -41,3 +41,8 @@ configuration "verbose" {
 	targetType "library"
 	versions "show_module" "show_test" "show_init" "show_function"
 }
+
+configuration "test_middleware" {
+	targetType "executable"
+	mainSourceFile "tests/middleware.d"
+}

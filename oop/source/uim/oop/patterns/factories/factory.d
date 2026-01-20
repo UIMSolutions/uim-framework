@@ -42,7 +42,11 @@ class UIMFactory(K, V) : IFactory!(K, V) {
      * Returns:
      *     An instance of type T.
      */
-  V create(K key) {
+  V create(K key, Json initData) {
+    return create(key, initData.isObject ? initData.toMap : null);
+  }
+
+  V create(K key, Json[string] initData = null) {
     return isRegistered(key) ? _creators[key]() : null;
   }
 

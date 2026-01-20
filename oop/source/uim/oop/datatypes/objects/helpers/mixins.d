@@ -16,8 +16,14 @@ string objThis(string name, bool overrideMemberNames = true) {
     this() {
       super("{name}");
     }
+    this(Json initData) {
+      super("{name}", initData.toMap);
+    }
     this(Json[string] initData) {
       super("{name}", initData);
+    }
+    this(string name, Json initData) {
+      super(name, initData.toMap);
     }
     this(string name, Json[string] initData = null) {
       super(name, initData);

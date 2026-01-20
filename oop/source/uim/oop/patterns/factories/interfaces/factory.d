@@ -26,7 +26,8 @@ interface IFactory(K, V) {
      * Returns:
      *     An instance of type T.
      */
-  V create(K key);
+  V create(K key, Json initData);
+  V create(K key, Json[string] initData = null);
 
   /** 
      * Registers a creator function for a specific key.

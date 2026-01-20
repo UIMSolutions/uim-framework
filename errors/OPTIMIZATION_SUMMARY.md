@@ -33,7 +33,7 @@ Comprehensive optimization and enhancement of the uim-errors module completed on
 ### 3. Error Factory Enhancements ✅
 
 #### New Methods
-- **registerError(string, delegate)**: Register custom error types with factory
+- **register(string, delegate)**: Register custom error types with factory
 - **createError(string, string)**: Create error by type with message
 - **createError(string, string, string, size_t)**: Create error with full parameters
 

@@ -13,12 +13,6 @@ mixin(ShowModule!());
 class DScalarErrorNode : UIMErrorNode {
     mixin(ErrorNodeThis!("Scalar"));
     
-    this(string newType, Json newValue) {
-        super();
-        _type = newType;
-        _data = newValue;
-    }
-    
     // #region type
     // Type of scalar data
     private string _type;

@@ -9,7 +9,10 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-interface IError {
+// Error Interface
+interface IError : IObject {
+  bool initialize(Json[string] initData);
+
   string loglabel();
   IError loglabel(string newLabel);
 
