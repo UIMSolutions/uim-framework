@@ -65,7 +65,7 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
     if (auto errorNode = cast(DSpecialErrorNode) node) {
       return exportSpecial(errorNode, indentLevel);
     }
-    throw InvalidArgumentException("Unknown node received " ~ node.classinfo.baseName);
+    throw InvalidArgumentError("Unknown node received " ~ node.classinfo.baseName).throwError();
   }
 
   protected string exportArray(DArrayErrorNode node, size_t indentLevel) {

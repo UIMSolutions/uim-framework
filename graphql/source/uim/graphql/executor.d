@@ -5,14 +5,7 @@
 *****************************************************************************************************************/
 module uim.graphql.executor;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import vibe.data.json;
-import std.conv;
-import uim.graphql.types;
-import uim.graphql.schema;
-import uim.graphql.parser;
+import uim.graphql;
 
 @safe:
 
@@ -165,8 +158,13 @@ class GraphQLExecutor {
             resolvedValue = fieldDef.resolver(source, args);
         } else {
             // Default resolver: try to get field from source object
-            if (source.type == Json.Type.object) {
-                resolvedValue = () @trusted { return field.name in source ? source[field.name] : Json(null); }();
+            if (source.isObject) {
+                resolvedValue = () @trusted { 
+                    if (field.name in source) {
+                        return source[field.name];
+                    }
+                    return Json(null);
+                }();
             } else {
                 resolvedValue = Json(null);
             }
@@ -176,10 +174,10 @@ class GraphQLExecutor {
         if (field.selectionSet !is null) {
             auto fieldType = unwrapType(fieldDef.type);
             if (auto objectType = cast(GraphQLObjectType)fieldType) {
-                if (resolvedValue.type == Json.Type.array) {
+                if (resolvedValue.isArray) {
                     // Handle lists
                     Json[] resultArray;
-                    foreach (item; () @trusted { return resolvedValue.array; }()) {
+                    foreach (item; () @trusted { return resolvedValue.get!(Json[]); }()) {
                         resultArray ~= executeSelectionSet(context, field.selectionSet, objectType, item);
                     }
                     return Json(resultArray);
@@ -193,10 +191,13 @@ class GraphQLExecutor {
     }
     
     private Json resolveArgumentValue(ExecutionContext context, Json value) @safe {
-        if (value.type == Json.Type.string && value.get!string.startsWith("$")) {
+        if (value.isString && value.get!string.startsWith("$")) {
             // Variable reference
             string varName = value.get!string[1 .. $];
-            return context.variables.get(varName, Json(null));
+            if (varName in context.variables) {
+                return context.variables[varName];
+            }
+            return Json(null);
         }
         return value;
     }

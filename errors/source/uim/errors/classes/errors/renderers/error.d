@@ -6,6 +6,7 @@
 module uim.errors.classes.errors.renderers.error;
 
 import uim.errors;
+
 mixin(ShowModule!());
 
 @safe:
