@@ -6,6 +6,8 @@
 module uim.graphql;
 
 public {
+    import uim.jsons;
+
     import uim.graphql.types;
     import uim.graphql.schema;
     import uim.graphql.parser;

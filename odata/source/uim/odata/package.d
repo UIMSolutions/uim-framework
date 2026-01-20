@@ -43,10 +43,12 @@ module uim.odata;
  * auto created = client.create("People", person);
  * ---
  */
- public import uim.jsons;
+public import uim.jsons;
 
-public import uim.odata.exceptions;
-public import uim.odata.filter;
-public import uim.odata.query;
-public import uim.odata.entity;
-public import uim.odata.client;
+public {
+    import uim.odata.exceptions;
+    import uim.odata.filter;
+    import uim.odata.query;
+    import uim.odata.entity;
+    import uim.odata.client;
+}

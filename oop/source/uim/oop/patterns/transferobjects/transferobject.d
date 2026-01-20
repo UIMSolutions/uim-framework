@@ -41,9 +41,12 @@ abstract class SerializableTransferObject : TransferObject, ISerializableTransfe
    * Serialize to JSON string.
    */
   string toJson() @safe {
-    import std.json : JSONValue;
+    import vibe.data.json : Json;
     auto map = toMap();
-    JSONValue json = map;
+    Json json = Json.emptyObject;
+    foreach (key, value; map) {
+      json[key] = value;
+    }
     return json.toString();
   }
 
@@ -51,11 +54,11 @@ abstract class SerializableTransferObject : TransferObject, ISerializableTransfe
    * Deserialize from JSON string.
    */
   void fromJson(string jsonStr) @trusted {
-    import std.json : parseJSON;
-    auto json = parseJSON(jsonStr);
+    import vibe.data.json : parseJsonString;
+    auto json = parseJsonString(jsonStr);
     string[string] map;
-    foreach (key, value; json.object) {
-      map[key] = value.str;
+    foreach (kv; json.byKeyValue) {
+      map[kv.key] = kv.value.get!string;
     }
     fromMap(map);
   }

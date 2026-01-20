@@ -8,7 +8,9 @@ copyright "Copyright © 2018-2026 Ozan Nurettin Süel"
 targetType "library"
 
 // uim dependencies
+dependency "uim-framework:core" path=".."
 dependency "uim-framework:oop" path=".."
+dependency "uim-framework:jsons" path=".."
 
 configuration "default" {
 	targetType "library"

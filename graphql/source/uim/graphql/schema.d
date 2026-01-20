@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.graphql.schema;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import std.json;
-import uim.graphql.types;
+import uim.graphql;
 
 @safe:
 

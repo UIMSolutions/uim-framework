@@ -5,19 +5,14 @@
 *****************************************************************************************************************/
 module uim.graphql.types;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import std.conv;
-import std.variant;
-import std.json;
+import uim.graphql;
 
 @safe:
 
 /**
  * GraphQL Value type - can hold any JSON-compatible value
  */
-alias GraphQLValue = JSONValue;
+alias GraphQLValue = Json;
 
 /**
  * GraphQL type kinds
@@ -106,7 +101,7 @@ class GraphQLArgument {
         this.name = name;
         this.type = type;
         this.description = description;
-        this.defaultValue = JSONValue(null);
+        this.defaultValue = Json(null);
     }
 }
 
@@ -242,7 +237,7 @@ class GraphQLInputField {
         this.name = name;
         this.type = type;
         this.description = description;
-        this.defaultValue = JSONValue(null);
+        this.defaultValue = Json(null);
     }
 }
 
@@ -286,24 +281,24 @@ private GraphQLValue identitySerialize(GraphQLValue v) @safe {
 
 private GraphQLValue intSerialize(GraphQLValue v) @safe {
     if (v.type == JSONType.integer) return v;
-    if (v.type == JSONType.float_) return JSONValue(cast(long)v.floating);
-    return JSONValue(null);
+    if (v.type == JSONType.float_) return Json(cast(long)v.floating);
+    return Json(null);
 }
 
 private GraphQLValue floatSerialize(GraphQLValue v) @safe {
     if (v.type == JSONType.float_) return v;
-    if (v.type == JSONType.integer) return JSONValue(cast(double)v.integer);
-    return JSONValue(null);
+    if (v.type == JSONType.integer) return Json(cast(double)v.integer);
+    return Json(null);
 }
 
 private GraphQLValue stringSerialize(GraphQLValue v) @safe {
     if (v.type == JSONType.string) return v;
-    return JSONValue(v.toString());
+    return Json(v.toString());
 }
 
 private GraphQLValue boolSerialize(GraphQLValue v) @safe {
     if (v.type == JSONType.true_ || v.type == JSONType.false_) return v;
-    return JSONValue(null);
+    return Json(null);
 }
 
 __gshared GraphQLScalarType GraphQLInt;

@@ -54,7 +54,7 @@ auto schema = buildSchema()
             .arg("id", nonNull(GraphQLID))
             .resolve((source, args) @safe {
                 // Your resolver logic here
-                return JSONValue(["id": args["id"], "name": JSONValue("Alice")]);
+                return Json(["id": args["id"], "name": Json("Alice")]);
             })
     .build();
 
@@ -151,11 +151,11 @@ string query3 = `
     }
 `;
 
-JSONValue[string] variables = [
-    "userId": JSONValue("1")
+Json[string] variables = [
+    "userId": Json("1")
 ];
 
-auto result3 = executeGraphQL(schema, query3, JSONValue(null), variables);
+auto result3 = executeGraphQL(schema, query3, Json(null), variables);
 ```
 
 ### Mutations
@@ -204,7 +204,7 @@ if (result.hasErrors()) {
 }
 
 // Get full result as JSON
-JSONValue json = result.toJSON();
+Json json = result.toJSON();
 // {
 //   "data": { ... },
 //   "errors": [ ... ]  // Only if errors exist
@@ -224,7 +224,7 @@ field("name", GraphQLString)
 field("posts", listOf(postType))
     .withArg("limit", GraphQLInt, "Limit results")
     .withResolver((source, args) @safe {
-        int limit = args.get("limit", JSONValue(10)).integer.to!int;
+        int limit = args.get("limit", Json(10)).integer.to!int;
         string userId = source["id"].str;
         return fetchUserPosts(userId, limit);
     });

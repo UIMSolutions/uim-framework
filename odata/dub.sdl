@@ -4,14 +4,14 @@ authors "Ozan Nurettin Süel (aka UIManufaktur)"
 license "Apache-2.0"
 copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
 
-dependency "uim-framework:jsons" path=".."
-
 // target
 targetName "uim-odata"
 targetType "library"
 
 // dependencies
+dependency "uim-framework:core" path=".."
 dependency "uim-framework:oop" path=".."
+dependency "uim-framework:jsons" path=".."
 
 // configurations
 configuration "default" {

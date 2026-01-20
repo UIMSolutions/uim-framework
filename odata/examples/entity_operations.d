@@ -7,7 +7,7 @@ module examples.entity_operations;
 
 import uim.odata;
 import std.stdio;
-import std.json;
+import vibe.data.json;
 
 void main() {
     writeln("=== OData Entity Operations Examples ===\n");
@@ -109,7 +109,7 @@ void main() {
     employee.set("LastName", "Davolio");
     
     // Add address as JSON object
-    JSONValue address = parseJSON(`{
+    Json address = parseJSON(`{
         "Street": "507 - 20th Ave. E.",
         "City": "Seattle",
         "PostalCode": "98122",

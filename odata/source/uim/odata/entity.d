@@ -6,7 +6,7 @@
 module uim.odata.entity;
 
 import uim.odata.exceptions;
-import std.json;
+import vibe.data.json;
 import std.conv;
 import std.datetime;
 
@@ -20,7 +20,7 @@ import std.datetime;
  */
 class ODataEntity {
     private string _entityType;
-    private JSONValue _properties;
+    private Json _properties;
     private string _id;
     private string _etag;
 
@@ -32,13 +32,13 @@ class ODataEntity {
      */
     this(string entityType) {
         _entityType = entityType;
-        _properties = JSONValue.emptyObject;
+        _properties = Json.emptyObject;
     }
 
     /**
      * Constructor with initial data
      */
-    this(string entityType, JSONValue data) {
+    this(string entityType, Json data) {
         _entityType = entityType;
         _properties = data;
     }
@@ -48,24 +48,24 @@ class ODataEntity {
      */
     void set(T)(string propertyName, T value) {
         static if (is(T == string)) {
-            _properties[propertyName] = JSONValue(value);
+            _properties[propertyName] = Json(value);
         } else static if (is(T == int) || is(T == long)) {
-            _properties[propertyName] = JSONValue(cast(long)value);
+            _properties[propertyName] = Json(cast(long)value);
         } else static if (is(T == double) || is(T == float)) {
-            _properties[propertyName] = JSONValue(cast(double)value);
+            _properties[propertyName] = Json(cast(double)value);
         } else static if (is(T == bool)) {
-            _properties[propertyName] = JSONValue(value);
-        } else static if (is(T == JSONValue)) {
+            _properties[propertyName] = Json(value);
+        } else static if (is(T == Json)) {
             _properties[propertyName] = value;
         } else {
-            _properties[propertyName] = JSONValue(value.to!string);
+            _properties[propertyName] = Json(value.to!string);
         }
     }
 
     /**
      * Gets a property value as JSON
      */
-    JSONValue get(string propertyName) const @trusted {
+    Json get(string propertyName) const @trusted {
         if (propertyName !in _properties.object) {
             throw new ODataEntityException("Property not found: " ~ propertyName);
         }
@@ -77,7 +77,7 @@ class ODataEntity {
      */
     string getString(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.string) {
+        if (value.type == Json.Type.string) {
             return value.str;
         }
         return value.toString();
@@ -88,10 +88,10 @@ class ODataEntity {
      */
     long getInt(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.integer) {
+        if (value.type == Json.Type.integer) {
             return value.integer;
         }
-        if (value.type == JSONType.string) {
+        if (value.type == Json.Type.string) {
             return value.str.to!long;
         }
         throw new ODataEntityException("Cannot convert property to integer: " ~ propertyName);
@@ -102,13 +102,13 @@ class ODataEntity {
      */
     double getFloat(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.float_) {
+        if (value.type == Json.Type.float_) {
             return value.floating;
         }
-        if (value.type == JSONType.integer) {
+        if (value.type == Json.Type.integer) {
             return cast(double)value.integer;
         }
-        if (value.type == JSONType.string) {
+        if (value.type == Json.Type.string) {
             return value.str.to!double;
         }
         throw new ODataEntityException("Cannot convert property to float: " ~ propertyName);
@@ -119,10 +119,10 @@ class ODataEntity {
      */
     bool getBool(string propertyName) const {
         auto value = get(propertyName);
-        if (value.type == JSONType.true_) {
+        if (value.type == Json.Type.true_) {
             return true;
         }
-        if (value.type == JSONType.false_) {
+        if (value.type == Json.Type.false_) {
             return false;
         }
         throw new ODataEntityException("Cannot convert property to boolean: " ~ propertyName);
@@ -194,7 +194,7 @@ class ODataEntity {
     /**
      * Gets the raw JSON value
      */
-    JSONValue toJSONValue() const {
+    Json toJson() const {
         return _properties;
     }
 
@@ -202,14 +202,14 @@ class ODataEntity {
      * Creates an entity from JSON string
      */
     static ODataEntity fromJSON(string entityType, string jsonStr) {
-        auto json = parseJSON(jsonStr);
+        auto json = parseJsonString(jsonStr);
         return new ODataEntity(entityType, json);
     }
 
     /**
      * Creates an entity from JSON value
      */
-    static ODataEntity fromJSONValue(string entityType, JSONValue json) {
+    static ODataEntity fromJson(string entityType, Json json) {
         return new ODataEntity(entityType, json);
     }
 

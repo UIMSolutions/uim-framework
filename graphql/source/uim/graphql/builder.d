@@ -5,12 +5,7 @@
 *****************************************************************************************************************/
 module uim.graphql.builder;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import std.json;
-import uim.graphql.types;
-import uim.graphql.schema;
+import uim.graphql;
 
 @safe:
 
@@ -119,7 +114,7 @@ GraphQLObjectType objectType(string name, string description = "") @safe {
 GraphQLEnumType enumType(string name, string[] values, string description = "") @safe {
     auto enumType = new GraphQLEnumType(name, description);
     foreach (i, value; values) {
-        enumType.addValue(value, JSONValue(i));
+        enumType.addValue(value, Json(i));
     }
     return enumType;
 }

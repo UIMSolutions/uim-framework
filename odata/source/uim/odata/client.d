@@ -8,7 +8,7 @@ module uim.odata.client;
 import uim.odata.exceptions;
 import uim.odata.query;
 import uim.odata.entity;
-import std.json;
+import vibe.data.json;
 import std.conv;
 import std.net.curl;
 import std.string;
@@ -97,8 +97,8 @@ class ODataClient {
         string url = _serviceRoot ~ entitySet ~ "(" ~ key ~ ")";
         string response = performGet(url);
         
-        auto json = parseJSON(response);
-        return ODataEntity.fromJSONValue(entitySet, json);
+        auto json = parseJsonString(response);
+        return ODataEntity.fromJson(entitySet, json);
     }
 
     /**
@@ -115,8 +115,8 @@ class ODataClient {
         string data = entity.toJSON();
         string response = performPost(url, data);
         
-        auto json = parseJSON(response);
-        return ODataEntity.fromJSONValue(entitySet, json);
+        auto json = parseJsonString(response);
+        return ODataEntity.fromJson(entitySet, json);
     }
 
     /**
@@ -146,8 +146,8 @@ class ODataClient {
             return entity; // No content response
         }
         
-        auto json = parseJSON(response);
-        return ODataEntity.fromJSONValue(entitySet, json);
+        auto json = parseJsonString(response);
+        return ODataEntity.fromJson(entitySet, json);
     }
 
     /**

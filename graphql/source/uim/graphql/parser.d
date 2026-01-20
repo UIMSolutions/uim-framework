@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.graphql.parser;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import std.conv;
-import std.json;
+import uim.graphql;
 
 @safe:
 
@@ -324,7 +320,7 @@ class FieldNode : ASTNode {
  */
 class ArgumentNode : ASTNode {
     string name;
-    JSONValue value;
+    Json value;
     
     this() pure nothrow @safe {
         super(NodeType.ARGUMENT);
@@ -337,7 +333,7 @@ class ArgumentNode : ASTNode {
 class VariableDefinitionNode : ASTNode {
     string variable;
     string type;
-    JSONValue defaultValue;
+    Json defaultValue;
     
     this() pure nothrow @safe {
         super(NodeType.VARIABLE_DEFINITION);
@@ -556,27 +552,27 @@ class GraphQLParser {
         return typeName;
     }
     
-    private JSONValue parseValue() @safe {
+    private Json parseValue() @safe {
         switch (currentToken.type) {
             case TokenType.INT:
                 long val = to!long(currentToken.value);
                 advance();
-                return JSONValue(val);
+                return Json(val);
             case TokenType.FLOAT:
                 double val = to!double(currentToken.value);
                 advance();
-                return JSONValue(val);
+                return Json(val);
             case TokenType.STRING:
                 string val = currentToken.value;
                 advance();
-                return JSONValue(val);
+                return Json(val);
             case TokenType.NAME:
                 string val = currentToken.value;
                 advance();
-                if (val == "true") return JSONValue(true);
-                if (val == "false") return JSONValue(false);
-                if (val == "null") return JSONValue(null);
-                return JSONValue(val);
+                if (val == "true") return Json(true);
+                if (val == "false") return Json(false);
+                if (val == "null") return Json(null);
+                return Json(val);
             case TokenType.LBRACKET:
                 return parseListValue();
             case TokenType.LBRACE:
@@ -585,14 +581,14 @@ class GraphQLParser {
                 advance();
                 string varName = currentToken.value;
                 advance();
-                return JSONValue("$" ~ varName);
+                return Json("$" ~ varName);
             default:
                 throw new GraphQLParseException("Expected value");
         }
     }
     
-    private JSONValue parseListValue() @safe {
-        JSONValue[] values;
+    private Json parseListValue() @safe {
+        Json[] values;
         expect(TokenType.LBRACKET);
         
         while (currentToken.type != TokenType.RBRACKET) {
@@ -603,11 +599,11 @@ class GraphQLParser {
         }
         
         expect(TokenType.RBRACKET);
-        return JSONValue(values);
+        return Json(values);
     }
     
-    private JSONValue parseObjectValue() @safe {
-        JSONValue[string] obj;
+    private Json parseObjectValue() @safe {
+        Json[string] obj;
         expect(TokenType.LBRACE);
         
         while (currentToken.type != TokenType.RBRACE) {
@@ -622,7 +618,7 @@ class GraphQLParser {
         }
         
         expect(TokenType.RBRACE);
-        return JSONValue(obj);
+        return Json(obj);
     }
     
     private void advance() @safe {

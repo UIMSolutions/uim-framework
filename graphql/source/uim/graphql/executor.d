@@ -8,7 +8,7 @@ module uim.graphql.executor;
 import std.string;
 import std.array;
 import std.algorithm;
-import std.json;
+import vibe.data.json;
 import std.conv;
 import uim.graphql.types;
 import uim.graphql.schema;
@@ -21,11 +21,11 @@ import uim.graphql.parser;
  */
 class ExecutionContext {
     GraphQLSchema schema;
-    JSONValue rootValue;
-    JSONValue[string] variables;
+    Json rootValue;
+    Json[string] variables;
     FragmentDefinitionNode[string] fragments;
     
-    this(GraphQLSchema schema, JSONValue rootValue = JSONValue(null), JSONValue[string] variables = null) pure nothrow @safe {
+    this(GraphQLSchema schema, Json rootValue = Json(null), Json[string] variables = null) pure nothrow @safe {
         this.schema = schema;
         this.rootValue = rootValue;
         this.variables = variables;
@@ -36,24 +36,24 @@ class ExecutionContext {
  * Execution result
  */
 struct ExecutionResult {
-    JSONValue data;
+    Json data;
     string[] errors;
     
     bool hasErrors() const pure nothrow @safe {
         return errors.length > 0;
     }
     
-    JSONValue toJSON() const @trusted {
-        JSONValue result;
+    Json toJSON() const @trusted {
+        Json result;
         result["data"] = data;
         if (hasErrors()) {
-            JSONValue[] errorArray;
+            Json[] errorArray;
             foreach (err; errors) {
-                JSONValue errorObj;
-                errorObj["message"] = JSONValue(err);
+                Json errorObj;
+                errorObj["message"] = Json(err);
                 errorArray ~= errorObj;
             }
-            result["errors"] = JSONValue(errorArray);
+            result["errors"] = Json(errorArray);
         }
         return result;
     }
@@ -72,9 +72,9 @@ class GraphQLExecutor {
     /**
      * Execute a GraphQL query
      */
-    ExecutionResult execute(string query, JSONValue rootValue = JSONValue(null), JSONValue[string] variables = null) @safe {
+    ExecutionResult execute(string query, Json rootValue = Json(null), Json[string] variables = null) @safe {
         ExecutionResult result;
-        result.data = JSONValue(null);
+        result.data = Json(null);
         
         try {
             // Parse the query
@@ -103,7 +103,7 @@ class GraphQLExecutor {
         return result;
     }
     
-    private JSONValue executeOperation(ExecutionContext context, OperationDefinitionNode operation, JSONValue rootValue) @safe {
+    private Json executeOperation(ExecutionContext context, OperationDefinitionNode operation, Json rootValue) @safe {
         GraphQLObjectType rootType;
         
         final switch (operation.operation) {
@@ -127,12 +127,12 @@ class GraphQLExecutor {
         return executeSelectionSet(context, operation.selectionSet, rootType, rootValue);
     }
     
-    private JSONValue executeSelectionSet(ExecutionContext context, SelectionSetNode selectionSet, GraphQLObjectType parentType, JSONValue source) @safe {
+    private Json executeSelectionSet(ExecutionContext context, SelectionSetNode selectionSet, GraphQLObjectType parentType, Json source) @safe {
         if (selectionSet is null) {
-            return JSONValue(null);
+            return Json(null);
         }
         
-        JSONValue[string] result;
+        Json[string] result;
         
         foreach (selection; selectionSet.selections) {
             if (auto field = cast(FieldNode)selection) {
@@ -149,26 +149,26 @@ class GraphQLExecutor {
             }
         }
         
-        return JSONValue(result);
+        return Json(result);
     }
     
-    private JSONValue executeField(ExecutionContext context, GraphQLField fieldDef, FieldNode field, GraphQLObjectType parentType, JSONValue source) @safe {
+    private Json executeField(ExecutionContext context, GraphQLField fieldDef, FieldNode field, GraphQLObjectType parentType, Json source) @safe {
         // Resolve arguments
-        JSONValue[string] args;
+        Json[string] args;
         foreach (arg; field.arguments) {
             args[arg.name] = resolveArgumentValue(context, arg.value);
         }
         
         // Call resolver
-        JSONValue resolvedValue;
+        Json resolvedValue;
         if (fieldDef.resolver !is null) {
             resolvedValue = fieldDef.resolver(source, args);
         } else {
             // Default resolver: try to get field from source object
-            if (source.type == JSONType.object) {
-                resolvedValue = () @trusted { return source.object.get(field.name, JSONValue(null)); }();
+            if (source.type == Json.Type.object) {
+                resolvedValue = () @trusted { return source.object.get(field.name, Json(null)); }();
             } else {
-                resolvedValue = JSONValue(null);
+                resolvedValue = Json(null);
             }
         }
         
@@ -176,13 +176,13 @@ class GraphQLExecutor {
         if (field.selectionSet !is null) {
             auto fieldType = unwrapType(fieldDef.type);
             if (auto objectType = cast(GraphQLObjectType)fieldType) {
-                if (resolvedValue.type == JSONType.array) {
+                if (resolvedValue.type == Json.Type.array) {
                     // Handle lists
-                    JSONValue[] resultArray;
+                    Json[] resultArray;
                     foreach (item; () @trusted { return resolvedValue.array; }()) {
                         resultArray ~= executeSelectionSet(context, field.selectionSet, objectType, item);
                     }
-                    return JSONValue(resultArray);
+                    return Json(resultArray);
                 } else {
                     return executeSelectionSet(context, field.selectionSet, objectType, resolvedValue);
                 }
@@ -192,11 +192,11 @@ class GraphQLExecutor {
         return resolvedValue;
     }
     
-    private JSONValue resolveArgumentValue(ExecutionContext context, JSONValue value) @safe {
-        if (value.type == JSONType.string && value.str.startsWith("$")) {
+    private Json resolveArgumentValue(ExecutionContext context, Json value) @safe {
+        if (value.type == Json.Type.string && value.str.startsWith("$")) {
             // Variable reference
             string varName = value.str[1 .. $];
-            return context.variables.get(varName, JSONValue(null));
+            return context.variables.get(varName, Json(null));
         }
         return value;
     }
@@ -215,7 +215,7 @@ class GraphQLExecutor {
 /**
  * Execute a GraphQL query against a schema
  */
-ExecutionResult executeGraphQL(GraphQLSchema schema, string query, JSONValue rootValue = JSONValue(null), JSONValue[string] variables = null) @safe {
+ExecutionResult executeGraphQL(GraphQLSchema schema, string query, Json rootValue = Json(null), Json[string] variables = null) @safe {
     auto executor = new GraphQLExecutor(schema);
     return executor.execute(query, rootValue, variables);
 }
