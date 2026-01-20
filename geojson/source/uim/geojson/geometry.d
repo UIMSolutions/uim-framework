@@ -13,8 +13,10 @@ import vibe.data.json;
 /**
  * Base class for all GeoJSON geometries
  */
-abstract class DGeoJsonGeometry : DUIMObject {
-    mixin(OProperty!("GeometryType", "geometryType"));
+abstract class DGeoJsonGeometry : UIMObject {
+    protected GeometryType _geometryType;
+    
+    alias toJson = UIMObject.toJson;
     
     this() {
         super();
@@ -22,8 +24,11 @@ abstract class DGeoJsonGeometry : DUIMObject {
     
     this(GeometryType type) {
         this();
-        this.geometryType(type);
+        this._geometryType = type;
     }
+    
+    @property GeometryType geometryType() { return _geometryType; }
+    @property void geometryType(GeometryType value) { _geometryType = value; }
     
     abstract Json toJson();
     abstract void fromJson(Json json);
@@ -33,7 +38,12 @@ abstract class DGeoJsonGeometry : DUIMObject {
  * Point geometry
  */
 class DGeoJsonPoint : DGeoJsonGeometry {
-    mixin(OProperty!("PointCoordinates", "coordinates"));
+    protected PointCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property PointCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(PointCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.Point);
@@ -41,26 +51,26 @@ class DGeoJsonPoint : DGeoJsonGeometry {
     
     this(double longitude, double latitude) {
         this();
-        this.coordinates = [longitude, latitude];
+        this._coordinates = [longitude, latitude];
     }
     
     this(double longitude, double latitude, double altitude) {
         this();
-        this.coordinates = [longitude, latitude, altitude];
+        this._coordinates = [longitude, latitude, altitude];
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = Json(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (coord; json["coordinates"]) {
-                coordinates ~= coord.get!double;
+                _coordinates ~= coord.get!double;
             }
         }
     }
@@ -70,7 +80,12 @@ class DGeoJsonPoint : DGeoJsonGeometry {
  * LineString geometry
  */
 class DGeoJsonLineString : DGeoJsonGeometry {
-    mixin(OProperty!("LineStringCoordinates", "coordinates"));
+    protected LineStringCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property LineStringCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(LineStringCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.LineString);
@@ -78,25 +93,25 @@ class DGeoJsonLineString : DGeoJsonGeometry {
     
     this(LineStringCoordinates coords) {
         this();
-        this.coordinates = coords;
+        this._coordinates = coords;
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = serializeToJson(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (pos; json["coordinates"]) {
                 Position position;
                 foreach (coord; pos) {
                     position ~= coord.get!double;
                 }
-                coordinates ~= position;
+                _coordinates ~= position;
             }
         }
     }
@@ -106,7 +121,12 @@ class DGeoJsonLineString : DGeoJsonGeometry {
  * Polygon geometry
  */
 class DGeoJsonPolygon : DGeoJsonGeometry {
-    mixin(OProperty!("PolygonCoordinates", "coordinates"));
+    protected PolygonCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property PolygonCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(PolygonCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.Polygon);
@@ -114,19 +134,19 @@ class DGeoJsonPolygon : DGeoJsonGeometry {
     
     this(PolygonCoordinates coords) {
         this();
-        this.coordinates = coords;
+        this._coordinates = coords;
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = serializeToJson(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (ring; json["coordinates"]) {
                 Position[] ringCoords;
                 foreach (pos; ring) {
@@ -136,7 +156,7 @@ class DGeoJsonPolygon : DGeoJsonGeometry {
                     }
                     ringCoords ~= position;
                 }
-                coordinates ~= ringCoords;
+                _coordinates ~= ringCoords;
             }
         }
     }
@@ -146,7 +166,12 @@ class DGeoJsonPolygon : DGeoJsonGeometry {
  * MultiPoint geometry
  */
 class DGeoJsonMultiPoint : DGeoJsonGeometry {
-    mixin(OProperty!("MultiPointCoordinates", "coordinates"));
+    protected MultiPointCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property MultiPointCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(MultiPointCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.MultiPoint);
@@ -154,25 +179,25 @@ class DGeoJsonMultiPoint : DGeoJsonGeometry {
     
     this(MultiPointCoordinates coords) {
         this();
-        this.coordinates = coords;
+        this._coordinates = coords;
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = serializeToJson(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (pos; json["coordinates"]) {
                 Position position;
                 foreach (coord; pos) {
                     position ~= coord.get!double;
                 }
-                coordinates ~= position;
+                _coordinates ~= position;
             }
         }
     }
@@ -182,7 +207,12 @@ class DGeoJsonMultiPoint : DGeoJsonGeometry {
  * MultiLineString geometry
  */
 class DGeoJsonMultiLineString : DGeoJsonGeometry {
-    mixin(OProperty!("MultiLineStringCoordinates", "coordinates"));
+    protected MultiLineStringCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property MultiLineStringCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(MultiLineStringCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.MultiLineString);
@@ -190,19 +220,19 @@ class DGeoJsonMultiLineString : DGeoJsonGeometry {
     
     this(MultiLineStringCoordinates coords) {
         this();
-        this.coordinates = coords;
+        this._coordinates = coords;
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = serializeToJson(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (lineString; json["coordinates"]) {
                 Position[] line;
                 foreach (pos; lineString) {
@@ -212,7 +242,7 @@ class DGeoJsonMultiLineString : DGeoJsonGeometry {
                     }
                     line ~= position;
                 }
-                coordinates ~= line;
+                _coordinates ~= line;
             }
         }
     }
@@ -222,7 +252,12 @@ class DGeoJsonMultiLineString : DGeoJsonGeometry {
  * MultiPolygon geometry
  */
 class DGeoJsonMultiPolygon : DGeoJsonGeometry {
-    mixin(OProperty!("MultiPolygonCoordinates", "coordinates"));
+    protected MultiPolygonCoordinates _coordinates;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property MultiPolygonCoordinates coordinates() { return _coordinates; }
+    @property void coordinates(MultiPolygonCoordinates value) { _coordinates = value; }
     
     this() {
         super(GeometryType.MultiPolygon);
@@ -230,19 +265,19 @@ class DGeoJsonMultiPolygon : DGeoJsonGeometry {
     
     this(MultiPolygonCoordinates coords) {
         this();
-        this.coordinates = coords;
+        this._coordinates = coords;
     }
     
     override Json toJson() {
         auto result = Json.emptyObject;
         result["type"] = geometryType.to!string;
-        result["coordinates"] = serializeToJson(coordinates);
+        result["coordinates"] = serializeToJson(_coordinates);
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("coordinates" in json) {
-            coordinates = [];
+            _coordinates = [];
             foreach (polygon; json["coordinates"]) {
                 Position[][] poly;
                 foreach (ring; polygon) {
@@ -256,7 +291,7 @@ class DGeoJsonMultiPolygon : DGeoJsonGeometry {
                     }
                     poly ~= ringCoords;
                 }
-                coordinates ~= poly;
+                _coordinates ~= poly;
             }
         }
     }
@@ -266,7 +301,12 @@ class DGeoJsonMultiPolygon : DGeoJsonGeometry {
  * GeometryCollection
  */
 class DGeoJsonGeometryCollection : DGeoJsonGeometry {
-    mixin(OProperty!("DGeoJsonGeometry[]", "geometries"));
+    protected DGeoJsonGeometry[] _geometries;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property DGeoJsonGeometry[] geometries() { return _geometries; }
+    @property void geometries(DGeoJsonGeometry[] value) { _geometries = value; }
     
     this() {
         super(GeometryType.GeometryCollection);
@@ -274,27 +314,27 @@ class DGeoJsonGeometryCollection : DGeoJsonGeometry {
     
     this(DGeoJsonGeometry[] geoms) {
         this();
-        this.geometries = geoms;
+        this._geometries = geoms;
     }
     
-    override Json toJson() {
+    override Json toJson() @trusted {
         auto result = Json.emptyObject;
         result["type"] = GeometryType.GeometryCollection.to!string;
         auto geomArray = Json.emptyArray;
-        foreach (geom; geometries) {
+        foreach (geom; _geometries) {
             geomArray ~= geom.toJson();
         }
         result["geometries"] = geomArray;
         return result;
     }
     
-    override void fromJson(Json json) {
+    override void fromJson(Json json) @trusted {
         if ("geometries" in json) {
-            geometries = [];
+            _geometries = [];
             foreach (geomJson; json["geometries"]) {
                 auto geom = parseGeometry(geomJson);
                 if (geom !is null) {
-                    geometries ~= geom;
+                    _geometries ~= geom;
                 }
             }
         }

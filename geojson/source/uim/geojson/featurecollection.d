@@ -14,24 +14,29 @@ import vibe.data.json;
  * GeoJSON FeatureCollection
  * A collection of feature objects
  */
-class DGeoJsonFeatureCollection : DUIMObject {
-    mixin(OProperty!("DGeoJsonFeature[]", "features"));
+class DGeoJsonFeatureCollection : UIMObject {
+    protected DGeoJsonFeature[] _features;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property DGeoJsonFeature[] features() { return _features; }
+    @property void features(DGeoJsonFeature[] value) { _features = value; }
     
     this() {
         super();
-        features = [];
+        _features = [];
     }
     
     this(DGeoJsonFeature[] feats) {
         this();
-        this.features = feats;
+        this._features = feats;
     }
     
     /**
      * Add a feature to the collection
      */
     void addFeature(DGeoJsonFeature feature) {
-        features ~= feature;
+        _features ~= feature;
     }
     
     /**
@@ -42,7 +47,7 @@ class DGeoJsonFeatureCollection : DUIMObject {
         result["type"] = GeoJsonType.FeatureCollection.to!string;
         
         auto featArray = Json.emptyArray;
-        foreach (feature; features) {
+        foreach (feature; _features) {
             featArray ~= feature.toJson();
         }
         result["features"] = featArray;
@@ -55,11 +60,11 @@ class DGeoJsonFeatureCollection : DUIMObject {
      */
     void fromJson(Json json) @trusted {
         if ("features" in json) {
-            features = [];
+            _features = [];
             foreach (featJson; json["features"]) {
                 auto feature = new DGeoJsonFeature();
                 feature.fromJson(featJson);
-                features ~= feature;
+                _features ~= feature;
             }
         }
     }
@@ -68,7 +73,7 @@ class DGeoJsonFeatureCollection : DUIMObject {
      * Get number of features
      */
     size_t length() const {
-        return features.length;
+        return _features.length;
     }
     
     /**
@@ -76,7 +81,7 @@ class DGeoJsonFeatureCollection : DUIMObject {
      */
     DGeoJsonFeature[] filterByProperty(string propName, Json value) @trusted {
         DGeoJsonFeature[] result;
-        foreach (feature; features) {
+        foreach (feature; _features) {
             if (feature.hasProperty(propName)) {
                 auto propValue = feature.getProperty(propName);
                 if (propValue == value) {

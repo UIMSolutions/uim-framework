@@ -1,0 +1,13 @@
+name "rss-examples"
+description "Examples for uim-framework rss module"
+authors "Ozan Nurettin Süel (aka UIManufaktur)"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+license "Apache-2.0"
+
+dependency "rss" path="../"
+
+configuration "default" {
+    targetType "executable"
+    targetName "rss-example"
+    sourceFiles "example.d"
+}
