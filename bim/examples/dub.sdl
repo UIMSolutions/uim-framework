@@ -1,0 +1,25 @@
+name "bim-examples"
+description "Examples for UIM BIM library"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018-2026, UIManufaktur"
+license "Apache-2.0"
+
+dependency "bim" path=".."
+
+targetType "executable"
+targetPath "bin"
+
+configuration "simple_building" {
+    targetName "simple_building"
+    mainSourceFile "simple_building.d"
+}
+
+configuration "building_elements" {
+    targetName "building_elements"
+    mainSourceFile "building_elements.d"
+}
+
+configuration "materials" {
+    targetName "materials"
+    mainSourceFile "materials.d"
+}

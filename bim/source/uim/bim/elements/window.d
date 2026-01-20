@@ -91,10 +91,11 @@ class DBIMWindow : DBIMElement, IBIMBuildingElement {
 }
 
 unittest {
+  import std.math : approxEqual;
   auto window = new DBIMWindow();
   assert(window !is null);
   assert(window.elementType == "Window");
   window.width = 1.2;
   window.height = 1.5;
-  assert(window.area == 1.8);
+  assert(approxEqual(window.area, 1.8));
 }

@@ -161,6 +161,11 @@ interface IBIMSpatialElement : IBIMElement {
    * Get the parent spatial element.
    */
   IBIMSpatialElement parent();
+
+  /**
+   * Set the parent spatial element.
+   */
+  void parent(IBIMSpatialElement value);
 }
 
 /**
