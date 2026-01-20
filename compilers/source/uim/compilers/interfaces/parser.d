@@ -14,7 +14,7 @@ import uim.compilers;
  * 
  * The parser builds an Abstract Syntax Tree (AST) from tokens.
  */
-interface IParser {
+interface ICompilerParser {
   /**
    * Parse tokens into an AST.
    * 

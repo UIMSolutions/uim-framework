@@ -40,7 +40,7 @@ interface ICompiler {
   /**
    * Get the parser used by this compiler.
    */
-  IParser parser();
+  ICompilerParser parser();
 
   /**
    * Get the semantic analyzer used by this compiler.
