@@ -6,6 +6,7 @@
 module uim.oop.patterns.commands;
 
 public {
-    import uim.oop.patterns.commands.interfaces;
-    import uim.oop.patterns.commands.command;
+  import uim.oop.patterns.commands.interfaces;
+  import uim.oop.patterns.commands.command;
+  import uim.oop.patterns.commands.macro_;
 }

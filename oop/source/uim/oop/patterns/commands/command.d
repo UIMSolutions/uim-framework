@@ -5,9 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.command;
 
-import uim.oop.patterns.commands.interfaces;
-import std.format;
-import std.algorithm : remove;
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
 
 /**
  * Abstract base command with common functionality.
@@ -158,30 +160,7 @@ class CommandHistory : ICommandHistory {
     }
 }
 
-/**
- * Macro command that executes multiple commands.
- */
-class MacroCommand : BaseCommand, IMacroCommand {
-    private ICommand[] _commands;
-    
-    this(string name) @safe {
-        super(name);
-    }
-    
-    @safe void addCommand(ICommand command) {
-        _commands ~= command;
-    }
-    
-    @safe size_t commandCount() const {
-        return _commands.length;
-    }
-    
-    override @safe void execute() {
-        foreach (command; _commands) {
-            command.execute();
-        }
-    }
-}
+
 
 // Real-world example: Text Editor
 

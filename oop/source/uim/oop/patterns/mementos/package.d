@@ -9,7 +9,13 @@ public {
   import uim.oop.patterns.mementos.interfaces;
   import uim.oop.patterns.mementos.helpers;
   import uim.oop.patterns.mementos.tests;
+  import uim.oop.patterns.mementos.games;
 }
 
-public import uim.oop.patterns.mementos.generic;
-public import uim.oop.patterns.mementos.memento;
+public {
+  import uim.oop.patterns.mementos.caretaker;
+  import uim.oop.patterns.mementos.configuration;
+  import uim.oop.patterns.mementos.generic;
+  import uim.oop.patterns.mementos.memento;
+  import uim.oop.patterns.mementos.texteditor;
+}

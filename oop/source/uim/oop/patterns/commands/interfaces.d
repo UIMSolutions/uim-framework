@@ -5,6 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.interfaces;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
 /**
  * Command interface that declares the execution method.
  * All concrete commands must implement this interface.
