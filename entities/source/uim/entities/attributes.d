@@ -96,7 +96,7 @@ struct ReadOnly {
 /**
  * UDA to mark an entity class
  */
-struct Entity {
+struct UseEntity {
     string tableName;
     
     this(string table) {
@@ -108,7 +108,7 @@ struct Entity {
  * Helper to check if a type has Entity UDA
  */
 template hasEntityAttribute(T) {
-    enum hasEntityAttribute = hasUDA!(T, Entity);
+    enum hasEntityAttribute = hasUDA!(T, UseEntity);
 }
 
 /**
@@ -116,7 +116,7 @@ template hasEntityAttribute(T) {
  */
 template getEntityTableName(T) {
     static if (hasEntityAttribute!T) {
-        alias udas = getUDAs!(T, Entity);
+        alias udas = getUDAs!(T, UseEntity);
         static if (udas.length > 0 && udas[0].tableName.length > 0) {
             enum getEntityTableName = udas[0].tableName;
         } else {
@@ -151,7 +151,7 @@ template isReadOnly(alias field) {
 unittest {
     writeln("Testing entity attribute UDAs...");
     
-    @Entity("users")
+    @UseEntity("users")
     class User {
         @Required
         @MaxLength(100)

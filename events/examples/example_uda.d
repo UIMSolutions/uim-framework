@@ -11,7 +11,7 @@ import std.stdio;
 /**
  * Example of a custom event using UDA
  */
-@Event("user.registered")
+@UseEvent("user.registered")
 class UserRegisteredEvent : DEvent {
     string username;
     string email;

@@ -59,9 +59,9 @@ struct Async {
 
 /**
  * UDA to mark an event class
- * Usage: @Event("event.name")
+ * Usage: @UseEvent("event.name")
  */
-struct Event {
+struct UseEvent {
     string name;
     
     this(string eventName) {
@@ -133,7 +133,7 @@ unittest {
     
     writeln("Testing UDA attributes...");
     
-    @Event("test.event")
+    @UseEvent("test.event")
     class TestEvent : DEvent {
         this() { super("test.event"); }
     }

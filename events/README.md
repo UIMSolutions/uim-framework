@@ -51,7 +51,7 @@ UDAs provide a declarative way to define event handlers:
 import uim.events;
 
 // Mark event classes with @Event
-@Event("user.registered")
+@UseEvent("user.registered")
 class UserRegisteredEvent : DEvent {
     string username;
     string email;
@@ -98,7 +98,7 @@ dispatcher.dispatch(new UserRegisteredEvent("john", "john@example.com"));
 
 - `@EventListener("event.name", priority)` - Mark a method as an event listener
 - `@EventListenerOnce("event.name", priority)` - One-time event listener
-- `@Event("event.name")` - Mark an event class
+- `@UseEvent("event.name")` - Mark an event class
 - `@Priority(value)` - Specify listener priority
 - `@Async` - Mark for asynchronous execution
 

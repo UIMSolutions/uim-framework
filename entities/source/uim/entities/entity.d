@@ -78,7 +78,7 @@ class DEntity : UIMObject, IEntity {
         return (key in attrs) ? attrs[key] : defaultValue;
     }
     
-    IEntity setAttribute(string key, string value) {
+    override IEntity setAttribute(string key, string value) {
         auto attrs = this.attributes();
         attrs[key] = value;
         this.attributes(attrs);
@@ -93,7 +93,7 @@ class DEntity : UIMObject, IEntity {
         return (key in attrs) !is null;
     }
     
-    IEntity removeAttribute(string key) {
+    override IEntity removeAttribute(string key) {
         auto attrs = this.attributes();
         attrs.remove(key);
         this.attributes(attrs);
@@ -143,27 +143,24 @@ class DEntity : UIMObject, IEntity {
     }
     
     // Serialization
-    string toJson() {
-        import std.json : JSONValue;
-        import std.conv : to;
-        
-        JSONValue json;
+    override Json toJson(string[] showKeys = null, string[] hideKeys = null) {
+        Json json = super.toJson(showKeys, hideKeys);
         json["id"] = this.id().toString();
         json["name"] = this.name();
         json["state"] = this.state().to!string;
         json["createdAt"] = this.createdAt().toISOExtString();
         json["updatedAt"] = this.updatedAt().toISOExtString();
         
-        JSONValue attrsJson;
+        Json attrsJson;
         foreach (key, value; this.attributes()) {
             attrsJson[key] = value;
         }
         json["attributes"] = attrsJson;
         
-        return json.toString();
+        return json;
     }
     
-    string[string] toAA() {
+    override string[string] toAA() {
         import std.conv : to;
         
         string[string] result;

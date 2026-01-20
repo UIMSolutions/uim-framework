@@ -119,7 +119,7 @@ if (!user.isValid()) {
 Declarative validation using attributes:
 
 ```d
-@Entity("users")
+@UseEntity("users")
 class User : DEntity {
     @Required
     @MaxLength(50)

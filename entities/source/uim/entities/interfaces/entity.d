@@ -54,6 +54,6 @@ interface IEntity {
     void markDeleted();
     
     // Serialization
-    string toJson();
+    Json toJson(string[] showKeys = null, string[] hideKeys = null);
     string[string] toAA();
 }

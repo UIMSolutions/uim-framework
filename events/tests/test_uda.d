@@ -11,7 +11,7 @@ import std.stdio;
 void testEventAttribute() {
   writeln("Testing @Event attribute...");
 
-  @Event("custom.event")
+  @UseEvent("custom.event")
   class CustomEvent : DEvent {
     this() {
       super("custom.event");
@@ -145,7 +145,7 @@ void testMultipleAnnotatedHandlers() {
 void testAnnotatedWithCustomEvent() {
   writeln("Testing annotated listeners with custom events...");
 
-  @Event("user.created")
+  @UseEvent("user.created")
   class UserCreatedEvent : DEvent {
     string username;
 
