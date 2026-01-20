@@ -19,6 +19,9 @@ class UIMFactory(K, V) : IFactory!(K, V) {
   private V delegate() @safe _defaultCreator;
   protected V delegate()[K] _creators;
 
+  this() {
+  }
+
   this(V delegate() @safe creator) { // Constructor with default creator
     _defaultCreator = creator;
   }

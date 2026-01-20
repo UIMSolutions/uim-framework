@@ -6,6 +6,8 @@
 module uim.compilers.classes.compilers.compiler;
 
 import uim.compilers;
+import std.datetime.stopwatch : StopWatch;
+import core.time : Duration;
 
 @safe:
 

@@ -10,4 +10,7 @@ import uim.compilers;
 @safe:
 
 class LexerFactory : UIMFactory!(string, ILexer) {
+    this() {
+        super();
+    }
 }

@@ -177,7 +177,7 @@ class ODataEntity {
      * Gets all property names
      */
   string[] propertyNames() const @trusted {
-    return _properties.byKeyValue.map!(kv => kv.key).array;
+    return _properties.toMap.byKeyValue.map!(kv => kv.key).array;
   }
 
   /**
