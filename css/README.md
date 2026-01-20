@@ -18,7 +18,7 @@ A comprehensive CSS parsing, manipulation, and generation library for D.
 Add the dependency in your `dub.sdl`:
 
 ```sdl
-dependency "uim-base:css" version="~>1.0.0"
+dependency "uim-framework:css" version="~>1.0.0"
 ```
 
 Or in `dub.json`:
@@ -26,7 +26,7 @@ Or in `dub.json`:
 ```json
 {
     "dependencies": {
-        "uim-base:css": "~>1.0.0"
+        "uim-framework:css": "~>1.0.0"
     }
 }
 ```

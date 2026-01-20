@@ -22,7 +22,7 @@ A comprehensive GraphQL query language implementation for D.
 Add the dependency in your `dub.sdl`:
 
 ```sdl
-dependency "uim-base:graphql" version="~>1.0.0"
+dependency "uim-framework:graphql" version="~>1.0.0"
 ```
 
 Or in `dub.json`:
@@ -30,7 +30,7 @@ Or in `dub.json`:
 ```json
 {
     "dependencies": {
-        "uim-base:graphql": "~>1.0.0"
+        "uim-framework:graphql": "~>1.0.0"
     }
 }
 ```

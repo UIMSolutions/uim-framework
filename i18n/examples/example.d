@@ -1,7 +1,7 @@
 #!/usr/bin/env dub
 /+ dub.sdl:
     name "i18n-example"
-    dependency "uim-base:i18n" path="../.."
+    dependency "uim-framework:i18n" path="../.."
 +/
 import std.stdio;
 import uim.i18n;

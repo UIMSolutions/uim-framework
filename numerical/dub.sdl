@@ -10,7 +10,7 @@ targetName "uim-numerical"
 targetType "library"
 
 // uim dependencies
-dependency "uim-base:core" path=".."
+dependency "uim-framework:core" path=".."
 
 configuration "default" {
 	targetType "library"

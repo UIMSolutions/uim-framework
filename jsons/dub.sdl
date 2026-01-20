@@ -10,7 +10,7 @@ targetName "uim-jsons"
 targetType "library"
 
 // uim dependencies
-dependency "uim-base:oop" path=".."
+dependency "uim-framework:oop" path=".."
 
 configuration "default" {
 	targetType "library"

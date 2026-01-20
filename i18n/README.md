@@ -4,7 +4,7 @@ A comprehensive D language library for internationalization (i18n) and translati
 
 ## Features
 
-- **PO File Support** - Uses the uim-base:po parser for reading PO files
+- **PO File Support** - Uses the uim-framework:po parser for reading PO files
 - **Multiple Translators** - Create separate translators for different locales and domains
 - **Translation Catalog** - Manage multiple locales and domains efficiently
 - **Fallback Support** - Chain translators for graceful degradation
@@ -227,8 +227,8 @@ dub run
 
 ## Dependencies
 
-- **uim-base:core** - Core UIM functionality
-- **uim-base:po** - PO file parser
+- **uim-framework:core** - Core UIM functionality
+- **uim-framework:po** - PO file parser
 
 ## License
 

@@ -13,7 +13,7 @@ targetType "library"
 dependency "dyaml" version="~>0.10.0"
 
 // uim dependencies
-dependency "uim-base:core" path=".."
+dependency "uim-framework:core" path=".."
 
 configuration "default" {
 	targetType "library"

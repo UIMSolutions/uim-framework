@@ -10,8 +10,8 @@ targetName "uim-i18n"
 targetType "library"
 
 // uim dependencies
-dependency "uim-base:core" path=".."
-dependency "uim-base:po" path=".."
+dependency "uim-framework:core" path=".."
+dependency "uim-framework:po" path=".."
 
 configuration "default" {
 	targetType "library"

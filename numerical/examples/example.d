@@ -1,7 +1,7 @@
 #!/usr/bin/env dub
 /+ dub.sdl:
     name "numerical-example"
-    dependency "uim-base:numerical" path="../.."
+    dependency "uim-framework:numerical" path="../.."
 +/
 module numerical.examples.example;
 

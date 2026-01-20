@@ -118,7 +118,7 @@ dub run
 
 ## Dependencies
 
-- **uim-base:core** - Core UIM functionality
+- **uim-framework:core** - Core UIM functionality
 
 ## License
 

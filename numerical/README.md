@@ -209,7 +209,7 @@ dub run --single example.d
 
 ## Dependencies
 
-- **uim-base:core** - Core UIM functionality
+- **uim-framework:core** - Core UIM functionality
 
 ## License
 

@@ -10,8 +10,8 @@ targetName "uim-errors"
 targetType "library"
 
 // uim dependencies
-dependency "uim-base:oops" path=".."
-dependency "uim-base:jsons" path=".."
+dependency "uim-framework:oops" path=".."
+dependency "uim-framework:jsons" path=".."
 
 configuration "default" {
 	targetType "library"

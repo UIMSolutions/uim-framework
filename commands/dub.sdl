@@ -13,8 +13,8 @@ targetType "library"
 dependency "vibe-d" version="~>0.10.3"
 
 // uim dependencies
-dependency "uim-base:core" path=".."
-dependency "uim-base:oop" path=".."
+dependency "uim-framework:core" path=".."
+dependency "uim-framework:oop" path=".."
 
 configuration "default" {
 	targetType "library"

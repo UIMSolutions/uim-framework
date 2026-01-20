@@ -1,7 +1,7 @@
 #!/usr/bin/env dub
 /+ dub.sdl:
     name "po-example"
-    dependency "uim-base:po" path=".."
+    dependency "uim-framework:po" path=".."
 +/
 module po.examples.example;
 
