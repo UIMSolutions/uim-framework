@@ -1,0 +1,49 @@
+name "edm"
+description "Enterprise Data Model (EDM) library for UIM framework - Core metadata and type system for OData and data modeling"
+authors "Ozan Nurettin Süel (aka UIManufaktur)"
+license "Apache-2.0"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+
+// target
+targetName "uim-edm"
+targetType "library"
+
+// dependencies
+dependency "uim-framework:core" path=".."
+dependency "uim-framework:oop" path=".."
+dependency "uim-framework:jsons" path=".."
+
+// configurations
+configuration "default" {
+	targetType "executable"
+	targetName "uim-edm-test"
+}
+
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
