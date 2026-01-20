@@ -6,6 +6,11 @@
 module uim.errors.classes.errors.error;
 
 import uim.errors;
+import std.algorithm : map;
+import std.array : join;
+import std.conv : to;
+import std.string : replace, toUpper;
+
 mixin(ShowModule!());
 
 @safe:
@@ -46,6 +51,12 @@ class UIMError : UIMObject, IError {
       return false;
     }
 
+    // Set timestamp to current time if not already set
+    if (_timestamp == 0) {
+      import std.datetime : Clock;
+      _timestamp = Clock.currStdTime();
+    }
+
     return true;
   }
 
@@ -60,6 +71,39 @@ class UIMError : UIMObject, IError {
     return this;
   }
   // #endregion loglabel
+
+  // #region errorCode
+  protected int _errorCode;
+  int errorCode() {
+    return _errorCode;
+  }
+  IError errorCode(int newCode) {
+    _errorCode = newCode;
+    return this;
+  }
+  // #endregion errorCode
+
+  // #region timestamp
+  protected long _timestamp;
+  long timestamp() {
+    return _timestamp;
+  }
+  IError timestamp(long newTimestamp) {
+    _timestamp = newTimestamp;
+    return this;
+  }
+  // #endregion timestamp
+
+  // #region severity
+  protected string _severity = "error"; // error, warning, notice, critical, debug
+  string severity() {
+    return _severity;
+  }
+  IError severity(string newSeverity) {
+    _severity = newSeverity;
+    return this;
+  }
+  // #endregion severity
 
 // #region previous
   /**
@@ -190,6 +234,43 @@ class UIMError : UIMObject, IError {
       .join("\n");
   }
   // #endregion trace
+
+  // #region Formatting and Output
+  // Get formatted error message with all details
+  string toDetailedString() {
+    import std.format : format;
+    string result = "[%s] %s".format(severity.toUpper(), message);
+    
+    if (_errorCode != 0) {
+      result ~= " (Code: %d)".format(_errorCode);
+    }
+    
+    if (_fileName) {
+      result ~= "\n  File: %s".format(_fileName);
+      if (_lineNumber > 0) {
+        result ~= ":%d".format(_lineNumber);
+      }
+    }
+    
+    if (_loglabel) {
+      result ~= "\n  Label: %s".format(_loglabel);
+    }
+    
+    if (_trace && _trace.length > 0) {
+      result ~= "\n  Stack Trace:\n    " ~ traceAsString().replace("\n", "\n    ");
+    }
+    
+    return result;
+  }
+
+  // Get compact error representation
+  override string toString() const {
+    if (_fileName && _lineNumber > 0) {
+      return "%s in %s:%d".format(_message, _fileName, _lineNumber);
+    }
+    return _message;
+  }
+  // #endregion Formatting and Output
 
   // #region throwError
   void throwError() {

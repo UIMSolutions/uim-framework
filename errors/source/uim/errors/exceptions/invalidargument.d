@@ -25,39 +25,39 @@ class DInvalidArgumentError : UIMError {
 
   this(string errorMessage = "Invalid Argument", string fileName = null, size_t lineNumber = 0) {
     super();
-    initialize();
-    this.message(errorMessage);
+    _loglabel = "InvalidArgument";
+    _message = errorMessage;
     if (fileName) {
-      this.fileName(fileName);
+      _fileName = fileName;
     }
     if (lineNumber > 0) {
-      this.lineNumber(lineNumber);
+      _lineNumber = lineNumber;
     }
   }
 }
 
-auto InvalidArgumentError() {
+auto invalidArgumentError() {
   return new DInvalidArgumentError("Invalid Argument");
 }
 
-auto InvalidArgumentError(string message) {
+auto invalidArgumentError(string message) {
   return new DInvalidArgumentError(message);
 }
 
-auto InvalidArgumentError(string message, string fileName, size_t lineNumber = 0) {
+auto invalidArgumentError(string message, string fileName, size_t lineNumber = 0) {
   return new DInvalidArgumentError(message, fileName, lineNumber);
 }
 
 unittest {
-  auto error = InvalidArgumentError();
+  auto error = invalidArgumentError();
   assert(error !is null, "Failed to create InvalidArgumentError instance");
   assert(error.message() == "Invalid Argument", "Error message mismatch");
   assert(error.loglabel() == "InvalidArgument", "Error log label mismatch");
 
-  auto error2 = InvalidArgumentError("Custom message");
+  auto error2 = invalidArgumentError("Custom message");
   assert(error2.message() == "Custom message", "Custom error message mismatch");
 
-  auto error3 = InvalidArgumentError("File error", "test.d", 42);
+  auto error3 = invalidArgumentError("File error", "test.d", 42);
   assert(error3.fileName() == "test.d", "File name mismatch");
   assert(error3.lineNumber() == 42, "Line number mismatch");
 }

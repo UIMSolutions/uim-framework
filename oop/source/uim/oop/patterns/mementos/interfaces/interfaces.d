@@ -7,86 +7,12 @@ module uim.oop.patterns.mementos.interfaces.interfaces;
 
 import std.datetime;
 
-/**
- * Memento interface that stores the internal state of an object.
- * The memento is opaque to other objects except the originator.
- */
-interface IMemento {
-    /**
-     * Gets the memento name or identifier.
-     * Returns: The memento identifier
-     */
-    @safe string name() const;
-    
-    /**
-     * Gets the timestamp when the memento was created.
-     * Returns: The creation timestamp
-     */
-    @safe SysTime timestamp() const;
-}
 
-/**
- * Originator interface for objects that can create and restore mementos.
- * The originator creates a memento containing a snapshot of its current state
- * and uses it to restore its state later.
- */
-interface IOriginator {
-    /**
-     * Creates a memento containing the current state.
-     * Returns: A new memento with the current state
-     */
-    @safe IMemento save();
-    
-    /**
-     * Restores the originator's state from a memento.
-     * Params:
-     *   memento = The memento to restore from
-     */
-    @safe void restore(IMemento memento);
-}
 
-/**
- * Caretaker interface that maintains a collection of mementos.
- * The caretaker never examines or modifies the contents of a memento.
- */
-interface ICaretaker {
-    /**
-     * Saves a memento.
-     * Params:
-     *   memento = The memento to save
-     */
-    @safe void addMemento(IMemento memento);
-    
-    /**
-     * Gets a memento by index.
-     * Params:
-     *   index = The index of the memento
-     * Returns: The memento at the specified index
-     */
-    @safe IMemento getMemento(size_t index);
-    
-    /**
-     * Gets the number of stored mementos.
-     * Returns: The count of mementos
-     */
-    @safe size_t count() const;
-    
-    /**
-     * Clears all stored mementos.
-     */
-    @safe void clear();
-}
 
-/**
- * Generic memento interface with typed state.
- */
-interface IGenericMemento(TState) : IMemento {
-    /**
-     * Gets the stored state.
-     * Returns: The state value
-     */
-    @safe TState getState() const;
-}
+
+
+
 
 /**
  * Generic originator interface with typed state.

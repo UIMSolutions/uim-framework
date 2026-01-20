@@ -13,6 +13,15 @@ interface IError {
   string loglabel();
   IError loglabel(string newLabel);
 
+  int errorCode();
+  IError errorCode(int newCode);
+
+  long timestamp();
+  IError timestamp(long newTimestamp);
+
+  string severity();
+  IError severity(string newSeverity);
+
   // Read-Only
   string loglevel();
   // Read-Only

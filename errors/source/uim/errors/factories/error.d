@@ -14,6 +14,38 @@ import uim.errors;
 class UIMErrorFactory : UIMFactory!(string, UIMError) {
     this() {
         super(() => new UIMError());
+        registerCommonErrors();
+    }
+
+    // Register common error types
+    private void registerCommonErrors() {
+        registerError("InvalidArgument", () => new DInvalidArgumentError());
+        registerError("UnknownEditor", () => new DUnknownEditorError());
+    }
+
+    // Register a custom error type
+    UIMErrorFactory registerError(string errorType, UIMError delegate() creator) {
+        this.register(errorType, creator);
+        return this;
+    }
+
+    // Create error with specific type and message
+    UIMError createError(string errorType, string message = null) {
+        auto error = create(errorType);
+        if (error && message) {
+            error.message(message);
+        }
+        return error;
+    }
+
+    // Create error with full parameters
+    UIMError createError(string errorType, string message, string fileName, size_t lineNumber) {
+        auto error = createError(errorType, message);
+        if (error) {
+            error.fileName(fileName);
+            error.lineNumber(lineNumber);
+        }
+        return error;
     }
 
     private static UIMErrorFactory _instance;
@@ -25,6 +57,6 @@ class UIMErrorFactory : UIMFactory!(string, UIMError) {
     }
 }
 
-auto ErrorFactory() {
+auto errorFactory() {
     return UIMErrorFactory.instance;
 }
