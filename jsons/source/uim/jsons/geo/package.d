@@ -3,14 +3,14 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.geojson;
+module uim.jsons.geo;
 
 // UIM libraries
 public import uim.oop;
 
 public {
-  import uim.geojson.geometry;
-  import uim.geojson.feature;
-  import uim.geojson.featurecollection;
-  import uim.geojson.types;
+  import uim.jsons.geo.geometry;
+  import uim.jsons.geo.feature;
+  import uim.jsons.geo.featurecollection;
+  import uim.jsons.geo.types;
 }

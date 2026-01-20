@@ -78,7 +78,7 @@ auto json = collection.toJson();
 ### Creating and Serializing
 
 ```d
-import uim.geojson;
+import uim.jsons.geo;
 
 // Create a point
 auto point = new DGeoJsonPoint(-122.4194, 37.7749);
@@ -96,7 +96,7 @@ writeln(json.toPrettyString());
 ### Parsing GeoJSON
 
 ```d
-import uim.geojson;
+import uim.jsons.geo;
 
 string geojsonString = `{
     "type": "Feature",
@@ -116,7 +116,7 @@ auto name = feature.getProperty("name").get!string;
 ### Working with Collections
 
 ```d
-import uim.geojson;
+import uim.jsons.geo;
 
 auto collection = new DGeoJsonFeatureCollection();
 
