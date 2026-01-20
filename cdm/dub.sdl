@@ -8,39 +8,10 @@ targetType "library"
 targetName "uim-cdm"
 
 dependency "uim-framework:core" path=".."
-// target
-targetName "uim-jsons"
-targetType "library"
-
-// dependencies
+dependency "uim-framework:oop" path=".."
 dependency "uim-framework:entities" path=".."
+dependency "vibe-d:data" version="~>0.10.3"
 
-// configurations
 configuration "default" {
 	targetType "library"
-}
-
-configuration "modules" {
-	targetType "library"
-	versions "show_module"
-}
-
-configuration "tests" {
-	targetType "library"
-	versions "show_module" "show_test"
-}
-
-configuration "inits" {
-	targetType "library"
-	versions "show_module" "show_init"
-}
-
-configuration "calls" {
-	targetType "library"
-	versions "show_module" "show_test" "show_function"
-}
-
-configuration "verbose" {
-	targetType "library"
-	versions "show_module" "show_test" "show_init" "show_function"
 }
