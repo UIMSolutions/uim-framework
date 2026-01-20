@@ -5,15 +5,19 @@
 *****************************************************************************************************************/
 module uim.entities;
 
-public {
+public { // UIM libraries
   import uim.core;
   import uim.oop;
   import uim.core;
   import uim.events;
 }
 
-public {
+public { // Packages
   import uim.entities.interfaces;
+  import uim.entities.helpers;
+}
+
+public { // Modules
   import uim.entities.entity;
   import uim.entities.collection;
   import uim.entities.attributes;

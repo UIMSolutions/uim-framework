@@ -6,8 +6,9 @@
 module uim.entities.events;
 
 import uim.entities;
+import uim.events.attributes : EventUDA = Event;
 
-mixin(ShowModule());
+mixin(ShowModule!());
 
 @safe:
 
@@ -19,7 +20,7 @@ mixin(ShowModule());
 /**
  * Event fired before an entity is created
  */
-@Event("entity.beforeCreate")
+@EventUDA("entity.beforeCreate")
 class EntityBeforeCreateEvent : DEvent {
     IEntity entity;
     
@@ -32,7 +33,7 @@ class EntityBeforeCreateEvent : DEvent {
 /**
  * Event fired after an entity is created
  */
-@Event("entity.afterCreate")
+@EventUDA("entity.afterCreate")
 class EntityAfterCreateEvent : DEvent {
     IEntity entity;
     
@@ -45,7 +46,7 @@ class EntityAfterCreateEvent : DEvent {
 /**
  * Event fired before an entity is updated
  */
-@Event("entity.beforeUpdate")
+@EventUDA("entity.beforeUpdate")
 class EntityBeforeUpdateEvent : DEvent {
     IEntity entity;
     
@@ -58,7 +59,7 @@ class EntityBeforeUpdateEvent : DEvent {
 /**
  * Event fired after an entity is updated
  */
-@Event("entity.afterUpdate")
+@EventUDA("entity.afterUpdate")
 class EntityAfterUpdateEvent : DEvent {
     IEntity entity;
     
@@ -71,7 +72,7 @@ class EntityAfterUpdateEvent : DEvent {
 /**
  * Event fired before an entity is deleted
  */
-@Event("entity.beforeDelete")
+@EventUDA("entity.beforeDelete")
 class EntityBeforeDeleteEvent : DEvent {
     IEntity entity;
     
@@ -84,7 +85,7 @@ class EntityBeforeDeleteEvent : DEvent {
 /**
  * Event fired after an entity is deleted
  */
-@Event("entity.afterDelete")
+@EventUDA("entity.afterDelete")
 class EntityAfterDeleteEvent : DEvent {
     IEntity entity;
     
@@ -97,7 +98,7 @@ class EntityAfterDeleteEvent : DEvent {
 /**
  * Event fired when an entity is validated
  */
-@Event("entity.validated")
+@EventUDA("entity.validated")
 class EntityValidatedEvent : DEvent {
     IEntity entity;
     bool isValid;
@@ -112,7 +113,7 @@ class EntityValidatedEvent : DEvent {
 /**
  * Event fired when entity state changes
  */
-@Event("entity.stateChanged")
+@EventUDA("entity.stateChanged")
 class EntityStateChangedEvent : DEvent {
     IEntity entity;
     EntityState oldState;

@@ -7,7 +7,7 @@ module uim.entities.attributes;
 
 import uim.entities;
 
-mixin(ShowModule());
+mixin(ShowModule!());
 
 @safe:
 
@@ -99,7 +99,7 @@ struct ReadOnly {
 struct Entity {
     string tableName;
     
-    this(string table = "") {
+    this(string table) {
         tableName = table;
     }
 }

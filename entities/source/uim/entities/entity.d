@@ -7,7 +7,7 @@ module uim.entities.entity;
 
 import uim.entities;
 
-mixin(ShowModule());
+mixin(ShowModule!());
 
 @safe:
 
@@ -46,12 +46,12 @@ class DEntity : UIMObject, IEntity {
     string[string] attributes() { return _attributes; }
     
     // Setters
-    void id(UUID value) { _id = value; }
-    void name(string value) { _name = value; }
-    void createdAt(SysTime value) { _createdAt = value; }
-    void updatedAt(SysTime value) { _updatedAt = value; }
-    void state(EntityState value) { _state = value; }
-    void attributes(string[string] value) { _attributes = value; }
+    IEntity id(UUID value) { _id = value; return this; }
+    IEntity name(string value) { _name = value; return this; }
+    IEntity createdAt(SysTime value) { _createdAt = value; return this; }
+    IEntity updatedAt(SysTime value) { _updatedAt = value; return this; }
+    IEntity state(EntityState value) { _state = value; return this; }
+    IEntity attributes(string[string] value) { _attributes = value; return this; }
     
     this() {
         super();

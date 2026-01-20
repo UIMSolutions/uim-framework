@@ -7,7 +7,7 @@ module uim.entities.validator;
 
 import uim.entities;
 
-mixin(ShowModule());
+mixin(ShowModule!());
 
 @safe:
 

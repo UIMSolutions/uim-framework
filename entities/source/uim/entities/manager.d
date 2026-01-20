@@ -7,7 +7,7 @@ module uim.entities.manager;
 
 import uim.entities;
 
-mixin(ShowModule());
+mixin(ShowModule!());
 
 @safe:
 
