@@ -10,7 +10,7 @@ public { // Base module
 }
 
 public { // Additional modules
-  import uim.commands.exceptions;
+  import uim.commands.errors;
   import uim.commands.helpers;
   import uim.commands.interfaces;
   import uim.commands.tests; 
