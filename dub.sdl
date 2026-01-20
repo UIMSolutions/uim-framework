@@ -42,11 +42,6 @@ dependency ":yaml" version="*"
 
 sourceFiles "./source/uim/framework.d"
 
-configuration "test_all" {
-	targetType "library"
-	versions "test_uim_yaml" "test_uim_core" "test_uim_jsons" "test_uim_oop" "test_uim_events" "test_uim_entities" "test_uim_graphql" "test_uim_htmls"
-}
-
 // Subpackages
 subPackage "cdm"
 subPackage "compilers"
