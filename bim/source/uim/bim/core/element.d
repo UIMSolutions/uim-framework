@@ -37,6 +37,15 @@ class DBIMElement : UIMObject, IBIMElement {
     _guid = randomUUID().toString();
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
   string guid() {
     return _guid;
   }

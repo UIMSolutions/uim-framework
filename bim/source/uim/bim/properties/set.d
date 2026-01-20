@@ -56,6 +56,15 @@ class DBIMPropertySet : UIMObject {
     _setType = type;
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;

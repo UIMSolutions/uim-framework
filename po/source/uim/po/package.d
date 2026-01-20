@@ -6,7 +6,7 @@
 module uim.po;
 
 public {
-  import uim.core;
+  import uim.oop;
   
   import uim.po.parser;
 }

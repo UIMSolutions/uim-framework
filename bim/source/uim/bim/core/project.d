@@ -25,9 +25,18 @@ class DBIMProject : UIMObject, IBIMProject {
 
   this(string projectName) {
     this();
-    this.name = projectName;
+    this.name(projectName);
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
   IBIMSite site() {
     return _site;
   }

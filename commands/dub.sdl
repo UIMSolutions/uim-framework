@@ -9,13 +9,10 @@ license "Apache-2.0"
 targetName "uim-commands"
 targetType "library"
 
-// External dependencies
-dependency "vibe-d" version="~>0.10.3"
+// dependencies
+dependency "uim-framework:jsons" path=".."
 
-// uim dependencies
-dependency "uim-framework:core" path=".."
-dependency "uim-framework:oop" path=".."
-
+// configurations
 configuration "default" {
 	targetType "library"
 }
@@ -30,7 +27,17 @@ configuration "tests" {
 	versions "show_module" "show_test"
 }
 
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
 configuration "calls" {
 	targetType "library"
-	versions "show_module" "show_calls"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
 }

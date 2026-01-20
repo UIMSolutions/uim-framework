@@ -23,6 +23,15 @@ class DBoxGeometry : IBIMGeometry {
     _height = height;
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
   string geometryType() {
     return "Box";
   }
@@ -56,6 +65,15 @@ class DCylinderGeometry : IBIMGeometry {
     _height = height;
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
   string geometryType() {
     return "Cylinder";
   }

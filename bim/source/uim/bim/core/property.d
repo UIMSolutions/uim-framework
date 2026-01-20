@@ -25,10 +25,19 @@ class DBIMProperty : UIMObject, IBIMProperty {
 
   this(string name, Json value, string unit = "", string dataType = "string") {
     this();
-    this.name = name;
+    _name = name;
     _value = value;
     _unit = unit;
     _dataType = dataType;
+  }
+
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
   }
 
   Json value() {

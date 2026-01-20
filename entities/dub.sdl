@@ -14,26 +14,4 @@ dependency "uim-framework:core" path=".."
 dependency "uim-framework:oop" path=".."
 dependency "uim-framework:events" path=".."
 
-configuration "default" {
-	targetType "library"
-}
 
-configuration "modules" {
-	targetType "library"
-	versions "show_module"
-}
-
-configuration "tests" {
-	targetType "library"
-	versions "show_module" "show_test"
-}
-
-configuration "calls" {
-	targetType "library"
-	versions "show_module" "show_test" "show_function"
-}
-
-configuration "verbose" {
-	targetType "library"
-	versions "show_module" "show_test" "show_function"
-}

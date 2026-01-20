@@ -97,6 +97,15 @@ class DBIMBuilding : DBIMSpatialElement, IBIMBuilding {
     super("Building");
   }
 
+  protected string _name;
+  override string name() {
+    return _name;
+  }
+
+  override void name(string val) {
+    _name = val;
+  }
+  
   IBIMStorey[] storeys() {
     return _storeys.dup;
   }

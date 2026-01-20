@@ -13,6 +13,9 @@ import uim.bim;
  * Base interface for all BIM elements.
  */
 interface IBIMElement : IObject {
+  string name();
+  void name(string value);
+
   /**
    * Get the globally unique identifier (GUID).
    */
@@ -58,6 +61,8 @@ interface IBIMElement : IObject {
  * Interface for BIM properties.
  */
 interface IBIMProperty : IObject {
+  string name();
+  void name(string value);
   /**
    * Get the property value.
    */
@@ -83,6 +88,8 @@ interface IBIMProperty : IObject {
  * Interface for geometry representations.
  */
 interface IBIMGeometry {
+  string name();
+  void name(string value);
   /**
    * Get the geometry type (e.g., "Box", "Cylinder", "Mesh").
    */
@@ -108,6 +115,8 @@ interface IBIMGeometry {
  * Interface for materials.
  */
 interface IBIMMaterial : IObject {
+  string name();
+  void name(string value);
   /**
    * Get material properties.
    */
@@ -183,6 +192,8 @@ interface IBIMBuildingElement : IBIMElement {
  * Interface for BIM project.
  */
 interface IBIMProject : IObject {
+  string name();
+  void name(string value);
   /**
    * Get project site.
    */
@@ -306,7 +317,15 @@ struct BoundingBox {
   double minX, minY, minZ;
   double maxX, maxY, maxZ;
 
-  double width() const { return maxX - minX; }
-  double depth() const { return maxY - minY; }
-  double height() const { return maxZ - minZ; }
+  double width() const {
+    return maxX - minX;
+  }
+
+  double depth() const {
+    return maxY - minY;
+  }
+
+  double height() const {
+    return maxZ - minZ;
+  }
 }

@@ -9,9 +9,10 @@ license "Apache-2.0"
 targetName "uim-po"
 targetType "library"
 
-// uim dependencies
+// dependencies
 dependency "uim-framework:oop" path=".."
 
+// configurations
 configuration "default" {
 	targetType "library"
 }
@@ -26,7 +27,17 @@ configuration "tests" {
 	versions "show_module" "show_test"
 }
 
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
 configuration "calls" {
 	targetType "library"
-	versions "show_calls"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
 }

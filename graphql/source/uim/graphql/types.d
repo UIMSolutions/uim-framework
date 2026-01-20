@@ -97,7 +97,7 @@ class GraphQLArgument {
     GraphQLType type;
     GraphQLValue defaultValue;
     
-    this(string name, GraphQLType type, string description = "") pure nothrow @safe {
+    this(string name, GraphQLType type, string description = "") nothrow @safe {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -233,7 +233,7 @@ class GraphQLInputField {
     GraphQLType type;
     GraphQLValue defaultValue;
     
-    this(string name, GraphQLType type, string description = "") pure nothrow @safe {
+    this(string name, GraphQLType type, string description = "") nothrow @safe {
         this.name = name;
         this.type = type;
         this.description = description;
@@ -275,30 +275,26 @@ class GraphQLNonNullType : GraphQLType {
 
 // Built-in scalar types
 
-private GraphQLValue identitySerialize(GraphQLValue v) @safe {
-    return v;
+private GraphQLValue identitySerialize(GraphQLValue value) @safe {
+    return value;
 }
 
-private GraphQLValue intSerialize(GraphQLValue v) @safe {
-    if (v.type == JSONType.integer) return v;
-    if (v.type == JSONType.float_) return Json(cast(long)v.floating);
-    return Json(null);
+private GraphQLValue intSerialize(GraphQLValue value) @safe {
+    if (value.isInteger) return value;
+    return value.isDouble ? Json(cast(long)value.get!float) : Json(null);
 }
 
-private GraphQLValue floatSerialize(GraphQLValue v) @safe {
-    if (v.type == JSONType.float_) return v;
-    if (v.type == JSONType.integer) return Json(cast(double)v.integer);
-    return Json(null);
+private GraphQLValue floatSerialize(GraphQLValue value) @safe {
+    if (value.isDouble) return value;
+    return value.isInteger ? Json(to!double(value.get!int)) : Json(null);
 }
 
-private GraphQLValue stringSerialize(GraphQLValue v) @safe {
-    if (v.type == Json.Type.string) return v;
-    return Json(v.toString());
+private GraphQLValue stringSerialize(GraphQLValue value) @safe {
+    return value.isString ? value : Json(value.get!string);
 }
 
-private GraphQLValue boolSerialize(GraphQLValue v) @safe {
-    if (v.type == Json.Type.bool_) return v;
-    return Json.undefined;
+private GraphQLValue boolSerialize(GraphQLValue value) @safe {
+    return value.isBoolean ? value : Json(null);
 }
 
 __gshared GraphQLScalarType GraphQLInt;

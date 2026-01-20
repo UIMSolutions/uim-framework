@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.po.parser;
 
-import std.string;
-import std.array;
-import std.algorithm;
-import std.conv;
-import std.exception;
+import uim.po;
 
 @safe:
 

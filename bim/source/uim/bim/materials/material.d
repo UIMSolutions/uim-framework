@@ -28,6 +28,16 @@ class DBIMMaterial : UIMObject, IBIMMaterial {
     this.name = name;
   }
 
+  protected string _name;
+  string name() {
+    return _name;
+  }
+
+  void name(string val) {
+    _name = val;
+  }
+  
+  
   Json[string] materialProperties() {
     return _properties.dup;
   }
