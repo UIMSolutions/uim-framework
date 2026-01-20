@@ -1,0 +1,25 @@
+{
+	"fileVersion": 1,
+	"versions": {
+		"colored": "0.0.33",
+		"console-colors": "1.3.1",
+		"diet-ng": "1.8.4",
+		"during": "0.3.0",
+		"eventcore": "0.9.38",
+		"mir-linux-kernel": "1.2.1",
+		"openssl": "3.4.0",
+		"openssl-static": "1.0.5+3.0.8",
+		"silly": "1.1.1",
+		"stdx-allocator": "2.77.5",
+		"taggedalgebraic": "1.0.1",
+		"uim-framework": {"path":"../.."},
+		"unit-threaded": "2.2.3",
+		"vibe-container": "1.7.1",
+		"vibe-core": "2.13.3",
+		"vibe-d": "0.10.3",
+		"vibe-http": "1.3.2",
+		"vibe-inet": "1.2.0",
+		"vibe-serialization": "1.1.3",
+		"vibe-stream": "1.3.0"
+	}
+}

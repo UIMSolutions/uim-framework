@@ -1,0 +1,8 @@
+name "rdf-example"
+description "Examples for UIM RDF library"
+
+targetName "rdf-example"
+targetType "executable"
+
+dependency "uim-framework:rdf" path="../.."
+mainSourceFile "example.d"
