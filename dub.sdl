@@ -16,6 +16,7 @@ dependency "vibe-d" version="~>0.10.3"
 dependency "dyaml" version="~>0.10.0"
 
 // uim dependencies
+dependency ":compilers" version="*"
 dependency ":core" version="*"
 dependency ":css" version="*"
 dependency ":edm" version="*"
@@ -36,6 +37,7 @@ dependency ":rdf" version="*"
 dependency ":rss" version="*"
 dependency ":services" version="*"
 dependency ":soap" version="*"
+dependency ":sql" version="*"
 dependency ":yaml" version="*"
 
 sourceFiles "./source/uim/framework.d"
@@ -46,6 +48,7 @@ configuration "test_all" {
 }
 
 // Subpackages
+subPackage "compilers"
 subPackage "core"
 subPackage "css"
 subPackage "edm"
@@ -66,6 +69,7 @@ subPackage "rdf"
 subPackage "rss"
 subPackage "services"
 subPackage "soap"
+subPackage "sql"
 subPackage "yaml"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
