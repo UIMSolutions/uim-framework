@@ -209,9 +209,9 @@ class ODataFilter {
     /**
      * Any operator for collections
      */
-    ODataFilter any(string collection, string alias, string condition) {
+    ODataFilter any(string collection, string aliasName, string condition) {
         addOperatorIfNeeded();
-        _parts ~= collection ~ "/any(" ~ alias ~ ": " ~ condition ~ ")";
+        _parts ~= collection ~ "/any(" ~ aliasName ~ ": " ~ condition ~ ")";
         _needsOperator = true;
         return this;
     }
@@ -219,9 +219,9 @@ class ODataFilter {
     /**
      * All operator for collections
      */
-    ODataFilter all(string collection, string alias, string condition) {
+    ODataFilter all(string collection, string aliasName, string condition) {
         addOperatorIfNeeded();
-        _parts ~= collection ~ "/all(" ~ alias ~ ": " ~ condition ~ ")";
+        _parts ~= collection ~ "/all(" ~ aliasName ~ ": " ~ condition ~ ")";
         _needsOperator = true;
         return this;
     }

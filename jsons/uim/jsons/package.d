@@ -7,8 +7,6 @@ module uim.jsons.all;
 
 // UIM libraries
 public import uim.oop;
-public import uim.jsons.rpc;
-public import uim.jsons.schemas;
-public import uim.jsons.ld;
+public import uim.jsons;
 
 

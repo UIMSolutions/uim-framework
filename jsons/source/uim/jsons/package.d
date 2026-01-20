@@ -4,7 +4,7 @@ module uim.jsons;
 public import uim.oop;
 
 public {
-  import uim.jsons.schemas;
+  import uim.jsons.schema;
   import uim.jsons.rpc;
   import uim.jsons.ld;
 }
