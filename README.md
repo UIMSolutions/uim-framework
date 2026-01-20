@@ -1,2 +1,2 @@
 # uim-framework
-Collection of libraries from 8 years of experience with the d language
+A collection of libraries built up over eight years of experience with the D language.
