@@ -4,14 +4,13 @@ authors "Ozan Nurettin Süel (aka UIManufaktur)"
 copyright "Copyright © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur)"
 license "Apache-2.0"
 
-dependency "uim-framework:core" path="../core"
-dependency "uim-framework:oop" path="../oop"
-dependency "uim-framework:entities" path="../entities"
-dependency "vibe-d:data" version="~>0.10.3"
-
 targetType "library"
-sourcePaths "source"
-importPaths "source"
+targetName "uim-cdm"
+
+dependency "uim-framework:core" path=".."
+dependency "uim-framework:oop" path=".."
+dependency "uim-framework:entities" path=".."
+dependency "vibe-d:data" version="~>0.10.3"
 
 configuration "default" {
     targetType "library"

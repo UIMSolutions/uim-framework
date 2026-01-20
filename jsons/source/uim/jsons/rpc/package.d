@@ -6,6 +6,13 @@
 module uim.jsons.rpc;
 
 public {
+  import uim.jsons.rpc.errors;
+  import uim.jsons.rpc.exceptions;
+  import uim.jsons.rpc.helpers;
+  import uim.jsons.rpc.interfaces;
+}
+
+public {
   import uim.jsons.rpc.request;
   import uim.jsons.rpc.response;
   import uim.jsons.rpc.error;
