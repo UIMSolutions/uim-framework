@@ -201,8 +201,6 @@ auto Map(K, V)(string name, V[K] initialData = null) {
 unittest {
     import std.stdio : writeln;
     
-    writeln("Testing DMap class...");
-    
     // Test basic creation
     auto map = Map!(string, int)();
     assert(map.isEmpty());
@@ -257,6 +255,4 @@ unittest {
     map.clear();
     assert(map.isEmpty());
     assert(map.length == 0);
-    
-    writeln("✓ DMap tests passed!");
 }

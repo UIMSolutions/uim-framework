@@ -11,11 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
-
-class DFormatterRegistry : DRegistry!IFormatter {
-  mixin(RegistryThis!("Formatter"));
+class DFormatterRegistry : UIMRegistry!(string, IFormatter) {
+  this() {
+    super();
+  }
 }
-mixin(RegistryCalls!("Formatter"));
 
 unittest {
   // Create a dummy formatter for testing

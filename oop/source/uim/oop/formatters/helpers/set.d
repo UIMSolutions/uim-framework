@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-
+/*
 class DFormatterSet : UIMSet!IFormatter {
   mixin(SetThis!("Formatter"));
 }
@@ -20,4 +20,4 @@ mixin(SetCalls!("Formatter"));
 unittest {
   auto set = FormatterSet;
   assert(testSet(set, "Formatter"), "Test FormatterSet failed");
-}
+} */

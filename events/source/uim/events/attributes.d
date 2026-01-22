@@ -74,7 +74,7 @@ struct UseEvent {
  */
 template hasEventAttribute(T) {
     import std.traits : hasUDA;
-    enum hasEventAttribute = hasUDA!(T, Event);
+    enum hasEventAttribute = hasUDA!(T, UseEvent);
 }
 
 /**
@@ -84,7 +84,7 @@ template getEventName(T) {
     import std.traits : getUDAs;
     
     static if (hasEventAttribute!T) {
-        enum getEventName = getUDAs!(T, Event)[0].name;
+        enum getEventName = getUDAs!(T, UseEvent)[0].name;
     } else {
         enum getEventName = "";
     }

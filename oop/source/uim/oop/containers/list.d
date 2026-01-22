@@ -193,8 +193,6 @@ auto List(T)(string name, T[] initialItems = null) {
 unittest {
     import std.stdio : writeln;
     
-    writeln("Testing DList class...");
-    
     // Test basic creation
     auto list = List!int();
     assert(list.isEmpty());
@@ -244,6 +242,4 @@ unittest {
         sum += item;
     }
     assert(sum == 60);
-    
-    writeln("✓ DList tests passed!");
 }

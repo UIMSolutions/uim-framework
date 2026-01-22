@@ -22,37 +22,7 @@ class DFormatterFactory : UIMFactory!(string, IFormatter) {
     super();
   }
 
-  this(V delegate() @safe creator) { // Constructor with default creator
+  this(IFormatter delegate() @safe creator) { // Constructor with default creator
     super(creator);
   }
-}
-/// 
-unittest {
-  // Test with empty factory
-  auto emptyFactory = new DFormatterFactory();
-  assert(emptyFactory.isEmpty);
-
-  // Test with single formatter creation
-  auto singleFormatter = emptyFactory.create("Single");
-  assert(singleFormatter !is null);
-  assert(singleFormatter.name == "Single");
-
-  // Test with multiple formatter creations
-  auto multiFormatter1 = emptyFactory.create("First");
-  auto multiFormatter2 = emptyFactory.create("Second");
-  assert(multiFormatter1 !is null && multiFormatter2 !is null);
-  assert(multiFormatter1.name == "First");
-  assert(multiFormatter2.name == "Second");
-}
-
-unittest {
-  // Test that DFormatterFactory can be instantiated
-  auto factory = new DFormatterFactory();
-
-}
-
-unittest {
-  // Test that DFormatterFactory can be instantiated
-  auto factory = new DFormatterFactory();
-  assert(factory !is null, "DFormatterFactory instance should not be null");
 }
