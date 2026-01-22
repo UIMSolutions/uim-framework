@@ -12,6 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // Base commands exception.
+/* 
 class DCommandException : DException {
   mixin(ExceptionThis!("Command"));
 
@@ -34,3 +35,4 @@ unittest {
 
   assert(testException(exception), "Test for DCommandException failed");
 }
+*/

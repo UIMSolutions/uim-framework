@@ -3,22 +3,21 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.helpers.registry;
+module uim.oop.patterns.commands.helpers.directory;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
 @safe:
-
-// Registry for Commands
-class DCommandRegistry : DRegistry!DCommand {
-  mixin(RegistryThis!("Command"));
+/*
+class DCommandDirectory : DDirectory!ICommand {
+  mixin(DirectoryThis!("Command"));
 }
-
-mixin(RegistryCalls!("Command"));
+mixin(DirectoryCalls!("Command"));
 
 unittest {
-  auto registry = new DCommandRegistry();
-  assert(testRegistry(new DCommandRegistry, "DCommandRegistry"), "Test of DCommandRegistry failed!");
+  auto directory = new DCommandDirectory();
+  assert(testDirectory(directory, "CommandDirectory"), "Test of DCommandDirectory failed!");
 }
+*/

@@ -12,6 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // Base commands exception.
+/* 
 class DNotCreateCommandException : DCommandException {
   mixin(ExceptionThis!("NotCreateCommand"));
 
@@ -34,3 +35,4 @@ unittest {
 
   assert(testException(exception), "Test for DNotCreateCommandException failed");
 }
+*/

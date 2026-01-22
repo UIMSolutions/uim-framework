@@ -3,21 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.helpers.directory;
+module uim.oop.patterns.commands.interfaces;
 
-import uim.commands;
-
-mixin(ShowModule!());
-
-@safe:
-/*
-class DCommandDirectory : DDirectory!ICommand {
-  mixin(DirectoryThis!("Command"));
+public {
+  import uim.oop.patterns.commands.interfaces.command;
+  import uim.oop.patterns.commands.interfaces.invoker;
+  import uim.oop.patterns.commands.interfaces.receiver;
+  import uim.oop.patterns.commands.interfaces.undoable;
 }
-mixin(DirectoryCalls!("Command"));
 
-unittest {
-  auto directory = new DCommandDirectory();
-  assert(testDirectory(directory, "CommandDirectory"), "Test of DCommandDirectory failed!");
-}
-*/

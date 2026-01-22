@@ -3,15 +3,28 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.helpers;
+module uim.oop.patterns.commands.interfaces.invoker;
 
-public {
-  // import uim.oop.commands.helpers.directory;
-  import uim.commands.helpers.factory;
-  import uim.commands.helpers.functions;
-  import uim.commands.helpers.list;  
-  import uim.commands.helpers.manager;  
-  import uim.commands.helpers.mixins;
-  import uim.commands.helpers.registry;
-  import uim.commands.helpers.set;
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
+/**
+ * Command invoker interface.
+ * Responsible for executing commands.
+ */
+interface IInvoker {
+    /**
+     * Sets the command to execute.
+     * Params:
+     *   command = The command to set
+     */
+    @safe void setCommand(ICommand command);
+    
+    /**
+     * Executes the current command.
+     */
+    @safe void executeCommand();
 }

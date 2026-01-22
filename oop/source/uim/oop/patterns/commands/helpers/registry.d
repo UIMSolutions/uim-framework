@@ -3,21 +3,18 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.helpers.set;
+module uim.oop.patterns.commands.helpers.registry;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
 @safe:
 
-class DCommandSet : UIMSet!ICommand {
-  mixin(SetThis!("Command"));
+// Registry for Commands
+class DCommandRegistry : UIMRegistry!(string, ICommand) {
+  this() {
+    super();
+  }
 }
 
-mixin(SetCalls!("Command"));
-
-unittest {
-  auto set = new DCommandSet();
-  assert(testSet(set, "CommandSet"), "Test of DCommandSet failed!");
-}

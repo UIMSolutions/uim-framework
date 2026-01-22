@@ -10,69 +10,8 @@ import uim.oop;
 mixin(ShowModule!());
 
 @safe:
-/**
- * Command interface that declares the execution method.
- * All concrete commands must implement this interface.
- */
-interface ICommand {
-    /**
-     * Executes the command.
-     */
-    @safe void execute();
-    
-    /**
-     * Gets the command name.
-     * Returns: The command identifier
-     */
-    @safe string name() const;
-}
 
-/**
- * Undoable command interface that supports undo operations.
- */
-interface IUndoableCommand : ICommand {
-    /**
-     * Undoes the command execution.
-     */
-    @safe void undo();
-    
-    /**
-     * Checks if the command can be undone.
-     * Returns: true if undo is possible
-     */
-    @safe bool canUndo() const;
-}
 
-/**
- * Receiver interface for objects that perform the actual work.
- * Commands delegate to receivers to perform operations.
- */
-interface IReceiver {
-    /**
-     * Performs an action.
-     * Params:
-     *   action = The action to perform
-     */
-    @safe void action(string action);
-}
-
-/**
- * Command invoker interface.
- * Responsible for executing commands.
- */
-interface IInvoker {
-    /**
-     * Sets the command to execute.
-     * Params:
-     *   command = The command to set
-     */
-    @safe void setCommand(ICommand command);
-    
-    /**
-     * Executes the current command.
-     */
-    @safe void executeCommand();
-}
 
 /**
  * Command queue interface for managing multiple commands.

@@ -12,6 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // Base commands exception.
+/* 
 class DNotFindCommandException : DCommandException {
   mixin(ExceptionThis!("NotFindCommand"));
 
@@ -32,3 +33,4 @@ unittest {
   auto exception = new DNotFindCommandException();
   assert(testException(exception), "Test for DNotFindCommandException failed");
 }
+*/

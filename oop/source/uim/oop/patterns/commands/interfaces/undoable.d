@@ -3,16 +3,26 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands;
+module uim.oop.patterns.commands.interfaces.undoable;
 
-public { // Base module
-  import uim.jsons;
-  import uim.commands.command;
-}
+import uim.oop;
 
-public { // Additional modules
-  import uim.commands.errors;
-  import uim.commands.helpers;
-  import uim.commands.interfaces;
-  import uim.commands.tests; 
+mixin(ShowModule!());
+
+@safe:
+
+/**
+ * Undoable command interface that supports undo operations.
+ */
+interface IUndoableCommand : ICommand {
+    /**
+     * Undoes the command execution.
+     */
+    @safe void undo();
+    
+    /**
+     * Checks if the command can be undone.
+     * Returns: true if undo is possible
+     */
+    @safe bool canUndo() const;
 }
