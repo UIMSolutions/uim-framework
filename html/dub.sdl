@@ -1,0 +1,44 @@
+// metadata
+name "html"
+description "uim library to work with html"
+homepage "https://www.sueel.de"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-html"
+targetType "library"
+
+// dependencies
+dependency "uim-framework:oop" path=".."
+
+// configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
