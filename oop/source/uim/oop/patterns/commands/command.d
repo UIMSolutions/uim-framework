@@ -159,7 +159,7 @@ class TextEditorReceiver : IReceiver {
 /**
  * Insert text command.
  */
-class InsertTextCommand : UndoableCommand {
+class InsertTextCommand : DUndoableCommand {
     private TextEditorReceiver _editor;
     private string _textToInsert;
     
@@ -169,11 +169,11 @@ class InsertTextCommand : UndoableCommand {
         _textToInsert = text;
     }
     
-    protected override @safe void doExecute() {
+    protected override @safe bool doExecute(Json[string] options = null) {
         _editor.insertText(_textToInsert);
     }
     
-    protected override @safe void doUndo() {
+    protected override @safe bool doUndo(Json[string] options = null) {
         _editor.deleteText(_textToInsert.length);
     }
 }
@@ -192,7 +192,7 @@ class DeleteTextCommand : UndoableCommand {
         _length = length;
     }
     
-    protected override @safe void doExecute() {
+    protected override @safe bool doExecute(Json[string] options = null) {
         auto currentText = _editor.text();
         if (_length <= currentText.length) {
             _deletedText = currentText[$-_length..$];
@@ -200,7 +200,7 @@ class DeleteTextCommand : UndoableCommand {
         }
     }
     
-    protected override @safe void doUndo() {
+    protected override @safe bool doUndo(Json[string] options = null) {
         _editor.insertText(_deletedText);
     }
 }
@@ -261,11 +261,11 @@ class LightOnCommand : UndoableCommand {
         _light = light;
     }
     
-    protected override @safe void doExecute() {
+    protected override @safe bool doExecute(Json[string] options = null) {
         _light.turnOn();
     }
     
-    protected override @safe void doUndo() {
+    protected override @safe bool doUndo(Json[string] options = null) {
         _light.turnOff();
     }
 }
@@ -281,11 +281,11 @@ class LightOffCommand : UndoableCommand {
         _light = light;
     }
     
-    protected override @safe void doExecute() {
+    protected override @safe bool doExecute(Json[string] options = null) {
         _light.turnOff();
     }
     
-    protected override @safe void doUndo() {
+    protected override @safe bool doUndo(Json[string] options = null) {
         _light.turnOn();
     }
 }
@@ -304,12 +304,12 @@ class SetBrightnessCommand : UndoableCommand {
         _newBrightness = brightness;
     }
     
-    protected override @safe void doExecute() {
+    protected override @safe bool doExecute(Json[string] options = null) {
         _oldBrightness = _light.brightness();
         _light.setBrightness(_newBrightness);
     }
     
-    protected override @safe void doUndo() {
+    protected override @safe bool doUndo(Json[string] options = null) {
         _light.setBrightness(_oldBrightness);
     }
 }
@@ -571,7 +571,7 @@ abstract class DAbstractCommand : UIMObject, ICommand {
    * Validate command parameters.
    * Override in subclasses for custom validation.
    */
-  bool validateParameters(Json[string] options) {
+  bool validateParameters(Json[string] options = null) {
     return true; // Default: no validation
   }
 
@@ -586,14 +586,14 @@ abstract class DAbstractCommand : UIMObject, ICommand {
   /**
    * Core execution logic - must be implemented by subclasses.
    */
-  protected abstract bool doExecute(Json[string] options);
+  protected abstract bool doExecute(Json[string] options = null);
 
   /**
    * Hook called before execution.
    * Override to add pre-execution logic.
    * Returns: true to continue, false to abort
    */
-  protected bool beforeExecute(Json[string] options) {
+  protected bool beforeExecute(Json[string] options = null) {
     return true;
   }
 
@@ -635,7 +635,7 @@ class DCommand : DAbstractCommand {
     return true;
   }
 
-  protected override bool doExecute(Json[string] options) {
+  protected override bool doExecute(Json[string] options = null) {
     // Default implementation for backwards compatibility
     return true;
   }

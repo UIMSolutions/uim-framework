@@ -19,7 +19,6 @@ class DCommandFactory : UIMFactory!(string, ICommand) {
     super(creator);
   }
 }
-mixin(FactoryCalls!("Command"));
 
 unittest {
   auto factory = new DCommandFactory();

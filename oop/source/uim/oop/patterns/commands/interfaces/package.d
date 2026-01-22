@@ -10,7 +10,11 @@ public {
   import uim.oop.patterns.commands.interfaces.composite;
   import uim.oop.patterns.commands.interfaces.history;
   import uim.oop.patterns.commands.interfaces.invoker;
+  import uim.oop.patterns.commands.interfaces.macro_;
+  import uim.oop.patterns.commands.interfaces.parameterized;
+  import uim.oop.patterns.commands.interfaces.queue;
   import uim.oop.patterns.commands.interfaces.receiver;
+  import uim.oop.patterns.commands.interfaces.transactional;
   import uim.oop.patterns.commands.interfaces.undoable;
 }
 

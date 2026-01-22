@@ -38,7 +38,7 @@ interface ICommand : IObject {
    *   options = Parameters to validate
    * Returns: true if parameters are valid, false otherwise
    */
-  bool validateParameters(Json[string] options);
+  bool validateParameters(Json[string] options = null);
 
   /**
    * Check if the command can be executed with given parameters.

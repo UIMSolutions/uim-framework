@@ -7,7 +7,7 @@ module uim.oop.patterns.commands.errors;
 
 public { // Modules
   // import uim.oop.patterns.commands.errors.exception;
-  import uim.oop.patterns.commands.errors.interfaces;
+  // import uim.oop.patterns.commands.errors.interfaces;
   import uim.oop.patterns.commands.errors.mixins;
   import uim.oop.patterns.commands.errors.tests;
 }

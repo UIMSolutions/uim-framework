@@ -84,8 +84,8 @@ abstract class UndoableCommand : BaseCommand, IUndoableCommand {
     void execute();
     void undo();
     bool canUndo() const;
-    protected abstract void doExecute();
-    protected abstract void doUndo();
+    protected abstract bool doExecute(Json[string] options = null);
+    protected abstract bool doUndo(Json[string] options = null);
 }
 ```
 
@@ -252,12 +252,12 @@ class SetBrightnessCommand : UndoableCommand {
 ### 2. Undo Implementation
 Store previous state for undo:
 ```d
-protected override void doExecute() {
+protected override bool doExecute(Json[string] options = null) {
     _oldBrightness = _light.brightness();
     _light.setBrightness(_newBrightness);
 }
 
-protected override void doUndo() {
+protected override bool doUndo(Json[string] options = null) {
     _light.setBrightness(_oldBrightness);
 }
 ```

@@ -1,6 +1,6 @@
 module uim.oop.patterns.commands.base;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 

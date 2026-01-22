@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.composite;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
@@ -58,7 +58,7 @@ class DCompositeCommand : DAbstractCommand, ICompositeCommand {
     _commands = [];
   }
 
-  protected override bool doExecute(Json[string] options) {
+  protected override bool doExecute(Json[string] options = null) {
     bool allSuccess = true;
     
     foreach (command; _commands) {

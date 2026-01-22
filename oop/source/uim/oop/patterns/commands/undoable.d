@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.undoable;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
@@ -74,7 +74,7 @@ abstract class DUndoableCommand : DAbstractCommand, IUndoableCommand {
    * Save data needed for undo.
    * Override to store command-specific undo information.
    */
-  protected void saveUndoData(Json[string] options) {
+  protected void saveUndoData(Json[string] options = null) {
     _undoData = options.dup;
   }
 }
@@ -106,7 +106,7 @@ abstract class UndoableCommand : BaseCommand, IUndoableCommand {
         return _executed;
     }
     
-    protected abstract @safe void doExecute();
-    protected abstract @safe void doUndo();
+    protected abstract @safe bool doExecute(Json[string] options = null);
+    protected abstract @safe bool doUndo(Json[string] options = null);
 }
 */

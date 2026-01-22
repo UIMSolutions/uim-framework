@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.result;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
