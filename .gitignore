@@ -23,3 +23,6 @@ docs/
 # Code coverage
 *.lst
 entities/entities-test-default
+jsons/jsons-test-default
+core/core-test-default
+numerical/numerical-test-default

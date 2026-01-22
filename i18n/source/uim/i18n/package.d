@@ -7,8 +7,8 @@ module uim.i18n;
 
 public {
   import uim.core;
-  import uim.po;
   
   import uim.i18n.translator;
   import uim.i18n.catalog;
+  import uim.i18n.po;
 }

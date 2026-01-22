@@ -1,3 +1,4 @@
+// Metadata
 name "uim-framework"
 description "A collection of libraries built up over eight years of experience with the D language."
 homepage "https://www.sueel.de/uim/framework"
@@ -15,34 +16,31 @@ dependency "colored" version="~>0.0.31"
 dependency "vibe-d" version="~>0.10.3"
 dependency "dyaml" version="~>0.10.0"
 
-// uim dependencies
+// Internal Dependencies
 dependency ":compilers" version="*"
 dependency ":core" version="*"
+dependency ":entities" version="*"
 dependency ":errors" version="*"
 dependency ":events" version="*"
-dependency ":entities" version="*"
-dependency ":html" version="*"
 dependency ":i18n" version="*"
 dependency ":jsons" version="*"
 dependency ":numerical" version="*"
 dependency ":oop" version="*"
-dependency ":plist" version="*"
 dependency ":services" version="*"
 
+// Source files
 sourceFiles "./source/uim/framework.d"
 
 // Subpackages
 subPackage "compilers"
 subPackage "core"
+subPackage "entities"
 subPackage "errors"
 subPackage "events"
-subPackage "entities"
-subPackage "html"
 subPackage "i18n"
 subPackage "jsons"
 subPackage "numerical"
 subPackage "oop"
-subPackage "plist"
 subPackage "services"
 
 buildRequirements "allowWarnings" "silenceDeprecations"

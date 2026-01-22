@@ -14,5 +14,4 @@ public {
 
 public {
   import uim.core;
-  import uim.yaml;
 }

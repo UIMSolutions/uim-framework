@@ -8,7 +8,7 @@ module uim.i18n.translator;
 import std.string;
 import std.format;
 import std.conv;
-import uim.po;
+import uim.i18n.po;
 
 @safe:
 

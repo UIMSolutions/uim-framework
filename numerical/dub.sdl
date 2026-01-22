@@ -1,17 +1,19 @@
+// Metadata
 name "numerical"
-description "uim library for numerical computing and mathematical problems"
-homepage "https://www.sueel.de"
+description "uim library for numerical computations"
+homepage "https://www.sueel.de/uim/framework/numerical"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
-// target
+// Target
 targetName "uim-numerical"
 targetType "library"
 
-// uim dependencies
+// Dependencies
 dependency "uim-framework:core" version="*"
 
+// Configurations
 configuration "default" {
 	targetType "library"
 }
@@ -26,7 +28,17 @@ configuration "tests" {
 	versions "show_module" "show_test"
 }
 
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
 configuration "calls" {
 	targetType "library"
-	versions "show_calls"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
 }
