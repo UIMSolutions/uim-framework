@@ -10,7 +10,7 @@ targetName "uim-services"
 targetType "library"
 
 // dependencies
-dependency "uim-framework:oop" path=".."
+dependency "uim-framework:oop" version="*"
 
 // configurations
 configuration "default" {

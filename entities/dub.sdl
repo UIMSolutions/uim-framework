@@ -10,8 +10,8 @@ targetName "uim-entities"
 targetType "library"
 
 // uim dependencies
-dependency "uim-framework:core" path=".."
-dependency "uim-framework:oop" path=".."
-dependency "uim-framework:events" path=".."
+dependency "uim-framework:core" version="*"
+dependency "uim-framework:oop" version="*"
+dependency "uim-framework:events" version="*"
 
 

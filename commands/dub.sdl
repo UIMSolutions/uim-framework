@@ -10,7 +10,7 @@ targetName "uim-commands"
 targetType "library"
 
 // dependencies
-dependency "uim-framework:jsons" path=".."
+dependency "uim-framework:jsons" version="*"
 
 // configurations
 configuration "default" {
