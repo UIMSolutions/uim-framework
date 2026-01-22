@@ -3,10 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.errors.mixins;
+module uim.oop.patterns.commands.tests;
 
-import uim.commands;
-
-mixin(ShowModule!());
-
-@safe:
+public {
+  import uim.oop.patterns.commands.tests.mixins;
+  import uim.oop.patterns.commands.tests.test;
+}

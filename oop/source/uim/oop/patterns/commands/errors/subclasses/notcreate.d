@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.commands.errors.error;
+module uim.oop.patterns.commands.errors.subclasses.notcreate;
 
-import uim.commands;
+import uim.oop;
 
 mixin(ShowModule!());
 
@@ -13,26 +13,26 @@ mixin(ShowModule!());
 
 // Base commands exception.
 /* 
-class DCommandException : DException {
-  mixin(ExceptionThis!("Command"));
+class DNotCreateCommandException : DCommandException {
+  mixin(ExceptionThis!("NotCreateCommand"));
 
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-    messageTemplate("default", "Exception in uim.commands");
+    messageTemplate("default", "Not able to create command '{name}' in '{instance}'");
 
     return true;
   }
 }
 
-mixin(ExceptionCalls!("Command"));
+mixin(ExceptionCalls!("NotCreateCommand"));
 
 unittest {
-  auto exception = new DCommandException();
-  assert(exception !is null, "Failed to create DCommandException instance");
+  auto exception = new DNotCreateCommandException();
+  assert(exception !is null, "Failed to create DNotCreateCommandException instance");
 
-  assert(testException(exception), "Test for DCommandException failed");
+  assert(testException(exception), "Test for DNotCreateCommandException failed");
 }
 */
