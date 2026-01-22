@@ -12,26 +12,6 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Validation result.
- */
-struct ValidationResult {
-  bool valid;
-  ValidationError[] errors;
-
-  static ValidationResult success() {
-    return ValidationResult(true, []);
-  }
-
-  static ValidationResult failure(ValidationError[] errs) {
-    return ValidationResult(false, errs);
-  }
-
-  static ValidationResult failure(ValidationError err) {
-    return ValidationResult(false, [err]);
-  }
-}
-
-/**
  * JSON Schema validator.
  */
 class DJSONSchemaValidator : UIMObject {
@@ -47,7 +27,7 @@ class DJSONSchemaValidator : UIMObject {
   /**
    * Register default format validators.
    */
-  protected void registerDefaultFormatValidators() {
+  protected final void registerDefaultFormatValidators() {
     _formatValidators["email"] = new DEmailFormatValidator();
     _formatValidators["uri"] = new DURIFormatValidator();
     _formatValidators["date"] = new DDateFormatValidator();
@@ -81,15 +61,21 @@ class DJSONSchemaValidator : UIMObject {
     
     if (auto typeField = "type" in schemaJson) {
       string expectedType = typeField.get!string;
-      string actualType = data.to!string.toLower;
+      string actualType;
 
       // Map JSON types
-      if (data.isInteger || data.isDouble) {
+      if (data.type == Json.Type.string) {
+        actualType = "string";
+      } else if (data.isInteger || data.isDouble) {
         actualType = "number";
       } else if (data.isBoolean) {
         actualType = "boolean";
       } else if (data.isNull) {
         actualType = "null";
+      } else if (data.isArray) {
+        actualType = "array";
+      } else if (data.isObject) {
+        actualType = "object";
       }
 
       if (actualType != expectedType) {
@@ -113,7 +99,7 @@ class DJSONSchemaValidator : UIMObject {
     bool valid = true;
 
     // String validations
-    if (data.type == Json.Type.string) {
+    if (data.isString) {
       valid = validateStringConstraints(data.get!string, schemaJson, errors) && valid;
     }
 
@@ -255,14 +241,22 @@ class DJSONSchemaValidator : UIMObject {
 
     if (auto minItems = "minItems" in schema) {
       if (arr.length < minItems.get!size_t) {
-        errors ~= ValidationError("minItems", "Array must have at least " ~ minItems.get!size_t.to!string ~ " items", "");
+        errors ~= ValidationError(
+          "minItems",
+          "Array must have at least " ~ minItems.get!size_t.to!string ~ " items",
+          ""
+        );
         valid = false;
       }
     }
 
     if (auto maxItems = "maxItems" in schema) {
       if (arr.length > maxItems.get!size_t) {
-        errors ~= ValidationError("maxItems", "Array must have at most " ~ maxItems.get!size_t.to!string ~ " items", "");
+        errors ~= ValidationError(
+          "maxItems",
+          "Array must have at most " ~ maxItems.get!size_t.to!string ~ " items",
+          ""
+        );
         valid = false;
       }
     }
@@ -314,14 +308,22 @@ class DJSONSchemaValidator : UIMObject {
 
     if (auto minProps = "minProperties" in schema) {
       if (obj.length < minProps.get!size_t) {
-        errors ~= ValidationError("minProperties", "Object must have at least " ~ minProps.get!size_t.to!string ~ " properties", "");
+        errors ~= ValidationError(
+          "minProperties",
+          "Object must have at least " ~ minProps.get!size_t.to!string ~ " properties",
+          ""
+        );
         valid = false;
       }
     }
 
     if (auto maxProps = "maxProperties" in schema) {
       if (obj.length > maxProps.get!size_t) {
-        errors ~= ValidationError("maxProperties", "Object must have at most " ~ maxProps.get!size_t.to!string ~ " properties", "");
+        errors ~= ValidationError(
+          "maxProperties",
+          "Object must have at most " ~ maxProps.get!size_t.to!string ~ " properties",
+          ""
+        );
         valid = false;
       }
     }
@@ -374,7 +376,7 @@ class DJSONSchemaValidator : UIMObject {
     return false;
   }
 }
-
+///
 unittest {
   auto schema = new DJSONSchema();
   schema.type = "string";
@@ -383,6 +385,7 @@ unittest {
   auto validator = new DJSONSchemaValidator(schema);
   
   auto result1 = validator.validate(Json("hello"));
+  writeln("result1: ", result1);
   assert(result1.valid);
   
   auto result2 = validator.validate(Json("hi"));

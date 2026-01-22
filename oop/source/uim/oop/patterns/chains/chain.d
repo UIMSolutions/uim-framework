@@ -5,11 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.chains.chain;
 
-import uim.oop.patterns.chains.interfaces;
-import std.format;
-import std.algorithm : remove, sort;
-import std.conv : to;
-import std.string : indexOf;
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 
 /**
  * Abstract base handler implementing the chain mechanism.

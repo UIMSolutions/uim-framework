@@ -167,7 +167,7 @@ class CommandHistory : ICommandHistory {
 /**
  * Text editor receiver.
  */
-class TextEditor : IReceiver {
+class TextEditorReceiver : IReceiver {
     private string _text;
     private string[] _actionLog;
     
@@ -204,10 +204,10 @@ class TextEditor : IReceiver {
  * Insert text command.
  */
 class InsertTextCommand : UndoableCommand {
-    private TextEditor _editor;
+    private TextEditorReceiver _editor;
     private string _textToInsert;
     
-    this(TextEditor editor, string text) @safe {
+    this(TextEditorReceiver editor, string text) @safe {
         super("InsertText");
         _editor = editor;
         _textToInsert = text;
@@ -226,11 +226,11 @@ class InsertTextCommand : UndoableCommand {
  * Delete text command.
  */
 class DeleteTextCommand : UndoableCommand {
-    private TextEditor _editor;
+    private TextEditorReceiver _editor;
     private size_t _length;
     private string _deletedText;
     
-    this(TextEditor editor, size_t length) @safe {
+    this(TextEditorReceiver editor, size_t length) @safe {
         super("DeleteText");
         _editor = editor;
         _length = length;
@@ -450,7 +450,7 @@ class RemoteControl {
 
 @safe unittest {
     // Test text editor insert command
-    auto editor = new TextEditor();
+    auto editor = new TextEditorReceiver();
     auto cmd = new InsertTextCommand(editor, "Hello");
     
     cmd.execute();
@@ -462,7 +462,7 @@ class RemoteControl {
 
 @safe unittest {
     // Test command history
-    auto editor = new TextEditor();
+    auto editor = new TextEditorReceiver();
     auto history = new CommandHistory();
     
     auto cmd1 = new InsertTextCommand(editor, "Hello");
@@ -486,7 +486,7 @@ class RemoteControl {
 
 @safe unittest {
     // Test redo functionality
-    auto editor = new TextEditor();
+    auto editor = new TextEditorReceiver();
     auto history = new CommandHistory();
     
     auto cmd = new InsertTextCommand(editor, "Test");

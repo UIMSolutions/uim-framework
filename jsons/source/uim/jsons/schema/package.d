@@ -6,10 +6,12 @@
 module uim.jsons.schema;
 
 public {
-  import uim.jsons.schema.schema;
-  import uim.jsons.schema.validator;
-  import uim.jsons.schema.types;
-  import uim.jsons.schema.formats;
   import uim.jsons.schema.builder;
   import uim.jsons.schema.errors;
+  import uim.jsons.schema.formats;
+  import uim.jsons.schema.result;
+  import uim.jsons.schema.schema;
+  import uim.jsons.schema.schematype;
+  import uim.jsons.schema.types;
+  import uim.jsons.schema.validator;
 }

@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Basic registry implementation
  */
-class Registry(K, V) : IRegistry!(K, V) {
+class UIMRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _items;
 
   void register(K key, V value) {

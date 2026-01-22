@@ -11,18 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-/**
- * JSON Schema type definitions.
- */
-enum JSONSchemaType : string {
-  String = "string",
-  Number = "number",
-  Integer = "integer",
-  Boolean = "boolean",
-  Object = "object",
-  Array = "array",
-  Null = "null"
-}
+
 
 /**
  * Helper functions for creating type schemas.
