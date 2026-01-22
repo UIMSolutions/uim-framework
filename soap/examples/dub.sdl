@@ -1,8 +1,0 @@
-name "soap-example"
-description "Examples for UIM SOAP library"
-
-targetName "soap-example"
-targetType "executable"
-
-dependency "uim-framework:soap" path="../.."
-mainSourceFile "example.d"

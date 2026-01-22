@@ -1,6 +1,0 @@
-server: "localhost"
-port: 8080
-tags:
-  - web
-  - dlang
-  - fast
