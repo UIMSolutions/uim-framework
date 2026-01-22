@@ -78,35 +78,3 @@ abstract class DUndoableCommand : DAbstractCommand, IUndoableCommand {
     _undoData = options.dup;
   }
 }
-
-/*`
- * Abstract undoable command with undo support.
- /
-abstract class UndoableCommand : BaseCommand, IUndoableCommand {
-    protected bool _executed;
-    
-    this(string commandName) @safe {
-        super(commandName);
-        _executed = false;
-    }
-    
-    override @safe void execute() {
-        doExecute();
-        _executed = true;
-    }
-    
-    @safe void undo() {
-        if (canUndo()) {
-            doUndo();
-            _executed = false;
-        }
-    }
-    
-    @safe bool canUndo() const {
-        return _executed;
-    }
-    
-    protected abstract @safe bool doExecute(Json[string] options = null);
-    protected abstract @safe bool doUndo(Json[string] options = null);
-}
-*/

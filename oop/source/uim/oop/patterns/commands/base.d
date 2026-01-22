@@ -9,7 +9,7 @@ mixin(ShowModule!());
 /**
  * Abstract base command with common functionality.
  */
-abstract class BaseCommand : ICommand {
+abstract class BaseCommand : UIMObject, ICommand {
     protected string _name;
     
     this(string commandName) @safe {

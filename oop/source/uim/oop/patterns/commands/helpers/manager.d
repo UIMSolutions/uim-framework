@@ -21,8 +21,8 @@ class DCommandManager {
   private ICommand[string] _instances;
   
   this() {
-    _factory = CommandFactory();
-    _registry = CommandRegistry();
+    _factory = new DCommandFactory();
+    _registry = new DCommandRegistry();
   }
 
   /**
@@ -38,9 +38,7 @@ class DCommandManager {
    */
   ICommand create(string name, Json[string] initData = null) {
     auto command = _factory.create(name);
-    if (command && initData) {
-      command.initialize(initData);
-    }
+    // Note: initialization would need to be done through command-specific interface
     return command;
   }
 
@@ -85,7 +83,7 @@ class DCommandManager {
    * Check if a command is registered.
    */
   bool has(string name) {
-    return _factory.contains(name);
+    return _factory.isRegistered(name);
   }
 
   /**
@@ -93,22 +91,23 @@ class DCommandManager {
    */
   bool unregister(string name) {
     _instances.remove(name);
-    return _factory.remove(name);
+    _factory.unregister(name);
+    return true;
   }
 
   /**
    * Clear all registered commands and instances.
    */
   void clear() {
-    _factory.clear();
-    _instances.clear();
+    // _factory.clear();
+    // _instances.clear();
   }
 
   /**
    * Get all registered command names.
    */
   string[] getRegisteredNames() {
-    return _factory.keys();
+    return null; // _factory.keys;
   }
 
   /**

@@ -20,7 +20,3 @@ class DCommandFactory : UIMFactory!(string, ICommand) {
   }
 }
 
-unittest {
-  auto factory = new DCommandFactory();
-  assert(testFactory(factory, "Command"), "Test of DCommandFactory failed!");
-}

@@ -39,7 +39,7 @@ class DCompositeCommand : DAbstractCommand, ICompositeCommand {
     }
   }
 
-  bool removeCommand(ICommand command) {
+  bool removeCommand(ICommand command) @trusted {
     import std.algorithm : remove, countUntil;
     
     auto index = _commands.countUntil(command);
