@@ -1,6 +1,6 @@
 # UIM RDF Library
 
-A comprehensive D library for working with RDF (Resource Description Framework), the standard model for data interchange on the Semantic Web.
+A D library for working with RDF (Resource Description Framework), the standard model for data interchange on the Semantic Web.
 
 ## Features
 
@@ -39,18 +39,18 @@ import std.stdio;
 void main() {
     // Create a graph
     auto graph = new DRDFGraph();
-    
+  
     // Add namespaces
     graph.addNamespace(CommonNamespaces.FOAF());
-    
+  
     // Add triples
     string person = "http://example.org/alice";
     string foaf = "http://xmlns.com/foaf/0.1/";
-    
+  
     graph.addLiteral(person, foaf ~ "name", "Alice Johnson");
     graph.addTypedLiteral(person, foaf ~ "age", 30);
     graph.add(person, foaf ~ "knows", "http://example.org/bob");
-    
+  
     // Serialize to Turtle
     writeln(DTurtleSerializer.serialize(graph));
 }
@@ -142,6 +142,7 @@ graph.addNamespace("ex", "http://example.org/vocab/");
 ```
 
 Available common namespaces:
+
 - **RDF**: `http://www.w3.org/1999/02/22-rdf-syntax-ns#`
 - **RDFS**: `http://www.w3.org/2000/01/rdf-schema#`
 - **OWL**: `http://www.w3.org/2002/07/owl#`
@@ -162,6 +163,7 @@ string ntriples = DNTriplesSerializer.serialize(graph);
 ```
 
 Output:
+
 ```
 <http://example.org/john> <http://xmlns.com/foaf/0.1/name> "John Smith" .
 <http://example.org/john> <http://xmlns.com/foaf/0.1/age> "35"^^<http://www.w3.org/2001/XMLSchema#integer> .
@@ -176,6 +178,7 @@ string turtle = DTurtleSerializer.serialize(graph);
 ```
 
 Output:
+
 ```turtle
 @base <http://example.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -312,6 +315,7 @@ if (results.length > 0) {
 ## Standards
 
 This library implements:
+
 - [RDF 1.1 Concepts](https://www.w3.org/TR/rdf11-concepts/)
 - [RDF 1.1 N-Triples](https://www.w3.org/TR/n-triples/)
 - [RDF 1.1 Turtle](https://www.w3.org/TR/turtle/)
@@ -324,6 +328,7 @@ This library implements:
 Base class for all RDF nodes.
 
 **Methods:**
+
 - `string toNTriples()`: Serialize to N-Triples format
 - `string toTurtle()`: Serialize to Turtle format
 
@@ -332,6 +337,7 @@ Base class for all RDF nodes.
 Represents a URI node.
 
 **Constructor:**
+
 - `this(string uri)`
 
 ### DRDFLiteral
@@ -339,10 +345,12 @@ Represents a URI node.
 Represents a literal value.
 
 **Constructors:**
+
 - `this(string value)`
 - `this(string value, string language)`
 
 **Static Methods:**
+
 - `DRDFLiteral typed(T)(T value)`: Create typed literal
 
 ### DRDFBlankNode
@@ -350,6 +358,7 @@ Represents a literal value.
 Represents a blank node.
 
 **Constructors:**
+
 - `this()`: Auto-generate ID
 - `this(string id)`: Custom ID
 
@@ -358,9 +367,11 @@ Represents a blank node.
 Represents an RDF triple.
 
 **Constructor:**
+
 - `this(DRDFNode subject, DRDFUri predicate, DRDFNode object)`
 
 **Methods:**
+
 - `bool matches(DRDFNode subject, DRDFUri predicate, DRDFNode object)`: Pattern matching
 
 ### DRDFGraph
@@ -368,6 +379,7 @@ Represents an RDF triple.
 RDF graph container.
 
 **Methods:**
+
 - `void add(DRDFTriple triple)`: Add triple
 - `void add(DRDFNode subject, DRDFUri predicate, DRDFNode object)`: Add components
 - `void addLiteral(string subject, string predicate, string literal)`: Add literal triple
