@@ -7,6 +7,6 @@ module uim.commands.errors.interfaces;
 
 import uim.commands;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:

@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.containers.plist.exceptions;
 
-import uim.core;
+import uim.oop;
+
+mixin(ShowModule!());
 
 @safe:
 

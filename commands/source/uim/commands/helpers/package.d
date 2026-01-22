@@ -6,10 +6,12 @@
 module uim.commands.helpers;
 
 public {
-  import uim.oop.commands.helpers.directory;
-  import uim.oop.commands.helpers.factory;
-  import uim.oop.commands.helpers.functions;
-  import uim.oop.commands.helpers.list;  import uim.commands.helpers.manager;  import uim.oop.commands.helpers.mixins;
-  import uim.oop.commands.helpers.registry;
-  import uim.oop.commands.helpers.set;
+  // import uim.oop.commands.helpers.directory;
+  import uim.commands.helpers.factory;
+  import uim.commands.helpers.functions;
+  import uim.commands.helpers.list;  
+  import uim.commands.helpers.manager;  
+  import uim.commands.helpers.mixins;
+  import uim.commands.helpers.registry;
+  import uim.commands.helpers.set;
 }

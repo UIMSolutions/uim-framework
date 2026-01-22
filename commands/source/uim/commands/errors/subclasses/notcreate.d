@@ -7,7 +7,7 @@ module uim.commands.errors.subclasses.notcreate;
 
 import uim.commands;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:
 

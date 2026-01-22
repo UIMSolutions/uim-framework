@@ -7,7 +7,7 @@ module uim.commands.errors.subclasses.notfind;
 
 import uim.commands;
 
-mixin(Version!"test_uim_oop");
+mixin(ShowModule!());
 
 @safe:
 

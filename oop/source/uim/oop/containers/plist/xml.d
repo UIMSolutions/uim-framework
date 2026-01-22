@@ -5,8 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.containers.plist.xml;
 
-import uim.oop.containers.plist;
+import uim.oop;
 
+mixin(ShowModule!());
 
 @safe:
 

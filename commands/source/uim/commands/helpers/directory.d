@@ -10,7 +10,7 @@ import uim.commands;
 mixin(ShowModule!());
 
 @safe:
-
+/*
 class DCommandDirectory : DDirectory!ICommand {
   mixin(DirectoryThis!("Command"));
 }
@@ -20,3 +20,4 @@ unittest {
   auto directory = new DCommandDirectory();
   assert(testDirectory(directory, "CommandDirectory"), "Test of DCommandDirectory failed!");
 }
+*/
