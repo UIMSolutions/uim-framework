@@ -59,6 +59,4 @@ unittest {
     
     dispatcher.dispatch(Event("test.event2"));
     assert(subscriber.callCount == 2);
-    
-    writeln("DEventSubscriber tests passed!");
 }

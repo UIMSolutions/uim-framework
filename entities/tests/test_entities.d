@@ -280,6 +280,4 @@ void main() {
     testEntityManager();
     testEntityManagerWithValidation();
     testEntitySerialization();
-    
-    writeln("\n=== All tests passed! ===");
 }

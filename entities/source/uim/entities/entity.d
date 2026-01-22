@@ -194,7 +194,7 @@ auto Entity(string name) {
 }
 
 unittest {
-    writeln("Testing DEntity class...");
+    mixins(ShowTest!"Testing DEntity class...");
     
     auto entity = Entity("Test Entity");
     assert(entity.name() == "Test Entity");
@@ -213,6 +213,4 @@ unittest {
     
     entity.markDeleted();
     assert(entity.isDeleted());
-    
-    writeln("DEntity tests passed!");
 }

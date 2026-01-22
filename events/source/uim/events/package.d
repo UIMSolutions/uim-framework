@@ -22,4 +22,5 @@ public {
   import uim.events.subscriber;
   import uim.events.attributes;
   import uim.events.annotated;
+  import uim.events.eventlistener;
 }

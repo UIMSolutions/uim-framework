@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.attributes;
 
-import uim.core;
-import uim.oop;
+import uim.events;
 
 @safe:
 
@@ -15,27 +14,26 @@ import uim.oop;
  * Usage: @EventListener("event.name")
  */
 struct EventListener {
-    string eventName;
-    int priority = 0;
-    
-    this(string name, int prio = 0) {
-        eventName = name;
-        priority = prio;
-    }
-}
+  string eventName;
+  int priority = 0;
 
+  this(string name, int prio = 0) {
+    eventName = name;
+    priority = prio;
+  }
+}
 /**
  * UDA to mark a method as a one-time event listener
  * Usage: @EventListenerOnce("event.name")
  */
 struct EventListenerOnce {
-    string eventName;
-    int priority = 0;
-    
-    this(string name, int prio = 0) {
-        eventName = name;
-        priority = prio;
-    }
+  string eventName;
+  int priority = 0;
+
+  this(string name, int prio = 0) {
+    eventName = name;
+    priority = prio;
+  }
 }
 
 /**
@@ -43,11 +41,11 @@ struct EventListenerOnce {
  * Usage: @Priority(10)
  */
 struct Priority {
-    int value;
-    
-    this(int val) {
-        value = val;
-    }
+  int value;
+
+  this(int val) {
+    value = val;
+  }
 }
 
 /**
@@ -62,84 +60,89 @@ struct Async {
  * Usage: @UseEvent("event.name")
  */
 struct UseEvent {
-    string name;
-    
-    this(string eventName) {
-        name = eventName;
-    }
+  string name;
+
+  this(string eventName) {
+    name = eventName;
+  }
 }
 
 /**
  * Helper function to check if a type has an Event UDA
  */
 template hasEventAttribute(T) {
-    import std.traits : hasUDA;
-    enum hasEventAttribute = hasUDA!(T, UseEvent);
+  import std.traits : hasUDA;
+
+  enum hasEventAttribute = hasUDA!(T, UseEvent);
 }
 
 /**
  * Helper function to get the event name from an Event UDA
  */
 template getEventName(T) {
-    import std.traits : getUDAs;
-    
-    static if (hasEventAttribute!T) {
-        enum getEventName = getUDAs!(T, UseEvent)[0].name;
-    } else {
-        enum getEventName = "";
-    }
+  import std.traits : getUDAs;
+
+  static if (hasEventAttribute!T) {
+    enum getEventName = getUDAs!(T, UseEvent)[0].name;
+  } else {
+    enum getEventName = "";
+  }
 }
 
 /**
  * Helper function to check if a member has an EventListener UDA
  */
 template hasListenerAttribute(alias member) {
-    import std.traits : hasUDA;
-    enum hasListenerAttribute = hasUDA!(member, EventListener);
+  import std.traits : hasUDA;
+
+  enum hasListenerAttribute = hasUDA!(member, EventListener);
 }
 
 /**
  * Helper function to check if a member has an EventListenerOnce UDA
  */
 template hasListenerOnceAttribute(alias member) {
-    import std.traits : hasUDA;
-    enum hasListenerOnceAttribute = hasUDA!(member, EventListenerOnce);
+  import std.traits : hasUDA;
+
+  enum hasListenerOnceAttribute = hasUDA!(member, EventListenerOnce);
 }
 
 /**
  * Helper function to get EventListener UDA data
  */
 template getListenerAttribute(alias member) {
-    import std.traits : getUDAs;
-    
-    static if (hasListenerAttribute!member) {
-        alias getListenerAttribute = getUDAs!(member, EventListener)[0];
-    }
+  import std.traits : getUDAs;
+
+  static if (hasListenerAttribute!member) {
+    alias getListenerAttribute = getUDAs!(member, EventListener)[0];
+  }
 }
 
 /**
  * Helper function to get EventListenerOnce UDA data
  */
 template getListenerOnceAttribute(alias member) {
-    import std.traits : getUDAs;
-    
-    static if (hasListenerOnceAttribute!member) {
-        alias getListenerOnceAttribute = getUDAs!(member, EventListenerOnce)[0];
-    }
+  import std.traits : getUDAs;
+
+  static if (hasListenerOnceAttribute!member) {
+    alias getListenerOnceAttribute = getUDAs!(member, EventListenerOnce)[0];
+  }
 }
 
 unittest {
-    import uim.events.event : DEvent;
-    
-    writeln("Testing UDA attributes...");
-    
-    @UseEvent("test.event")
-    class TestEvent : DEvent {
-        this() { super("test.event"); }
+  import uim.events.event : DEvent;
+
+  writeln("Testing UDA attributes...");
+
+  @UseEvent("test.event")
+  class TestEvent : DEvent {
+    this() {
+      super("test.event");
     }
-    
-    assert(hasEventAttribute!TestEvent);
-    assert(getEventName!TestEvent == "test.event");
-    
-    writeln("✓ UDA attributes tests passed!");
+  }
+
+  assert(hasEventAttribute!TestEvent);
+  assert(getEventName!TestEvent == "test.event");
+
+  writeln("✓ UDA attributes tests passed!");
 }

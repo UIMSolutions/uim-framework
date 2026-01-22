@@ -12,7 +12,7 @@ import uim.oop;
 // Test Model
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing Model ===");
+    mixins(ShowTest!"Testing Model...");
 
     auto model = new Model();
     
@@ -29,14 +29,12 @@ unittest {
     model.setData(["key1": "value1", "key2": "value2"]);
     assert(model.get("key1") == "value1", "setData failed");
     assert(model.get("key2") == "value2", "setData failed");
-    
-    writeln("✓ Model tests passed");
 }
 
 // Test View
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing View ===");
+    mixins(ShowTest!"Testing View...");
 
     auto model = new Model();
     model.set("title", "Test Title");
@@ -49,14 +47,12 @@ unittest {
     // Test render
     auto output = view.render();
     assert(output.length > 0, "View render failed");
-    
-    writeln("✓ View tests passed");
 }
 
 // Test TemplateView
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing TemplateView ===");
+    mixins(ShowTest!"Testing TemplateView...");
 
     auto model = new Model();
     model.set("name", "Alice");
@@ -73,7 +69,7 @@ unittest {
 // Test JSONView
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing JSONView ===");
+    mixins(ShowTest!"Testing JSONView...");
 
     auto model = new Model();
     model.set("key", "value");
@@ -86,13 +82,13 @@ unittest {
     assert(output.indexOf("key") >= 0, "JSONView missing key");
     assert(output.indexOf("value") >= 0, "JSONView missing value");
     
-    writeln("✓ JSONView tests passed");
+    mixin(ShowTest!"✓ JSONView tests passed");
 }
 
 // Test HTMLView
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing HTMLView ===");
+    mixins(ShowTest!"Testing HTMLView...");
 
     auto model = new Model();
     model.set("content", "test");
@@ -104,13 +100,13 @@ unittest {
     assert(output.indexOf("<div") >= 0, "HTMLView missing div tag");
     assert(output.indexOf("test-class") >= 0, "HTMLView missing CSS class");
     
-    writeln("✓ HTMLView tests passed");
+    mixins(ShowTest!"HTMLView tests passed");
 }
 
 // Test Controller
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing Controller ===");
+    mixins(ShowTest!"Testing Controller...");
 
     auto model = new Model();
     auto view = new View(model);
@@ -131,13 +127,13 @@ unittest {
     assert(actionCalled, "Action not called");
     assert(result == "success", "Action result incorrect");
     
-    writeln("✓ Controller tests passed");
+    mixins(ShowTest!"Controller tests passed"); 
 }
 
 // Test RESTController
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing RESTController ===");
+    mixins(ShowTest!"Testing RESTController...");
 
     auto model = new Model();
     auto view = new View(model);
@@ -151,13 +147,13 @@ unittest {
     controller.executeAction("update", ["id": "1", "name": "Updated"]);
     assert(model.get("name") == "Updated", "RESTController update failed");
     
-    writeln("✓ RESTController tests passed");
+    mixins(ShowTest!"RESTController tests passed");
 }
 
 // Test ValidationController
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing ValidationController ===");
+    mixin(ShowTest!"\n=== Testing ValidationController ===");
 
     auto controller = new ValidationController();
     
@@ -170,13 +166,13 @@ unittest {
     assert(!controller.validateInput(["other": "value"]), "Validation should fail");
     assert(controller.validateInput(["required_field": "value"]), "Validation should pass");
     
-    writeln("✓ ValidationController tests passed");
+    mixins(ShowTest!"ValidationController tests passed");
 }
 
 // Test AsyncController
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing AsyncController ===");
+    mixin(ShowTest!"\n=== Testing AsyncController ===");
 
     auto controller = new AsyncController();
     
@@ -200,13 +196,13 @@ unittest {
     assert(beforeCalled, "Before callback not called");
     assert(afterCalled, "After callback not called");
     
-    writeln("✓ AsyncController tests passed");
+    mixins(ShowTest!"AsyncController tests passed");
 }
 
 // Test ObservableModel
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing ObservableModel ===");
+    mixin(ShowTest!"\n=== Testing ObservableModel ===");
 
     auto model = new ObservableModel();
     
@@ -232,13 +228,13 @@ unittest {
     assert(capturedKey == "test", "Captured key incorrect");
     assert(capturedValue == "value", "Captured value incorrect");
     
-    writeln("✓ ObservableModel tests passed");
+    mixins(ShowTest!"ObservableModel tests passed");
 }
 
 // Test MVCApplication
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing MVCApplication ===");
+    mixin(ShowTest!"\n=== Testing MVCApplication ===");
 
     auto app = createMVCApplication();
     
@@ -251,7 +247,7 @@ unittest {
     auto output = app.run(["action": "index"]);
     assert(output.length > 0, "App run failed");
     
-    writeln("✓ MVCApplication tests passed");
+    mixins(ShowTest!"MVCApplication tests passed");
 }
 
 // Test Model-View synchronization
@@ -285,13 +281,13 @@ unittest {
     model.set("key", "value");
     assert(updateCount > 0, "View not updated when model changed");
     
-    writeln("✓ Model-View synchronization tests passed");
+    mixins(ShowTest!"Model-View synchronization tests passed");
 }
 
 // Test DataModel with typed data
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing DataModel ===");
+    mixin(ShowTest!"\n=== Testing DataModel ===");
 
     auto model = new DataModel!int(42);
     assert(model.getTypedData() == 42, "DataModel initial value failed");
@@ -299,13 +295,13 @@ unittest {
     model.setTypedData(100);
     assert(model.getTypedData() == 100, "DataModel setTypedData failed");
     
-    writeln("✓ DataModel tests passed");
+    mixins(ShowTest!"DataModel tests passed");
 }
 
 // Integration test
 unittest {
     import std.stdio : writeln;
-    writeln("\n=== Testing Full MVC Integration ===");
+    mixin(ShowTest!"\n=== Testing Full MVC Integration ===");
 
     // Create components
     auto model = new Model();
@@ -336,7 +332,7 @@ unittest {
     import std.string : indexOf;
     assert(output.indexOf("testuser") >= 0, "Integration test view failed");
     
-    writeln("✓ Full MVC integration tests passed");
+    mixins(ShowTest!"Full MVC integration tests passed");
 }
 
 void main() {
@@ -346,5 +342,5 @@ void main() {
     writeln("║   MVC Pattern Test Suite              ║");
     writeln("╚════════════════════════════════════════╝");
     
-    writeln("\n✅ All MVC pattern tests completed successfully!");
+    mixins(ShowTest!"All MVC pattern tests completed successfully!");
 }

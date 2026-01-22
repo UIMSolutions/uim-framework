@@ -41,22 +41,36 @@ class MacroCommand : BaseCommand, IMacroCommand {
     }
 
     CommandResult executeWithResult(Json[string] options = null) @safe {
-        CommandResult finalResult; //  = CommandResult.success;
-        /* foreach (command; _commands) {
+        int totalCommands = cast(int)_commands.length;
+        int successCount = 0;
+        bool hadFailure = false;
+        
+        foreach (command; _commands) {
             CommandResult result;
             if (auto undoable = cast(IUndoableCommand) command) {
                 result = undoable.executeWithResult(options);
             } else {
                 command.execute();
-                result = CommandResult.Success;
+                result = CommandResult.ok("Command executed");
             }
-            if (result == CommandResult.Failure && finalResult != CommandResult.Failure) {
-                finalResult = CommandResult.Failure;
-            } else if (result == CommandResult.PartialSuccess && finalResult == CommandResult.Success) {
-                finalResult = CommandResult.PartialSuccess;
+            
+            if (result.isSuccess()) {
+                successCount++;
+            } else {
+                hadFailure = true;
             }
-        } */ 
-        return finalResult;
+        }
+        
+        bool allSuccess = successCount == totalCommands;
+        string message = allSuccess 
+            ? "All commands executed successfully"
+            : "Executed " ~ successCount.to!string ~ " of " ~ totalCommands.to!string ~ " commands";
+        
+        auto data = Json.emptyObject;
+        data["totalCommands"] = totalCommands;
+        data["successCount"] = successCount;
+        
+        return CommandResult(allSuccess, message, data);
     }
 
     bool validateParameters(Json[string] options = null) @safe {

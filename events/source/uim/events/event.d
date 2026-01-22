@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.event;
 
-import uim.core;
-import uim.oop;
-import uim.events.interfaces;
-
-import std.datetime : SysTime, Clock;
+import uim.events;
 
 @safe:
 
@@ -145,5 +141,5 @@ unittest {
   assert(event.getData("key1") == Json("value1"));
   assert(event.getData("nonexistent", Json("default")) == Json("default"));
 
-  writeln("DEvent tests passed!");
+  mixin(ShowTest!"DEvent tests passed!");
 }
