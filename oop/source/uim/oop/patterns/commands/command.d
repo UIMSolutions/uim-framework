@@ -11,53 +11,9 @@ mixin(ShowModule!());
 
 @safe:
 
-/**
- * Abstract base command with common functionality.
- */
-abstract class BaseCommand : ICommand {
-    protected string _name;
-    
-    this(string commandName) @safe {
-        _name = commandName;
-    }
-    
-    @safe string name() const {
-        return _name;
-    }
-    
-    abstract void execute();
-}
 
-/**
- * Abstract undoable command with undo support.
- */
-abstract class UndoableCommand : BaseCommand, IUndoableCommand {
-    protected bool _executed;
-    
-    this(string commandName) @safe {
-        super(commandName);
-        _executed = false;
-    }
-    
-    override @safe void execute() {
-        doExecute();
-        _executed = true;
-    }
-    
-    @safe void undo() {
-        if (canUndo()) {
-            doUndo();
-            _executed = false;
-        }
-    }
-    
-    @safe bool canUndo() const {
-        return _executed;
-    }
-    
-    protected abstract @safe void doExecute();
-    protected abstract @safe void doUndo();
-}
+
+
 
 /**
  * Simple invoker that executes a command.
@@ -546,3 +502,144 @@ class RemoteControl {
 }
 
 import std.conv : to;
+
+
+/**
+ * Abstract base class for commands.
+ * Provides common functionality and lifecycle hooks.
+ */
+abstract class DAbstractCommand : UIMObject, ICommand {
+  mixin(CommandThis!());
+
+  protected bool _executed = false;
+  protected Json[string] _lastOptions;
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Execute command with given options.
+   * Template method pattern - calls lifecycle hooks.
+   */
+  bool execute(Json options) {
+    return execute(options.get!(Json[string]));
+  }
+
+  bool execute(string[string] options) {
+    return execute(options.toJsonMap);
+  }
+  
+  bool execute(Json[string] options = null) {
+    _lastOptions = options;
+    
+    if (!canExecute(options)) {
+      return false;
+    }
+
+    if (!validateParameters(options)) {
+      return false;
+    }
+
+    if (!beforeExecute(options)) {
+      return false;
+    }
+
+    bool result = doExecute(options);
+    _executed = result;
+
+    afterExecute(options, result);
+
+    return result;
+  }
+
+  /**
+   * Execute command and return detailed result.
+   */
+  CommandResult executeWithResult(Json[string] options = null) {
+    bool success = execute(options);
+    return success 
+      ? CommandResult.ok("Command executed successfully")
+      : CommandResult.fail("Command execution failed");
+  }
+
+  /**
+   * Validate command parameters.
+   * Override in subclasses for custom validation.
+   */
+  bool validateParameters(Json[string] options) {
+    return true; // Default: no validation
+  }
+
+  /**
+   * Check if command can be executed.
+   * Override in subclasses for custom checks.
+   */
+  bool canExecute(Json[string] options = null) {
+    return true; // Default: always executable
+  }
+
+  /**
+   * Core execution logic - must be implemented by subclasses.
+   */
+  protected abstract bool doExecute(Json[string] options);
+
+  /**
+   * Hook called before execution.
+   * Override to add pre-execution logic.
+   * Returns: true to continue, false to abort
+   */
+  protected bool beforeExecute(Json[string] options) {
+    return true;
+  }
+
+  /**
+   * Hook called after execution.
+   * Override to add post-execution logic.
+   */
+  protected void afterExecute(Json[string] options, bool success) {
+    // Default: no-op
+  }
+
+  /**
+   * Check if command has been executed.
+   */
+  bool hasExecuted() const {
+    return _executed;
+  }
+
+  /**
+   * Get the last execution options.
+   */
+  Json[string] lastOptions() const {
+    return cast(Json[string])_lastOptions;
+  }
+}
+
+/**
+ * Base class for commands with standard implementation.
+ * For backwards compatibility.
+ */
+class DCommand : DAbstractCommand {
+  mixin(CommandThis!());
+
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  protected override bool doExecute(Json[string] options) {
+    // Default implementation for backwards compatibility
+    return true;
+  }
+}
+
+
+

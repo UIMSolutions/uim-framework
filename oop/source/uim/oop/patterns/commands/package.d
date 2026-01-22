@@ -6,7 +6,15 @@
 module uim.oop.patterns.commands;
 
 public {
+  import uim.oop.patterns.commands.helpers;
   import uim.oop.patterns.commands.interfaces;
+}
+
+public {
   import uim.oop.patterns.commands.command;
+  import uim.oop.patterns.commands.composite;
   import uim.oop.patterns.commands.macro_;
+  import uim.oop.patterns.commands.result;
+  import uim.oop.patterns.commands.tests;
+  import uim.oop.patterns.commands.undoable;
 }

@@ -7,6 +7,8 @@ module uim.oop.patterns.commands.interfaces;
 
 public {
   import uim.oop.patterns.commands.interfaces.command;
+  import uim.oop.patterns.commands.interfaces.composite;
+  import uim.oop.patterns.commands.interfaces.history;
   import uim.oop.patterns.commands.interfaces.invoker;
   import uim.oop.patterns.commands.interfaces.receiver;
   import uim.oop.patterns.commands.interfaces.undoable;
