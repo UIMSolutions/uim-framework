@@ -119,18 +119,24 @@ class DEntityValidator : UIMObject {
     }
     
     /**
-     * Validate an entity
+     * Validate an entity - optimized version
      */
     bool validate(IEntity entity) {
         entity.clearErrors();
         bool isValid = true;
         
+        // Pre-fetch all attributes to avoid repeated lookups
+        auto attributes = entity.attributes();
+        
         foreach (fieldName, rules; _rules) {
-            auto value = entity.getAttribute(fieldName);
+            auto valuePtr = fieldName in attributes;
+            auto value = valuePtr ? *valuePtr : "";
             
             foreach (rule; rules) {
                 if (!rule.validate(value)) {
-                    entity.addError(fieldName ~ ": " ~ rule.errorMessage());
+                    // Use more efficient string concatenation
+                    import std.format : format;
+                    entity.addError(format("%s: %s", fieldName, rule.errorMessage()));
                     isValid = false;
                 }
             }

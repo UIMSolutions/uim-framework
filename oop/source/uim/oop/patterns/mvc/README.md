@@ -8,6 +8,304 @@ The MVC pattern is an architectural pattern that separates an application into t
 
 **Location**: `patterns/mvc/`
 
+## UML Diagrams
+
+### Class Diagram
+
+```
+┌─────────────────────────────┐
+│      <<interface>>          │
+│         IModel              │
+├─────────────────────────────┤
+│ + set(key, value): void     │
+│ + get(key): string          │
+│ + has(key): bool            │
+│ + remove(key): void         │
+│ + validate(): bool          │
+│ + attachView(IView): void   │
+│ + detachView(IView): void   │
+│ + notifyViews(): void       │
+└─────────────────────────────┘
+           △
+           │ implements
+           │
+┌──────────┴───────────────────┐
+│         Model                │
+├──────────────────────────────┤
+│ - data: string[string]       │
+│ - views: IView[]             │
+├──────────────────────────────┤
+│ + set(key, value): void      │
+│ + get(key): string           │
+│ + has(key): bool             │
+│ + getData(): string[string]  │
+│ + validate(): bool           │
+│ + attachView(view): void     │
+│ + detachView(view): void     │
+│ + notifyViews(): void        │
+└──────────────────────────────┘
+
+┌─────────────────────────────┐
+│      <<interface>>          │
+│         IView               │
+├─────────────────────────────┤
+│ + render(): string          │
+│ + update(): void            │
+│ + setModel(IModel): void    │
+│ + getModel(): IModel        │
+└─────────────────────────────┘
+           △
+           │ implements
+           │
+┌──────────┴──────────────────────────────┐
+│              View                       │
+├─────────────────────────────────────────┤
+│ - model: IModel                         │
+├─────────────────────────────────────────┤
+│ + render(): string                      │
+│ + update(): void                        │
+│ + setModel(model): void                 │
+│ + getModel(): IModel                    │
+└─────────────────────────────────────────┘
+           △
+           │
+    ┌──────┴──────┬──────────┬────────┐
+    │             │          │        │
+┌───────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐
+│ Template  │ │  JSON   │ │  HTML   │ │   ...    │
+│   View    │ │  View   │ │  View   │ │          │
+└───────────┘ └─────────┘ └─────────┘ └──────────┘
+
+┌─────────────────────────────┐
+│      <<interface>>          │
+│       IController           │
+├─────────────────────────────┤
+│ + handleRequest(params)     │
+│ + executeAction(name, params)│
+│ + setModel(IModel): void    │
+│ + setView(IView): void      │
+│ + getModel(): IModel        │
+│ + getView(): IView          │
+└─────────────────────────────┘
+           △
+           │ implements
+           │
+┌──────────┴────────────────────────────────────┐
+│              Controller                       │
+├───────────────────────────────────────────────┤
+│ - model: IModel                               │
+│ - view: IView                                 │
+│ - actions: bool delegate(string[string])[string] │
+├───────────────────────────────────────────────┤
+│ + handleRequest(params): string[string]       │
+│ + executeAction(name, params): string[string] │
+│ + registerAction(name, handler): void         │
+│ + setModel(model): void                       │
+│ + setView(view): void                         │
+│ + getModel(): IModel                          │
+│ + getView(): IView                            │
+└───────────────────────────────────────────────┘
+           △
+           │
+    ┌──────┴──────┬──────────┬────────────┐
+    │             │          │            │
+┌───────────┐ ┌─────────────┐ ┌──────────────┐ ┌────────┐
+│   REST    │ │ Validation  │ │    Async     │ │  ...   │
+│Controller │ │ Controller  │ │ Controller   │ │        │
+└───────────┘ └─────────────┘ └──────────────┘ └────────┘
+
+┌────────────────────────────────────┐
+│      <<interface>>                 │
+│      IMVCApplication               │
+├────────────────────────────────────┤
+│ + initialize(): void               │
+│ + run(params): string[string]      │
+│ + getModel(): IModel               │
+│ + getView(): IView                 │
+│ + getController(): IController     │
+└────────────────────────────────────┘
+           △
+           │ implements
+           │
+┌──────────┴─────────────────────────┐
+│       MVCApplication               │
+├────────────────────────────────────┤
+│ - model: IModel                    │
+│ - view: IView                      │
+│ - controller: IController          │
+├────────────────────────────────────┤
+│ + this(model, view, controller)    │
+│ + initialize(): void               │
+│ + run(params): string[string]      │
+│ + getModel(): IModel               │
+│ + getView(): IView                 │
+│ + getController(): IController     │
+└────────────────────────────────────┘
+            │
+            │ contains
+    ┌───────┼────────┐
+    │       │        │
+    ▼       ▼        ▼
+  Model   View   Controller
+```
+
+### Component Relationships
+
+```
+┌──────────┐         ┌────────────┐         ┌──────┐
+│  User    │────────>│ Controller │────────>│ Model│
+└──────────┘         └────────────┘         └──────┘
+                            │                   │
+                            │                   │ notifies
+                            │                   ▼
+                            │              ┌──────┐
+                            └─────────────>│ View │
+                                           └──────┘
+                                               │
+                                               │ renders
+                                               ▼
+                                          ┌────────┐
+                                          │ Output │
+                                          └────────┘
+```
+
+### Sequence Diagram: Handling a User Request
+
+```
+User          Controller        Model           View
+ │                │              │               │
+ │─request────────>│              │               │
+ │                │              │               │
+ │                │─executeAction─>│              │
+ │                │              │               │
+ │                │              │─validate()    │
+ │                │              │               │
+ │                │              │─set(data)     │
+ │                │              │               │
+ │                │              │─notifyViews()─>│
+ │                │              │               │
+ │                │              │               │─update()
+ │                │              │               │
+ │                │<─────────────┤               │
+ │                │              │               │
+ │                │──────────────────render()───>│
+ │                │              │               │
+ │                │<──────────────────output────┤
+ │                │              │               │
+ │<─response──────┤              │               │
+ │                │              │               │
+```
+
+### Sequence Diagram: Model Update with Observer Pattern
+
+```
+Controller       Model                View1        View2
+    │              │                    │            │
+    │─set(key,val)─>│                   │            │
+    │              │                    │            │
+    │              │─notifyViews()────> │            │
+    │              │                    │            │
+    │              │                    │─update()   │
+    │              │                    │            │
+    │              │                    │─render()   │
+    │              │                    │            │
+    │              │─────────────────────────────────>│
+    │              │                    │            │
+    │              │                    │            │─update()
+    │              │                    │            │
+    │              │                    │            │─render()
+    │              │                    │            │
+    │<─────────────┤                    │            │
+    │              │                    │            │
+```
+
+### State Diagram: Controller Action Processing
+
+```
+                    ┌─────────────┐
+                    │   Idle      │
+                    └──────┬──────┘
+                           │ request received
+                           ▼
+                    ┌─────────────┐
+                    │ Validating  │
+                    │   Input     │
+                    └──────┬──────┘
+                           │
+                  ┌────────┴────────┐
+                  │                 │
+            valid │                 │ invalid
+                  ▼                 ▼
+         ┌─────────────┐    ┌─────────────┐
+         │ Executing   │    │   Error     │
+         │   Action    │    │  Response   │
+         └──────┬──────┘    └──────┬──────┘
+                │                  │
+                │ success          │
+                ▼                  │
+         ┌─────────────┐           │
+         │  Updating   │           │
+         │    Model    │           │
+         └──────┬──────┘           │
+                │                  │
+                │                  │
+                ▼                  │
+         ┌─────────────┐           │
+         │ Rendering   │           │
+         │    View     │           │
+         └──────┬──────┘           │
+                │                  │
+                └────────┬─────────┘
+                         │
+                         ▼
+                  ┌─────────────┐
+                  │  Response   │
+                  │   Sent      │
+                  └─────────────┘
+```
+
+### Package Diagram
+
+```
+┌────────────────────────────────────────────────────┐
+│          uim.oop.patterns.mvc                      │
+├────────────────────────────────────────────────────┤
+│                                                    │
+│  ┌──────────────────┐  ┌──────────────────┐      │
+│  │   interfaces     │  │     helpers      │      │
+│  ├──────────────────┤  └──────────────────┘      │
+│  │ - IModel         │           │                 │
+│  │ - IView          │           │                 │
+│  │ - IController    │           ▼                 │
+│  │ - IMVCApplication│  ┌──────────────────┐      │
+│  └────────┬─────────┘  │ createMVCApp()   │      │
+│           │            │ createModel()    │      │
+│           │            │ createView()     │      │
+│           │            │ createController()│      │
+│           │            └──────────────────┘      │
+│           │                                       │
+│           │ implements                            │
+│           ▼                                       │
+│  ┌──────────────────────────────────────────┐   │
+│  │  model.d    view.d    controller.d       │   │
+│  ├──────────────────────────────────────────┤   │
+│  │ Model       View      Controller         │   │
+│  │ DataModel   TemplateView  RESTController │   │
+│  │ Observable  JSONView      Validation...  │   │
+│  │ Model       HTMLView      AsyncController│   │
+│  └──────────────────────────────────────────┘   │
+│           │                                       │
+│           │ used by                               │
+│           ▼                                       │
+│  ┌──────────────────┐                            │
+│  │  application.d   │                            │
+│  ├──────────────────┤                            │
+│  │ MVCApplication   │                            │
+│  └──────────────────┘                            │
+│                                                    │
+└────────────────────────────────────────────────────┘
+```
+
 ## Components
 
 ### 1. Model (`IModel`, `Model`)

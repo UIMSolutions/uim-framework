@@ -47,56 +47,9 @@ class DEntityManager : UIMObject {
     }
     
     /**
-     * Create a new entity with lifecycle events
+     * Create a new entity with lifecycle events - optimized
      */
-    IEntity create(IEntity entity) {
-        // Fire before create event
-        _eventDispatcher.dispatch(new EntityBeforeCreateEvent(entity));
-        
-        // Validate if validator is set
-        if (_validator !is null) {
-            auto isValid = _validator.validate(entity);
-            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, isValid));
-            
-            if (!isValid) {
-                return entity; // Return without saving
-            }
-        }
-        
-        // Save entity
-        _repository.save(entity);
-        
-        // Fire after create event
-        _eventDispatcher.dispatch(new EntityAfterCreateEvent(entity));
-        
-        return entity;
-    }
-    
-    /**
-     * Update an existing entity with lifecycle events
-     */
-    IEntity update(IEntity entity) {
-        // Fire before update event
-        _eventDispatcher.dispatch(new EntityBeforeUpdateEvent(entity));
-        
-        // Validate if validator is set
-        if (_validator !is null) {
-            auto isValid = _validator.validate(entity);
-            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, isValid));
-            
-            if (!isValid) {
-                return entity; // Return without saving
-            }
-        }
-        
-        // Save entity
-        _repository.save(entity);
-        
-        // Fire after update event
-        _eventDispatcher.dispatch(new EntityAfterUpdateEvent(entity));
-        
-        return entity;
-    }
+    IEntity create(IEntity entity) {\n        // Fire before create event\n        _eventDispatcher.dispatch(new EntityBeforeCreateEvent(entity));\n        \n        // Validate if validator is set\n        bool validationPassed = true;\n        if (_validator !is null) {\n            validationPassed = _validator.validate(entity);\n            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, validationPassed));\n            \n            if (!validationPassed) {\n                return entity; // Return without saving\n            }\n        }\n        \n        // Save entity\n        _repository.save(entity);\n        \n        // Fire after create event\n        _eventDispatcher.dispatch(new EntityAfterCreateEvent(entity));\n        \n        return entity;\n    }\n    \n    /**\n     * Update an existing entity with lifecycle events - optimized\n     */\n    IEntity update(IEntity entity) {\n        // Fire before update event\n        _eventDispatcher.dispatch(new EntityBeforeUpdateEvent(entity));\n        \n        // Validate if validator is set\n        bool validationPassed = true;\n        if (_validator !is null) {\n            validationPassed = _validator.validate(entity);\n            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, validationPassed));\n            \n            if (!validationPassed) {\n                return entity; // Return without saving\n            }\n        }\n        \n        // Save entity\n        _repository.save(entity);\n        \n        // Fire after update event\n        _eventDispatcher.dispatch(new EntityAfterUpdateEvent(entity));\n        \n        return entity;\n    }
     
     /**
      * Delete an entity with lifecycle events

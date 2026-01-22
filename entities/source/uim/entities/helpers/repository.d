@@ -37,12 +37,9 @@ class DEntityRepository : UIMObject, IEntityRepository {
     }
     
     IEntity save(IEntity entity) {
-        if (entity.isNew()) {
-            _collection.add(entity);
-            entity.markClean();
-        } else if (entity.isDirty()) {
-            // Update existing entity
-            _collection.add(entity); // Replace
+        auto state = entity.state();
+        if (state == EntityState.New || state == EntityState.Dirty) {
+            _collection.add(entity); // Add or replace
             entity.markClean();
         }
         return entity;
@@ -82,10 +79,14 @@ class DEntityRepository : UIMObject, IEntityRepository {
         }
     }
     
-    // Batch operations
+    // Batch operations - optimized
     IEntity[] saveAll(IEntity[] entities) {
         foreach (entity; entities) {
-            save(entity);
+            auto state = entity.state();
+            if (state == EntityState.New || state == EntityState.Dirty) {
+                _collection.add(entity);
+                entity.markClean();
+            }
         }
         return entities;
     }
@@ -102,7 +103,17 @@ class DEntityRepository : UIMObject, IEntityRepository {
     }
     
     size_t countByState(EntityState state) {
-        return findByState(state).length;
+        // Direct count without creating intermediate arrays
+        final switch (state) {
+            case EntityState.New:
+                return _collection.getNew().length;
+            case EntityState.Clean:
+                return _collection.getClean().length;
+            case EntityState.Dirty:
+                return _collection.getDirty().length;
+            case EntityState.Deleted:
+                return _collection.getDeleted().length;
+        }
     }
     
     // Access to underlying collection

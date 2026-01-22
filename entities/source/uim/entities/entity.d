@@ -74,30 +74,27 @@ class DEntity : UIMObject, IEntity {
     
     // Attribute management
     string getAttribute(string key, string defaultValue = "") {
-        auto attrs = this.attributes();
-        return (key in attrs) ? attrs[key] : defaultValue;
+        if (auto ptr = key in _attributes) {
+            return *ptr;
+        }
+        return defaultValue;
     }
     
     override IEntity setAttribute(string key, string value) {
-        auto attrs = this.attributes();
-        attrs[key] = value;
-        this.attributes(attrs);
-        if (this.state() == EntityState.Clean) {
+        _attributes[key] = value;
+        if (_state == EntityState.Clean) {
             markDirty();
         }
         return this;
     }
     
     bool hasAttribute(string key) {
-        auto attrs = this.attributes();
-        return (key in attrs) !is null;
+        return (key in _attributes) !is null;
     }
     
     override IEntity removeAttribute(string key) {
-        auto attrs = this.attributes();
-        attrs.remove(key);
-        this.attributes(attrs);
-        if (this.state() == EntityState.Clean) {
+        _attributes.remove(key);
+        if (_state == EntityState.Clean) {
             markDirty();
         }
         return this;
@@ -124,22 +121,22 @@ class DEntity : UIMObject, IEntity {
     
     // Lifecycle
     void markDirty() {
-        if (this.state() != EntityState.New && this.state() != EntityState.Deleted) {
-            this.state(EntityState.Dirty);
-            this.updatedAt(Clock.currTime());
+        if (_state != EntityState.New && _state != EntityState.Deleted) {
+            _state = EntityState.Dirty;
+            _updatedAt = Clock.currTime();
         }
     }
     
     void markClean() {
-        if (this.state() != EntityState.Deleted) {
-            this.state(EntityState.Clean);
-            _originalAttributes = this.attributes().dup;
+        if (_state != EntityState.Deleted) {
+            _state = EntityState.Clean;
+            _originalAttributes = _attributes.dup;
         }
     }
     
     void markDeleted() {
-        this.state(EntityState.Deleted);
-        this.updatedAt(Clock.currTime());
+        _state = EntityState.Deleted;
+        _updatedAt = Clock.currTime();
     }
     
     // Serialization

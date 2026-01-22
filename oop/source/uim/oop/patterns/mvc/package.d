@@ -69,8 +69,10 @@ module uim.oop.patterns.mvc;
  * - `createMVCApplication()` - Helper to create applications
  */
 
-public import uim.oop.patterns.mvc.interfaces;
-public import uim.oop.patterns.mvc.model;
-public import uim.oop.patterns.mvc.view;
-public import uim.oop.patterns.mvc.controller;
-public import uim.oop.patterns.mvc.application;
+public {
+	import uim.oop.patterns.mvc.interfaces;
+	import uim.oop.patterns.mvc.model;
+	import uim.oop.patterns.mvc.view;
+	import uim.oop.patterns.mvc.controller;
+	import uim.oop.patterns.mvc.application;
+}

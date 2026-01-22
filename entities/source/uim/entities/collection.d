@@ -68,7 +68,9 @@ class DEntityCollection : UIMObject, IEntityCollection {
     
     IEntity[] findByAttribute(string key, string value) @trusted {
         IEntity[] result;
-        foreach (entity; _entities) {
+        result.reserve(_entities.length / 4); // Heuristic: expect ~25% matches
+        
+        foreach (entity; _entities.byValue) {
             if (entity.hasAttribute(key) && entity.getAttribute(key) == value) {
                 result ~= entity;
             }
@@ -77,7 +79,7 @@ class DEntityCollection : UIMObject, IEntityCollection {
     }
     
     IEntity[] getAll() {
-        return _entities.values;
+        return _entities.byValue.array;
     }
     
     bool contains(IEntity entity) {
@@ -88,21 +90,41 @@ class DEntityCollection : UIMObject, IEntityCollection {
         return (id in _entities) !is null;
     }
     
-    // State filtering
+    // State filtering - optimized with early capacity allocation
     IEntity[] getNew() @trusted {
-        return _entities.values.filter!(e => e.isNew()).array;
+        IEntity[] result;
+        result.reserve(_entities.length / 2);
+        foreach (entity; _entities.byValue) {
+            if (entity.isNew()) result ~= entity;
+        }
+        return result;
     }
     
     IEntity[] getDirty() @trusted {
-        return _entities.values.filter!(e => e.isDirty()).array;
+        IEntity[] result;
+        result.reserve(_entities.length / 2);
+        foreach (entity; _entities.byValue) {
+            if (entity.isDirty()) result ~= entity;
+        }
+        return result;
     }
     
     IEntity[] getClean() @trusted {
-        return _entities.values.filter!(e => e.isClean()).array;
+        IEntity[] result;
+        result.reserve(_entities.length / 2);
+        foreach (entity; _entities.byValue) {
+            if (entity.isClean()) result ~= entity;
+        }
+        return result;
     }
     
     IEntity[] getDeleted() @trusted {
-        return _entities.values.filter!(e => e.isDeleted()).array;
+        IEntity[] result;
+        result.reserve(_entities.length / 4);
+        foreach (entity; _entities.byValue) {
+            if (entity.isDeleted()) result ~= entity;
+        }
+        return result;
     }
     
     // Bulk operations
