@@ -5,10 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.interfaces.event;
 
-import uim.core;
-import uim.oop;
-
-import std.datetime : SysTime, Clock;
+import uim.events;
 
 mixin(ShowModule!());
 

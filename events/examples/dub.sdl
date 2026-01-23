@@ -9,3 +9,4 @@ dependency "events" path=".."
 targetType "executable"
 targetName "events-example"
 mainSourceFile "example_uda.d"
+

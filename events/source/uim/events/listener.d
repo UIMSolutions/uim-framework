@@ -5,9 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.listener;
 
-import uim.core;
-import uim.oop;
-import uim.events.interfaces;
+import uim.events;
 
 mixin(ShowModule!());
 
@@ -35,7 +33,7 @@ class DEventListener : UIMObject {
   unittest {
     writeln("Testing DEventListener callback getter/setter...");
     int callCount = 0;
-    auto listener = EventListener((IEvent event) { callCount++; });
+    auto listener = createEventListener((IEvent event) { callCount++; });
     assert(listener.callback() !is null, "Callback should not be null");
     auto event = cast(IEvent) null;
     listener.callback()(event);
@@ -52,7 +50,7 @@ class DEventListener : UIMObject {
     mixin(ShowTest!"Testing DEventListener callback getter/setter...");
 
     int callCount = 0;
-    auto listener = EventListener((IEvent event) { callCount++; });
+    auto listener = createEventListener((IEvent event) { callCount++; });
     assert(listener.callback() !is null, "Callback should not be null");
     auto event = cast(IEvent) null;
     listener.callback()(event);
@@ -126,11 +124,11 @@ class DEventListener : UIMObject {
 }
 
 // Factory functions
-auto EventListener(EventCallback callback, int priority = 0) {
+auto createEventListener(EventCallback callback, int priority = 0) {
   return new DEventListener(callback, priority);
 }
 
-auto EventListenerOnce(EventCallback callback, int priority = 0) {
+auto createEventListenerOnce(EventCallback callback, int priority = 0) {
   auto listener = new DEventListener(callback, priority);
   listener.once(true);
   return listener;
@@ -142,7 +140,7 @@ unittest {
   writeln("Testing DEventListener class...");
 
   int callCount = 0;
-  auto listener = EventListener((IEvent event) { callCount++; });
+  auto listener = createEventListener((IEvent event) { callCount++; });
 
   auto event = Event("test");
   listener.execute(event);
@@ -153,7 +151,7 @@ unittest {
 
   // Test one-time listener
   int onceCount = 0;
-  auto onceListener = EventListenerOnce((IEvent event) { onceCount++; });
+  auto onceListener = createEventListenerOnce((IEvent event) { onceCount++; });
 
   onceListener.execute(event);
   assert(onceCount == 1);

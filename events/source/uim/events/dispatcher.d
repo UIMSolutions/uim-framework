@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.events.dispatcher;
 
-import uim.core;
-import uim.oop;
-import uim.events.interfaces;
-import uim.events.listener;
-import uim.events.event;
+import uim.events;
 
 mixin(ShowModule!());
 
@@ -56,14 +52,14 @@ class DEventDispatcher : UIMObject {
      * Add a callback as event listener
      */
   DEventDispatcher on(string eventName, EventCallback callback, int priority = 0) {
-    return addListener(eventName, EventListener(callback, priority));
+    return addListener(eventName, createEventListener(callback, priority));
   }
 
   /**
      * Add a one-time callback as event listener
      */
   DEventDispatcher once(string eventName, EventCallback callback, int priority = 0) {
-    return addListener(eventName, EventListenerOnce(callback, priority));
+    return addListener(eventName, createEventListenerOnce(callback, priority));
   }
 
 

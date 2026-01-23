@@ -27,6 +27,7 @@ class UserRegisteredEvent : DEvent {
  * Example of an event handler using UDAs for method registration
  */
 class UserEventHandler : DAnnotatedEventHandler {
+    mixin RegisterAnnotated;
     
     // Basic event listener
     @EventListener("user.login")
@@ -77,6 +78,7 @@ class UserEventHandler : DAnnotatedEventHandler {
  * Another handler for order events
  */
 class OrderEventHandler : DAnnotatedEventHandler {
+    mixin RegisterAnnotated;
     
     @EventListener("order.placed", 10)
     void validateOrder(IEvent event) {
@@ -100,36 +102,36 @@ class OrderEventHandler : DAnnotatedEventHandler {
 }
 
 void main() {
-    mixin(ShowTest!"=== UIM Events Library - UDA Example ===\n");
+    writeln("=== UIM Events Library - UDA Example ===\n");
     
-    // Create dispatcher
+    writeln("Create dispatcher\n");
     auto dispatcher = EventDispatcher();
     
-    // Create and register handlers
+    writeln("Create and register handlers\n");
     auto userHandler = new UserEventHandler();
     auto orderHandler = new OrderEventHandler();
     
-    writeln("1. Registering annotated event handlers...");
+    writeln("1. Registering annotated event handlers...\n");
     userHandler.registerWith(dispatcher);
     orderHandler.registerWith(dispatcher);
     writeln();
     
-    // Test user login
+    writeln("Test user login\n");
     writeln("2. Dispatching user.login event:");
     dispatcher.dispatch(Event("user.login"));
     writeln();
     
-    // Test user registration with priority
+    writeln("Test user registration with priority");
     writeln("3. Dispatching user.registered event (note priority order):");
     dispatcher.dispatch(new UserRegisteredEvent("john_doe", "john@example.com"));
     writeln();
     
-    // Test order placement
+    writeln("Test order placement");
     writeln("4. Dispatching order.placed event:");
     dispatcher.dispatch(Event("order.placed"));
     writeln();
     
-    // Test one-time events
+    writeln("Test one-time events");
     writeln("5. Testing one-time listeners:");
     writeln("   First call to app.initialized:");
     dispatcher.dispatch(Event("app.initialized"));
@@ -145,12 +147,12 @@ void main() {
     dispatcher.dispatch(Event("order.first"));
     writeln();
     
-    // Test multiple listeners for same event
+    writeln("Test multiple listeners for same event");
     writeln("6. Dispatching user.logout event (multiple listeners):");
     dispatcher.dispatch(Event("user.logout"));
     writeln();
     
-    // Mixed approach: UDA + manual registration
+    writeln("Mixed approach: UDA + manual registration");
     writeln("7. Mixed approach - adding manual listener:");
     dispatcher.on("user.login", (IEvent event) {
         writeln("   👁️  Additional manual listener executed");
