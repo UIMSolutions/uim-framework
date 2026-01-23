@@ -25,7 +25,6 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     }
 
     _symbolTable = new SymbolTable();
-
     return true;
   }
 
@@ -35,7 +34,6 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
 
     // Perform semantic analysis
     analyzeNode(ast);
-
     return ast;
   }
 
@@ -51,6 +49,7 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     return _warnings;
   }
 
+  // Core analysis method
   protected void analyzeNode(ASTNode node) {
     if (node is null) return;
 
@@ -67,13 +66,12 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
         break;
       default:
         // Recursively analyze children
-        foreach (child; node.children) {
-          analyzeNode(child);
-        }
+        node.children.each!(child => analyzeNode(child));
         break;
     }
   }
 
+  // Specific analysis methods
   protected void analyzeFunctionDeclaration(ASTNode node) {
     // Define function symbol
     Symbol sym;
@@ -87,13 +85,12 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     _symbolTable.enterScope();
 
     // Analyze function body
-    foreach (child; node.children) {
-      analyzeNode(child);
-    }
+    node.children.each!(child => analyzeNode(child));
 
     _symbolTable.exitScope();
   }
 
+  // Analyze variable declaration
   protected void analyzeVariableDeclaration(ASTNode node) {
     Symbol sym;
     sym.name = node.token.value;
@@ -103,16 +100,12 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     _symbolTable.define(sym.name, sym);
 
     // Analyze initializer
-    foreach (child; node.children) {
-      analyzeNode(child);
-    }
+    node.children.each!(child => analyzeNode(child));
   }
 
   protected void analyzeBinaryExpression(ASTNode node) {
     // Analyze operands
-    foreach (child; node.children) {
-      analyzeNode(child);
-    }
+    node.children.each!(child => analyzeNode(child));
 
     // Type checking would go here
   }
