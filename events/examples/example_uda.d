@@ -100,7 +100,7 @@ class OrderEventHandler : DAnnotatedEventHandler {
 }
 
 void main() {
-    writeln("=== UIM Events Library - UDA Example ===\n");
+    mixin(ShowTest!"=== UIM Events Library - UDA Example ===\n");
     
     // Create dispatcher
     auto dispatcher = EventDispatcher();

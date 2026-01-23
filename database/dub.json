@@ -1,0 +1,13 @@
+{
+  "name": "uim-database",
+  "description": "In-memory database library for D using vibe.d",
+  "authors": ["UIM Team"],
+  "copyright": "Copyright © 2026, UIM",
+  "license": "MIT",
+  "version": "0.1.0",
+  "targetPath": "build",
+  "targetType": "library",
+  "dependencies": {
+    "vibe-d": "~>0.9.5"
+  }
+}

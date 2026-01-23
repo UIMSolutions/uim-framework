@@ -1,3 +1,4 @@
+// Metadata
 name "css"
 description "CSS parsing, manipulation, and generation library for UIM"
 authors "Ozan Nurettin Süel (UIManufaktur)"
@@ -5,11 +6,14 @@ homepage "https://github.com/UIMSolutions/uim-framework"
 license "Apache-2.0"
 copyright "Copyright © 2018-2026 Ozan Nurettin Süel"
 
+// Target
 targetType "library"
+targetName "uim-css"
 
-// uim dependencies
-dependency "uim-framework:oop" path=".."
+// Dependencies
+dependency "uim-framework:oop" version="*"
 
+// Configurations
 configuration "default" {
 	targetType "library"
 }
@@ -24,12 +28,17 @@ configuration "tests" {
 	versions "show_module" "show_test"
 }
 
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
 configuration "calls" {
 	targetType "library"
-	versions "show_calls"
+	versions "show_module" "show_test" "show_function"
 }
 
 configuration "verbose" {
-    targetType "library"
-    versions "show_module" "show_test" "show_function"
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
 }
