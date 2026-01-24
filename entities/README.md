@@ -184,10 +184,10 @@ A comprehensive entity management library for D language, providing OOP patterns
 ├─────────────────────────────────────────────────────────────┤
 │ # _repository: DEntityRepository                            │
 │ # _validator: DEntityValidator                              │
-│ # _eventDispatcher: DEventDispatcher                        │
+│ # _eventDispatcher: UIMEventDispatcher                        │
 ├─────────────────────────────────────────────────────────────┤
 │ + validator(val): DEntityManager                            │
-│ + eventDispatcher(): DEventDispatcher                       │
+│ + eventDispatcher(): UIMEventDispatcher                       │
 │ + create(entity): IEntity                                   │
 │ + update(entity): IEntity                                   │
 │ + remove(entity): void                                      │
@@ -403,7 +403,7 @@ Manager     Validator    Entity       Rules
 │                                                            │
 │  External Dependencies:                                   │
 │  - uim.core (UIMObject, ShowModule)                      │
-│  - uim.events (DEvent, DEventDispatcher)                 │
+│  - uim.events (DEvent, UIMEventDispatcher)                 │
 │  - vibe.data.json (Json)                                 │
 │  - std.uuid (UUID)                                       │
 │  - std.datetime (SysTime)                                │

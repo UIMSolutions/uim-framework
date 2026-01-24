@@ -18,7 +18,7 @@ import uim.events.attributes;
  * Automatically register event listeners from a class using UDAs
  * Scans the object for methods marked with @EventListener or @EventListenerOnce
  */
-void registerAnnotatedListeners(T)(T obj, DEventDispatcher dispatcher)
+void registerAnnotatedListeners(T)(T obj, UIMEventDispatcher dispatcher)
     if (is(T == class) || is(T == struct)) {
   import std.traits : hasUDA, getUDAs;
 
@@ -66,14 +66,14 @@ abstract class DAnnotatedEventHandler : UIMObject {
      * Register this handler's annotated methods with a dispatcher
      * Must be called with the actual type to properly scan for UDAs
      */
-  abstract void registerWith(DEventDispatcher dispatcher) @trusted;
+  abstract void registerWith(UIMEventDispatcher dispatcher) @trusted;
 }
 
 /**
  * Mixin template to implement registerWith for derived classes
  */
 mixin template RegisterAnnotated() {
-  override void registerWith(DEventDispatcher dispatcher) @trusted {
+  override void registerWith(UIMEventDispatcher dispatcher) @trusted {
     registerAnnotatedListeners!(typeof(this))(this, dispatcher);
   }
 }

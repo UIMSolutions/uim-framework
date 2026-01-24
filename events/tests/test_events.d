@@ -190,7 +190,7 @@ void testSubscriber() {
     int count1 = 0;
     int count2 = 0;
 
-    override void subscribe(DEventDispatcher dispatcher) {
+    override void subscribe(UIMEventDispatcher dispatcher) {
       dispatcher.on("event1", (IEvent event) { count1++; });
 
       dispatcher.on("event2", (IEvent event) { count2++; });

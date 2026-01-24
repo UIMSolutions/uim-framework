@@ -14,18 +14,18 @@ mixin(ShowModule!());
 /**
  * Event dispatcher that manages event listeners and dispatches events
  */
-class DEventDispatcher : UIMObject {
+class UIMEventDispatcher : UIMObject {
 
   this() {
     super();
   }
 
   // #region listeners
-  protected DEventListener[][string] _listeners;
+  protected UIMEventListener[][string] _listeners;
   /**
      * Add an event listener for a specific event name
      */
-  DEventDispatcher addListener(string eventName, DEventListener listener) {
+  UIMEventDispatcher addListener(string eventName, UIMEventListener listener) {
     if (eventName !in _listeners) {
       _listeners[eventName] = [];
     }
@@ -42,7 +42,7 @@ class DEventDispatcher : UIMObject {
     /**
      * Remove all listeners for a specific event
      */
-  DEventDispatcher removeListeners(string eventName) {
+  UIMEventDispatcher removeListeners(string eventName) {
     _listeners.remove(eventName);
     return this;
   }
@@ -51,14 +51,14 @@ class DEventDispatcher : UIMObject {
   /**
      * Add a callback as event listener
      */
-  DEventDispatcher on(string eventName, EventCallback callback, int priority = 0) {
+  UIMEventDispatcher on(string eventName, EventCallback callback, int priority = 0) {
     return addListener(eventName, createEventListener(callback, priority));
   }
 
   /**
      * Add a one-time callback as event listener
      */
-  DEventDispatcher once(string eventName, EventCallback callback, int priority = 0) {
+  UIMEventDispatcher once(string eventName, EventCallback callback, int priority = 0) {
     return addListener(eventName, createEventListenerOnce(callback, priority));
   }
 
@@ -66,8 +66,8 @@ class DEventDispatcher : UIMObject {
 
   /**
      * Remove a specific listener
-     */
-  DEventDispatcher removeListener(string eventName, DEventListener listener) {
+*/ 
+  UIMEventDispatcher removeListener(string eventName, UIMEventListener listener) {
     if (eventName in _listeners) {
       import std.algorithm : remove;
       import std.range : enumerate;
@@ -85,7 +85,7 @@ class DEventDispatcher : UIMObject {
   /**
      * Get all listeners for an event
      */
-  DEventListener[] getListeners(string eventName) {
+  UIMEventListener[] getListeners(string eventName) {
     if (eventName in _listeners) {
       return _listeners[eventName].dup;
     }
@@ -107,7 +107,7 @@ class DEventDispatcher : UIMObject {
 
     if (eventName in _listeners) {
       // Clean up executed one-time listeners
-      DEventListener[] activeListeners;
+      UIMEventListener[] activeListeners;
 
       foreach (listener; _listeners[eventName]) {
         if (!listener.once() || !listener.hasExecuted()) {
@@ -157,11 +157,11 @@ class DEventDispatcher : UIMObject {
 
 // Factory function
 auto EventDispatcher() {
-  return new DEventDispatcher();
+  return new UIMEventDispatcher();
 }
 
 unittest {
-  mixin(ShowTest!"Testing DEventDispatcher class...");
+  mixin(ShowTest!"Testing UIMEventDispatcher class...");
 
   auto dispatcher = EventDispatcher();
   int callCount = 0;
@@ -208,5 +208,5 @@ unittest {
   dispatcher.dispatch(Event("once.test"));
   assert(onceCount == 1, "Once listener should only execute once");
 
-  writeln("DEventDispatcher tests passed!");
+  writeln("UIMEventDispatcher tests passed!");
 }

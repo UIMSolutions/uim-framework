@@ -100,7 +100,7 @@ void main() {
     // 7. Event Subscriber
     writeln("\n7. Event Subscriber:");
     class EmailNotificationSubscriber : DEventSubscriber {
-        override void subscribe(DEventDispatcher dispatcher) {
+        override void subscribe(UIMEventDispatcher dispatcher) {
             dispatcher.on("user.registered", (IEvent event) {
                 writeln("   📧 Sending welcome email...");
             });

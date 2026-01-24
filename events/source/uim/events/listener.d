@@ -19,7 +19,7 @@ alias EventCallback = void delegate(IEvent event) @safe;
 /**
  * Event listener with priority support
  */
-class DEventListener : UIMObject {
+class UIMEventListener : UIMObject {
   private int _priority;
   private bool _once;
 
@@ -31,23 +31,23 @@ class DEventListener : UIMObject {
   }
     ///
   unittest {
-    writeln("Testing DEventListener callback getter/setter...");
+    writeln("Testing UIMEventListener callback getter/setter...");
     int callCount = 0;
     auto listener = createEventListener((IEvent event) { callCount++; });
     assert(listener.callback() !is null, "Callback should not be null");
     auto event = cast(IEvent) null;
     listener.callback()(event);
     assert(callCount == 1, "Callback should have been called once");
-    writeln("DEventListener callback tests passed!");
+    writeln("UIMEventListener callback tests passed!");
   }
   
-  DEventListener callback(EventCallback value) {
+  UIMEventListener callback(EventCallback value) {
     _callback = value;
     return this;
   }
   ///
   unittest {
-    mixin(ShowTest!"Testing DEventListener callback getter/setter...");
+    mixin(ShowTest!"Testing UIMEventListener callback getter/setter...");
 
     int callCount = 0;
     auto listener = createEventListener((IEvent event) { callCount++; });
@@ -55,7 +55,7 @@ class DEventListener : UIMObject {
     auto event = cast(IEvent) null;
     listener.callback()(event);
     assert(callCount == 1, "Callback should have been called once");
-    writeln("DEventListener callback tests passed!");
+    writeln("UIMEventListener callback tests passed!");
   }
   // #endregion callback
 
@@ -64,7 +64,7 @@ class DEventListener : UIMObject {
     return _priority;
   }
   
-  DEventListener priority(int value) {
+  UIMEventListener priority(int value) {
     _priority = value;
     return this;
   }
@@ -74,7 +74,7 @@ class DEventListener : UIMObject {
     return _once;
   }
   
-  DEventListener once(bool value) {
+  UIMEventListener once(bool value) {
     _once = value;
     return this;
   }
@@ -125,11 +125,11 @@ class DEventListener : UIMObject {
 
 // Factory functions
 auto createEventListener(EventCallback callback, int priority = 0) {
-  return new DEventListener(callback, priority);
+  return new UIMEventListener(callback, priority);
 }
 
 auto createEventListenerOnce(EventCallback callback, int priority = 0) {
-  auto listener = new DEventListener(callback, priority);
+  auto listener = new UIMEventListener(callback, priority);
   listener.once(true);
   return listener;
 }
@@ -137,7 +137,7 @@ auto createEventListenerOnce(EventCallback callback, int priority = 0) {
 unittest {
   import uim.events.event : Event;
   
-  writeln("Testing DEventListener class...");
+  writeln("Testing UIMEventListener class...");
 
   int callCount = 0;
   auto listener = createEventListener((IEvent event) { callCount++; });
@@ -159,5 +159,5 @@ unittest {
   onceListener.execute(event);
   assert(onceCount == 1, "One-time listener should only execute once");
 
-  writeln("DEventListener tests passed!");
+  writeln("UIMEventListener tests passed!");
 }

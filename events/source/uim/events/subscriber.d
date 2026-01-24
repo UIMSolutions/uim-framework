@@ -27,7 +27,7 @@ abstract class DEventSubscriber : UIMObject, IEventSubscriber {
     /**
      * Override this method to register event listeners
      */
-    abstract void subscribe(DEventDispatcher dispatcher);
+    abstract void subscribe(UIMEventDispatcher dispatcher);
 }
 
 unittest {
@@ -39,7 +39,7 @@ unittest {
     class TestSubscriber : DEventSubscriber {
         int callCount = 0;
         
-        override void subscribe(DEventDispatcher dispatcher) {
+        override void subscribe(UIMEventDispatcher dispatcher) {
             dispatcher.on("test.event1", (IEvent event) {
                 callCount++;
             });

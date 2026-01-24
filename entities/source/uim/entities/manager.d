@@ -17,7 +17,7 @@ mixin(ShowModule!());
 class DEntityManager : UIMObject {
     protected DEntityRepository _repository;
     protected DEntityValidator _validator;
-    protected DEventDispatcher _eventDispatcher;
+    protected UIMEventDispatcher _eventDispatcher;
     
     this() {
         super();
@@ -42,7 +42,7 @@ class DEntityManager : UIMObject {
     /**
      * Get event dispatcher
      */
-    DEventDispatcher eventDispatcher() {
+    UIMEventDispatcher eventDispatcher() {
         return _eventDispatcher;
     }
     

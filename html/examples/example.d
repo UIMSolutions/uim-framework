@@ -256,7 +256,7 @@ void completeDocumentExample() {
     doc.addScript("https://cdn.example.com/jquery.js");
     doc.addInlineScript(`
         console.log('UIM HTML Library loaded');
-        document.addEventListener('DOMContentLoaded', function() {
+        document.adUIMEventListener('DOMContentLoaded', function() {
             console.log('Page ready');
         });
     `);

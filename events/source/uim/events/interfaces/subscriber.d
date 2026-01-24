@@ -18,5 +18,5 @@ interface IEventSubscriber {
     /**
      * Register event listeners with a dispatcher
      */
-    void subscribe(DEventDispatcher dispatcher);
+    void subscribe(UIMEventDispatcher dispatcher);
 }

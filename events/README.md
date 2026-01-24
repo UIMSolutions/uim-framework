@@ -96,7 +96,7 @@ dispatcher.dispatch(new UserRegisteredEvent("john_doe", "john@example.com"));
 
 ### Event Dispatcher
 
-The `DEventDispatcher` is the central hub for managing and dispatching events:
+The `UIMEventDispatcher` is the central hub for managing and dispatching events:
 
 ```d
 auto dispatcher = EventDispatcher();
@@ -193,7 +193,7 @@ Group related event listeners into reusable subscriber classes:
 
 ```d
 class UserEventSubscriber : DEventSubscriber {
-    override void subscribe(DEventDispatcher dispatcher) {
+    override void subscribe(UIMEventDispatcher dispatcher) {
         dispatcher.on("user.login", (IEvent event) {
             // Handle login
         });
@@ -329,21 +329,21 @@ class DEvent : UIMObject, IEvent {
 }
 ```
 
-#### DEventDispatcher
+#### UIMEventDispatcher
 Central event dispatcher:
 ```d
-class DEventDispatcher : UIMObject {
+class UIMEventDispatcher : UIMObject {
     // Add listeners
-    DEventDispatcher addListener(string eventName, DEventListener listener);
-    DEventDispatcher on(string eventName, EventCallback callback, int priority = 0);
-    DEventDispatcher once(string eventName, EventCallback callback, int priority = 0);
+    UIMEventDispatcher addListener(string eventName, UIMEventListener listener);
+    UIMEventDispatcher on(string eventName, EventCallback callback, int priority = 0);
+    UIMEventDispatcher once(string eventName, EventCallback callback, int priority = 0);
     
     // Remove listeners
-    DEventDispatcher removeListener(string eventName, DEventListener listener);
-    DEventDispatcher removeListeners(string eventName);
+    UIMEventDispatcher removeListener(string eventName, UIMEventListener listener);
+    UIMEventDispatcher removeListeners(string eventName);
     
     // Query listeners
-    DEventListener[] getListeners(string eventName);
+    UIMEventListener[] getListeners(string eventName);
     bool hasListeners(string eventName);
     
     // Dispatch events
@@ -355,7 +355,7 @@ class DEventDispatcher : UIMObject {
 Base class for handlers using UDAs:
 ```d
 class DAnnotatedEventHandler : UIMObject {
-    void registerWith(DEventDispatcher dispatcher);
+    void registerWith(UIMEventDispatcher dispatcher);
 }
 ```
 
@@ -363,7 +363,7 @@ class DAnnotatedEventHandler : UIMObject {
 Base class for event subscribers:
 ```d
 abstract class DEventSubscriber : UIMObject, IEventSubscriber {
-    abstract void subscribe(DEventDispatcher dispatcher);
+    abstract void subscribe(UIMEventDispatcher dispatcher);
 }
 ```
 
@@ -467,7 +467,7 @@ class OrderEventHandler : DAnnotatedEventHandler {
 
 ```d
 class AppEventSubscriber : DEventSubscriber {
-    override void subscribe(DEventDispatcher dispatcher) {
+    override void subscribe(UIMEventDispatcher dispatcher) {
         // Application startup
         dispatcher.once("app.startup", (IEvent event) {
             writeln("Initializing application...");
