@@ -125,8 +125,8 @@ void main() {
     });
     
     manager.eventDispatcher().on("entity.validated", (IEvent event) @trusted {
-        auto validEvent = cast(EntityValidatedEvent)event;
-        writeln("   🔔 Event: Entity validated - Valid: ", validEvent.isValid);
+        auto valiUIMEvent = cast(EntityValidateUIMEvent)event;
+        writeln("   🔔 Event: Entity validated - Valid: ", valiUIMEvent.isValid);
     });
     
     // Create entity with events

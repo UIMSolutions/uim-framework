@@ -13,7 +13,7 @@ import uim.events;
  * Base event class that all events should inherit from.
  * Provides common event functionality including name, timestamp, and propagation control.
  */
-class DEvent : UIMObject, IEvent {
+class UIMEvent : UIMObject, IEvent {
   this() {
     super();
     this.timestamp(Clock.currTime());
@@ -123,11 +123,11 @@ class DEvent : UIMObject, IEvent {
 
 // Factory function
 auto Event(string name = "") {
-  return new DEvent(name);
+  return new UIMEvent(name);
 }
 
 unittest {
-  mixin(ShowTest!"Testing DEvent class...");
+  mixin(ShowTest!"Testing UIMEvent class...");
 
   auto event = Event("test.event");
   assert(event.name() == "test.event");
@@ -141,5 +141,5 @@ unittest {
   assert(event.getData("key1") == Json("value1"));
   assert(event.getData("nonexistent", Json("default")) == Json("default"));
 
-  mixin(ShowTest!"DEvent tests passed!");
+  mixin(ShowTest!"UIMEvent tests passed!");
 }

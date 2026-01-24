@@ -130,12 +130,12 @@ template getListenerOnceAttribute(alias member) {
 }
 
 unittest {
-  import uim.events.event : DEvent;
+  import uim.events.event : UIMEvent;
 
   writeln("Testing UDA attributes...");
 
   @UseEvent("test.event")
-  class TestEvent : DEvent {
+  class TestEvent : UIMEvent {
     this() {
       super("test.event");
     }

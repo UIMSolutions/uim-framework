@@ -213,8 +213,8 @@ A comprehensive entity management library for D language, providing OOP patterns
 │ EntityAfterUpdateEvent                                      │
 │ EntityBeforeDeleteEvent                                     │
 │ EntityAfterDeleteEvent                                      │
-│ EntityValidatedEvent                                        │
-│ EntityStateChangedEvent                                     │
+│ EntityValidateUIMEvent                                        │
+│ EntityStateChangeUIMEvent                                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -397,13 +397,13 @@ Manager     Validator    Entity       Rules
 │  │ - EntityAfterUpdateEvent                   │         │
 │  │ - EntityBeforeDeleteEvent                  │         │
 │  │ - EntityAfterDeleteEvent                   │         │
-│  │ - EntityValidatedEvent                     │         │
-│  │ - EntityStateChangedEvent                  │         │
+│  │ - EntityValidateUIMEvent                     │         │
+│  │ - EntityStateChangeUIMEvent                  │         │
 │  └────────────────────────────────────────────┘         │
 │                                                            │
 │  External Dependencies:                                   │
 │  - uim.core (UIMObject, ShowModule)                      │
-│  - uim.events (DEvent, UIMEventDispatcher)                 │
+│  - uim.events (UIMEvent, UIMEventDispatcher)                 │
 │  - vibe.data.json (Json)                                 │
 │  - std.uuid (UUID)                                       │
 │  - std.datetime (SysTime)                                │

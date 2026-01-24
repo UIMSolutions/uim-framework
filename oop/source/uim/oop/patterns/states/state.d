@@ -428,19 +428,19 @@ class TCPConnection {
     }
     
     @safe void open() {
-        addEvent("open()");
+        adUIMEvent("open()");
         if (auto s = cast(ClosedState)_currentState) {
             setState(new ListenState(this));
         }
     }
     
     @safe void close() {
-        addEvent("close()");
+        adUIMEvent("close()");
         setState(new ClosedState(this));
     }
     
     @safe void acknowledge() {
-        addEvent("acknowledge()");
+        adUIMEvent("acknowledge()");
         if (auto s = cast(ListenState)_currentState) {
             setState(new EstablishedState(this));
         }
@@ -454,7 +454,7 @@ class TCPConnection {
         return _events.dup;
     }
     
-    private void addEvent(string event) @safe {
+    private void adUIMEvent(string event) @safe {
         _events ~= event;
     }
 }

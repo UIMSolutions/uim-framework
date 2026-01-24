@@ -70,7 +70,7 @@ Create custom event classes to carry domain-specific data:
 
 ```d
 // Define a custom event
-class UserRegisteredEvent : DEvent {
+class UserRegistereUIMEvent : UIMEvent {
     string username;
     string email;
     
@@ -85,11 +85,11 @@ class UserRegisteredEvent : DEvent {
 auto dispatcher = EventDispatcher();
 
 dispatcher.on("user.registered", (IEvent event) {
-    auto userEvent = cast(UserRegisteredEvent)event;
+    auto userEvent = cast(UserRegistereUIMEvent)event;
     writeln("Welcome ", userEvent.username, "! Email: ", userEvent.email);
 });
 
-dispatcher.dispatch(new UserRegisteredEvent("john_doe", "john@example.com"));
+dispatcher.dispatch(new UserRegistereUIMEvent("john_doe", "john@example.com"));
 ```
 
 ## Core Concepts
@@ -192,7 +192,7 @@ dispatcher.dispatch(event);
 Group related event listeners into reusable subscriber classes:
 
 ```d
-class UserEventSubscriber : DEventSubscriber {
+class UserEventSubscriber : UIMEventSubscriber {
     override void subscribe(UIMEventDispatcher dispatcher) {
         dispatcher.on("user.login", (IEvent event) {
             // Handle login
@@ -222,7 +222,7 @@ UDAs provide a clean, declarative way to define event handlers without explicit 
 ```d
 import uim.events;
 
-class UserEventHandler : DAnnotatedEventHandler {
+class UserEventHandler : DAnnotateUIMEventHandler {
     // Basic event listener
     @EventListener("user.login")
     void onUserLogin(IEvent event) {
@@ -232,7 +232,7 @@ class UserEventHandler : DAnnotatedEventHandler {
     // Listener with custom priority
     @EventListener("user.registered", 10)
     void sendWelcomeEmail(IEvent event) {
-        auto userEvent = cast(UserRegisteredEvent)event;
+        auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("Sending email to: ", userEvent.email);
     }
     
@@ -250,14 +250,14 @@ handler.registerWith(dispatcher);
 
 // Dispatch events - handlers are called automatically
 dispatcher.dispatch(Event("user.login"));
-dispatcher.dispatch(new UserRegisteredEvent("john", "john@example.com"));
+dispatcher.dispatch(new UserRegistereUIMEvent("john", "john@example.com"));
 ```
 
 ### Marking Event Classes
 
 ```d
 @UseEvent("user.registered")
-class UserRegisteredEvent : DEvent {
+class UserRegistereUIMEvent : UIMEvent {
     string username;
     string email;
     
@@ -274,7 +274,7 @@ class UserRegisteredEvent : DEvent {
 You can define multiple handlers for the same event, and they'll execute in priority order:
 
 ```d
-class OrderEventHandler : DAnnotatedEventHandler {
+class OrderEventHandler : DAnnotateUIMEventHandler {
     @EventListener("order.placed", 10)
     void validateOrder(IEvent event) {
         writeln("1. Validating order...");
@@ -306,12 +306,87 @@ class OrderEventHandler : DAnnotatedEventHandler {
 
 - **`@UseEvent("event.name")`** - Mark an event class (documentation/metadata)
 
+### Core Interfaces
+
+#### IEvent
+Interface that defines the contract for all events:
+```d
+interface IEvent {
+    // Properties
+    string name();
+    IEvent name(string value);
+    
+    SysTime timestamp();
+    IEvent timestamp(SysTime value);
+    
+    bool stopped();
+    IEvent stopped(bool value);
+    
+    Json[string] data();
+    IEvent data(Json[string] value);
+    
+    // Methods
+    void stopPropagation();
+    bool isPropagationStopped();
+    IEvent setData(string key, Json value);
+    Json getData(string key, Json defaultValue = Json(null));
+    bool hasKey(string key);
+}
+```
+
+#### IEventDispatcher
+Interface that defines the contract for event dispatchers:
+```d
+interface IEventDispatcher {
+    // Listener management
+    IEventDispatcher addListener(string eventName, UIMEventListener listener);
+    IEventDispatcher removeListener(string eventName, UIMEventListener listener);
+    IEventDispatcher removeListeners(string eventName);
+    
+    // Query listeners
+    UIMEventListener[] getListeners(string eventName);
+    bool hasListeners(string eventName);
+    
+    // Listener registration
+    IEventDispatcher on(string eventName, EventCallback callback, int priority = 0);
+    IEventDispatcher once(string eventName, EventCallback callback, int priority = 0);
+    
+    // Event dispatching
+    IEvent dispatch(IEvent event);
+    void dispatchAsync(IEvent event) @trusted;
+    
+    // Cleanup
+    void clearListeners();
+}
+```
+
+#### IEventListener
+Interface that defines the contract for event listeners:
+```d
+interface IEventListener {
+    // Properties
+    EventCallback callback();
+    IEventListener callback(EventCallback value);
+    
+    int priority();
+    IEventListener priority(int value);
+    
+    bool once();
+    IEventListener once(bool value);
+    
+    // Methods
+    void execute(IEvent event);
+    bool hasExecuted();
+    void reset();
+}
+```
+
 ### Core Classes
 
-#### DEvent
+#### UIMEvent
 Base class for all events:
 ```d
-class DEvent : UIMObject, IEvent {
+class UIMEvent : UIMObject, IEvent {
     this(string eventName);
     
     // Properties
@@ -351,18 +426,18 @@ class UIMEventDispatcher : UIMObject {
 }
 ```
 
-#### DAnnotatedEventHandler
+#### DAnnotateUIMEventHandler
 Base class for handlers using UDAs:
 ```d
-class DAnnotatedEventHandler : UIMObject {
+class DAnnotateUIMEventHandler : UIMObject {
     void registerWith(UIMEventDispatcher dispatcher);
 }
 ```
 
-#### DEventSubscriber
+#### UIMEventSubscriber
 Base class for event subscribers:
 ```d
-abstract class DEventSubscriber : UIMObject, IEventSubscriber {
+abstract class UIMEventSubscriber : UIMObject, IEventSubscriber {
     abstract void subscribe(UIMEventDispatcher dispatcher);
 }
 ```
@@ -375,7 +450,7 @@ abstract class DEventSubscriber : UIMObject, IEventSubscriber {
 import uim.events;
 
 // Define events
-class UserLoginEvent : DEvent {
+class UserLoginEvent : UIMEvent {
     string username;
     string ipAddress;
     
@@ -386,7 +461,7 @@ class UserLoginEvent : DEvent {
     }
 }
 
-class UserLogoutEvent : DEvent {
+class UserLogoutEvent : UIMEvent {
     string username;
     
     this(string username) {
@@ -396,7 +471,7 @@ class UserLogoutEvent : DEvent {
 }
 
 // Create handler
-class AuthEventHandler : DAnnotatedEventHandler {
+class AuthEventHandler : DAnnotateUIMEventHandler {
     @EventListener("user.login", 10)
     void logLogin(IEvent event) {
         auto loginEvent = cast(UserLoginEvent)event;
@@ -428,7 +503,7 @@ dispatcher.dispatch(new UserLogoutEvent("alice"));
 ### Example 2: E-commerce Order Processing
 
 ```d
-class OrderPlacedEvent : DEvent {
+class OrderPlaceUIMEvent : UIMEvent {
     int orderId;
     decimal total;
     
@@ -439,10 +514,10 @@ class OrderPlacedEvent : DEvent {
     }
 }
 
-class OrderEventHandler : DAnnotatedEventHandler {
+class OrderEventHandler : DAnnotateUIMEventHandler {
     @EventListener("order.placed", 10)
     void validateInventory(IEvent event) {
-        auto order = cast(OrderPlacedEvent)event;
+        auto order = cast(OrderPlaceUIMEvent)event;
         if (/* insufficient inventory */) {
             event.stopPropagation();  // Stop processing
             return;
@@ -451,13 +526,13 @@ class OrderEventHandler : DAnnotatedEventHandler {
     
     @EventListener("order.placed", 5)
     void processPayment(IEvent event) {
-        auto order = cast(OrderPlacedEvent)event;
+        auto order = cast(OrderPlaceUIMEvent)event;
         // Process payment for order.total
     }
     
     @EventListener("order.placed", 0)
     void sendConfirmation(IEvent event) {
-        auto order = cast(OrderPlacedEvent)event;
+        auto order = cast(OrderPlaceUIMEvent)event;
         // Send order confirmation email
     }
 }
@@ -466,7 +541,7 @@ class OrderEventHandler : DAnnotatedEventHandler {
 ### Example 3: Application Lifecycle Events
 
 ```d
-class AppEventSubscriber : DEventSubscriber {
+class AppEventSubscriber : UIMEventSubscriber {
     override void subscribe(UIMEventDispatcher dispatcher) {
         // Application startup
         dispatcher.once("app.startup", (IEvent event) {

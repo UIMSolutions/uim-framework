@@ -24,7 +24,7 @@ void main() {
     
     // 2. Custom Event with Data
     writeln("\n2. Custom Event with Data:");
-    class UserRegisteredEvent : DEvent {
+    class UserRegistereUIMEvent : UIMEvent {
         string username;
         string email;
         
@@ -36,13 +36,13 @@ void main() {
     }
     
     dispatcher.on("user.registered", (IEvent event) {
-        auto userEvent = cast(UserRegisteredEvent)event;
+        auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("   New user registered:");
         writeln("   - Username: ", userEvent.username);
         writeln("   - Email: ", userEvent.email);
     });
     
-    dispatcher.dispatch(new UserRegisteredEvent("john_doe", "john@example.com"));
+    dispatcher.dispatch(new UserRegistereUIMEvent("john_doe", "john@example.com"));
     
     // 3. Priority-based Listeners
     writeln("\n3. Priority-based Listeners:");
@@ -99,7 +99,7 @@ void main() {
     
     // 7. Event Subscriber
     writeln("\n7. Event Subscriber:");
-    class EmailNotificationSubscriber : DEventSubscriber {
+    class EmailNotificationSubscriber : UIMEventSubscriber {
         override void subscribe(UIMEventDispatcher dispatcher) {
             dispatcher.on("user.registered", (IEvent event) {
                 writeln("   📧 Sending welcome email...");
@@ -119,7 +119,7 @@ void main() {
     emailSubscriber.subscribe(dispatcher);
     
     writeln("\n   Triggering events with email subscriber:");
-    dispatcher.dispatch(new UserRegisteredEvent("jane_doe", "jane@example.com"));
+    dispatcher.dispatch(new UserRegistereUIMEvent("jane_doe", "jane@example.com"));
     dispatcher.dispatch(Event("user.login"));
     dispatcher.dispatch(Event("order.placed"));
     

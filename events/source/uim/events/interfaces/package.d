@@ -6,6 +6,8 @@
 module uim.events.interfaces;
 
 public {
+  import uim.events.interfaces.dispatcher;
   import uim.events.interfaces.event;
+  import uim.events.interfaces.listener;
   import uim.events.interfaces.subscriber;
 }

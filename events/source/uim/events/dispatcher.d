@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Event dispatcher that manages event listeners and dispatches events
  */
-class UIMEventDispatcher : UIMObject {
+class UIMEventDispatcher : UIMObject, IEventDispatcher {
 
   this() {
     super();
@@ -25,7 +25,7 @@ class UIMEventDispatcher : UIMObject {
   /**
      * Add an event listener for a specific event name
      */
-  UIMEventDispatcher addListener(string eventName, UIMEventListener listener) {
+  IEventDispatcher addListener(string eventName, UIMEventListener listener) {
     if (eventName !in _listeners) {
       _listeners[eventName] = [];
     }
@@ -42,7 +42,7 @@ class UIMEventDispatcher : UIMObject {
     /**
      * Remove all listeners for a specific event
      */
-  UIMEventDispatcher removeListeners(string eventName) {
+  IEventDispatcher removeListeners(string eventName) {
     _listeners.remove(eventName);
     return this;
   }
@@ -51,14 +51,14 @@ class UIMEventDispatcher : UIMObject {
   /**
      * Add a callback as event listener
      */
-  UIMEventDispatcher on(string eventName, EventCallback callback, int priority = 0) {
+  IEventDispatcher on(string eventName, EventCallback callback, int priority = 0) {
     return addListener(eventName, createEventListener(callback, priority));
   }
 
   /**
      * Add a one-time callback as event listener
      */
-  UIMEventDispatcher once(string eventName, EventCallback callback, int priority = 0) {
+  IEventDispatcher once(string eventName, EventCallback callback, int priority = 0) {
     return addListener(eventName, createEventListenerOnce(callback, priority));
   }
 
@@ -67,7 +67,7 @@ class UIMEventDispatcher : UIMObject {
   /**
      * Remove a specific listener
 */ 
-  UIMEventDispatcher removeListener(string eventName, UIMEventListener listener) {
+  IEventDispatcher removeListener(string eventName, UIMEventListener listener) {
     if (eventName in _listeners) {
       import std.algorithm : remove;
       import std.range : enumerate;

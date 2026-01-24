@@ -44,7 +44,7 @@ interface IEventSubscriber {
 ```plantuml
 @startuml Events_Core_Classes
 
-class DEvent {
+class UIMEvent {
   - _name: string
   - _timestamp: SysTime
   - _stopped: bool
@@ -102,13 +102,13 @@ class UIMEventDispatcher {
   + clearListeners(): void
 }
 
-abstract class DEventSubscriber {
+abstract class UIMEventSubscriber {
   + this()
   + {abstract} subscribe(dispatcher: UIMEventDispatcher): void
 }
 
-DEvent ..|> IEvent
-DEventSubscriber ..|> IEventSubscriber
+UIMEvent ..|> IEvent
+UIMEventSubscriber ..|> IEventSubscriber
 
 UIMEventDispatcher o-- UIMEventListener : manages
 UIMEventListener --> IEvent : handles
@@ -141,7 +141,7 @@ struct Priority {
   + this(val: int)
 }
 
-abstract class DAnnotatedEventHandler {
+abstract class DAnnotateUIMEventHandler {
   + this()
   + {abstract} registerWith(dispatcher: UIMEventDispatcher): void
 }
@@ -165,7 +165,7 @@ note left of EventListenerOnce
   Marks a method as a one-time listener
 end note
 
-DAnnotatedEventHandler <.. RegisterAnnotated : uses
+DAnnotateUIMEventHandler <.. RegisterAnnotated : uses
 
 @enduml
 ```
@@ -187,7 +187,7 @@ activate Dispatcher
 Dispatcher -> Dispatcher: Sort listeners by priority
 deactivate Dispatcher
 
-Client -> Event: new DEvent("user.login")
+Client -> Event: new UIMEvent("user.login")
 activate Event
 Event -> Event: timestamp = now()
 deactivate Event
@@ -372,7 +372,7 @@ deactivate Listener
 @startuml Events_Annotated_Registration
 
 actor Developer
-participant Handler as "UserEventHandler\n:DAnnotatedEventHandler"
+participant Handler as "UserEventHandler\n:DAnnotateUIMEventHandler"
 participant Mixin as "RegisterAnnotated"
 participant Scanner as "registerAnnotatedListeners"
 participant Dispatcher as "UIMEventDispatcher"
@@ -420,10 +420,10 @@ package "uim.events.interfaces" {
 }
 
 package "uim.events" {
-  class DEvent
+  class UIMEvent
   class UIMEventListener
   class UIMEventDispatcher
-  class DEventSubscriber
+  class UIMEventSubscriber
 }
 
 package "uim.events.attributes" {
@@ -433,22 +433,22 @@ package "uim.events.attributes" {
 }
 
 package "uim.events.annotated" {
-  abstract class DAnnotatedEventHandler
+  abstract class DAnnotateUIMEventHandler
   class "<<mixin>> RegisterAnnotated" as RegisterAnnotated
   class "<<function>> registerAnnotatedListeners" as RegFunc
 }
 
 ' Implementations
-DEvent ..|> IEvent
-DEventSubscriber ..|> IEventSubscriber
+UIMEvent ..|> IEvent
+UIMEventSubscriber ..|> IEventSubscriber
 
 ' Relationships
 UIMEventDispatcher o-- "0..*" UIMEventListener : manages
 UIMEventListener --> IEvent : executes on
-DEventSubscriber --> UIMEventDispatcher : subscribes to
+UIMEventSubscriber --> UIMEventDispatcher : subscribes to
 
 ' Annotations
-DAnnotatedEventHandler --> UIMEventDispatcher : registers with
+DAnnotateUIMEventHandler --> UIMEventDispatcher : registers with
 RegisterAnnotated ..> RegFunc : uses
 RegFunc ..> EventListener : scans for
 RegFunc ..> EventListenerOnce : scans for
@@ -456,13 +456,13 @@ RegFunc --> UIMEventDispatcher : registers listeners
 
 ' Factory functions
 class EventFactory <<utility>> {
-  + {static} Event(name: string): DEvent
+  + {static} Event(name: string): UIMEvent
   + {static} createEventListener(callback, priority): UIMEventListener
   + {static} createEventListenerOnce(callback, priority): UIMEventListener
   + {static} EventDispatcher(): UIMEventDispatcher
 }
 
-EventFactory ..> DEvent : creates
+EventFactory ..> UIMEvent : creates
 EventFactory ..> UIMEventListener : creates
 EventFactory ..> UIMEventDispatcher : creates
 
@@ -474,7 +474,7 @@ EventFactory ..> UIMEventDispatcher : creates
 ```plantuml
 @startuml Events_Data_Management
 
-class DEvent {
+class UIMEvent {
   - _data: Json[string]
   
   + data(): Json[string]
@@ -484,7 +484,7 @@ class DEvent {
   + hasKey(key: string): bool
 }
 
-note right of DEvent
+note right of UIMEvent
   Event data is stored as JSON:
   
   // Set data
@@ -512,7 +512,7 @@ class UIMObject <<core>>
 interface IEvent
 interface IEventSubscriber
 
-class DEvent {
+class UIMEvent {
   - _name: string
   - _timestamp: SysTime
   - _stopped: bool
@@ -531,22 +531,22 @@ class UIMEventDispatcher {
   - _listeners: UIMEventListener[][string]
 }
 
-abstract class DEventSubscriber {
+abstract class UIMEventSubscriber {
   + {abstract} subscribe(dispatcher: UIMEventDispatcher)
 }
 
-abstract class DAnnotatedEventHandler {
+abstract class DAnnotateUIMEventHandler {
   + {abstract} registerWith(dispatcher: UIMEventDispatcher)
 }
 
-UIMObject <|-- DEvent
+UIMObject <|-- UIMEvent
 UIMObject <|-- UIMEventListener
 UIMObject <|-- UIMEventDispatcher
-UIMObject <|-- DEventSubscriber
-UIMObject <|-- DAnnotatedEventHandler
+UIMObject <|-- UIMEventSubscriber
+UIMObject <|-- DAnnotateUIMEventHandler
 
-IEvent <|.. DEvent
-IEventSubscriber <|.. DEventSubscriber
+IEvent <|.. UIMEvent
+IEventSubscriber <|.. UIMEventSubscriber
 
 @enduml
 ```
@@ -557,7 +557,7 @@ IEventSubscriber <|.. DEventSubscriber
 The core pattern implemented by the framework:
 - **Subject**: `UIMEventDispatcher`
 - **Observer**: `UIMEventListener`
-- **Event**: `DEvent`
+- **Event**: `UIMEvent`
 - Decouples event sources from event handlers
 
 ### 2. Strategy Pattern
@@ -573,7 +573,7 @@ Event listeners can be wrapped with:
 - Async execution wrapper
 
 ### 4. Template Method Pattern
-`DEventSubscriber` and `DAnnotatedEventHandler` define the skeleton:
+`UIMEventSubscriber` and `DAnnotateUIMEventHandler` define the skeleton:
 - Base class provides registration mechanism
 - Subclasses implement specific event subscriptions
 
@@ -607,7 +607,7 @@ dispatcher.once("app.init", (event) {
 ### 4. Annotation-Based Registration
 Use UDAs to declaratively register event handlers:
 ```d
-class MyHandler : DAnnotatedEventHandler {
+class MyHandler : DAnnotateUIMEventHandler {
     mixin RegisterAnnotated;
     
     @EventListener("user.login", 10)
@@ -681,7 +681,7 @@ dispatcher.on("order.placed", (event) {
 
 ### Event Subscribers
 ```d
-class OrderEventSubscriber : DEventSubscriber {
+class OrderEventSubscriber : UIMEventSubscriber {
     override void subscribe(UIMEventDispatcher dispatcher) {
         dispatcher.on("order.created", &onOrderCreated);
         dispatcher.on("order.shipped", &onOrderShipped);
@@ -699,7 +699,7 @@ subscriber.subscribe(dispatcher);
 
 ### Annotated Handlers
 ```d
-class UserEventHandler : DAnnotatedEventHandler {
+class UserEventHandler : DAnnotateUIMEventHandler {
     mixin RegisterAnnotated;
     
     @EventListener("user.registered", 10)

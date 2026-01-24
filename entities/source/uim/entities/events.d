@@ -21,7 +21,7 @@ mixin(ShowModule!());
  * Event fired before an entity is created
  */
 @UseEvent("entity.beforeCreate")
-class EntityBeforeCreateEvent : DEvent {
+class EntityBeforeCreateEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -34,7 +34,7 @@ class EntityBeforeCreateEvent : DEvent {
  * Event fired after an entity is created
  */
 @UseEvent("entity.afterCreate")
-class EntityAfterCreateEvent : DEvent {
+class EntityAfterCreateEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -47,7 +47,7 @@ class EntityAfterCreateEvent : DEvent {
  * Event fired before an entity is updated
  */
 @UseEvent("entity.beforeUpdate")
-class EntityBeforeUpdateEvent : DEvent {
+class EntityBeforeUpdateEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -60,7 +60,7 @@ class EntityBeforeUpdateEvent : DEvent {
  * Event fired after an entity is updated
  */
 @UseEvent("entity.afterUpdate")
-class EntityAfterUpdateEvent : DEvent {
+class EntityAfterUpdateEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -73,7 +73,7 @@ class EntityAfterUpdateEvent : DEvent {
  * Event fired before an entity is deleted
  */
 @UseEvent("entity.beforeDelete")
-class EntityBeforeDeleteEvent : DEvent {
+class EntityBeforeDeleteEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -86,7 +86,7 @@ class EntityBeforeDeleteEvent : DEvent {
  * Event fired after an entity is deleted
  */
 @UseEvent("entity.afterDelete")
-class EntityAfterDeleteEvent : DEvent {
+class EntityAfterDeleteEvent : UIMEvent {
     IEntity entity;
     
     this(IEntity e) {
@@ -99,7 +99,7 @@ class EntityAfterDeleteEvent : DEvent {
  * Event fired when an entity is validated
  */
 @UseEvent("entity.validated")
-class EntityValidatedEvent : DEvent {
+class EntityValidateUIMEvent : UIMEvent {
     IEntity entity;
     bool isValid;
     
@@ -114,7 +114,7 @@ class EntityValidatedEvent : DEvent {
  * Event fired when entity state changes
  */
 @UseEvent("entity.stateChanged")
-class EntityStateChangedEvent : DEvent {
+class EntityStateChangeUIMEvent : UIMEvent {
     IEntity entity;
     EntityState oldState;
     EntityState newState;

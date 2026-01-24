@@ -19,7 +19,7 @@ mixin(ShowModule!());
 /**
  * Base event subscriber class
  */
-abstract class DEventSubscriber : UIMObject, IEventSubscriber {
+abstract class UIMEventSubscriber : UIMObject, IEventSubscriber {
     this() {
         super();
     }
@@ -34,9 +34,9 @@ unittest {
     import uim.events.event : Event;
     import uim.events.dispatcher : EventDispatcher;
     
-    writeln("Testing DEventSubscriber class...");
+    writeln("Testing UIMEventSubscriber class...");
     
-    class TestSubscriber : DEventSubscriber {
+    class TestSubscriber : UIMEventSubscriber {
         int callCount = 0;
         
         override void subscribe(UIMEventDispatcher dispatcher) {

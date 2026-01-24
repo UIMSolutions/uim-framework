@@ -57,7 +57,7 @@ class DEntityManager : UIMObject {
         bool validationPassed = true;
         if (_validator !is null) {
             validationPassed = _validator.validate(entity);
-            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, validationPassed));
+            _eventDispatcher.dispatch(new EntityValidateUIMEvent(entity, validationPassed));
             
             if (!validationPassed) {
                 return entity; // Return without saving
@@ -84,7 +84,7 @@ class DEntityManager : UIMObject {
         bool validationPassed = true;
         if (_validator !is null) {
             validationPassed = _validator.validate(entity);
-            _eventDispatcher.dispatch(new EntityValidatedEvent(entity, validationPassed));
+            _eventDispatcher.dispatch(new EntityValidateUIMEvent(entity, validationPassed));
             
             if (!validationPassed) {
                 return entity; // Return without saving

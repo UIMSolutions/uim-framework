@@ -12,7 +12,7 @@ import std.stdio;
  * Example of a custom event using UDA
  */
 @UseEvent("user.registered")
-class UserRegisteredEvent : DEvent {
+class UserRegistereUIMEvent : UIMEvent {
     string username;
     string email;
     
@@ -26,7 +26,7 @@ class UserRegisteredEvent : DEvent {
 /**
  * Example of an event handler using UDAs for method registration
  */
-class UserEventHandler : DAnnotatedEventHandler {
+class UserEventHandler : DAnnotateUIMEventHandler {
     mixin RegisterAnnotated;
     
     // Basic event listener
@@ -38,21 +38,21 @@ class UserEventHandler : DAnnotatedEventHandler {
     // Listener with priority (higher priority = executes first)
     @EventListener("user.registered", 10)
     void sendWelcomeEmail(IEvent event) {
-        auto userEvent = cast(UserRegisteredEvent)event;
+        auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("📧 Sending welcome email to: ", userEvent.email);
     }
     
     // Lower priority - runs after welcome email
     @EventListener("user.registered", 5)
     void createUserProfile(IEvent event) {
-        auto userEvent = cast(UserRegisteredEvent)event;
+        auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("👤 Creating profile for: ", userEvent.username);
     }
     
     // Normal priority (0) - runs last
     @EventListener("user.registered", 0)
     void logRegistration(IEvent event) {
-        auto userEvent = cast(UserRegisteredEvent)event;
+        auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("📝 Logging registration: ", userEvent.username);
     }
     
@@ -77,7 +77,7 @@ class UserEventHandler : DAnnotatedEventHandler {
 /**
  * Another handler for order events
  */
-class OrderEventHandler : DAnnotatedEventHandler {
+class OrderEventHandler : DAnnotateUIMEventHandler {
     mixin RegisterAnnotated;
     
     @EventListener("order.placed", 10)
@@ -123,7 +123,7 @@ void main() {
     
     writeln("Test user registration with priority");
     writeln("3. Dispatching user.registered event (note priority order):");
-    dispatcher.dispatch(new UserRegisteredEvent("john_doe", "john@example.com"));
+    dispatcher.dispatch(new UserRegistereUIMEvent("john_doe", "john@example.com"));
     writeln();
     
     writeln("Test order placement");

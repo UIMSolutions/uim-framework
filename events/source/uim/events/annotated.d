@@ -57,7 +57,7 @@ void registerAnnotatedListeners(T)(T obj, UIMEventDispatcher dispatcher)
  * Base class for annotated event handlers
  * Automatically registers all @EventListener annotated methods
  */
-abstract class DAnnotatedEventHandler : UIMObject {
+abstract class DAnnotateUIMEventHandler : UIMObject {
   this() {
     super();
   }
@@ -84,7 +84,7 @@ unittest {
   import uim.events.dispatcher : EventDispatcher;
   import uim.events.event : Event;
 
-  class TestHandler : DAnnotatedEventHandler {
+  class TestHandler : DAnnotateUIMEventHandler {
     mixin RegisterAnnotated;
 
     int loginCount = 0;

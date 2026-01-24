@@ -12,7 +12,7 @@ void testEventAttribute() {
   writeln("Testing @Event attribute...");
 
   @UseEvent("custom.event")
-  class CustomEvent : DEvent {
+  class CustomEvent : UIMEvent {
     this() {
       super("custom.event");
     }
@@ -27,7 +27,7 @@ void testEventAttribute() {
 void testBasicAnnotatedListener() {
   writeln("Testing basic annotated listener...");
 
-  class TestHandler : DAnnotatedEventHandler {
+  class TestHandler : DAnnotateUIMEventHandler {
     int callCount = 0;
 
     @EventListener("test.event")
@@ -52,7 +52,7 @@ void testBasicAnnotatedListener() {
 void testAnnotatedListenerOnce() {
   writeln("Testing annotated one-time listener...");
 
-  class TestHandler : DAnnotatedEventHandler {
+  class TestHandler : DAnnotateUIMEventHandler {
     int callCount = 0;
 
     @EventListenerOnce("once.event")
@@ -77,7 +77,7 @@ void testAnnotatedListenerOnce() {
 void testAnnotatedPriority() {
   writeln("Testing annotated listener priority...");
 
-  class TestHandler : DAnnotatedEventHandler {
+  class TestHandler : DAnnotateUIMEventHandler {
     string order = "";
 
     @EventListener("priority.test", 0)
@@ -109,20 +109,20 @@ void testAnnotatedPriority() {
 void testMultipleAnnotatedHandlers() {
   writeln("Testing multiple annotated handlers...");
 
-  class Handler1 : DAnnotatedEventHandler {
+  class Handler1 : DAnnotateUIMEventHandler {
     int count = 0;
 
     @EventListener("shared.event")
-    void onSharedEvent(IEvent event) {
+    void onShareUIMEvent(IEvent event) {
       count++;
     }
   }
 
-  class Handler2 : DAnnotatedEventHandler {
+  class Handler2 : DAnnotateUIMEventHandler {
     int count = 0;
 
     @EventListener("shared.event")
-    void onSharedEvent(IEvent event) {
+    void onShareUIMEvent(IEvent event) {
       count++;
     }
   }
@@ -146,7 +146,7 @@ void testAnnotatedWithCustomEvent() {
   writeln("Testing annotated listeners with custom events...");
 
   @UseEvent("user.created")
-  class UserCreatedEvent : DEvent {
+  class UserCreateUIMEvent : UIMEvent {
     string username;
 
     this(string name) {
@@ -155,12 +155,12 @@ void testAnnotatedWithCustomEvent() {
     }
   }
 
-  class UserHandler : DAnnotatedEventHandler {
+  class UserHandler : DAnnotateUIMEventHandler {
     string lastUsername;
 
     @EventListener("user.created")
     void onUserCreated(IEvent event) {
-      auto userEvent = cast(UserCreatedEvent)event;
+      auto userEvent = cast(UserCreateUIMEvent)event;
       lastUsername = userEvent.username;
     }
   }
@@ -169,7 +169,7 @@ void testAnnotatedWithCustomEvent() {
   auto handler = new UserHandler();
   handler.registerWith(dispatcher);
 
-  dispatcher.dispatch(new UserCreatedEvent("john_doe"));
+  dispatcher.dispatch(new UserCreateUIMEvent("john_doe"));
   assert(handler.lastUsername == "john_doe");
 
   writeln("✓ Annotated listeners with custom events test passed");
@@ -178,11 +178,11 @@ void testAnnotatedWithCustomEvent() {
 void testMixedAnnotatedAndManual() {
   writeln("Testing mixed annotated and manual listeners...");
 
-  class TestHandler : DAnnotatedEventHandler {
+  class TestHandler : DAnnotateUIMEventHandler {
     int annotatedCount = 0;
 
     @EventListener("mixed.event")
-    void onAnnotatedEvent(IEvent event) {
+    void onAnnotateUIMEvent(IEvent event) {
       annotatedCount++;
     }
   }
@@ -202,10 +202,10 @@ void testMixedAnnotatedAndManual() {
   writeln("✓ Mixed annotated and manual listeners test passed");
 }
 
-void testAnnotatedEventData() {
+void testAnnotateUIMEventData() {
   writeln("Testing annotated listeners with event data...");
 
-  class DataHandler : DAnnotatedEventHandler {
+  class DataHandler : DAnnotateUIMEventHandler {
     string receivedData;
 
     @EventListener("data.event")
@@ -230,7 +230,7 @@ void testAnnotatedEventData() {
 void testAnnotatedStopPropagation() {
   writeln("Testing annotated listener stop propagation...");
 
-  class PropagationHandler : DAnnotatedEventHandler {
+  class PropagationHandler : DAnnotateUIMEventHandler {
     bool firstCalled = false;
     bool secondCalled = false;
 
@@ -268,7 +268,7 @@ void main() {
   testMultipleAnnotatedHandlers();
   testAnnotatedWithCustomEvent();
   testMixedAnnotatedAndManual();
-  testAnnotatedEventData();
+  testAnnotateUIMEventData();
   testAnnotatedStopPropagation();
 
   writeln("\n=== All UDA tests passed! ===");

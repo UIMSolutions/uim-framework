@@ -19,7 +19,7 @@ alias EventCallback = void delegate(IEvent event) @safe;
 /**
  * Event listener with priority support
  */
-class UIMEventListener : UIMObject {
+class UIMEventListener : UIMObject, IEventListener {
   private int _priority;
   private bool _once;
 
@@ -29,7 +29,7 @@ class UIMEventListener : UIMObject {
   EventCallback callback() {
     return _callback;
   }
-    ///
+  ///
   unittest {
     writeln("Testing UIMEventListener callback getter/setter...");
     int callCount = 0;
@@ -41,7 +41,7 @@ class UIMEventListener : UIMObject {
     writeln("UIMEventListener callback tests passed!");
   }
   
-  UIMEventListener callback(EventCallback value) {
+  IEventListener callback(EventCallback value) {
     _callback = value;
     return this;
   }
@@ -64,7 +64,7 @@ class UIMEventListener : UIMObject {
     return _priority;
   }
   
-  UIMEventListener priority(int value) {
+  IEventListener priority(int value) {
     _priority = value;
     return this;
   }
@@ -74,7 +74,7 @@ class UIMEventListener : UIMObject {
     return _once;
   }
   
-  UIMEventListener once(bool value) {
+  IEventListener once(bool value) {
     _once = value;
     return this;
   }

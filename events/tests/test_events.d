@@ -186,7 +186,7 @@ void testRemoveListeners() {
 void testSubscriber() {
   writeln("Testing subscriber...");
 
-  class TestSubscriber : DEventSubscriber {
+  class TestSubscriber : UIMEventSubscriber {
     int count1 = 0;
     int count2 = 0;
 

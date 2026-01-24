@@ -143,7 +143,7 @@ class UIMErrorRenderer : UIMObject, IErrorRenderer {
     // there could be userland input data parsers.
     /* if (_errorOccured && controller.RequestHandler !is null) {
             try {
-                myEvent = new DEvent("Controller.startup", controller);
+                myEvent = new UIMEvent("Controller.startup", controller);
                 controller.RequestHandler.startup(myEvent);
             } catch (Throwable throwable) {
             }
@@ -497,7 +497,7 @@ class UIMErrorRenderer { // }: IErrorRenderer
     // there could be userland input data parsers.
     /* if (myErrorOccured && controller.RequestHandler !is null) {
       try {
-        myEvent = new DEvent("Controller.startup", controller);
+        myEvent = new UIMEvent("Controller.startup", controller);
         controller.RequestHandler.startup(myEvent);
       } catch (Throwable e) {
       }
