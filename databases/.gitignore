@@ -1,0 +1,16 @@
+build/
+*.o
+*.obj
+*.lib
+*.a
+*.so
+*.dylib
+*.exe
+*.dll
+.dub/
+dub.selections.json
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store

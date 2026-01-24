@@ -1,0 +1,46 @@
+name "databases"
+description "uim library to work with ENTITIES"
+homepage "https://www.sueel.de/uim/entities"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-entities"
+targetType "library"
+
+// Dependencies
+dependency "uim-framework:core" version="*"
+dependency "uim-framework:oop" version="*"
+dependency "uim-framework:events" version="*"
+
+// Configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
+
