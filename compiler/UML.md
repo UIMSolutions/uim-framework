@@ -4,10 +4,10 @@
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
-# UIM-Compilers UML Description
+# UIM-Compiler UML Description
 
 ## Overview
-The UIM-Compilers framework provides a modular compiler architecture with clear separation of concerns across the compilation pipeline. It implements the classic compiler design with lexical analysis, syntax analysis, semantic analysis, optimization, and code generation phases.
+The UIM-Compiler framework provides a modular compiler architecture with clear separation of concerns across the compilation pipeline. It implements the classic compiler design with lexical analysis, syntax analysis, semantic analysis, optimization, and code generation phases.
 
 ## Architecture Layers
 
@@ -770,5 +770,5 @@ auto compiler = CompilerFactory.createForLanguage("javascript");
 auto result = compiler.compile(jsCode);
 ```
 
-This UML description provides a comprehensive view of the uim-compilers framework architecture,
+This UML description provides a comprehensive view of the uim-compiler framework architecture,
 showing the relationships between components, data flow, and design patterns employed.

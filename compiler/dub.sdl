@@ -6,7 +6,7 @@ copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
 // target
-targetName "uim-compilers"
+targetName "uim-compiler"
 targetType "library"
 
 // uim dependencies
