@@ -1,0 +1,33 @@
+name "genetic-algorithms"
+description "Asynchronous Genetic Algorithm library for D with vibe.d support"
+homepage "https://www.sueel.de/uim/genetic-algorithms"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-genetic"
+targetType "library"
+
+// Dependencies
+dependency "vibe-d" version="*"
+
+// Configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}

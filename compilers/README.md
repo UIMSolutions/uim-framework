@@ -63,7 +63,13 @@ if (result.success) {
 ## Architecture
 - **Interfaces** (`uim.compilers.interfaces.*`): Contracts for each compiler phase
 - **Classes** (`uim.compilers.classes.*`): Base implementations and utilities
-- **Helpers** (`uim.compilers.helpers.*`): Factories, common token/AST helpers
+- **Factories & Registries**: Pluggable creation and lookup for each component:
+  - `LexerFactory` / `LexerRegistry` – Register and retrieve lexer implementations
+  - `ParserFactory` / `ParserRegistry` – Register and retrieve parser implementations
+  - `SemanticAnalyzerFactory` / `SemanticAnalyzerRegistry` – Register and retrieve analyzer implementations
+  - `OptimizerFactory` / `OptimizerRegistry` – Register and retrieve optimizer implementations
+  - `CodeGeneratorFactory` / `CodeGeneratorRegistry` – Register and retrieve code generator implementations
+  - `CompilerFactory` / `CompilerRegistry` – Register and retrieve complete compiler instances
 - **Mixins** (`uim.compilers.mixins.*`): Glue code to wire phases together
 - **Errors** (`uim.compilers.errors.*`): Diagnostics and reporting utilities
 - **Tests** (`uim.compilers.tests.*`): Test helpers for compiler components
@@ -80,6 +86,79 @@ Run an example (from repository root):
 dub run compilers:example --config=basic_compiler
 ```
 
+## Using Factories & Registries
+
+### Register Custom Components
+
+```d
+import uim.compilers;
+
+// Register a custom lexer
+auto lexerRegistry = new LexerRegistry();
+lexerRegistry.register("my-lexer", new MyCustomLexer());
+
+// Register a custom parser
+auto parserRegistry = new ParserRegistry();
+parserRegistry.register("my-parser", new MyCustomParser());
+
+// Register a complete compiler
+auto compilerRegistry = new CompilerRegistry();
+compilerRegistry.register("my-compiler", new MyCompiler());
+```
+
+### Retrieve and Use Registered Components
+
+```d
+import uim.compilers;
+
+auto lexerRegistry = new LexerRegistry();
+lexerRegistry.register("json-lexer", new JsonLexer());
+
+// Get registered lexer by name
+if (lexerRegistry.has("json-lexer")) {
+    auto lexer = lexerRegistry.get("json-lexer");
+    auto tokens = lexer.tokenize(sourceCode);
+}
+
+// Safely get with fallback
+auto lexer = lexerRegistry.get("json-lexer", new DefaultLexer());
+```
+
+### Build Compiler with Registry
+
+```d
+import uim.compilers;
+
+class CustomCompiler : Compiler {
+    this() {
+        super();
+        
+        auto lexerRegistry = new LexerRegistry();
+        auto parserRegistry = new ParserRegistry();
+        auto analyzerRegistry = new SemanticAnalyzerRegistry();
+        auto optimizerRegistry = new OptimizerRegistry();
+        auto codegenRegistry = new CodeGeneratorRegistry();
+        
+        // Register implementations
+        lexerRegistry.register("default", new Lexer());
+        parserRegistry.register("default", new Parser());
+        analyzerRegistry.register("default", new SemanticAnalyzer());
+        optimizerRegistry.register("default", new Optimizer());
+        codegenRegistry.register("default", new CodeGenerator());
+        
+        // Wire them together
+        lexer(lexerRegistry.get("default"));
+        parser(parserRegistry.get("default"));
+        analyzer(analyzerRegistry.get("default"));
+        optimizer(optimizerRegistry.get("default"));
+        codeGenerator(codegenRegistry.get("default"));
+    }
+}
+
+auto compiler = new CustomCompiler();
+auto result = compiler.compile(sourceCode);
+```
+
 ## Testing
 Run the suite for this package:
 
@@ -91,3 +170,6 @@ dub test
 ## Notes
 - The compiled artifact is exposed as target `uim-compiler` while the package name remains `compilers`.
 - Components are @safe-ready where possible; prefer pure/nothrow on phase logic for predictability.
+- **Factories** allow lazy or conditional creation of components with custom logic.
+- **Registries** enable runtime lookup of implementations by string key, useful for plugin systems and configuration-driven composition.
+- Both factory and registry classes extend `UIMFactory` and `UIMRegistry` from the `uim.oop` package for consistency across the framework.

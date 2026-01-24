@@ -499,35 +499,101 @@ ASTNode --> IASTVisitor : accept()
 @enduml
 ```
 
-### 6. Factory Pattern for Component Creation
+### 6. Factory and Registry Pattern for Component Creation and Lookup
 
 ```plantuml
-@startuml Compiler_Factories
+@startuml Compiler_Factories_Registries
 
 class LexerFactory {
-  + {static} createDefault(): ILexer
-  + {static} createForLanguage(lang: string): ILexer
-  + {static} createCustom(config: LexerConfig): ILexer
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): ILexer
+}
+
+class LexerRegistry {
+  - _items: ILexer[string]
+  + register(key: string, lexer: ILexer): void
+  + get(key: string): ILexer
+  + has(key: string): bool
+  + unregister(key: string): void
 }
 
 class ParserFactory {
-  + {static} createDefault(): ICompilerParser
-  + {static} createForLanguage(lang: string): ICompilerParser
-  + {static} createRecursiveDescent(): ICompilerParser
-  + {static} createLR(): ICompilerParser
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): ICompilerParser
+}
+
+class ParserRegistry {
+  - _items: ICompilerParser[string]
+  + register(key: string, parser: ICompilerParser): void
+  + get(key: string): ICompilerParser
+  + has(key: string): bool
+  + unregister(key: string): void
+}
+
+class SemanticAnalyzerFactory {
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): ISemanticAnalyzer
+}
+
+class SemanticAnalyzerRegistry {
+  - _items: ISemanticAnalyzer[string]
+  + register(key: string, analyzer: ISemanticAnalyzer): void
+  + get(key: string): ISemanticAnalyzer
+  + has(key: string): bool
+  + unregister(key: string): void
+}
+
+class OptimizerFactory {
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): IOptimizer
+}
+
+class OptimizerRegistry {
+  - _items: IOptimizer[string]
+  + register(key: string, optimizer: IOptimizer): void
+  + get(key: string): IOptimizer
+  + has(key: string): bool
+  + unregister(key: string): void
+}
+
+class CodeGeneratorFactory {
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): ICodeGenerator
+}
+
+class CodeGeneratorRegistry {
+  - _items: ICodeGenerator[string]
+  + register(key: string, codegen: ICodeGenerator): void
+  + get(key: string): ICodeGenerator
+  + has(key: string): bool
+  + unregister(key: string): void
 }
 
 class CompilerFactory {
-  + {static} createDefault(): ICompiler
-  + {static} createForLanguage(lang: string): ICompiler
-  + {static} createCustom(config: CompilerConfig): ICompiler
+  + register(key: string, creator: function): void
+  + create(key: string, ...args): ICompiler
 }
 
-CompilerFactory ..> Compiler : creates
-CompilerFactory ..> LexerFactory : uses
-CompilerFactory ..> ParserFactory : uses
-LexerFactory ..> Lexer : creates
-ParserFactory ..> Parser : creates
+class CompilerRegistry {
+  - _items: ICompiler[string]
+  + register(key: string, compiler: ICompiler): void
+  + get(key: string): ICompiler
+  + has(key: string): bool
+  + unregister(key: string): void
+}
+
+LexerFactory ..> ILexer : creates
+LexerRegistry o-- ILexer : stores
+ParserFactory ..> ICompilerParser : creates
+ParserRegistry o-- ICompilerParser : stores
+SemanticAnalyzerFactory ..> ISemanticAnalyzer : creates
+SemanticAnalyzerRegistry o-- ISemanticAnalyzer : stores
+OptimizerFactory ..> IOptimizer : creates
+OptimizerRegistry o-- IOptimizer : stores
+CodeGeneratorFactory ..> ICodeGenerator : creates
+CodeGeneratorRegistry o-- ICodeGenerator : stores
+CompilerFactory ..> ICompiler : creates
+CompilerRegistry o-- ICompiler : stores
 
 @enduml
 ```
@@ -606,30 +672,40 @@ package "uim.compilers.interfaces" {
 package "uim.compilers.classes" {
   package "compilers" {
     class Compiler
+    class CompilerFactory
+    class CompilerRegistry
   }
   
   package "lexers" {
     class Lexer
     class LexerFactory
+    class LexerRegistry
   }
   
   package "parsers" {
     class Parser
     class ParserFactory
+    class ParserRegistry
   }
   
   package "analyzers" {
     class SemanticAnalyzer
+    class SemanticAnalyzerFactory
+    class SemanticAnalyzerRegistry
     class SemanticAnalysisVisitor
   }
   
   package "optimizers" {
     class Optimizer
+    class OptimizerFactory
+    class OptimizerRegistry
     class OptimizationVisitor
   }
   
   package "generators" {
     class CodeGenerator
+    class CodeGeneratorFactory
+    class CodeGeneratorRegistry
     class CodeGenVisitor
   }
 }
@@ -736,20 +812,23 @@ Parser --> DiagnosticManager
 ## Design Patterns Used
 
 1. **Strategy Pattern**: Different algorithms for optimization passes
-2. **Visitor Pattern**: AST traversal and transformation
-3. **Factory Pattern**: Component creation and configuration
-4. **Chain of Responsibility**: Error recovery and diagnostic reporting
-5. **Composite Pattern**: AST node structure
-6. **Template Method**: Base compilation pipeline with customizable steps
+2. **Factory Pattern**: Component creation and configuration via dedicated factory classes
+3. **Registry Pattern**: Runtime lookup and retrieval of registered component instances
+4. **Visitor Pattern**: AST traversal and transformation
+5. **Chain of Responsibility**: Error recovery and diagnostic reporting
+6. **Composite Pattern**: AST node structure
+7. **Template Method**: Base compilation pipeline with customizable steps
 
 ## Key Features
 
 - **Modular Architecture**: Each compiler phase is independently replaceable
+- **Pluggable Components**: Factory and registry patterns enable dynamic composition
 - **Extensible**: New optimizations, code generators, and language features can be added
 - **Error Recovery**: Robust error handling with detailed diagnostics
 - **Multi-target**: Support for multiple output formats
 - **Performance Tracking**: Built-in profiling and statistics
 - **Type Safety**: Strong typing throughout the compilation pipeline
+- **Runtime Configuration**: Use registries to select implementations at runtime
 
 ## Usage Examples
 
@@ -758,15 +837,35 @@ Parser --> DiagnosticManager
 auto compiler = new Compiler();
 auto result = compiler.compile(sourceCode);
 
-// Custom configuration
+// Using registries for runtime configuration
+auto lexerRegistry = new LexerRegistry();
+lexerRegistry.register("json", new JsonLexer());
+lexerRegistry.register("xml", new XmlLexer());
+
+auto parserRegistry = new ParserRegistry();
+parserRegistry.register("json", new JsonParser());
+parserRegistry.register("xml", new XmlParser());
+
+// Select implementation at runtime
+auto format = "json"; // Could come from config
+auto compiler = new Compiler();
+compiler.lexer(lexerRegistry.get(format));
+compiler.parser(parserRegistry.get(format));
+auto result = compiler.compile(sourceCode);
+
+// Custom configuration with factory
 auto compiler = new Compiler();
 compiler.lexer(new CustomLexer());
 compiler.optimizer(new AggressiveOptimizer());
 auto result = compiler.compile(sourceCode, 
   CompilerOptions(optimizationLevel: 3, target: "llvm-ir"));
 
-// Factory-based creation
-auto compiler = CompilerFactory.createForLanguage("javascript");
+// Use compiler registry for complete instances
+auto compilerRegistry = new CompilerRegistry();
+compilerRegistry.register("javascript", new JavaScriptCompiler());
+compilerRegistry.register("typescript", new TypeScriptCompiler());
+
+auto compiler = compilerRegistry.get("javascript");
 auto result = compiler.compile(jsCode);
 ```
 
