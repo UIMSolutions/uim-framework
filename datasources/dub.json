@@ -1,0 +1,18 @@
+name "datasources"
+description "Data sources library for uim using dlang and vibe.d"
+homepage "https://www.sueel.de/uim/datasources"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-datasources"
+targetType "library"
+
+// uim dependencies
+dependency "uim-framework:core" version="*"
+dependency "uim-framework:oop" version="*"
+dependency "uim-framework:entities" version="*"
+
+// External dependencies
+dependency "vibe-d" version="~>0.9.6"
