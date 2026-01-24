@@ -20,7 +20,14 @@ class Dataset : IDataset {
 
     size_t length() const @safe { return _samples.length; }
 
-    double[] values() const @safe { return _samples.map!(s => s.value).array; }
+    double[] values() const @safe {
+        double[] vals;
+        vals.reserve(_samples.length);
+        foreach (s; _samples) {
+            vals ~= s.value;
+        }
+        return vals;
+    }
 
     Sample[] samples() const @safe { return _samples.dup; }
 }

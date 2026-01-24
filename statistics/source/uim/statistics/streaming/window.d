@@ -32,7 +32,7 @@ class TimeWindowAggregator {
     }
 
     private void _prune(SysTime now) @safe {
-        if (_window == 0.seconds) return;
+        if (_window == Duration.zero) return;
         auto cutoff = now - _window;
         // Keep only samples newer than cutoff
         Sample[] filtered;

@@ -6,6 +6,7 @@
 module uim.statistics.interfaces.histogram;
 
 import uim.statistics.interfaces.dataset : Sample;
+import uim.statistics.interfaces.aggregator : IAggregator;
 
 struct BinCount {
     double lower;

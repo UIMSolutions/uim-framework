@@ -6,6 +6,7 @@
 module uim.statistics.interfaces.quantile;
 
 import uim.statistics.interfaces.dataset : Sample;
+import uim.statistics.interfaces.aggregator : IAggregator;
 
 interface IQuantileEstimator : IAggregator {
     /// Configure the target quantile in range (0,1], e.g., 0.5 for median.

@@ -1,4 +1,4 @@
-module uim.databases.classes.database;
+module uim.databases.classes.databases.database;
 
 import uim.oop.datatypes.objects.obj : UIMObject;
 import uim.databases.base.database : InMemoryDatabase;

@@ -5,16 +5,15 @@
 *****************************************************************************************************************/
 module uim.statistics.core.series;
 
-import std.datetime : SysTime, Duration;
-import std.container : Array;
+import std.datetime : SysTime, Duration, dur;
 import uim.statistics.interfaces.dataset : Sample;
 
 /// Simple time series buffer with optional retention window.
 class TimeSeries {
     private Sample[] _samples;
-    private Duration _retention = 0.seconds;
+    private Duration _retention = Duration.zero;
 
-    this(Duration retention = 0.seconds) @safe {
+    this(Duration retention = Duration.zero) @safe {
         _retention = retention;
     }
 
@@ -29,7 +28,7 @@ class TimeSeries {
     }
 
     private void _prune(SysTime now) @safe {
-        if (_retention == 0.seconds) return;
+        if (_retention == Duration.zero) return;
         auto cutoff = now - _retention;
         size_t idx = 0;
         foreach (i, s; _samples) {

@@ -7,7 +7,7 @@ module uim.statistics.streaming.stats;
 
 import uim.statistics.interfaces.aggregator;
 import uim.statistics.interfaces.dataset : Sample;
-import std.math : sqrt;
+import std.math : sqrt, isNaN;
 
 /// Welford streaming statistics (mean/variance/stddev/min/max/count).
 class StreamingStats : IStreamingStats {
@@ -26,8 +26,8 @@ class StreamingStats : IStreamingStats {
         double delta2 = s.value - _mean;
         _m2 += delta * delta2;
 
-        if (_min.isNaN || s.value < _min) _min = s.value;
-        if (_max.isNaN || s.value > _max) _max = s.value;
+        if (isNaN(_min) || s.value < _min) _min = s.value;
+        if (isNaN(_max) || s.value > _max) _max = s.value;
     }
 
     void reset() @safe {
