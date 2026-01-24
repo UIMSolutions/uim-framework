@@ -114,7 +114,7 @@ class EntityValidateUIMEvent : UIMEvent {
  * Event fired when entity state changes
  */
 @UseEvent("entity.stateChanged")
-class EntityStateChangeUIMEvent : UIMEvent {
+class EntityStateChangeEvent : UIMEvent {
     IEntity entity;
     EntityState oldState;
     EntityState newState;

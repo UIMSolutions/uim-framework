@@ -180,13 +180,13 @@ A comprehensive entity management library for D language, providing OOP patterns
                        IEntity
 
 ┌─────────────────────────────────────────────────────────────┐
-│                   DEntityManager                            │
+│                   UIMEntityManager                            │
 ├─────────────────────────────────────────────────────────────┤
 │ # _repository: DEntityRepository                            │
 │ # _validator: DEntityValidator                              │
 │ # _eventDispatcher: UIMEventDispatcher                        │
 ├─────────────────────────────────────────────────────────────┤
-│ + validator(val): DEntityManager                            │
+│ + validator(val): UIMEntityManager                            │
 │ + eventDispatcher(): UIMEventDispatcher                       │
 │ + create(entity): IEntity                                   │
 │ + update(entity): IEntity                                   │
@@ -214,7 +214,7 @@ A comprehensive entity management library for D language, providing OOP patterns
 │ EntityBeforeDeleteEvent                                     │
 │ EntityAfterDeleteEvent                                      │
 │ EntityValidateUIMEvent                                        │
-│ EntityStateChangeUIMEvent                                     │
+│ EntityStateChangeEvent                                     │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -331,7 +331,7 @@ Manager     Validator    Entity       Rules
 ┌───────────────────────────────────────────┐
 │         Application Layer                 │
 │  ┌─────────────────────────────────────┐ │
-│  │      DEntityManager                 │ │
+│  │      UIMEntityManager                 │ │
 │  └────────────┬────────────────────────┘ │
 └───────────────┼───────────────────────────┘
                 │
@@ -383,7 +383,7 @@ Manager     Validator    Entity       Rules
 │  │ - entity.d (DEntity)                       │         │
 │  │ - collection.d (DEntityCollection)         │         │
 │  │ - validator.d (DEntityValidator)           │         │
-│  │ - manager.d (DEntityManager)               │         │
+│  │ - manager.d (UIMEntityManager)               │         │
 │  └────────────────────────────────────────────┘         │
 │           │                                              │
 │           │ uses                                         │
@@ -398,7 +398,7 @@ Manager     Validator    Entity       Rules
 │  │ - EntityBeforeDeleteEvent                  │         │
 │  │ - EntityAfterDeleteEvent                   │         │
 │  │ - EntityValidateUIMEvent                     │         │
-│  │ - EntityStateChangeUIMEvent                  │         │
+│  │ - EntityStateChangeEvent                  │         │
 │  └────────────────────────────────────────────┘         │
 │                                                            │
 │  External Dependencies:                                   │

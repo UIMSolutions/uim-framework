@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Entity manager that coordinates entity lifecycle with events
  */
-class DEntityManager : UIMObject {
+class UIMEntityManager : UIMObject {
     protected DEntityRepository _repository;
     protected DEntityValidator _validator;
     protected UIMEventDispatcher _eventDispatcher;
@@ -34,7 +34,7 @@ class DEntityManager : UIMObject {
     /**
      * Set validator for entities
      */
-    DEntityManager validator(DEntityValidator val) {
+    UIMEntityManager validator(DEntityValidator val) {
         _validator = val;
         return this;
     }
@@ -154,15 +154,15 @@ import std.uuid : UUID;
 
 // Factory function
 auto EntityManager() {
-    return new DEntityManager();
+    return new UIMEntityManager();
 }
 
 auto EntityManager(DEntityRepository repository) {
-    return new DEntityManager(repository);
+    return new UIMEntityManager(repository);
 }
 
 unittest {
-    writeln("Testing DEntityManager class...");
+    writeln("Testing UIMEntityManager class...");
     
     auto manager = EntityManager();
     
@@ -203,5 +203,5 @@ unittest {
     assert(beforeUpdateCalled);
     assert(afterUpdateCalled);
     
-    writeln("DEntityManager tests passed!");
+    writeln("UIMEntityManager tests passed!");
 }
