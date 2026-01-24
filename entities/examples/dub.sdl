@@ -4,8 +4,8 @@ authors "Ozan Nurettin Süel"
 copyright "Copyright © 2026, ONS"
 license "Apache-2.0"
 
-dependency "uim-framework:entities" path=".."
-dependency "uim-framework:events" path="../.."
+dependency "entities" path=".."
 
 targetType "executable"
 targetName "entities-example"
+mainSourceFile "example_uda.d"

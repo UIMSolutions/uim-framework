@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.css;
 
-public import uim.css.types;
-public import uim.css.parser;
-public import uim.css.builder;
+public {
+    import uim.css.types;
+    import uim.css.parser;
+    import uim.css.builder;
+}

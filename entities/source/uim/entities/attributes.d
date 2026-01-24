@@ -38,7 +38,7 @@ struct Required {
 /**
  * UDA to mark a field as unique
  */
-struct Unique {
+struct UniqueField {
 }
 
 /**
@@ -135,10 +135,10 @@ template isRequired(alias field) {
 }
 
 /**
- * Helper to check if a field has Unique UDA
+ * Helper to check if a field has UniqueField UDA
  */
 template isUnique(alias field) {
-    enum isUnique = hasUDA!(field, Unique);
+    enum isUnique = hasUDA!(field, UniqueField);
 }
 
 /**
