@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.css.types;
 
-import std.css;
+import std.algorithm : any, filter, map;
+import std.array : array, join;
+import std.string : split, strip, startsWith;
 
 @safe:
 

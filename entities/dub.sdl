@@ -9,9 +9,38 @@ license "Apache-2.0"
 targetName "uim-entities"
 targetType "library"
 
-// uim dependencies
+// Dependencies
 dependency "uim-framework:core" version="*"
 dependency "uim-framework:oop" version="*"
 dependency "uim-framework:events" version="*"
 
+// Configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
 

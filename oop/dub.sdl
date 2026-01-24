@@ -9,9 +9,10 @@ license "Apache-2.0"
 targetName "uim-oop"
 targetType "library"
 
-// uim dependencies
+// Dependencies
 dependency "uim-framework:core" version="*"
 
+// Configurations
 configuration "default" {
 	targetType "library"
 }
