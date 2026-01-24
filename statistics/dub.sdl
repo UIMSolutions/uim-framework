@@ -1,0 +1,21 @@
+name "uim-statistics"
+description "Streaming statistics library for D with vibe.d"
+authors "UIM Team"
+license "Apache-2.0"
+version "0.1.0"
+targetName "uim-statistics"
+targetType "library"
+
+configuration "default" {
+    dependency "vibe-d" version="~>0.10.3"
+}
+
+configuration "modules" {
+    versions "show_module"
+}
+
+configuration "tests" {
+    targetType "executable"
+    mainSourceFile "tests/statistics_test.d"
+    versions "show_module" "show_test"
+}
