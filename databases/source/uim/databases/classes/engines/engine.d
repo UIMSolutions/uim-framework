@@ -4,7 +4,7 @@ import uim.databases;
 
 @safe:
 
-class DatabaseEngine : UIMObject {
+class DatabaseEngine : UIMObject, IDatabaseEngine {
     // Implementation of Engine class
 
     abstract Table createTable(string name, string[] columns) @safe;

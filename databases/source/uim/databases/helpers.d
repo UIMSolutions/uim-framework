@@ -11,45 +11,45 @@ import std.exception : enforce;
 
 /// Fluent query builder for constructing database queries
 class QueryBuilder {
-    private string _tableName;
-    private bool delegate(const Row) @safe _filter;
-    private string _orderBy = "";
-    private bool _ascending = true;
-    private ulong _limitValue = 0;
-    private ulong _offsetValue = 0;
+    protected string _tableName;
+    protected bool delegate(const TableRow) _filter;
+    protected string _orderBy = "";
+    protected bool _ascending = true;
+    protected ulong _limitValue = 0;
+    protected ulong _offsetValue = 0;
 
-    this(string tableName) @safe {
+    this(string tableName) {
         enforce(tableName.length > 0, "Table name cannot be empty");
         _tableName = tableName;
     }
 
     /// Add WHERE clause filter
-    QueryBuilder where(bool delegate(const Row) @safe filter) @safe {
+    QueryBuilder where(bool delegate(const TableRow) filter) {
         _filter = filter;
         return this;
     }
 
     /// Set ORDER BY column and direction
-    QueryBuilder orderBy(string column, bool ascending = true) @safe {
+    QueryBuilder orderBy(string column, bool ascending = true) {
         _orderBy = column;
         _ascending = ascending;
         return this;
     }
 
     /// Set LIMIT for result count
-    QueryBuilder limit(ulong count) @safe {
+    QueryBuilder limit(ulong count) {
         _limitValue = count;
         return this;
     }
 
     /// Set OFFSET for pagination
-    QueryBuilder offset(ulong count) @safe {
+    QueryBuilder offset(ulong count) {
         _offsetValue = count;
         return this;
     }
     
     /// Reset query parameters for reuse
-    QueryBuilder reset() @safe {
+    QueryBuilder reset() {
         _filter = null;
         _orderBy = "";
         _ascending = true;
@@ -58,27 +58,27 @@ class QueryBuilder {
         return this;
     }
 
-    string getTableName() const @safe {
+    string getTableName() const {
         return _tableName;
     }
 
-    bool delegate(const Row) @safe getFilter() const @safe {
+    bool delegate(const TableRow) getFilter() const {
         return _filter;
     }
 
-    string getOrderBy() const @safe {
+    string getOrderBy() const {
         return _orderBy;
     }
 
-    bool isAscending() const @safe {
+    bool isAscending() const {
         return _ascending;
     }
 
-    ulong getLimit() const @safe {
+    ulong getLimit() const {
         return _limitValue;
     }
 
-    ulong getOffset() const @safe {
+    ulong getOffset() const {
         return _offsetValue;
     }
 }
@@ -88,18 +88,18 @@ class BatchInsertBuilder {
     private TableRow[] _rows;
     private ulong _batchSize = 1000;
 
-    this() @safe {
+    this() {
         _rows.reserve(_batchSize); // Pre-allocate for efficiency
     }
 
     /// Add a single row to the batch
-    BatchInsertBuilder add(TableRow row) @safe {
+    BatchInsertBuilder add(TableRow row) {
         _rows ~= row;
         return this;
     }
 
     /// Add multiple rows at once
-    BatchInsertBuilder addMultiple(TableRow[] rows) @safe {
+    BatchInsertBuilder addMultiple(TableRow[] rows) {
         if (rows.length > 0) {
             _rows.reserve(_rows.length + rows.length);
             _rows ~= rows;
@@ -108,23 +108,23 @@ class BatchInsertBuilder {
     }
 
     /// Set preferred batch size for operations
-    BatchInsertBuilder batchSize(ulong size) @safe {
+    BatchInsertBuilder batchSize(ulong size) {
         _batchSize = size;
         return this;
     }
 
     /// Get all accumulated rows
-    TableRow[] getRows() @safe {
+    TableRow[] getRows() {
         return _rows.dup;
     }
     
     /// Get number of rows currently in batch
-    ulong rowCount() const @safe {
+    ulong rowCount() const {
         return _rows.length;
     }
 
     /// Get configured batch size
-    ulong getBatchSize() const @safe {
+    ulong getBatchSize() const {
         return _batchSize;
     }
 
@@ -135,12 +135,12 @@ class BatchInsertBuilder {
     }
     
     /// Check if batch is empty
-    bool isEmpty() const @safe {
+    bool isEmpty() const {
         return _rows.length == 0;
     }
     
     /// Check if batch has reached configured batch size
-    bool isFull() const @safe {
+    bool isFull() const {
         return _rows.length >= _batchSize;
     }
 }

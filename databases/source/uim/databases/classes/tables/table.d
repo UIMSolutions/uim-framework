@@ -10,7 +10,7 @@ import std.container.rbtree : RedBlackTree;
 /// High-level table façade providing fluent helpers on top of BaseTable.
 class Table : UIMObject {
     private string _name;
-    private TableColumns[] _columns;
+    private TableColumn[] _columns;
     private TableRow[] _rows;
     private bool[string] _indexes;
     private RedBlackTree!string[string] _indexedValues; // column -> indexed values
@@ -27,7 +27,7 @@ class Table : UIMObject {
     @property ulong rowCount() const @safe { return _rows.length; }
 
     /// Insert a single row.
-    void insert(Row row) @safe {
+    void insert(TableRow row) @safe {
         _rows ~= row;
         _updateIndexes(row, _rows.length - 1);
     }
