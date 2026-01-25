@@ -8,8 +8,6 @@ module uim.databases.interfaces.database;
 import uim.databases;
 @safe:
 
-alias Row = Variant[string];
-
 interface IDatabase {
   /// Create a new table with specified name and columns
   /// Returns: reference to created table

@@ -1,12 +1,16 @@
 module uim.databases.classes.engines.memory;
 
 import uim.databases;
+import std.exception : enforce;
 @safe:
 
 class MemoryEngine : DatabaseEngine {
     private Table[string] _tables;
 
     override Table createTable(string name, string[] columns) @safe {
+        enforce(name.length > 0, "Table name cannot be empty");
+        enforce(!(name in _tables), "Table already exists: " ~ name);
+        
         auto table = new Table(name, columns);
         _tables[name] = table;
         return table;
@@ -30,13 +34,16 @@ class MemoryEngine : DatabaseEngine {
 
     override ulong rowCount() const @safe {
         ulong total = 0;
-        foreach (table; _tables) {
+        foreach (table; _tables.byValue()) {
             total += table.rowCount();
         }
         return total;
     }
 
     override void clear() @safe {
+        foreach (table; _tables.byValue()) {
+            table.clear();
+        }
         _tables.clear();
     }
 

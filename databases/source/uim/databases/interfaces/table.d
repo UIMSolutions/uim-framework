@@ -7,9 +7,6 @@ module uim.databases.interfaces.table;
 
 import uim.databases;
 @safe:
-
-alias Row = Variant[string];
-
 interface ITable {
   /// Get table name
   @property string name() const @safe;
