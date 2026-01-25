@@ -85,7 +85,7 @@ class QueryBuilder {
 
 /// Batch insert builder for efficient multi-row insertions
 class BatchInsertBuilder {
-    private Row[] _rows;
+    private TableRow[] _rows;
     private ulong _batchSize = 1000;
 
     this() @safe {
@@ -93,13 +93,13 @@ class BatchInsertBuilder {
     }
 
     /// Add a single row to the batch
-    BatchInsertBuilder add(Row row) @safe {
+    BatchInsertBuilder add(TableRow row) @safe {
         _rows ~= row;
         return this;
     }
 
     /// Add multiple rows at once
-    BatchInsertBuilder addMultiple(Row[] rows) @safe {
+    BatchInsertBuilder addMultiple(TableRow[] rows) @safe {
         if (rows.length > 0) {
             _rows.reserve(_rows.length + rows.length);
             _rows ~= rows;
@@ -114,7 +114,7 @@ class BatchInsertBuilder {
     }
 
     /// Get all accumulated rows
-    Row[] getRows() @safe {
+    TableRow[] getRows() @safe {
         return _rows.dup;
     }
     

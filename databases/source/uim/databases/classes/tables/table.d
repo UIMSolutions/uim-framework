@@ -10,8 +10,8 @@ import std.container.rbtree : RedBlackTree;
 /// High-level table façade providing fluent helpers on top of BaseTable.
 class Table : UIMObject {
     private string _name;
-    private string[] _columns;
-    private Row[] _rows;
+    private TableColumns[] _columns;
+    private TableRow[] _rows;
     private bool[string] _indexes;
     private RedBlackTree!string[string] _indexedValues; // column -> indexed values
 
@@ -33,7 +33,7 @@ class Table : UIMObject {
     }
 
     /// Insert multiple rows efficiently
-    void insertBatch(Row[] rows) @safe {
+    void insertBatch(TableRow[] rows) @safe {
         if (rows.length == 0) return;
         
         // Reserve capacity to avoid multiple reallocations
@@ -48,14 +48,14 @@ class Table : UIMObject {
     }
 
     /// Select rows with advanced filtering, sorting, and pagination
-    Row[] select(
-        scope bool delegate(const Row) @safe filter = null,
+    TableRow[] select(
+        scope bool delegate(const TableRow) @safe filter = null,
         string orderBy = "",
         bool ascending = true,
         ulong limit = 0,
         ulong offset = 0
     ) @safe {
-        Row[] result;
+        TableRow[] result;
         
         // Optimization: If limit without sort, we can stop early
         if (filter is null && orderBy == "" && limit > 0 && offset == 0) {
@@ -99,7 +99,7 @@ class Table : UIMObject {
     }
 
     /// Count rows matching optional filter
-    ulong count(scope bool delegate(const Row) @safe filter = null) const @safe {
+    ulong count(scope bool delegate(const TableRow) @safe filter = null) const @safe {
         if (filter is null) return _rows.length;
         
         // Optimization: Manual count avoids array allocation
@@ -112,8 +112,8 @@ class Table : UIMObject {
 
     /// Update rows matching filter with transformation function
     ulong update(
-        scope bool delegate(const Row) @safe filter,
-        scope Row delegate(const Row) @safe updateFn
+        scope bool delegate(const TableRow) @safe filter,
+        scope TableRow delegate(const TableRow) @safe updateFn
     ) @safe {
         ulong updated = 0;
         size_t[] updatedIndices;
@@ -136,7 +136,7 @@ class Table : UIMObject {
     }
 
     /// Delete rows matching filter and return count
-    ulong delete_(scope bool delegate(const Row) @safe filter) @safe {
+    ulong delete_(scope bool delegate(const TableRow) @safe filter) @safe {
         size_t originalLength = _rows.length;
         _rows = _rows.filter!(r => !filter(r)).array;
         ulong deleted = originalLength - _rows.length;
@@ -169,7 +169,7 @@ class Table : UIMObject {
     }
 
     /// Update indexes for a single row
-    private void _updateIndexes(const Row row, ulong index) @safe {
+    private void _updateIndexes(const TableRow row, ulong index) @safe {
         foreach (col, _; _indexes) {
             if (auto valPtr = col in row) {
                 // Track indexed values for potential B-tree implementation

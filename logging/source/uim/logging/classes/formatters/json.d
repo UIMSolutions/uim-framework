@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.logging.classes.formatters.json;
 
-import uim.logging;
+import uim.logging.interfaces;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel, toString;
 import std.datetime;
-import std.format;
 import std.json;
 import std.conv;
 
@@ -18,7 +18,7 @@ class DJsonFormatter : ILogFormatter {
     this() {}
     
     string format(
-        LogLevel level,
+        UIMLogLevel level,
         string loggerName,
         string message,
         string[string] context,

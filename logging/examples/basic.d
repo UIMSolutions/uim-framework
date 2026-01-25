@@ -35,7 +35,7 @@ void main() {
     writeln("\n=== Logging with Level Filter ===\n");
     
     // Set minimum log level
-    logger.level = LogLevel.warning;
+    logger.level = UIMLogLevel.warning;
     logger.info("This won't be displayed");
     logger.warning("This will be displayed");
     logger.error("This will also be displayed");

@@ -56,7 +56,7 @@ void main() {
     // The mixin automatically creates a console logger
     // You can also set a custom logger:
     service.logger = FileLogger("logs/user-service.log", "UserService");
-    service.logger.level = LogLevel.debug_;
+    service.logger.level = UIMLogLevel.debug_;
     
     // Use the service - logging happens automatically
     service.createUser("john.doe", "john@example.com");

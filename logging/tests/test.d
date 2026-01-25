@@ -31,12 +31,12 @@ void testLogLevels() {
     writeln("Testing log levels...");
     
     auto logger = ConsoleLogger("LevelTest");
-    logger.level = LogLevel.warning;
+    logger.level = UIMLogLevel.warning;
     
-    assert(logger.isEnabled(LogLevel.warning));
-    assert(logger.isEnabled(LogLevel.error));
-    assert(!logger.isEnabled(LogLevel.info));
-    assert(!logger.isEnabled(LogLevel.debug_));
+    assert(logger.isEnabled(UIMLogLevel.warning));
+    assert(logger.isEnabled(UIMLogLevel.error));
+    assert(!logger.isEnabled(UIMLogLevel.info));
+    assert(!logger.isEnabled(UIMLogLevel.debug_));
     
     writeln("✓ Log level test passed");
 }
@@ -106,12 +106,12 @@ void testFormatters() {
     long timestamp = 0;
     
     auto textResult = textFormatter.format(
-        LogLevel.info, "TestLogger", "Test message", context, timestamp
+        UIMLogLevel.info, "TestLogger", "Test message", context, timestamp
     );
     assert(textResult.length > 0);
     
     auto jsonResult = jsonFormatter.format(
-        LogLevel.info, "TestLogger", "Test message", context, timestamp
+        UIMLogLevel.info, "TestLogger", "Test message", context, timestamp
     );
     assert(jsonResult.length > 0);
     

@@ -9,7 +9,8 @@ module uim.logging.mixins.logger;
  * Mixin template to add logging capabilities to any class
  */
 mixin template TLogger() {
-    import uim.logging;
+    import uim.logging.interfaces;
+    import uim.logging.classes.loggers;
     
     private ILogger _logger;
     

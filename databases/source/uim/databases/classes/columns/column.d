@@ -3,7 +3,7 @@ module uim.databases.classes.columns.column;
 import uim.databases;
 @safe:
 
-class Column : UIMObject {
+class TableColumns : UIMObject {
     string name;
     string type;
 

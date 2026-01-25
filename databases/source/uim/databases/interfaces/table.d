@@ -18,14 +18,14 @@ interface ITable {
   @property ulong rowCount() const @safe;
   
   /// Insert single row
-  void insert(Row row) @safe;
+  void insert(TableRow row) @safe;
   
   /// Insert multiple rows as batch
-  void insertBatch(Row[] rows) @safe;
+  void insertBatch(TableRow[] rows) @safe;
   
   /// Select rows with optional filter, sorting, limit
-  Row[] select(
-    scope bool delegate(const Row) @safe filter = null,
+  TableRow[] select(
+    scope bool delegate(const TableRow) @safe filter = null,
     string orderBy = "",
     bool ascending = true,
     ulong limit = 0,
@@ -33,16 +33,16 @@ interface ITable {
   ) @safe;
   
   /// Count rows matching filter
-  ulong count(scope bool delegate(const Row) @safe filter = null) const @safe;
+  ulong count(scope bool delegate(const TableRow) @safe filter = null) const @safe;
   
   /// Update rows matching filter
   ulong update(
-    scope bool delegate(const Row) @safe filter,
-    scope Row delegate(const Row) @safe updateFn
+    scope bool delegate(const TableRow) @safe filter,
+    scope TableRow delegate(const TableRow) @safe updateFn
   ) @safe;
   
   /// Delete rows matching filter
-  ulong delete_(scope bool delegate(const Row) @safe filter) @safe;
+  ulong delete_(scope bool delegate(const TableRow) @safe filter) @safe;
   
   /// Clear all rows
   void clear() @safe;

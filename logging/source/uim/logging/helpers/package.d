@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.logging.helpers;
 
-import uim.logging;
+import uim.logging.interfaces;
+import uim.logging.classes.loggers;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
 
 /**
  * Global logger instance
@@ -63,7 +65,7 @@ void fatal(string message, string[string] context = null) {
 /**
  * Create a new logger with the specified name
  */
-ILogger createLogger(string name, LogLevel level = LogLevel.info) {
+ILogger createLogger(string name, UIMLogLevel level = UIMLogLevel.info) {
     auto logger = ConsoleLogger(name);
     logger.level = level;
     return logger;
@@ -72,7 +74,7 @@ ILogger createLogger(string name, LogLevel level = LogLevel.info) {
 /**
  * Create a file logger
  */
-ILogger createFileLogger(string filename, string name = "File", LogLevel level = LogLevel.info) {
+ILogger createFileLogger(string filename, string name = "File", UIMLogLevel level = UIMLogLevel.info) {
     auto logger = FileLogger(filename, name);
     logger.level = level;
     return logger;
@@ -81,7 +83,7 @@ ILogger createFileLogger(string filename, string name = "File", LogLevel level =
 /**
  * Create a multi-logger that logs to both console and file
  */
-ILogger createMultiLogger(string filename, string name = "Multi", LogLevel level = LogLevel.info) {
+ILogger createMultiLogger(string filename, string name = "Multi", UIMLogLevel level = UIMLogLevel.info) {
     auto multiLogger = new DMultiLogger(name);
     multiLogger.addLogger(ConsoleLogger(name ~ ".Console"));
     multiLogger.addLogger(FileLogger(filename, name ~ ".File"));

@@ -66,7 +66,7 @@ class Database : UIMObject {
     }
 
     /// Execute a QueryBuilder against a specific table.
-    Row[] execute(QueryBuilder qb) @safe {
+    TableRow[] execute(QueryBuilder qb) @safe {
         enforce(qb !is null, "QueryBuilder cannot be null");
         
         auto table = getTable(qb.getTableName());
