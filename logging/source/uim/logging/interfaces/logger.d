@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.interfaces.logger;
 
-import uim.logging;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
 
 /**
  * Interface for all logger implementations
@@ -15,11 +15,11 @@ interface ILogger {
     @property string name();
     @property void name(string value);
     
-    @property LogLevel level();
-    @property void level(LogLevel value);
+    @property UIMLogLevel level();
+    @property void level(UIMLogLevel value);
     
     // Core logging methods
-    void log(LogLevel level, string message, string[string] context = null);
+    void log(UIMLogLevel level, string message, string[string] context = null);
     
     // Convenience methods for each log level
     void trace(string message, string[string] context = null);
@@ -31,7 +31,7 @@ interface ILogger {
     void fatal(string message, string[string] context = null);
     
     // Check if a log level is enabled
-    bool isEnabled(LogLevel level);
+    bool isEnabled(UIMLogLevel level);
     
     // Flush any buffered log entries
     void flush();

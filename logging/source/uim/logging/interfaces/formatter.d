@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.interfaces.formatter;
 
-import uim.logging;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
 
 /**
  * Interface for log formatters
@@ -24,7 +24,7 @@ interface ILogFormatter {
      * Returns: Formatted log string
      */
     string format(
-        LogLevel level,
+        UIMLogLevel level,
         string loggerName,
         string message,
         string[string] context,

@@ -11,9 +11,12 @@ public { // uim libraries
 }
 
 public { // uim.logging libraries
-  import uim.logging.classes;
   import uim.logging.enumerations;
   import uim.logging.interfaces;
+  import uim.logging.classes;
   import uim.logging.mixins;
   import uim.logging.helpers;
 }
+
+// Re-export with alias to avoid conflicts
+public import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;

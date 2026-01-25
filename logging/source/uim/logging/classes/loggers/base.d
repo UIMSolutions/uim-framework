@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.base;
 
-import uim.logging;
+import uim.logging.interfaces;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
+import uim.logging.classes.formatters.text;
 import std.datetime;
 
 /**
@@ -14,7 +16,7 @@ import std.datetime;
 abstract class DLogger : ILogger {
     protected {
         string _name;
-        LogLevel _level = LogLevel.info;
+        UIMLogLevel _level = UIMLogLevel.info;
         ILogFormatter _formatter;
     }
     
@@ -27,8 +29,8 @@ abstract class DLogger : ILogger {
     @property string name() { return _name; }
     @property void name(string value) { _name = value; }
     
-    @property LogLevel level() { return _level; }
-    @property void level(LogLevel value) { _level = value; }
+    @property UIMLogLevel level() { return _level; }
+    @property void level(UIMLogLevel value) { _level = value; }
     
     @property ILogFormatter formatter() { return _formatter; }
     @property void formatter(ILogFormatter value) { _formatter = value; }
@@ -37,7 +39,7 @@ abstract class DLogger : ILogger {
     abstract protected void writeLog(string formattedMessage);
     
     // Main log method
-    void log(LogLevel level, string message, string[string] context = null) {
+    void log(UIMLogLevel level, string message, string[string] context = null) {
         if (!isEnabled(level)) {
             return;
         }
@@ -49,35 +51,35 @@ abstract class DLogger : ILogger {
     
     // Convenience methods
     void trace(string message, string[string] context = null) {
-        log(LogLevel.trace, message, context);
+        log(UIMLogLevel.trace, message, context);
     }
     
     void debug_(string message, string[string] context = null) {
-        log(LogLevel.debug_, message, context);
+        log(UIMLogLevel.debug_, message, context);
     }
     
     void info(string message, string[string] context = null) {
-        log(LogLevel.info, message, context);
+        log(UIMLogLevel.info, message, context);
     }
     
     void warning(string message, string[string] context = null) {
-        log(LogLevel.warning, message, context);
+        log(UIMLogLevel.warning, message, context);
     }
     
     void error(string message, string[string] context = null) {
-        log(LogLevel.error, message, context);
+        log(UIMLogLevel.error, message, context);
     }
     
     void critical(string message, string[string] context = null) {
-        log(LogLevel.critical, message, context);
+        log(UIMLogLevel.critical, message, context);
     }
     
     void fatal(string message, string[string] context = null) {
-        log(LogLevel.fatal, message, context);
+        log(UIMLogLevel.fatal, message, context);
     }
     
     // Check if a level is enabled
-    bool isEnabled(LogLevel level) {
+    bool isEnabled(UIMLogLevel level) {
         return level >= _level;
     }
     

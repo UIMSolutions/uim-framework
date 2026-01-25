@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.file;
 
-import uim.logging;
+import uim.logging.classes.loggers.base;
 import std.stdio : File;
 import std.file : exists, mkdirRecurse;
 import std.path : dirName;

@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.multi;
 
-import uim.logging;
+import uim.logging.classes.loggers.base;
+import uim.logging.interfaces;
+import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
 
 /**
  * Multi-logger that dispatches to multiple loggers
@@ -59,7 +61,7 @@ class DMultiLogger : DLogger {
     }
     
     // Override log to dispatch to all loggers
-    override void log(LogLevel level, string message, string[string] context = null) {
+    override void log(UIMLogLevel level, string message, string[string] context = null) {
         if (!isEnabled(level)) {
             return;
         }

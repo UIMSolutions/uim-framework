@@ -3,14 +3,26 @@ module uim.databases.classes.rows.row;
 import uim.databases;
 @safe:
 
-/// Row represents a single database record with heterogeneous typed columns
-alias Row = Json[string];
+class TableRow : UIMObject {
+    this() {
+        super();
+    }
 
-// Convenience functions for Row operations
-Row createRow() @safe {
-    return (Json[string]).init;
-}
+    Json[string] _cells;
+    
+    this(Json[string] cells) {
+        _cells = cells.dup;
+    }
+    
+    this(Row data) {
+        this._cells = data.dup;
+    }
 
-Row createRow(Json[string] data) @safe {
-    return data.dup;
+    Json[string] getData() @safe {
+        return _cells.dup;
+    }
+
+    void setData(Row newData) @safe {
+        _cells = newData.dup;
+    }
 }

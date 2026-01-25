@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.console;
 
-import uim.logging;
-import vibe.core.log;
+import uim.logging.classes.loggers.base;
 import std.stdio;
 
 /**
