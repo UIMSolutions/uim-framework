@@ -36,24 +36,26 @@ class TableRow : UIMObject, ITableRow {
         return _cells.dup;
     }
 
-    void setData(Json[string] newData) {
+    ITableRow setData(Json[string] newData) {
         _cells = newData.dup;
+        return this;
     }
 
     Json get(string column) const {
         return column in _cells ? _cells[column] : Json(null);
     }
 
-    void set(string column, Json value) {
+    ITableRow set(string column, Json value) {
         _cells[column] = value;
+        return this;
     }
-
     bool has(string column) const {
         return (column in _cells) !is null;
     }
 
-    void remove(string column) {
+    ITableRow remove(string column) {
         _cells.remove(column);
+        return this;
     }
 
     @property string[] columns() const {
@@ -64,8 +66,9 @@ class TableRow : UIMObject, ITableRow {
         return _cells.length;
     }
 
-    void clear() {
+    ITableRow clear() {
         _cells.clear();
+        return this;
     }
 
     @property bool empty() const {
@@ -76,15 +79,8 @@ class TableRow : UIMObject, ITableRow {
         return get(column);
     }
 
-    Json data(string column) {
-        return get(column);
-    }
 
     void opIndexAssign(Json value, string column) {
-        set(column, value);
-    }
-
-    void data(string column, Json value) {
         set(column, value);
     }
 
