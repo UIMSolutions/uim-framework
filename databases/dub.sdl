@@ -13,6 +13,7 @@ targetType "library"
 dependency "uim-framework:core" version="*"
 dependency "uim-framework:oop" version="*"
 dependency "uim-framework:events" version="*"
+dependency "uim-framework:errors" version="*"
 
 // Configurations
 configuration "default" {

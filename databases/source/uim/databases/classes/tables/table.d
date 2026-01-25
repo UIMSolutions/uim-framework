@@ -1,13 +1,15 @@
 module uim.databases.classes.table;
 
-import uim.oop.datatypes.objects.obj : UIMObject;
-import uim.databases.base.table : Table as BaseTable;
-import uim.databases.helpers : QueryBuilder, BatchInsertBuilder;
-import uim.databases.interfaces.table : Row;
+import uim.databases;
+@safe:
 
 /// High-level table façade providing fluent helpers on top of BaseTable.
 class Table : UIMObject {
-    private BaseTable _table;
+    private string _name;
+    private string[] _columns;
+    private Row[] _rows;
+    private bool[string] _indexes;
+    private RedBlackTree!ulong[string] _indexedValues;
 
     this(BaseTable table) @safe {
         _table = table;

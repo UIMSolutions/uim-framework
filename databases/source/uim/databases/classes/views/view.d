@@ -1,8 +1,8 @@
 module uim.databases.classes.view;
 
-import uim.oop.datatypes.objects.obj : UIMObject;
-import uim.databases.classes.table : Table;
-import uim.databases.interfaces.table : Row;
+import uim.databases;
+@safe:
+
 
 /// Read-only view over a table with an attached filter/sort configuration.
 class View : UIMObject {

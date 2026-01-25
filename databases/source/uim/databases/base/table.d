@@ -5,18 +5,10 @@
 *****************************************************************************************************************/
 module uim.databases.base.table;
 
-import uim.databases.interfaces.table;
-import std.algorithm : filter, sort, canFind;
-import std.array : array;
-import std.variant : Variant;
-import std.container.rbtree : RedBlackTree;
+import uim.databases;
+@safe:
 
 class Table : ITable {
-    private string _name;
-    private string[] _columns;
-    private Row[] _rows;
-    private bool[string] _indexes;
-    private RedBlackTree!ulong[string] _indexedValues;
 
     this(string name, string[] columns) @safe {
         _name = name;

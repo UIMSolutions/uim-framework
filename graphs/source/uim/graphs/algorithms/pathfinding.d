@@ -7,7 +7,7 @@ module uim.graphs.algorithms.pathfinding;
 
 import uim.graphs.core.graph;
 import std.container : DList;
-import std.math : isInfinite;
+import std.math : isInfinity;
 
 struct Path {
     string[] nodes;
@@ -28,7 +28,7 @@ class Dijkstra {
         
         while (!unvisited.empty) {
             auto current = _getMinUnvisited(distances, unvisited);
-            if (current.empty || current == end && isInfinite(distances[end])) {
+            if (current.empty || (current == end && distances[end].isInfinity())) {
                 break;
             }
             _removeFromList(unvisited, current);
