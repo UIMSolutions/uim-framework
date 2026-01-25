@@ -75,7 +75,7 @@ class Table : UIMObject {
         if (filter !is null) {
             // Pre-allocate assuming ~50% match rate for filters
             result.reserve(_rows.length / 2);
-            result = _rows.filter!(r => filter(r)).array;
+            // TODO: result = _rows.filter!(r => filter(r)).array;
         } else {
             result = _rows.dup;
         }
