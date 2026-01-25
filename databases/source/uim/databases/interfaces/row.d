@@ -15,7 +15,7 @@ interface ITableRow {
   @property Json[string] data() const;
 
   /// Set all cells from key-value pairs
-  @property ITableRow data(Json[string] values);
+  @property void data(Json[string] values);
 
   /// Get value of a specific cell by column name
   Json get(string column) const;

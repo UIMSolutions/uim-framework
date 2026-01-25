@@ -1,7 +1,8 @@
 module uim.databases.classes.views.view;
 
 import uim.databases;
-import std.exception : enforce;
+
+mixin(ShowModule!());
 
 @safe:
 
@@ -54,7 +55,7 @@ class TableView : UIMObject {
     }
 
     /// Materialize the view as rows.
-    TableRow[] materialize() @safe {
+    TableRow[] materialize() {
         return _table.select(_filter, _orderBy, _ascending, _limit, _offset);
     }
 

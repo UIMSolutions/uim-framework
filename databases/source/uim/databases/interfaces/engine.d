@@ -11,27 +11,27 @@ import uim.databases;
 interface IDatabaseEngine {
   /// Create a new table with specified name and columns
   /// Returns: reference to created table
-  Table createTable(string name, string[] columns) @safe;
+  Table createTable(string name, string[] columns);
   
   /// Get existing table by name
   /// Returns: table reference or null if not found
-  Table getTable(string name) @safe;
+  Table getTable(string name);
   
   /// Check if table exists
-  bool hasTable(string name) const @safe;
+  bool hasTable(string name) const;
   
   /// Drop/delete a table
-  void dropTable(string name) @safe;
+  IDatabaseEngine dropTable(string name);
   
   /// Get all table names
-  string[] tableNames() const @safe;
+  string[] tableNames() const;
   
   /// Get total row count across all tables
-  ulong rowCount() const @safe;
+  ulong rowCount() const;
   
   /// Clear all tables and data
-  void clear() @safe;
+  IDatabaseEngine clear();
   
   /// Get all tables
-  const(Table[string]) tables() const @safe;
+  const(Table[string]) tables() const;
 }

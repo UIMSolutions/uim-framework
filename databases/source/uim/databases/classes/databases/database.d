@@ -1,21 +1,23 @@
 module uim.databases.classes.databases.database;
 
 import uim.databases;
-import std.exception : enforce;
+
+mixin(ShowModule!());
+
 @safe:
 
 /// High-level database façade that wraps the in-memory engine
 /// and exposes type-safe helpers plus query execution.
-class Database : UIMObject {
+class Database : UIMObject, IDatabase {
     private DatabaseEngine _engine;
     private Table[string] _tableCache; // Cache for faster table access
 
-    this() @safe {
+    this() {
         _engine = new MemoryEngine();
     }
 
     /// Create a new table and return a rich Table wrapper.
-    Table createTable(string name, string[] columns) @safe {
+    Table createTable(string name, string[] columns) {
         enforce(name.length > 0, "Table name cannot be empty");
         enforce(columns.length > 0, "Table must have at least one column");
         
@@ -25,7 +27,7 @@ class Database : UIMObject {
     }
 
     /// Get existing table as a wrapper; null if not found.
-    Table getTable(string name) @safe {
+    Table getTable(string name) {
         // Check cache first
         if (auto cached = name in _tableCache) {
             return *cached;
@@ -39,34 +41,36 @@ class Database : UIMObject {
     }
 
     /// Check if a table exists.
-    bool hasTable(string name) const @safe {
+    bool hasTable(string name) const {
         return _engine.hasTable(name);
     }
 
     /// Drop/delete a table by name.
-    void dropTable(string name) @safe {
+    IDatabase dropTable(string name) {
         _engine.dropTable(name);
         _tableCache.remove(name); // Remove from cache
+        return this;
     }
 
     /// List all table names.
-    string[] tableNames() const @safe {
+    string[] tableNames() const {
         return _engine.tableNames();
     }
 
     /// Total row count across all tables.
-    ulong rowCount() const @safe {
+    ulong rowCount() const {
         return _engine.rowCount();
     }
 
     /// Clear all tables in the database.
-    void clear() @safe {
+    IDatabase clear() {
         _engine.clear();
         _tableCache.clear(); // Clear cache
+        return this;
     }
 
     /// Execute a QueryBuilder against a specific table.
-    TableRow[] execute(QueryBuilder qb) @safe {
+    TableRow[] execute(QueryBuilder qb) {
         enforce(qb !is null, "QueryBuilder cannot be null");
         
         auto table = getTable(qb.getTableName());

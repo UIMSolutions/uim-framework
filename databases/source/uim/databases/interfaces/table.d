@@ -6,22 +6,24 @@
 module uim.databases.interfaces.table;
 
 import uim.databases;
+
 @safe:
+
 interface ITable {
   /// Get table name
-  @property string name() const @safe;
+  @property string name() const;
   
   /// Get column names
-  @property const(string[]) columns() const @safe;
+  @property const(string[]) columns() const;
   
   /// Get row count
-  @property ulong rowCount() const @safe;
+  @property ulong rowCount() const;
   
   /// Insert single row
-  void insert(TableRow row) @safe;
+  ITable insert(TableRow row);
   
   /// Insert multiple rows as batch
-  void insertBatch(TableRow[] rows) @safe;
+  ITable insertBatch(TableRow[] rows);
   
   /// Select rows with optional filter, sorting, limit
   TableRow[] select(
@@ -30,26 +32,26 @@ interface ITable {
     bool ascending = true,
     ulong limit = 0,
     ulong offset = 0
-  ) @safe;
+  );
   
   /// Count rows matching filter
-  ulong count(scope bool delegate(const TableRow) @safe filter = null) const @safe;
+  ulong count(scope bool delegate(const TableRow) @safe filter = null) const;
   
   /// Update rows matching filter
   ulong update(
     scope bool delegate(const TableRow) @safe filter,
     scope TableRow delegate(const TableRow) @safe updateFn
-  ) @safe;
+  );
   
   /// Delete rows matching filter
-  ulong delete_(scope bool delegate(const TableRow) @safe filter) @safe;
+  ulong delete_(scope bool delegate(const TableRow) @safe filter);
   
   /// Clear all rows
-  void clear() @safe;
+  ITable clear();
   
   /// Create index on column for faster queries
-  void createIndex(string column) @safe;
+  ITable createIndex(string column);
   
   /// Check if column has index
-  bool hasIndex(string column) const @safe;
+  bool hasIndex(string column) const;
 }

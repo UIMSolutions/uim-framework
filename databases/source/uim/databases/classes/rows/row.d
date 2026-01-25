@@ -15,45 +15,45 @@ class TableRow : UIMObject, ITableRow {
         _cells = cells.dup;
     }
 
-    this(TableRow data) {
-        this._cells = data.dup;
+    this(ITableRow data) {
+        this._cells = data.data.dup;
     }
 
     @property Json[string] data() const {
-        return _cells.dup;
+        // Create a mutable copy from const data
+        Json[string] result;
+        foreach (key, val; _cells) {
+            result[key] = val;
+        }
+        return result;
     }
 
-    @property ITableRow data(Json[string] values) {
+    @property void data(Json[string] values) {
         _cells = values.dup;
-        return this;
     }
 
-    Json getData() {
+    Json[string] getData() {
         return _cells.dup;
     }
 
-    ITableRow setData(TableRow newData) {
+    void setData(Json[string] newData) {
         _cells = newData.dup;
-        return this;
     }
 
     Json get(string column) const {
         return column in _cells ? _cells[column] : Json(null);
     }
 
-    ITableRow set(string column, Json value) {
+    void set(string column, Json value) {
         _cells[column] = value;
-        return this;
     }
 
     bool has(string column) const {
         return (column in _cells) !is null;
     }
 
-    ITableRow remove(string column) {
+    void remove(string column) {
         _cells.remove(column);
-        return this;
-
     }
 
     @property string[] columns() const {
@@ -64,9 +64,8 @@ class TableRow : UIMObject, ITableRow {
         return _cells.length;
     }
 
-    ITableRow clear() {
+    void clear() {
         _cells.clear();
-        return this;
     }
 
     @property bool empty() const {
@@ -81,11 +80,11 @@ class TableRow : UIMObject, ITableRow {
         return get(column);
     }
 
-    ITableRow opIndexAssign(Json value, string column) {
+    void opIndexAssign(Json value, string column) {
         set(column, value);
     }
 
-    ITableRow data(string column, Json value) {
+    void data(string column, Json value) {
         set(column, value);
     }
 

@@ -1,6 +1,9 @@
 module uim.databases.classes.columns.column;
 
 import uim.databases;
+
+mixin(ShowModule!());
+
 @safe:
 
 class TableColumn : UIMObject {

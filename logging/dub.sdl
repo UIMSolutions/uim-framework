@@ -9,11 +9,11 @@ license "Apache-2.0"
 targetName "uim-logging"
 targetType "library"
 
-// dependencies
-dependency "vibe-d" version="~>0.10.3"
+// Dependencies
 dependency "uim-framework:core" version="*"
 dependency "uim-framework:oop" version="*"
 
+// Configurations
 configuration "default" {
 	targetType "library"
 }
@@ -30,5 +30,15 @@ configuration "tests" {
 
 configuration "inits" {
 	targetType "library"
-	versions "show_module" "show_test" "show_init"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
 }

@@ -1,13 +1,15 @@
 module uim.databases.classes.engines.memory;
 
 import uim.databases;
-import std.exception : enforce;
+
+mixin(ShowModule!());
+
 @safe:
 
 class MemoryEngine : DatabaseEngine {
     private Table[string] _tables;
 
-    override Table createTable(string name, string[] columns) @safe {
+    override Table createTable(string name, string[] columns) {
         enforce(name.length > 0, "Table name cannot be empty");
         enforce(!(name in _tables), "Table already exists: " ~ name);
         
@@ -16,23 +18,24 @@ class MemoryEngine : DatabaseEngine {
         return table;
     }
 
-    override Table getTable(string name) @safe {
+    override Table getTable(string name) {
         return _tables.get(name, null);
     }
 
-    override bool hasTable(string name) const @safe {
+    override bool hasTable(string name) const {
         return (name in _tables) !is null;
     }
 
-    override void dropTable(string name) @safe {
+    override void dropTable(string name) {
         _tables.remove(name);
+        
     }
 
-    override string[] tableNames() const @safe {
+    override string[] tableNames() const {
         return _tables.keys.dup;
     }
 
-    override ulong rowCount() const @safe {
+    override ulong rowCount() const {
         ulong total = 0;
         foreach (table; _tables.byValue()) {
             total += table.rowCount();
@@ -40,14 +43,16 @@ class MemoryEngine : DatabaseEngine {
         return total;
     }
 
-    override void clear() @safe {
+    override void clear() {
         foreach (table; _tables.byValue()) {
             table.clear();
         }
         _tables.clear();
+
+
     }
 
-    override const(Table[string]) tables() const @safe { 
+    override const(Table[string]) tables() const { 
         return _tables; 
     }
 }

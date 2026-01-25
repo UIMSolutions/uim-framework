@@ -6,13 +6,15 @@
 module uim.databases.helpers;
 
 import uim.databases;
-import std.exception : enforce;
+
+mixin(ShowModule!());
+
 @safe:
 
 /// Fluent query builder for constructing database queries
 class QueryBuilder {
     protected string _tableName;
-    protected bool delegate(const TableRow) _filter;
+    protected bool delegate(const TableRow) @safe _filter;
     protected string _orderBy = "";
     protected bool _ascending = true;
     protected ulong _limitValue = 0;
@@ -24,7 +26,7 @@ class QueryBuilder {
     }
 
     /// Add WHERE clause filter
-    QueryBuilder where(bool delegate(const TableRow) filter) {
+    QueryBuilder where(bool delegate(const TableRow) @safe filter) {
         _filter = filter;
         return this;
     }
@@ -47,7 +49,7 @@ class QueryBuilder {
         _offsetValue = count;
         return this;
     }
-    
+
     /// Reset query parameters for reuse
     QueryBuilder reset() {
         _filter = null;
@@ -117,7 +119,7 @@ class BatchInsertBuilder {
     TableRow[] getRows() {
         return _rows.dup;
     }
-    
+
     /// Get number of rows currently in batch
     ulong rowCount() const {
         return _rows.length;
@@ -133,12 +135,12 @@ class BatchInsertBuilder {
         _rows.length = 0;
         _rows.assumeSafeAppend(); // Allow reuse of memory
     }
-    
+
     /// Check if batch is empty
     bool isEmpty() const {
         return _rows.length == 0;
     }
-    
+
     /// Check if batch has reached configured batch size
     bool isFull() const {
         return _rows.length >= _batchSize;
