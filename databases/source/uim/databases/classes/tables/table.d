@@ -1,6 +1,7 @@
-module uim.databases.classes.table;
+module uim.databases.classes.tables.table;
 
 import uim.databases;
+
 @safe:
 
 /// High-level table façade providing fluent helpers on top of BaseTable.
@@ -11,22 +12,31 @@ class Table : UIMObject {
     private bool[string] _indexes;
     private RedBlackTree!ulong[string] _indexedValues;
 
-    this(BaseTable table) @safe {
-        _table = table;
+    this(string name, string[] columns) @safe {
+        _name = name;
+        _columns = columns.dup;
     }
 
-    @property string name() const @safe { return _table.name(); }
-    @property const(string[]) columns() const @safe { return _table.columns(); }
-    @property ulong rowCount() const @safe { return _table.rowCount(); }
+    @property string name() const @safe { return _name; }
+    
+    @property const(string[]) columns() const @safe { return _columns; }
+    
+    @property ulong rowCount() const @safe { return _rows.length; }
 
     /// Insert a single row.
-    void insert(Row row) @safe { _table.insert(row); }
+    void insert(Row row) @safe {
+        _rows ~= row;
+        _updateIndexes(row, _rows.length - 1);
+    }
 
-    /// Insert rows in bulk using a builder or array.
-    void insertBatch(Row[] rows) @safe { _table.insertBatch(rows); }
-    void insertBatch(BatchInsertBuilder builder) @safe { _table.insertBatch(builder.getRows()); }
+    void insertBatch(Row[] rows) @safe {
+        size_t startIdx = _rows.length;
+        _rows ~= rows;
+        foreach (i, ref row; rows) {
+            _updateIndexes(row, startIdx + i);
+        }
+    }
 
-    /// Select with optional filter, sorting, pagination.
     Row[] select(
         scope bool delegate(const Row) @safe filter = null,
         string orderBy = "",
@@ -34,42 +44,79 @@ class Table : UIMObject {
         ulong limit = 0,
         ulong offset = 0
     ) @safe {
-        return _table.select(filter, orderBy, ascending, limit, offset);
+        Row[] result = filter !is null 
+            ? _rows.filter!(r => filter(r)).array 
+            : _rows.dup;
+
+        if (orderBy != "" && canFind(_columns, orderBy)) {
+            // Variant opCmp is @system, constrain scope with @trusted comparator
+            result.sort!((a, b) @trusted {
+                ref const Variant aVal = a[orderBy];
+                ref const Variant bVal = b[orderBy];
+
+                return ascending ? aVal < bVal : aVal > bVal;
+            });
+        }
+
+        if (offset > 0 && offset < result.length) {
+            result = result[offset..$];
+        }
+
+        if (limit > 0 && limit < result.length) {
+            result = result[0..limit];
+        }
+
+        return result;
     }
 
-    /// Select using a QueryBuilder.
-    Row[] select(QueryBuilder qb) @safe {
-        return _table.select(
-            qb.getFilter(),
-            qb.getOrderBy(),
-            qb.isAscending(),
-            qb.getLimit(),
-            qb.getOffset()
-        );
-    }
-
-    /// Count rows optionally filtered.
     ulong count(scope bool delegate(const Row) @safe filter = null) const @safe {
-        return _table.count(filter);
+        if (filter is null) return _rows.length;
+        return _rows.filter!(r => filter(r)).array.length;
     }
 
-    /// Update rows matching filter with updateFn.
     ulong update(
         scope bool delegate(const Row) @safe filter,
         scope Row delegate(const Row) @safe updateFn
     ) @safe {
-        return _table.update(filter, updateFn);
+        ulong updated = 0;
+        foreach (ref row; _rows) {
+            if (filter(row)) {
+                row = updateFn(row);
+                updated++;
+            }
+        }
+        return updated;
     }
 
-    /// Delete rows matching filter.
     ulong delete_(scope bool delegate(const Row) @safe filter) @safe {
-        return _table.delete_(filter);
+        ulong count = this.count(filter);
+        _rows = _rows.filter!(r => !filter(r)).array;
+        _indexes.clear();
+        _indexedValues.clear();
+        return count;
     }
 
-    /// Remove all rows.
-    void clear() @safe { _table.clear(); }
+    void clear() @safe {
+        _rows.clear();
+        _indexes.clear();
+        _indexedValues.clear();
+    }
 
-    /// Index helpers.
-    void createIndex(string column) @safe { _table.createIndex(column); }
-    bool hasIndex(string column) const @safe { return _table.hasIndex(column); }
+    void createIndex(string column) @safe {
+        if (canFind(_columns, column)) {
+            _indexes[column] = true;
+        }
+    }
+
+    bool hasIndex(string column) const @safe {
+        return (column in _indexes) !is null;
+    }
+
+    private void _updateIndexes(const Row row, ulong index) @safe {
+        foreach (col, _; _indexes) {
+            if (col in row) {
+                // Simple index tracking - can be extended with B-tree
+            }
+        }
+    }
 }

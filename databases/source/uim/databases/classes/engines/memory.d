@@ -1,5 +1,8 @@
 module uim.databases.classes.engines.memory;
 
+import uim.databases;
+@safe:
+
 class MemoryEngine : DatabaseEngine {
     private Table[string] _tables;
 

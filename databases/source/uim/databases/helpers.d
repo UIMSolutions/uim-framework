@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.databases.helpers;
 
-import uim.databases.interfaces.table;
-import std.variant : Variant;
+import uim.databases;
+@safe:
 
 class QueryBuilder {
     private string _tableName;
@@ -87,7 +87,7 @@ class BatchInsertBuilder {
         return this;
     }
 
-    Row[] getRows() const @safe {
+    Row[] getRows() @safe {
         return _rows.dup;
     }
 

@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.databases.interfaces.database;
 
-import std.variant : Variant;
+import uim.databases;
+@safe:
 
 alias Row = Variant[string];
 

@@ -1,5 +1,5 @@
 module uim.databases.classes.databases;
 
 public {
-    import uim.databases.classes.database;
+    import uim.databases.classes.databases.database;
 }

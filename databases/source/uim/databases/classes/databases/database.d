@@ -14,14 +14,12 @@ class Database : UIMObject {
 
     /// Create a new table and return a rich Table wrapper.
     Table createTable(string name, string[] columns) @safe {
-        auto t = _engine.createTable(name, columns);
-        return new Table(t);
+        return _engine.createTable(name, columns);
     }
 
     /// Get existing table as a wrapper; null if not found.
     Table getTable(string name) @safe {
-        auto t = _engine.getTable(name);
-        return t is null ? null : new Table(t);
+        return _engine.getTable(name);
     }
 
     /// Check if a table exists.
@@ -52,10 +50,7 @@ class Database : UIMObject {
     /// Execute a QueryBuilder against a specific table.
     Row[] execute(QueryBuilder qb) @safe {
         auto table = _engine.getTable(qb.getTableName());
-        if (table is null) {
-            return [];
-        }
-        return table.select(
+        return table is null ? null : table.select(
             qb.getFilter(),
             qb.getOrderBy(),
             qb.isAscending(),

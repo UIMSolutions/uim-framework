@@ -1,4 +1,4 @@
-module uim.databases.classes.view;
+module uim.databases.classes.views.view;
 
 import uim.databases;
 @safe:
