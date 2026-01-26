@@ -17,83 +17,16 @@ mixin(ShowModule!());
  * Entity lifecycle events
  */
 
-/**
- * Event fired before an entity is created
- */
-@UseEvent("entity.beforeCreate")
-class EntityBeforeCreateEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.beforeCreate");
-        entity = e;
-    }
-}
 
-/**
- * Event fired after an entity is created
- */
-@UseEvent("entity.afterCreate")
-class EntityAfterCreateEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.afterCreate");
-        entity = e;
-    }
-}
 
-/**
- * Event fired before an entity is updated
- */
-@UseEvent("entity.beforeUpdate")
-class EntityBeforeUpdateEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.beforeUpdate");
-        entity = e;
-    }
-}
 
-/**
- * Event fired after an entity is updated
- */
-@UseEvent("entity.afterUpdate")
-class EntityAfterUpdateEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.afterUpdate");
-        entity = e;
-    }
-}
 
-/**
- * Event fired before an entity is deleted
- */
-@UseEvent("entity.beforeDelete")
-class EntityBeforeDeleteEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.beforeDelete");
-        entity = e;
-    }
-}
 
-/**
- * Event fired after an entity is deleted
- */
-@UseEvent("entity.afterDelete")
-class EntityAfterDeleteEvent : UIMEvent {
-    IEntity entity;
-    
-    this(IEntity e) {
-        super("entity.afterDelete");
-        entity = e;
-    }
-}
+
+
+
+
+
 
 /**
  * Event fired when an entity is validated
