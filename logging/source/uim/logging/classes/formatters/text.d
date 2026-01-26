@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.classes.formatters.text;
 
-import uim.logging.interfaces;
-import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel, toString;
-import std.datetime;
-import std.format : formatStr = format;
-import std.conv;
+import uim.logging;
 
 /**
  * Text formatter for log messages
@@ -53,9 +49,10 @@ class DTextFormatter : ILogFormatter {
         if (context !is null && context.length > 0) {
             string contextStr = " {";
             bool first = true;
+            import std.format : format;
             foreach (key, value; context) {
                 if (!first) contextStr ~= ", ";
-                contextStr ~= formatStr(`%s: "%s"`, key, value);
+                contextStr ~= format("%s: \"%s\"", key, value);
                 first = false;
             }
             contextStr ~= "}";

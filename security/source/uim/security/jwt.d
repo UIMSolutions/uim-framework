@@ -10,7 +10,7 @@ import std.datetime : Clock, Duration, SysTime, seconds;
 import std.digest.hmac : hmac;
 import std.digest.sha : SHA256;
 import std.exception : enforce;
-import std.json : JSONValue, JSONType, parseJSON;
+import std.json : Json, JSONType, parseJSON;
 import std.string : split;
 
 import uim.security.crypto : constantTimeEquals;
@@ -18,18 +18,18 @@ import uim.security.crypto : constantTimeEquals;
 // Note: JSON object property access is @system, so we mark functions @trusted where needed
 
 /// Signs a JSON payload into a JWT using HS256. Adds `exp` if missing using the provided ttl.
-string signJWT(JSONValue claims, string secret, Duration ttl) @trusted {
+string signJWT(Json claims, string secret, Duration ttl) @trusted {
   enforce(claims.type == JSONType.object, "JWT claims must be a JSON object");
 
-  auto header = JSONValue([
-    "alg": JSONValue("HS256"),
-    "typ": JSONValue("JWT")
+  auto header = Json([
+    "alg": Json("HS256"),
+    "typ": Json("JWT")
   ]);
 
   auto payload = claims;
   if (!("exp" in payload.object)) {
     auto expires = Clock.currTime() + ttl;
-    payload.object["exp"] = JSONValue(expires.toUnixTime());
+    payload.object["exp"] = Json(expires.toUnixTime());
   }
 
   auto headerPart = base64Json(header);
@@ -43,7 +43,7 @@ string signJWT(JSONValue claims, string secret, Duration ttl) @trusted {
 }
 
 /// Verifies a JWT and returns the claims. Throws on invalid signature or expiry.
-JSONValue verifyJWT(string token, string secret) @trusted {
+Json verifyJWT(string token, string secret) @trusted {
   auto parts = token.split(".");
   enforce(parts.length == 3, "JWT must contain three sections");
 
@@ -66,7 +66,7 @@ JSONValue verifyJWT(string token, string secret) @trusted {
   return payload;
 }
 
-private string base64Json(JSONValue value) @trusted {
+private string base64Json(Json value) @trusted {
   auto json = value.toString();
   return cast(string) Base64URLNoPadding.encode(cast(const ubyte[]) json);
 }

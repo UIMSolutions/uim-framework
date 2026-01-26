@@ -1,17 +1,19 @@
+
 # UIM Logging Library
 
-A comprehensive logging library for the UIM framework built with D language and vibe.d.
+A comprehensive, interface-driven logging library for the UIM framework built with D language and vibe.d.
+
 
 ## Features
 
 - Multiple log levels (Trace, Debug, Info, Warning, Error, Critical, Fatal)
-- Flexible logging interface with multiple implementations
+- Interface-based logger and formatter design for extensibility
 - File-based logging with rotation support
 - Console logging with colored output
 - Structured logging with context and metadata
 - Async logging support via vibe.d
 - Thread-safe logging operations
-- Customizable log formatters
+- Customizable log formatters (text, JSON, etc.)
 - Log filtering and level control
 
 ## Installation
@@ -30,12 +32,13 @@ Or to your `dub.json`:
 }
 ```
 
+
 ## Quick Start
 
 ```d
 import uim.logging;
 
-// Create a simple logger
+// Create a logger (implements ILogLogger)
 auto logger = new DLogger("MyApp");
 
 // Log messages at different levels
@@ -76,11 +79,19 @@ multiLogger.addLogger(FileLogger("app.log"));
 multiLogger.info("This goes to both console and file");
 ```
 
+
 ### Custom Log Formatting
 
+Formatters implement the `ILogFormatter` interface. You can use built-in or custom formatters:
+
 ```d
+import uim.logging.classes.formatters.text;
+
 auto logger = new DLogger("MyApp");
-logger.setFormatter(new JsonLogFormatter());
+logger.setFormatter(new DTextFormatter()); // Text format
+logger.info("Plain text log entry");
+
+logger.setFormatter(new JsonLogFormatter()); // JSON format
 logger.info("Structured log entry");
 ```
 
@@ -104,14 +115,16 @@ logger.setLevel(LogLevel.INFO); // Only log INFO and above
 logger.setFormat("%t [%l] %n: %m"); // Custom format
 ```
 
+
 ## Architecture
 
 The library follows UIM framework patterns:
 
-- **Interfaces**: Define contracts for loggers and formatters
+- **Interfaces**: `ILogLogger`, `ILogFormatter` for abstraction and extensibility
 - **Classes**: Concrete implementations (DLogger, ConsoleLogger, FileLogger)
 - **Mixins**: Reusable logging functionality
 - **Factories**: Create logger instances
+
 
 ## License
 

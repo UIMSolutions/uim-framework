@@ -9,9 +9,10 @@ A lightweight neural network toolkit for D that integrates with vibe.d. Build sm
 - Dataset utilities for mini-batch iteration and normalization
 - Vibe.d HTTP server helper for JSON-based inference endpoints
 
+
 ## Quick Start
 
-### Train a tiny network
+### Train a tiny XOR network
 ```d
 import uim.neural;
 
@@ -37,6 +38,44 @@ cfg.epochs = 5000;
 
 train(net, data, loss.mse, cfg);
 auto prediction = net.predict([1.0, 0.0]);
+```
+
+### Classification Example
+```d
+import uim.neural;
+
+auto net = NeuralNetwork()
+    .addDenseLayer(4, 10, activation.tanh)
+    .addDenseLayer(10, 3, activation.softmaxOutput);
+
+// Assume irisData and irisLabels are loaded as double[][]
+train(net, Dataset(irisData, irisLabels), loss.crossEntropy, TrainConfig(0.01, 1000));
+auto classProbs = net.predict([5.1, 3.5, 1.4, 0.2]);
+```
+
+### Regression Example
+```d
+import uim.neural;
+
+auto net = NeuralNetwork()
+    .addDenseLayer(1, 16, activation.relu)
+    .addDenseLayer(16, 1, activation.linear);
+
+// Fit y = 2x + 1
+double[][] xs = [[0.0], [1.0], [2.0], [3.0]];
+double[][] ys = [[1.0], [3.0], [5.0], [7.0]];
+train(net, Dataset(xs, ys), loss.mse, TrainConfig(0.1, 2000));
+auto yPred = net.predict([4.0]); // Should be close to 9.0
+```
+
+### Custom Activation Function
+```d
+import uim.neural;
+
+auto swish = ActivationFunction((x) => x / (1 + exp(-x)));
+auto net = NeuralNetwork()
+    .addDenseLayer(2, 8, swish)
+    .addDenseLayer(8, 1, activation.sigmoid);
 ```
 
 ### Expose inference over HTTP

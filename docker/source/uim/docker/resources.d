@@ -5,11 +5,11 @@
 *****************************************************************************************************************/
 module uim.docker.resources;
 
-import std.json : JSONValue, JSONType;
+import std.json : Json, JSONType;
 
 // Container resource wrapper
 struct Container {
-  JSONValue data;
+  Json data;
 
   string id() const @trusted {
     if (auto i = "Id" in data.object) {
@@ -20,7 +20,7 @@ struct Container {
 
   string name() const @trusted {
     if (auto names = "Names" in data.object) {
-      if (names.type == JSONValue.Type.array && names.array.length > 0) {
+      if (names.type == Json.Type.array && names.array.length > 0) {
         auto nameStr = names.array[0].str;
         if (nameStr.length > 0 && nameStr[0] == '/') {
           return nameStr[1 .. $];
@@ -45,9 +45,9 @@ struct Container {
     return "";
   }
 
-  JSONValue[] ports() const @trusted {
+  Json[] ports() const @trusted {
     if (auto p = "Ports" in data.object) {
-      if (p.type == JSONValue.Type.array) {
+      if (p.type == Json.Type.array) {
         return p.array;
       }
     }
@@ -56,7 +56,7 @@ struct Container {
 
   string[] labels() const @trusted {
     if (auto l = "Labels" in data.object) {
-      if (l.type == JSONValue.Type.object) {
+      if (l.type == Json.Type.object) {
         return l.object.keys;
       }
     }
@@ -66,7 +66,7 @@ struct Container {
 
 // Image resource wrapper
 struct Image {
-  JSONValue data;
+  Json data;
 
   string id() const @trusted {
     if (auto i = "Id" in data.object) {
@@ -77,7 +77,7 @@ struct Image {
 
   string[] repoTags() const @trusted {
     if (auto tags = "RepoTags" in data.object) {
-      if (tags.type == JSONValue.Type.array) {
+      if (tags.type == Json.Type.array) {
         string[] result;
         foreach (tag; tags.array) {
           result ~= tag.str;
@@ -90,7 +90,7 @@ struct Image {
 
   long size() const @trusted {
     if (auto s = "Size" in data.object) {
-      if (s.type == JSONValue.Type.integer) {
+      if (s.type == Json.Type.integer) {
         return s.integer;
       }
     }
@@ -99,7 +99,7 @@ struct Image {
 
   long created() const @trusted {
     if (auto c = "Created" in data.object) {
-      if (c.type == JSONValue.Type.integer) {
+      if (c.type == Json.Type.integer) {
         return c.integer;
       }
     }
@@ -109,7 +109,7 @@ struct Image {
 
 // Volume resource wrapper
 struct Volume {
-  JSONValue data;
+  Json data;
 
   string name() const @trusted {
     if (auto n = "Name" in data.object) {
@@ -125,24 +125,24 @@ struct Volume {
     return "";
   }
 
-  JSONValue mountpoint() const @trusted {
+  Json mountpoint() const @trusted {
     if (auto m = "Mountpoint" in data.object) {
       return *m;
     }
-    return JSONValue("");
+    return Json("");
   }
 
-  JSONValue labels() const @trusted {
+  Json labels() const @trusted {
     if (auto l = "Labels" in data.object) {
       return *l;
     }
-    return JSONValue.object;
+    return Json.object;
   }
 }
 
 // Network resource wrapper
 struct Network {
-  JSONValue data;
+  Json data;
 
   string name() const @trusted {
     if (auto n = "Name" in data.object) {
@@ -165,17 +165,17 @@ struct Network {
     return "";
   }
 
-  JSONValue scopeValue() const @trusted {
+  Json scopeValue() const @trusted {
     if (auto s = "Scope" in data.object) {
       return *s;
     }
-    return JSONValue("local");
+    return Json("local");
   }
 
-  JSONValue containers() const @trusted {
+  Json containers() const @trusted {
     if (auto c = "Containers" in data.object) {
       return *c;
     }
-    return JSONValue.object;
+    return Json.object;
   }
 }

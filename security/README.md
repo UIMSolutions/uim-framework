@@ -21,11 +21,11 @@ auto ok = verifyPassword("s3cret", hashed);
 
 ### Sign and verify JWTs
 ```d
-import std.json : JSONValue;
+import std.json : Json;
 import std.datetime : seconds;
 import uim.security.jwt;
 
-JSONValue payload = JSONValue(["sub": JSONValue("user-123"), "role": JSONValue("admin")]);
+Json payload = Json(["sub": Json("user-123"), "role": Json("admin")]);
 auto token = signJWT(payload, "super-secret", 3600.seconds);
 auto claims = verifyJWT(token, "super-secret");
 ```
@@ -40,7 +40,7 @@ URLRouter router;
 string secret = "super-secret";
 
 router.get("/secure", (req, res) {
-    JSONValue claims;
+    Json claims;
     if (!authenticateBearerJWT(req, res, secret, claims)) return;
     res.writeBody("hello " ~ claims["sub"].str);
 });

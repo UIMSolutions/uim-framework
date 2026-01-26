@@ -6,7 +6,7 @@
 module uim.security.middleware;
 
 import std.exception : enforce;
-import std.json : JSONValue, JSONType;
+import std.json : Json, JSONType;
 
 import vibe.http.server : HTTPServerRequest, HTTPServerResponse;
 
@@ -32,7 +32,7 @@ bool authenticateApiKey(scope HTTPServerRequest req, scope HTTPServerResponse re
 }
 
 /// Validates a Bearer JWT from the Authorization header. Returns false and writes 401 on failure.
-bool authenticateBearerJWT(scope HTTPServerRequest req, scope HTTPServerResponse res, string secret, out JSONValue claims) @trusted {
+bool authenticateBearerJWT(scope HTTPServerRequest req, scope HTTPServerResponse res, string secret, out Json claims) @trusted {
   auto authHeader = req.headers.get("Authorization", "");
   enum prefix = "Bearer ";
   if (authHeader.length <= prefix.length || authHeader[0 .. prefix.length] != prefix) {

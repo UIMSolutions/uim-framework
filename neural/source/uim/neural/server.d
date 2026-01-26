@@ -31,7 +31,7 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
         outputs[i] = net.predict(sample);
       }
 
-      auto response = JSONValue([
+      auto response = Json([
         "outputs": encodeOutputs(outputs)
       ]);
 
@@ -41,8 +41,8 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
     } catch (Exception e) {
       res.statusCode = 400;
       res.headers["Content-Type"] = "application/json";
-      auto errorResponse = JSONValue([
-        "error": JSONValue(e.msg)
+      auto errorResponse = Json([
+        "error": Json(e.msg)
       ]);
       res.writeBody(errorResponse.toString());
     }
@@ -56,7 +56,7 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
   runApplication();
 }
 
-private double[][] parseInputs(const JSONValue payload, size_t maxBatch) @safe {
+private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
   enforce(payload.type == JSONType.object, "JSON body must be an object with an 'inputs' array");
   auto inputsNode = payload["inputs"];
   enforce(inputsNode.type == JSONType.array, "'inputs' must be an array of number arrays");
@@ -96,16 +96,16 @@ private double[][] parseInputs(const JSONValue payload, size_t maxBatch) @safe {
   return inputs;
 }
 
-private JSONValue encodeOutputs(const double[][] outputs) @safe {
-  JSONValue[] rows;
+private Json encodeOutputs(const double[][] outputs) @safe {
+  Json[] rows;
   rows.length = outputs.length;
   foreach (i, row; outputs) {
-    JSONValue[] cols;
+    Json[] cols;
     cols.length = row.length;
     foreach (j, value; row) {
-      cols[j] = JSONValue(value);
+      cols[j] = Json(value);
     }
-    rows[i] = JSONValue(cols);
+    rows[i] = Json(cols);
   }
-  return JSONValue(rows);
+  return Json(rows);
 }
