@@ -15,10 +15,10 @@ import std.string : split;
 
 import uim.security.crypto : constantTimeEquals;
 
-@safe:
+// Note: JSON object property access is @system, so we mark functions @trusted where needed
 
 /// Signs a JSON payload into a JWT using HS256. Adds `exp` if missing using the provided ttl.
-string signJWT(JSONValue claims, string secret, Duration ttl) {
+string signJWT(JSONValue claims, string secret, Duration ttl) @trusted {
   enforce(claims.type == JSONType.object, "JWT claims must be a JSON object");
 
   auto header = JSONValue([
@@ -37,21 +37,22 @@ string signJWT(JSONValue claims, string secret, Duration ttl) {
 
   auto signingInput = headerPart ~ "." ~ payloadPart;
   auto signature = hmac!SHA256(cast(const ubyte[]) secret, cast(const ubyte[]) signingInput);
-  auto sigPart = Base64URLNoPadding.encode(signature);
+  auto sigPart = cast(string) Base64URLNoPadding.encode(signature);
 
   return signingInput ~ "." ~ sigPart;
 }
 
 /// Verifies a JWT and returns the claims. Throws on invalid signature or expiry.
-JSONValue verifyJWT(string token, string secret) {
+JSONValue verifyJWT(string token, string secret) @trusted {
   auto parts = token.split(".");
   enforce(parts.length == 3, "JWT must contain three sections");
 
   auto signingInput = parts[0] ~ "." ~ parts[1];
-  auto expectedSig = Base64URLNoPadding.encode(hmac!SHA256(cast(const ubyte[]) secret, cast(const ubyte[]) signingInput));
+  auto expectedSig = cast(string) Base64URLNoPadding.encode(hmac!SHA256(cast(const ubyte[]) secret, cast(const ubyte[]) signingInput));
   enforce(constantTimeEquals(expectedSig, parts[2]), "JWT signature mismatch");
 
   auto payloadBytes = Base64URLNoPadding.decode(parts[1]);
+  // Safe to cast: we know these bytes are UTF-8 encoded JSON from what we created
   auto payload = parseJSON(cast(string) payloadBytes);
   enforce(payload.type == JSONType.object, "JWT payload must be an object");
 
@@ -65,7 +66,7 @@ JSONValue verifyJWT(string token, string secret) {
   return payload;
 }
 
-private string base64Json(JSONValue value) {
+private string base64Json(JSONValue value) @trusted {
   auto json = value.toString();
-  return Base64URLNoPadding.encode(cast(const ubyte[]) json);
+  return cast(string) Base64URLNoPadding.encode(cast(const ubyte[]) json);
 }

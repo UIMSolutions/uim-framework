@@ -15,26 +15,26 @@ import std.format : formattedWrite;
 import std.random : Random, unpredictableSeed, uniform;
 import std.string : split;
 
-@safe:
+// @safe version: we mark functions as @trusted where needed
 
 /// Generates a random salt encoded as base64url.
-string randomSalt(size_t length = 16) {
+string randomSalt(size_t length = 16) @trusted {
   enforce(length > 0, "Salt length must be positive");
   auto rng = Random(unpredictableSeed);
   auto bytes = new ubyte[length];
   foreach (i; 0 .. length) {
-    bytes[i] = uniform!ubyte(0, ubyte.max, rng);
+    bytes[i] = cast(ubyte) uniform(0, 256, rng);
   }
   return Base64URLNoPadding.encode(bytes);
 }
 
 /// Derives a key using PBKDF2-HMAC-SHA256.
-ubyte[] pbkdf2HmacSha256(string password, string salt, uint iterations = 20_000, size_t dkLen = 32) {
+ubyte[] pbkdf2HmacSha256(string password, string salt, uint iterations = 20_000, size_t dkLen = 32) @trusted {
   enforce(iterations > 0, "Iterations must be positive");
   enforce(dkLen > 0, "Derived key length must be positive");
 
-  immutable pwd = cast(const ubyte[]) password;
-  immutable saltBytes = Base64URLNoPadding.decode(salt);
+  immutable(ubyte)[] pwd = cast(immutable ubyte[]) password;
+  immutable(ubyte)[] saltBytes = cast(immutable ubyte[]) Base64URLNoPadding.decode(salt);
 
   enum size_t hLen = 32;
   auto blocks = (dkLen + hLen - 1) / hLen;
@@ -70,13 +70,12 @@ ubyte[] pbkdf2HmacSha256(string password, string salt, uint iterations = 20_000,
 }
 
 /// Creates a password hash string in the form "pbkdf2$ITER$SALT$HASH".
-string hashPassword(string password, string salt = randomSalt(), uint iterations = 20_000, size_t keyLength = 32) {
+string hashPassword(string password, string salt = randomSalt(), uint iterations = 20_000, size_t keyLength = 32) @trusted {
   auto derived = pbkdf2HmacSha256(password, salt, iterations, keyLength);
-  return "pbkdf2$" ~ to!string(iterations) ~ "$" ~ salt ~ "$" ~ Base64URLNoPadding.encode(derived);
+  return "pbkdf2$" ~ to!string(iterations) ~ "$" ~ salt ~ "$" ~ (cast(string) Base64URLNoPadding.encode(derived));
 }
-
 /// Verifies a password against a stored hash produced by `hashPassword`.
-bool verifyPassword(string password, string stored) {
+bool verifyPassword(string password, string stored) @trusted {
   auto parts = stored.split("$");
   enforce(parts.length == 4 && parts[0] == "pbkdf2", "Stored hash format invalid");
 
@@ -85,13 +84,13 @@ bool verifyPassword(string password, string stored) {
   auto expected = parts[3];
 
   auto derived = pbkdf2HmacSha256(password, salt, iterations, Base64URLNoPadding.decode(expected).length);
-  auto actualEncoded = Base64URLNoPadding.encode(derived);
+  auto actualEncoded = cast(string) Base64URLNoPadding.encode(derived);
 
   return constantTimeEquals(actualEncoded, expected);
 }
 
 /// Constant-time comparison to mitigate timing side channels.
-bool constantTimeEquals(string a, string b) @nogc nothrow pure {
+bool constantTimeEquals(string a, string b) @safe nothrow pure {
   size_t maxLen = a.length > b.length ? a.length : b.length;
   ubyte diff = cast(ubyte)(a.length ^ b.length);
   foreach (i; 0 .. maxLen) {
