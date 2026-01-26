@@ -33,7 +33,7 @@ class DAttribute : UIMObject, IAttribute {
   mixin(OProperty!("string", "display"));  
   mixin(OProperty!("string", "registerPath"));  
   mixin(OProperty!("bool", "isNullable"));
-  mixin(OProperty!("STRINGAA", "descriptions"));
+  mixin(OProperty!("string[string]", "descriptions"));
   mixin(OProperty!("string", "valueType")); // Select the data type of the property.")); // 
   mixin(OProperty!("string", "keyType")); // Select the data type of the property.")); // 
   mixin(OProperty!("string", "dataType_display")); // ")); // 

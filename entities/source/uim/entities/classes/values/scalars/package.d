@@ -3,23 +3,12 @@
   License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
   Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.entities.classes.attributes.lookups.strings.string_;
+module uim.models.classes.values.scalars;
 
-import uim.entities;
-
-@safe:
-class DStringStringAttribute : DLookupAttribute {
-  mixin(AttributeThis!("StringStringAttribute"));
-  
-  mixin(OProperty!("string[string]", "lookups"));
-
-  override DValue createValue() {
-    return LookupValue!(string, string).isNullable(isNullable);
-  }
-}
-mixin(AttributeCalls!("StringStringAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
+public { 
+	import uim.models.classes.values.scalars.boolean;
+	import uim.models.classes.values.scalars.double_;
+	import uim.models.classes.values.scalars.integer;
+	import uim.models.classes.values.scalars.long_;
+	import uim.models.classes.values.scalars.string_;
 }
