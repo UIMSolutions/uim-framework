@@ -14,15 +14,15 @@ mixin(ShowModule!());
 /**
  * In-memory repository implementation
  */
-class DEntityRepository : UIMObject, IEntityRepository {
-    protected DEntityCollection _collection;
+class UIMEntityRepository : UIMObject, IEntityRepository {
+    protected UIMEntityCollection _collection;
     
     this() {
         super();
-        _collection = EntityCollection();
+        _collection = entityCollection();
     }
     
-    this(DEntityCollection collection) {
+    this(UIMEntityCollection collection) {
         super();
         _collection = collection;
     }
@@ -117,35 +117,35 @@ class DEntityRepository : UIMObject, IEntityRepository {
     }
     
     // Access to underlying collection
-    DEntityCollection collection() {
+    UIMEntityCollection collection() {
         return _collection;
     }
 }
 
 // Factory function
-auto EntityRepository() {
-    return new DEntityRepository();
+auto entityRepository() {
+    return new UIMEntityRepository();
 }
 
-auto EntityRepository(DEntityCollection collection) {
-    return new DEntityRepository(collection);
+auto entityRepository(UIMEntityCollection collection) {
+    return new UIMEntityRepository(collection);
 }
 
 unittest {
-    writeln("Testing DEntityRepository class...");
+    writeln("Testing UIMEntityRepository class...");
     
-    auto repository = EntityRepository();
+    auto repo = entityRepository();
     
     // Test save new entity
-    auto entity = Entity("Test Entity");
-    entity.setAttribute("type", "test");
+    auto ent = entity("Test Entity");
+    ent.setAttribute("type", "test");
     
-    repository.save(entity);
-    assert(entity.isClean());
-    assert(repository.count() == 1);
+    repo.save(ent);
+    assert(ent.isClean());
+    assert(repo.count() == 1);
     
     // Test find
-    auto found = repository.find(entity.id());
+    auto found = repo.find(ent.id());
     assert(found !is null);
     assert(found.name() == "Test Entity");
     
@@ -153,22 +153,22 @@ unittest {
     found.setAttribute("updated", "yes");
     assert(found.isDirty());
     
-    repository.save(found);
+    repo.save(found);
     assert(found.isClean());
     
     // Test findByAttribute
-    auto byAttr = repository.findByAttribute("type", "test");
+    auto byAttr = repo.findByAttribute("type", "test");
     assert(byAttr.length == 1);
     
     // Test batch save
-    auto entity2 = Entity("Entity 2");
-    auto entity3 = Entity("Entity 3");
-    repository.saveAll([entity2, entity3]);
-    assert(repository.count() == 3);
+    auto ent2 = entity("Entity 2");
+    auto ent3 = entity("Entity 3");
+    repo.saveAll([ent2, ent3]);
+    assert(repo.count() == 3);
     
     // Test remove
-    repository.remove(entity2);
-    assert(repository.count() == 2);
+    repo.remove(ent2);
+    assert(repo.count() == 2);
     
-    writeln("DEntityRepository tests passed!");
+    writeln("UIMEntityRepository tests passed!");
 }

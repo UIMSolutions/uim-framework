@@ -53,7 +53,7 @@ The UIM Entities library provides a comprehensive entity management system with 
         │ implements                                  │ + toAA()        │
         │                                             │ + markDirty()   │
 ┌───────┴──────────┐                                  │ + markClean()   │
-│    DEntity       │                                  │ + markDeleted() │
+│    UIMEntity       │                                  │ + markDeleted() │
 ├──────────────────┤                                  └─────────────────┘
 │ - _id: UUID      │
 │ - _name: string  │
@@ -76,7 +76,7 @@ The UIM Entities library provides a comprehensive entity management system with 
               ┌───────────────┼───────────────┐
               ▼               ▼               ▼
     ┌──────────────────┐ ┌──────────────────────────┐
-    │ <<interface>>    │ │     DEntityCollection    │
+    │ <<interface>>    │ │     UIMEntityCollection    │
     │ IEntityCollection│ ├──────────────────────────┤
     ├──────────────────┤ │ - _entities: IEntity[]   │
     │ + count()        │ │                          │
@@ -102,7 +102,7 @@ The UIM Entities library provides a comprehensive entity management system with 
          │ implements    └──────────────────────────┘
          └────────────────────┐
                               │
-                    DEntityCollection
+                    UIMEntityCollection
 
 
                     ┌──────────────────────────┐
@@ -134,7 +134,7 @@ The UIM Entities library provides a comprehensive entity management system with 
 └──────────────┘                   └──────────────────┘
 
     ┌──────────────────────────┐
-    │   DEntityValidator       │
+    │   UIMEntityValidator       │
     ├──────────────────────────┤
     │ - _rules: IValidRule[]   │
     │                          │
@@ -194,7 +194,7 @@ The UIM Entities library provides a comprehensive entity management system with 
               ┌───────────────┼───────────────┐
               ▼               ▼               ▼
     ┌──────────────────┐ ┌──────────────────┐
-    │ <<interface>>    │ │ DEntityRepository│
+    │ <<interface>>    │ │ UIMEntityRepository│
     │ IEntityRepository│ │                  │
     ├──────────────────┤ ├──────────────────┤
     │ + save()         │ │ - _entities      │
@@ -206,7 +206,7 @@ The UIM Entities library provides a comprehensive entity management system with 
          │ implements    └──────────────────┘
          └────────────────────┐
                               │
-                    DEntityRepository
+                    UIMEntityRepository
 
 
                     ┌──────────────────────────┐
@@ -302,7 +302,7 @@ The EntityManager integrates with the EventDispatcher to emit lifecycle events:
 ## Key Design Patterns
 
 ### 1. **Composition Pattern**
-   - `UIMEntityManager` composes `DEntityRepository`, `DEntityValidator`, and `UIMEventDispatcher`
+   - `UIMEntityManager` composes `UIMEntityRepository`, `UIMEntityValidator`, and `UIMEventDispatcher`
    - Allows flexible swapping of implementations
 
 ### 2. **Observer Pattern**
@@ -315,7 +315,7 @@ The EntityManager integrates with the EventDispatcher to emit lifecycle events:
 
 ### 4. **Strategy Pattern**
    - `IValidationRule` interface allows pluggable validation rules
-   - Multiple rules can be composed in `DEntityValidator`
+   - Multiple rules can be composed in `UIMEntityValidator`
 
 ### 5. **Factory Pattern**
    - Implicit factories for creating specialized rules and validators
@@ -367,7 +367,7 @@ auto manager = new UIMEntityManager(repository);
 manager.validator(validator);
 
 // Create entity - fires BeforeCreate, Validate, AfterCreate events
-auto entity = manager.create(new DEntity("john_doe"));
+auto entity = manager.create(new UIMEntity("john_doe"));
 
 // Update entity - fires BeforeUpdate, Validate, AfterUpdate events
 entity.setAttribute("email", "john@example.com");

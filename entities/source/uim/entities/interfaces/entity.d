@@ -10,7 +10,7 @@ mixin(ShowModule!());
  * Entity interface that defines the contract for all entities
  */
 interface IEntity {
-    // Identity
+    // IUIMEntity
     UUID id();
     IEntity id(UUID value);
     

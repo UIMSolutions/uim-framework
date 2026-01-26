@@ -167,25 +167,25 @@ void testEntityValidator() {
     validator.addRule("username", new MinLengthRule(3));
     
     // Valid entity
-    auto validEntity = Entity("Valid");
-    validEntity.setAttribute("username", "john_doe");
+    auto valiUIMEntity = Entity("Valid");
+    valiUIMEntity.setAttribute("username", "john_doe");
     
-    assert(validator.validate(validEntity));
-    assert(validEntity.isValid());
+    assert(validator.validate(valiUIMEntity));
+    assert(valiUIMEntity.isValid());
     
     // Invalid entity (empty)
-    auto invalidEntity1 = Entity("Invalid1");
-    invalidEntity1.setAttribute("username", "");
+    auto invaliUIMEntity1 = Entity("Invalid1");
+    invaliUIMEntity1.setAttribute("username", "");
     
-    assert(!validator.validate(invalidEntity1));
-    assert(!invalidEntity1.isValid());
+    assert(!validator.validate(invaliUIMEntity1));
+    assert(!invaliUIMEntity1.isValid());
     
     // Invalid entity (too short)
-    auto invalidEntity2 = Entity("Invalid2");
-    invalidEntity2.setAttribute("username", "ab");
+    auto invaliUIMEntity2 = Entity("Invalid2");
+    invaliUIMEntity2.setAttribute("username", "ab");
     
-    assert(!validator.validate(invalidEntity2));
-    assert(!invalidEntity2.isValid());
+    assert(!validator.validate(invaliUIMEntity2));
+    assert(!invaliUIMEntity2.isValid());
     
     writeln("✓ Entity validator test passed");
 }
@@ -206,7 +206,7 @@ void testEntityManager() {
         afterCreateCalled = true;
     });
     
-    auto entity = Entity("ManagedEntity");
+    auto entity = Entity("ManageUIMEntity");
     manager.create(entity);
     
     assert(beforeCreateCalled);
@@ -231,20 +231,20 @@ void testEntityManagerWithValidation() {
     });
     
     // Valid entity
-    auto validEntity = Entity("Valid");
-    validEntity.setAttribute("username", "john");
-    manager.create(validEntity);
+    auto valiUIMEntity = Entity("Valid");
+    valiUIMEntity.setAttribute("username", "john");
+    manager.create(valiUIMEntity);
     
     assert(validatedCalled);
-    assert(validEntity.isClean());
+    assert(valiUIMEntity.isClean());
     
     // Invalid entity
-    auto invalidEntity = Entity("Invalid");
-    invalidEntity.setAttribute("username", "");
-    manager.create(invalidEntity);
+    auto invaliUIMEntity = Entity("Invalid");
+    invaliUIMEntity.setAttribute("username", "");
+    manager.create(invaliUIMEntity);
     
-    assert(invalidEntity.isNew()); // Should not be saved
-    assert(!invalidEntity.isValid());
+    assert(invaliUIMEntity.isNew()); // Should not be saved
+    assert(!invaliUIMEntity.isValid());
     
     writeln("✓ Entity manager with validation test passed");
 }

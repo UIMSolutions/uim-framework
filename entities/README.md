@@ -35,7 +35,7 @@ A comprehensive entity management library for D language, providing OOP patterns
                           │ implements
                           │
 ┌─────────────────────────┴───────────────────────────────────┐
-│                       DEntity                               │
+│                       UIMEntity                               │
 ├─────────────────────────────────────────────────────────────┤
 │ # _id: UUID                                                 │
 │ # _name: string                                             │
@@ -93,7 +93,7 @@ A comprehensive entity management library for D language, providing OOP patterns
                           │ implements
                           │
 ┌─────────────────────────┴───────────────────────────────────┐
-│                  DEntityCollection                          │
+│                  UIMEntityCollection                          │
 ├─────────────────────────────────────────────────────────────┤
 │ # _entities: IEntity[UUID]                                  │
 ├─────────────────────────────────────────────────────────────┤
@@ -128,9 +128,9 @@ A comprehensive entity management library for D language, providing OOP patterns
                           │ implements
                           │
 ┌─────────────────────────┴───────────────────────────────────┐
-│                  DEntityRepository                          │
+│                  UIMEntityRepository                          │
 ├─────────────────────────────────────────────────────────────┤
-│ # _collection: DEntityCollection                            │
+│ # _collection: UIMEntityCollection                            │
 ├─────────────────────────────────────────────────────────────┤
 │ + find(id): IEntity                                         │
 │ + findAll(): IEntity[]                                      │
@@ -145,7 +145,7 @@ A comprehensive entity management library for D language, providing OOP patterns
                           │
                           │ uses
                           ▼
-                  DEntityCollection
+                  UIMEntityCollection
 
 ┌─────────────────────────────────────────────────────────────┐
 │                    <<interface>>                            │
@@ -166,13 +166,13 @@ A comprehensive entity management library for D language, providing OOP patterns
 └────────────────┘ └──────────────┘ └─────────────┘ └─────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
-│                  DEntityValidator                           │
+│                  UIMEntityValidator                           │
 ├─────────────────────────────────────────────────────────────┤
 │ # _rules: IValidationRule[][string]                         │
 ├─────────────────────────────────────────────────────────────┤
-│ + addRule(fieldName, rule): DEntityValidator                │
+│ + addRule(fieldName, rule): UIMEntityValidator                │
 │ + validate(entity): bool                                    │
-│ + fromEntityType!T(): DEntityValidator                      │
+│ + fromEntityType!T(): UIMEntityValidator                      │
 └─────────────────────────────────────────────────────────────┘
                           │
                           │ validates
@@ -182,8 +182,8 @@ A comprehensive entity management library for D language, providing OOP patterns
 ┌─────────────────────────────────────────────────────────────┐
 │                   UIMEntityManager                            │
 ├─────────────────────────────────────────────────────────────┤
-│ # _repository: DEntityRepository                            │
-│ # _validator: DEntityValidator                              │
+│ # _repository: UIMEntityRepository                            │
+│ # _validator: UIMEntityValidator                              │
 │ # _eventDispatcher: UIMEventDispatcher                        │
 ├─────────────────────────────────────────────────────────────┤
 │ + validator(val): UIMEntityManager                            │
@@ -195,7 +195,7 @@ A comprehensive entity management library for D language, providing OOP patterns
 │ + findAll(): IEntity[]                                      │
 │ + findByName(name): IEntity                                 │
 │ + findByAttribute(key, value): IEntity[]                    │
-│ + repository(): DEntityRepository                           │
+│ + repository(): UIMEntityRepository                           │
 └─────────────────────────────────────────────────────────────┘
                           │
                     ┌─────┼─────┐
@@ -345,7 +345,7 @@ Manager     Validator    Entity       Rules
 │               │ implements               │
 │               ▼                          │
 │  ┌─────────────────────────────────────┐ │
-│  │    DEntityRepository                │ │
+│  │    UIMEntityRepository                │ │
 │  │  (In-Memory Implementation)         │ │
 │  └────────────┬────────────────────────┘ │
 └───────────────┼───────────────────────────┘
@@ -354,7 +354,7 @@ Manager     Validator    Entity       Rules
 ┌───────────────────────────────────────────┐
 │         Data Layer                        │
 │  ┌─────────────────────────────────────┐ │
-│  │    DEntityCollection                │ │
+│  │    UIMEntityCollection                │ │
 │  │   IEntity[UUID]                     │ │
 │  └─────────────────────────────────────┘ │
 └───────────────────────────────────────────┘
@@ -380,9 +380,9 @@ Manager     Validator    Entity       Rules
 │  ┌────────────────────────────────────────────┐         │
 │  │  Core Implementation                       │         │
 │  ├────────────────────────────────────────────┤         │
-│  │ - entity.d (DEntity)                       │         │
-│  │ - collection.d (DEntityCollection)         │         │
-│  │ - validator.d (DEntityValidator)           │         │
+│  │ - entity.d (UIMEntity)                       │         │
+│  │ - collection.d (UIMEntityCollection)         │         │
+│  │ - validator.d (UIMEntityValidator)           │         │
 │  │ - manager.d (UIMEntityManager)               │         │
 │  └────────────────────────────────────────────┘         │
 │           │                                              │
@@ -412,7 +412,7 @@ Manager     Validator    Entity       Rules
 
 ## Features
 
-- **Entity Interface & Base Class**: `IEntity` interface and `DEntity` base class
+- **Entity Interface & Base Class**: `IEntity` interface and `UIMEntity` base class
 - **State Management**: Track entity lifecycle (New, Clean, Dirty, Deleted)
 - **Collections**: Manage groups of entities with querying capabilities
 - **Repository Pattern**: Abstract persistence layer with CRUD operations
@@ -426,7 +426,7 @@ Manager     Validator    Entity       Rules
 
 ### Entity
 
-Base entity with identity, timestamps, attributes, and state management:
+Base entity with iUIMEntity, timestamps, attributes, and state management:
 
 ```d
 import uim.entities;
@@ -528,7 +528,7 @@ Declarative validation using attributes:
 
 ```d
 @UseEntity("users")
-class User : DEntity {
+class User : UIMEntity {
     @Required
     @MaxLength(50)
     string username;
@@ -545,7 +545,7 @@ class User : DEntity {
 }
 
 // Create validator from UDAs
-auto validator = DEntityValidator.fromEntityType!User();
+auto validator = UIMEntityValidator.fromEntityType!User();
 ```
 
 ### Entity Manager with Events
@@ -612,7 +612,7 @@ Entities track their lifecycle state:
 ### 1. Repository Pattern
 
 **Purpose**: Abstracts data persistence layer  
-**Implementation**: `IEntityRepository` and `DEntityRepository`  
+**Implementation**: `IEntityRepository` and `UIMEntityRepository`  
 **Benefits**: Decouples business logic from data access, enables testing with mock repositories
 
 ### 2. Observer Pattern

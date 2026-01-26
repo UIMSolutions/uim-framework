@@ -100,7 +100,7 @@ class PatternRule : UIMObject, IValidationRule {
 /**
  * Entity validator
  */
-class DEntityValidator : UIMObject {
+class UIMEntityValidator : UIMObject {
     protected IValidationRule[][string] _rules;
     
     this() {
@@ -110,7 +110,7 @@ class DEntityValidator : UIMObject {
     /**
      * Add a validation rule for a field
      */
-    DEntityValidator addRule(string fieldName, IValidationRule rule) {
+    UIMEntityValidator addRule(string fieldName, IValidationRule rule) {
         if (fieldName !in _rules) {
             _rules[fieldName] = [];
         }
@@ -148,8 +148,8 @@ class DEntityValidator : UIMObject {
     /**
      * Create validator from entity UDAs
      */
-    static DEntityValidator fromEntityType(T)() if (is(T == class)) {
-        auto validator = new DEntityValidator();
+    static UIMEntityValidator fromEntityType(T)() if (is(T == class)) {
+        auto validator = new UIMEntityValidator();
         
         static foreach (memberName; __traits(allMembers, T)) {
             static if (is(typeof(__traits(getMember, T, memberName)))) {
@@ -185,14 +185,14 @@ class DEntityValidator : UIMObject {
 }
 
 // Factory function
-auto EntityValidator() {
-    return new DEntityValidator();
+auto entityValidator() {
+    return new UIMEntityValidator();
 }
 
 unittest {
-    writeln("Testing DEntityValidator class...");
+    writeln("Testing UIMEntityValidator class...");
     
-    auto validator = EntityValidator();
+    auto validator = entityValidator();
     
     // Add validation rules
     validator.addRule("username", new RequiredRule());
@@ -200,26 +200,26 @@ unittest {
     validator.addRule("username", new MaxLengthRule(20));
     
     // Test valid entity
-    auto entity = Entity("Test");
-    entity.setAttribute("username", "john_doe");
+    auto ent = entity("Test");
+    ent.setAttribute("username", "john_doe");
     
-    assert(validator.validate(entity));
-    assert(entity.isValid());
+    assert(validator.validate(ent));
+    assert(ent.isValid());
     
     // Test invalid entity (empty username)
-    auto entity2 = Entity("Test2");
-    entity2.setAttribute("username", "");
+    auto ent2 = entity("Test2");
+    ent2.setAttribute("username", "");
     
-    assert(!validator.validate(entity2));
-    assert(!entity2.isValid());
-    assert(entity2.errors().length > 0);
+    assert(!validator.validate(ent2));
+    assert(!ent2.isValid());
+    assert(ent2.errors().length > 0);
     
     // Test invalid entity (too short)
-    auto entity3 = Entity("Test3");
-    entity3.setAttribute("username", "ab");
+    auto ent3 = entity("Test3");
+    ent3.setAttribute("username", "ab");
     
-    assert(!validator.validate(entity3));
-    assert(!entity3.isValid());
+    assert(!validator.validate(ent3));
+    assert(!ent3.isValid());
     
-    writeln("DEntityValidator tests passed!");
+    writeln("UIMEntityValidator tests passed!");
 }

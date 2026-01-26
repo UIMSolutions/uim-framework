@@ -58,7 +58,7 @@ The Flyweight Pattern is a structural design pattern that minimizes memory usage
 2. **High memory usage**: When object creation is expensive in memory
 3. **Shared state exists**: When objects share significant common data
 4. **Extrinsic state can be computed**: When unique state can be derived or passed
-5. **Object identity not important**: When objects don't need unique identity
+5. **Object iUIMEntity not important**: When objects don't need unique iUIMEntity
 
 ### Perfect Scenarios
 - Text editors (character glyphs)

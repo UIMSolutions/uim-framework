@@ -65,8 +65,8 @@ auto trans = m1.transpose();     // Transpose
 auto det = m1.determinant();     // Determinant
 auto tr = m1.trace();            // Trace
 
-// Identity and zero matrices
-auto I = eye(3);                 // 3x3 identity
+// IUIMEntity and zero matrices
+auto I = eye(3);                 // 3x3 iUIMEntity
 auto Z = zeros(2, 3);            // 2x3 zero matrix
 ```
 

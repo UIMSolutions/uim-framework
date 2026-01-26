@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
 /**
  * Entity state enumeration
  */
@@ -26,7 +25,7 @@ enum EntityState {
 /**
  * Base entity class with common functionality
  */
-class DEntity : UIMObject, IEntity {
+class UIMEntity : UIMObject, IEntity {
     protected UUID _id;
     protected string _name;
     protected SysTime _createdAt;
@@ -176,29 +175,27 @@ class DEntity : UIMObject, IEntity {
 }
 
 // Factory function
-auto Entity() {
-    return new DEntity();
+auto entity() {
+    return new UIMEntity();
 }
 
-auto Entity(UUID id) {
-    return new DEntity(id);
+auto entity(UUID id) {
+    return new UIMEntity(id);
 }
 
-auto Entity(string name) {
-    auto entity = new DEntity();
-    entity.name(name);
-    return entity;
+auto entity(string name) {
+    auto e = new UIMEntity();
+    e.name(name);
+    return e;
 }
 
 unittest {
-    mixins(ShowTest!"Testing DEntity class...");
+    auto e = entity("Test Entity");
+    assert(e.name() == "Test Entity");
+    assert(e.isNew());
+    assert(!e.isDirty());
     
-    auto entity = Entity("Test Entity");
-    assert(entity.name() == "Test Entity");
-    assert(entity.isNew());
-    assert(!entity.isDirty());
-    
-    entity.setAttribute("key1", "value1");
+    e.setAttribute("key1", "value1");
     assert(entity.hasAttribute("key1"));
     assert(entity.getAttribute("key1") == "value1");
     

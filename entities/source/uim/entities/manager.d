@@ -15,17 +15,17 @@ mixin(ShowModule!());
  * Entity manager that coordinates entity lifecycle with events
  */
 class UIMEntityManager : UIMObject {
-    protected DEntityRepository _repository;
-    protected DEntityValidator _validator;
+    protected UIMEntityRepository _repository;
+    protected UIMEntityValidator _validator;
     protected UIMEventDispatcher _eventDispatcher;
     
     this() {
         super();
-        _repository = EntityRepository();
+        _repository = entityRepository();
         _eventDispatcher = EventDispatcher();
     }
     
-    this(DEntityRepository repository) {
+    this(UIMEntityRepository repository) {
         super();
         _repository = repository;
         _eventDispatcher = EventDispatcher();
@@ -34,7 +34,7 @@ class UIMEntityManager : UIMObject {
     /**
      * Set validator for entities
      */
-    UIMEntityManager validator(DEntityValidator val) {
+    UIMEntityManager validator(UIMEntityValidator val) {
         _validator = val;
         return this;
     }
@@ -145,7 +145,7 @@ class UIMEntityManager : UIMObject {
     /**
      * Get repository
      */
-    DEntityRepository repository() {
+    UIMEntityRepository repository() {
         return _repository;
     }
 }
@@ -153,18 +153,18 @@ class UIMEntityManager : UIMObject {
 import std.uuid : UUID;
 
 // Factory function
-auto EntityManager() {
+auto entityManager() {
     return new UIMEntityManager();
 }
 
-auto EntityManager(DEntityRepository repository) {
+auto entityManager(UIMEntityRepository repository) {
     return new UIMEntityManager(repository);
 }
 
 unittest {
     writeln("Testing UIMEntityManager class...");
     
-    auto manager = EntityManager();
+    auto manager = entityManager();
     
     // Test create with events
     bool beforeCreateCalled = false;
@@ -178,8 +178,8 @@ unittest {
         afterCreateCalled = true;
     });
     
-    auto entity = uim.entities.entity.Entity("Test Entity");
-    manager.create(entity);
+    auto ent = entity("Test Entity");
+    manager.create(ent);
     
     assert(beforeCreateCalled);
     assert(afterCreateCalled);

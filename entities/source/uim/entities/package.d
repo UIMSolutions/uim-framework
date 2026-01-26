@@ -14,8 +14,11 @@ public { // UIM libraries
 
 public { // Packages
   import uim.entities.attributes;
-  import uim.entities.interfaces;
+  import uim.entities.commands;
+  import uim.entities.events;
   import uim.entities.helpers;
+  import uim.entities.interfaces;
+  import uim.entities.tests;
   import uim.entities.validators;
 }
 
@@ -23,6 +26,5 @@ public { // Modules
   import uim.entities.entity;
   import uim.entities.collection;
   import uim.entities.annotated;
-  import uim.entities.events;
   import uim.entities.manager;
 }

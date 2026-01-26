@@ -20,7 +20,7 @@ void assertFalse(bool condition, string msg = "Expected false") {
   assert(!condition, msg);
 }
 
-// assertNull / assertNotNull (Uses 'is' for reference identity)
+// assertNull / assertNotNull (Uses 'is' for reference iUIMEntity)
 void assertNull(T)(T obj, string msg = "Expected null") {
   assert(obj is null, msg);
 }
@@ -46,7 +46,7 @@ void assertArrayEquals(T)(T[] expected, T[] actual, string msg = "") {
     text(msg, " -> Arrays differ. Expected: ", expected, ", Actual: ", actual));
 }
 
-// assertSame / assertNotSame (Memory address identity)
+// assertSame / assertNotSame (Memory address iUIMEntity)
 void assertSame(T)(T expected, T actual, string msg = "Objects are not same instance") {
   assert(expected is actual, msg);
 }

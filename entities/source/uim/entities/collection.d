@@ -16,7 +16,7 @@ mixin(ShowModule!());
 /**
  * Entity collection implementation
  */
-class DEntityCollection : UIMObject, IEntityCollection {
+class UIMEntityCollection : UIMObject, IEntityCollection {
     protected IEntity[UUID] _entities;
     
     this() {
@@ -142,18 +142,18 @@ class DEntityCollection : UIMObject, IEntityCollection {
 }
 
 // Factory function
-auto EntityCollection() {
-    return new DEntityCollection();
+auto entityCollection() {
+    return new UIMEntityCollection();
 }
 
 unittest {
-    writeln("Testing DEntityCollection class...");
+    writeln("Testing UIMEntityCollection class...");
     
-    auto collection = EntityCollection();
+    auto collection = entityCollection();
     assert(collection.isEmpty());
     
-    auto entity1 = Entity("Entity 1");
-    auto entity2 = Entity("Entity 2");
+    auto entity1 = entity("Entity 1");
+    auto entity2 = entity("Entity 2");
     
     collection.add(entity1);
     collection.add(entity2);
@@ -177,5 +177,5 @@ unittest {
     collection.remove(entity1);
     assert(collection.count() == 1);
     
-    writeln("DEntityCollection tests passed!");
+    writeln("UIMEntityCollection tests passed!");
 }

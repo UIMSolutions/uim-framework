@@ -2,7 +2,7 @@ import uim.entities;
 import std.stdio;
 
 @UseEntity("test_users")
-class TestUser : DAnnotatedEntity {
+class TestUser : DAnnotateUIMEntity {
     @EntityAttribute("username")
     @Required
     string username;

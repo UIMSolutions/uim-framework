@@ -13,7 +13,7 @@ interface IEntityManager {
   /**
    * Set validator for entities
    */
-  IEntityManager validator(DEntityValidator val);
+  IEntityManager validator(UIMEntityValidator val);
 
   /**
    * Get event dispatcher
@@ -58,5 +58,5 @@ interface IEntityManager {
   /**
    * Get repository
    */
-  DEntityRepository repository();
+  UIMEntityRepository repository();
 }

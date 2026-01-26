@@ -160,7 +160,7 @@ void main() {
     writeln("7. Custom entity with validation UDAs:");
     
     @UseEntity("users")
-    class User : DEntity {
+    class User : UIMEntity {
         @Required
         @MaxLength(50)
         string username;

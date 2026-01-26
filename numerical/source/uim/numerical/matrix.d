@@ -257,7 +257,7 @@ Matrix zeros(size_t rows, size_t cols) pure {
 }
 
 /**
- * Creates an identity matrix
+ * Creates an iUIMEntity matrix
  */
 Matrix eye(size_t n) pure {
     auto result = Matrix(n, n);

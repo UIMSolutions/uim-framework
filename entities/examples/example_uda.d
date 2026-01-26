@@ -13,7 +13,7 @@ import std.algorithm : canFind;
  * Example User entity using UDAs for validation and mapping
  */
 @UseEntity("users")
-class User : DAnnotatedEntity {
+class User : DAnnotateUIMEntity {
     @EntityAttribute("username")
     @Required
     @MaxLength(50)
@@ -48,7 +48,7 @@ class User : DAnnotatedEntity {
  * Example Product entity
  */
 @UseEntity("products")
-class Product : DAnnotatedEntity {
+class Product : DAnnotateUIMEntity {
     @EntityAttribute("name")
     @Required
     @MaxLength(200)
@@ -86,7 +86,7 @@ class Product : DAnnotatedEntity {
  * Example Order entity with nested validation
  */
 @UseEntity("orders")
-class Order : DAnnotatedEntity {
+class Order : DAnnotateUIMEntity {
     @EntityAttribute("order_number")
     @Required
     @Pattern(r"^ORD-\d{6}$")
