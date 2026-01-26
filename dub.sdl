@@ -31,6 +31,9 @@ dependency ":numerical" version="*"
 dependency ":oop" version="*"
 dependency ":services" version="*"
 
+// Neural networks
+dependency ":neural" version="*"
+
 // Source files
 sourceFiles "./source/uim/framework.d"
 
@@ -46,6 +49,7 @@ subPackage "i18n"
 subPackage "jsons"
 subPackage "logging"
 subPackage "numerical"
+subPackage "neural"
 subPackage "oop"
 subPackage "services"
 
