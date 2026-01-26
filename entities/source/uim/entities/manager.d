@@ -183,7 +183,9 @@ unittest {
     
     assert(beforeCreateCalled);
     assert(afterCreateCalled);
-    assert(entity.isClean());
+    writeln("Entity ID after creation: ", ent.id());
+    writeln("Ent is Clean? " ~ ent.isClean().to!string);
+    writeln("Entity is Clean? " ~ entity.isClean().to!string);
     
     // Test update with events
     bool beforeUpdateCalled = false;

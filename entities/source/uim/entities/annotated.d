@@ -309,9 +309,10 @@ string[] validateAnnotateUIMEntity(T)(T entity) if (is(T == class) || is(T == st
 
     @UseEntity("products")
     class Product : UIMEntity {
+      /*
       @EntityAttribute("name")
       @Required
-      string name;
+      string name; */
 
       @EntityAttribute("price")
       @Range(0, 1_000_000)
@@ -320,6 +321,13 @@ string[] validateAnnotateUIMEntity(T)(T entity) if (is(T == class) || is(T == st
       @EntityAttribute("sku")
       @ReadOnly
       string sku;
+
+      override string[string] toAA() {
+        auto map = super.toAA();
+        map["price"] = this.price.to!string;
+        map["sku"] = this.sku;
+        return map;
+      }
     }
 
     auto product = new Product();
@@ -329,6 +337,8 @@ string[] validateAnnotateUIMEntity(T)(T entity) if (is(T == class) || is(T == st
 
     // Test toAA
     auto map = product.toAA();
+    writeln("Product as map: ", map);
+    writeln("name: ", map);
     assert(map["name"] == "Laptop");
     assert(map["price"] == "999.99");
 

@@ -88,7 +88,7 @@ class UIMEntity : UIMObject, IEntity {
     }
     
     bool hasAttribute(string key) {
-        return (key in _attributes) !is null;
+        return (key in _attributes) ? true : false;
     }
     
     override IEntity removeAttribute(string key) {
@@ -190,21 +190,21 @@ auto entity(string name) {
 }
 
 unittest {
-    auto e = entity("Test Entity");
-    assert(e.name() == "Test Entity");
-    assert(e.isNew());
-    assert(!e.isDirty());
+    auto entity1 = entity("Test Entity");
+    assert(entity1.name() == "Test Entity");
+    assert(entity1.isNew());
+    assert(!entity1.isDirty());
     
-    e.setAttribute("key1", "value1");
-    assert(entity.hasAttribute("key1"));
-    assert(entity.getAttribute("key1") == "value1");
+    entity1.setAttribute("key1", "value1");
+    assert(entity1.hasAttribute("key1"));
+    assert(entity1.getAttribute("key1") == "value1");
     
-    entity.markClean();
-    assert(entity.isClean());
+    entity1.markClean();
+    assert(entity1.isClean());
     
-    entity.setAttribute("key2", "value2");
-    assert(entity.isDirty());
+    entity1.setAttribute("key2", "value2");
+    assert(entity1.isDirty());
     
-    entity.markDeleted();
-    assert(entity.isDeleted());
+    entity1.markDeleted();
+    assert(entity1.isDeleted());
 }
