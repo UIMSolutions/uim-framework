@@ -5,10 +5,7 @@
 *****************************************************************************************************************/
 module uim.neural.losses;
 
-import std.exception : enforce;
-import std.math : log;
-
-import uim.neural.activations : softmax;
+import uim.neural;
 
 @safe:
 

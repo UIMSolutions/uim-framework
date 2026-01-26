@@ -142,61 +142,67 @@ version (Posix) {
     /// Get file permissions
     FilePermissions getPermissions(string path) @trusted {
         import core.sys.posix.sys.stat : stat, stat_t, S_IRWXU, S_IRWXG, S_IRWXO;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        
+
         stat_t statbuf;
-        enforce(stat(path.ptr, &statbuf) == 0, "Failed to get file stats");
-        
+        enforce(stat(toStringz(path), &statbuf) == 0, "Failed to get file stats");
+
         return FilePermissions.fromMode(statbuf.st_mode & 0x1FF); // 0o7777 = 0x1FF
     }
     
     /// Set file permissions
     void setPermissions(string path, FilePermissions perms) @trusted {
         import core.sys.posix.sys.stat;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        enforce(chmod(path.ptr, perms.toMode()) == 0, "Failed to set permissions");
+        enforce(chmod(toStringz(path), perms.toMode()) == 0, "Failed to set permissions");
     }
     
     /// Set file permissions from octal mode
     void setPermissions(string path, uint mode) @trusted {
         import core.sys.posix.sys.stat;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        enforce(chmod(path.ptr, mode) == 0, "Failed to set permissions");
+        enforce(chmod(toStringz(path), mode) == 0, "Failed to set permissions");
     }
     
     /// Get file owner user ID
     uint getOwnerId(string path) @trusted {
         import core.sys.posix.sys.stat;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        
+
         stat_t statbuf;
-        enforce(stat(path.ptr, &statbuf) == 0, "Failed to get file stats");
-        
+        enforce(stat(toStringz(path), &statbuf) == 0, "Failed to get file stats");
+
         return statbuf.st_uid;
     }
     
     /// Get file owner group ID
     uint getGroupId(string path) @trusted {
         import core.sys.posix.sys.stat;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        
+
         stat_t statbuf;
-        enforce(stat(path.ptr, &statbuf) == 0, "Failed to get file stats");
-        
+        enforce(stat(toStringz(path), &statbuf) == 0, "Failed to get file stats");
+
         return statbuf.st_gid;
     }
     
     /// Change file owner
     void changeOwner(string path, uint userId, uint groupId) @trusted {
         import core.sys.posix.unistd;
-        
+        import std.string : toStringz;
+
         enforce(exists(path), "Path does not exist: " ~ path);
-        enforce(chown(path.ptr, userId, groupId) == 0, "Failed to change owner");
+        enforce(chown(toStringz(path), userId, groupId) == 0, "Failed to change owner");
     }
 }
 

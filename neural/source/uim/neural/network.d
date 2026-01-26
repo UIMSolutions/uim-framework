@@ -5,27 +5,23 @@
 *****************************************************************************************************************/
 module uim.neural.network;
 
-import std.exception : enforce;
-import std.random : Random, unpredictableSeed;
-
-import uim.neural.activations;
-import uim.neural.layers;
+import uim.neural;
 
 @safe:
 
 /// Simple sequential neural network composed of dense layers.
-struct NeuralNetwork {
+class NeuralNetwork : UIMObject {
   this() {
     rng = Random(unpredictableSeed);
   }
 
-  ref NeuralNetwork addDenseLayer(size_t inputSize, size_t outputSize, Activation act, double initScale = 0.05) {
+  NeuralNetwork addDenseLayer(size_t inputSize, size_t outputSize, Activation act, double initScale = 0.05) {
     auto layer = new DenseLayer(inputSize, outputSize, act, initScale, rng);
     layers ~= layer;
     return this;
   }
 
-  ref NeuralNetwork addDenseLayer(size_t outputSize, Activation act, double initScale = 0.05) {
+  NeuralNetwork addDenseLayer(size_t outputSize, Activation act, double initScale = 0.05) {
     enforce(layers.length > 0, "First layer requires explicit input size");
     auto inputSize = layers[$ - 1].outputSize;
     return addDenseLayer(inputSize, outputSize, act, initScale);

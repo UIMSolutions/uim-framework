@@ -18,6 +18,13 @@ enum FileSystemEvent {
     Unknown
 }
 
+interface IFileSystemWatcher {
+    void onEvent(WatchCallback callback) @safe;
+    void start() @trusted;
+    void stop() @safe;
+    bool isRunning() const @safe;
+}
+
 /// File system change notification
 struct FileSystemChange {
     string path;
@@ -29,7 +36,7 @@ struct FileSystemChange {
 alias WatchCallback = void delegate(FileSystemChange change) @safe;
 
 /// Simple polling-based file system watcher
-class FileSystemWatcher {
+class FileSystemWatcher : IFileSystemWatcher {
     private string _path;
     private bool _recursive;
     private WatchCallback _callback;

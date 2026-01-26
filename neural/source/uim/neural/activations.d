@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.neural.activations;
 
-import std.math : exp, tanh;
+import uim.neural;
 
 @safe:
 
@@ -110,21 +110,21 @@ double[] softmax(const double[] logits) @safe {
   }
 
   double sumExp = 0.0;
-  auto out = new double[logits.length];
+  auto output = new double[logits.length];
   foreach (i, val; logits) {
     double e = exp(val - maxLogit);
-    out[i] = e;
+    output[i] = e;
     sumExp += e;
   }
 
   if (sumExp == 0) {
-    return out;
+    return output;
   }
 
-  foreach (ref v; out) {
+  foreach (ref v; output) {
     v /= sumExp;
   }
-  return out;
+  return output;
 }
 
 // Activation primitives

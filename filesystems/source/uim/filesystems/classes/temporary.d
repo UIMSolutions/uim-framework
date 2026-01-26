@@ -112,7 +112,7 @@ struct TemporaryDirectory {
     /// Create file in temporary directory
     string createFile(string name) @trusted {
         auto filePath = buildPath(_path, name);
-        write(filePath, "");
+        std.file.write(filePath, "");
         return filePath;
     }
     
@@ -130,7 +130,7 @@ string createTemporaryFile(string content, string prefix = "tmp", string suffix 
     auto uuid = randomUUID().toString();
     auto path = buildPath(tempDir, prefix ~ "-" ~ uuid ~ suffix);
     
-    write(path, content);
+    std.file.write(path, content);
     return path;
 }
 

@@ -5,16 +5,7 @@
 *****************************************************************************************************************/
 module uim.neural.server;
 
-import std.conv : to;
-import std.exception : enforce;
-import std.json : JSONType, JSONValue, parseJSON;
-
-import vibe.core.core : runApplication;
-import vibe.http.router : URLRouter;
-import vibe.http.server : HTTPServerRequest, HTTPServerResponse, HTTPServerSettings, listenHTTP;
-import vibe.stream.operations : readAllUTF8;
-
-import uim.neural.network;
+import uim.neural;
 
 @safe:
 

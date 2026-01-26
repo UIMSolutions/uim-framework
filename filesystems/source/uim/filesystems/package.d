@@ -6,6 +6,10 @@
 module uim.filesystems;
 
 public {
+    import uim.core;
+    import uim.oop;
+    import uim.logging;
+
     import uim.filesystems.classes;
     import uim.filesystems.async_;
 }

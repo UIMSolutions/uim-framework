@@ -5,10 +5,7 @@
 *****************************************************************************************************************/
 module uim.neural.layers;
 
-import std.exception : enforce;
-import std.random : Random, uniform, unpredictableSeed;
-
-import uim.neural.activations;
+import uim.neural;
 
 @safe:
 

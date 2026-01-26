@@ -5,17 +5,15 @@
 *****************************************************************************************************************/
 module uim.neural.training;
 
-import std.algorithm : min, shuffle;
-import std.exception : enforce;
-import std.math : sqrt;
-import std.random : Random, unpredictableSeed;
-
-import uim.neural.losses;
-import uim.neural.network;
+import uim.neural;
 
 @safe:
 
-struct Dataset {
+class Dataset : UIMObject {
+    this() {
+        super();
+    }
+
   double[][] inputs;
   double[][] targets;
 

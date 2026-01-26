@@ -11,7 +11,7 @@ targetName "uim-neural"
 targetType "library"
 
 // Dependencies
-dependency "uim-framework:core" version="*"
+dependency "uim-framework:oop" version="*"
 dependency "uim-framework:numerical" version="*"
 dependency "vibe-d" version="~>0.10.3"
 

@@ -30,8 +30,6 @@ dependency ":logging" version="*"
 dependency ":numerical" version="*"
 dependency ":oop" version="*"
 dependency ":services" version="*"
-dependency ":docker" version="*"
-dependency ":cgroups" version="*"
 dependency ":filesystems" version="*"
 
 // Neural networks
@@ -56,7 +54,6 @@ subPackage "neural"
 subPackage "oop"
 subPackage "security"
 subPackage "services"
-subPackage "cgroups"
 subPackage "filesystems"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
