@@ -6,11 +6,14 @@
 module uim.filesystems;
 
 public {
-    import uim.filesystems.files;
-    import uim.filesystems.directories;
-    import uim.filesystems.paths;
-    import uim.filesystems.metadata;
-    import uim.filesystems.temporary;
-    import uim.filesystems.watcher;
+    import uim.filesystems.classes;
     import uim.filesystems.async_;
+}
+
+// Main function for unit testing
+version (unittest) {
+    void main() {
+        import std.stdio : writeln;
+        writeln("UIM Filesystems Library Unit Tests");
+    }
 }

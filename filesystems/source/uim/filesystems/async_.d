@@ -5,10 +5,7 @@
 *****************************************************************************************************************/
 module uim.filesystems.async_;
 
-import vibe.core.file;
-import vibe.core.stream;
-import vibe.core.path : NativePath;
-import std.exception : enforce;
+import uim.filesystems;
 
 @safe:
 
@@ -23,8 +20,9 @@ void writeFileAsync(string path, const(ubyte)[] data) @safe {
 }
 
 /// Append to file asynchronously
-void appendFileAsync(string path, const(ubyte)[] data) @safe {
-    appendToFile(NativePath(path), data);
+void appendFileAsync(string path, const(ubyte)[] data) @trusted {
+    auto dataStr = cast(string) data;
+    vibe.core.file.appendToFile(NativePath(path), dataStr);
 }
 
 /// Copy file asynchronously
@@ -72,21 +70,21 @@ auto openFileAppend(string path) @safe {
 }
 
 /// Read file stream asynchronously with callback
-void readFileStream(string path, void delegate(scope InputStream stream) @safe callback) @safe {
+void readFileStream(string path, void delegate(scope FileStream stream) @safe callback) @safe {
     auto stream = openFileRead(path);
     scope(exit) stream.close();
     callback(stream);
 }
 
 /// Write file stream asynchronously with callback
-void writeFileStream(string path, void delegate(scope OutputStream stream) @safe callback) @safe {
+void writeFileStream(string path, void delegate(scope FileStream stream) @safe callback) @safe {
     auto stream = openFileWrite(path);
     scope(exit) stream.close();
     callback(stream);
 }
 
 /// Read text file asynchronously
-string readTextAsync(string path) @safe {
+string readTextAsync(string path) @trusted {
     auto data = readFileAsync(path);
     return cast(string) data;
 }
@@ -110,7 +108,7 @@ struct AsyncFile {
     }
     
     /// Read file as text
-    string readText() @safe {
+    string readText() @trusted {
         return cast(string) readFile(_path);
     }
     
@@ -125,8 +123,9 @@ struct AsyncFile {
     }
     
     /// Append data to file
-    void append(const(ubyte)[] data) @safe {
-        appendToFile(_path, data);
+    void append(const(ubyte)[] data) @trusted {
+        auto dataStr = cast(string) data;
+        vibe.core.file.appendToFile(_path, dataStr);
     }
     
     /// Copy to destination
