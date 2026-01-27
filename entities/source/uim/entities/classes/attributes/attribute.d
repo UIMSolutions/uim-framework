@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.attribute;
 import uim.entities;
 
 @safe:
-class DAttribute : UIMObject, IAttribute {
+class UIMAttribute : UIMObject, IAttribute {
     // --- Explicit property getters and setters for marked fields ---
     @property UUID id() const { return _id; }
     @property void id(UUID v) { _id = v; }
@@ -189,7 +189,7 @@ class DAttribute : UIMObject, IAttribute {
     _attribute = Attribute.name(myName).versionMajor(myMajor).versionMinor(myMinor);
     return cast(O)this; }
 
-  O attribute(this O)(DAttribute myAttclass) { 
+  O attribute(this O)(UIMAttribute myAttclass) { 
     _attribute = myAttclass;     
     return cast(O)this; } */
 
@@ -206,7 +206,7 @@ class DAttribute : UIMObject, IAttribute {
 
   /* // Create a new attribute based on this attribute an a giving name 
   auto createAttribute(string aName) {
-    DAttribute result;
+    UIMAttribute result;
     switch(this.valueType) {
       case "bool": break; 
       case "byte": break; 

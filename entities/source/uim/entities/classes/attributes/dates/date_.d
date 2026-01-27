@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.dates.date_;
 import uim.entities;
 
 @safe:
-class DDateAttribute : DAttribute {
+class DDateAttribute : UIMAttribute {
   mixin(AttributeThis!("DateAttribute"));
 
   // Initialization hook method.  // Initialization hook method.

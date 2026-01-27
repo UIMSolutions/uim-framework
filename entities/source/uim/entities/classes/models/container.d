@@ -1,4 +1,4 @@
-module uim.entities.classes.container;
+module uim.entities.classes.models.container;
 
 import uim.entities;
 

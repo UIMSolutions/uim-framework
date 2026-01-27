@@ -54,7 +54,7 @@ auto `~name~`(UUID myId, string myName) { return new D`~name~`(myId, myName); }
 `;
 }
 
-void testAttribute(DAttribute attribute) {
+void testAttribute(UIMAttribute attribute) {
   assert(attribute);
 }
 

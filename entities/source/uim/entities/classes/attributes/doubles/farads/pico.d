@@ -23,7 +23,7 @@ means.measurement.prefix.pico */
 import uim.entities;
 
 @safe:
-class DPicoFaradAttribute : DFaradAttribute {
+class DPicoFaraUIMAttribute : DFaraUIMAttribute {
   mixin(AttributeThis!("PicoFaradAttribute"));
 
   // Initialization hook method.

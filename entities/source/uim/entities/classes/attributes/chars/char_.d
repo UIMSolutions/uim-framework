@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.chars.char_;
 import uim.entities;
 
 @safe:
-class DCharAttribute : DAttribute {
+class DCharAttribute : UIMAttribute {
   mixin(AttributeThis!"CharAttribute");
 
   // Initialization hook method.

@@ -10,11 +10,11 @@ import uim.entities;
 @safe:
 class UIMValue : UIMObject, IData {
   // --- Explicit property getters and setters for marked fields ---
-  @property DAttribute attribute() const {
+  @property UIMAttribute attribute() const {
     return _attribute;
   }
 
-  @property void attribute(DAttribute v) {
+  @property void attribute(UIMAttribute v) {
     _attribute = v;
   }
 
@@ -150,7 +150,7 @@ class UIMValue : UIMObject, IData {
     initialize;
   }
 
-  this(DAttribute theAttribute) {
+  this(UIMAttribute theAttribute) {
     this().attribute(theAttribute);
   }
 
@@ -159,7 +159,7 @@ class UIMValue : UIMObject, IData {
   }
 
   // #region isNull
-  private bool _isNull;
+  protected bool _isNull;
   bool isNull() {
     if (isNullable)
       return isNull;
@@ -205,7 +205,7 @@ class UIMValue : UIMObject, IData {
     return false;
   }
 
-  O opCall(this O)(DAttribute newAttribute) {
+  O opCall(this O)(UIMAttribute newAttribute) {
     this.attribute(newAttribute);
     return cast(O)this;
   }
@@ -215,7 +215,7 @@ class UIMValue : UIMObject, IData {
     return cast(O)this;
   }
 
-  O opCall(this O)(DAttribute newAttribute, Json newData) {
+  O opCall(this O)(UIMAttribute newAttribute, Json newData) {
     this.attribute(newAttribute).fromJson(newData);
     return cast(O)this;
   }

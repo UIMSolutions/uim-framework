@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.file;
 import uim.entities;
 
 @safe:
-class DFileIdAttribute : UIMEntityIdAttribute {
+class DFileIUIMAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("FileIdAttribute"));
 
   // Initialization hook method.
@@ -28,7 +28,7 @@ unittest {
   assert(attribute.name == "fileId");
   assert(attribute.registerPath == "fileId");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

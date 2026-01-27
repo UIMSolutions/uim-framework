@@ -38,7 +38,7 @@ unittest {
   assert(attribute.name == "ip6address");
   assert(attribute.registerPath == "ip6address");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

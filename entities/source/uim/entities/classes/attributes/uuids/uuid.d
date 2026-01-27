@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.uuid;
 import uim.entities;
 
 @safe:
-class DUUIDAttribute : DAttribute {
+class DUUIUIMAttribute : UIMAttribute {
   mixin(AttributeThis!("UUIDAttribute"));
 
   // Initialization hook method.
@@ -32,7 +32,7 @@ unittest {
   assert(attribute.name == "uuid");
   assert(attribute.registerPath == "uuid");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(!cast(DIntegerAttribute)generalAttribute);
 
   UIMValue value = attribute.createValue();

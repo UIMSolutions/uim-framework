@@ -34,7 +34,7 @@ unittest {
   assert(attribute.name == "postalcode");
   assert(attribute.registerPath == "postalcode");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

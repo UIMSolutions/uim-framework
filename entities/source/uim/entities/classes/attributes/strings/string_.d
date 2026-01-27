@@ -34,7 +34,7 @@ unittest {
   assert(attribute.name == "string");
   assert(attribute.registerPath == "string");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(!cast(DIntegerAttribute)generalAttribute);
 
   UIMValue value = attribute.createValue();

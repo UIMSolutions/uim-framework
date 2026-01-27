@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.arrays.strings.string_;
 import uim.entities;
 
 @safe:
-class DStringArrayAttribute : DAttribute {
+class DStringArrayAttribute : UIMAttribute {
   mixin(AttributeThis!("StringArrayAttribute"));
 
   // Initialization hook method.

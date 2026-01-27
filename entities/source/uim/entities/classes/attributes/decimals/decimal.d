@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.decimals.decimal;
 import uim.entities;
 
 @safe:
-class DDecimalAttribute : DAttribute {
+class DDecimalAttribute : UIMAttribute {
   mixin(AttributeThis!("DecimalAttribute"));
 
   // Initialization hook method.

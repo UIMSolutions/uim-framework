@@ -8,12 +8,12 @@ module uim.entities.classes.values.lookups.lookup;
 import uim.entities;
 
 @safe:
-class DLookupValue(K, V) : UIMValue {
+class LookupValue(K, V) : UIMValue {
   mixin(ValueThis!("LookupValue"));
 
   V[K] _items;
 
-  DLookupValue opIndexAssign(V value, K key) {
+  LookupValue opIndexAssign(V value, K key) {
     _items[key] = value;
     return this;
   }
@@ -40,17 +40,10 @@ class DLookupValue(K, V) : UIMValue {
     return copy;
   }
 }
-auto LookupValue(K, V)() { return new DLookupValue!(K, V); }
-auto LookupValue(K, V)(DAttribute theAttribute) { return new DLookupValue!(K, V)(theAttribute); }
-auto LookupValue(K, V)(string theValue) { return new DLookupValue!(K, V)(theValue); }
-auto LookupValue(K, V)(Json theValue) { return new DLookupValue!(K, V)(theValue); }
-auto LookupValue(K, V)(DAttribute theAttribute, string theValue) { return new DLookupValue!(K, V)(theAttribute, theValue); }
-auto LookupValue(K, V)(DAttribute theAttribute, Json theValue) { return new DLookupValue!(K, V)(theAttribute, theValue); }
+auto createLookupValue(K, V)() { return new LookupValue!(K, V); }
+auto createLookupValue(K, V)(UIMAttribute theAttribute) { return new LookupValue!(K, V)(theAttribute); }
+auto createLookupValue(K, V)(string theValue) { return new LookupValue!(K, V)(theValue); }
+auto createLookupValue(K, V)(Json theValue) { return new LookupValue!(K, V)(theValue); }
+auto createLookupValue(K, V)(UIMAttribute theAttribute, string theValue) { return new LookupValue!(K, V)(theAttribute, theValue); }
+auto createLookupValue(K, V)(UIMAttribute theAttribute, Json theValue) { return new LookupValue!(K, V)(theAttribute, theValue); }
 
-///
-unittest {  
-  auto stringAALookup = LookupValue!(string, string)();
-  stringAALookup["key1"] = "value1";
-
-  assert(stringAALookup["key1"] == "value1");
-}

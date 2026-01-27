@@ -35,7 +35,7 @@ unittest {
   assert(attribute.name == "tickerSymbol");
   assert(attribute.registerPath == "tickerSymbol");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

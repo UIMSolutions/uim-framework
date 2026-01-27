@@ -44,7 +44,7 @@ unittest {
   assert(attribute.name == "json");
   assert(attribute.registerPath == "json");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

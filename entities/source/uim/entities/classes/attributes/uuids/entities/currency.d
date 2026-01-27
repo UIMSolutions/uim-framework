@@ -10,7 +10,7 @@ import uim.entities;
 
 // A unique identifier for entity instances
 
-class DCurrencyIdAttribute : UIMEntityIdAttribute {
+class DCurrencyIUIMAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("CurrencyIdAttribute"));
 
   // Initialization hook method.
@@ -30,7 +30,7 @@ unittest {
   assert(attribute.name == "currencyId");
   assert(attribute.registerPath == "currencyId");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

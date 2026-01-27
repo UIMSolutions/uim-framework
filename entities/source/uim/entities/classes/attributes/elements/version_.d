@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.elements.version_;
 import uim.entities;
 
 @safe:
-class DVersionElementAttribute : DAttribute {
+class VersionElementAttribute : UIMAttribute {
   mixin(AttributeThis!("VersionElementAttribute"));
 
   override UIMValue createValue() {
@@ -21,6 +21,6 @@ class DVersionElementAttribute : DAttribute {
 mixin(AttributeCalls!"VersionElementAttribute");
 
 version(test_uim_models) { unittest {
-  testAttribute(new DVersionElementAttribute);
+  testAttribute(new VersionElementAttribute);
   testAttribute(VersionElementAttribute);
 }}

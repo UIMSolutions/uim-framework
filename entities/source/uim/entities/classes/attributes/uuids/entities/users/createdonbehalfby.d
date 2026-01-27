@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.createdonbehalfby;
 import uim.entities;
 
 @safe:
-class DCreatedOnBehalfByAttribute : UIMEntityIdAttribute {
+class DCreatedOnBehalfByAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("CreatedOnBehalfByAttribute"));
 
   // Initialization hook method.
@@ -28,7 +28,7 @@ unittest {
   assert(attribute.name == "createdOnBehalfBy");
   assert(attribute.registerPath == "createdOnBehalfBy");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

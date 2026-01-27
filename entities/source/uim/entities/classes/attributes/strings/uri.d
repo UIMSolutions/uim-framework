@@ -30,7 +30,7 @@ unittest {
   assert(attribute.name == "uri");
   assert(attribute.registerPath == "uri");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DUriAttribute)generalAttribute);
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

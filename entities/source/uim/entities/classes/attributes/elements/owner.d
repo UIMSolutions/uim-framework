@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.elements.owner;
 import uim.entities;
 
 @safe:
-class DOwnerElementAttribute : DAttribute {
+class DOwnerElementAttribute : UIMAttribute {
   mixin(AttributeThis!("OwnerElementAttribute"));
 
   override UIMValue createValue() {

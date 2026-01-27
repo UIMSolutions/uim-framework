@@ -23,7 +23,7 @@ means.measurement.prefix.micro */
 import uim.entities;
 
 @safe:
-class DMicroFaradAttribute : DFaradAttribute {
+class DMicroFaraUIMAttribute : DFaraUIMAttribute {
   mixin(AttributeThis!("MicroFaradAttribute"));
 
   // Initialization hook method.

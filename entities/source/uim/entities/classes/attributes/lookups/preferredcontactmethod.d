@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.lookups.preferredcontactmethod;
 import uim.entities;
 
 @safe:
-class DPreferredContactMethodAttribute : DAttribute {
+class DPreferredContactMethoUIMAttribute : UIMAttribute {
   mixin(AttributeThis!("PreferredContactMethodAttribute"));
 
   // Initialization hook method.

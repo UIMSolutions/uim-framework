@@ -1,8 +1,9 @@
-/*********************************************************************************************************
-	Copyright: © 2015-2023 Ozan Nurettin Süel (Sicherheitsschmiede)                                        
-	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
-	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
-**********************************************************************************************************/
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
+
 module uim.entities.classes.elements.element;
 
 import uim.entities;
@@ -32,43 +33,21 @@ class UIMElement : IElement {
   mixin(OProperty!("DStringValueMap", "values"));
   mixin ValueMapWrapper;
 
-  mixin(OProperty!("bool", "isStatic"));
+  protected bool _isStatic;
+  bool isStatic() const { return _isStatic; }
+  auto isStatic(bool value) { _isStatic = value; return this; }
 
-  mixin(OProperty!("string", "className"));
-  /// 
-  unittest {
-    auto element = new UIMElement;
-    element.className = "newClassName";
-    assert(element.className == "newClassName");
-    assert(element.className != "noClassName");
+  protected string _className;
+  string className() const { return _className; }
+  auto className(string value) { _className = value; return this; }
 
-    assert(element.className("otherClassName").className == "otherClassName");
-    assert(element.className != "noClassName");
-  }
+  protected string _registerPath;
+  string registerPath() const { return _registerPath; }
+  auto registerPath(string value) { _registerPath = value; return this; }
 
-  mixin(OProperty!("string", "registerPath"));
-  /// 
-  unittest {
-    auto element = new UIMElement;
-    element.registerPath = "newRegisterPath";
-    assert(element.registerPath == "newRegisterPath");
-    assert(element.registerPath != "noRegisterPath");
-
-    assert(element.registerPath("otherRegisterPath").registerPath == "otherRegisterPath");
-    assert(element.registerPath != "noRegisterPath");
-  }
-
-  mixin(OProperty!("string", "requestPrefix")); 
-  /// 
-  unittest {
-    auto element = new UIMElement;
-    element.requestPrefix = "newRequestPrefix";
-    assert(element.requestPrefix == "newRequestPrefix");
-    assert(element.requestPrefix != "noRequestPrefix");
-
-    assert(element.requestPrefix("otherRequestPrefix").requestPrefix == "otherRequestPrefix");
-    assert(element.requestPrefix != "noRequestPrefix");
-  }
+  protected string _requestPrefix;
+  string requestPrefix() const { return _requestPrefix; }
+  auto requestPrefix(string value) { _requestPrefix = value; return this; }
 
   // Every element can have a name like an identifier. 
   string _name;
@@ -82,7 +61,9 @@ class UIMElement : IElement {
     }
   }
 
-  mixin(OProperty!("STRINGAA", "parameters"));
+  protected string[string] _parameters;
+  string[string] parameters() const { return _parameters; }
+  auto parameters(string[string] value) { _parameters = value; return this; }
 
 /*   // Display of entity 
   mixin(OProperty!("string", "display"));
@@ -90,8 +71,8 @@ class UIMElement : IElement {
   //	Description about the entity and more
   mixin(OProperty!("string", "description")); */
     
-  STRINGAA selector(STRINGAA parameters) {
-    STRINGAA results;
+  string[string] selector(string[string] parameters) {
+    string[string] results;
 
     foreach(key, val; parameters) {
       if (key.indexOf(requestPrefix) == 0) {
@@ -109,13 +90,13 @@ class UIMElement : IElement {
     assert(element.selector(["x":"y", "element_id": "1234"]) == ["id":"1234", "x":"y"]);
   }
 
-  // Read data from STRINGAA
-  void readFromStringAA(STRINGAA reqParameters, bool usePrefix = false) {
+  // Read data from string[string]
+  void readFromstring[string](string[string] reqParameters, bool usePrefix = false) {
     foreach(k, v; reqParameters) this[k] = v; 
   }
 
   // Read data from request
-  void readFromRequest(STRINGAA requestValues, bool usePrefix = true) {
+  void readFromRequest(string[string] requestValues, bool usePrefix = true) {
     auto myData = selector(requestValues);
     foreach(key, value; myData) {
       this[key] = value;

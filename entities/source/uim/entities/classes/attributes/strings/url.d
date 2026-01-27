@@ -28,7 +28,7 @@ unittest {
   assert(attribute.name == "url");
   assert(attribute.registerPath == "url");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DUrlAttribute)generalAttribute);
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

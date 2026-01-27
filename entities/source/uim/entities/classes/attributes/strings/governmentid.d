@@ -12,7 +12,7 @@ import uim.entities;
 is.dataFormat.big
 is.dataFormat.array
 means.iUIMEntity.governmentID */
-class DGovernmentIdAttribute : DStringAttribute {
+class DGovernmentIUIMAttribute : DStringAttribute {
   mixin(AttributeThis!("GovernmentIdAttribute"));
 
   // Initialization hook method.

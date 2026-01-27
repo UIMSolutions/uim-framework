@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.modifiedonbehalfby;
 import uim.entities;
 
 @safe:
-class DModifiedOnBehalfByAttribute : UIMEntityIdAttribute {
+class DModifiedOnBehalfByAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("ModifiedOnBehalfByAttribute"));
 
   // Initialization hook method.
@@ -28,7 +28,7 @@ unittest {
   assert(attribute.name == "modifiedOnBehalfBy");
   assert(attribute.registerPath == "modifiedOnBehalfBy");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

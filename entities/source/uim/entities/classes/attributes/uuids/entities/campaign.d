@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.campaign;
 import uim.entities;
 
 @safe:
-class DCampaignIdAttribute : UIMEntityIdAttribute {
+class DCampaignIUIMAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("CampaignIdAttribute"));
 
   // Initialization hook method.
@@ -28,7 +28,7 @@ unittest {
   assert(attribute.name == "campaignId");
   assert(attribute.registerPath == "campaignId");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

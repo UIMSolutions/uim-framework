@@ -39,7 +39,7 @@ unittest {
   assert(attribute.name == "html");
   assert(attribute.registerPath == "html");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.bytes.byte_;
 import uim.entities;
 
 @safe:
-class DByteAttribute : DAttribute {
+class DByteAttribute : UIMAttribute {
   mixin(AttributeThis!("ByteAttribute"));
 
   // Initialization hook method.

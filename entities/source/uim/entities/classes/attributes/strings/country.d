@@ -29,7 +29,7 @@ unittest {
   assert(attribute.name == "country");
   assert(attribute.registerPath == "country");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

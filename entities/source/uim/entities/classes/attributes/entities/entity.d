@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.entities.entity;
 import uim.entities;
 @safe:
 
-/* class UIMEntityAttribute : DAttribute {
+/* class UIMEntityAttribute : UIMAttribute {
   mixin(AttributeThis!("EntityAttribute"));
 
   // Initialization hook method.

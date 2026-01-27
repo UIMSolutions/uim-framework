@@ -20,7 +20,7 @@ means.measurement.prefix.micro */
 import uim.entities;
 
 @safe:
-class DMicroSecondAttribute : DSecondAttribute {
+class DMicroSeconUIMAttribute : DSeconUIMAttribute {
   mixin(AttributeThis!("MicroSecondAttribute"));
 
   // Initialization hook method.

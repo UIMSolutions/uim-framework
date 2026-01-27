@@ -20,7 +20,7 @@ means.userId */
 import uim.entities;
 
 @safe:
-class DUserIdAttribute : UIMEntityIdAttribute {
+class DUserIUIMAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("UserIdAttribute"));
 
   // Initialization hook method.
@@ -40,7 +40,7 @@ unittest {
   assert(attribute.name == "userId");
   assert(attribute.registerPath == "userId");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);

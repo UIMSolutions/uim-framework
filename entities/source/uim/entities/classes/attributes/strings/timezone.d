@@ -35,7 +35,7 @@ unittest {
   assert(attribute.name == "timezone");
   assert(attribute.registerPath == "timezone");
 
-  DAttribute generalAttribute = attribute;
+  UIMAttribute generalAttribute = attribute;
   assert(cast(DStringAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 
