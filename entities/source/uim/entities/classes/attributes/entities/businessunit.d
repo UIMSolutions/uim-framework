@@ -1,8 +1,8 @@
-/*********************************************************************************************************
-  Copyright: © 2015-2023 Ozan Nurettin Süel (Sicherheitsschmiede)                                        
-  License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
-  Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
-**********************************************************************************************************/
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
+*****************************************************************************************************************/
 module uim.entities.classes.attributes.entities.businessunit;
 
 import uim.entities;
