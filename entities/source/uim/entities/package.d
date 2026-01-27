@@ -15,7 +15,6 @@ public { // UIM libraries
 public { // Packages
   import uim.entities.mixins;
   import uim.entities.classes;
-  import uim.entities.attributes;
   import uim.entities.commands;
   import uim.entities.events;
   import uim.entities.helpers;

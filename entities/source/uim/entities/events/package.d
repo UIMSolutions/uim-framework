@@ -1,9 +1,9 @@
-mod/****************************************************************************************************************
+/****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-moduleule uim.entities.events;
+module uim.entities.events;
 
 public {
   import uim.entities.events.aftercreate;

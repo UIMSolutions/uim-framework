@@ -5,3 +5,14 @@
 *****************************************************************************************************************/
 module uim.entities.udas;
 
+public {
+  import uim.entities.udas.entity;
+  import uim.entities.udas.maxlength;
+  import uim.entities.udas.minlength;
+  import uim.entities.udas.pattern;
+  import uim.entities.udas.range;
+  import uim.entities.udas.required;
+  import uim.entities.udas.readonly;
+  import uim.entities.udas.uda;
+  import uim.entities.udas.unique;
+}

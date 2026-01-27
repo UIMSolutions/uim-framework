@@ -11,76 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
-
-
-
-
-
-
-/**
- * UDA to mark a field with maximum length validation
- */
-struct MaxLength {
-    size_t value;
-    
-    this(size_t len) {
-        value = len;
-    }
-}
-
-/**
- * UDA to mark a field with minimum length validation
- */
-struct MinLength {
-    size_t value;
-    
-    this(size_t len) {
-        value = len;
-    }
-}
-
-/**
- * UDA to mark a field with pattern validation (regex)
- */
-struct Pattern {
-    string regex;
-    
-    this(string pattern) {
-        regex = pattern;
-    }
-}
-
-/**
- * UDA to mark a field with range validation
- */
-struct Range {
-    long min;
-    long max;
-    
-    this(long minimum, long maximum) {
-        min = minimum;
-        max = maximum;
-    }
-}
-
-/**
- * UDA to mark a field as readonly (cannot be modified after creation)
- */
-struct ReadOnly {
-}
-
-/**
- * UDA to mark an entity class
- */
-struct UseEntity {
-    string tableName;
-    
-    this(string table) {
-        tableName = table;
-    }
-}
-
 /**
  * Helper to check if a type has Entity UDA
  */
@@ -94,7 +24,7 @@ template hasEntityAttribute(T) {
 template getEntityTableName(T) {
     static if (hasEntityAttribute!T) {
         alias udas = getUDAs!(T, UseEntity);
-        static if (udas.length > 0 && udas[0].tableName.length > 0) {
+        static if (udas.length > 0 && udas[0].tableName.length > 0) { 
             enum getEntityTableName = udas[0].tableName;
         } else {
             enum getEntityTableName = T.stringof;

@@ -5,4 +5,5 @@ public {
   import uim.entities.interfaces.entity;
   import uim.entities.interfaces.manager;
   import uim.entities.interfaces.repository;
+  import uim.entities.interfaces.validationrule;
 }
