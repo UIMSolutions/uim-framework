@@ -31,7 +31,20 @@ interface IData {
   bool isNull();
   bool isReadOnly();
 
-  bool hasKeys(string[] )
+/*
+  bool hasKeys(string[] keys);
+  bool hasKey(string key);
+  bool hasValueOfType(T)() if (is(T == class));
+  bool hasValueOfType(T)() if (is(T == interface));
+  bool hasValueOfType(T)() if (is(T == struct));
+  bool hasValueOfType(T)() if (is(T == enum));
+  bool hasValueOfType(T)() if (is(T == union));
+  bool hasValueOfType(T)() if (is(T == U), U : T);
+  bool hasValueOfType(T)() if (is(T == U[]), U : T);
+  bool hasValueOfType(T)() if (is(T == U[string]), U : T);
+  bool hasValueOfType(T)() if (is(T == U), U : T);
+  */ 
+  
   Json toJson();
   string toString();
 }

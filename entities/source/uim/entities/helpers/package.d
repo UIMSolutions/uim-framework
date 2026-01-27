@@ -6,5 +6,7 @@
 module uim.entities.helpers;
 
 public {
+  import uim.entities.helpers.entity;
+  import uim.entities.helpers.model;
   import uim.entities.helpers.repository;
 }

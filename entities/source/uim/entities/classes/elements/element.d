@@ -225,7 +225,7 @@ class UIMElement : IElement {
 
       DValue myValue = values[keys[0]];
       if (auto myElementValue = cast(UIMElementValue)myValue) {
-        myValue = myElementValue.value.valueOfKey(keys[1..].join("."));
+        myValue = myElementValue.value.valueOfKey(keys[1..$].join("."));
       }
       return myValue;
     }
