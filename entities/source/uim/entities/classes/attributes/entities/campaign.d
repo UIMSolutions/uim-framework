@@ -8,7 +8,7 @@ module  source.uim.entities.classes.attributes.entities.campaign;
 import uim.entities;
 @safe:
 
-/* class DCampaignAttribute : DEntityAttribute {
+/* class DCampaignAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("CampaignAttribute"));
 
   // Initialization hook method.

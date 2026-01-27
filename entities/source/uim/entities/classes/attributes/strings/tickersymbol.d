@@ -10,7 +10,7 @@ Traits
 is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.tickerSymbol */
+means.iUIMEntity.tickerSymbol */
 
 import uim.entities;
 

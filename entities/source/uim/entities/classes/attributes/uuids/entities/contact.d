@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.contact;
 import uim.entities;
 
 @safe:
-class DContactIdAttribute : DEntityIdAttribute {
+class DContactIdAttribute : UIMEntityIdAttribute {
   mixin(AttributeThis!("ContactIdAttribute"));
 
   // Initialization hook method.
@@ -29,7 +29,7 @@ unittest {
   assert(attribute.registerPath == "contactId");
 
   DAttribute generalAttribute = attribute;
-  assert(cast(DEntityIdAttribute)generalAttribute);
+  assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

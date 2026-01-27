@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.lastname;
 import uim.entities;
 @safe:
 
-// means.identity.person.lastName
+// means.iUIMEntity.person.lastName
 class DLastNameAttribute : DStringAttribute {
   mixin(AttributeThis!("LastNameAttribute"));
 

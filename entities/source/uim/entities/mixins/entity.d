@@ -10,7 +10,7 @@ module uim.entities.mixins.entity;
       this(UUID myId, string myName) { this(myId).name(myName); }
       this(Json aJson) { this().fromJson(aJson); }
 
-      override DEntity create() { return new `~clName~`; }
+      override UIMEntity create() { return new `~clName~`; }
     `;
   }
 

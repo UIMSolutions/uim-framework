@@ -13,7 +13,7 @@ Traits
 is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.IP4Address */
+means.iUIMEntity.IP4Address */
 
 import uim.entities;
 

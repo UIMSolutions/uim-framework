@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.account;
 import uim.entities;
 
 @safe:
-class DAccountIdAttribute : DEntityIdAttribute {
+class DAccountIdAttribute : UIMEntityIdAttribute {
   mixin(AttributeThis!("AccountIdAttribute"));
 
   // Initialization hook method.
@@ -29,7 +29,7 @@ unittest {
   assert(attribute.registerPath == "accountId");
 
   DAttribute generalAttribute = attribute;
-  assert(cast(DEntityIdAttribute)generalAttribute);
+  assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

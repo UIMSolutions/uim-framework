@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.entities.account;
 import uim.entities;
 @safe:
 
-/* class DAccountAttribute : DEntityAttribute {
+/* class DAccountAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("AccountAttribute"));
 
   // Initialization hook method.

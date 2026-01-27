@@ -14,13 +14,13 @@ is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
 is.dataFormat.guid
-means.identity.entityId
+means.iUIMEntity.entityId
 means.userId */
 
 import uim.entities;
 @safe:
 
-/* class DUserAttribute : DEntityAttribute {
+/* class DUserAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("UserAttribute"));
 
   // Initialization hook method.

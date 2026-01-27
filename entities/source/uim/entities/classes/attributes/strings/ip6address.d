@@ -13,7 +13,7 @@ Traits
 is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.IP6Address */
+means.iUIMEntity.IP6Address */
 
 import uim.entities;
 

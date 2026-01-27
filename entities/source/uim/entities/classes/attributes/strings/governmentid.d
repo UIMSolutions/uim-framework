@@ -11,7 +11,7 @@ import uim.entities;
 /* is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.governmentID */
+means.iUIMEntity.governmentID */
 class DGovernmentIdAttribute : DStringAttribute {
   mixin(AttributeThis!("GovernmentIdAttribute"));
 

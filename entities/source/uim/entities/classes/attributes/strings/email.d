@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.email;
 import uim.entities;
 @safe:
 
-// means.identity.person.email
+// means.iUIMEntity.person.email
 class DEmailAttribute : DStringAttribute {
   mixin(AttributeThis!("EmailAttribute"));
 

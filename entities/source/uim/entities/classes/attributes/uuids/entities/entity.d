@@ -10,14 +10,14 @@ import uim.entities;
 
 // A unique identifier for entity instances
 
-class DEntityIdAttribute : DUUIDAttribute {
+class UIMEntityIdAttribute : DUUIDAttribute {
   mixin(AttributeThis!("EntityIdAttribute"));
 
 /*   is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
 is.dataFormat.guid
-means.identity.entityId */
+means.iUIMEntity.entityId */
 
 
 
@@ -26,7 +26,7 @@ mixin(AttributeCalls!("EntityIdAttribute"));
 
 ///
 unittest {
-  auto attribute = new DEntityIdAttribute;
+  auto attribute = new UIMEntityIdAttribute;
 
   DAttribute generalAttribute = attribute;
   assert(cast(DUUIDAttribute)generalAttribute);

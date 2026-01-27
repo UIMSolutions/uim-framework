@@ -11,7 +11,7 @@ import uim.entities;
 /* is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.person.firstName */
+means.iUIMEntity.person.firstName */
 class DFirstNameAttribute : DStringAttribute {
   mixin(AttributeThis!("FirstNameAttribute"));
 

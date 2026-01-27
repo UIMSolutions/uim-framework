@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.owner;
 import uim.entities;
 
 @safe:
-class DOwnerIdAttribute : DEntityIdAttribute {
+class DOwnerIdAttribute : UIMEntityIdAttribute {
   mixin(AttributeThis!("OwnerIdAttribute"));
 
   // Initialization hook method.
@@ -29,7 +29,7 @@ unittest {
   assert(attribute.registerPath == "ownerId");
 
   DAttribute generalAttribute = attribute;
-  assert(cast(DEntityIdAttribute)generalAttribute);
+  assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

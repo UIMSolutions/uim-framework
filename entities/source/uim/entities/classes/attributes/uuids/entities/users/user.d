@@ -14,13 +14,13 @@ is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
 is.dataFormat.guid
-means.identity.entityId
+means.iUIMEntity.entityId
 means.userId */
 
 import uim.entities;
 
 @safe:
-class DUserIdAttribute : DEntityIdAttribute {
+class DUserIdAttribute : UIMEntityIdAttribute {
   mixin(AttributeThis!("UserIdAttribute"));
 
   // Initialization hook method.
@@ -41,7 +41,7 @@ unittest {
   assert(attribute.registerPath == "userId");
 
   DAttribute generalAttribute = attribute;
-  assert(cast(DEntityIdAttribute)generalAttribute);
+  assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

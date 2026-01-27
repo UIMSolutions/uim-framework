@@ -326,11 +326,11 @@ class DAttribute : UIMObject, IAttribute {
   }
 
 /*   alias opIndexAssign = DElement.opIndexAssign;
-  alias opIndexAssign = DEntity.opIndexAssign; */
+  alias opIndexAssign = UIMEntity.opIndexAssign; */
 }
 auto Attribute() { return new DAttribute; }
 auto Attribute(UUID id) { return new DAttribute(id); }
 auto Attribute(string name) { return new DAttribute(name); }
 auto Attribute(UUID id, string name) { return new DAttribute(id, name); }
 auto Attribute(Json json) { return new DAttribute(json); }
-// auto Attribute(DEntityCollection aCollection, Json json) { return (new DAttribute(json)).collection(aCollection); }
+// auto Attribute(UIMEntityCollection aCollection, Json json) { return (new DAttribute(json)).collection(aCollection); }

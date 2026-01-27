@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.slas.sla;
 import uim.entities;
 
 @safe:
-class DSlaIdAttribute : DEntityIdAttribute {
+class DSlaIdAttribute : UIMEntityIdAttribute {
   mixin(AttributeThis!("SlaIdAttribute"));
 
   // Initialization hook method.
@@ -29,7 +29,7 @@ unittest {
   assert(attribute.registerPath == "slaId");
 
   DAttribute generalAttribute = attribute;
-  assert(cast(DEntityIdAttribute)generalAttribute);
+  assert(cast(UIMEntityIdAttribute)generalAttribute);
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 

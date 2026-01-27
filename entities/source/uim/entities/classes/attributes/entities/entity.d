@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.entities.entity;
 import uim.entities;
 @safe:
 
-/* class DEntityAttribute : DAttribute {
+/* class UIMEntityAttribute : DAttribute {
   mixin(AttributeThis!("EntityAttribute"));
 
   // Initialization hook method.
@@ -27,7 +27,7 @@ import uim.entities;
 mixin(AttributeCalls!"EntityAttribute");
 
 version(test_uim_models) { unittest {
-    testAttribute(new DEntityAttribute);
+    testAttribute(new UIMEntityAttribute);
     testAttribute(EntityAttribute);
   }
 } */

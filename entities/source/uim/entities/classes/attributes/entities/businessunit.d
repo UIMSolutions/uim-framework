@@ -10,7 +10,7 @@ import uim.entities;
 
 // A unique identifier for entity instances
 
-/* class DBusinessUnitAttribute : DEntityAttribute {
+/* class DBusinessUnitAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("BusinessUnitAttribute"));
 
   // Initialization hook method.

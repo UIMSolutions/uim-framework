@@ -10,7 +10,7 @@ Traits
 is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.name */
+means.iUIMEntity.name */
 
 import uim.entities;
 

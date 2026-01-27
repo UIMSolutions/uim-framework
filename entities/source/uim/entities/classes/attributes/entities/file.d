@@ -8,7 +8,7 @@ module  source.uim.entities.classes.attributes.entities.file;
 import uim.entities;
 @safe:
 
-/* class DFileAttribute : DEntityAttribute {
+/* class DFileAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("FileAttribute"));
 
   // Initialization hook method.

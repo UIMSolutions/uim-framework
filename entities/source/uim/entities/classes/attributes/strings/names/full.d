@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.names.full;
 /* is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.person.fullName */
+means.iUIMEntity.person.fullName */
 
 import uim.entities;
 

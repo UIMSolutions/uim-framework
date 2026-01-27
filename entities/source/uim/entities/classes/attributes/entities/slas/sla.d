@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.entities.slas.sla;
 import uim.entities;
 @safe:
 
-/* class DSlaAttribute : DEntityAttribute {
+/* class DSlaAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("SlaAttribute"));
 
   // Initialization hook method.

@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.companyname;
 import uim.entities;
 @safe:
 
-// means.identity.company.name
+// means.iUIMEntity.company.name
 class DCompanyNameAttribute : DStringAttribute {
   mixin(AttributeThis!("CompanyNameAttribute"));
 

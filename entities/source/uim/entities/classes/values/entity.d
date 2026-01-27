@@ -8,8 +8,8 @@ module uim.entities.classes.values.entity;
 import uim.entities;
 
 @safe:
-class DEntityValue : DValue {
-  mixin(ValueThis!("EntityValue", "DEntity"));  
+class UIMEntityValue : DValue {
+  mixin(ValueThis!("EntityValue", "UIMEntity"));  
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -20,22 +20,22 @@ class DEntityValue : DValue {
       .isEntity(true);
   }
 
-  protected DEntity _value;
+  protected UIMEntity _value;
   alias value = DValue.value;
-  O value(this O)(DEntity newValue) {
+  O value(this O)(UIMEntity newValue) {
     _value = newValue;
     return cast(O)this; 
   }
-  DEntity value() {
+  UIMEntity value() {
     return _value; 
   }
-  version(test_uim_eDEntityntities) {
+  version(test_uim_eUIMEntityntities) {
     unittest {    
       auto entity = SystemUser; // some kind of entity
       assert(EntityValue.value(entity).value.id == entity.id);
   }}
 
-  protected void set(DEntity newValue) {
+  protected void set(UIMEntity newValue) {
     if (newValue is null) { 
       this.isNull(isNullable ? true : false); 
       _value = null; }
@@ -53,11 +53,11 @@ class DEntityValue : DValue {
     /// TODO
   }
 
-/*   bool opEquals(DEntity otherValue) {
+/*   bool opEquals(UIMEntity otherValue) {
     return (this.value.id == otherValue.id);
   }
 
-  int opCmp(DEntity otherValue) {
+  int opCmp(UIMEntity otherValue) {
     /// TODO
     return 1;
   }  */
@@ -86,7 +86,7 @@ class DEntityValue : DValue {
     /// TODO this.value(newValue);
   }
 }
-mixin(ValueCalls!("EntityValue", "DEntity"));  
+mixin(ValueCalls!("EntityValue", "UIMEntity"));  
 
 version(test_uim_models) { unittest {  
 }}

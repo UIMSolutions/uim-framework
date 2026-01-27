@@ -12,13 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 
-/**
- * Validation rule interface
- */
-interface IValidationRule {
-    bool validate(string value);
-    string errorMessage();
-}
+
 
 /**
  * Required field validation

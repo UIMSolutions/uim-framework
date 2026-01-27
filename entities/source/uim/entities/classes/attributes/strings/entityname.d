@@ -14,7 +14,7 @@ is.dataFormat.big
 is.dataFormat.array
 means.entityName
 means.entityName */
-class DEntityNameAttribute : DStringAttribute {
+class UIMEntityNameAttribute : DStringAttribute {
   mixin(AttributeThis!("EntityNameAttribute"));
 
   // Initialization hook method.
@@ -30,7 +30,7 @@ mixin(AttributeCalls!("EntityNameAttribute"));
 
 ///
 unittest {
-  auto attribute = new DEntityNameAttribute;
+  auto attribute = new UIMEntityNameAttribute;
   assert(attribute.name == "entityname");
   assert(attribute.registerPath == "entityName");
 }

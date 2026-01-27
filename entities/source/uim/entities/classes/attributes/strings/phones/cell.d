@@ -10,7 +10,7 @@ Traits
 is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
-means.identity.service.phone.cell */
+means.iUIMEntity.service.phone.cell */
 
 import uim.entities;
 
