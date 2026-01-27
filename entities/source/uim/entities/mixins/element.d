@@ -13,7 +13,7 @@ template ElementThis(string name) {
 		this() { super(); }
 		this(string myName) { this().name(myName); }
 		this(Json aJson) { this().fromJson(aJson); }
-		override DElement create() { return `~name~`; }
+		override UIMElement create() { return `~name~`; }
   `;
 }
 

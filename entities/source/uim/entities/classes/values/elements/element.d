@@ -8,8 +8,8 @@ module uim.entities.classes.values.elements.element;
 import uim.entities;
 
 @safe:
-class DElementValue : UIMValue {
-  mixin(ValueThis!("ElementValue", "DElement"));    
+class UIMElementValue : UIMValue {
+  mixin(ValueThis!("ElementValue", "UIMElement"));    
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -19,13 +19,13 @@ class DElementValue : UIMValue {
       .isNull(false);
   }
 
-  protected DElement _value;
+  protected UIMElement _value;
   alias value = UIMValue.value;
-  O value(this O)(DElement newValue) {
+  O value(this O)(UIMElement newValue) {
     _value = newValue;
     return cast(O)this; 
   }
-  DElement value() {
+  UIMElement value() {
     return _value; 
   }
   version(test_uim_models) { unittest {    
@@ -41,7 +41,7 @@ class DElementValue : UIMValue {
     /// TODO
   }
 
-  void set(DElement newValue) {
+  void set(UIMElement newValue) {
     if (newValue) {
       this.isNull(false);
       _value = newValue;
@@ -55,13 +55,13 @@ class DElementValue : UIMValue {
   }
 
   alias opEquals = UIMValue.opEquals;
-  bool opEquals(DElementValue otherValue) {
+  bool opEquals(UIMElementValue otherValue) {
     string left = value.toString;
     string right = otherValue.value.toString;
     return (left == right);
   }
 
-  bool opEquals(DElement otherValue) {
+  bool opEquals(UIMElement otherValue) {
     return (value.toString == otherValue.toString);
   }
 
@@ -69,7 +69,7 @@ class DElementValue : UIMValue {
     return (value.toString == otherValue);
   }
 
-/*   int opCmp(DElement otherValue) {
+/*   int opCmp(UIMElement otherValue) {
     /// TODO
     return 1;
   }  */

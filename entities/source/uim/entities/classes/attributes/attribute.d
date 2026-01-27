@@ -325,7 +325,7 @@ class DAttribute : UIMObject, IAttribute {
     }
   }
 
-/*   alias opIndexAssign = DElement.opIndexAssign;
+/*   alias opIndexAssign = UIMElement.opIndexAssign;
   alias opIndexAssign = UIMEntity.opIndexAssign; */
 }
 auto Attribute() { return new DAttribute; }

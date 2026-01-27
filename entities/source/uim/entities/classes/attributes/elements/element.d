@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.elements.element;
 import uim.entities;
 
 @safe:
-class DElementAttribute : DAttribute {
+class UIMElementAttribute : DAttribute {
   mixin(AttributeThis!("ElementAttribute"));
 
   // Initialization hook method.
