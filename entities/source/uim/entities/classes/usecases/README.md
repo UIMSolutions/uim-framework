@@ -1,1 +1,1 @@
-# uim.models.classes.usecases
+# uim.entities.classes.usecases

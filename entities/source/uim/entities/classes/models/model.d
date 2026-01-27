@@ -1,6 +1,6 @@
-module uim.models.classes.model;
+module uim.entities.classes.model;
 
-import uim.models;
+import uim.entities;
 
 @safe:
 class DModel : IModel { 
@@ -19,11 +19,26 @@ class DModel : IModel {
 
   void initialize(Json configSettings = Json(null)) {}
 
-  mixin(OProperty!("string", "name"));
-  mixin(OProperty!("string", "className"));
-  mixin(OProperty!("string", "registerPath"));
-  mixin(OProperty!("IModelManager", "manager"));
-  mixin(OProperty!("STRINGAA", "parameters"));
+
+  private string _name;
+  string name() const { return _name; }
+  auto name(string value) { _name = value; return this; }
+
+  private string _className;
+  string className() const { return _className; }
+  auto className(string value) { _className = value; return this; }
+
+  private string _registerPath;
+  string registerPath() const { return _registerPath; }
+  auto registerPath(string value) { _registerPath = value; return this; }
+
+  private IModelManager _manager;
+  IModelManager manager() const { return _manager; }
+  auto manager(IModelManager value) { _manager = value; return this; }
+
+  private STRINGAA _parameters;
+  STRINGAA parameters() const { return _parameters; }
+  auto parameters(STRINGAA value) { _parameters = value; return this; }
 
   /**
     * Default config

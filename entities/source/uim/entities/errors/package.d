@@ -1,1 +1,1 @@
-module uim.models.classes.errors;
+module uim.entities.classes.errors;

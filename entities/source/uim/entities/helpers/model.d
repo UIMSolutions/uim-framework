@@ -1,6 +1,6 @@
-module uim.models.helpers.model;
+module uim.entities.helpers.model;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 bool isNull(DModel aModel) {

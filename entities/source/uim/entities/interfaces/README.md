@@ -1,1 +1,1 @@
-# Package 📦 uim.models.interfaces
+# Package 📦 uim.entities.interfaces

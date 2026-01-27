@@ -3,9 +3,9 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.interfaces.value;
+module uim.entities.interfaces.value;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 interface IData {
@@ -44,7 +44,7 @@ interface IData {
   bool hasValueOfType(T)() if (is(T == U[string]), U : T);
   bool hasValueOfType(T)() if (is(T == U), U : T);
   */ 
-  
+
   Json toJson();
   string toString();
 }

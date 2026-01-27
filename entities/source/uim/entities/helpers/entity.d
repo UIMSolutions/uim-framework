@@ -1,6 +1,6 @@
-module uim.models.helpers.entity;
+module uim.entities.helpers.entity;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 bool isNull(DEntity anEntity) {

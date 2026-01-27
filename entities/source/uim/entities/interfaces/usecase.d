@@ -1,4 +1,4 @@
-module uim.models.interfaces.usecase;
+module uim.entities.interfaces.usecase;
 
 interface IUsecase {
 }

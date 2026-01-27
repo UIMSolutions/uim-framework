@@ -3,9 +3,9 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.interfaces.element;
+module uim.entities.interfaces.element;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 interface IElement {

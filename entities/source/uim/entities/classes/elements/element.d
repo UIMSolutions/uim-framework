@@ -5,7 +5,7 @@
 **********************************************************************************************************/
 module uim.entities.classes.elements.element;
 
-import uim.models;
+import uim.entities;
 
 @safe:
 class UIMElement : IElement {

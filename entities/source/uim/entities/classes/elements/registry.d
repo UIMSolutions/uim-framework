@@ -1,6 +1,6 @@
-module uim.models.classes.elements.registry;
+module uim.entities.classes.elements.registry;
 
-import uim.models;
+import uim.entities;
 
 @safe:
 class UIMElementRegistry : DRegistry!UIMElement {

@@ -1,1 +1,1 @@
-# uim.models.classes.exceptions
+# uim.entities.classes.exceptions

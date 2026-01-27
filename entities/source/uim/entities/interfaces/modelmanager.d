@@ -1,6 +1,6 @@
-module uim.models.interfaces.modelmanager;
+module uim.entities.interfaces.modelmanager;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 interface IModelManager {

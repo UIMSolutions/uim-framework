@@ -1,6 +1,6 @@
-module uim.models.classes.container;
+module uim.entities.classes.container;
 
-import uim.models;
+import uim.entities;
 
 @safe:
 class DModelContainer  : DNamedContainer!IModel {
