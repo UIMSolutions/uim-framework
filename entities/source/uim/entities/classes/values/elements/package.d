@@ -1,5 +1,5 @@
-module uim.models.classes.values.elements;
+module uim.entities.classes.values.elements;
 
 public { 
-	import uim.models.classes.values.elements.element;
+	import uim.entities.classes.values.elements.element;
 }

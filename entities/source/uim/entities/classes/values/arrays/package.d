@@ -3,15 +3,15 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.classes.values.arrays;
+module uim.entities.classes.values.arrays;
 
 public { 
-	import uim.models.classes.values.arrays.array_;
+	import uim.entities.classes.values.arrays.array_;
 }
 
 public { 
-	import uim.models.classes.values.arrays.integer;
-	import uim.models.classes.values.arrays.string_;
-	import uim.models.classes.values.arrays.tag;
-	import uim.models.classes.values.arrays.value;
+	import uim.entities.classes.values.arrays.integer;
+	import uim.entities.classes.values.arrays.string_;
+	import uim.entities.classes.values.arrays.tag;
+	import uim.entities.classes.values.arrays.value;
 }

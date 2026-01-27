@@ -1,1 +1,1 @@
-# Package 📦 uim.models.classes.values.scalars
+# Package 📦 uim.entities.classes.values.scalars

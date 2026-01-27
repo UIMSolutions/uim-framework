@@ -1,1 +1,1 @@
-# Package 📦 uim.models.classes.values.lookups
+# Package 📦 uim.entities.classes.values.lookups

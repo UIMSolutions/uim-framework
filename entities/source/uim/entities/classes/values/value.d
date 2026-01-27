@@ -3,48 +3,175 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.classes.values.value;
+module uim.entities.classes.values.value;
 
-import uim.models;
+import uim.entities;
 
 @safe:
 class DValue : UIMObject, IData {
-  this() { initialize; }
-  this(DAttribute theAttribute) { this().attribute(theAttribute); }
+  // --- Explicit property getters and setters for marked fields ---
+  @property DAttribute attribute() const {
+    return _attribute;
+  }
+
+  @property void attribute(DAttribute v) {
+    _attribute = v;
+  }
+
+  @property bool isBoolean() const {
+    return _isBoolean;
+  }
+
+  @property void isBoolean(bool v) {
+    _isBoolean = v;
+  }
+
+  @property bool isInteger() const {
+    return _isInteger;
+  }
+
+  @property void isInteger(bool v) {
+    _isInteger = v;
+  }
+
+  @property bool isDouble() const {
+    return _isDouble;
+  }
+
+  @property void isDouble(bool v) {
+    _isDouble = v;
+  }
+
+  @property bool isLong() const {
+    return _isLong;
+  }
+
+  @property void isLong(bool v) {
+    _isLong = v;
+  }
+
+  @property bool isTime() const {
+    return _isTime;
+  }
+
+  @property void isTime(bool v) {
+    _isTime = v;
+  }
+
+  @property bool isDate() const {
+    return _isDate;
+  }
+
+  @property void isDate(bool v) {
+    _isDate = v;
+  }
+
+  @property bool isDatetime() const {
+    return _isDatetime;
+  }
+
+  @property void isDatetime(bool v) {
+    _isDatetime = v;
+  }
+
+  @property bool isTimestamp() const {
+    return _isTimestamp;
+  }
+
+  @property void isTimestamp(bool v) {
+    _isTimestamp = v;
+  }
+
+  @property bool isString() const {
+    return _isString;
+  }
+
+  @property void isString(bool v) {
+    _isString = v;
+  }
+
+  @property bool isScalar() const {
+    return _isScalar;
+  }
+
+  @property void isScalar(bool v) {
+    _isScalar = v;
+  }
+
+  @property bool isArray() const {
+    return _isArray;
+  }
+
+  @property void isArray(bool v) {
+    _isArray = v;
+  }
+
+  @property bool isObject() const {
+    return _isObject;
+  }
+
+  @property void isObject(bool v) {
+    _isObject = v;
+  }
+
+  @property bool isEntity() const {
+    return _isEntity;
+  }
+
+  @property void isEntity(bool v) {
+    _isEntity = v;
+  }
+
+  @property bool isUUID() const {
+    return _isUUID;
+  }
+
+  @property void isUUID(bool v) {
+    _isUUID = v;
+  }
+
+  @property bool isReadOnly() const {
+    return _isReadOnly;
+  }
+
+  @property void isReadOnly(bool v) {
+    _isReadOnly = v;
+  }
+
+  @property bool isNullable() const {
+    return _isNullable;
+  }
+
+  @property void isNullable(bool v) {
+    _isNullable = v;
+  }
+
+  this() {
+    initialize;
+  }
+
+  this(DAttribute theAttribute) {
+    this().attribute(theAttribute);
+  }
 
   // Hook
-  void initialize(Json configSettings = Json(null)) {}
+  void initialize(Json configSettings = Json(null)) {
+  }
 
-  // #region properties
-    mixin(OProperty!("DAttribute", "attribute"));
+  // #region isNull
+  private bool _isNull;
+  bool isNull() {
+    if (isNullable)
+      return isNull;
+    return false;
+  }
 
-    mixin(OProperty!("bool", "isBoolean"));
-    mixin(OProperty!("bool", "isInteger"));
-    mixin(OProperty!("bool", "isDouble"));
-    mixin(OProperty!("bool", "isLong"));
-    mixin(OProperty!("bool", "isTime"));
-    mixin(OProperty!("bool", "isDate"));
-    mixin(OProperty!("bool", "isDatetime"));
-    mixin(OProperty!("bool", "isTimestamp"));
-    mixin(OProperty!("bool", "isString"));
-
-    mixin(OProperty!("bool", "isScalar"));
-    mixin(OProperty!("bool", "isArray"));
-    mixin(OProperty!("bool", "isObject"));
-    mixin(OProperty!("bool", "isEntity"));
-    mixin(OProperty!("bool", "isUUID"));
-    
-    mixin(OProperty!("bool", "isReadOnly"));
-    mixin(OProperty!("bool", "isNullable"));
-    // #region isNull
-      private bool _isNull;
-      bool isNull() {
-        if (isNullable) return isNull; 
-        return false; }
-      O isNull(this O)(bool newNull) {
-        if (isNullable) _isNull = newNull; 
-        return cast(O)this; }
-    // #endregion isNull
+  O isNull(this O)(bool newNull) {
+    if (isNullable)
+      _isNull = newNull;
+    return cast(O)this;
+  }
+  // #endregion isNull
   // #endregion properties 
 
   protected void set(Json newValue) {
@@ -54,7 +181,6 @@ class DValue : UIMObject, IData {
   void set(string newValue) {
     // TODO
   }
-
 
   O value(this O)(string newValue) {
     this.set(newValue);
@@ -70,40 +196,47 @@ class DValue : UIMObject, IData {
   bool opEquals(string equalValue) {
     return (toString == equalValue);
   }
+
   bool opEquals(DValue equalValue) {
     return (toString == equalValue.toString);
   }
+
   bool opEquals(UUID equalValue) {
     return false;
   }
-  
+
   O opCall(this O)(DAttribute newAttribute) {
     this.attribute(newAttribute);
     return cast(O)this;
   }
+
   O opCall(this O)(Json newData) {
     this.fromJson(newData);
     return cast(O)this;
   }
+
   O opCall(this O)(DAttribute newAttribute, Json newData) {
     this.attribute(newAttribute).fromJson(newData);
     return cast(O)this;
   }
 
-  abstract DValue copy(); 
-  abstract DValue dup(); 
+  abstract DValue copy();
+  abstract DValue dup();
 
   Json toJson() {
-    return Json(null); }
-
-  override string toString() { 
-    return null; 
+    return Json(null);
   }
-  
-  void fromString(string newValue) { }
+
+  override string toString() {
+    return null;
+  }
+
+  void fromString(string newValue) {
+  }
 }
 
-version(test_uim_models) { unittest {   
+version (test_uim_models) {
+  unittest {
     auto value = new DValue;
     assert(!value.isNull);
     assert(!value.isString);
@@ -113,4 +246,5 @@ version(test_uim_models) { unittest {
     assert(!value.isNullable);
     assert(!value.isObject);
     assert(!value.isArray);
-}}
+  }
+}

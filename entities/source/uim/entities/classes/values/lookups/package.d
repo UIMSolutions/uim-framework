@@ -3,8 +3,8 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.classes.values.lookups;
+module uim.entities.classes.values.lookups;
 
 public { 
-	import uim.models.classes.values.lookups.lookup;
+	import uim.entities.classes.values.lookups.lookup;
 }

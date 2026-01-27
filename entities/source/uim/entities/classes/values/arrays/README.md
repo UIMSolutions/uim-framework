@@ -1,1 +1,1 @@
-# Package 📦 uim.models.classes.values.arrays
+# Package 📦 uim.entities.classes.values.arrays

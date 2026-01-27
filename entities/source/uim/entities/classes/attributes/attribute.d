@@ -9,6 +9,117 @@ import uim.entities;
 
 @safe:
 class DAttribute : UIMObject, IAttribute {
+    // --- Explicit property getters and setters for marked fields ---
+    @property UUID id() const { return _id; }
+    @property void id(UUID v) { _id = v; }
+
+    @property string name() const { return _name; }
+    @property void name(string v) { _name = v; }
+
+    @property string display() const { return _display; }
+    @property void display(string v) { _display = v; }
+
+    @property string registerPath() const { return _registerPath; }
+    @property void registerPath(string v) { _registerPath = v; }
+
+    @property bool isNullable() const { return _isNullable; }
+    @property void isNullable(bool v) { _isNullable = v; }
+
+    @property string[string] descriptions() const { return _descriptions; }
+    @property void descriptions(string[string] v) { _descriptions = v; }
+
+    @property string valueType() const { return _valueType; }
+    @property void valueType(string v) { _valueType = v; }
+
+    @property string keyType() const { return _keyType; }
+    @property void keyType(string v) { _keyType = v; }
+
+    @property string dataType_display() const { return _dataType_display; }
+    @property void dataType_display(string v) { _dataType_display = v; }
+
+    @property long defaultValueLong() const { return _defaultValueLong; }
+    @property void defaultValueLong(long v) { _defaultValueLong = v; }
+
+    @property string defaultValueString() const { return _defaultValueString; }
+    @property void defaultValueString(string v) { _defaultValueString = v; }
+
+    @property string baseDynamicPropertyId() const { return _baseDynamicPropertyId; }
+    @property void baseDynamicPropertyId(string v) { _baseDynamicPropertyId = v; }
+
+    @property string overwrittenDynamicPropertyId() const { return _overwrittenDynamicPropertyId; }
+    @property void overwrittenDynamicPropertyId(string v) { _overwrittenDynamicPropertyId = v; }
+
+    @property string rootDynamicPropertyId() const { return _rootDynamicPropertyId; }
+    @property void rootDynamicPropertyId(string v) { _rootDynamicPropertyId = v; }
+
+    @property uint precision() const { return _precision; }
+    @property void precision(uint v) { _precision = v; }
+
+    @property string stateCode() const { return _stateCode; }
+    @property void stateCode(string v) { _stateCode = v; }
+
+    @property string stateCode_display() const { return _stateCode_display; }
+    @property void stateCode_display(string v) { _stateCode_display = v; }
+
+    @property string statusCode() const { return _statusCode; }
+    @property void statusCode(string v) { _statusCode = v; }
+
+    @property string statusCode_display() const { return _statusCode_display; }
+    @property void statusCode_display(string v) { _statusCode_display = v; }
+
+    @property string regardingObjectId() const { return _regardingObjectId; }
+    @property void regardingObjectId(string v) { _regardingObjectId = v; }
+
+    @property double defaultValueDouble() const { return _defaultValueDouble; }
+    @property void defaultValueDouble(double v) { _defaultValueDouble = v; }
+
+    @property double minValueDouble() const { return _minValueDouble; }
+    @property void minValueDouble(double v) { _minValueDouble = v; }
+
+    @property double maxValueDouble() const { return _maxValueDouble; }
+    @property void maxValueDouble(double v) { _maxValueDouble = v; }
+
+    @property long minValueLong() const { return _minValueLong; }
+    @property void minValueLong(long v) { _minValueLong = v; }
+
+    @property long maxValueLong() const { return _maxValueLong; }
+    @property void maxValueLong(long v) { _maxValueLong = v; }
+
+    @property bool isArray() const { return _isArray; }
+    @property void isArray(bool v) { _isArray = v; }
+
+    @property bool isDouble() const { return _isDouble; }
+    @property void isDouble(bool v) { _isDouble = v; }
+
+    @property bool isString() const { return _isString; }
+    @property void isString(bool v) { _isString = v; }
+
+    @property bool isJson() const { return _isJson; }
+    @property void isJson(bool v) { _isJson = v; }
+
+    @property bool isXML() const { return _isXML; }
+    @property void isXML(bool v) { _isXML = v; }
+
+    @property bool isAssociativeArray() const { return _isAssociativeArray; }
+    @property void isAssociativeArray(bool v) { _isAssociativeArray = v; }
+
+    @property bool isReadOnly() const { return _isReadOnly; }
+    @property void isReadOnly(bool v) { _isReadOnly = v; }
+
+    @property bool isHidden() const { return _isHidden; }
+    @property void isHidden(bool v) { _isHidden = v; }
+
+    @property bool isRequired() const { return _isRequired; }
+    @property void isRequired(bool v) { _isRequired = v; }
+
+    @property uint maxLengthString() const { return _maxLengthString; }
+    @property void maxLengthString(uint v) { _maxLengthString = v; }
+
+    @property string defaultValueOptionSet() const { return _defaultValueOptionSet; }
+    @property void defaultValueOptionSet(string v) { _defaultValueOptionSet = v; }
+
+    @property UUID attribute() const { return _attribute; }
+    @property void attribute(UUID v) { _attribute = v; }
   mixin(AttributeThis!("Attribute"));
 
   // Initialization hook method.

@@ -1,1 +1,1 @@
-# Package 📦 uim.models.classes.value.maps
+# Package 📦 uim.entities.classes.value.maps

@@ -3,32 +3,32 @@
 	License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.  
 	Authors: Ozan Nurettin Süel (Sicherheitsschmiede)                                                      
 **********************************************************************************************************/
-module uim.models.classes.values;
+module uim.entities.classes.values;
 
-import uim.models;
+import uim.entities;
 @safe:
 
 public { 
-	import uim.models.classes.values.value;
-	import uim.models.classes.values.map;
+	import uim.entities.classes.values.value;
+	import uim.entities.classes.values.map;
 }
 
 // Packages
 public { 
-	import uim.models.classes.values.arrays;
-	import uim.models.classes.values.datetimes;
-	import uim.models.classes.values.elements;
-	import uim.models.classes.values.lookups;
-	import uim.models.classes.values.maps;
-	import uim.models.classes.values.scalars;
-	import uim.models.classes.values.uuids;
+	import uim.entities.classes.values.arrays;
+	import uim.entities.classes.values.datetimes;
+	import uim.entities.classes.values.elements;
+	import uim.entities.classes.values.lookups;
+	import uim.entities.classes.values.maps;
+	import uim.entities.classes.values.scalars;
+	import uim.entities.classes.values.uuids;
 }
 
 // Modules
 public { 
-	import uim.models.classes.values.entity;
-	import uim.models.classes.values.null_;
-	import uim.models.classes.values.object_;
+	import uim.entities.classes.values.entity;
+	import uim.entities.classes.values.null_;
+	import uim.entities.classes.values.object_;
 }
 
 template ValueThis(string name, string datatype = null) { // Name for future releases
