@@ -8,7 +8,7 @@ module uim.entities.classes.values.value;
 import uim.entities;
 
 @safe:
-class DValue : UIMObject, IData {
+class UIMValue : UIMObject, IData {
   // --- Explicit property getters and setters for marked fields ---
   @property DAttribute attribute() const {
     return _attribute;
@@ -197,7 +197,7 @@ class DValue : UIMObject, IData {
     return (toString == equalValue);
   }
 
-  bool opEquals(DValue equalValue) {
+  bool opEquals(UIMValue equalValue) {
     return (toString == equalValue.toString);
   }
 
@@ -220,8 +220,8 @@ class DValue : UIMObject, IData {
     return cast(O)this;
   }
 
-  abstract DValue copy();
-  abstract DValue dup();
+  abstract UIMValue copy();
+  abstract UIMValue dup();
 
   Json toJson() {
     return Json(null);
@@ -237,7 +237,7 @@ class DValue : UIMObject, IData {
 
 version (test_uim_models) {
   unittest {
-    auto value = new DValue;
+    auto value = new UIMValue;
     assert(!value.isNull);
     assert(!value.isString);
     assert(!value.isInteger);

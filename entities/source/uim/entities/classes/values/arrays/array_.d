@@ -8,14 +8,14 @@ module uim.entities.classes.values.arrays.array_;
 import uim.entities;
 
 @safe:
-class DArrayValue : DValue {
+class DArrayValue : UIMValue {
   mixin(ValueThis!("ArrayValue"));  
-  this(DValue[] values) {
+  this(UIMValue[] values) {
     this();
     _items = values.dup;
   }
 
-  DValue[] _items;
+  UIMValue[] _items;
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -25,11 +25,11 @@ class DArrayValue : DValue {
       .isArray(true);
   }
 
-  DArrayValue add(DValue[] values...) { 
+  DArrayValue add(UIMValue[] values...) { 
     this.add(values.dup); 
     return this; }
 
-  DArrayValue add(DValue[] values) {
+  DArrayValue add(UIMValue[] values) {
     _items ~= values.dup; 
     return this;
   }
@@ -38,14 +38,14 @@ class DArrayValue : DValue {
     writeln(ArrayValue.add(StringValue("1x"), StringValue("2x")).values.map!(v => v.toString).array);
   }
   
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
 
-  DValue[] values() { return _items; }
+  UIMValue[] values() { return _items; }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return ArrayValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 
@@ -54,7 +54,7 @@ class DArrayValue : DValue {
   }
 }
 mixin(ValueCalls!("ArrayValue")); 
-auto ArrayValue(DValue[] values) { return new DArrayValue(values); } 
+auto ArrayValue(UIMValue[] values) { return new DArrayValue(values); } 
 
 ///
 unittest {

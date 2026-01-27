@@ -8,12 +8,12 @@ module uim.entities.classes.values.maps.map;
 import uim.entities;
 
 @safe:
-class DMapValue(K) : DValue, IMap {
+class DMapValue(K) : UIMValue, IMap {
   mixin(ValueThis!("MapValue"));
 
-  protected DValue[K] _items;
+  protected UIMValue[K] _items;
 
-  DMapValue opIndexAssign(DValue value, K key) {
+  DMapValue opIndexAssign(UIMValue value, K key) {
     if (containsKey(key)) {
       _items[key] = value; 
     } else {
@@ -62,12 +62,12 @@ class DMapValue(K) : DValue, IMap {
     if (containsKey(key)) {
       _items[key].value(value.toString); 
     } else {
-      _items[key] = new DUUIDValue(value); }
+      _items[key] = new DUUIUIMValue(value); }
 
     return this;
   }
 
-  DMapValue opIndexAssign(DValue[] values, K key) {
+  DMapValue opIndexAssign(UIMValue[] values, K key) {
     if (containsKey(key)) {
       _items[key] = new DArrayValue(values); 
     } else {
@@ -76,7 +76,7 @@ class DMapValue(K) : DValue, IMap {
     return this;
   }
 
-  DValue opIndex(this O)(K key) {
+  UIMValue opIndex(this O)(K key) {
     return _items.get(key, null);
   }
 
@@ -100,22 +100,22 @@ class DMapValue(K) : DValue, IMap {
     return false;
   }
 
-  DValue[] values() {
+  UIMValue[] values() {
     return _items.values;
   }
 
   /// containsValue - Returns true if this map maps one or more keys to the specified value.
-  bool containsValue(DValue value) {
+  bool containsValue(UIMValue value) {
     foreach(v; values) {
       if (v == value) { return true; }
     }
     return false;
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return NullValue; // MapValue!K(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

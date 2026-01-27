@@ -12,7 +12,7 @@ class Table : UIMObject {
     private TableColumn[] _columns;
     private TableRow[] _rows;
     private bool[string] _indexes;
-    private RedBlackTree!string[string] _indexedValues; // column -> indexed values
+    private RedBlackTree!string[string] _indexeUIMValues; // column -> indexed values
 
     this(string name, string[] columns) {
         _name = name;
@@ -167,7 +167,7 @@ class Table : UIMObject {
     void clear() {
         _rows.clear();
         _indexes.clear();
-        _indexedValues.clear();
+        _indexeUIMValues.clear();
     }
 
     /// Create an index on a column for faster lookups
@@ -196,12 +196,12 @@ class Table : UIMObject {
             Json val = row.get(col);
             if (val != Json(null)) {
                 // Track indexed values for potential B-tree implementation
-                if (col !in _indexedValues) {
-                    _indexedValues[col] = new RedBlackTree!string();
+                if (col !in _indexeUIMValues) {
+                    _indexeUIMValues[col] = new RedBlackTree!string();
                 }
                 try {
                     auto strVal = val.toString();
-                    _indexedValues[col].insert(strVal);
+                    _indexeUIMValues[col].insert(strVal);
                 } catch (Exception e) {
                     // Skip if value can't be converted to string
                 }
@@ -211,8 +211,8 @@ class Table : UIMObject {
     
     /// Build index for specific column
     private void _buildIndexForColumn(string column) {
-        if (column !in _indexedValues) {
-            _indexedValues[column] = new RedBlackTree!string();
+        if (column !in _indexeUIMValues) {
+            _indexeUIMValues[column] = new RedBlackTree!string();
         }
         
         foreach (ref row; _rows) {
@@ -220,7 +220,7 @@ class Table : UIMObject {
             if (val != Json(null)) {
                 try {
                     auto strVal = val.toString();
-                    _indexedValues[column].insert(strVal);
+                    _indexeUIMValues[column].insert(strVal);
                 } catch (Exception e) {
                     // Skip invalid values
                 }
@@ -230,7 +230,7 @@ class Table : UIMObject {
     
     /// Rebuild all indexes from scratch
     private void _rebuildAllIndexes() {
-        _indexedValues.clear();
+        _indexeUIMValues.clear();
         foreach (col, _; _indexes) {
             _buildIndexForColumn(col);
         }

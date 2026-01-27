@@ -125,24 +125,24 @@ unittest {
 }
 
 /**
- * Filters the elements of the input array `values`, returning only those that are present in the `validValues` array.
+ * Filters the elements of the input array `values`, returning only those that are present in the `valiUIMValues` array.
  *
  * Params:
  *   values = The array of elements to filter.
- *   validValues = An array of valid elements. Only elements from `values` that are also in `validValues` will be included in the result.
+ *   valiUIMValues = An array of valid elements. Only elements from `values` that are also in `valiUIMValues` will be included in the result.
  *
  * Returns:
- *   A new array containing only the elements from `values` that are also present in `validValues`.
- *   If `validValues` is empty, the original `values` array is returned.
+ *   A new array containing only the elements from `values` that are also present in `valiUIMValues`.
+ *   If `valiUIMValues` is empty, the original `values` array is returned.
  * /
-T[] filterValues(T)(T[] values, T[] validValues) {
+T[] filterValues(T)(T[] values, T[] valiUIMValues) {
   if (values.length == 0) {
     return null;
   }
 
-  return validValues.length == 0
+  return valiUIMValues.length == 0
     ? values.dup
-    : values.filter!(value => validvalues.canFind(value)).array;
+    : values.filter!(value => valiUIMValues.canFind(value)).array;
 }
 ///
 unittest {

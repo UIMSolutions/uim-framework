@@ -11,9 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
-
-
 /**
  * Required field validation
  */

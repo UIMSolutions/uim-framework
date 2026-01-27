@@ -8,7 +8,7 @@ module uim.entities.classes.values.lookups.lookup;
 import uim.entities;
 
 @safe:
-class DLookupValue(K, V) : DValue {
+class DLookupValue(K, V) : UIMValue {
   mixin(ValueThis!("LookupValue"));
 
   V[K] _items;
@@ -31,12 +31,12 @@ class DLookupValue(K, V) : DValue {
   }
 
   alias opEquals = Object.opEquals;
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
 
-  override DValue copy() {
+  override UIMValue copy() {
     return LookupValue!(K, V)(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 }

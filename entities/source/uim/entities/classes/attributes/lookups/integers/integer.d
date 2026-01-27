@@ -36,7 +36,7 @@ class DIntegerIntegerAttribute : DLookupAttribute {
     return false; 
   }  
 
-  override DValue createValue() {
+  override UIMValue createValue() {
     return LookupValue!(int, int)(this).isNullable(isNullable); }  
 }
 mixin(AttributeCalls!("IntegerIntegerAttribute"));

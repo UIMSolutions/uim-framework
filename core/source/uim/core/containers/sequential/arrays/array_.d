@@ -15,42 +15,42 @@ mixin(ShowModule!());
 
 // #region add
 // adding items into array
-auto ref addValuesNotNull(T)(auto ref T[] items, in T[] values) {
+auto ref adUIMValuesNotNull(T)(auto ref T[] items, in T[] values) {
   values
     .filter!(value => !value.isNull)
-    .each!(value => items.addValue(value));
+    .each!(value => items.adUIMValue(value));
   return items;
 }
 
-auto ref addValues(T)(auto ref T[] items, in T[] values) {
-  values.each!(value => items.addValue(value));
+auto ref adUIMValues(T)(auto ref T[] items, in T[] values) {
+  values.each!(value => items.adUIMValue(value));
   return items;
 }
 
-auto ref addValue(T)(auto ref T[] items, in T value) {
+auto ref adUIMValue(T)(auto ref T[] items, in T value) {
   items ~= value;
   return items;
 }
 
 unittest {
   auto test1 = [1, 2, 3];
-  assert(test1.addValue(4) == [1, 2, 3, 4] && test1 == [1, 2, 3, 4]);
+  assert(test1.adUIMValue(4) == [1, 2, 3, 4] && test1 == [1, 2, 3, 4]);
 
-  assert([1, 2, 3].addValue(4) == [1, 2, 3, 4]);
-  assert([1, 2, 3].addValue(4).addValue(5) == [1, 2, 3, 4, 5]);
+  assert([1, 2, 3].adUIMValue(4) == [1, 2, 3, 4]);
+  assert([1, 2, 3].adUIMValue(4).adUIMValue(5) == [1, 2, 3, 4, 5]);
 
   test1 = [1, 2, 3];
-  assert(test1.addValues([4, 5]) == [1, 2, 3, 4, 5] && test1 == [1, 2, 3, 4, 5]);
-  assert(test1.addValue(6) == [1, 2, 3, 4, 5, 6] && test1 == [1, 2, 3, 4, 5, 6]);
-  // writeln(test1.addValues(7, 8).addValues(9, 10));
-  assert(test1.addValues([7, 8]).addValues([9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+  assert(test1.adUIMValues([4, 5]) == [1, 2, 3, 4, 5] && test1 == [1, 2, 3, 4, 5]);
+  assert(test1.adUIMValue(6) == [1, 2, 3, 4, 5, 6] && test1 == [1, 2, 3, 4, 5, 6]);
+  // writeln(test1.adUIMValues(7, 8).adUIMValues(9, 10));
+  assert(test1.adUIMValues([7, 8]).adUIMValues([9, 10]) == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   assert(test1 == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
   auto test2 = [1.0, 2.0, 3.0];
-  assert(test2.addValues([4.0, 5.0]) == [1.0, 2.0, 3.0, 4.0, 5.0]);
+  assert(test2.adUIMValues([4.0, 5.0]) == [1.0, 2.0, 3.0, 4.0, 5.0]);
 
   auto test3 = ["1", "2", "3"];
-  assert(test3.addValues(["4", "5"]) == ["1", "2", "3", "4", "5"]);
+  assert(test3.adUIMValues(["4", "5"]) == ["1", "2", "3", "4", "5"]);
 }
 // #endregion add
 

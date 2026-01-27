@@ -8,11 +8,11 @@ module uim.entities.classes.values.scalars.integer;
 import uim.entities;
 
 @safe:
-class DIntegerValue : DValue {
+class DIntegerValue : UIMValue {
   mixin(ValueThis!("IntegerValue", "int"));  
 
   protected int _value;  
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(int newValue) {
     this.set(newValue);
     return cast(O)this; 
@@ -53,7 +53,7 @@ class DIntegerValue : DValue {
     }
   }
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
   /* override */ bool opEquals(int equalValue) {
     return (_value == equalValue);
   }
@@ -87,10 +87,10 @@ class DIntegerValue : DValue {
     }
   }  
 
-  override DValue copy() {
+  override UIMValue copy() {
     return IntegerValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return IntegerValue(attribute, toJson);
   }
 

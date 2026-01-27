@@ -11,7 +11,7 @@ import uim.entities;
 class DVersionElementAttribute : DAttribute {
   mixin(AttributeThis!("VersionElementAttribute"));
 
-  override DValue createValue() {
+  override UIMValue createValue() {
     return ElementValue(this)
       .value(
         Version        

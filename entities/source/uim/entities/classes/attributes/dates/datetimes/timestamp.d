@@ -20,7 +20,7 @@ class DTimestampAttribute : DLongAttribute {
       .name("timestamp")
       .registerPath("timestamp");
   }
-  override DValue createValue() {
+  override UIMValue createValue() {
     return TimestampValue(this); }
 }
 mixin(AttributeCalls!"TimestampAttribute");

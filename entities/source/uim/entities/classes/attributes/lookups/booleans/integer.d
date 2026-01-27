@@ -13,7 +13,7 @@ class DBooleanIntegerAttribute : DLookupAttribute {
 
   mixin(OProperty!("int[bool]", "lookups"));
 
-  override DValue createValue() {
+  override UIMValue createValue() {
     return LookupValue!(bool, int)(this).isNullable(isNullable);
   }
 }

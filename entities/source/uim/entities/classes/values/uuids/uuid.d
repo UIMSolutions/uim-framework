@@ -8,8 +8,8 @@ module uim.entities.classes.values.uuids.uuid;
 import uim.entities;
 
 @safe:
-class DUUIDValue : DValue {
-  mixin(ValueThis!("UUIDValue", "UUID"));  
+class DUUIUIMValue : UIMValue {
+  mixin(ValueThis!("UUIUIMValue", "UUID"));  
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -20,7 +20,7 @@ class DUUIDValue : DValue {
   }
 
   protected UUID _value;  
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   UUID value() {
     return _value; 
   }
@@ -75,22 +75,22 @@ class DUUIDValue : DValue {
     _value = newValue;
   }
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
   override bool opEquals(UUID equalValue) {
     return (value == equalValue);
   }
   ///
   unittest {
     auto id = randomUUID;
-    auto value = new DUUIDValue(id);
+    auto value = new DUUIUIMValue(id);
     assert(value == id);
   }
 
-  override DValue copy() {
-    return UUIDValue(value);
+  override UIMValue copy() {
+    return UUIUIMValue(value);
   }
-  override DValue dup() {
-    return UUIDValue(value);
+  override UIMValue dup() {
+    return UUIUIMValue(value);
   }
 
   override Json toJson() { 
@@ -107,34 +107,34 @@ class DUUIDValue : DValue {
     this.value(newValue);
   }
 }
-mixin(ValueCalls!("UUIDValue", "UUID"));  
+mixin(ValueCalls!("UUIUIMValue", "UUID"));  
 
 version(test_uim_models) { unittest {  
   auto uuid = randomUUID;
-  assert(UUIDValue(uuid).value == uuid);
-  assert(UUIDValue(randomUUID).value != uuid);
+  assert(UUIUIMValue(uuid).value == uuid);
+  assert(UUIUIMValue(randomUUID).value != uuid);
 
-  assert(UUIDValue.value(uuid).value == uuid);
-  assert(UUIDValue.value(randomUUID).value != uuid);
+  assert(UUIUIMValue.value(uuid).value == uuid);
+  assert(UUIUIMValue.value(randomUUID).value != uuid);
 
-  assert(UUIDValue.value(uuid.toString).value == uuid);
-  assert(UUIDValue.value(randomUUID.toString).value != uuid);
+  assert(UUIUIMValue.value(uuid.toString).value == uuid);
+  assert(UUIUIMValue.value(randomUUID.toString).value != uuid);
 
-  assert(UUIDValue.value(Json(uuid.toString)).value == uuid);
-  assert(UUIDValue.value(Json(randomUUID.toString)).value != uuid);
+  assert(UUIUIMValue.value(Json(uuid.toString)).value == uuid);
+  assert(UUIUIMValue.value(Json(randomUUID.toString)).value != uuid);
 
-  assert(UUIDValue(uuid).toString == uuid.toString);
-  assert(UUIDValue(randomUUID).toString != uuid.toString);
+  assert(UUIUIMValue(uuid).toString == uuid.toString);
+  assert(UUIUIMValue(randomUUID).toString != uuid.toString);
 
-  assert(UUIDValue(uuid).toJson == Json(uuid.toString));
-  assert(UUIDValue(randomUUID).toJson != Json(uuid.toString));
+  assert(UUIUIMValue(uuid).toJson == Json(uuid.toString));
+  assert(UUIUIMValue(randomUUID).toJson != Json(uuid.toString));
 }}
 
 ///
 unittest {
   auto id = randomUUID;
-  auto uuidValue = new DUUIDValue(id);
+  auto uuiUIMValue = new DUUIUIMValue(id);
 
-  assert(uuidValue == id);
-  assert(uuidValue != randomUUID);
+  assert(uuiUIMValue == id);
+  assert(uuiUIMValue != randomUUID);
 }

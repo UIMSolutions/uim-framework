@@ -8,8 +8,8 @@ module uim.entities.classes.values.arrays.value;
 import uim.entities;
 
 @safe:
-class DValueArrayValue : DArrayValue {
-  mixin(ValueThis!("ValueArrayValue", "DValue[]"));  
+class UIMValueArrayValue : DArrayValue {
+  mixin(ValueThis!("ValueArrayValue", "UIMValue[]"));  
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -19,27 +19,27 @@ class DValueArrayValue : DArrayValue {
       .isString(true);
   }
 
-  protected DValue[] _value;
-  alias value = DValue.value;
-  void set(DValue[] newValue) {
+  protected UIMValue[] _value;
+  alias value = UIMValue.value;
+  void set(UIMValue[] newValue) {
     _value = newValue;
   }
-  O value(this O)(DValue[] newValue) {
+  O value(this O)(UIMValue[] newValue) {
     this.set(newValue);
     return cast(O)this; 
   }
-  DValue[] value() {
+  UIMValue[] value() {
     return _value; 
   }
 
   alias opEquals = Object.opEquals;
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
 
-  override DValue copy() {
+  override UIMValue copy() {
     return ValueArrayValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 }
-mixin(ValueCalls!("ValueArrayValue", "DValue[]"));  
+mixin(ValueCalls!("ValueArrayValue", "UIMValue[]"));  

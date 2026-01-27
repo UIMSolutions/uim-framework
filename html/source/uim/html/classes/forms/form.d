@@ -31,8 +31,8 @@ class DForm : DHtmlElement, IHtmlForm {
         return this;
     }
 
-    IHtmlForm method(string methodValue) {
-        attribute("method", methodValue);
+    IHtmlForm method(string methoUIMValue) {
+        attribute("method", methoUIMValue);
         return this;
     }
 

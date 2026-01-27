@@ -11,12 +11,12 @@ import uim.entities;
 class DOwnerElementAttribute : DAttribute {
   mixin(AttributeThis!("OwnerElementAttribute"));
 
-  override DValue createValue() {
+  override UIMValue createValue() {
     return ElementValue(this)
       .value(
         Element
           .name("owner")
-          .addValues([
+          .adUIMValues([
             "id": UUIDAttribute, // Owner Id"]),
             "idType": StringAttribute, // The type of owner, either User or Team."
           ])

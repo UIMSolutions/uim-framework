@@ -22,8 +22,8 @@ class DPreferredContactMethodAttribute : DAttribute {
       .registerPath("preferredcontactmethod");
   }
 
-/*   override DValue createValue() {
-    return PreferredContactMethodValue(this); } */
+/*   override UIMValue createValue() {
+    return PreferredContactMethoUIMValue(this); } */
 }
 mixin(AttributeCalls!("PreferredContactMethodAttribute"));
 

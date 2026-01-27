@@ -8,7 +8,7 @@ module uim.entities.classes.values.elements.element;
 import uim.entities;
 
 @safe:
-class DElementValue : DValue {
+class DElementValue : UIMValue {
   mixin(ValueThis!("ElementValue", "DElement"));    
 
   // Initialization hook method.
@@ -20,7 +20,7 @@ class DElementValue : DValue {
   }
 
   protected DElement _value;
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(DElement newValue) {
     _value = newValue;
     return cast(O)this; 
@@ -54,7 +54,7 @@ class DElementValue : DValue {
     }
   }
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
   bool opEquals(DElementValue otherValue) {
     string left = value.toString;
     string right = otherValue.value.toString;
@@ -74,10 +74,10 @@ class DElementValue : DValue {
     return 1;
   }  */
 
-  override DValue copy() {
+  override UIMValue copy() {
     return ElementValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

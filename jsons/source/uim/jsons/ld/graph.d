@@ -155,8 +155,8 @@ class DJSONLDGraph : UIMObject {
       auto obj = json.get!(Json[string]);
       
       // Check for @id
-      if (auto idValue = JSONLDKeywords.id in obj) {
-        graph._id = idValue.get!string;
+      if (auto iUIMValue = JSONLDKeywords.id in obj) {
+        graph._id = iUIMValue.get!string;
       }
       
       // Check for @graph

@@ -8,12 +8,12 @@ module uim.entities.classes.values.maps.string;
 import uim.entities;
 
 @safe:
-class DStringValueMap : DValue, IMap {
+class DStringValueMap : UIMValue, IMap {
   mixin(ValueThis!("StringValueMap"));
 
-  protected DValue[string] _items;
+  protected UIMValue[string] _items;
 
-  DStringValueMap opIndexAssign(DValue value, string key) {
+  DStringValueMap opIndexAssign(UIMValue value, string key) {
     if (containsKey(key)) {
       _items[key] = value; 
     } else {
@@ -62,12 +62,12 @@ class DStringValueMap : DValue, IMap {
     if (containsKey(key)) {
       _items[key].value(value.toString); 
     } else {
-      _items[key] = new DUUIDValue(value); }
+      _items[key] = new DUUIUIMValue(value); }
 
     return this;
   }
 
-  DStringValueMap opIndexAssign(DValue[] values, string key) {
+  DStringValueMap opIndexAssign(UIMValue[] values, string key) {
     if (containsKey(key)) {
       _items[key] = new DArrayValue(values); 
     } else {
@@ -76,7 +76,7 @@ class DStringValueMap : DValue, IMap {
     return this;
   }
 
-  DValue opIndex(this O)(string key) {
+  UIMValue opIndex(this O)(string key) {
     return _items.get(key, null);
   }
 
@@ -100,22 +100,22 @@ class DStringValueMap : DValue, IMap {
     return false;
   }
 
-  DValue[] values() {
+  UIMValue[] values() {
     return _items.values;
   }
 
   /// containsValue - Returns true if this map maps one or more keys to the specified value.
-  bool containsValue(DValue value) {
+  bool containsValue(UIMValue value) {
     foreach(v; values) {
       if (v == value) { return true; }
     }
     return false;
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return NullValue; // StringValueMap(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

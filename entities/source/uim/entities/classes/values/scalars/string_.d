@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.string_;
 import uim.entities;
 
 @safe:
-class DStringValue : DValue {
+class DStringValue : UIMValue {
   mixin(ValueThis!("StringValue"));  
     // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -75,10 +75,10 @@ class DStringValue : DValue {
     return cast(O)this;
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return StringValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 
@@ -112,7 +112,7 @@ class DStringValue : DValue {
     assert(a(b) == "bValue");
   }
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
   override bool opEquals(string otherValue) {
     return (_value == otherValue);
   }

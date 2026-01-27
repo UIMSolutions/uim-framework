@@ -21,8 +21,8 @@ class DUUIDAttribute : DAttribute {
       .registerPath("uuid");
   }
 
-  override DValue createValue() {
-    return UUIDValue(this); }
+  override UIMValue createValue() {
+    return UUIUIMValue(this); }
 }
 mixin(AttributeCalls!("UUIDAttribute"));
 
@@ -35,6 +35,6 @@ unittest {
   DAttribute generalAttribute = attribute;
   assert(!cast(DIntegerAttribute)generalAttribute);
 
-  DValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
+  UIMValue value = attribute.createValue();
+  assert(cast(DUUIUIMValue)value);
 }

@@ -138,8 +138,8 @@ class DJSONLDNode : UIMObject {
     auto obj = json.get!(Json[string]);
     
     // Extract @id
-    if (auto idValue = JSONLDKeywords.id in obj) {
-      node._id = idValue.get!string;
+    if (auto iUIMValue = JSONLDKeywords.id in obj) {
+      node._id = iUIMValue.get!string;
     }
     
     // Extract @type

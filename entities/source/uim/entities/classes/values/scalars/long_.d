@@ -8,11 +8,11 @@ module uim.entities.classes.values.scalars.long_;
 import uim.entities;
 
 @safe:
-class DLongValue : DValue {
+class DLongValue : UIMValue {
   mixin(ValueThis!("LongValue", "long"));  
 
   protected long _value;  
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(long newValue) {
     this.set(newValue);
     return cast(O)this; 
@@ -52,7 +52,7 @@ class DLongValue : DValue {
     }
   }
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
   bool opEquals(long equalValue) {
     return (_value == equalValue);
   }
@@ -120,10 +120,10 @@ class DLongValue : DValue {
     }
   }  
 
-  override DValue copy() {
+  override UIMValue copy() {
     return LongValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

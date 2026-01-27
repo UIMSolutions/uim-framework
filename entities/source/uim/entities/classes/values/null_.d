@@ -8,7 +8,7 @@ module uim.entities.classes.values.null_;
 import uim.entities;
 
 @safe:
-class DNullValue : DValue {
+class DNullValue : UIMValue {
   mixin(ValueThis!("NullValue"));  
 
   // Initialization hook method.
@@ -19,10 +19,10 @@ class DNullValue : DValue {
       .isNull(true);
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return NullValue;
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return NullValue;
   }
   

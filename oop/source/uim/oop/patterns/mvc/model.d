@@ -173,7 +173,7 @@ class DataModel(T) : Model {
  * Extends the base model with before/after change callbacks
  */
 class ObservableModel : Model {
-    alias BeforeChangeCallback = void delegate(string key, string oldValue, string newValue);
+    alias BeforeChangeCallback = void delegate(string key, string olUIMValue, string newValue);
     alias AfterChangeCallback = void delegate(string key, string newValue);
 
     protected BeforeChangeCallback[] _beforeChangeCallbacks;
@@ -211,11 +211,11 @@ class ObservableModel : Model {
      *   value = The value to set
      */
     override void set(string key, string value) {
-        string oldValue = get(key);
+        string olUIMValue = get(key);
 
         // Call before change callbacks
         foreach (callback; _beforeChangeCallbacks) {
-            callback(key, oldValue, value);
+            callback(key, olUIMValue, value);
         }
 
         // Set the value

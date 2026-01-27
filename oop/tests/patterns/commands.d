@@ -192,7 +192,7 @@ import uim.oop;
     class SetValueCommand : UndoableCommand {
         int* target;
         int newValue;
-        int oldValue;
+        int olUIMValue;
         
         this(int* tgt, int val) @safe {
             super("SetValue");
@@ -201,12 +201,12 @@ import uim.oop;
         }
         
         protected override void doExecute() {
-            oldValue = *target;
+            olUIMValue = *target;
             *target = newValue;
         }
         
         protected override void doUndo() {
-            *target = oldValue;
+            *target = olUIMValue;
         }
     }
     

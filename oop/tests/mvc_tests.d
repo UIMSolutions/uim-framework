@@ -209,12 +209,12 @@ unittest {
     bool beforeCalled = false;
     bool afterCalled = false;
     string capturedKey;
-    string capturedValue;
+    string captureUIMValue;
     
     model.onBeforeChange((key, oldVal, newVal) {
         beforeCalled = true;
         capturedKey = key;
-        capturedValue = newVal;
+        captureUIMValue = newVal;
     });
     
     model.onAfterChange((key, newVal) {
@@ -226,7 +226,7 @@ unittest {
     assert(beforeCalled, "Before change callback not called");
     assert(afterCalled, "After change callback not called");
     assert(capturedKey == "test", "Captured key incorrect");
-    assert(capturedValue == "value", "Captured value incorrect");
+    assert(captureUIMValue == "value", "Captured value incorrect");
     
     mixins(ShowTest!"ObservableModel tests passed");
 }

@@ -8,11 +8,11 @@ module uim.entities.classes.values.datetimes.datetime_;
 import uim.entities;
 
 @safe:
-class DDatetimeValue : DValue {
+class DDatetimeValue : UIMValue {
   mixin(ValueThis!("DatetimeValue", "DateTime"));  
 
   protected DateTime _value;  
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(DateTime newValue) {
     this.set(newValue);
     return cast(O)this; 
@@ -54,10 +54,10 @@ class DDatetimeValue : DValue {
     }
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return DatetimeValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

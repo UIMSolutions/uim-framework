@@ -8,7 +8,7 @@ module uim.entities.classes.values.object_;
 import uim.entities;
 
 @safe:
-class DJsonObjectValue : DValue {
+class DJsonObjectValue : UIMValue {
   mixin(ValueThis!("JsonObjectValue"));  
 
   mixin(OProperty!("Json", "value"));
@@ -27,10 +27,10 @@ class DJsonObjectValue : DValue {
       .isObject(true);
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return JsonObjectValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
   

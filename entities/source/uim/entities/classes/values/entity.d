@@ -8,7 +8,7 @@ module uim.entities.classes.values.entity;
 import uim.entities;
 
 @safe:
-class UIMEntityValue : DValue {
+class UIMEntityValue : UIMValue {
   mixin(ValueThis!("EntityValue", "UIMEntity"));  
 
   // Initialization hook method.
@@ -21,7 +21,7 @@ class UIMEntityValue : DValue {
   }
 
   protected UIMEntity _value;
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(UIMEntity newValue) {
     _value = newValue;
     return cast(O)this; 
@@ -62,12 +62,12 @@ class UIMEntityValue : DValue {
     return 1;
   }  */
 
-  alias opEquals = DValue.opEquals;
+  alias opEquals = UIMValue.opEquals;
 
-  override DValue copy() {
+  override UIMValue copy() {
     return EntityValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 

@@ -201,7 +201,7 @@ class DAttribute : UIMObject, IAttribute {
 /*   auto createAttribute() {
     return createAttribute(_name); } */
 
-  DValue createValue() {
+  UIMValue createValue() {
     return NullValue; }
 
   /* // Create a new attribute based on this attribute an a giving name 

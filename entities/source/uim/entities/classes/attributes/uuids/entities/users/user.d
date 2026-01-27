@@ -45,6 +45,6 @@ unittest {
   assert(cast(DUUIDAttribute)generalAttribute);
   assert(!cast(DIntegerAttribute)generalAttribute);
 
-  DValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
+  UIMValue value = attribute.createValue();
+  assert(cast(DUUIUIMValue)value);
 }

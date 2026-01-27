@@ -17,7 +17,7 @@ interface IHtmlForm : IHtmlElement {
 
   IHtmlForm action(string url);
 
-  IHtmlForm method(string methodValue);
+  IHtmlForm method(string methoUIMValue);
 
   IHtmlForm post();
 

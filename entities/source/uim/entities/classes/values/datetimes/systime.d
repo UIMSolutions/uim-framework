@@ -8,11 +8,11 @@ module uim.entities.classes.values.datetimes.systime;
 import uim.entities;
 
 @safe:
-class DSystimeValue : DValue {
+class DSystimeValue : UIMValue {
   mixin(ValueThis!("SystimeValue", "SysTime"));  
 
   protected SysTime _value;  
-  alias value = DValue.value;
+  alias value = UIMValue.value;
   O value(this O)(SysTime newValue) {
     this.set(newValue);
     return cast(O)this; 
@@ -44,7 +44,7 @@ class DSystimeValue : DValue {
         // .value(fromISOExtString(newValue)); 
     }
 
-    alias opEquals = DValue.opEquals;
+    alias opEquals = UIMValue.opEquals;
   }  
 
   override protected void set(Json newValue) {
@@ -57,10 +57,10 @@ class DSystimeValue : DValue {
     }
   }
 
-  override DValue copy() {
+  override UIMValue copy() {
     return SystimeValue(attribute, toJson);
   }
-  override DValue dup() {
+  override UIMValue dup() {
     return copy;
   }
 
