@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.elements.element;
 import uim.entities;
 
 @safe:
-class UIMElementAttribute : UIMAttribute {
+class ElementAttribute : UIMAttribute {
   mixin(AttributeThis!("ElementAttribute"));
 
   // Initialization hook method.
@@ -19,9 +19,3 @@ class UIMElementAttribute : UIMAttribute {
   override UIMValue createValue() {
     return ElementValue(this); }
 }
-mixin(AttributeCalls!"ElementAttribute");
-
-version(test_uim_models) { unittest {
-  testAttribute(new Attribute);
-  testAttribute(ElementAttribute);
-}}

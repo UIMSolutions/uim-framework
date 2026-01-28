@@ -23,7 +23,7 @@ means.measurement.prefix.nano */
 import uim.entities;
 
 @safe:
-class DNanoFaraUIMAttribute : DFaraUIMAttribute {
+class DNanoFaradAttribute : DFaradAttribute {
   mixin(AttributeThis!("NanoFaradAttribute"));
 
   // Initialization hook method.

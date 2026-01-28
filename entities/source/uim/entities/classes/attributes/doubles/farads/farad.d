@@ -22,7 +22,7 @@ has.measurement.fundamentalComponent.ampere */
 import uim.entities;
 
 @safe:
-class DFaraUIMAttribute : DDoubleAttribute {
+class DFaradAttribute : DDoubleAttribute {
   mixin(AttributeThis!("FaradAttribute"));
 
   // Initialization hook method.

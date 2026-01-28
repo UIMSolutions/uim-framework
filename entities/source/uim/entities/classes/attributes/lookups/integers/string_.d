@@ -22,8 +22,8 @@ class DIntegerStringAttribute : DLookupAttribute {
     super.initialize(configSettings);
     // means.measurement.lookup
 
-    this.name("lookup")
-      .dataFormats(["lookup", "integer", "string"]);
+    this.name("lookup");
+    this.dataFormats(["lookup", "integer", "string"]);
     this.registerPath("lookup");
   }
 
@@ -35,8 +35,8 @@ class DIntegerStringAttribute : DLookupAttribute {
     return false; 
   }  
 
-  override UIMValue createValue() {
-    return LookupValue!(int, string)(this).isNullable(isNullable); }  
+  // override UIMValue createValue() {
+  //   return LookupValue!(int, string)(this).isNullable(isNullable); }  
 }
 mixin(AttributeCalls!("IntegerStringAttribute"));
 

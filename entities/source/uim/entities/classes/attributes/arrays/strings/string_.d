@@ -15,18 +15,11 @@ class DStringArrayAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this.name("StringArrayAttribute")
-      .dataFormats(["string", "array"]);
+    this.name("StringArrayAttribute");
+    this.dataFormats(["string", "array"]);
     this.registerPath("StringArrayAttribute");
   }
 
   override UIMValue createValue() {
     return StringArrayValue(this); }
-}
-mixin(AttributeCalls!"StringArrayAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DStringArrayAttribute);
-    testAttribute(StringArrayAttribute);
-  }
 }

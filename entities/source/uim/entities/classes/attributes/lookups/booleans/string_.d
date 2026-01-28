@@ -13,13 +13,7 @@ class DBooleanStringAttribute : UIMAttribute {
 
   mixin(OProperty!("string[bool]", "lookups"));
 
-  override UIMValue createValue() {
-    return LookupValue!(bool, string)(this).isNullable(isNullable);
-  }
-}
-mixin(AttributeCalls!("BooleanStringAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
+  // override UIMValue createValue() {
+  //   return LookupValue!(bool, string)(this).isNullable(isNullable);
+  // }
 }

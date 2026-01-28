@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.lookups.preferredcontactmethod;
 import uim.entities;
 
 @safe:
-class DPreferredContactMethoUIMAttribute : UIMAttribute {
+class DPreferredContactMethodAttribute : UIMAttribute {
   mixin(AttributeThis!("PreferredContactMethodAttribute"));
 
   // Initialization hook method.
@@ -16,17 +16,11 @@ class DPreferredContactMethoUIMAttribute : UIMAttribute {
     super.initialize(configSettings);
     // means.measurement.preferredcontactmethod
 
-    this.name("preferredcontactmethod")
-      .dataFormats(["preferredcontactmethod"]);
+    this.name("preferredcontactmethod");
+    this.dataFormats(["preferredcontactmethod"]);
     this.registerPath("preferredcontactmethod");
   }
 
 /*   override UIMValue createValue() {
     return PreferredContactMethoUIMValue(this); } */
-}
-mixin(AttributeCalls!("PreferredContactMethodAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
 }

@@ -33,17 +33,11 @@ class LookupValue(K, V) : UIMValue {
   alias opEquals = Object.opEquals;
   alias opEquals = UIMValue.opEquals;
 
-  override UIMValue copy() {
-    return LookupValue!(K, V)(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
-  }
+  // override UIMValue copy() {
+  //   return LookupValue!(K, V)(attribute, toJson);
+  // }
+  // override UIMValue dup() {
+  //   return copy;
+  // }
 }
-auto createLookupValue(K, V)() { return new LookupValue!(K, V); }
-auto createLookupValue(K, V)(UIMAttribute theAttribute) { return new LookupValue!(K, V)(theAttribute); }
-auto createLookupValue(K, V)(string theValue) { return new LookupValue!(K, V)(theValue); }
-auto createLookupValue(K, V)(Json theValue) { return new LookupValue!(K, V)(theValue); }
-auto createLookupValue(K, V)(UIMAttribute theAttribute, string theValue) { return new LookupValue!(K, V)(theAttribute, theValue); }
-auto createLookupValue(K, V)(UIMAttribute theAttribute, Json theValue) { return new LookupValue!(K, V)(theAttribute, theValue); }
 

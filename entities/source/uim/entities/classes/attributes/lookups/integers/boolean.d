@@ -35,12 +35,6 @@ class DIntegerBooleanAttribute : DLookupAttribute {
     return false; 
   }  
 
-  override UIMValue createValue() {
-    return LookupValue!(int, bool)(this).isNullable(isNullable); }  
-}
-mixin(AttributeCalls!("IntegerBooleanAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
+  // override UIMValue createValue() {
+  //   return LookupValue!(int, bool)(this).isNullable(isNullable); }  
 }
