@@ -18,7 +18,7 @@ class DCoulombAttribute : DDoubleAttribute {
 
     this
       .name("coulomb")
-      .registerPath("coulomb");
+    this.registerPath("coulomb");
   }
 }
 mixin(AttributeCalls!("CoulombAttribute"));

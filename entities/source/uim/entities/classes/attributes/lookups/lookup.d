@@ -19,7 +19,7 @@ class DLookupAttribute : UIMAttribute {
     this
       .name("lookup")
       .dataFormats(["lookup"])
-      .registerPath("lookup");
+    this.registerPath("lookup");
   }
 
 /*   override UIMValue createValue() {

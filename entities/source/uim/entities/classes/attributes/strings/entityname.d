@@ -23,7 +23,7 @@ class UIMEntityNameAttribute : DStringAttribute {
 
     this
       .name("entityname")
-      .registerPath("entityName");
+    this.registerPath("entityName");
   }
 }
 mixin(AttributeCalls!("EntityNameAttribute"));

@@ -26,7 +26,7 @@ class DMeterAttribute : DDoubleAttribute {
 
     this
       .name("meter")
-      .registerPath("meter");
+    this.registerPath("meter");
   }
 }
 mixin(AttributeCalls!("MeterAttribute"));

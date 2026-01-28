@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("owner")
-      .registerPath("owner");
+    this.registerPath("owner");
   }  
 }
 mixin(AttributeCalls!("OwnerAttribute"));

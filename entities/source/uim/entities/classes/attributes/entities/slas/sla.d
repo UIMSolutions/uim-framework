@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("sla")
-      .registerPath("sla");
+    this.registerPath("sla");
   }  
 }
 mixin(AttributeCalls!("SlaAttribute"));

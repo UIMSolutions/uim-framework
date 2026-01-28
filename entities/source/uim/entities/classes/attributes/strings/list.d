@@ -19,7 +19,7 @@ class DListAttribute : DStringAttribute {
 
     this
       .name("list")
-      .registerPath("list");
+    this.registerPath("list");
   }
 }
 mixin(AttributeCalls!("ListAttribute"));

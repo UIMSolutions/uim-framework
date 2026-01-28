@@ -23,7 +23,7 @@ class DHourAttribute : DIntegerAttribute {
 
     this
       .name("hour")
-      .registerPath("hour");
+    this.registerPath("hour");
   }    
 }
 mixin(AttributeCalls!("HourAttribute"));

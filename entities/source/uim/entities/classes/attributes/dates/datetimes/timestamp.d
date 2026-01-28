@@ -18,7 +18,7 @@ class DTimestampAttribute : DLongAttribute {
     this
       .dataFormats(["timestamp"])
       .name("timestamp")
-      .registerPath("timestamp");
+    this.registerPath("timestamp");
   }
   override UIMValue createValue() {
     return TimestampValue(this); }

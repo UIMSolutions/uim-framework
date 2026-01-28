@@ -26,7 +26,7 @@ class DKilometerAttribute : DMeterAttribute {
 
     this
       .name("kilometer")
-      .registerPath("kilometer");
+    this.registerPath("kilometer");
   }
 }
 mixin(AttributeCalls!("KilometerAttribute"));

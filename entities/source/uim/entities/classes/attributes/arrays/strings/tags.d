@@ -18,7 +18,7 @@ class DTagsAttribute : DStringArrayAttribute {
     this
       .name("TagsAttribute")
       .dataFormats(["string", "array"])
-      .registerPath("TagsAttribute");
+    this.registerPath("TagsAttribute");
   }
 
   override UIMValue createValue() {

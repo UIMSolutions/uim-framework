@@ -24,9 +24,8 @@ class DAmpereAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("ampere")
-      .registerPath("ampere");
+    this.name("ampere");
+    this.registerPath("ampere");
   }
 }
 mixin(AttributeCalls!("AmpereAttribute"));

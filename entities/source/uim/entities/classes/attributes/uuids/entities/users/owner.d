@@ -17,7 +17,7 @@ class DOwnerIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("ownerId")
-      .registerPath("ownerId");
+    this.registerPath("ownerId");
   }  
 }
 mixin(AttributeCalls!("OwnerIdAttribute"));

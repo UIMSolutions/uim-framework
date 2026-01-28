@@ -30,7 +30,7 @@ class DWattAttribute : DDoubleAttribute {
 
     this
       .name("watt")
-      .registerPath("watt");
+    this.registerPath("watt");
   }
 }
 mixin(AttributeCalls!("WattAttribute"));

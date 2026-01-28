@@ -17,7 +17,7 @@ class DOrganizationIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("organizationId")
-      .registerPath("organizationId");
+    this.registerPath("organizationId");
   }  
 }
 mixin(AttributeCalls!("OrganizationIdAttribute"));

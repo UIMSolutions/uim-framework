@@ -19,14 +19,7 @@ means.measurement.dimension.luminousIntensity
 means.measurement.units.si.candela
 has.measurement.fundamentalComponent.candela */
 
-    this
-      .name("candela")
-      .registerPath("candela");
-  }
-}
-mixin(AttributeCalls!("CandelaAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
+    this.name("candela");
+    this.registerPath("candela");
   }
 }

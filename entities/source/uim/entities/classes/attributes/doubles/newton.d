@@ -30,7 +30,7 @@ class DNewtonAttribute : DDoubleAttribute {
 
     this
       .name("newton")
-      .registerPath("newton");
+    this.registerPath("newton");
   }
 }
 mixin(AttributeCalls!("NewtonAttribute"));

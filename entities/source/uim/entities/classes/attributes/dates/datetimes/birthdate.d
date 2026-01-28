@@ -24,7 +24,7 @@ class DBirthDateAttribute : DDatetimeAttribute {
     this
       .dataFormats(["time"])
       .name("birthdate")
-      .registerPath("birthdate");
+    this.registerPath("birthdate");
 
   }
   override UIMValue createValue() {

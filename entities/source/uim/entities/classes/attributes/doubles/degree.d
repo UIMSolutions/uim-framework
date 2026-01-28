@@ -22,7 +22,7 @@ class DDegreeAttribute : DDoubleAttribute {
 
     this
       .name("degree")
-      .registerPath("degree");
+    this.registerPath("degree");
   }
 }
 mixin(AttributeCalls!("DegreeAttribute"));

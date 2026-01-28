@@ -19,7 +19,7 @@ class DDoubleAttribute : UIMAttribute {
       .dataFormats(["floatingPoint", "big"])
       .isDouble(true)
       .name("double")
-      .registerPath("double");
+    this.registerPath("double");
   }
 }
 mixin(AttributeCalls!("DoubleAttribute"));

@@ -26,7 +26,7 @@ means.content.binary.image */
     this
       .addDataFormats(["array"])
       .name("image")
-      .registerPath("image");
+    this.registerPath("image");
   }
 }
 mixin(AttributeCalls!("ImageAttribute"));

@@ -32,7 +32,7 @@ class DNanoFaraUIMAttribute : DFaraUIMAttribute {
 
     this
       .name("nanoFarad")
-      .registerPath("nanoFarad");
+    this.registerPath("nanoFarad");
   }
 }
 mixin(AttributeCalls!("NanoFaradAttribute"));

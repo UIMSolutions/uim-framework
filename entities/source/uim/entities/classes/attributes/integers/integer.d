@@ -18,7 +18,7 @@ class DIntegerAttribute : UIMAttribute {
     this
       .addDataFormats(["integer"])
       .name("integer")
-      .registerPath("integer");
+    this.registerPath("integer");
   }    
 }
 mixin(AttributeCalls!"IntegerAttribute");

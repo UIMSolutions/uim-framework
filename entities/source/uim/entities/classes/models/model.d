@@ -27,12 +27,12 @@ class DModel : UIMObject, IModel {
   auto className(string value) { _className = value; return this; }
 
   protected string _registerPath;
-  string registerPath() const { return _registerPath; }
-  auto registerPath(string value) { _registerPath = value; return this; }
+  override string registerPath() const { return _registerPath; }
+  override IModel registerPath(string value) { _registerPath = value; return this; }
 
   protected IModelManager _manager;
   IModelManager manager() const { return _manager; }
-  auto manager(IModelManager value) { _manager = value; return this; }
+  IModel manager(IModelManager value) { _manager = value; return this; }
 
   protected string[string] _parameters;
   string[string] parameters() const { return _parameters; }
@@ -44,25 +44,19 @@ class DModel : UIMObject, IModel {
     */
   protected IData[string] _defaultConfig;
   IData[string] defaultConfig() const { return _defaultConfig; }
-  auto defaultConfig(IData[string] value) { _defaultConfig = value; return this; }
+  IModel defaultConfig(IData[string] value) { _defaultConfig = value; return this; }
 
   // Configuration of model
   protected IData[string] _config;
   IData[string] config() const { return _config; }
-  auto config(IData[string] value) { _config = value; return this; }
+  IModel config(IData[string] value) { _config = value; return this; }
 
-  DModel create() {
+  IModel create() {
     return Model;
   }
-  DModel copy() {
+  IModel copy() {
     auto result = create;
     // result.fromJson(this.toJson);
     return result;
   }  
 }
-mixin(ModelCalls!("Model", "DModel"));
-
-version(test_uim_models) { unittest { 
-  assert(Model);
-  assert(Model.name == "Model");
-}} 

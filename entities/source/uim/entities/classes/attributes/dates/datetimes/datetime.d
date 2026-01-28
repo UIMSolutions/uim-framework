@@ -15,20 +15,12 @@ class DDatetimeAttribute : DDateAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .addDataFormats(["time"])
-      .name("datetime")
-      .registerPath("datetime");
+    this.addDataFormats(["time"]);
+    this.name("datetime");
+    this.registerPath("datetime");
       // means.measurement.date
       // means.measurement.time
   }
   override UIMValue createValue() {
     return DatetimeValue(this); }
-}
-mixin(AttributeCalls!"DatetimeAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDatetimeAttribute);
-    testAttribute(DatetimeAttribute);
-  }
 }

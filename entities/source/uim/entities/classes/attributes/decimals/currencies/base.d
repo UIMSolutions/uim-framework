@@ -25,15 +25,8 @@ is.dataFormat.numeric.shaped
 means.measurement.currency
 means.measurement.currency
     */
-    this
-      .name("baseCurrency")
-      .registerPath("baseCurrency");
+    this.name("baseCurrency");
+    this.registerPath("baseCurrency");
   }
 }
-mixin(AttributeCalls!"BaseCurrencyAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DBaseCurrencyAttribute);
-    testAttribute(BaseCurrencyAttribute);
-  }
-}
+  

@@ -29,7 +29,7 @@ class DUserIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("userId")
-      .registerPath("userId");
+    this.registerPath("userId");
   }  
 }
 mixin(AttributeCalls!("UserIdAttribute"));

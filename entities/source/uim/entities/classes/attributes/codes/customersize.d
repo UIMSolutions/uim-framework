@@ -24,7 +24,7 @@ class DCustomerSizeCodeAttribute : DIntegerStringAttribute {
         2: "1000-10000 (large)"
       ])
       .isNullable(true)
-      .registerPath("customerSizeCode");
+    this.registerPath("customerSizeCode");
   }
 }
 mixin(AttributeCalls!("CustomerSizeCodeAttribute"));

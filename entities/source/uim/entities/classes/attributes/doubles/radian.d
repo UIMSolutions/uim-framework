@@ -28,7 +28,7 @@ class DRadianAttribute : DDoubleAttribute {
 
     this
       .name("radian")
-      .registerPath("radian");
+    this.registerPath("radian");
   }
 }
 mixin(AttributeCalls!("RadianAttribute"));

@@ -33,7 +33,7 @@ class DJsonAttribute : DStringAttribute {
 
     this
       .name("json")
-      .registerPath("json");
+    this.registerPath("json");
   }
 }
 mixin(AttributeCalls!("JsonAttribute"));

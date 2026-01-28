@@ -24,7 +24,7 @@ class DBinaryAttribute : UIMAttribute {
     this
       .addDataFormats(["array"])
       .name("binary")
-      .registerPath("binary");
+    this.registerPath("binary");
   }
 }
 mixin(AttributeCalls!("BinaryAttribute"));

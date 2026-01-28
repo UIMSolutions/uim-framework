@@ -17,7 +17,7 @@ class DTeamIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("teamId")
-      .registerPath("teamId");
+    this.registerPath("teamId");
   }  
 }
 mixin(AttributeCalls!("TeamIdAttribute"));

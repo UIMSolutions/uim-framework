@@ -23,7 +23,7 @@ class DLongitudeAttribute : DDoubleAttribute {
 
     this
       .name("longitude")
-      .registerPath("longitude");
+    this.registerPath("longitude");
   }
 }
 mixin(AttributeCalls!("LongitudeAttribute"));

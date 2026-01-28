@@ -19,7 +19,7 @@ import uim.entities;
 
     this
       .name("businessUnit")
-      .registerPath("businessunit");
+    this.registerPath("businessunit");
   }  
 }
 mixin(AttributeCalls!("BusinessUnitAttribute"));

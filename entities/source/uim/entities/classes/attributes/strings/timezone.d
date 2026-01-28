@@ -24,7 +24,7 @@ class DTimezoneAttribute : DStringAttribute {
 
     this
       .name("timezone")
-      .registerPath("timezone");
+    this.registerPath("timezone");
   }
 }
 mixin(AttributeCalls!("TimezoneAttribute"));

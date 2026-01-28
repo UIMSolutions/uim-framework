@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("account")
-      .registerPath("account");
+    this.registerPath("account");
   }  
 }
 mixin(AttributeCalls!("AccountAttribute"));

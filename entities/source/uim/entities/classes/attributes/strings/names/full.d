@@ -22,7 +22,7 @@ class DFullNameAttribute : DStringAttribute {
 
     this
       .name("fullName")
-      .registerPath("fullName");
+    this.registerPath("fullName");
   }
 }
 mixin(AttributeCalls!("FullNameAttribute"));

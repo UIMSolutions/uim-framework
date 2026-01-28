@@ -18,7 +18,7 @@ class DTimeAttribute : UIMAttribute {
     this
       .dataFormats(["time"])
       .name("time")
-      .registerPath("time");
+    this.registerPath("time");
       // means.measurement.date
       // means.measurement.time
   }

@@ -17,7 +17,7 @@ class DCampaignIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("campaignId")
-      .registerPath("campaignId");
+    this.registerPath("campaignId");
   }  
 }
 mixin(AttributeCalls!("CampaignIdAttribute"));

@@ -19,7 +19,7 @@ class DUriAttribute : DStringAttribute {
 
     this
       .name("uri")
-      .registerPath("uri");
+    this.registerPath("uri");
   }
 }
 mixin(AttributeCalls!("UriAttribute"));

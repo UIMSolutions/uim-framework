@@ -15,4 +15,6 @@ interface IAttribute {
 
 	// Check for data format
   bool hasDataFormat(string dataFormatName);
+
+  
 }

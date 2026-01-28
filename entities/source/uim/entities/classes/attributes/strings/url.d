@@ -17,7 +17,7 @@ class DUrlAttribute : DStringAttribute {
 
     this
       .name("url")
-      .registerPath("url");
+    this.registerPath("url");
   }
 }
 mixin(AttributeCalls!("UrlAttribute"));

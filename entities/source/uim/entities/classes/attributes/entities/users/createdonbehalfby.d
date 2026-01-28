@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("createdOnBehalfBy")
-      .registerPath("createdOnBehalfBy");
+    this.registerPath("createdOnBehalfBy");
   }  
 }
 mixin(AttributeCalls!("CreatedOnBehalfByAttribute"));

@@ -28,7 +28,7 @@ class DGramAttribute : DDoubleAttribute {
 
     this
       .name("gram")
-      .registerPath("gram");
+    this.registerPath("gram");
   }
 }
 mixin(AttributeCalls!("GramAttribute"));

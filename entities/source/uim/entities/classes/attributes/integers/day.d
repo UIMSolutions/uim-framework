@@ -21,7 +21,7 @@ class DDayAttribute : DIntegerAttribute {
 
     this
       .name("day")
-      .registerPath("day");    
+    this.registerPath("day");    
   }
 }
 mixin(AttributeCalls!("DayAttribute"));

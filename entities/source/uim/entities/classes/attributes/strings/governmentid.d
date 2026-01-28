@@ -21,7 +21,7 @@ class DGovernmentIUIMAttribute : DStringAttribute {
 
     this
       .name("governmentId")
-      .registerPath("governmentId");
+    this.registerPath("governmentId");
   }
 }
 mixin(AttributeCalls!("GovernmentIdAttribute"));

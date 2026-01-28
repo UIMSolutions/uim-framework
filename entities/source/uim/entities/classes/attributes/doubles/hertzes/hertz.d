@@ -37,7 +37,7 @@ has.measurement.fundamentalComponent.second */
 
     this
       .name("hertz")
-      .registerPath("hertz");
+    this.registerPath("hertz");
   }
 }
 mixin(AttributeCalls!("HertzAttribute"));

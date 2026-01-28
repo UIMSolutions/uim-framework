@@ -29,7 +29,7 @@ class DMilliAmpereAttribute : DAmpereAttribute {
 
     this
       .name("milliAmpere")
-      .registerPath("milliAmpere");
+    this.registerPath("milliAmpere");
   }
 }
 mixin(AttributeCalls!("MilliAmpereAttribute"));

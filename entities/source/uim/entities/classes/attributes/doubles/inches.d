@@ -24,7 +24,7 @@ class DInchesAttribute : DDoubleAttribute {
 
     this
       .name("inches")
-      .registerPath("inches");
+    this.registerPath("inches");
   }
 }
 mixin(AttributeCalls!("InchesAttribute"));

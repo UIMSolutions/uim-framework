@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("organization")
-      .registerPath("organization");
+    this.registerPath("organization");
   }  
 }
 mixin(AttributeCalls!("OrganizationAttribute"));

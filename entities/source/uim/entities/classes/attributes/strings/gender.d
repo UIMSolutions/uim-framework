@@ -21,7 +21,7 @@ class DGenderAttribute : DStringAttribute {
 
     this
       .name("gender")
-      .registerPath("gender");
+    this.registerPath("gender");
   }
 }
 mixin(AttributeCalls!("GenderAttribute"));

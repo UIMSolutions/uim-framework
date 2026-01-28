@@ -33,7 +33,7 @@ class DPascalAttribute : DDoubleAttribute {
 
     this
       .name("pascal")
-      .registerPath("pascal");
+    this.registerPath("pascal");
   }
 }
 mixin(AttributeCalls!("PascalAttribute"));

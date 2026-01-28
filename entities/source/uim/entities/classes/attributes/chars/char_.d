@@ -18,7 +18,7 @@ class DCharAttribute : UIMAttribute {
     this
       .dataFormats(["character", "big"])
       .name("char")
-      .registerPath("char");
+    this.registerPath("char");
   }
 }
 mixin(AttributeCalls!"CharAttribute");

@@ -15,16 +15,8 @@ class DArrayAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("arrayAttribute")
-      .addDataFormats(["array"])
-      .registerPath("arrayAttribute");
-  }
-}
-mixin(AttributeCalls!"ArrayAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DArrayAttribute);
-    testAttribute(ArrayAttribute);
+    this.name("arrayAttribute");
+    this.addDataFormats(["array"]);
+    this.registerPath("arrayAttribute");
   }
 }

@@ -18,7 +18,7 @@ override void initialize(Json configSettings = Json(null)) {
 
     this
       .name("daypart")
-      .registerPath("daypart");
+    this.registerPath("daypart");
   }   
 }
 mixin(AttributeCalls!("DayPartAttribute"));

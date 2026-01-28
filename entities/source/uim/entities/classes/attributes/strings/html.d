@@ -28,7 +28,7 @@ class DHtmlAttribute : DStringAttribute {
 
     this
       .name("html")
-      .registerPath("html");
+    this.registerPath("html");
   }
 }
 mixin(AttributeCalls!("HtmlAttribute"));

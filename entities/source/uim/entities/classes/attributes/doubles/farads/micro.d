@@ -32,7 +32,7 @@ class DMicroFaraUIMAttribute : DFaraUIMAttribute {
 
     this
       .name("microFarad")
-      .registerPath("microFarad");
+    this.registerPath("microFarad");
   }
 }
 mixin(AttributeCalls!("MicroFaradAttribute"));

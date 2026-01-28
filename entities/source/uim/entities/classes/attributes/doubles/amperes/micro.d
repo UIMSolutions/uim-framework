@@ -29,7 +29,7 @@ class DMicroAmpereAttribute : DAmpereAttribute {
 
     this
       .name("microAmpere")
-      .registerPath("microAmpere");
+    this.registerPath("microAmpere");
   }
 }
 mixin(AttributeCalls!("MicroAmpereAttribute"));

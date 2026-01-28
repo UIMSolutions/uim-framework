@@ -25,7 +25,7 @@ class DQuarterAttribute : DIntegerCalendarPart {
 
     this
       .name("quarter")
-      .registerPath("quarter");
+    this.registerPath("quarter");
   }
 }
 mixin(AttributeCalls!("QuarterAttribute"));

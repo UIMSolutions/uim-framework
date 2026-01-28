@@ -31,7 +31,7 @@ class DVoltAttribute : DDoubleAttribute {
 
     this
       .name("volt")
-      .registerPath("volt");
+    this.registerPath("volt");
   }
 }
 mixin(AttributeCalls!("VoltAttribute"));

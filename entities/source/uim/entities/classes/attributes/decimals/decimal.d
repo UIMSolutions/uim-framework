@@ -15,10 +15,9 @@ class DDecimalAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["numeric.shaped"])
-      .name("decimal")
-      .registerPath("decimal");
+    this.addDataFormats(["numeric.shaped"]);
+    this.name("decimal");
+    this.registerPath("decimal");
   }
 }
 mixin(AttributeCalls!"DecimalAttribute");

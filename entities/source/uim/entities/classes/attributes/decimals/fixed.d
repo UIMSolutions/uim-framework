@@ -16,9 +16,8 @@ class DFixedDecimalAttribute : DDecimalAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("fixedDecimal")
-      .registerPath("fixedDecimal");
+    this.name("fixedDecimal");
+    this.registerPath("fixedDecimal");
   }
 }
 mixin(AttributeCalls!"FixedDecimalAttribute");

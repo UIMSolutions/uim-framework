@@ -30,7 +30,7 @@ class DMilliSeconUIMAttribute : DSeconUIMAttribute {
 
     this
       .name("milliSecond")
-      .registerPath("milliSecond");
+    this.registerPath("milliSecond");
   }
 }
 mixin(AttributeCalls!("MilliSecondAttribute"));

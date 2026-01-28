@@ -23,7 +23,7 @@ class DAddressLineAttribute : DStringAttribute {
     // means.location.address
     this
       .name("addressLine")
-      .registerPath("addressline");
+    this.registerPath("addressline");
   }
 }
 mixin(AttributeCalls!"AddressLineAttribute");

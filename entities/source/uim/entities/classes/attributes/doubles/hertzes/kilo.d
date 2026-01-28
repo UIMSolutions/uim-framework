@@ -26,7 +26,7 @@ class DKiloHertzAttribute : DHertzAttribute {
 
     this
       .name("kilohertz")
-      .registerPath("kilohertz");
+    this.registerPath("kilohertz");
   }
 }
 mixin(AttributeCalls!("KiloHertzAttribute"));

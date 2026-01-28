@@ -28,7 +28,7 @@ class DKilogramAttribute : DGramAttribute {
 
     this
       .name("kilogram")
-      .registerPath("kilogram");
+    this.registerPath("kilogram");
   }
 }
 mixin(AttributeCalls!("KilogramAttribute"));

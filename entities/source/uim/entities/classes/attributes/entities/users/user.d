@@ -29,7 +29,7 @@ import uim.entities;
 
     this
       .name("user")
-      .registerPath("user");
+    this.registerPath("user");
   }  
 }
 mixin(AttributeCalls!("UserAttribute"));

@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("contact")
-      .registerPath("contact");
+    this.registerPath("contact");
   }  
 }
 mixin(AttributeCalls!("ContactAttribute"));

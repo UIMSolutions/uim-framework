@@ -29,7 +29,7 @@ class DSeconUIMAttribute : DDoubleAttribute {
 
     this
       .name("second")
-      .registerPath("second");
+    this.registerPath("second");
   }
 }
 mixin(AttributeCalls!("SecondAttribute"));

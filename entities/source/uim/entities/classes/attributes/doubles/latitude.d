@@ -18,7 +18,7 @@ class DLatitudeAttribute : DDoubleAttribute {
 
     this
       .name("latitude")
-      .registerPath("latitude");
+    this.registerPath("latitude");
   }
 }
 mixin(AttributeCalls!("LatitudeAttribute"));

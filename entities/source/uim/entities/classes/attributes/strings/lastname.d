@@ -18,7 +18,7 @@ class DLastNameAttribute : DStringAttribute {
 
     this
       .name("lastname")
-      .registerPath("lastname");
+    this.registerPath("lastname");
   }
 }
 mixin(AttributeCalls!("LastNameAttribute"));

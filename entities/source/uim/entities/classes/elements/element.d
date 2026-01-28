@@ -13,47 +13,94 @@ class UIMElement : UIMObject, IElement {
   // // static namespace = moduleName!UIMElement;
 
   // Constructors
-  this() { initialize; }
+  this() {
+    initialize;
+  }
 
-  this(string myName) { 
-    this().name(myName); }
+  this(string myName) {
+    this().name(myName);
+  }
 
-  this(Json aJson) { 
-    this();    
-    if (aJson != Json(null)) this.fromJson(aJson); }
+  this(Json aJson) {
+    this();
+    if (aJson != Json(null))
+      this.fromJson(aJson);
+  }
 
   void initialize(Json configSettings = Json(null)) {
-    this  
+    this
       .values(StringValueMap);
 
-    this  
+    this
       .requestPrefix("element_");
   }
 
-  mixin(OProperty!("DStringValueMap", "values"));
-  mixin ValueMapWrapper;
+  protected DStringValueMap _values;
+
+  /// Getter for values
+  DStringValueMap values() const @property {
+    return _values;
+  }
+
+  /// Setter for values (chainable)
+  UIMElement values(DStringValueMap value) @property {
+    _values = value;
+    return this;
+  }
+  // mixin ValueMapWrapper;
 
   protected bool _isStatic;
-  bool isStatic() const { return _isStatic; }
-  auto isStatic(bool value) { _isStatic = value; return this; }
+  bool isStatic() const {
+    return _isStatic;
+  }
+
+  auto isStatic(bool value) {
+    _isStatic = value;
+    return this;
+  }
 
   protected string _className;
-  string className() const { return _className; }
-  auto className(string value) { _className = value; return this; }
+  string className() const {
+    return _className;
+  }
+
+  auto className(string value) {
+    _className = value;
+    return this;
+  }
 
   protected string _registerPath;
-  string registerPath() const { return _registerPath; }
-  auto registerPath(string value) { _registerPath = value; return this; }
+  string registerPath() const {
+    return _registerPath;
+  }
+
+  auto registerPath(string value) {
+    _registerPath = value;
+    return this;
+  }
 
   protected string _requestPrefix;
-  string requestPrefix() const { return _requestPrefix; }
-  auto requestPrefix(string value) { _requestPrefix = value; return this; }
+  string requestPrefix() const {
+    return _requestPrefix;
+  }
+
+  auto requestPrefix(string value) {
+    _requestPrefix = value;
+    return this;
+  }
 
   // Every element can have a name like an identifier. 
   string _name;
-  O name(this O)(string  newName) { _name = newName.strip.replace(" ", "_"); return cast(O)this; }
-  string name() { return _name; }
-  version(test_uim_models) {
+  O name(this O)(string newName) {
+    _name = newName.strip.replace(" ", "_");
+    return cast(O)this;
+  }
+
+  string name() {
+    return _name;
+  }
+
+  version (test_uim_models) {
     unittest {
       assert(Entity.name("name1").name == "name1");
       assert(Entity.name("name1").name("name2").name == "name2");
@@ -62,19 +109,25 @@ class UIMElement : UIMObject, IElement {
   }
 
   protected string[string] _parameters;
-  string[string] parameters() const { return _parameters; }
-  auto parameters(string[string] value) { _parameters = value; return this; }
+  string[string] parameters() const {
+    return _parameters;
+  }
 
-/*   // Display of entity 
+  auto parameters(string[string] value) {
+    _parameters = value;
+    return this;
+  }
+
+  /*   // Display of entity 
   mixin(OProperty!("string", "display"));
 
   //	Description about the entity and more
   mixin(OProperty!("string", "description")); */
-    
+
   string[string] selector(string[string] parameters) {
     string[string] results;
 
-    foreach(key, val; parameters) {
+    foreach (key, val; parameters) {
       if (key.indexOf(requestPrefix) == 0) {
         results[key.replace(requestPrefix, "")] = val;
       } else {
@@ -87,32 +140,39 @@ class UIMElement : UIMObject, IElement {
   ///
   unittest {
     auto element = new UIMElement;
-    assert(element.selector(["x":"y", "element_id": "1234"]) == ["id":"1234", "x":"y"]);
+    assert(element.selector(["x": "y", "element_id": "1234"]) == [
+        "id": "1234",
+        "x": "y"
+      ]);
   }
 
   // Read data from string[string]
-  void readFromMap(data, usePrefix)(string[string] data, bool usePrefix = false) {
-    data.byKeyValue.each!((k, v) => this[k] = v); 
+  // Implement IElement interface functions
+  override void readFromMap(string[string] reqParameters, bool usePrefix = false) {
+    reqParameters.byKeyValue.each!((k, v) => this[k] = v);
   }
 
-  // Read data from request
-  void readFromRequest(string[string] requestValues, bool usePrefix = true) {
+  override void readFromRequest(string[string] requestValues, bool usePrefix = true) {
     auto myData = selector(requestValues);
-    foreach(key, value; myData) {
+    foreach (key, value; myData) {
       this[key] = value;
-    } 
+    }
   }
 
   // Returns data in string format (HTML compatible)
   string opIndex(string key) {
-    switch(key) {
-      case "className": return className;
-      case "requestPrefix": return requestPrefix;
-      case "registerPath": return registerPath;
-      default:
-        if (auto value = valueOfKey(key)) { 
-          return value.toString;
-        } break;      
+    switch (key) {
+    case "className":
+      return className;
+    case "requestPrefix":
+      return requestPrefix;
+    case "registerPath":
+      return registerPath;
+    default:
+      if (auto value = valueOfKey(key)) {
+        return value.toString;
+      }
+      break;
     }
     return null;
   }
@@ -120,7 +180,7 @@ class UIMElement : UIMObject, IElement {
   // Set data 
   void opIndexAssign(UIMValue newValue, string key) {
     if (!isStatic) { // can add new values and change datatypes
-      values[key] = newValue;  
+      values[key] = newValue;
     } else { // Not dynamic
       if (auto myValue = valueOfKey(key)) {
         myValue.value(newValue.toJson);
@@ -137,7 +197,7 @@ class UIMElement : UIMObject, IElement {
     element["test"] = value;
 
     assert(element["test"] == "aValue");
-  } 
+  }
 
   // Set data 
   void opIndexAssign(Json newValue, string key) {
@@ -146,7 +206,7 @@ class UIMElement : UIMObject, IElement {
       return;
     }
 
-/*     if (!isStatic) { // can add new values
+    /*     if (!isStatic) { // can add new values
       switch(newValue.type) {
         case Json.Type.string: 
           this.value(newValue.get!string); 
@@ -156,45 +216,54 @@ class UIMElement : UIMObject, IElement {
       myValue.set(newValue);
       values[key] = myValue;
     }
- */  }
+ */
+  }
   ///
   unittest {
     auto element = new UIMElement;
-    element.adUIMValues(["test":StringAttribute]);
+    element.adUIMValues(["test": StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
-  } 
+  }
 
   // Set data 
   void opIndexAssign(string newValue, string key) {
-    switch(key) {
-      case "className": this.className(newValue); break;
-      case "name": this.name(newValue); break;
-      case "requestPrefix": this.requestPrefix(newValue); break;
-      case "registerPath": this.registerPath(newValue); break;
-      default:
-        if (auto myValue = valueOfKey(key)) {
-          myValue.set(newValue);
-          return;
-        }
+    switch (key) {
+    case "className":
+      this.className(newValue);
+      break;
+    case "name":
+      this.name(newValue);
+      break;
+    case "requestPrefix":
+      this.requestPrefix(newValue);
+      break;
+    case "registerPath":
+      this.registerPath(newValue);
+      break;
+    default:
+      if (auto myValue = valueOfKey(key)) {
+        myValue.set(newValue);
+        return;
+      }
 
-        if (!isStatic) { // can add new values
-          auto myValue = StringAttribute.createValue;
-          myValue.set(newValue);
-          values[key] = myValue;
-        } 
-        break;
+      if (!isStatic) { // can add new values
+        auto myValue = StringAttribute.createValue;
+        myValue.set(newValue);
+        values[key] = myValue;
+      }
+      break;
     }
   }
   ///
   unittest {
     auto element = new UIMElement;
-    element.adUIMValues(["test":StringAttribute]);
+    element.adUIMValues(["test": StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
-  } 
+  }
 
   UIMValue valueOfKey(string key) {
     if (auto myValue = values[key]) {
@@ -202,11 +271,13 @@ class UIMElement : UIMObject, IElement {
     }
 
     if (auto keys = key.split(".")) {
-      if (keys.length == 1) { return values[key]; }
+      if (keys.length == 1) {
+        return values[key];
+      }
 
       UIMValue myValue = values[keys[0]];
       if (auto myElementValue = cast(UIMElementValue)myValue) {
-        myValue = myElementValue.value.valueOfKey(keys[1..$].join("."));
+        myValue = myElementValue.value.valueOfKey(keys[1 .. $].join("."));
       }
       return myValue;
     }
@@ -214,7 +285,7 @@ class UIMElement : UIMObject, IElement {
     return null;
   }
   ///
-  unittest{
+  unittest {
     auto element2 = new UIMElement;
     element2.adUIMValues(["level2": StringAttribute]);
     element2["level2"] = "valueLevel2";
@@ -230,7 +301,7 @@ class UIMElement : UIMObject, IElement {
 
   // Set UUID value
   void opIndexAssign(UUID value, string key) {
-    if (auto myValue = cast(DUUIUIMValue)valueOfKey(key)) { 
+    if (auto myValue = cast(DUUIUIMValue)valueOfKey(key)) {
       // values[key] exists and value of DUUIUIMValue
       myValue.value = value;
     }
@@ -238,73 +309,100 @@ class UIMElement : UIMObject, IElement {
 
   // Set long value
   void opIndexAssign(long value, string key) {
-    if (auto myValue = cast(DLongValue)valueOfKey(key)) { 
+    if (auto myValue = cast(DLongValue)valueOfKey(key)) {
       // values[key] exists and value of DLongValue
       myValue.value = value;
-    }     
-  } 
+    }
+  }
 
   // Set bool value
   void opIndexAssign(bool value, string key) {
-    if (auto myValue = cast(DBooleanValue)valueOfKey(key)) { 
+    if (auto myValue = cast(DBooleanValue)valueOfKey(key)) {
       // values[key] exists and value of DBooleanValue
       myValue.value = value;
-    }    
+    }
   }
 
   // Set field(key) if type Entity
   void opIndexAssign(UIMElement value, string key) {
-    if (auto myValue = cast(UIMElementValue)valueOfKey(key)) { 
+    if (auto myValue = cast(UIMElementValue)valueOfKey(key)) {
       // values[key] exists and value of UIMElementValue
       myValue.value = value;
-    }   
+    }
   }
 
-  UIMElement create() { return new UIMElement; }
-  UIMElement create(Json data) { auto myElement = create; myElement.fromJson(data); return myElement; }
+  UIMElement create() {
+    return new UIMElement;
+  }
 
-  UIMElement clone() { return create(toJson); }
-  UIMElement clone(Json data) { auto myElement = create(toJson); myElement.fromJson(data); return myElement; }
-  
+  UIMElement create(Json data) {
+    auto myElement = create;
+    myElement.fromJson(data);
+    return myElement;
+  }
+
+  override UIMElement clone() {
+    return create(toJson);
+  }
+
+  UIMElement clone(Json data) {
+    auto myElement = create(toJson);
+    myElement.fromJson(data);
+    return myElement;
+  }
+
   UIMElement copyTo(UIMElement targetOfCopy) {
     if (targetOfCopy) {
       targetOfCopy.fromJson(this.toJson);
     }
-    return targetOfCopy; }
+    return targetOfCopy;
+  }
+
   UIMElement copyFrom(UIMElement targetOfCopy) {
     if (targetOfCopy) {
       fromJson(targetOfCopy.toJson);
     }
     return this;
-  } 
+  }
 
-  Bson toBson() { return Bson(toJson); }
+  Bson toBson() {
+    return Bson(toJson);
+  }
 
   void fromJson(Json aJson) {
-    if (aJson.isEmpty) return;
-    
+    if (aJson.isEmpty)
+      return;
+
     foreach (keyvalue; aJson.byKeyValue) {
       auto k = keyvalue.key;
       auto v = keyvalue.value;
-      switch(k) {
-        case "className": this.className(v.get!string); break;
-        case "name": this.name(v.get!string); break;
-        case "requestPrefix": this.requestPrefix(v.get!string); break;
-        case "registerPath": this.registerPath(v.get!string); break;
-        default: 
-          this.values[k].value(v);
-          break;
-      }            
+      switch (k) {
+      case "className":
+        this.className(v.get!string);
+        break;
+      case "name":
+        this.name(v.get!string);
+        break;
+      case "requestPrefix":
+        this.requestPrefix(v.get!string);
+        break;
+      case "registerPath":
+        this.registerPath(v.get!string);
+        break;
+      default:
+        this.values[k].value(v);
+        break;
+      }
     }
   }
 
-  Json toJson(string[] showFields = null, string[] hideFields = null) {
+  override Json toJson(string[] showFields = null, string[] hideFields = null) {
     auto result = Json.emptyObject;
-    
+
     result["name"] = this.name;
 
     values.keys.each!(k => result[k] = this.values[k].toJson);
-  
+
     return result;
   }
 
@@ -312,13 +410,23 @@ class UIMElement : UIMObject, IElement {
     return toJson.toString;
   }
 }
-auto createElement() { return new UIMElement; }
-auto createElement(string name) { return new UIMElement(name); }
-auto createElement(Json json) { return new UIMElement(json); }
 
-version(test_uim_models) { unittest {
-  assert(Element);
-  assert(Element.name("test").name == "test");
-  assert(Element.name("testName").name == "testname");
-}}
+auto createElement() {
+  return new UIMElement;
+}
 
+auto createElement(string name) {
+  return new UIMElement(name);
+}
+
+auto createElement(Json json) {
+  return new UIMElement(json);
+}
+
+version (test_uim_models) {
+  unittest {
+    assert(Element);
+    assert(Element.name("test").name == "test");
+    assert(Element.name("testName").name == "testname");
+  }
+}

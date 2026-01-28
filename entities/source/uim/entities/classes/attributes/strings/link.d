@@ -17,7 +17,7 @@ class DLinkAttribute : DStringAttribute {
 
     this
       .name("link")
-      .registerPath("link");
+    this.registerPath("link");
   }
 }
 mixin(AttributeCalls!("LinkAttribute"));

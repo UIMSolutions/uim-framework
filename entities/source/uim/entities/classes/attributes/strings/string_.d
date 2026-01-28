@@ -20,7 +20,7 @@ class DStringAttribute : DCharAttribute {
     this
       .name("string")
       .isString(true) 
-      .registerPath("string");
+    this.registerPath("string");
   }
   override UIMValue createValue() {
     return StringValue(this)

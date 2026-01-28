@@ -17,7 +17,7 @@ class DFileIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("fileId")
-      .registerPath("fileId");
+    this.registerPath("fileId");
   }  
 }
 mixin(AttributeCalls!("FileIdAttribute"));

@@ -23,7 +23,7 @@ class DStatusCodeAttribute : DIntegerStringAttribute {
         1: "Inactive"
       ])
       .isNullable(true)
-      .registerPath("statuscode");
+    this.registerPath("statuscode");
   }
 }
 mixin(AttributeCalls!("StatusCodeAttribute"));

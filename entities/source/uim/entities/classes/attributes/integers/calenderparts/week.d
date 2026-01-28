@@ -23,7 +23,7 @@ class DWeekAttribute : DIntegerCalendarPart {
 
     this
       .name("week")
-      .registerPath("week");
+    this.registerPath("week");
   }
 }
 mixin(AttributeCalls!("WeekAttribute"));

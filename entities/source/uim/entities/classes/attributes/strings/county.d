@@ -18,7 +18,7 @@ class DCountyAttribute : DStringAttribute {
 
     this
       .name("county")
-      .registerPath("county");
+    this.registerPath("county");
   }
 }
 mixin(AttributeCalls!("CountyAttribute"));

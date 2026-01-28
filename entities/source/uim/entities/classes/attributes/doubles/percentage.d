@@ -17,7 +17,7 @@ class DPercentageAttribute : DDoubleAttribute {
 
     this
       .name("percentage")
-      .registerPath("percentage");
+    this.registerPath("percentage");
   }
 }
 mixin(AttributeCalls!("PercentageAttribute"));

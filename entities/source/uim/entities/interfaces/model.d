@@ -7,7 +7,9 @@ interface IModel {
   IModelManager manager();
   
   string registerPath();
+  IModel registerPath(string path);
 
-  DModel create();
-  DModel copy(); 
+
+  IModel create();
+  IModel copy(); 
 }

@@ -17,7 +17,7 @@ class DModifiedOnBehalfByAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("modifiedOnBehalfBy")
-      .registerPath("modifiedOnBehalfBy");
+    this.registerPath("modifiedOnBehalfBy");
   }  
 }
 mixin(AttributeCalls!("ModifiedOnBehalfByAttribute"));

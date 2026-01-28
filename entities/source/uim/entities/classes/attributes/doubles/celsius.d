@@ -19,7 +19,7 @@ class DCelsiusAttribute : DDoubleAttribute {
 
     this
       .name("celsius")
-      .registerPath("celsius");
+    this.registerPath("celsius");
   }
 }
 mixin(AttributeCalls!("CelsiusAttribute"));

@@ -19,7 +19,7 @@ class DBusinessUnitIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("businessUnitId")
-      .registerPath("businessUnitId");
+    this.registerPath("businessUnitId");
   }  
 }
 mixin(AttributeCalls!("BusinessUnitIdAttribute"));

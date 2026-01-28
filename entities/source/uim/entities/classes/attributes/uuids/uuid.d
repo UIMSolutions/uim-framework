@@ -18,7 +18,7 @@ class DUUIUIMAttribute : UIMAttribute {
     this
       .name("uuid")
       .dataFormats(["uuid"])
-      .registerPath("uuid");
+    this.registerPath("uuid");
   }
 
   override UIMValue createValue() {

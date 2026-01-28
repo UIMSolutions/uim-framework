@@ -19,7 +19,7 @@ class DDateAttribute : UIMAttribute {
     this
       .name("date")
       .dataFormats(["date"])
-      .registerPath("date");
+    this.registerPath("date");
   }
 
   override UIMValue createValue() {

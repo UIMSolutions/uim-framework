@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("campaign")
-      .registerPath("campaign");
+    this.registerPath("campaign");
   }  
 }
 mixin(AttributeCalls!("CampaignAttribute"));

@@ -32,7 +32,7 @@ class DMillimeterAttribute : DMeterAttribute {
 
     this
       .name("millimeter")
-      .registerPath("millimeter");
+    this.registerPath("millimeter");
   }
 }
 mixin(AttributeCalls!("MillimeterAttribute"));

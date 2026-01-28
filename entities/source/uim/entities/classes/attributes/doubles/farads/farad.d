@@ -31,7 +31,7 @@ class DFaraUIMAttribute : DDoubleAttribute {
 
     this
       .name("farad")
-      .registerPath("farad");
+    this.registerPath("farad");
   }  
 }
 mixin(AttributeCalls!("FaradAttribute"));

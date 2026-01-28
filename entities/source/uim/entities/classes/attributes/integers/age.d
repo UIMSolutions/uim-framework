@@ -19,7 +19,7 @@ class DAgeAttribute : DIntegerAttribute {
     //means.measurement.age
     this
       .name("age")
-      .registerPath("age");    
+    this.registerPath("age");    
   }
 }
 mixin(AttributeCalls!"AgeAttribute");

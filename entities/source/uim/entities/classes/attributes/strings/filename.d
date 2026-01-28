@@ -22,7 +22,7 @@ is.dataFormat.array
 means.fileName */
     this
       .name("filename")
-      .registerPath("fileName");
+    this.registerPath("fileName");
   }
 }
 mixin(AttributeCalls!("FileNameAttribute"));

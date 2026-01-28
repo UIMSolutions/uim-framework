@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("team")
-      .registerPath("team");
+    this.registerPath("team");
   }  
 }
 mixin(AttributeCalls!("TeamAttribute"));

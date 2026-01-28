@@ -19,7 +19,7 @@ class DCultureTagAttribute : DStringAttribute {
     means.reference.culture.tag */
     this
       .name("languageTag")
-      .registerPath("languagetag");
+    this.registerPath("languagetag");
   }
 }
 mixin(AttributeCalls!("CultureTagAttribute"));

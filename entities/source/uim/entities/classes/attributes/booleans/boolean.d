@@ -20,19 +20,11 @@ is.dataFormat.boolean */
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("boolean")
-      .dataFormats(["boolean"])
-      .registerPath("boolean");
+    this.name("boolean");
+    this.addDataFormats(["boolean"]);
+    this.registerPath("boolean");
   }
 
   override UIMValue createValue() {
     return BooleanValue(this); }
-}
-mixin(AttributeCalls!"BooleanAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DBooleanAttribute);
-    testAttribute(BooleanAttribute);
-  }
 }

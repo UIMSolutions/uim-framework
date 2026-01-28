@@ -3,14 +3,14 @@ module uim.entities.helpers.entity;
 import uim.entities;
 @safe:
 
-bool isNull(DEntity anEntity) {
+bool isNull(UIMEntity anEntity) {
   return (anEntity is null ? true : false);
 }
 unittest {
-  DEntity entity;
+  UIMEntity entity;
   assert(entity.isNull); 
 
-  entity = new DEntity;
+  entity = new UIMEntity;
   assert(!entity.isNull); 
 }
 
@@ -21,6 +21,6 @@ unittest {
   IEntity entity;
   assert(entity.isNull); 
 
-  entity = new DEntity;
+  entity = new UIMEntity;
   assert(!entity.isNull); 
 }

@@ -23,7 +23,7 @@ class DTrimesterAttribute : DIntegerCalendarPart {
 
     this
       .name("trimester")
-      .registerPath("trimester");
+    this.registerPath("trimester");
   }
 }
 mixin(AttributeCalls!("TrimesterAttribute"));

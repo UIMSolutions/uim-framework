@@ -27,7 +27,7 @@ class DYearAttribute : DIntegerAttribute {
 
     this
       .name("year")
-      .registerPath("year");
+    this.registerPath("year");
   }    
 }
 mixin(AttributeCalls!("YearAttribute"));

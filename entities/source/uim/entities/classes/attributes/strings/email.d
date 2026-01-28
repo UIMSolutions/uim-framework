@@ -18,7 +18,7 @@ class DEmailAttribute : DStringAttribute {
 
     this
       .name("email")
-      .registerPath("email");
+    this.registerPath("email");
   }
 }
 mixin(AttributeCalls!("EmailAttribute"));

@@ -30,7 +30,7 @@ class DJouleAttribute : DDoubleAttribute {
 
     this
       .name("joule")
-      .registerPath("joule");
+    this.registerPath("joule");
   }
 }
 mixin(AttributeCalls!("JouleAttribute"));

@@ -17,7 +17,7 @@ class DSlaIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("slaId")
-      .registerPath("slaId");
+    this.registerPath("slaId");
   }  
 }
 mixin(AttributeCalls!("SlaIdAttribute"));

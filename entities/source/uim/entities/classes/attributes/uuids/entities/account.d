@@ -17,7 +17,7 @@ class DAccountIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("accountId")
-      .registerPath("accountId");
+    this.registerPath("accountId");
   }  
 }
 mixin(AttributeCalls!("AccountIdAttribute"));

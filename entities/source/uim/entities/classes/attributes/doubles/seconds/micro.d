@@ -29,7 +29,7 @@ class DMicroSeconUIMAttribute : DSeconUIMAttribute {
 
     this
       .name("microsecond")
-      .registerPath("microsecond");
+    this.registerPath("microsecond");
   }
 }
 mixin(AttributeCalls!("MicroSecondAttribute"));

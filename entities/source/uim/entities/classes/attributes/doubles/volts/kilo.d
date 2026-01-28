@@ -32,7 +32,7 @@ class DKiloVoltAttribute : DVoltAttribute {
 
     this
       .name("kilovolt")
-      .registerPath("kilovolt");
+    this.registerPath("kilovolt");
   }
 }
 mixin(AttributeCalls!("KiloVoltAttribute"));

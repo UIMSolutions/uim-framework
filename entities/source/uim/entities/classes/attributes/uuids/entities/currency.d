@@ -19,7 +19,7 @@ class DCurrencyIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("currencyId")
-      .registerPath("currencyId");
+    this.registerPath("currencyId");
   }  
 }
 mixin(AttributeCalls!("CurrencyIdAttribute"));

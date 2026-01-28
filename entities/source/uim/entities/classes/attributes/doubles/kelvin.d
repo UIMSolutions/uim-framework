@@ -28,7 +28,7 @@ class DKelvinAttribute : DDoubleAttribute {
 
     this
       .name("kelvin")
-      .registerPath("kelvin");
+    this.registerPath("kelvin");
   }
 }
 mixin(AttributeCalls!("KelvinAttribute"));

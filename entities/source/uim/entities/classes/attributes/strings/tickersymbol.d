@@ -24,7 +24,7 @@ class DTickerSymbolAttribute : DStringAttribute {
 
     this
       .name("tickerSymbol")
-      .registerPath("tickerSymbol");
+    this.registerPath("tickerSymbol");
   }
 }
 mixin(AttributeCalls!("TickerSymbolAttribute"));

@@ -33,7 +33,7 @@ class DOhmAttribute : DDoubleAttribute {
 
     this
       .name("ohm")
-      .registerPath("ohm");
+    this.registerPath("ohm");
   }
 }
 mixin(AttributeCalls!("OhmAttribute"));

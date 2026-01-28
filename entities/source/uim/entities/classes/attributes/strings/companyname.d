@@ -18,7 +18,7 @@ class DCompanyNameAttribute : DStringAttribute {
 
     this
       .name("companyName")
-      .registerPath("companyName");
+    this.registerPath("companyName");
   }
 }
 mixin(AttributeCalls!("CompanyNameAttribute"));

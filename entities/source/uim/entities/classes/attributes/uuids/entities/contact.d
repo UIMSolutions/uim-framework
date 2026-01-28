@@ -17,7 +17,7 @@ class DContactIUIMAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("contactId")
-      .registerPath("contactId");
+    this.registerPath("contactId");
   }  
 }
 mixin(AttributeCalls!("ContactIdAttribute"));

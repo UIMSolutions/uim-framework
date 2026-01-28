@@ -19,7 +19,7 @@ class DPreferredContactMethoUIMAttribute : UIMAttribute {
     this
       .name("preferredcontactmethod")
       .dataFormats(["preferredcontactmethod"])
-      .registerPath("preferredcontactmethod");
+    this.registerPath("preferredcontactmethod");
   }
 
 /*   override UIMValue createValue() {

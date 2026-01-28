@@ -25,7 +25,7 @@ class DIntegerIntegerAttribute : DLookupAttribute {
     this
       .name("lookup")
       .dataFormats(["lookup", "integer", "string"])
-      .registerPath("lookup");
+    this.registerPath("lookup");
   }
 
   bool hasLookupKey(int key) {

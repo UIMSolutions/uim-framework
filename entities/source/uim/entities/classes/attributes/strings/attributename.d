@@ -35,7 +35,7 @@ means.attributeName
 
     this
       .name("attributeName")
-      .registerPath("attributeName");
+    this.registerPath("attributeName");
   }
 }
 mixin(AttributeCalls!("AttributeNameAttribute"));

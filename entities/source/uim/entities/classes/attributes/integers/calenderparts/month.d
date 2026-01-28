@@ -25,7 +25,7 @@ class DMonthpartAttribute : DIntegerCalendarPart {
 
     this
       .name("monthpart")
-      .registerPath("monthpart");
+    this.registerPath("monthpart");
   }
 }
 mixin(AttributeCalls!("MonthpartAttribute"));

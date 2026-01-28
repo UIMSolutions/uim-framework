@@ -27,7 +27,7 @@ class DCentimeterAttribute : DMeterAttribute {
 
     this
       .name("centimeter")
-      .registerPath("centimeter");
+    this.registerPath("centimeter");
   }
 }
 mixin(AttributeCalls!("CentimeterAttribute"));

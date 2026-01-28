@@ -17,7 +17,7 @@ import uim.entities;
 
     this
       .name("file")
-      .registerPath("file");
+    this.registerPath("file");
   }  
 }
 mixin(AttributeCalls!("FileAttribute"));

@@ -28,7 +28,7 @@ class DMoleAttribute : DDoubleAttribute {
 
     this
       .name("mole")
-      .registerPath("mole");
+    this.registerPath("mole");
   }
 }
 mixin(AttributeCalls!("MoleAttribute"));

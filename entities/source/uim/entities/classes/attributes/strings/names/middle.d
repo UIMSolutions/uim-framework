@@ -24,7 +24,7 @@ class DMiddleNameAttribute : DStringAttribute {
 
     this
       .name("middleName")
-      .registerPath("middleName");
+    this.registerPath("middleName");
   }
 }
 mixin(AttributeCalls!("MiddleNameAttribute"));

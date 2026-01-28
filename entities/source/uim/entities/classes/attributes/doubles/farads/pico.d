@@ -32,7 +32,7 @@ class DPicoFaraUIMAttribute : DFaraUIMAttribute {
 
     this
       .name("picoFarad")
-      .registerPath("picoFarad");
+    this.registerPath("picoFarad");
   }
 }
 mixin(AttributeCalls!("PicoFaradAttribute"));

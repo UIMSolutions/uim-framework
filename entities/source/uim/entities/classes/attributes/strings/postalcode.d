@@ -23,7 +23,7 @@ class DPostalCodeAttribute : DStringAttribute {
 
     this
       .name("postalcode")
-      .registerPath("postalcode");
+    this.registerPath("postalcode");
   }
 }
 mixin(AttributeCalls!("PostalCodeAttribute"));

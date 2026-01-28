@@ -23,7 +23,7 @@ class DTendayAttribute : DIntegerCalendarPart {
 
     this
       .name("tenday")
-      .registerPath("tenday");
+    this.registerPath("tenday");
   }
 }
 mixin(AttributeCalls!("TendayAttribute"));

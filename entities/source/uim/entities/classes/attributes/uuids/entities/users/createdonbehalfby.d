@@ -17,7 +17,7 @@ class DCreatedOnBehalfByAttribute : UIMEntityIUIMAttribute {
 
     this
       .name("createdOnBehalfBy")
-      .registerPath("createdOnBehalfBy");
+    this.registerPath("createdOnBehalfBy");
   }  
 }
 mixin(AttributeCalls!("CreatedOnBehalfByAttribute"));

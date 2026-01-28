@@ -18,7 +18,7 @@ class DStringArrayAttribute : UIMAttribute {
     this
       .name("StringArrayAttribute")
       .dataFormats(["string", "array"])
-      .registerPath("StringArrayAttribute");
+    this.registerPath("StringArrayAttribute");
   }
 
   override UIMValue createValue() {

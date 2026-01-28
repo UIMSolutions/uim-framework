@@ -30,7 +30,7 @@ class DMilliVoltAttribute : DVoltAttribute {
 
     this
       .name("millivolt")
-      .registerPath("millivolt");
+    this.registerPath("millivolt");
   }
 }
 mixin(AttributeCalls!("MilliVoltAttribute"));

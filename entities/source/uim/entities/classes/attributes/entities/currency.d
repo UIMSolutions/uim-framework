@@ -19,7 +19,7 @@ import uim.entities;
 
     this
       .name("currency")
-      .registerPath("currency");
+    this.registerPath("currency");
   }  
 }
 mixin(AttributeCalls!("CurrencyAttribute"));

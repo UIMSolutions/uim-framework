@@ -27,7 +27,7 @@ class DIP4AddressAttribute : DStringAttribute {
 
     this
       .name("ip4address")
-      .registerPath("ip4address");
+    this.registerPath("ip4address");
   }
 }
 mixin(AttributeCalls!("IP4AddressAttribute"));

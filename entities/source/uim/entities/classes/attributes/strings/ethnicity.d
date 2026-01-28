@@ -22,7 +22,7 @@ class DEthnicityAttribute : DStringAttribute {
 
     this
       .name("ethnicity")
-      .registerPath("ethnicity");
+    this.registerPath("ethnicity");
   }
 }
 mixin(AttributeCalls!("EthnicityAttribute"));

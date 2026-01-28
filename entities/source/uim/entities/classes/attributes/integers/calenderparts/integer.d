@@ -19,7 +19,7 @@ means.calendar.day
 
     this
       .name("integerCalendarPart")
-      .registerPath("integerCalendarPart");
+    this.registerPath("integerCalendarPart");
   }    
 }
 mixin(AttributeCalls!"IntegerCalendarPart");

@@ -27,7 +27,7 @@ class DMinuteAttribute : DIntegerAttribute {
 
     this
       .name("minute")
-      .registerPath("minute");
+    this.registerPath("minute");
   }    
 }
 mixin(AttributeCalls!("MinuteAttribute"));

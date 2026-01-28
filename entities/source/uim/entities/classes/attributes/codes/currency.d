@@ -22,7 +22,7 @@ class DCurrencyCodeAttribute : DStringStringAttribute {
 
     this
       .name("currencyCode")
-      .registerPath("currencyCode");
+    this.registerPath("currencyCode");
   }
 }
 mixin(AttributeCalls!("CurrencyCodeAttribute"));

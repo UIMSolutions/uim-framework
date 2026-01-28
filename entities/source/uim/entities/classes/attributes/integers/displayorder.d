@@ -17,7 +17,7 @@ class DDisplayOrderAttribute : DIntegerAttribute {
 
     this
       .name("displayOrder")
-      .registerPath("displayOrder");    
+    this.registerPath("displayOrder");    
   }
 }
 mixin(AttributeCalls!("DisplayOrderAttribute"));
