@@ -71,8 +71,8 @@ module uim.oop.patterns.mvc;
 
 public {
 	import uim.oop.patterns.mvc.interfaces;
-	import uim.oop.patterns.mvc.model;
+	import uim.oop.patterns.mvc.models;
 	import uim.oop.patterns.mvc.view;
-	import uim.oop.patterns.mvc.controller;
+	import uim.oop.patterns.mvc.controllers;
 	import uim.oop.patterns.mvc.application;
 }

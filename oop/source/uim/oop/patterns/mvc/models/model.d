@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.patterns.mvc.model;
+module uim.oop.patterns.mvc.models.model;
 
 import uim.oop;
 
@@ -38,7 +38,7 @@ class Model : IMVCModel {
      * 
      * Returns: A copy of the model's data
      */
-    string[string] getData() {
+    string[string] data() {
         return _data.dup;
     }
 
@@ -48,7 +48,7 @@ class Model : IMVCModel {
      * Params:
      *   data = The data to set
      */
-    void setData(string[string] data) {
+    void data(string[string] data) {
         _data = data.dup;
         notifyViews();
     }
@@ -61,7 +61,7 @@ class Model : IMVCModel {
      * 
      * Returns: The value, or null if not found
      */
-    string get(string key) {
+    string data(string key) {
         return _data.get(key, null);
     }
 
@@ -72,7 +72,7 @@ class Model : IMVCModel {
      *   key = The key to set
      *   value = The value to set
      */
-    void set(string key, string value) {
+    void data(string key, string value) {
         _data[key] = value;
         notifyViews();
     }
@@ -210,8 +210,8 @@ class ObservableModel : Model {
      *   key = The key to set
      *   value = The value to set
      */
-    override void set(string key, string value) {
-        string olUIMValue = get(key);
+    override void data(string key, string value) {
+        string olUIMValue = data(key);
 
         // Call before change callbacks
         foreach (callback; _beforeChangeCallbacks) {
@@ -236,10 +236,10 @@ unittest {
 
     // Test basic model
     auto model = new Model();
-    model.set("name", "Test");
-    assert(model.get("name") == "Test");
+    model.data("name", "Test");
+    assert(model.data("name") == "Test");
 
-    auto data = model.getData();
+    auto data = model.data();
     assert("name" in data);
     assert(data["name"] == "Test");
 }
@@ -274,7 +274,7 @@ unittest {
         assert(newVal == "value");
     });
 
-    model.set("test", "value");
+    model.data("test", "value");
     assert(beforeCalled);
     assert(afterCalled);
 }

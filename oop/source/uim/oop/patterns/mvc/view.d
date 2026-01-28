@@ -44,7 +44,7 @@ class View : IView {
             return "No model attached";
         }
 
-        auto data = _model.getData();
+        auto data = _model.data();
         return formatOutput(data);
     }
 
@@ -213,10 +213,8 @@ class JSONView : View {
         auto result = appender!string();
         result.put("{\n");
         
-        auto data = _model.getData();
         bool first = true;
-        
-        foreach (key, value; data) {
+        foreach (key, value; _model.data()) {
             if (!first) {
                 result.put(",\n");
             }
@@ -277,7 +275,7 @@ class HTMLView : View {
             result.put("<div>\n");
         }
         
-        auto data = _model.getData();
+        auto data = _model.data();
         
         foreach (key, value; data) {
             result.put("  <p><strong>");
