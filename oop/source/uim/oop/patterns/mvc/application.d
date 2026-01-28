@@ -46,7 +46,7 @@ class MVCApplication : IMVCApplication {
 
         // Create default components if not provided
         if (_model is null) {
-            _model = new Model();
+            _model = new MVCModel();
         }
 
         if (_view is null) {
@@ -192,7 +192,7 @@ unittest {
 }
 
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("greeting", "Hello");
     
     auto view = new View(model);

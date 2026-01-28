@@ -17,7 +17,7 @@ import uim.oop;
  * - Observer pattern for view notifications
  * - Validation hooks
  */
-class Model : IMVCModel {
+class MVCModel : IMVCModel {
     protected string[string] _data;
     protected IView[] _views;
 
@@ -129,113 +129,12 @@ class Model : IMVCModel {
     }
 }
 
-/**
- * DataModel - Enhanced model with typed data support
- * 
- * This is a more advanced model that supports various data operations
- */
-class DataModel(T) : Model {
-    protected T _typedData;
-
-    this() {
-        super();
-    }
-
-    this(T initialData) {
-        super();
-        _typedData = initialData;
-    }
-
-    /**
-     * Gets the typed data
-     * 
-     * Returns: The typed data stored in this model
-     */
-    T getTypedData() {
-        return _typedData;
-    }
-
-    /**
-     * Sets the typed data
-     * 
-     * Params:
-     *   data = The typed data to set
-     */
-    void setTypedData(T data) {
-        _typedData = data;
-        notifyViews();
-    }
-}
-
-/**
- * ObservableModel - Model with additional event support
- * 
- * Extends the base model with before/after change callbacks
- */
-class ObservableModel : Model {
-    alias BeforeChangeCallback = void delegate(string key, string olUIMValue, string newValue);
-    alias AfterChangeCallback = void delegate(string key, string newValue);
-
-    protected BeforeChangeCallback[] _beforeChangeCallbacks;
-    protected AfterChangeCallback[] _afterChangeCallbacks;
-
-    this(string[string] initialData = null) {
-        super(initialData);
-    }
-
-    /**
-     * Registers a before change callback
-     * 
-     * Params:
-     *   callback = The callback to register
-     */
-    void onBeforeChange(BeforeChangeCallback callback) {
-        _beforeChangeCallbacks ~= callback;
-    }
-
-    /**
-     * Registers an after change callback
-     * 
-     * Params:
-     *   callback = The callback to register
-     */
-    void onAfterChange(AfterChangeCallback callback) {
-        _afterChangeCallbacks ~= callback;
-    }
-
-    /**
-     * Sets a value with callback support
-     * 
-     * Params:
-     *   key = The key to set
-     *   value = The value to set
-     */
-    override void data(string key, string value) {
-        string olUIMValue = data(key);
-
-        // Call before change callbacks
-        foreach (callback; _beforeChangeCallbacks) {
-            callback(key, olUIMValue, value);
-        }
-
-        // Set the value
-        _data[key] = value;
-
-        // Call after change callbacks
-        foreach (callback; _afterChangeCallbacks) {
-            callback(key, value);
-        }
-
-        notifyViews();
-    }
-}
-
 // Unit tests
 unittest {
     import std.stdio : writeln;
 
     // Test basic model
-    auto model = new Model();
+    auto model = new MVCModel();
     model.data("name", "Test");
     assert(model.data("name") == "Test");
 

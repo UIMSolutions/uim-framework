@@ -191,7 +191,7 @@ class Controller : IController {
 unittest {
     import std.stdio : writeln;
 
-    auto model = new Model();
+    auto model = new MVCModel();
     auto view = new View(model);
     auto controller = new Controller(model, view);
 
@@ -200,7 +200,7 @@ unittest {
 }
 
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     auto controller = new RESTController(model);
 
     auto result = controller.executeAction("create", ["name": "Test", "value": "123"]);

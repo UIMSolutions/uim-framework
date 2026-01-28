@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.oop.patterns.mvc.view;
+module uim.oop.patterns.mvc.views.view;
 
 import uim.oop;
 
@@ -179,7 +179,7 @@ class TemplateView : View {
         import std.array : replace;
         
         string output = _template;
-        auto data = _model.getData();
+        auto data = _model.data();
         
         foreach (key, value; data) {
             output = output.replace("{{" ~ key ~ "}}", value);
@@ -294,7 +294,7 @@ class HTMLView : View {
 unittest {
     import std.stdio : writeln;
 
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("title", "Test");
 
     auto view = new View(model);
@@ -303,7 +303,7 @@ unittest {
 }
 
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("name", "John");
     model.set("age", "30");
 
@@ -313,7 +313,7 @@ unittest {
 }
 
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("key", "value");
 
     auto view = new JSONView(model);

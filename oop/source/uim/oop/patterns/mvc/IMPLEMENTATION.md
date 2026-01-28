@@ -117,7 +117,7 @@ Successfully implemented a comprehensive MVC (Model-View-Controller) pattern for
 
 ### Basic Usage
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new View(model);
 auto controller = new Controller(model, view);
 

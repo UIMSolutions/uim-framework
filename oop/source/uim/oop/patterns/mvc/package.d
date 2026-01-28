@@ -26,7 +26,7 @@ module uim.oop.patterns.mvc;
  * auto output = app.run(["action": "index"]);
  * 
  * // Or create components individually
- * auto model = new Model();
+ * auto model = new MVCModel();
  * auto view = new View(model);
  * auto controller = new Controller(model, view);
  * 
@@ -72,7 +72,7 @@ module uim.oop.patterns.mvc;
 public {
 	import uim.oop.patterns.mvc.interfaces;
 	import uim.oop.patterns.mvc.models;
-	import uim.oop.patterns.mvc.view;
+	import uim.oop.patterns.mvc.views;
 	import uim.oop.patterns.mvc.controllers;
 	import uim.oop.patterns.mvc.application;
 }

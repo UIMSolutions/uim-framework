@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.mvc.views;
 
+public {
+    import uim.oop.patterns.mvc.views.view;
+}

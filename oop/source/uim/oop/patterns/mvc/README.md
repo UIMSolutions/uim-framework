@@ -1,6 +1,6 @@
 # MVC (Model-View-Controller) Pattern
 
-The MVC pattern is an architectural pattern that separates an application into three main logical components: Model, View, and Controller. Each of these components handles specific development aspects of an application.
+The MVC pattern is an architectural pattern that separates an application into three main logical components: MVCModel, View, and Controller. Each of these components handles specific development aspects of an application.
 
 ## Overview
 
@@ -196,7 +196,7 @@ User          Controller        Model           View
  │                │              │               │
 ```
 
-### Sequence Diagram: Model Update with Observer Pattern
+### Sequence Diagram: MVCModel Update with Observer Pattern
 
 ```
 Controller       Model                View1        View2
@@ -321,7 +321,7 @@ The Model represents the data and business logic of the application.
 
 **Example**:
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 model.set("username", "john_doe");
 model.set("email", "john@example.com");
 
@@ -356,7 +356,7 @@ The View is responsible for presenting the model data to the user.
 
 **Example**:
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 model.set("name", "Alice");
 model.set("age", "30");
 
@@ -391,7 +391,7 @@ The Controller acts as an intermediary between Model and View, processing user i
 
 **Example**:
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new View(model);
 auto controller = new Controller(model, view);
 
@@ -424,7 +424,7 @@ A complete MVC application that wires all components together.
 auto app = createMVCApplication();
 
 // Or with custom components
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new TemplateView(model, "User: {{username}}");
 auto controller = new RESTController(model, view);
 auto app = createMVCApplication(model, view, controller);
@@ -442,7 +442,7 @@ auto output = app.run([
 
 ### 1. Web Applications
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new HTMLView(model, "content");
 auto controller = new RESTController(model, view);
 
@@ -480,7 +480,7 @@ if (controller.validateInput(formData)) {
 
 ### 3. API Endpoints
 ```d
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new JSONView(model);
 auto controller = new RESTController(model, view);
 
@@ -581,13 +581,13 @@ writeln(data.name); // "Alice"
 
 ```d
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("key", "value");
     assert(model.get("key") == "value");
 }
 
 unittest {
-    auto model = new Model();
+    auto model = new MVCModel();
     auto view = new TemplateView(model, "{{key}}");
     model.set("key", "test");
     assert(view.render() == "test");
@@ -609,7 +609,7 @@ import uim.oop.patterns.mvc;
 auto app = createMVCApplication();
 
 // Or use individual components
-auto model = new Model();
+auto model = new MVCModel();
 auto view = new View(model);
 auto controller = new Controller(model, view);
 ```
