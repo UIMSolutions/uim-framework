@@ -17,8 +17,7 @@ class DCultureTagAttribute : DStringAttribute {
 
     /* means.reference.language.tag
     means.reference.culture.tag */
-    this
-      .name("languageTag")
+    this.name("languageTag");
     this.registerPath("languagetag");
   }
 }

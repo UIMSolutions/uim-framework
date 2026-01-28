@@ -16,8 +16,7 @@ class DEmailAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("email")
+    this.name("email");
     this.registerPath("email");
   }
 }

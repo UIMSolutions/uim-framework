@@ -15,15 +15,14 @@ class DCustomerSizeCodeAttribute : DIntegerStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("customerSizeCode")
-      .display("Customer Size")
-      .lookups([
+    this.name("customerSizeCode");
+      this.display("Customer Size");
+      this.lookups([
         0: "0-100 (small)",  
         1: "100-1000 (middle)",
         2: "1000-10000 (large)"
-      ])
-      .isNullable(true)
+      ]);
+      this.isNullable(true);
     this.registerPath("customerSizeCode");
   }
 }

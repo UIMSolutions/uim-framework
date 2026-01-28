@@ -16,8 +16,7 @@ class DCityNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("cityName")
+    this.name("cityName");
     this.registerPath("cityName");
   }
 }

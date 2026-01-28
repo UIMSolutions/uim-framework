@@ -21,9 +21,8 @@ class DBirthDateAttribute : DDatetimeAttribute {
     means.measurement.time
     means.demographic.birthDate
  */
-    this
-      .dataFormats(["time"])
-      .name("birthdate")
+    this.dataFormats(["time"])
+      .name("birthdate");
     this.registerPath("birthdate");
 
   }

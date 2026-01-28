@@ -21,8 +21,7 @@ class DHourAttribute : DIntegerAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("hour")
+    this.name("hour");
     this.registerPath("hour");
   }    
 }

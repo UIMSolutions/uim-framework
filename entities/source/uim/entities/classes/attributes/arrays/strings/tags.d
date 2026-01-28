@@ -15,9 +15,8 @@ class DTagsAttribute : DStringArrayAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("TagsAttribute")
-      .dataFormats(["string", "array"])
+    this.name("TagsAttribute")
+      .dataFormats(["string", "array"]);
     this.registerPath("TagsAttribute");
   }
 

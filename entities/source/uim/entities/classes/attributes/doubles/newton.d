@@ -28,8 +28,7 @@ class DNewtonAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("newton")
+    this.name("newton");
     this.registerPath("newton");
   }
 }

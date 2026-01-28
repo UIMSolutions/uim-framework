@@ -15,8 +15,7 @@ class DLinkAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("link")
+    this.name("link");
     this.registerPath("link");
   }
 }

@@ -25,8 +25,7 @@ class DMegaVoltAttribute : DVoltAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("megavolt")
+    this.name("megavolt");
     this.registerPath("megavolt");
   }
 }

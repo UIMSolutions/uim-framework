@@ -21,8 +21,7 @@ class DLongitudeAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("longitude")
+    this.name("longitude");
     this.registerPath("longitude");
   }
 }

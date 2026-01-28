@@ -15,14 +15,13 @@ class DStatusCodeAttribute : DIntegerStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("statusCode")
-      .display("Status Reason")
-      .lookups([
+    this.name("statusCode");
+      this.display("Status Reason");
+      this.lookups([
         0: "Active",  
         1: "Inactive"
-      ])
-      .isNullable(true)
+      ]);
+      this.isNullable(true);
     this.registerPath("statuscode");
   }
 }

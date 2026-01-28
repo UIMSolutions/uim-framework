@@ -25,8 +25,7 @@ class DIP4AddressAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("ip4address")
+    this.name("ip4address");
     this.registerPath("ip4address");
   }
 }

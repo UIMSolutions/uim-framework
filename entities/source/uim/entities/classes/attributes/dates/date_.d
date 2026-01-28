@@ -16,18 +16,12 @@ class DDateAttribute : UIMAttribute {
     super.initialize(configSettings);
     // means.measurement.date
 
-    this
-      .name("date")
-      .dataFormats(["date"])
+    this.name("date");
+    this.dataFormats(["date"]);
     this.registerPath("date");
   }
 
   override UIMValue createValue() {
-    return DateValue(this); }
-}
-mixin(AttributeCalls!("DateAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
+    return DateValue(this);
   }
 }

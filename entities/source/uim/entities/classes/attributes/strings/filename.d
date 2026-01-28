@@ -20,8 +20,7 @@ class DFileNameAttribute : DStringAttribute {
 is.dataFormat.big
 is.dataFormat.array
 means.fileName */
-    this
-      .name("filename")
+    this.name("filename");
     this.registerPath("fileName");
   }
 }

@@ -32,8 +32,7 @@ class DMegaWattAttribute : DWattAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("megawatt")
+    this.name("megawatt");
     this.registerPath("megawatt");
   }
 }

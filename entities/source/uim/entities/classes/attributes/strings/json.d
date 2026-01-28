@@ -31,8 +31,7 @@ class DJsonAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("json")
+    this.name("json");
     this.registerPath("json");
   }
 }

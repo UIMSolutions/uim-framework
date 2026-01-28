@@ -22,8 +22,7 @@ class DTimezoneAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("timezone")
+    this.name("timezone");
     this.registerPath("timezone");
   }
 }

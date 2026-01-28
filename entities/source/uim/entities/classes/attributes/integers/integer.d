@@ -17,7 +17,7 @@ class DIntegerAttribute : UIMAttribute {
 
     this
       .addDataFormats(["integer"])
-      .name("integer")
+      .name("integer");
     this.registerPath("integer");
   }    
 }

@@ -30,8 +30,7 @@ class DMillimeterAttribute : DMeterAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("millimeter")
+    this.name("millimeter");
     this.registerPath("millimeter");
   }
 }

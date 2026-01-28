@@ -27,8 +27,7 @@ class DMilliAmpereAttribute : DAmpereAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("milliAmpere")
+    this.name("milliAmpere");
     this.registerPath("milliAmpere");
   }
 }

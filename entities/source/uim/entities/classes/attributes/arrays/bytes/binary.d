@@ -23,7 +23,7 @@ class DBinaryAttribute : UIMAttribute {
     is.dataFormat.array */
     this
       .addDataFormats(["array"])
-      .name("binary")
+      .name("binary");
     this.registerPath("binary");
   }
 }

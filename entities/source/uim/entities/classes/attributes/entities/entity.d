@@ -15,8 +15,7 @@ import uim.entities;
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["time"]);
+    this.dataFormats(["time"]);
     // means.measurement.date
     // means.measurement.time
   }

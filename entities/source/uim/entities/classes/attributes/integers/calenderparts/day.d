@@ -16,8 +16,7 @@ class DDayPartAttribute : DIntegerCalendarPart {
 override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("daypart")
+    this.name("daypart");
     this.registerPath("daypart");
   }   
 }

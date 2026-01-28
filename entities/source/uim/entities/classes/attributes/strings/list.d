@@ -17,8 +17,7 @@ class DListAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("list")
+    this.name("list");
     this.registerPath("list");
   }
 }

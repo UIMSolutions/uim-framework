@@ -17,8 +17,7 @@ import uim.entities;
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("businessUnit")
+    this.name("businessUnit");
     this.registerPath("businessunit");
   }  
 }

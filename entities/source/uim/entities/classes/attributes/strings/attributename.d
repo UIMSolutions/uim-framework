@@ -33,8 +33,7 @@ means.attributeName
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("attributeName")
+    this.name("attributeName");
     this.registerPath("attributeName");
   }
 }

@@ -17,8 +17,7 @@ means.calendar.day
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("integerCalendarPart")
+    this.name("integerCalendarPart");
     this.registerPath("integerCalendarPart");
   }    
 }

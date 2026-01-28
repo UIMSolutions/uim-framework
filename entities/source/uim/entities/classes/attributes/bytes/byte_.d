@@ -17,7 +17,7 @@ class DByteAttribute : UIMAttribute {
 
     this
       .addDataFormats(["byte"])
-      .name("byte")
+      .name("byte");
     this.registerPath("byte");
   }
 }

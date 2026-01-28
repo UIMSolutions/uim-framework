@@ -16,8 +16,7 @@ class DColorNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("colorName")
+    this.name("colorName");
     this.registerPath("colorName");
   }
 }

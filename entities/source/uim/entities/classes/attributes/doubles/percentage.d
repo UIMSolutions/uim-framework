@@ -15,8 +15,7 @@ class DPercentageAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("percentage")
+    this.name("percentage");
     this.registerPath("percentage");
   }
 }

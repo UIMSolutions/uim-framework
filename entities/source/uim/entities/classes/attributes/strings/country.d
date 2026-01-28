@@ -16,8 +16,7 @@ class DCountryAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("country")
+    this.name("country");
     this.registerPath("country");
   }
 }

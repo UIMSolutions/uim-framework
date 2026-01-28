@@ -17,8 +17,7 @@ class DAgeAttribute : DIntegerAttribute {
 
     //means.demographic.age
     //means.measurement.age
-    this
-      .name("age")
+    this.name("age");
     this.registerPath("age");    
   }
 }

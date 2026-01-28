@@ -15,9 +15,8 @@ class DTimeAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["time"])
-      .name("time")
+    this.dataFormats(["time"])
+      .name("time");
     this.registerPath("time");
       // means.measurement.date
       // means.measurement.time

@@ -15,9 +15,8 @@ class DTimestampAttribute : DLongAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["timestamp"])
-      .name("timestamp")
+    this.dataFormats(["timestamp"])
+      .name("timestamp");
     this.registerPath("timestamp");
   }
   override UIMValue createValue() {

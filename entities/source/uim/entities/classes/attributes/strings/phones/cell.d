@@ -22,8 +22,7 @@ class DPhoneCellAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("phonecell")
+    this.name("phonecell");
     this.registerPath("phonecell");
   }
 }

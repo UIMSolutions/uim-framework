@@ -17,7 +17,7 @@ class DDatetimeOffsetAttribute : DDatetimeAttribute {
 
     this
       .addDataFormats(["timeOffset"])
-      .name("datetimeOffset")
+      .name("datetimeOffset");
     this.registerPath("datetimeOffset");
         /* means.measurement.date
         means.measurement.time

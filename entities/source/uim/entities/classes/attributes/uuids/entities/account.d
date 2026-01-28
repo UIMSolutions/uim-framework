@@ -15,8 +15,7 @@ class DAccountIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("accountId")
+    this.name("accountId");
     this.registerPath("accountId");
   }  
 }

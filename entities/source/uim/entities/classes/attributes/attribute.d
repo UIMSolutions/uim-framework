@@ -240,13 +240,14 @@ class UIMAttribute : UIMObject, IAttribute {
     return result;
   } */
 
-  /* override  */void fromJson(Json aJson) {
-    if (aJson.isEmpty) {return; }
+  /* override  */ 
+  void fromJson(Json json) {
+    if (json.isEmpty) {return; }
     /* super.fromJson(aJson); */
 
-    foreach (keyvalue; aJson.byKeyValue) {
-      auto k = keyvalue.key;
-      auto v = keyvalue.value;
+    foreach (key, value; json.toMap) {
+      auto k = key;
+      auto v = value;
       switch(k) {
         case "attribute": this.attribute(UUID(v.get!string)); break;
         case "isNullable": this.isNullable(v.get!bool); break;

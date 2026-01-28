@@ -17,7 +17,7 @@ class DLongAttribute : UIMAttribute {
 
     this
       .addDataFormats(["long"])
-      .name("long")
+      .name("long");
     this.registerPath("long");
   }    
 }

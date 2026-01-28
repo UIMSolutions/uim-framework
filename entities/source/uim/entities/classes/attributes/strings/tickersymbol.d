@@ -22,8 +22,7 @@ class DTickerSymbolAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("tickerSymbol")
+    this.name("tickerSymbol");
     this.registerPath("tickerSymbol");
   }
 }

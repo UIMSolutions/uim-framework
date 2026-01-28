@@ -19,8 +19,7 @@ class DDayAttribute : DIntegerAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("day")
+    this.name("day");
     this.registerPath("day");    
   }
 }

@@ -16,8 +16,7 @@ class DLanguageTagAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("languageTag")
+    this.name("languageTag");
     this.registerPath("languagetag");
   }
 }

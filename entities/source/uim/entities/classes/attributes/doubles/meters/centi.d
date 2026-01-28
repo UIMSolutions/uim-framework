@@ -25,8 +25,7 @@ class DCentimeterAttribute : DMeterAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("centimeter")
+    this.name("centimeter");
     this.registerPath("centimeter");
   }
 }

@@ -27,8 +27,7 @@ class DSeconUIMAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("second")
+    this.name("second");
     this.registerPath("second");
   }
 }

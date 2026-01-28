@@ -21,8 +21,7 @@ class DWeekAttribute : DIntegerCalendarPart {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("week")
+    this.name("week");
     this.registerPath("week");
   }
 }

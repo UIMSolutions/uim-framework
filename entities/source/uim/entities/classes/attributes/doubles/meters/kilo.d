@@ -24,8 +24,7 @@ class DKilometerAttribute : DMeterAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("kilometer")
+    this.name("kilometer");
     this.registerPath("kilometer");
   }
 }

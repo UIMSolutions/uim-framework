@@ -31,8 +31,7 @@ class DPascalAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("pascal")
+    this.name("pascal");
     this.registerPath("pascal");
   }
 }

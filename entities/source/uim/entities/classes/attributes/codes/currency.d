@@ -20,8 +20,7 @@ class DCurrencyCodeAttribute : DStringStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("currencyCode")
+    this.name("currencyCode");
     this.registerPath("currencyCode");
   }
 }

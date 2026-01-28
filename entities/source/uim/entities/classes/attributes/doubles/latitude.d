@@ -16,8 +16,7 @@ class DLatitudeAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("latitude")
+    this.name("latitude");
     this.registerPath("latitude");
   }
 }

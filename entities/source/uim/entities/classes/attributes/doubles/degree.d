@@ -20,8 +20,7 @@ class DDegreeAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("degree")
+    this.name("degree");
     this.registerPath("degree");
   }
 }

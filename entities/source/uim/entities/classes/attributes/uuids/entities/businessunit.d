@@ -17,8 +17,7 @@ class DBusinessUnitIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("businessUnitId")
+    this.name("businessUnitId");
     this.registerPath("businessUnitId");
   }  
 }

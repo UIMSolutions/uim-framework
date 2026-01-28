@@ -17,8 +17,7 @@ import uim.entities;
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("currency")
+    this.name("currency");
     this.registerPath("currency");
   }  
 }

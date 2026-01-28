@@ -16,8 +16,7 @@ class DLastNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("lastname")
+    this.name("lastname");
     this.registerPath("lastname");
   }
 }

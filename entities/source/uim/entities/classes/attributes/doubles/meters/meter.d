@@ -24,8 +24,7 @@ class DMeterAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("meter")
+    this.name("meter");
     this.registerPath("meter");
   }
 }

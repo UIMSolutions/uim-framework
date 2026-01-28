@@ -22,8 +22,7 @@ class DMinutesAttribute : DIntegerAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("minutes")
+    this.name("minutes");
     this.registerPath("minutes");
   }    
 }

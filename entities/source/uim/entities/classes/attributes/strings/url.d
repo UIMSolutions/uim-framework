@@ -15,8 +15,7 @@ class DUrlAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("url")
+    this.name("url");
     this.registerPath("url");
   }
 }

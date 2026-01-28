@@ -21,8 +21,7 @@ class DPostalCodeAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("postalcode")
+    this.name("postalcode");
     this.registerPath("postalcode");
   }
 }

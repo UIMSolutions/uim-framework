@@ -22,8 +22,7 @@ class DFaxAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("fax")
+    this.name("fax");
     this.registerPath("fax");
   }
 }

@@ -26,8 +26,7 @@ class DRadianAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("radian")
+    this.name("radian");
     this.registerPath("radian");
   }
 }

@@ -28,8 +28,7 @@ class DMilliSeconUIMAttribute : DSeconUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("milliSecond")
+    this.name("milliSecond");
     this.registerPath("milliSecond");
   }
 }

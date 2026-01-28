@@ -22,9 +22,8 @@ class DIntegerStringAttribute : DLookupAttribute {
     super.initialize(configSettings);
     // means.measurement.lookup
 
-    this
-      .name("lookup")
-      .dataFormats(["lookup", "integer", "string"])
+    this.name("lookup")
+      .dataFormats(["lookup", "integer", "string"]);
     this.registerPath("lookup");
   }
 

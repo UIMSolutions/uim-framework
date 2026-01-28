@@ -16,9 +16,8 @@ class DPreferredContactMethoUIMAttribute : UIMAttribute {
     super.initialize(configSettings);
     // means.measurement.preferredcontactmethod
 
-    this
-      .name("preferredcontactmethod")
-      .dataFormats(["preferredcontactmethod"])
+    this.name("preferredcontactmethod")
+      .dataFormats(["preferredcontactmethod"]);
     this.registerPath("preferredcontactmethod");
   }
 

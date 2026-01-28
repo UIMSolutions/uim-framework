@@ -26,8 +26,7 @@ class DKilogramAttribute : DGramAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("kilogram")
+    this.name("kilogram");
     this.registerPath("kilogram");
   }
 }

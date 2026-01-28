@@ -15,9 +15,8 @@ class DUUIUIMAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("uuid")
-      .dataFormats(["uuid"])
+    this.name("uuid")
+      .dataFormats(["uuid"]);
     this.registerPath("uuid");
   }
 

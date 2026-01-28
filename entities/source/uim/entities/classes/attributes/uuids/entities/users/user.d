@@ -27,8 +27,7 @@ class DUserIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("userId")
+    this.name("userId");
     this.registerPath("userId");
   }  
 }

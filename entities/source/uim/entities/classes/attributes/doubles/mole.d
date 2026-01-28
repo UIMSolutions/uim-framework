@@ -26,8 +26,7 @@ class DMoleAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("mole")
+    this.name("mole");
     this.registerPath("mole");
   }
 }

@@ -15,8 +15,7 @@ class DFileIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("fileId")
+    this.name("fileId");
     this.registerPath("fileId");
   }  
 }

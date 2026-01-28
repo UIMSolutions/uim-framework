@@ -22,8 +22,7 @@ class DInchesAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("inches")
+    this.name("inches");
     this.registerPath("inches");
   }
 }

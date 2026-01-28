@@ -29,8 +29,7 @@ class DKiloWattAttribute : DWattAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("kilowatt")
+    this.name("kilowatt");
     this.registerPath("kilowatt");
   }
 }

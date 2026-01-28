@@ -21,8 +21,7 @@ class DTrimesterAttribute : DIntegerCalendarPart {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("trimester")
+    this.name("trimester");
     this.registerPath("trimester");
   }
 }

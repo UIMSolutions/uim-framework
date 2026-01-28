@@ -15,8 +15,7 @@ class DSLAInvokedIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("slainvokedid")
+    this.name("slainvokedid");
     this.registerPath("slaInvokedId");
   }  
 }

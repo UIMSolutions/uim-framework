@@ -26,8 +26,7 @@ class DHtmlAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("html")
+    this.name("html");
     this.registerPath("html");
   }
 }

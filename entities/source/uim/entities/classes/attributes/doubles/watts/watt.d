@@ -28,8 +28,7 @@ class DWattAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("watt")
+    this.name("watt");
     this.registerPath("watt");
   }
 }

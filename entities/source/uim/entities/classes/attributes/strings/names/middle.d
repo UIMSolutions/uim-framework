@@ -22,8 +22,7 @@ class DMiddleNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("middleName")
+    this.name("middleName");
     this.registerPath("middleName");
   }
 }

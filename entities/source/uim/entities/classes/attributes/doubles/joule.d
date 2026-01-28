@@ -28,8 +28,7 @@ class DJouleAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("joule")
+    this.name("joule");
     this.registerPath("joule");
   }
 }

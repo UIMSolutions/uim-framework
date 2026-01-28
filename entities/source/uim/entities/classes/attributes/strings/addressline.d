@@ -21,8 +21,7 @@ class DAddressLineAttribute : DStringAttribute {
     super.initialize(configSettings);
 
     // means.location.address
-    this
-      .name("addressLine")
+    this.name("addressLine");
     this.registerPath("addressline");
   }
 }

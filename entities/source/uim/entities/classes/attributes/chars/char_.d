@@ -15,9 +15,8 @@ class DCharAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["character", "big"])
-      .name("char")
+    this.dataFormats(["character", "big"])
+      .name("char");
     this.registerPath("char");
   }
 }

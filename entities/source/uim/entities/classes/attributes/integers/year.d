@@ -25,8 +25,7 @@ class DYearAttribute : DIntegerAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("year")
+    this.name("year");
     this.registerPath("year");
   }    
 }

@@ -19,8 +19,7 @@ class DGovernmentIUIMAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("governmentId")
+    this.name("governmentId");
     this.registerPath("governmentId");
   }
 }

@@ -17,17 +17,14 @@ class DStringAttribute : DCharAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("string")
-      .isString(true) 
+    this.name("string");
+this.isString(true);
     this.registerPath("string");
   }
   override UIMValue createValue() {
     return StringValue(this)
       .maxLength(this.maxLength); }
 }
-mixin(AttributeCalls!"StringAttribute");
-
 ///
 unittest {
   auto attribute = new DStringAttribute;

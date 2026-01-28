@@ -31,8 +31,7 @@ class DOhmAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("ohm")
+    this.name("ohm");
     this.registerPath("ohm");
   }
 }

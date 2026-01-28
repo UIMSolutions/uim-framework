@@ -30,8 +30,7 @@ class DKiloVoltAttribute : DVoltAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("kilovolt")
+    this.name("kilovolt");
     this.registerPath("kilovolt");
   }
 }

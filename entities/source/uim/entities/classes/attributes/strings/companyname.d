@@ -16,8 +16,7 @@ class DCompanyNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("companyName")
+    this.name("companyName");
     this.registerPath("companyName");
   }
 }

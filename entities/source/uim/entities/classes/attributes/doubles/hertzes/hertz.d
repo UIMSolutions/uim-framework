@@ -35,8 +35,7 @@ means.measurement.dimension.frequency
 means.measurement.units.si.hertz
 has.measurement.fundamentalComponent.second */
 
-    this
-      .name("hertz")
+    this.name("hertz");
     this.registerPath("hertz");
   }
 }

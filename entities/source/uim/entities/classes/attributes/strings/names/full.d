@@ -20,8 +20,7 @@ class DFullNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("fullName")
+    this.name("fullName");
     this.registerPath("fullName");
   }
 }

@@ -15,9 +15,8 @@ class DStringArrayAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("StringArrayAttribute")
-      .dataFormats(["string", "array"])
+    this.name("StringArrayAttribute")
+      .dataFormats(["string", "array"]);
     this.registerPath("StringArrayAttribute");
   }
 

@@ -26,8 +26,7 @@ class DGramAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("gram")
+    this.name("gram");
     this.registerPath("gram");
   }
 }

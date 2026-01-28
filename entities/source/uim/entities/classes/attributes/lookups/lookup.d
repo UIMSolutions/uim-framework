@@ -16,9 +16,8 @@ class DLookupAttribute : UIMAttribute {
     super.initialize(configSettings);
     // means.measurement.lookup
 
-    this
-      .name("lookup")
-      .dataFormats(["lookup"])
+    this.name("lookup")
+      .dataFormats(["lookup"]);
     this.registerPath("lookup");
   }
 

@@ -15,8 +15,7 @@ class DDisplayOrderAttribute : DIntegerAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("displayOrder")
+    this.name("displayOrder");
     this.registerPath("displayOrder");    
   }
 }

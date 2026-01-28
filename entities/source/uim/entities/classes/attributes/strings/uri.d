@@ -17,8 +17,7 @@ class DUriAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("uri")
+    this.name("uri");
     this.registerPath("uri");
   }
 }

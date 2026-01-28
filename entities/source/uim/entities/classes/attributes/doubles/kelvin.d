@@ -26,8 +26,7 @@ class DKelvinAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("kelvin")
+    this.name("kelvin");
     this.registerPath("kelvin");
   }
 }

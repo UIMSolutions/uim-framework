@@ -19,8 +19,7 @@ class DGenderAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("gender")
+    this.name("gender");
     this.registerPath("gender");
   }
 }

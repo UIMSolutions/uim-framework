@@ -20,8 +20,7 @@ class DEthnicityAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("ethnicity")
+    this.name("ethnicity");
     this.registerPath("ethnicity");
   }
 }

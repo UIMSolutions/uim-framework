@@ -15,14 +15,9 @@ class DDoubleAttribute : UIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .dataFormats(["floatingPoint", "big"])
-      .isDouble(true)
-      .name("double")
+    this.dataFormats(["floatingPoint", "big"]);
+    this.isDouble(true);
+    this.name("double");
     this.registerPath("double");
   }
 }
-mixin(AttributeCalls!("DoubleAttribute"));
-
-///
-unittest {}

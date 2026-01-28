@@ -25,7 +25,7 @@ class DImageAttribute : DBinaryAttribute {
 means.content.binary.image */
     this
       .addDataFormats(["array"])
-      .name("image")
+      .name("image");
     this.registerPath("image");
   }
 }

@@ -15,8 +15,7 @@ class DTeamIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("teamId")
+    this.name("teamId");
     this.registerPath("teamId");
   }  
 }

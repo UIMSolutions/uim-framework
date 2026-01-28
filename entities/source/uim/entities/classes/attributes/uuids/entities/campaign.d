@@ -15,8 +15,7 @@ class DCampaignIUIMAttribute : UIMEntityIUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("campaignId")
+    this.name("campaignId");
     this.registerPath("campaignId");
   }  
 }

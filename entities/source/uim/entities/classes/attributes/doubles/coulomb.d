@@ -16,8 +16,7 @@ class DCoulombAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("coulomb")
+    this.name("coulomb");
     this.registerPath("coulomb");
   }
 }

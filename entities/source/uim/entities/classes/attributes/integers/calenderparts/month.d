@@ -23,8 +23,7 @@ class DMonthpartAttribute : DIntegerCalendarPart {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("monthpart")
+    this.name("monthpart");
     this.registerPath("monthpart");
   }
 }

@@ -21,8 +21,7 @@ class UIMEntityNameAttribute : DStringAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("entityname")
+    this.name("entityname");
     this.registerPath("entityName");
   }
 }

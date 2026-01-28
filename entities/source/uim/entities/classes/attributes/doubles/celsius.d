@@ -17,8 +17,7 @@ class DCelsiusAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("celsius")
+    this.name("celsius");
     this.registerPath("celsius");
   }
 }

@@ -30,8 +30,7 @@ class DPicoFaraUIMAttribute : DFaraUIMAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("picoFarad")
+    this.name("picoFarad");
     this.registerPath("picoFarad");
   }
 }

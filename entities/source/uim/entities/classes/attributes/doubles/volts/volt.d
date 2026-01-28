@@ -29,8 +29,7 @@ class DVoltAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("volt")
+    this.name("volt");
     this.registerPath("volt");
   }
 }

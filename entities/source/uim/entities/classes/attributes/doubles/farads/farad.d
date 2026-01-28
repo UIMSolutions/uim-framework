@@ -29,8 +29,7 @@ class DFaraUIMAttribute : DDoubleAttribute {
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
-    this
-      .name("farad")
+    this.name("farad");
     this.registerPath("farad");
   }  
 }
