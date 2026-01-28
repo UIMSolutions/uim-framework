@@ -3,22 +3,20 @@ module uim.entities.classes.models.model;
 import uim.entities;
 
 @safe:
-class DModel : IModel { 
+class DModel : UIMObject, IModel { 
   this() { this.name("Model").className("Model"); }
   this(Json configSettings) { this().initialize(configSettings); }
   this(IModelManager aManager, Json configSettings = Json(null)) { this().manager(aManager).initialize(configSettings); }
 
-  this(string aName, Json configSettings = Json(null)) { this(configSettings).name(aName); }
+  this(string name, Json configSettings = Json(null)) { this(configSettings).name(name); }
   this(string[string] someParameters, Json configSettings = Json(null)) { this(configSettings).parameters(someParameters); }
 
-  this(IModelManager aManager, string aName, Json configSettings = Json(null)) { this(aManager, configSettings).name(aName); }
+  this(IModelManager aManager, string name, Json configSettings = Json(null)) { this(aManager, configSettings).name(name); }
   this(IModelManager aManager, string[string] someParameters, Json configSettings = Json(null)) { this(aManager, configSettings).parameters(someParameters); }
 
-  this(string aName, string[string] someParameters, Json configSettings = Json(null)) { this(name, configSettings).parameters(someParameters); }
-  this(IModelManager aManager, string aName, string[string] someParameters, Json configSettings = Json(null)) { this(aManager, name, configSettings).parameters(someParameters); }
-
+  this(string name, string[string] someParameters, Json configSettings = Json(null)) { this(name, configSettings).parameters(someParameters); }
+  this(IModelManager aManager, string name, string[string] someParameters, Json configSettings = Json(null)) { this(aManager, name, configSettings).parameters(someParameters); }
   void initialize(Json configSettings = Json(null)) {}
-
 
   protected string _name;
   string name() const { return _name; }

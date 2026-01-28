@@ -9,24 +9,29 @@ module uim.entities.classes.elements.version_;
 import uim.entities;
 
 @safe:
-class DVersion: UIMElement {
+class DVersion : UIMElement {
   // static namespace = moduleName!DVersion;
 
   // Constructors
-  this() { super(); }
+  this() {
+    super();
+  }
 
-  this(string myName) { 
-    super(myName); }
+  this(string myName) {
+    super(myName);
+  }
 
-  this(Json aJson) { 
-    this();    
-    if (aJson != Json(null)) this.fromJson(aJson); }
+  this(Json aJson) {
+    this();
+    if (aJson != Json(null))
+      this.fromJson(aJson);
+  }
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this
-      .addValues([
+      .adUIMValues([
         "description": StringAttribute,
         "by": UUIDAttribute,
         "display": StringAttribute,
@@ -36,10 +41,33 @@ class DVersion: UIMElement {
       ]);
   }
 
-  mixin(LongValueProperty!("number"));
+  protected long _number;
+
+  /// Getter for number
+  long number() const @property {
+    return _number;
+  }
+
+  /// Setter for number (chainable)
+  DVersion number(long value) @property {
+    _number = value;
+    return this;
+  }
 
   ///	Date and time when the entity was versioned.	
-  mixin(TimeStampValueProperty!("on"));
+  ///	Date and time when the entity was versioned.
+  protected long _on;
+
+  /// Getter for on (timestamp)
+  long on() const @property {
+    return _on;
+  }
+
+  /// Setter for on (chainable)
+  DVersion on(long value) @property {
+    _on = value;
+    return this;
+  }
   /// 
   unittest {
     auto timestamp = toTimestamp(now);
@@ -54,7 +82,7 @@ class DVersion: UIMElement {
   }
 
   // Who created version
-  mixin(UUIDValueProperty!("by"));
+  mixin(UUIUIMValueProperty!("by"));
   /// 
   unittest {
     auto id = randomUUID;
@@ -66,7 +94,7 @@ class DVersion: UIMElement {
     id = randomUUID;
     assert(element.by(id).by == id);
     assert(element.by != randomUUID);
-  } 
+  }
 
   mixin(ValueProperty!("string", "description"));
   /// 
@@ -92,7 +120,7 @@ class DVersion: UIMElement {
     assert(element.display != "noDisplay");
   }
 
-  mixin(ValueProperty!("string", "mode")); 
+  mixin(ValueProperty!("string", "mode"));
   /// 
   unittest {
     auto element = new DVersion;
@@ -104,16 +132,28 @@ class DVersion: UIMElement {
     assert(element.mode != "noMode");
   }
 
-  override UIMElement create() { return new DVersion; }
+  override UIMElement create() {
+    return new DVersion;
+  }
 }
-auto Version() { return new DVersion; }
-auto Version(string name) { return new DVersion(name); }
-auto Version(Json json) { return new DVersion(json); }
 
-version(test_uim_models) { unittest {
-  assert(Version);
-  assert(Version.name("test").name == "test");
-  assert(Version.name("testName").name == "testname");
+auto Version() {
+  return new DVersion;
+}
 
-}}
+auto Version(string name) {
+  return new DVersion(name);
+}
 
+auto Version(Json json) {
+  return new DVersion(json);
+}
+
+version (test_uim_models) {
+  unittest {
+    assert(Version);
+    assert(Version.name("test").name == "test");
+    assert(Version.name("testName").name == "testname");
+
+  }
+}

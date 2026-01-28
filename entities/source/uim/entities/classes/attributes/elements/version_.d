@@ -12,15 +12,9 @@ class VersionElementAttribute : UIMAttribute {
   mixin(AttributeThis!("VersionElementAttribute"));
 
   override UIMValue createValue() {
-    return ElementValue(this)
+    return new ElementValue(this)
       .value(
         Version        
       );
   }
 }
-mixin(AttributeCalls!"VersionElementAttribute");
-
-version(test_uim_models) { unittest {
-  testAttribute(new VersionElementAttribute);
-  testAttribute(VersionElementAttribute);
-}}

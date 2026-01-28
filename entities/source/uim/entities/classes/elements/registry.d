@@ -3,7 +3,7 @@ module uim.entities.classes.elements.registry;
 import uim.entities;
 
 @safe:
-class UIMElementRegistry : DRegistry!UIMElement {
+class UIMElementRegistry : UIMRegistry!(string, UIMElement) {
   static UIMElementRegistry registry;
 }
 auto ElementRegistry() { // SIngleton

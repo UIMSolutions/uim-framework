@@ -238,9 +238,6 @@ class UIMAttribute : UIMObject, IAttribute {
 / *     result.attribute(this);
     result.name(aName); * /
     return result;
-  }
-  version(test_uim_models) { unittest {    /// TODO
-    }
   } */
 
   /* override  */void fromJson(Json aJson) {
@@ -285,7 +282,15 @@ class UIMAttribute : UIMObject, IAttribute {
   }
 
   // Convert data to json (using vibe's funcs)
-  /* override  */Json toJson(string[] showFields = null, string[] hideFields = null) {
+  override Json toJson(string[] showFields, string[] hideFields) {
+    return toJson(showFields).removeKeys(hideFields);
+  }
+
+  /* override  */Json toJson(string[] showFields) {
+    return toJson.filterKeys(showFields);
+  }
+
+  Json toJson() {
     auto result = Json.emptyObject;
 
     // Fields
@@ -321,16 +326,7 @@ class UIMAttribute : UIMObject, IAttribute {
 
     return result;
   }
-  version(test_uim_models) { unittest {    /// TODO
-    }
-  }
 
 /*   alias opIndexAssign = UIMElement.opIndexAssign;
   alias opIndexAssign = UIMEntity.opIndexAssign; */
 }
-auto Attribute() { return new DAttribute; }
-auto Attribute(UUID id) { return new DAttribute(id); }
-auto Attribute(string name) { return new DAttribute(name); }
-auto Attribute(UUID id, string name) { return new DAttribute(id, name); }
-auto Attribute(Json json) { return new DAttribute(json); }
-// auto Attribute(UIMEntityCollection aCollection, Json json) { return (new DAttribute(json)).collection(aCollection); }

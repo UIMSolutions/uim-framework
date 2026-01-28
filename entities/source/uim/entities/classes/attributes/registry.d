@@ -8,13 +8,5 @@ module uim.entities.classes.attributes.registry;
 import uim.entities;
 
 @safe:
-class DAttributeRegistry : DRegistry!UIMAttribute {
-  static DAttributeRegistry registry;
-}
-
-auto AttributeRegistry() { // SIngleton
-  if (DAttributeRegistry.registry is null) {
-    DAttributeRegistry.registry = new DAttributeRegistry;
-  }
-  return DAttributeRegistry.registry;
+class AttributeRegistry : UIMRegistry!(string, UIMAttribute) {
 }

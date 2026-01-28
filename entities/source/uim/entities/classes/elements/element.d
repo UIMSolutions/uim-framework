@@ -9,7 +9,7 @@ module uim.entities.classes.elements.element;
 import uim.entities;
 
 @safe:
-class UIMElement : IElement {
+class UIMElement : UIMObject, IElement {
   // // static namespace = moduleName!UIMElement;
 
   // Constructors
@@ -91,8 +91,8 @@ class UIMElement : IElement {
   }
 
   // Read data from string[string]
-  void readFromstring[string](string[string] reqParameters, bool usePrefix = false) {
-    foreach(k, v; reqParameters) this[k] = v; 
+  void readFromMap(data, usePrefix)(string[string] data, bool usePrefix = false) {
+    data.byKeyValue.each!((k, v) => this[k] = v); 
   }
 
   // Read data from request
@@ -118,7 +118,7 @@ class UIMElement : IElement {
   }
 
   // Set data 
-  void opIndexAssign(DValue newValue, string key) {
+  void opIndexAssign(UIMValue newValue, string key) {
     if (!isStatic) { // can add new values and change datatypes
       values[key] = newValue;  
     } else { // Not dynamic
@@ -160,7 +160,7 @@ class UIMElement : IElement {
   ///
   unittest {
     auto element = new UIMElement;
-    element.addValues(["test":StringAttribute]);
+    element.adUIMValues(["test":StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
@@ -190,13 +190,13 @@ class UIMElement : IElement {
   ///
   unittest {
     auto element = new UIMElement;
-    element.addValues(["test":StringAttribute]);
+    element.adUIMValues(["test":StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
   } 
 
-  DValue valueOfKey(string key) {
+  UIMValue valueOfKey(string key) {
     if (auto myValue = values[key]) {
       return myValue;
     }
@@ -204,7 +204,7 @@ class UIMElement : IElement {
     if (auto keys = key.split(".")) {
       if (keys.length == 1) { return values[key]; }
 
-      DValue myValue = values[keys[0]];
+      UIMValue myValue = values[keys[0]];
       if (auto myElementValue = cast(UIMElementValue)myValue) {
         myValue = myElementValue.value.valueOfKey(keys[1..$].join("."));
       }
@@ -216,7 +216,7 @@ class UIMElement : IElement {
   ///
   unittest{
     auto element2 = new UIMElement;
-    element2.addValues(["level2": StringAttribute]);
+    element2.adUIMValues(["level2": StringAttribute]);
     element2["level2"] = "valueLevel2";
 
     auto value2 = new UIMElementValue;
@@ -230,8 +230,8 @@ class UIMElement : IElement {
 
   // Set UUID value
   void opIndexAssign(UUID value, string key) {
-    if (auto myValue = cast(DUUIDValue)valueOfKey(key)) { 
-      // values[key] exists and value of DUUIDValue
+    if (auto myValue = cast(DUUIUIMValue)valueOfKey(key)) { 
+      // values[key] exists and value of DUUIUIMValue
       myValue.value = value;
     }
   }
@@ -312,9 +312,9 @@ class UIMElement : IElement {
     return toJson.toString;
   }
 }
-auto Element() { return new UIMElement; }
-auto Element(string name) { return new UIMElement(name); }
-auto Element(Json json) { return new UIMElement(json); }
+auto createElement() { return new UIMElement; }
+auto createElement(string name) { return new UIMElement(name); }
+auto createElement(Json json) { return new UIMElement(json); }
 
 version(test_uim_models) { unittest {
   assert(Element);

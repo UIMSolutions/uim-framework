@@ -19,6 +19,12 @@ Json[] getValues(Json[] jsons, size_t[] indices, bool delegate(size_t index) @sa
 
   return jsons.getValues((size_t index) => indices.canFind(index) && getFunc(index));
 }
+
+Json[] values(Json[] jsons, size_t[] indices, bool delegate(size_t index) @safe getFunc) {
+  mixin(ShowFunction!());
+
+  return jsons.values((size_t index) => indices.canFind(index) && getFunc(index));
+}
 // #endregion with indices and getFunc(index)
 
 // #region with indices
@@ -27,10 +33,24 @@ Json[] getValues(Json[] jsons, size_t[] indices) {
 
   return jsons.getValues((size_t index) => indices.canFind(index));
 }
+Json[] values(Json[] jsons, size_t[] indices) {
+  mixin(ShowFunction!());
+
+  return jsons.values((size_t index) => indices.canFind(index));
+}
 // #endregion with indices
 
 // #region with getFunc(index)
 Json[] getValues(Json[] jsons, bool delegate(size_t) @safe getFunc) {
+  Json[] result;
+  foreach (index, value; jsons) {
+    if (getFunc(index)) {
+      result ~= value;
+    }
+  }
+  return result;
+}
+Json[] values(Json[] jsons, bool delegate(size_t) @safe getFunc) {
   Json[] result;
   foreach (index, value; jsons) {
     if (getFunc(index)) {
