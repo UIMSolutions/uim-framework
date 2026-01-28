@@ -13,7 +13,7 @@ import std.conv : to;
 /**
  * Abstract base element that implements common functionality.
  */
-abstract class BaseElement : IElement {
+abstract class BaseElement : IVisitorElement {
     protected string _name;
     
     this(string elementName) @safe {
@@ -31,13 +31,13 @@ abstract class BaseElement : IElement {
  * Object structure that holds a collection of elements.
  */
 class ObjectStructure : IObjectStructure {
-    private IElement[] _elements;
+    private IVisitorElement[] _elements;
     
-    @safe void addElement(IElement element) {
+    @safe void addElement(IVisitorElement element) {
         _elements ~= element;
     }
     
-    @safe void removeElement(IElement element) {
+    @safe void removeElement(IVisitorElement element) {
         foreach (i, elem; _elements) {
             if (elem is element) {
                 _elements = _elements.remove(i);
@@ -56,10 +56,10 @@ class ObjectStructure : IObjectStructure {
         return _elements.length;
     }
     
-    IElement[] elements() const @trusted {
-        IElement[] result;
+    IVisitorElement[] elements() const @trusted {
+        IVisitorElement[] result;
         foreach (elem; _elements) {
-            result ~= cast(IElement)elem;
+            result ~= cast(IVisitorElement)elem;
         }
         return result;
     }
@@ -75,7 +75,7 @@ abstract class BaseVisitor : IVisitor {
         return _visited.dup;
     }
     
-    abstract void visit(IElement element);
+    abstract void visit(IVisitorElement element);
 }
 
 // Real-world example: Shape rendering system
@@ -83,7 +83,7 @@ abstract class BaseVisitor : IVisitor {
 /**
  * Shape element interface.
  */
-interface IShape : IElement {
+interface IShape : IVisitorElement {
     @safe double area() const;
 }
 
@@ -181,7 +181,7 @@ class AreaCalculator : BaseVisitor {
         _totalArea = 0.0;
     }
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto shape = cast(IShape)element) {
@@ -204,7 +204,7 @@ class PerimeterCalculator : BaseVisitor {
         _totalPerimeter = 0.0;
     }
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto circle = cast(Circle)element) {
@@ -228,7 +228,7 @@ class PerimeterCalculator : BaseVisitor {
 class DrawingVisitor : BaseVisitor {
     private string[] _commands;
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto circle = cast(Circle)element) {
@@ -318,7 +318,7 @@ class SizeCalculator : BaseVisitor {
         _totalSize = 0;
     }
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto file = cast(FileElement)element) {
@@ -343,7 +343,7 @@ class FileCounter : BaseVisitor {
         _dirCount = 0;
     }
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (cast(FileElement)element) {
@@ -373,7 +373,7 @@ class FileLister : BaseVisitor {
         _depth = 0;
     }
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         string indent = "";
         for (int i = 0; i < _depth; i++) {
             indent ~= "  ";
@@ -400,7 +400,7 @@ class FileLister : BaseVisitor {
 /**
  * Expression element.
  */
-interface IExpression : IElement {
+interface IExpression : IVisitorElement {
 }
 
 /**
@@ -485,7 +485,7 @@ class MultiplyExpression : BaseElement, IExpression {
 class ExpressionEvaluator : BaseVisitor {
     private double[] _stack;
     
-    override @safe void visit(IElement element) {
+    override @safe void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto num = cast(NumberExpression)element) {

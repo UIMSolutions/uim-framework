@@ -15,7 +15,7 @@ The MVC pattern is an architectural pattern that separates an application into t
 ```
 ┌─────────────────────────────┐
 │      <<interface>>          │
-│         IModel              │
+│         IMVCModel              │
 ├─────────────────────────────┤
 │ + set(key, value): void     │
 │ + get(key): string          │
@@ -51,8 +51,8 @@ The MVC pattern is an architectural pattern that separates an application into t
 ├─────────────────────────────┤
 │ + render(): string          │
 │ + update(): void            │
-│ + setModel(IModel): void    │
-│ + getModel(): IModel        │
+│ + setModel(IMVCModel): void    │
+│ + getModel(): IMVCModel        │
 └─────────────────────────────┘
            △
            │ implements
@@ -60,12 +60,12 @@ The MVC pattern is an architectural pattern that separates an application into t
 ┌──────────┴──────────────────────────────┐
 │              View                       │
 ├─────────────────────────────────────────┤
-│ - model: IModel                         │
+│ - model: IMVCModel                         │
 ├─────────────────────────────────────────┤
 │ + render(): string                      │
 │ + update(): void                        │
 │ + setModel(model): void                 │
-│ + getModel(): IModel                    │
+│ + getModel(): IMVCModel                    │
 └─────────────────────────────────────────┘
            △
            │
@@ -82,9 +82,9 @@ The MVC pattern is an architectural pattern that separates an application into t
 ├─────────────────────────────┤
 │ + handleRequest(params)     │
 │ + executeAction(name, params)│
-│ + setModel(IModel): void    │
+│ + setModel(IMVCModel): void    │
 │ + setView(IView): void      │
-│ + getModel(): IModel        │
+│ + getModel(): IMVCModel        │
 │ + getView(): IView          │
 └─────────────────────────────┘
            △
@@ -93,7 +93,7 @@ The MVC pattern is an architectural pattern that separates an application into t
 ┌──────────┴────────────────────────────────────┐
 │              Controller                       │
 ├───────────────────────────────────────────────┤
-│ - model: IModel                               │
+│ - model: IMVCModel                               │
 │ - view: IView                                 │
 │ - actions: bool delegate(string[string])[string] │
 ├───────────────────────────────────────────────┤
@@ -102,7 +102,7 @@ The MVC pattern is an architectural pattern that separates an application into t
 │ + registerAction(name, handler): void         │
 │ + setModel(model): void                       │
 │ + setView(view): void                         │
-│ + getModel(): IModel                          │
+│ + getModel(): IMVCModel                          │
 │ + getView(): IView                            │
 └───────────────────────────────────────────────┘
            △
@@ -120,7 +120,7 @@ The MVC pattern is an architectural pattern that separates an application into t
 ├────────────────────────────────────┤
 │ + initialize(): void               │
 │ + run(params): string[string]      │
-│ + getModel(): IModel               │
+│ + getModel(): IMVCModel               │
 │ + getView(): IView                 │
 │ + getController(): IController     │
 └────────────────────────────────────┘
@@ -130,14 +130,14 @@ The MVC pattern is an architectural pattern that separates an application into t
 ┌──────────┴─────────────────────────┐
 │       MVCApplication               │
 ├────────────────────────────────────┤
-│ - model: IModel                    │
+│ - model: IMVCModel                    │
 │ - view: IView                      │
 │ - controller: IController          │
 ├────────────────────────────────────┤
 │ + this(model, view, controller)    │
 │ + initialize(): void               │
 │ + run(params): string[string]      │
-│ + getModel(): IModel               │
+│ + getModel(): IMVCModel               │
 │ + getView(): IView                 │
 │ + getController(): IController     │
 └────────────────────────────────────┘
@@ -274,7 +274,7 @@ Controller       Model                View1        View2
 │  ┌──────────────────┐  ┌──────────────────┐      │
 │  │   interfaces     │  │     helpers      │      │
 │  ├──────────────────┤  └──────────────────┘      │
-│  │ - IModel         │           │                 │
+│  │ - IMVCModel         │           │                 │
 │  │ - IView          │           │                 │
 │  │ - IController    │           ▼                 │
 │  │ - IMVCApplication│  ┌──────────────────┐      │
@@ -308,7 +308,7 @@ Controller       Model                View1        View2
 
 ## Components
 
-### 1. Model (`IModel`, `Model`)
+### 1. Model (`IMVCModel`, `Model`)
 
 The Model represents the data and business logic of the application.
 

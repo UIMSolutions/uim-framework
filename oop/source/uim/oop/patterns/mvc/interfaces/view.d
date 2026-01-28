@@ -29,7 +29,7 @@ interface IView {
      * Params:
      *   model = The model that has changed
      */
-    void update(IModel model);
+    void update(IMVCModel model);
 
     /**
      * Sets the controller for this view
@@ -51,7 +51,7 @@ interface IView {
      * 
      * Returns: The associated model
      */
-    IModel getModel();
+    IMVCModel getModel();
 
     /**
      * Sets the model for this view
@@ -59,5 +59,5 @@ interface IView {
      * Params:
      *   model = The model to associate with this view
      */
-    void setModel(IModel model);
+    void setModel(IMVCModel model);
 }

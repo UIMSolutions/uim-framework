@@ -18,7 +18,7 @@ import uim.oop;
  * - Controller communication
  */
 class View : IView {
-    protected IModel _model;
+    protected IMVCModel _model;
     protected IController _controller;
     protected string _template;
 
@@ -28,7 +28,7 @@ class View : IView {
      * Params:
      *   model = Optional model to associate with this view
      */
-    this(IModel model = null) {
+    this(IMVCModel model = null) {
         if (model !is null) {
             setModel(model);
         }
@@ -84,7 +84,7 @@ class View : IView {
      * Params:
      *   model = The model that has changed
      */
-    void update(IModel model) {
+    void update(IMVCModel model) {
         // Override in subclasses for custom update behavior
         // By default, just store the reference
         _model = model;
@@ -114,7 +114,7 @@ class View : IView {
      * 
      * Returns: The associated model
      */
-    IModel getModel() {
+    IMVCModel getModel() {
         return _model;
     }
 
@@ -124,7 +124,7 @@ class View : IView {
      * Params:
      *   model = The model to associate with this view
      */
-    void setModel(IModel model) {
+    void setModel(IMVCModel model) {
         _model = model;
         _model.attachView(this);
     }
@@ -155,7 +155,7 @@ class View : IView {
  * Supports placeholder replacement in templates
  */
 class TemplateView : View {
-    this(IModel model = null, string templateStr = null) {
+    this(IMVCModel model = null, string templateStr = null) {
         super(model);
         if (templateStr !is null) {
             _template = templateStr;
@@ -193,7 +193,7 @@ class TemplateView : View {
  * JSONView - View that renders data as JSON
  */
 class JSONView : View {
-    this(IModel model = null) {
+    this(IMVCModel model = null) {
         super(model);
     }
 
@@ -240,7 +240,7 @@ class JSONView : View {
 class HTMLView : View {
     protected string _cssClass;
 
-    this(IModel model = null, string cssClass = "") {
+    this(IMVCModel model = null, string cssClass = "") {
         super(model);
         _cssClass = cssClass;
     }

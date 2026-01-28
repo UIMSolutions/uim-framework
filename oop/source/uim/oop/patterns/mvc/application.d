@@ -15,7 +15,7 @@ import uim.oop;
  * This class combines Model, View, and Controller into a complete application
  */
 class MVCApplication : IMVCApplication {
-    protected IModel _model;
+    protected IMVCModel _model;
     protected IView _view;
     protected IController _controller;
     protected bool _initialized;
@@ -28,7 +28,7 @@ class MVCApplication : IMVCApplication {
      *   view = The view to use
      *   controller = The controller to use
      */
-    this(IModel model = null, IView view = null, IController controller = null) {
+    this(IMVCModel model = null, IView view = null, IController controller = null) {
         _model = model;
         _view = view;
         _controller = controller;
@@ -98,7 +98,7 @@ class MVCApplication : IMVCApplication {
      * 
      * Returns: The application model
      */
-    IModel getModel() {
+    IMVCModel getModel() {
         return _model;
     }
 
@@ -126,7 +126,7 @@ class MVCApplication : IMVCApplication {
      * Params:
      *   model = The model to set
      */
-    void setModel(IModel model) {
+    void setModel(IMVCModel model) {
         _model = model;
         _initialized = false;
     }
@@ -175,7 +175,7 @@ MVCApplication createMVCApplication() {
  * 
  * Returns: A new initialized MVC application
  */
-MVCApplication createMVCApplication(IModel model, IView view, IController controller) {
+MVCApplication createMVCApplication(IMVCModel model, IView view, IController controller) {
     auto app = new MVCApplication(model, view, controller);
     app.initialize();
     return app;

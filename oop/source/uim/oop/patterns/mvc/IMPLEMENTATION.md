@@ -7,7 +7,7 @@ Successfully implemented a comprehensive MVC (Model-View-Controller) pattern for
 
 ### Core Implementation
 1. **interfaces.d** - Complete interface definitions
-   - `IModel` - Model interface with data management and observer support
+   - `IMVCModel` - Model interface with data management and observer support
    - `IView` - View interface with rendering capabilities
    - `IController` - Controller interface with action handling
    - `IMVCApplication` - Complete application interface

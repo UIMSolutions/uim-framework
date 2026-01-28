@@ -17,12 +17,12 @@ mixin(ShowModule!());
  */
 class DCommandManager {
   private DCommandFactory _factory;
-  private DCommandRegistry _registry;
+  private DCommanUIMRegistry _registry;
   private ICommand[string] _instances;
   
   this() {
     _factory = new DCommandFactory();
-    _registry = new DCommandRegistry();
+    _registry = new DCommanUIMRegistry();
   }
 
   /**
@@ -120,7 +120,7 @@ class DCommandManager {
   /**
    * Get the registry instance.
    */
-  DCommandRegistry registry() {
+  DCommanUIMRegistry registry() {
     return _registry;
   }
 }

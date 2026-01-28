@@ -9,7 +9,7 @@ mixin(ShowModule!());
 /**
  * Typed registry with type-safe registration
  */
-class TypedRegistry(Base) {
+class TypeUIMRegistry(Base) {
   private Object[string] _items;
   private TypeInfo[string] _types;
 

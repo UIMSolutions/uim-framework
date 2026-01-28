@@ -12,12 +12,12 @@ import uim.oop;
 /**
  * Model - Base implementation of the Model component in MVC pattern
  * 
- * This class provides a basic implementation of IModel with support for:
+ * This class provides a basic implementation of IMVCModel with support for:
  * - Data storage and retrieval
  * - Observer pattern for view notifications
  * - Validation hooks
  */
-class Model : IModel {
+class Model : IMVCModel {
     protected string[string] _data;
     protected IView[] _views;
 

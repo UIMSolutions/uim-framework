@@ -33,14 +33,14 @@ interface IController {
      * Params:
      *   model = The model to control
      */
-    void setModel(IModel model);
+    void setModel(IMVCModel model);
 
     /**
      * Gets the model controlled by this controller
      * 
      * Returns: The associated model
      */
-    IModel getModel();
+    IMVCModel getModel();
 
     /**
      * Sets the view for this controller

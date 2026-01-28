@@ -16,14 +16,14 @@ interface IVisitor {
      * Params:
      *   element = The element to visit
      */
-    @safe void visit(IElement element);
+    @safe void visit(IVisitorElement element);
 }
 
 /**
  * Element interface that declares an accept method.
  * This method accepts a visitor and calls the appropriate visit method.
  */
-interface IElement {
+interface IVisitorElement {
     /**
      * Accepts a visitor.
      * Params:
@@ -61,14 +61,14 @@ interface IObjectStructure {
      * Params:
      *   element = The element to add
      */
-    @safe void addElement(IElement element);
+    @safe void addElement(IVisitorElement element);
     
     /**
      * Removes an element from the structure.
      * Params:
      *   element = The element to remove
      */
-    @safe void removeElement(IElement element);
+    @safe void removeElement(IVisitorElement element);
     
     /**
      * Accepts a visitor for all elements.
@@ -88,7 +88,7 @@ interface IObjectStructure {
  * Visitable interface for objects that can be visited.
  * Combines element functionality with additional capabilities.
  */
-interface IVisitable : IElement {
+interface IVisitable : IVisitorElement {
     /**
      * Gets the element type.
      * Returns: The type identifier
@@ -117,7 +117,7 @@ interface IAccumulatingVisitor(TResult) : IVisitor {
  * Hierarchical element interface for composite structures.
  * Elements can have children that also accept visitors.
  */
-interface IHierarchicalElement : IElement {
+interface IHierarchicalElement : IVisitorElement {
     /**
      * Gets child elements.
      * Returns: Array of child elements

@@ -18,7 +18,7 @@ import uim.oop;
  * - Model and View coordination
  */
 class Controller : IController {
-    protected IModel _model;
+    protected IMVCModel _model;
     protected IView _view;
     protected string[string] delegate(string[string]) @safe[string] _actions;
 
@@ -29,7 +29,7 @@ class Controller : IController {
      *   model = Optional model to control
      *   view = Optional view to control
      */
-    this(IModel model = null, IView view = null) {
+    this(IMVCModel model = null, IView view = null) {
         if (model !is null) {
             setModel(model);
         }
@@ -121,7 +121,7 @@ class Controller : IController {
      * Params:
      *   model = The model to control
      */
-    void setModel(IModel model) {
+    void setModel(IMVCModel model) {
         _model = model;
     }
 
@@ -130,7 +130,7 @@ class Controller : IController {
      * 
      * Returns: The associated model
      */
-    IModel getModel() {
+    IMVCModel getModel() {
         return _model;
     }
 
@@ -190,7 +190,7 @@ class Controller : IController {
  * Provides standard CRUD operations
  */
 class RESTController : Controller {
-    this(IModel model = null, IView view = null) {
+    this(IMVCModel model = null, IView view = null) {
         super(model, view);
     }
 
@@ -251,7 +251,7 @@ class ValidationController : Controller {
     alias ValidationRule = bool delegate(string[string]) @safe;
     protected ValidationRule[] _validationRules;
 
-    this(IModel model = null, IView view = null) {
+    this(IMVCModel model = null, IView view = null) {
         super(model, view);
     }
 
@@ -311,7 +311,7 @@ class AsyncController : Controller {
     protected BeforeAction[] _beforeActions;
     protected AfterAction[] _afterActions;
 
-    this(IModel model = null, IView view = null) {
+    this(IMVCModel model = null, IView view = null) {
         super(model, view);
     }
 

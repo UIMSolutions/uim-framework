@@ -10,18 +10,18 @@ import uim.oop;
 @safe:
 
 /**
- * IModel - Interface for the Model component in MVC pattern
+ * IMVCModel - Interface for the Model component in MVC pattern
  * 
  * The Model represents the data and business logic of the application.
  * It is responsible for managing the data, logic and rules of the application.
  */
-interface IModel {
+interface IMVCModel {
     /**
      * Gets data from the model
      * 
      * Returns: The data managed by this model
      */
-    string[string] getData();
+    string[string] data();
 
     /**
      * Sets data in the model
@@ -29,7 +29,7 @@ interface IModel {
      * Params:
      *   data = The data to set in the model
      */
-    void setData(string[string] data);
+    void data(string[string] data);
 
     /**
      * Gets a specific value from the model by key
@@ -39,7 +39,7 @@ interface IModel {
      * 
      * Returns: The value associated with the key, or null if not found
      */
-    string get(string key);
+    string data(string key);
 
     /**
      * Sets a specific value in the model
@@ -48,7 +48,7 @@ interface IModel {
      *   key = The key to set
      *   value = The value to associate with the key
      */
-    void set(string key, string value);
+    void data(string key, string value);
 
     /**
      * Validates the model data
