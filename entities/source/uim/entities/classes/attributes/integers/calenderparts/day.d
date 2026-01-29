@@ -10,7 +10,7 @@ import uim.entities;
 
 /* means.calendar
 means.calendar.day */
-class ayPartAttribute : DIntegerCalendarPart {
+class ayPartAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("DayPartAttribute"));
 
 override void initialize(Json configSettings = Json(null)) {

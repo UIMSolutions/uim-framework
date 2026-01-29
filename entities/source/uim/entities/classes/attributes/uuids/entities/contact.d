@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.contact;
 import uim.entities;
 
 @safe:
-class ContactIUIMAttribute : UIMEntityIUIMAttribute {
+class ContactIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("ContactIdAttribute"));
 
   // Initialization hook method.

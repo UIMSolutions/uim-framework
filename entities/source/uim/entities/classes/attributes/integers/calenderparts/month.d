@@ -16,7 +16,7 @@ import uim.entities;
 
 /* means.calendar
 means.calendar.day */
-class MonthpartAttribute : DIntegerCalendarPart {
+class MonthpartAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("MonthpartAttribute"));
 
   // Initialization hook method.

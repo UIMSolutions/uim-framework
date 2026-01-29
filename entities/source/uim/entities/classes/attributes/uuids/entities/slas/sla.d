@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.slas.sla;
 import uim.entities;
 
 @safe:
-class DSlaIUIMAttribute : UIMEntityIUIMAttribute {
+class DSlaIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("SlaIdAttribute"));
 
   // Initialization hook method.

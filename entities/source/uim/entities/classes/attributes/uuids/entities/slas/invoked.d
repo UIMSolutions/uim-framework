@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.slas.invoked;
 import uim.entities;
 
 @safe:
-class DSLAInvokedIUIMAttribute : UIMEntityIUIMAttribute {
+class DSLAInvokedIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("SLAInvokedIdAttribute"));
 
   // Initialization hook method.

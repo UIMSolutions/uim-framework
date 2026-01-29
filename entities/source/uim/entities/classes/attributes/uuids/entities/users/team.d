@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.team;
 import uim.entities;
 
 @safe:
-class TeamIUIMAttribute : UIMEntityIUIMAttribute {
+class TeamIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("TeamIdAttribute"));
 
   // Initialization hook method.

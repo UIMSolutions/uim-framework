@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.owner;
 import uim.entities;
 
 @safe:
-class OwnerIUIMAttribute : UIMEntityIUIMAttribute {
+class OwnerIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("OwnerIdAttribute"));
 
   // Initialization hook method.

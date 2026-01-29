@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.createdonbehalfby;
 import uim.entities;
 
 @safe:
-class DCreatedOnBehalfByAttribute : UIMEntityIUIMAttribute {
+class DCreatedOnBehalfByAttribute : EntityIdAttribute {
   mixin(AttributeThis!("CreatedOnBehalfByAttribute"));
 
   // Initialization hook method.

@@ -14,7 +14,7 @@ means.calendar.tenday */
 import uim.entities;
 
 @safe:
-class TendayAttribute : DIntegerCalendarPart {
+class TendayAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("TendayAttribute"));
 
   // Initialization hook method.

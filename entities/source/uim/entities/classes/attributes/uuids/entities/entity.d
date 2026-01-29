@@ -10,7 +10,7 @@ import uim.entities;
 
 // A unique identifier for entity instances
 
-class UIMEntityIUIMAttribute : DUUIUIMAttribute {
+class EntityIdAttribute : UUIDAttribute {
   mixin(AttributeThis!("EntityIdAttribute"));
 
 /*   is.dataFormat.character
