@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
 bool isFormatter(IObject obj) {
   if (obj is null) {
     return false;
@@ -23,6 +22,6 @@ auto Null(V:IFormatter)() {
   return null;
 }
 
-auto Null(V:DFormatter)() {
+auto Null(V:Formatter)() {
   return null;
 }

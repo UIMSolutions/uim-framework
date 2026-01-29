@@ -13,7 +13,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 response.
  */
-class DJsonRpcResponse : UIMObject {
+class JsonRpcResponse : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _jsonRpc = "2.0";

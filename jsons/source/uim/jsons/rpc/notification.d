@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 notification (request without id).
  */
-class DJsonRpcNotification : UIMObject {
+class sonRpcNotification : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _jsonRpc = "2.0";

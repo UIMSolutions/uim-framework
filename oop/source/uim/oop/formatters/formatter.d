@@ -17,7 +17,7 @@ mixin(ShowModule!());
   *
   * This class serves as a concrete formatter that can be used directly or extended for more specific formatting needs.
   */
-class DFormatter : UIMObject, IFormatter {
+class Formatter : UIMObject, IFormatter {
   /*    mixin TLocatorAware;
     mixin TLog; */
 

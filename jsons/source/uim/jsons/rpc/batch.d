@@ -12,7 +12,7 @@ import uim.jsons;
 /**
  * JSON-RPC 2.0 batch request.
  */
-class DJsonRpcBatchRequest : UIMObject {
+class sonRpcBatchRequest : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected DJsonRpcRequest[] _requests;
@@ -82,7 +82,7 @@ class DJsonRpcBatchRequest : UIMObject {
 /**
  * JSON-RPC 2.0 batch response.
  */
-class DJsonRpcBatchResponse : UIMObject {
+class JsonRpcBatchResponse : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected DJsonRpcResponse[] _responses;

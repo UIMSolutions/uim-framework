@@ -12,7 +12,7 @@ import uim.jsons;
 /**
  * JSON-LD node object.
  */
-class DJSONLDNode : UIMObject {
+class SONLDNode : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _id;

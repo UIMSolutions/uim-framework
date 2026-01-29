@@ -16,7 +16,7 @@ mixin(ShowModule!());
   *
   * This factory provides methods to create formatters based on the provided type.
   */
-class DFormatterFactory : UIMFactory!(string, IFormatter) {
+class FormatterFactory : UIMFactory!(string, IFormatter) {
   this() {
     // Default constructor
     super();

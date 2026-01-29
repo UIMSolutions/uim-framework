@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Fluent schema builder.
  */
-class DJSONSchemaBuilder {
+class JSONSchemaBuilder {
   protected DJSONSchema _schema;
 
   this() {

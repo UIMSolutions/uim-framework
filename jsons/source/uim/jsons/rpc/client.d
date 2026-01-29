@@ -12,7 +12,7 @@ import uim.jsons;
 /**
  * JSON-RPC 2.0 client.
  */
-class DJsonRpcClient : UIMObject {
+class JsonRpcClient : UIMObject {
   protected long _nextId = 1;
 
   this() {

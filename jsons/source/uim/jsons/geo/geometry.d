@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Base class for all GeoJSON geometries
  */
-abstract class DGeoJsonGeometry : UIMObject {
+abstract class GeoJsonGeometry : UIMObject {
     protected GeometryType _geometryType;
     
     alias toJson = UIMObject.toJson;
@@ -38,7 +38,7 @@ abstract class DGeoJsonGeometry : UIMObject {
 /**
  * Point geometry
  */
-class DGeoJsonPoint : DGeoJsonGeometry {
+class GeoJsonPoint : DGeoJsonGeometry {
     protected PointCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -80,7 +80,7 @@ class DGeoJsonPoint : DGeoJsonGeometry {
 /**
  * LineString geometry
  */
-class DGeoJsonLineString : DGeoJsonGeometry {
+class GeoJsonLineString : DGeoJsonGeometry {
     protected LineStringCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -121,7 +121,7 @@ class DGeoJsonLineString : DGeoJsonGeometry {
 /**
  * Polygon geometry
  */
-class DGeoJsonPolygon : DGeoJsonGeometry {
+class GeoJsonPolygon : DGeoJsonGeometry {
     protected PolygonCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -166,7 +166,7 @@ class DGeoJsonPolygon : DGeoJsonGeometry {
 /**
  * MultiPoint geometry
  */
-class DGeoJsonMultiPoint : DGeoJsonGeometry {
+class GeoJsonMultiPoint : DGeoJsonGeometry {
     protected MultiPointCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -207,7 +207,7 @@ class DGeoJsonMultiPoint : DGeoJsonGeometry {
 /**
  * MultiLineString geometry
  */
-class DGeoJsonMultiLineString : DGeoJsonGeometry {
+class GeoJsonMultiLineString : DGeoJsonGeometry {
     protected MultiLineStringCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -252,7 +252,7 @@ class DGeoJsonMultiLineString : DGeoJsonGeometry {
 /**
  * MultiPolygon geometry
  */
-class DGeoJsonMultiPolygon : DGeoJsonGeometry {
+class GeoJsonMultiPolygon : DGeoJsonGeometry {
     protected MultiPolygonCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;
@@ -301,7 +301,7 @@ class DGeoJsonMultiPolygon : DGeoJsonGeometry {
 /**
  * GeometryCollection
  */
-class DGeoJsonGeometryCollection : DGeoJsonGeometry {
+class GeoJsonGeometryCollection : DGeoJsonGeometry {
     protected DGeoJsonGeometry[] _geometries;
     
     alias toJson = UIMObject.toJson;

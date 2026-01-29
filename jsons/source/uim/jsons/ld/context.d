@@ -12,7 +12,7 @@ import uim.jsons;
 /**
  * JSON-LD context definition.
  */
-class DJSONLDContext : UIMObject {
+class JSONLDContext : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected Json _context;

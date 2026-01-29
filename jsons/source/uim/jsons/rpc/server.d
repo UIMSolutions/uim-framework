@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 server.
  */
-class DJsonRpcServer : UIMObject {
+class JsonRpcServer : UIMObject {
   protected DJsonRpcHandlerRegistry _handlers;
 
   this() {

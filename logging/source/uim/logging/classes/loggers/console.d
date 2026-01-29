@@ -11,7 +11,7 @@ import std.stdio;
 /**
  * Console logger that writes to stdout with colored output
  */
-class DConsoleLogger : DLogger {
+class ConsoleLogger : DLogger {
     private {
         bool _useColors = true;
     }

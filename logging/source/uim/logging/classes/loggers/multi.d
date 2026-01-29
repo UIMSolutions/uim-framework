@@ -12,7 +12,7 @@ import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
 /**
  * Multi-logger that dispatches to multiple loggers
  */
-class DMultiLogger : DLogger {
+class MultiLogger : DLogger {
     private {
         ILogger[] _loggers;
     }

@@ -10,7 +10,7 @@ import uim.logging;
 /**
  * JSON formatter for structured log messages
  */
-class DJsonFormatter : ILogFormatter {
+class JsonFormatter : ILogFormatter {
     this() {}
     
     string format(

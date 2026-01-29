@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON Schema validator.
  */
-class DJSONSchemaValidator : UIMObject {
+class SONSchemaValidator : UIMObject {
   protected DJSONSchema _schema;
   protected DFormatValidator[string] _formatValidators;
 

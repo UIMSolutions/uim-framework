@@ -13,7 +13,7 @@ import std.datetime;
 /**
  * Base logger class providing common functionality
  */
-abstract class DLogger : ILogger {
+abstract class Logger : ILogger {
     protected {
         string _name;
         UIMLogLevel _level = UIMLogLevel.info;

@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /* 
-class DFormatterDirectory : DDirectory!IFormatter {
+class FormatterDirectory : DDirectory!IFormatter {
   mixin(DirectoryThis!("Formatter"));
 }
 mixin(DirectoryCalls!("Formatter"));

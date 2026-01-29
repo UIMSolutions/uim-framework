@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /*
-class DFormatterSet : UIMSet!IFormatter {
+class FormatterSet : UIMSet!IFormatter {
   mixin(SetThis!("Formatter"));
 }
 mixin(SetCalls!("Formatter"));

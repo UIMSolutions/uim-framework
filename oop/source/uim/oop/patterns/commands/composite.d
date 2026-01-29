@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * Composite command that executes multiple commands in sequence.
  * Implements Composite pattern.
  */
-class DCompositeCommand : DAbstractCommand, ICompositeCommand {
+class CompositeCommand : DAbstractCommand, ICompositeCommand {
   mixin(CommandThis!());
 
   protected ICommand[] _commands;

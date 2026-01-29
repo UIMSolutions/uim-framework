@@ -11,12 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-class DLogLevels {
+class LogLevels {
   // #region Singleton
-  protected static DLogLevels _logLevels;
-  public static DLogLevels logLevels() {
+  protected static LogLevels  _logLevels;
+  public static LogLevels  logLevels() {
     return (_logLevels is null)
-      ? _logLevels = new DLogLevels() : _logLevels;
+      ? _logLevels = new LogLevels () : _logLevels;
   }
   // #endregion Singleton
 
@@ -102,6 +102,6 @@ class DLogLevels {
   // #endregion level
 }
 
-auto LogLevels() {
-  return DLogLevels.logLevels();
+auto logLevels() {
+  return LogLevels.logLevels();
 }

@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * GeoJSON FeatureCollection
  * A collection of feature objects
  */
-class DGeoJsonFeatureCollection : UIMObject {
+class GeoJsonFeatureCollection : UIMObject {
     protected DGeoJsonFeature[] _features;
     
     alias toJson = UIMObject.toJson;

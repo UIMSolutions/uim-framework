@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * JSON Schema representation.
  * Supports JSON Schema Draft 7.
  */
-class DJSONSchema : UIMObject {
+class SONSchema : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected Json _schema;

@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * GeoJSON Feature
  * A feature object represents a spatially bounded thing
  */
-class DGeoJsonFeature : UIMObject {
+class GeoJsonFeature : UIMObject {
     protected DGeoJsonGeometry _geometry;
     protected Json _properties;
     protected Json _id;

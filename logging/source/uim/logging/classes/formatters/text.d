@@ -10,7 +10,7 @@ import uim.logging;
 /**
  * Text formatter for log messages
  */
-class DTextFormatter : ILogFormatter {
+class extFormatter : ILogFormatter {
     private {
         string _format = "%t [%l] %n: %m";
         string _dateFormat = "yyyy-MM-dd HH:mm:ss";

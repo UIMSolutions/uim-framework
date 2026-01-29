@@ -14,7 +14,7 @@ import core.sync.mutex;
 /**
  * File logger that writes logs to a file
  */
-class DFileLogger : DLogger {
+class FileLogger : DLogger {
     private {
         string _filename;
         File _file;

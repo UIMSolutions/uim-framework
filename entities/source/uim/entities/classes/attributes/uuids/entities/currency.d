@@ -10,7 +10,7 @@ import uim.entities;
 
 // A unique identifier for entity instances
 
-class DCurrencyIUIMAttribute : UIMEntityIUIMAttribute {
+class CurrencyIUIMAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("CurrencyIdAttribute"));
 
   // Initialization hook method.

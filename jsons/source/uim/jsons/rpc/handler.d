@@ -17,7 +17,7 @@ alias jsonRpcHandler = Json delegate(Json params) @safe;
 /**
  * Method handler registry.
  */
-class DJsonRpcHandlerRegistry : UIMObject {
+class JsonRpcHandlerRegistry : UIMObject {
   protected jsonRpcHandler[string] _handlers;
 
   this() {

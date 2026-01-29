@@ -12,7 +12,7 @@ import uim.jsons;
 /**
  * JSON-LD graph containing multiple nodes.
  */
-class DJSONLDGraph : UIMObject {
+class SONLDGraph : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _id;

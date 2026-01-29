@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DFormatterRegistry : UIMRegistry!(string, IFormatter) {
+class ormatterRegistry : UIMRegistry!(string, IFormatter) {
   this() {
     super();
   }
@@ -25,7 +25,7 @@ unittest {
     }
   }
 
-  auto registry = new DFormatterRegistry();
+  auto registry = new FormatterRegistry();
 
   // Test registration
   auto formatter = new DummyFormatter();

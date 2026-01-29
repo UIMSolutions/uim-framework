@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /* 
-class DFormatterList : UIMList!IFormatter {
+class FormatterList : UIMList!IFormatter {
   mixin(ListThis!("Formatter"));
 }
 mixin(ListCalls!("Formatter"));

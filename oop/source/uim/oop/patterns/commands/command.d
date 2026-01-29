@@ -431,7 +431,7 @@ abstract class DAbstractCommand : UIMObject, ICommand {
  * Base class for commands with standard implementation.
  * For backwards compatibility.
  */
-class DCommand : DAbstractCommand {
+class Command : DAbstractCommand {
     mixin(CommandThis!());
 
     override bool initialize(Json[string] initData = null) {

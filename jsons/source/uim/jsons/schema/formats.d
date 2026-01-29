@@ -22,7 +22,7 @@ interface DFormatValidator {
 /**
  * Email format validator.
  */
-class DEmailFormatValidator : DFormatValidator {
+class EmailFormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto emailRegex = regex(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
@@ -37,7 +37,7 @@ class DEmailFormatValidator : DFormatValidator {
 /**
  * URI format validator.
  */
-class DURIFormatValidator : DFormatValidator {
+class URIFormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto uriRegex = regex(r"^[a-z][a-z0-9+.-]*:");
@@ -52,7 +52,7 @@ class DURIFormatValidator : DFormatValidator {
 /**
  * Date format validator (YYYY-MM-DD).
  */
-class DDateFormatValidator : DFormatValidator {
+class ateFormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto dateRegex = regex(r"^\d{4}-\d{2}-\d{2}$");
@@ -67,7 +67,7 @@ class DDateFormatValidator : DFormatValidator {
 /**
  * DateTime format validator (ISO 8601).
  */
-class DDateTimeFormatValidator : DFormatValidator {
+class ateTimeFormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto dateTimeRegex = regex(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}");
@@ -82,7 +82,7 @@ class DDateTimeFormatValidator : DFormatValidator {
 /**
  * IPv4 format validator.
  */
-class DIPv4FormatValidator : DFormatValidator {
+class IPv4FormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto ipv4Regex = regex(r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
@@ -97,7 +97,7 @@ class DIPv4FormatValidator : DFormatValidator {
 /**
  * IPv6 format validator.
  */
-class DIPv6FormatValidator : DFormatValidator {
+class IPv6FormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto ipv6Regex = regex(r"^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4})$");
