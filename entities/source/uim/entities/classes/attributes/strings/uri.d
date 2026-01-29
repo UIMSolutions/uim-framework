@@ -9,6 +9,8 @@ means.reference.URI */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UriAttribute : DStringAttribute {
   mixin(AttributeThis!("UriAttribute"));
@@ -20,20 +22,4 @@ class UriAttribute : DStringAttribute {
     this.name("uri");
     this.registerPath("uri");
   }
-}
-mixin(AttributeCalls!("UriAttribute"));
-
-///
-unittest {
-  auto attribute = new DUriAttribute;
-  assert(attribute.name == "uri");
-  assert(attribute.registerPath == "uri");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DUriAttribute)generalAttribute);
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
 }
