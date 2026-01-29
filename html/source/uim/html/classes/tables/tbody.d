@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML table body element
-class DTbody : DHtmlElement {
+class Tbody : DHtmlElement {
     this() {
         super("tbody");
     }

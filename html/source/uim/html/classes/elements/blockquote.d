@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML anchor (link) element
-class DBlockquote : DHtmlElement {
+class Blockquote : DHtmlElement {
   this() {
     super("blockquote");
   }

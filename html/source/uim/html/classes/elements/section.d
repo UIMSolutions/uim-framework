@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DSection : DHtmlElement {
+class Section : DHtmlElement {
   this() {
     super("section");
     this.selfClosing(false);

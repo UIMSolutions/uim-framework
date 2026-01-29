@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// Represents an HTML attribute with name and value
-class DHtmlAttribute : /* UIMObject, */ IHtmlAttribute {
+class HtmlAttribute : /* UIMObject, */ IHtmlAttribute {
     protected string _name;
     protected string _value;
 

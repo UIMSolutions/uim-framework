@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML ordered list element
-class DOl : DHtmlElement {
+class Ol : DHtmlElement {
   this() {
     super("ol");
   }

@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DAddress : DHtmlElement {
+class Address : DHtmlElement {
   this() {
     super("address");
     this.selfClosing(false);

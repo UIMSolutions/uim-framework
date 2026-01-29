@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML table head element
-class DThead : DHtmlElement {
+class Thead : DHtmlElement {
     this() {
         super("thead");
     }

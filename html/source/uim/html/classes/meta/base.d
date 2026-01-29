@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML base element
-class DBase : DHtmlElement {
+class Base : DHtmlElement {
   this() {
     super("base");
     this.selfClosing(true);

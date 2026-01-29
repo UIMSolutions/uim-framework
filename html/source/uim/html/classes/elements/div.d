@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML div element
-class DDiv : DHtmlElement {
+class Div : DHtmlElement {
   this() {
     super("div");
   }

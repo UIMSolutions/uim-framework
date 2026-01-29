@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML unordered list element
-class DUl : DHtmlElement {
+class Ul : DHtmlElement {
     this() {
         super("ul");
     }

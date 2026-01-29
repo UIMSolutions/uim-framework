@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML label element
-class DLabel : DHtmlFormElement {
+class Label : DHtmlFormElement {
   this() {
     super("label");
   }

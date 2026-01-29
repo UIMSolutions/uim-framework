@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// Represents a complete HTML document
-class DHtmlDocument : UIMObject {
+class HtmlDocument : UIMObject {
     protected string _title;
     protected string _lang;
     protected string _charset;

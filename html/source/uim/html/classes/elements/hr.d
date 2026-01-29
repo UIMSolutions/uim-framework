@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML horizontal rule element
-class DHr : DHtmlElement {
+class Hr : DHtmlElement {
     this() {
         super("hr");
         this.selfClosing(true);

@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML paragraph element
-class DP : DHtmlElement {
+class P : DHtmlElement {
   this() {
     super("p");
   }

@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML span element
-class DSpan : DHtmlElement {
+class Span : DHtmlElement {
   this() {
     super("span");
   }

@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DSearch : DHtmlElement {
+class Search : DHtmlElement {
   this() {
     super("search");
     this.selfClosing(false);

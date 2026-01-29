@@ -4,7 +4,7 @@ import uim.html;
 
 @safe:
 
-class DLegend : DHtmlFormElement {
+class Legend : DHtmlFormElement {
   this() {
     super("legend");
   }

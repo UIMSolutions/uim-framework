@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DCode : DHtmlElement {
+class Code : DHtmlElement {
   this() {
     super("code");
     this.selfClosing(false);

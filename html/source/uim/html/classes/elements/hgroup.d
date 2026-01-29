@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DHgroup : DHtmlElement {
+class Hgroup : DHtmlElement {
   this() {
     super("hgroup");
     this.selfClosing(false);

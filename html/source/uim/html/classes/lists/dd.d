@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML definition description element
-class DDd : DHtmlElement {
+class Dd : DHtmlElement {
     this() {
         super("dd");
     }

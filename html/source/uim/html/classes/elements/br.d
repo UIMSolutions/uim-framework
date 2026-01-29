@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML line break element
-class DBr : DHtmlElement {
+class Br : DHtmlElement {
   this() {
     super("br");
     this.selfClosing(true);

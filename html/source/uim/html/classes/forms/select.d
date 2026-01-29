@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML select element
-class DSelect : DHtmlFormElement {
+class Select : DHtmlFormElement {
     this() {
         super("select");
     }

@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DNav : DHtmlElement {
+class Nav : DHtmlElement {
   this() {
     super("nav");
     this.selfClosing(false);

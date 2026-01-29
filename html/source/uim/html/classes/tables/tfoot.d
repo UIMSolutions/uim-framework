@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML table foot element
-class DTfoot : DHtmlElement {
+class Tfoot : DHtmlElement {
     this() {
         super("tfoot");
     }

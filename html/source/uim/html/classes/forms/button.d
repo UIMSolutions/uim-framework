@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML button element
-class DButton : DHtmlFormElement {
+class Button : DHtmlFormElement {
   this() {
     super("button");
   }

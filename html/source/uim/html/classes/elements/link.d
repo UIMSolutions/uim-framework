@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML link element (for stylesheets, etc.)
-class DLink : DHtmlElement {
+class Link : DHtmlElement {
     this() {
         super("link");
         this.selfClosing(true);

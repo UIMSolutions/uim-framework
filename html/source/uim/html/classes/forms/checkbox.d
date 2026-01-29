@@ -4,7 +4,7 @@ import uim.html;
 
 @safe:
 
-class DCheckbox : DInput {
+class Checkbox : DInput {
   this() {
     super("input");
     type("checkbox");

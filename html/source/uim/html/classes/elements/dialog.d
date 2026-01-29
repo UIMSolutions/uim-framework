@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DDialog : DHtmlElement {
+class ialog : DHtmlElement {
   this() {
     super("dialog");
     this.selfClosing(false);

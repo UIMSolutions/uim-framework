@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML canvas element
-class DCanvas : DHtmlElement {
+class Canvas : DHtmlElement {
   this() {
     super("canvas");
   }

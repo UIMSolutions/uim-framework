@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML option element
-class DSelectOption : DHtmlFormElement {
+class SelectOption : DHtmlFormElement {
     this() {
         super("option");
     }

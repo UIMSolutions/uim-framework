@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML table cell element
-class DCol : DHtmlElement {
+class Col : DHtmlElement {
     this() {
         super("col");
     }

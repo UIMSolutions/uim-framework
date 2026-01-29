@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML input element
-class DInput : DHtmlFormElement, IInput {
+class Input : DHtmlFormElement, IInput {
   this() {
     super("input");
     this.selfClosing(true);

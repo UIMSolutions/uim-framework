@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DCite : DHtmlElement {
+class Cite : DHtmlElement {
   this() {
     super("cite");
     this.selfClosing(false);

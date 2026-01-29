@@ -4,7 +4,7 @@ import uim.html;
 
 @safe:
 
-class DFieldset : DHtmlElement {
+class Fieldset : DHtmlElement {
   this() {
     super("fieldset");
   }

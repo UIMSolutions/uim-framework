@@ -9,7 +9,7 @@ import uim.html;
 
 @safe:
 
-class DCaption : DHtmlElement {
+class Caption : DHtmlElement {
   this() {
     super("caption");
     this.selfClosing(false);

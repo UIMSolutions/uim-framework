@@ -10,7 +10,7 @@ import uim.html;
 @safe:
 
 /// HTML image element
-class DImg : DHtmlElement {
+class Img : DHtmlElement {
     this() {
         super("img");
         this.selfClosing(true);

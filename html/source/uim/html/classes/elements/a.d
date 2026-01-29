@@ -11,7 +11,7 @@ import uim.html;
 @safe:
 
 /// HTML anchor (link) element
-class DA : DHtmlElement {
+class A : DHtmlElement {
   this() {
     super("a");
   }
