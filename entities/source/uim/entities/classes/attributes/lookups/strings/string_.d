@@ -15,9 +15,14 @@ class StringStringAttribute : LookupAttribute {
     super();
   }
 
-  this(Json configSettings) {
-    super(configSettings);
+  this(Json initData) {
+    super(initData.toMap);
   }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
     
   mixin(OProperty!("string[string]", "lookups"));
 

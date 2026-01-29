@@ -15,9 +15,14 @@ class IntegerCalendarPart : IntegerAttribute {
     super();
   }
 
-  this(Json configSettings) {
-    super(configSettings);
+  this(Json initData) {
+    super(initData.toMap);
   }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
 
 /* means.calendar
 means.calendar.day

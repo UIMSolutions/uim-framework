@@ -30,9 +30,14 @@ class MicroFaradAttribute : FaradAttribute {
     super();
   }
 
-  this(Json configSettings) {
-    super(configSettings);
+  this(Json initData) {
+    super(initData.toMap);
   }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

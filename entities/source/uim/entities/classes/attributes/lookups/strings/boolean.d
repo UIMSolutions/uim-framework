@@ -11,7 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 class StringBooleanAttribute : LookupAttribute {
-  mixin(AttributeThis!("StringBooleanAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
 
   mixin(OProperty!("bool[string]", "lookups"));
 

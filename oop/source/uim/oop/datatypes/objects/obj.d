@@ -19,6 +19,13 @@ class UIMObject : IObject {
     this.initialize;
   }
 
+  this(Json initData) {
+    if (!initData.isMap)
+      return;
+
+    this.initialize(initData.toMap);
+  }
+
   this(Json[string] initData) {
     this.initialize(initData);
   }

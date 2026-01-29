@@ -21,9 +21,14 @@ class DayAttribute : IntegerAttribute {
     super();
   }
 
-  this(Json configSettings) {
-    super(configSettings);
+  this(Json initData) {
+    super(initData.toMap);
   }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

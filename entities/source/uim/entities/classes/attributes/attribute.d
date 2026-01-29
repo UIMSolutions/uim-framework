@@ -11,6 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 class UIMAttribute : UIMObject, IAttribute {
+  this() {
+    super();
+  }
+
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
   // --- Explicit property getters and setters for marked fields ---    
   protected UUID _id;
   @property UUID id() const {
