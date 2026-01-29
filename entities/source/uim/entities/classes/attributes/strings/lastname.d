@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // means.iUIMEntity.person.lastName
-class LastNameAttribute : DStringAttribute {
+class LastNameAttribute : StringAttribute {
   mixin(AttributeThis!("LastNameAttribute"));
 
   // Initialization hook method.
@@ -22,8 +22,4 @@ class LastNameAttribute : DStringAttribute {
     this.name("lastname");
     this.registerPath("lastname");
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> c47de0c054ce6f333e5a9caf816cd85e7f333dd3

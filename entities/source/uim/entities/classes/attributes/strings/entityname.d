@@ -14,7 +14,7 @@ is.dataFormat.big
 is.dataFormat.array
 means.entityName
 means.entityName */
-class UIMEntityNameAttribute : DStringAttribute {
+class UIMEntityNameAttribute : StringAttribute {
   mixin(AttributeThis!("EntityNameAttribute"));
 
   // Initialization hook method.

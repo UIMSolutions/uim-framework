@@ -15,7 +15,7 @@ means.iUIMEntity.person.middleName */
 import uim.entities;
 
 @safe:
-class MiddleNameAttribute : DStringAttribute {
+class MiddleNameAttribute : StringAttribute {
   mixin(AttributeThis!("MiddleNameAttribute"));
 
   // Initialization hook method.

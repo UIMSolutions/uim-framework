@@ -12,7 +12,7 @@ import uim.entities;
 is.dataFormat.big
 is.dataFormat.array
 means.demographic.gender */
-class GenderAttribute : DStringAttribute {
+class GenderAttribute : StringAttribute {
   mixin(AttributeThis!("GenderAttribute"));
 
   // Initialization hook method.

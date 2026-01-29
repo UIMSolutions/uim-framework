@@ -15,7 +15,7 @@ means.iUIMEntity.service.phone */
 import uim.entities;
 
 @safe:
-class PhoneAttribute : DStringAttribute {
+class PhoneAttribute : StringAttribute {
   mixin(AttributeThis!("PhoneAttribute"));
 
   // Initialization hook method.

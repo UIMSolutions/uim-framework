@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.iUIMEntity.person.email
-class EmailAttribute : DStringAttribute {
+class EmailAttribute : StringAttribute {
   mixin(AttributeThis!("EmailAttribute"));
 
   // Initialization hook method.

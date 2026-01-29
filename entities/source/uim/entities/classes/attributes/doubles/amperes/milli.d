@@ -31,5 +31,3 @@ class DMilliAmpereAttribute : DAmpereAttribute {
     this.registerPath("milliAmpere");
   }
 }
-  }
-}

@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.iUIMEntity.company.name
-class CompanyNameAttribute : DStringAttribute {
+class CompanyNameAttribute : StringAttribute {
   mixin(AttributeThis!("CompanyNameAttribute"));
 
   // Initialization hook method.

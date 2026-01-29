@@ -14,7 +14,7 @@ means.location.postalCode */
 import uim.entities;
 
 @safe:
-class PostalCodeAttribute : DStringAttribute {
+class PostalCodeAttribute : StringAttribute {
   mixin(AttributeThis!("PostalCodeAttribute"));
 
   // Initialization hook method.

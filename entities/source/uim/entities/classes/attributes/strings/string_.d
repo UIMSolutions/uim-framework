@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.string_;
 import uim.entities;
 
 @safe:
-class StringAttribute : DCharAttribute {
+class StringAttribute : CharAttribute {
   mixin(AttributeThis!"StringAttribute");
 
   mixin(OProperty!("size_t", "maxLength"));
@@ -27,7 +27,7 @@ this.isString(true);
 }
 ///
 unittest {
-  auto attribute = new DStringAttribute;
+  auto attribute = new StringAttribute;
   assert(attribute.name == "string");
   assert(attribute.registerPath == "string");
 

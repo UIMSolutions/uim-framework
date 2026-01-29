@@ -13,7 +13,7 @@ is.dataFormat.big
 is.dataFormat.array
 means.location.address
  */
-class AddressLineAttribute : DStringAttribute {
+class AddressLineAttribute : StringAttribute {
   mixin(AttributeThis!"AddressLineAttribute");
 
   // Initialization hook method.

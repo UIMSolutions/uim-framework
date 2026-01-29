@@ -21,5 +21,4 @@ class ByteAttribute : UIMAttribute {
     this.registerPath("byte");
   }
 }
-  }
-}
+ 

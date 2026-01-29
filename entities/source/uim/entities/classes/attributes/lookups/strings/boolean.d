@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.lookups.strings.boolean;
 import uim.entities;
 
 @safe:
-class StringBooleanAttribute : DLookupAttribute {
+class StringBooleanAttribute : LookupAttribute {
   mixin(AttributeThis!("StringBooleanAttribute"));
 
   mixin(OProperty!("bool[string]", "lookups"));

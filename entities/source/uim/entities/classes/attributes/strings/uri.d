@@ -12,7 +12,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class UriAttribute : DStringAttribute {
+class UriAttribute : StringAttribute {
   mixin(AttributeThis!("UriAttribute"));
 
   // Initialization hook method.

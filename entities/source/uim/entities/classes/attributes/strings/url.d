@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.url;
 import uim.entities;
 
 @safe:
-class UrlAttribute : DStringAttribute {
+class UrlAttribute : StringAttribute {
   mixin(AttributeThis!("UrlAttribute"));
 
   // Initialization hook method.

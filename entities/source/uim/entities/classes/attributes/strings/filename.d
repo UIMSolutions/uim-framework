@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // A string value representing the name of a file.
-class FileNameAttribute : DStringAttribute {
+class FileNameAttribute : StringAttribute {
   mixin(AttributeThis!("FileNameAttribute"));
 
   // Initialization hook method.

@@ -13,7 +13,7 @@ means.iUIMEntity.person.fullName */
 import uim.entities;
 
 @safe:
-class FullNameAttribute : DStringAttribute {
+class FullNameAttribute : StringAttribute {
   mixin(AttributeThis!("FullNameAttribute"));
 
   // Initialization hook method.

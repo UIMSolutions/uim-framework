@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.reference.language.tag
-class LanguageTagAttribute : DStringAttribute {
+class LanguageTagAttribute : StringAttribute {
   mixin(AttributeThis!("LanguageTagAttribute"));
 
   // Initialization hook method.

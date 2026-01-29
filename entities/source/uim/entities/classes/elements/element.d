@@ -189,7 +189,7 @@ class UIMElement : UIMObject, IElement {
   }
   ///
   unittest {
-    auto value = (new DStringAttribute).createValue;
+    auto value = (new StringAttribute).createValue;
     value.set("aValue");
     assert(value.toString == "aValue");
 

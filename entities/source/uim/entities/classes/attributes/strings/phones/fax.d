@@ -15,7 +15,7 @@ means.iUIMEntity.service.phone.fax */
 import uim.entities;
 
 @safe:
-class FaxAttribute : DStringAttribute {
+class FaxAttribute : StringAttribute {
   mixin(AttributeThis!("FaxAttribute"));
 
   // Initialization hook method.

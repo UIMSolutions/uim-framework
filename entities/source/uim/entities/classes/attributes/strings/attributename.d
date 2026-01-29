@@ -10,7 +10,7 @@ module uim.entities.classes.attributes.strings.attributename;
 import uim.entities;
 
 @safe:
-class AttributeNameAttribute : DStringAttribute {
+class AttributeNameAttribute : StringAttribute {
   mixin(AttributeThis!("AttributeNameAttribute"));
 
   /*

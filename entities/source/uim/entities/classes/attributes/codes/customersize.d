@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.codes.customersize;
 import uim.entities;
 
 @safe:
-class CustomerSizeCodeAttribute : DIntegerStringAttribute {
+class CustomerSizeCodeAttribute : IntegerStringAttribute {
   mixin(AttributeThis!("CustomerSizeCodeAttribute"));
 
   // Initialization hook method.

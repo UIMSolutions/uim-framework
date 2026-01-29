@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.codes.state;
 import uim.entities;
 
 @safe:
-class StateCodeAttribute : DIntegerStringAttribute {
+class StateCodeAttribute : IntegerStringAttribute {
   mixin(AttributeThis!("StateCodeAttribute"));
 
   // Initialization hook method.

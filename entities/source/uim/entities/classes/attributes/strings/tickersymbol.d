@@ -15,7 +15,7 @@ means.iUIMEntity.tickerSymbol */
 import uim.entities;
 
 @safe:
-class TickerSymbolAttribute : DStringAttribute {
+class TickerSymbolAttribute : StringAttribute {
   mixin(AttributeThis!("TickerSymbolAttribute"));
 
   // Initialization hook method.
