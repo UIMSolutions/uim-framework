@@ -14,7 +14,7 @@ means.location.longitude */
 import uim.entities;
 
 @safe:
-class LongitudeAttribute : DDoubleAttribute {
+class LongitudeAttribute : DoubleAttribute {
   mixin(AttributeThis!("LongitudeAttribute"));
 
   // Initialization hook method.

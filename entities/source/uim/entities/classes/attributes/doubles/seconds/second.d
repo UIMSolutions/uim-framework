@@ -20,7 +20,7 @@ means.measurement.duration.seconds */
 import uim.entities;
 
 @safe:
-class SecondAttribute : DDoubleAttribute {
+class SecondAttribute : DoubleAttribute {
   mixin(AttributeThis!("SecondAttribute"));
 
   // Initialization hook method.

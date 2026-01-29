@@ -21,7 +21,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class WattAttribute : DDoubleAttribute {
+class WattAttribute : DoubleAttribute {
   mixin(AttributeThis!("WattAttribute"));
 
   // Initialization hook method.

@@ -19,7 +19,7 @@ has.measurement.fundamentalComponent.gram */
 import uim.entities;
 
 @safe:
-class GramAttribute : DDoubleAttribute {
+class GramAttribute : DoubleAttribute {
   mixin(AttributeThis!("GramAttribute"));
 
   // Initialization hook method.

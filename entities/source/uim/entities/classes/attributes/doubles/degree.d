@@ -13,7 +13,7 @@ Unit of measure for angles in degrees, 1/360 rotation
 means.measurement.dimension.angle
 means.measurement.units.degree
 has.measurement.fundamentalComponent */
-class DegreeAttribute : DDoubleAttribute {
+class DegreeAttribute : DoubleAttribute {
   mixin(AttributeThis!("DegreeAttribute"));
 
   // Initialization hook method.

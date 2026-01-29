@@ -17,7 +17,7 @@ has.measurement.fundamentalComponent.ampere
 import uim.entities;
 
 @safe:
-class AmpereAttribute : DDoubleAttribute {
+class AmpereAttribute : DoubleAttribute {
   mixin(AttributeThis!("AmpereAttribute"));
 
   // Initialization hook method.

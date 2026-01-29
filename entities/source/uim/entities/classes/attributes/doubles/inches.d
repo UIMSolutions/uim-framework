@@ -15,7 +15,7 @@ means.measurement.distance.inches */
 import uim.entities;
 
 @safe:
-class InchesAttribute : DDoubleAttribute {
+class InchesAttribute : DoubleAttribute {
   mixin(AttributeThis!("InchesAttribute"));
 
   // Initialization hook method.

@@ -22,7 +22,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class HertzAttribute : DDoubleAttribute {
+class HertzAttribute : DoubleAttribute {
   mixin(AttributeThis!("HertzAttribute"));
 
   // Initialization hook method.

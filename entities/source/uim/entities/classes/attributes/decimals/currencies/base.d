@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.decimals.currencies.base;
 import uim.entities;
 
 @safe:
-class BaseCurrencyAttribute : DCurrencyAttribute {
+class BaseCurrencyAttribute : CurrencyAttribute {
   mixin(AttributeThis!("BaseCurrencyAttribute"));
 
   // Initialization hook method.

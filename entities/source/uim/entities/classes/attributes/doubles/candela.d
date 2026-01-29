@@ -6,7 +6,7 @@ module uim.entities.classes.attributes.doubles.candela;
 import uim.entities;
 
 @safe:
-class CandelaAttribute : DDoubleAttribute {
+class CandelaAttribute : DoubleAttribute {
   mixin(AttributeThis!("CandelaAttribute"));
 
   // Initialization hook method.

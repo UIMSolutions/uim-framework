@@ -19,7 +19,7 @@ has.measurement.fundamentalComponent.kelvin */
 import uim.entities;
 
 @safe:
-class KelvinAttribute : DDoubleAttribute {
+class KelvinAttribute : DoubleAttribute {
   mixin(AttributeThis!("KelvinAttribute"));
 
   // Initialization hook method.

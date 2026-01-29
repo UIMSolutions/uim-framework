@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.location.latitude
-class LatitudeAttribute : DDoubleAttribute {
+class LatitudeAttribute : DoubleAttribute {
   mixin(AttributeThis!("LatitudeAttribute"));
 
   // Initialization hook method.

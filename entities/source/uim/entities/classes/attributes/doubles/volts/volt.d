@@ -22,7 +22,7 @@ has.measurement.fundamentalComponent.ampere */
 import uim.entities;
 
 @safe:
-class VoltAttribute : DDoubleAttribute {
+class VoltAttribute : DoubleAttribute {
   mixin(AttributeThis!("VoltAttribute"));
 
   // Initialization hook method.

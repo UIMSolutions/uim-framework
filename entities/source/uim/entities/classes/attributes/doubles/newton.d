@@ -21,7 +21,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class NewtonAttribute : DDoubleAttribute {
+class NewtonAttribute : DoubleAttribute {
   mixin(AttributeThis!("NewtonAttribute"));
 
   // Initialization hook method.

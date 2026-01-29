@@ -19,7 +19,7 @@ has.measurement.fundamentalComponent */
 import uim.entities;
 
 @safe:
-class RadianAttribute : DDoubleAttribute {
+class RadianAttribute : DoubleAttribute {
   mixin(AttributeThis!("RadianAttribute"));
 
   // Initialization hook method.

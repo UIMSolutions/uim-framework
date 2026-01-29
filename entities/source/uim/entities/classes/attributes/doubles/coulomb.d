@@ -9,7 +9,7 @@ import uim.entities;
 means.measurement.units.si.coulomb
 has.measurement.fundamentalComponent.second
 has.measurement.fundamentalComponent.ampere */
-class CoulombAttribute : DDoubleAttribute {
+class CoulombAttribute : DoubleAttribute {
   mixin(AttributeThis!("CoulombAttribute"));
 
   // Initialization hook method.

@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.datetimes.timestamp;
 import uim.entities;
 
 @safe:
-class TimestampAttribute : DLongAttribute {
+class TimestampAttribute : LongAttribute {
   mixin(AttributeThis!("TimestampAttribute"));
 
   // Initialization hook method.

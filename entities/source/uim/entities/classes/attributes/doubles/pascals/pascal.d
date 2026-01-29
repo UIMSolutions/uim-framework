@@ -24,7 +24,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class PascalAttribute : DDoubleAttribute {
+class PascalAttribute : DoubleAttribute {
   mixin(AttributeThis!("PascalAttribute"));
 
   // Initialization hook method.
