@@ -36,15 +36,15 @@ class JouleAttribute : DoubleAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("joule");
     this.registerPath("joule");
+
+    return true;
   }
 }

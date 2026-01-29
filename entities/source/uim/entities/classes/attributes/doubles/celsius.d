@@ -32,8 +32,9 @@ class CelsiusAttribute : DoubleAttribute {
       return false;
     }
 
-
     this.name("celsius");
     this.registerPath("celsius");
+
+    return true;
   }
 }

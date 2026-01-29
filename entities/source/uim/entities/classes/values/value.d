@@ -12,12 +12,12 @@ mixin(ShowModule!());
 @safe:
 class UIMValue : UIMObject, IValue {
   // --- Explicit property getters and setters for marked fields ---
-  @property UIMAttribute attribute() const {
+  @property IAttribute attribute() const {
     return _attribute;
   }
 
-  @property void attribute(UIMAttribute v) {
-    _attribute = v;
+  @property void attribute(IAttribute attribute) {
+    _attribute = attribute;
   }
 
   @property bool isBoolean() const {
@@ -149,15 +149,26 @@ class UIMValue : UIMObject, IValue {
   }
 
   this() {
-    initialize;
+    initialize();
   }
 
-  this(UIMAttribute theAttribute) {
-    this().attribute(theAttribute);
+  this(IAttribute attribute) {
+    super();
+    this.attribute(attribute);
+  }
+
+  this(IAttribute attribute, Json[string] initData) {
+    super(initData);
+    this.attribute(attribute);
   }
 
   // Hook
-  void initialize(Json configSettings = Json(null)) {
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
   }
 
   // #region isNull
@@ -237,14 +248,14 @@ class UIMValue : UIMObject, IValue {
   }
 }
 ///
-  unittest {
-    auto value = new UIMValue;
-    assert(!value.isNull);
-    assert(!value.isString);
-    assert(!value.isInteger);
-    assert(!value.isBoolean);
-    assert(!value.isDouble);
-    assert(!value.isNullable);
-    assert(!value.isObject);
-    assert(!value.isArray);
+unittest {
+  auto value = new UIMValue;
+  assert(!value.isNull);
+  assert(!value.isString);
+  assert(!value.isInteger);
+  assert(!value.isBoolean);
+  assert(!value.isDouble);
+  assert(!value.isNullable);
+  assert(!value.isObject);
+  assert(!value.isArray);
 }

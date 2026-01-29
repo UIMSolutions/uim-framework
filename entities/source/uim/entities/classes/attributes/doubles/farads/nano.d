@@ -45,8 +45,9 @@ class NanoFaradAttribute : FaradAttribute {
       return false;
     }
 
-
     this.name("nanoFarad");
     this.registerPath("nanoFarad");
+
+    return true;
   }
 }

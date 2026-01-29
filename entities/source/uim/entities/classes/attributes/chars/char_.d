@@ -23,16 +23,16 @@ class CharAttribute : UIMAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.dataFormats(["character", "big"])
       .name("char");
     this.registerPath("char");
+
+    return true;
   }
 }

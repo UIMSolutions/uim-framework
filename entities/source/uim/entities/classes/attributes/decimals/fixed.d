@@ -31,9 +31,10 @@ class FixedDecimalAttribute : DecimalAttribute {
       return false;
     }
 
-
     this.name("fixedDecimal");
     this.registerPath("fixedDecimal");
+
+    return true;
   }
 }
 

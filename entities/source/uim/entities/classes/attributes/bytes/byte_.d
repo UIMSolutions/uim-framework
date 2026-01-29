@@ -23,18 +23,17 @@ class ByteAttribute : UIMAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
-    this
-      .addDataFormats(["byte"])
-      .name("byte");
+    this.addDataFormats(["byte"]);
+    this.name("byte");
     this.registerPath("byte");
+
+    return true;
   }
 }
  

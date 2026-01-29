@@ -39,6 +39,8 @@ class StateCodeAttribute : IntegerStringAttribute {
     ]);
     this.isNullable(true);
     this.registerPath("statecode");
+
+    return true;
   }
 }
 

@@ -36,7 +36,9 @@ class DatetimeAttribute : DateAttribute {
     this.registerPath("datetime");
       // means.measurement.date
       // means.measurement.time
+
+    return true;
   }
   override IValue createValue() {
-    return DatetimeValue(this); }
+    return new DatetimeValue(this); }
 }

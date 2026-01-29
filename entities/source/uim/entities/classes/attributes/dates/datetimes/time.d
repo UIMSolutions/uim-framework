@@ -36,7 +36,9 @@ class TimeAttribute : UIMAttribute {
     this.registerPath("time");
       // means.measurement.date
       // means.measurement.time
+
+    return true;
   }
   override IValue createValue() {
-    return TimeValue(this); }
+    return new TimeValue(this); }
 }

@@ -30,7 +30,6 @@ class StatusCodeAttribute : IntegerStringAttribute {
       return false;
     }
 
-
     this.name("statusCode");
     this.display("Status Reason");
     this.lookups([
@@ -39,5 +38,7 @@ class StatusCodeAttribute : IntegerStringAttribute {
       ]);
     this.isNullable(true);
     this.registerPath("statuscode");
+
+    return true;
   }
 }

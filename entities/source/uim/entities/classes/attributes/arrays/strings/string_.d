@@ -40,6 +40,6 @@ class StringArrayAttribute : UIMAttribute {
   }
 
   override IValue createValue() {
-    return (new StringArrayValue).attribute(this);
+    return new StringArrayValue(this);
   }
 }

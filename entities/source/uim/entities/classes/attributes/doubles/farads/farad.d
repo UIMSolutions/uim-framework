@@ -44,8 +44,9 @@ class FaradAttribute : DoubleAttribute {
       return false;
     }
 
-
     this.name("farad");
     this.registerPath("farad");
+
+    return true;
   }  
 }

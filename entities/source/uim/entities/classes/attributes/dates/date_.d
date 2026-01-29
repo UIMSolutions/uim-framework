@@ -35,9 +35,11 @@ class DateAttribute : UIMAttribute {
     this.name("date");
     this.dataFormats(["date"]);
     this.registerPath("date");
+
+    return true;
   }
 
   override IValue createValue() {
-    return DateValue(this);
+    return new DateValue(this);
   }
 }

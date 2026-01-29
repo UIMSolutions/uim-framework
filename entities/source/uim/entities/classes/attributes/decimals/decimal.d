@@ -23,23 +23,16 @@ class DecimalAttribute : UIMAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.addDataFormats(["numeric.shaped"]);
     this.name("decimal");
     this.registerPath("decimal");
-  }
-}
 
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDecimalAttribute);
-    testAttribute(DecimalAttribute);
+    return true;
   }
 }

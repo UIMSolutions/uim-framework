@@ -36,9 +36,10 @@ class CurrencyCodeAttribute : StringStringAttribute {
       return false;
     }
 
-
     this.name("currencyCode");
     this.registerPath("currencyCode");
+
+    return true;
   }
 }
 

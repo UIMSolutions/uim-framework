@@ -43,5 +43,7 @@ means.content.binary.image */
       .addDataFormats(["array"])
       .name("image");
     this.registerPath("image");
+
+    return true;
   }
 }

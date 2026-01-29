@@ -16,11 +16,20 @@ class UIMAttribute : UIMObject, IAttribute {
   }
 
   this(Json initData) {
-    super(initData.toMap);
+    super(initData);
   }
 
   this(Json[string] initData) {
     super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
   }
 
   // --- Explicit property getters and setters for marked fields ---    

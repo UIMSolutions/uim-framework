@@ -23,15 +23,15 @@ class CurrencyAttribute : DecimalAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     /* is.dataFormat.numeric.shaped
     means.measurement.currency */
+
+    return true;
   }
 }

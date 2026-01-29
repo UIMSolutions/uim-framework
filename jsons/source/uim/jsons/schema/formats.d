@@ -67,7 +67,7 @@ class ateFormatValidator : DFormatValidator {
 /**
  * DateTime format validator (ISO 8601).
  */
-class ateTimeFormatValidator : DFormatValidator {
+class DateTimeFormatValidator : DFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto dateTimeRegex = regex(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}");

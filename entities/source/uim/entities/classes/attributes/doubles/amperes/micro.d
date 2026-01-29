@@ -35,15 +35,15 @@ class MicroAmpereAttribute : AmpereAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("microAmpere");
     this.registerPath("microAmpere");
+
+    return true;
   }
 }

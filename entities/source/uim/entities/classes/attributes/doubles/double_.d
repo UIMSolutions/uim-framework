@@ -23,17 +23,17 @@ class DoubleAttribute : UIMAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.dataFormats(["floatingPoint", "big"]);
     this.isDouble(true);
     this.name("double");
     this.registerPath("double");
+
+    return true;
   }
 }

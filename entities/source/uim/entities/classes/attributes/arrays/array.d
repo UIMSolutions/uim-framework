@@ -10,13 +10,13 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class DArrayAttribute : UIMAttribute {
+class ArrayAttribute : UIMAttribute {
   this() {
     super();
   }
 
   this(Json initData) {
-    super(initData.toMap);
+    super(initData);
   }
 
   this(Json[string] initData) {

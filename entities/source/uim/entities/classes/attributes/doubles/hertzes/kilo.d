@@ -39,9 +39,10 @@ class KiloHertzAttribute : HertzAttribute {
       return false;
     }
 
-
     this.name("kilohertz");
     this.registerPath("kilohertz");
+
+    return true;
   }
 }
 

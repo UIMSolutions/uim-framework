@@ -32,8 +32,9 @@ class CoulombAttribute : DoubleAttribute {
       return false;
     }
 
-
     this.name("coulomb");
     this.registerPath("coulomb");
+
+    return true;
   }
 }

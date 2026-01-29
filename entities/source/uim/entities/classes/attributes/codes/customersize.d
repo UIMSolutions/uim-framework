@@ -24,22 +24,21 @@ class CustomerSizeCodeAttribute : IntegerStringAttribute {
   }
 
   // Initialization hook method.
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("customerSizeCode");
-      this.display("Customer Size");
-      this.lookups([
-        0: "0-100 (small)",  
-        1: "100-1000 (middle)",
-        2: "1000-10000 (large)"
-      ]);
-      this.isNullable(true);
+    this.display("Customer Size");
+    this.lookups([
+      0: "0-100 (small)",
+      1: "100-1000 (middle)",
+      2: "1000-10000 (large)"
+    ]);
+    this.isNullable(true);
     this.registerPath("customerSizeCode");
+
+    return true;
   }
 }
-
-

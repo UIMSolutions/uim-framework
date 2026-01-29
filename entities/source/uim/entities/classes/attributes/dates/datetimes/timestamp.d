@@ -30,11 +30,12 @@ class TimestampAttribute : LongAttribute {
       return false;
     }
 
-
-    this.dataFormats(["timestamp"])
-      .name("timestamp");
+    this.dataFormats(["timestamp"]);
+    this.name("timestamp");
     this.registerPath("timestamp");
+
+    return true;
   }
   override IValue createValue() {
-    return TimestampValue(this); }
+    return new TimestampValue(this); }
 }

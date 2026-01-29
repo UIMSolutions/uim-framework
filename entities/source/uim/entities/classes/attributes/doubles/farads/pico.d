@@ -37,16 +37,16 @@ class PicoFaradAttribute : FaradAttribute {  this() {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("picoFarad");
     this.registerPath("picoFarad");
+
+    return true;
   }
 }
 

@@ -41,8 +41,7 @@ class BirthDateAttribute : DatetimeAttribute {
     this.registerPath("birthdate");
 
     return true;
-
   }
   override IValue createValue() {
-    return DatetimeValue(this); }
+    return new DatetimeValue(this); }
 }

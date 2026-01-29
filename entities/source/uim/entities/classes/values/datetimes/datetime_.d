@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class atetimeValue : UIMValue {
+class DatetimeValue : UIMValue {
   this() {
     super;
   }  

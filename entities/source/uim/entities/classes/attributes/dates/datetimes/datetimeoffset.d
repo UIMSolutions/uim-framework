@@ -38,5 +38,7 @@ class DatetimeOffsetAttribute : DatetimeAttribute {
         /* means.measurement.date
         means.measurement.time
         is.dataFormat.timeOffset */
+
+    return true;
   }
 }

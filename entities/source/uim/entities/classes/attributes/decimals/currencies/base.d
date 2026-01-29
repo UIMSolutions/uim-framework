@@ -23,13 +23,11 @@ class BaseCurrencyAttribute : CurrencyAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
-
 
     /* 
 Value is expressed in the base currency units for the system
@@ -43,6 +41,8 @@ means.measurement.currency
     */
     this.name("baseCurrency");
     this.registerPath("baseCurrency");
+
+    return true;
   }
 }
   
