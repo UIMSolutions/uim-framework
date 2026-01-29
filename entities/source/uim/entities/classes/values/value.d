@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class UIMValue : UIMObject, IData {
+class UIMValue : UIMObject, IValue {
   // --- Explicit property getters and setters for marked fields ---
   @property UIMAttribute attribute() const {
     return _attribute;

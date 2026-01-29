@@ -4,7 +4,7 @@ A high-performance, type-safe in-memory database library for D with optimized qu
 
 ## Features
 
-✅ **Type-Safe Interfaces** - `IDatabase` and `ITable` contracts with @safe attributes
+✅ **Type-Safe Interfaces** - `IValuebase` and `ITable` contracts with @safe attributes
 ✅ **Efficient Filtering** - Advanced WHERE clause support with custom predicates
 ✅ **Query Optimization** - Sorting, limiting, offset pagination
 ✅ **Indexing** - Create indexes on columns for faster lookups
@@ -141,7 +141,7 @@ database/
 │           ├── helpers.d          # QueryBuilder, BatchInsertBuilder
 │           ├── interfaces/
 │           │   ├── package.d
-│           │   ├── database.d     # IDatabase interface
+│           │   ├── database.d     # IValuebase interface
 │           │   └── table.d        # ITable interface
 │           └── base/
 │               ├── package.d

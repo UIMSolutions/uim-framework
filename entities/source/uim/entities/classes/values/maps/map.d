@@ -21,7 +21,7 @@ class MapValue(K) : UIMValue {
 
   protected UIMValue[K] _items;
 
-  DMapValue opIndexAssign(UIMValue value, K key) {
+  MapValue opIndexAssign(UIMValue value, K key) {
     if (containsKey(key)) {
       _items[key] = value; 
     } else {
@@ -30,7 +30,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(bool value, K key) {
+  MapValue opIndexAssign(bool value, K key) {
     if (containsKey(key)) {
       _items[key].value(value ? "true" : "false"); 
     } else {
@@ -39,7 +39,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(int value, K key) {
+  MapValue opIndexAssign(int value, K key) {
     if (containsKey(key)) {
       _items[key].value(to!string(value)); 
     } else {
@@ -48,7 +48,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(double value, K key) {
+  MapValue opIndexAssign(double value, K key) {
     if (containsKey(key)) {
       _items[key].value(to!string(value)); 
     } else {
@@ -57,7 +57,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(string value, K key) {    
+  MapValue opIndexAssign(string value, K key) {    
      if (containsKey(key)) {
       _items[key].value(value); 
     } else {
@@ -66,7 +66,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(UUID value, K key) {
+  MapValue opIndexAssign(UUID value, K key) {
     if (containsKey(key)) {
       _items[key].value(value.toString); 
     } else {
@@ -75,7 +75,7 @@ class MapValue(K) : UIMValue {
     return this;
   }
 
-  DMapValue opIndexAssign(UIMValue[] values, K key) {
+  MapValue opIndexAssign(UIMValue[] values, K key) {
     if (containsKey(key)) {
       _items[key] = new ArrayValue(values); 
     } else {
@@ -147,7 +147,7 @@ class MapValue(K) : UIMValue {
     return "["~results.join(",") ~"]";
   }
 }
-auto MapValue(K)() { return new DMapValue!K(); }
+auto MapValue(K)() { return new MapValue!K(); }
 
 ///
 unittest {  

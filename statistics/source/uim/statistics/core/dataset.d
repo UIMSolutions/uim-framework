@@ -9,7 +9,7 @@ import uim.statistics.interfaces.dataset;
 import std.algorithm : map;
 import std.array : array;
 
-class Dataset : IDataset {
+class Dataset : IValueset {
     private Sample[] _samples;
 
     this() @safe {}

@@ -165,12 +165,12 @@ class DataCache : UIMObject {
 /**
  * Cached data source wrapper
  */
-class CachedDataSource : UIMObject, IDataSource {
-  protected IDataSource _source;
+class CachedDataSource : UIMObject, IValueSource {
+  protected IValueSource _source;
   protected DataCache _cache;
   protected bool _cacheEnabled = true;
 
-  this(IDataSource source, size_t cacheSize = 1000) {
+  this(IValueSource source, size_t cacheSize = 1000) {
     super();
     _source = source;
     _cache = new DataCache(cacheSize);

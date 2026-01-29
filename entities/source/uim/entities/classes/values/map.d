@@ -72,8 +72,8 @@ import uim.entities;
     return obj;
   }
   
-  DMapValue copy() {
-    DMapValue MapValue = MapValue;
+  MapValue copy() {
+    MapValue MapValue = MapValue;
 
     foreach(key, value; _items) {
       MapValue[key] = value.copy;
@@ -82,7 +82,7 @@ import uim.entities;
     return MapValue;
   }
 }
-auto MapValue() { return new DMapValue; }
+auto MapValue() { return new MapValue; }
 
 version(test_uim_models) { unittest {
   auto map = MapValue;

@@ -18,12 +18,13 @@ class LookupAttribute : UIMAttribute {
     super.initialize(configSettings);
     // means.measurement.lookup
 
-    this.name("lookup")
-      .dataFormats(["lookup"]);
+    this.name("lookup");
+    this.dataFormats(["lookup"]);
     this.registerPath("lookup");
   }
 
-/*   override IValue createValue() {
-    return LookupValue(this); } */
+  override IValue createValue() {
+    return LookupValue(this); 
+  } 
 }
 

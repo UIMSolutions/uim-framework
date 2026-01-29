@@ -44,14 +44,14 @@ class Model : UIMObject, IModel {
     * Default config
     * These are merged with user-provided config when the component is used.
     */
-  protected IData[string] _defaultConfig;
-  IData[string] defaultConfig() const { return _defaultConfig; }
-  IModel defaultConfig(IData[string] value) { _defaultConfig = value; return this; }
+  protected IValue[string] _defaultConfig;
+  IValue[string] defaultConfig() const { return _defaultConfig; }
+  IModel defaultConfig(IValue[string] value) { _defaultConfig = value; return this; }
 
   // Configuration of model
-  protected IData[string] _config;
-  IData[string] config() const { return _config; }
-  IModel config(IData[string] value) { _config = value; return this; }
+  protected IValue[string] _config;
+  IValue[string] config() const { return _config; }
+  IModel config(IValue[string] value) { _config = value; return this; }
 
   IModel create() {
     return Model;

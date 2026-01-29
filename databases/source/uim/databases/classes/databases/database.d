@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 /// High-level database façade that wraps the in-memory engine
 /// and exposes type-safe helpers plus query execution.
-class Database : UIMObject, IDatabase {
+class Database : UIMObject, IValuebase {
     private DatabaseEngine _engine;
     private Table[string] _tableCache; // Cache for faster table access
 
@@ -51,7 +51,7 @@ class Database : UIMObject, IDatabase {
     }
 
     /// Drop/delete a table by name.
-    IDatabase dropTable(string name) {
+    IValuebase dropTable(string name) {
         _engine.dropTable(name);
         _tableCache.remove(name); // Remove from cache
         return this;
@@ -68,7 +68,7 @@ class Database : UIMObject, IDatabase {
     }
 
     /// Clear all tables in the database.
-    IDatabase clear() {
+    IValuebase clear() {
         _engine.clear();
         _tableCache.clear(); // Clear cache
         return this;

@@ -23,12 +23,12 @@ interface IMigration {
   /**
    * Run the migration (apply changes)
    */
-  void up(IDatabase database, void delegate(bool success) @safe callback) @trusted;
+  void up(IValuebase database, void delegate(bool success) @safe callback) @trusted;
 
   /**
    * Rollback the migration (undo changes)
    */
-  void down(IDatabase database, void delegate(bool success) @safe callback) @trusted;
+  void down(IValuebase database, void delegate(bool success) @safe callback) @trusted;
 }
 
 /**
@@ -46,8 +46,8 @@ abstract class Migration : UIMObject, IMigration {
     return _name;
   }
 
-  abstract void up(IDatabase database, void delegate(bool success) @safe callback) @trusted;
-  abstract void down(IDatabase database, void delegate(bool success) @safe callback) @trusted;
+  abstract void up(IValuebase database, void delegate(bool success) @safe callback) @trusted;
+  abstract void down(IValuebase database, void delegate(bool success) @safe callback) @trusted;
 }
 
 /**
@@ -55,10 +55,10 @@ abstract class Migration : UIMObject, IMigration {
  */
 class MigrationRunner : UIMObject {
   protected IMigration[] _migrations;
-  protected IDatabase _database;
+  protected IValuebase _database;
   protected string[] _executed;
 
-  this(IDatabase database) {
+  this(IValuebase database) {
     super();
     _database = database;
   }

@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Base data source implementation
  */
-abstract class BaseDataSource : UIMObject, IDataSource {
+abstract class BaseDataSource : UIMObject, IValueSource {
   protected string _name;
   protected DataSourceType _type;
   protected bool _isConnected = false;
@@ -96,19 +96,19 @@ class JsonDataSource : BaseDataSource {
 /**
  * Data provider implementation
  */
-class DataProvider : UIMObject, IDataProvider {
-  protected IDataSource[string] _sources;
+class DataProvider : UIMObject, IValueProvider {
+  protected IValueSource[string] _sources;
 
   this() {
     super();
   }
 
-  IDataProvider registerSource(string sourceName, IDataSource source) {
+  IValueProvider registerSource(string sourceName, IValueSource source) {
     _sources[sourceName] = source;
     return this;
   }
 
-  IDataSource getSource(string sourceName) {
+  IValueSource getSource(string sourceName) {
     if (auto ptr = sourceName in _sources) {
       return *ptr;
     }
@@ -119,8 +119,8 @@ class DataProvider : UIMObject, IDataProvider {
     return (sourceName in _sources) !is null;
   }
 
-  IDataSource[] getAllSources() {
-    IDataSource[] sources;
+  IValueSource[] getAllSources() {
+    IValueSource[] sources;
     foreach (source; _sources.byValue()) {
       sources ~= source;
     }

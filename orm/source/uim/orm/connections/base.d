@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Base database connection class
  */
-abstract class BaseDatabase : UIMObject, IDatabase {
+abstract class BaseDatabase : UIMObject, IValuebase {
   protected string _driver;
   protected string _host;
   protected ushort _port;
@@ -65,7 +65,7 @@ abstract class BaseDatabase : UIMObject, IDatabase {
  * Connection pool for managing database connections
  */
 class DatabaseConnectionPool : UIMObject {
-  protected IDatabase[string] _connections;
+  protected IValuebase[string] _connections;
   protected size_t _maxConnections = 10;
   protected size_t[string] _connectionCounts;
 
@@ -74,14 +74,14 @@ class DatabaseConnectionPool : UIMObject {
     _maxConnections = maxConns;
   }
 
-  IDatabase getConnection(string connectionName) {
+  IValuebase getConnection(string connectionName) {
     if (auto ptr = connectionName in _connections) {
       return *ptr;
     }
     return null;
   }
 
-  void registerConnection(string connectionName, IDatabase connection) {
+  void registerConnection(string connectionName, IValuebase connection) {
     if (_connections.length < _maxConnections) {
       _connections[connectionName] = connection;
       _connectionCounts[connectionName] = 0;

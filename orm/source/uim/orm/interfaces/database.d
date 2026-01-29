@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Database connection interface
  */
-interface IDatabase {
+interface IValuebase {
   /**
    * Get the database driver type (mysql, sqlite, postgresql, etc.)
    */

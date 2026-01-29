@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DatabaseEngine : UIMObject, IDatabaseEngine {
+class DatabaseEngine : UIMObject, IValuebaseEngine {
     // Implementation of Engine class
 
     abstract Table createTable(string name, string[] columns);

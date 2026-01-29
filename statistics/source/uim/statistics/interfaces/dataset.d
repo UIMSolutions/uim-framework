@@ -12,7 +12,7 @@ struct Sample {
     SysTime timestamp;
 }
 
-interface IDataset {
+interface IValueset {
     void add(Sample s) @safe;
     size_t length() const @safe;
     double[] values() const @safe;

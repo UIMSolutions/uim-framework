@@ -10,7 +10,7 @@ UIM DataSources provides a unified interface for working with multiple data sour
 
 ### Core Capabilities
 - **Multiple Sources**: Support for JSON, CSV, Database, REST APIs, XML, YAML
-- **Unified Interface**: IDataSource interface for all source types
+- **Unified Interface**: IValueSource interface for all source types
 - **Provider Pattern**: Manage multiple data sources through DataProvider
 - **Async Operations**: All operations are asynchronous with vibe.d integration
 - **Type Safe**: Leverages D's strong type system with JSON serialization
@@ -109,10 +109,10 @@ writeln(result); // {"name": "John"}
 
 ## Core Components
 
-### IDataSource Interface
+### IValueSource Interface
 
 ```d
-interface IDataSource {
+interface IValueSource {
     string name();
     DataSourceType type();
     bool isAvailable() @safe;
@@ -128,14 +128,14 @@ interface IDataSource {
 }
 ```
 
-### IDataProvider Interface
+### IValueProvider Interface
 
 ```d
-interface IDataProvider {
-    IDataProvider registerSource(string sourceName, IDataSource source);
-    IDataSource getSource(string sourceName);
+interface IValueProvider {
+    IValueProvider registerSource(string sourceName, IValueSource source);
+    IValueSource getSource(string sourceName);
     bool hasSource(string sourceName);
-    IDataSource[] getAllSources();
+    IValueSource[] getAllSources();
     
     void query(string sourceName, string query, void delegate(...) callback) @trusted;
     void fetch(string sourceName, void delegate(...) callback) @trusted;
@@ -189,8 +189,8 @@ enum FilterOperator {
 ```
 uim.datasources
 ├── uim.datasources.interfaces    # Interface contracts
-│   ├── datasource.d              # IDataSource, DataSourceType
-│   ├── provider.d                # IDataProvider
+│   ├── datasource.d              # IValueSource, DataSourceType
+│   ├── provider.d                # IValueProvider
 │   └── filter.d                  # IFilter, FilterOperator
 ├── uim.datasources.providers     # Data source implementations
 │   └── base.d                    # BaseDataSource, JsonDataSource, DataProvider
@@ -243,7 +243,7 @@ class UserDataManager {
 
 ```d
 class ProductRepository {
-    private IDataSource _source;
+    private IValueSource _source;
 
     this() {
         auto source = new JsonDataSource("products", loadProducts());
@@ -290,19 +290,19 @@ class OrderDataProcessor {
 ## Design Patterns
 
 ### 1. **Abstract Factory Pattern**
-   - IDataSource interface for creating different source types
+   - IValueSource interface for creating different source types
    - Factory methods in DataProvider
 
 ### 2. **Adapter Pattern**
-   - Different data sources adapted through IDataSource interface
-   - CachedDataSource wraps any IDataSource
+   - Different data sources adapted through IValueSource interface
+   - CachedDataSource wraps any IValueSource
 
 ### 3. **Strategy Pattern**
    - Different transformers implement ITransformer
    - Filter operators as strategies
 
 ### 4. **Decorator Pattern**
-   - CachedDataSource decorates IDataSource with caching
+   - CachedDataSource decorates IValueSource with caching
 
 ### 5. **Repository Pattern**
    - DataProvider acts as repository for multiple sources

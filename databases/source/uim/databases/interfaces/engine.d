@@ -8,7 +8,7 @@ module uim.databases.interfaces.engine;
 import uim.databases;
 @safe:
 
-interface IDatabaseEngine {
+interface IValuebaseEngine {
   /// Create a new table with specified name and columns
   /// Returns: reference to created table
   Table createTable(string name, string[] columns);
@@ -21,7 +21,7 @@ interface IDatabaseEngine {
   bool hasTable(string name) const;
   
   /// Drop/delete a table
-  IDatabaseEngine dropTable(string name);
+  IValuebaseEngine dropTable(string name);
   
   /// Get all table names
   string[] tableNames() const;
@@ -30,7 +30,7 @@ interface IDatabaseEngine {
   ulong rowCount() const;
   
   /// Clear all tables and data
-  IDatabaseEngine clear();
+  IValuebaseEngine clear();
   
   /// Get all tables
   const(Table[string]) tables() const;

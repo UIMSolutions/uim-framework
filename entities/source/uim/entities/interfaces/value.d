@@ -9,7 +9,7 @@ module uim.entities.interfaces.value;
 import uim.entities;
 @safe:
 
-interface IData {
+interface IValue {
   IAttribute attribute();
   
   bool isBoolean();

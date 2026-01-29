@@ -14,13 +14,13 @@ The uim-database library has been comprehensively optimized with type-safe inter
 ### 1. Architecture Refactoring
 - **Before**: Monolithic inmemory.d with basic CRUD
 - **After**: Modular architecture with interface contracts
-  - `interfaces/` - IDatabase, ITable contracts
+  - `interfaces/` - IValuebase, ITable contracts
   - `base/` - InMemoryDatabase, Table implementations
   - `helpers.d` - QueryBuilder, BatchInsertBuilder utilities
   - `inmemory.d` - Backwards compatibility layer
 
 ### 2. Type-Safe Interfaces
-- **IDatabase** contract with 8 operations
+- **IValuebase** contract with 8 operations
   - createTable, getTable, hasTable, dropTable
   - tableNames(), rowCount(), clear()
 - **ITable** contract with 11 operations
@@ -109,7 +109,7 @@ database/source/uim/database/
 ├── helpers.d              # QueryBuilder, BatchInsertBuilder
 ├── interfaces/
 │   ├── package.d
-│   ├── database.d         # IDatabase interface
+│   ├── database.d         # IValuebase interface
 │   └── table.d            # ITable interface
 └── base/
     ├── package.d
@@ -119,7 +119,7 @@ database/source/uim/database/
 
 ## Statistics
 
-- **Interfaces**: 2 (IDatabase, ITable)
+- **Interfaces**: 2 (IValuebase, ITable)
 - **Implementations**: 2 (InMemoryDatabase, Table)
 - **Helpers**: 2 (QueryBuilder, BatchInsertBuilder)
 - **Database Methods**: 8
@@ -262,7 +262,7 @@ table.createIndex("col");
 ## Quality Metrics
 
 - ✅ Type-safe: 100% @safe/@trusted
-- ✅ Interface-based: IDatabase, ITable contracts
+- ✅ Interface-based: IValuebase, ITable contracts
 - ✅ Modular: 6 source files, clear separation
 - ✅ Tested: All tests pass
 - ✅ Documented: Comprehensive README

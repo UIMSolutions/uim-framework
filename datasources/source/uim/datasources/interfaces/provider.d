@@ -14,16 +14,16 @@ mixin(ShowModule!());
 /**
  * Data provider interface for managing multiple data sources
  */
-interface IDataProvider {
+interface IValueProvider {
   /**
    * Register a data source
    */
-  IDataProvider registerSource(string sourceName, IDataSource source);
+  IValueProvider registerSource(string sourceName, IValueSource source);
 
   /**
    * Get a registered data source
    */
-  IDataSource getSource(string sourceName);
+  IValueSource getSource(string sourceName);
 
   /**
    * Check if source is registered
@@ -33,7 +33,7 @@ interface IDataProvider {
   /**
    * Get all registered sources
    */
-  IDataSource[] getAllSources();
+  IValueSource[] getAllSources();
 
   /**
    * Query data from a source

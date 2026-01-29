@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class Options : DMapValue!string {
+class Options : MapValue!string {
   // Constructors
   this() { initialize; }
 

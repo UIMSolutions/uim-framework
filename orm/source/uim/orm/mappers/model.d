@@ -23,7 +23,7 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
   protected string[string] _attributes;
   protected string[] _errors;
   protected string[string] _originalAttributes;
-  protected IDatabase _database;
+  protected IValuebase _database;
   protected IQuery _queryBuilder;
 
   this() {
@@ -175,11 +175,11 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
     return _queryBuilder;
   }
 
-  IDatabase database() {
+  IValuebase database() {
     return _database;
   }
 
-  void setDatabase(IDatabase db) @trusted {
+  void setDatabase(IValuebase db) @trusted {
     _database = db;
   }
 }

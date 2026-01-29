@@ -26,7 +26,7 @@ enum DataSourceType {
 /**
  * Data source interface for reading from various sources
  */
-interface IDataSource {
+interface IValueSource {
   /**
    * Get data source name
    */

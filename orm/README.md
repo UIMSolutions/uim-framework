@@ -67,10 +67,10 @@ void main() {
 
 ## Core Components
 
-### IDatabase Interface
+### IValuebase Interface
 
 ```d
-interface IDatabase {
+interface IValuebase {
     string driver();
     bool isConnected() @safe;
     void connect() @trusted;
@@ -203,7 +203,7 @@ try {
 class CreateUsersTable : Migration {
     this() { super("2026_01_24_create_users_table"); }
     
-    override void up(IDatabase database, void delegate(bool success) @safe callback) @trusted {
+    override void up(IValuebase database, void delegate(bool success) @safe callback) @trusted {
         string sql = "CREATE TABLE users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(255) NOT NULL,
@@ -216,7 +216,7 @@ class CreateUsersTable : Migration {
         });
     }
     
-    override void down(IDatabase database, void delegate(bool success) @safe callback) @trusted {
+    override void down(IValuebase database, void delegate(bool success) @safe callback) @trusted {
         database.query("DROP TABLE users", (bool success, Json result) {
             callback(success);
         });
@@ -229,7 +229,7 @@ class CreateUsersTable : Migration {
 ```
 uim.orm
 ├── uim.orm.interfaces    # Interface contracts
-│   ├── database.d        # IDatabase interface
+│   ├── database.d        # IValuebase interface
 │   ├── query.d           # IQuery interface
 │   └── model.d           # IORMModel interface
 ├── uim.orm.builders      # Query building
