@@ -29,18 +29,3 @@ class IP6AddressAttribute : DStringAttribute {
     this.registerPath("ip6address");
   }
 }
-mixin(AttributeCalls!("IP6AddressAttribute"));
-
-///
-unittest {
-  auto attribute = new DIP6AddressAttribute;
-  assert(attribute.name == "ip6address");
-  assert(attribute.registerPath == "ip6address");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

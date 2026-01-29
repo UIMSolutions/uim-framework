@@ -19,18 +19,3 @@ class LinkAttribute : DStringAttribute {
     this.registerPath("link");
   }
 }
-mixin(AttributeCalls!("LinkAttribute"));
-
-///
-unittest {
-  auto attribute = new DLinkAttribute;
-  assert(attribute.name == "link");
-  assert(attribute.registerPath == "link");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

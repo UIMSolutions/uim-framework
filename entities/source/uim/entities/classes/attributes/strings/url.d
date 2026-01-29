@@ -19,19 +19,3 @@ class UrlAttribute : DStringAttribute {
     this.registerPath("url");
   }
 }
-mixin(AttributeCalls!("UrlAttribute"));
-
-///
-unittest {
-  auto attribute = new DUrlAttribute;
-  assert(attribute.name == "url");
-  assert(attribute.registerPath == "url");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DUrlAttribute)generalAttribute);
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

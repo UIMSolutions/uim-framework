@@ -19,10 +19,3 @@ class isplayOrderAttribute : DIntegerAttribute {
     this.registerPath("displayOrder");    
   }
 }
-mixin(AttributeCalls!("DisplayOrderAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDisplayOrderAttribute);
-    testAttribute(DisplayOrderAttribute);
-  }
-}

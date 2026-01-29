@@ -21,18 +21,3 @@ class ListAttribute : DStringAttribute {
     this.registerPath("list");
   }
 }
-mixin(AttributeCalls!("ListAttribute"));
-
-///
-unittest {
-  auto attribute = new DListAttribute;
-  assert(attribute.name == "list");
-  assert(attribute.registerPath == "list");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

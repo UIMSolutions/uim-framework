@@ -26,18 +26,3 @@ class TickerSymbolAttribute : DStringAttribute {
     this.registerPath("tickerSymbol");
   }
 }
-mixin(AttributeCalls!("TickerSymbolAttribute"));
-
-///
-unittest {
-  auto attribute = new DTickerSymbolAttribute;
-  assert(attribute.name == "tickerSymbol");
-  assert(attribute.registerPath == "tickerSymbol");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

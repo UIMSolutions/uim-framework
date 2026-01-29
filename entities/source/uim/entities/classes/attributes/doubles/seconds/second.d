@@ -31,5 +31,4 @@ class SecondAttribute : DDoubleAttribute {
     this.registerPath("second");
   }
 }
-mixin(AttributeCalls!("SecondAttribute"));
 

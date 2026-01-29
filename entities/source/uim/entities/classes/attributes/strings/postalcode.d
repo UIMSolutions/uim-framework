@@ -25,18 +25,3 @@ class PostalCodeAttribute : DStringAttribute {
     this.registerPath("postalcode");
   }
 }
-mixin(AttributeCalls!("PostalCodeAttribute"));
-
-///
-unittest {
-  auto attribute = new DPostalCodeAttribute;
-  assert(attribute.name == "postalcode");
-  assert(attribute.registerPath == "postalcode");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

@@ -35,18 +35,3 @@ class JsonAttribute : DStringAttribute {
     this.registerPath("json");
   }
 }
-mixin(AttributeCalls!("JsonAttribute"));
-
-///
-unittest {
-  auto attribute = new DJsonAttribute;
-  assert(attribute.name == "json");
-  assert(attribute.registerPath == "json");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

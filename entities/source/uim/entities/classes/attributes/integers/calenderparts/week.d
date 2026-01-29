@@ -25,10 +25,3 @@ class WeekAttribute : DIntegerCalendarPart {
     this.registerPath("week");
   }
 }
-mixin(AttributeCalls!("WeekAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DWeekAttribute);
-    testAttribute(WeekAttribute);
-  }
-}

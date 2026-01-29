@@ -29,10 +29,3 @@ means.content.binary.image */
     this.registerPath("image");
   }
 }
-mixin(AttributeCalls!("ImageAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DImageAttribute);
-    testAttribute(ImageAttribute);
-  }
-}

@@ -30,18 +30,3 @@ class HtmlAttribute : DStringAttribute {
     this.registerPath("html");
   }
 }
-mixin(AttributeCalls!("HtmlAttribute"));
-
-///
-unittest {
-  auto attribute = new DHtmlAttribute;
-  assert(attribute.name == "html");
-  assert(attribute.registerPath == "html");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

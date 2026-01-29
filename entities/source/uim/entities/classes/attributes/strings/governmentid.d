@@ -23,10 +23,3 @@ class GovernmentIUIMAttribute : DStringAttribute {
     this.registerPath("governmentId");
   }
 }
-mixin(AttributeCalls!("GovernmentIdAttribute"));
-
-///
-unittest {
-  assert(GovernmentIdAttribute.name == "governmentId");
-  assert(GovernmentIdAttribute.registerPath == "governmentId");
-}

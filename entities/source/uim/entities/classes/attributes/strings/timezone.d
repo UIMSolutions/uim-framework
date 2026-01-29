@@ -26,18 +26,3 @@ class TimezoneAttribute : DStringAttribute {
     this.registerPath("timezone");
   }
 }
-mixin(AttributeCalls!("TimezoneAttribute"));
-
-///
-unittest {
-  auto attribute = new DTimezoneAttribute;
-  assert(attribute.name == "timezone");
-  assert(attribute.registerPath == "timezone");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

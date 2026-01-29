@@ -30,5 +30,4 @@ class KilogramAttribute : DGramAttribute {
     this.registerPath("kilogram");
   }
 }
-mixin(AttributeCalls!("KilogramAttribute"));
 
