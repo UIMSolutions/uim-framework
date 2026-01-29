@@ -14,7 +14,7 @@ means.content.image.image */
 import uim.entities;
 
 @safe:
-class DImageAttribute : BinaryAttribute {
+class ImageAttribute : BinaryAttribute {
   mixin(AttributeThis!("ImageAttribute"));
 
   // Initialization hook method.

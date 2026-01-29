@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.calenderparts.integer;
 import uim.entities;
 
 @safe:
-class IntegerCalendarPart : DIntegerAttribute {
+class IntegerCalendarPart : IntegerAttribute {
   mixin(AttributeThis!"IntegerCalendarPart");
 
 /* means.calendar

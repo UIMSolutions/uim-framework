@@ -32,7 +32,7 @@ unittest {
   assert(attribute.registerPath == "string");
 
   UIMAttribute generalAttribute = attribute;
-  assert(!cast(DIntegerAttribute)generalAttribute);
+  assert(!cast(IntegerAttribute)generalAttribute);
 
   UIMValue value = attribute.createValue();
   assert(cast(DStringValue)value);

@@ -15,7 +15,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class MinutesAttribute : DIntegerAttribute {
+class MinutesAttribute : IntegerAttribute {
   mixin(AttributeThis!("MinutesAttribute"));
 
   // Initialization hook method.

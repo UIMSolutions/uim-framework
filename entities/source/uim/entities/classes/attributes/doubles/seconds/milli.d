@@ -21,7 +21,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class MilliSecondAttribute : DSecondAttribute {
+class MilliSecondAttribute : SecondAttribute {
   mixin(AttributeThis!("MilliSecondAttribute"));
 
   // Initialization hook method.
