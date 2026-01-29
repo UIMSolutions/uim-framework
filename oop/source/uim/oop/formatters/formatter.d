@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
 /** 
   * A basic implementation of the `IFormatter` interface.
   *

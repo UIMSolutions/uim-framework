@@ -136,24 +136,3 @@ class Version : UIMElement {
     return new DVersion;
   }
 }
-
-auto Version() {
-  return new DVersion;
-}
-
-auto Version(string name) {
-  return new DVersion(name);
-}
-
-auto Version(Json json) {
-  return new DVersion(json);
-}
-
-version (test_uim_models) {
-  unittest {
-    assert(Version);
-    assert(Version.name("test").name == "test");
-    assert(Version.name("testName").name == "testname");
-
-  }
-}

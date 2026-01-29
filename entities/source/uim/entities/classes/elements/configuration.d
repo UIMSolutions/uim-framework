@@ -13,13 +13,3 @@ class ConfigurationElement : UIMElement {
   // Constructors
   this() { initialize; }
 }
-auto ConfigurationElement() { return new DConfigurationElement; }
-/* auto Configuration(string name) { return new DConfiguration(name); }
-auto Configuration(Json json) { return new DConfiguration(json); } */
-
-///
-unittest {
-  auto element = new DConfigurationElement;
-  assert(element.name("test").name == "test");
-  assert(element.name("testName").name == "testName");
-}

@@ -14,8 +14,3 @@ class Options : DMapValue!string {
 
 	alias opEquals = UIMValue.opEquals;
 }
-auto Options() { return new DOptions; }
-
-///
-unittest {
-}
