@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.doubles.percentage;
 import uim.entities;
 
 @safe:
-class DPercentageAttribute : DDoubleAttribute {
+class PercentageAttribute : DDoubleAttribute {
   mixin(AttributeThis!("PercentageAttribute"));
 
   // Initialization hook method.

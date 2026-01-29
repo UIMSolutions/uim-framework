@@ -21,7 +21,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class DJouleAttribute : DDoubleAttribute {
+class JouleAttribute : DDoubleAttribute {
   mixin(AttributeThis!("JouleAttribute"));
 
   // Initialization hook method.

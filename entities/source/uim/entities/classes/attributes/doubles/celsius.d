@@ -10,7 +10,7 @@ has.measurement.fundamentalComponent.kelvin */
 import uim.entities;
 
 @safe:
-class DCelsiusAttribute : DDoubleAttribute {
+class CelsiusAttribute : DDoubleAttribute {
   mixin(AttributeThis!("CelsiusAttribute"));
 
   // Initialization hook method.

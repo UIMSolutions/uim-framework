@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.booleans.boolean;
 import uim.entities;
 
 @safe:
-class DBooleanAttribute : UIMAttribute {
+class BooleanAttribute : UIMAttribute {
   mixin(AttributeThis!("BooleanAttribute"));
 
 /* Inheritance

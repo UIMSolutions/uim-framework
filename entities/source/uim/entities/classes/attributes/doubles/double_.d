@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.doubles.double_;
 import uim.entities;
 
 @safe:
-class DDoubleAttribute : UIMAttribute {
+class DoubleAttribute : UIMAttribute {
   mixin(AttributeThis!("DoubleAttribute"));
 
   // Initialization hook method.

@@ -19,7 +19,7 @@ has.measurement.fundamentalComponent.mole */
 import uim.entities;
 
 @safe:
-class DMoleAttribute : DDoubleAttribute {
+class MoleAttribute : DDoubleAttribute {
   mixin(AttributeThis!("MoleAttribute"));
 
   // Initialization hook method.

@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // The 64 bit fixed (4) scale numbers used by PBI
-class DFixedDecimalAttribute : DDecimalAttribute {
+class FixedDecimalAttribute : DDecimalAttribute {
   mixin(AttributeThis!("FixedDecimalAttribute"));
 
   // Initialization hook method.

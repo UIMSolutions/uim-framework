@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.datetimes.birthdate;
 import uim.entities;
 
 @safe:
-class DBirthDateAttribute : DDatetimeAttribute {
+class BirthDateAttribute : DDatetimeAttribute {
   mixin(AttributeThis!("BirthDateAttribute"));
 
   // Initialization hook method.

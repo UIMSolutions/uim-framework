@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.codes.status;
 import uim.entities;
 
 @safe:
-class DStatusCodeAttribute : DIntegerStringAttribute {
+class StatusCodeAttribute : DIntegerStringAttribute {
   mixin(AttributeThis!("StatusCodeAttribute"));
 
   // Initialization hook method.
