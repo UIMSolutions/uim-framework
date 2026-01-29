@@ -24,15 +24,15 @@ class AccountIdAttribute : EntityIdAttribute {
   }
 
   // Initialization hook method.
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("accountId");
     this.registerPath("accountId");
-  }  
+    return true;
+  }
 }
 ///
 unittest {
@@ -44,7 +44,7 @@ unittest {
   assert(cast(EntityIdAttribute)generalAttribute);
   assert(cast(UUIDAttribute)generalAttribute);
   assert(!cast(IntegerAttribute)generalAttribute);
-  
+
   IValue value = attribute.createValue();
   assert(cast(UUIDValue)value);
 }

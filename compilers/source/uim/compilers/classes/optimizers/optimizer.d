@@ -13,8 +13,26 @@ import uim.compilers;
  * Base implementation of an optimizer.
  */
 class Optimizer : UIMObject, IOptimizer {
-  mixin(ObjThis!("Optimizer"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   protected OptimizationPass[] _passes;
   protected OptimizationStats _stats;
 

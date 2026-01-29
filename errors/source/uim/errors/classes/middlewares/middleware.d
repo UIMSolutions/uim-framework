@@ -16,8 +16,26 @@ import uim.errors;
  * priority management, enable/disable functionality, and basic error filtering.
  */
 abstract class ErrorMiddleware : UIMObject, IErrorMiddleware {
-  mixin(ObjThis!("ErrorMiddleware"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   // Priority for middleware execution order (higher executes first)
   protected int _priority = 0;
   

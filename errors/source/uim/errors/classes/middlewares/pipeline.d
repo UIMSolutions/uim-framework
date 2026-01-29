@@ -20,8 +20,26 @@ import uim.errors;
  * - Short-circuit the pipeline
  */
 class ErrorMiddlewarePipeline : UIMObject {
-  mixin(ObjThis!("ErrorMiddlewarePipeline"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   // Registered middleware
   protected IErrorMiddleware[] _middleware;
   

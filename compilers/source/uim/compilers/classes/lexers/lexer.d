@@ -13,16 +13,19 @@ import uim.compilers;
  * Base implementation of a lexer.
  */
 class Lexer : UIMObject, ILexer {
-  mixin(ObjThis!("Lexer"));
+  this() {
+    super();
+  }
 
-  protected string _source;
-  protected size_t _position;
-  protected size_t _line;
-  protected size_t _column;
-  protected Token[] _tokens;
-  protected size_t _currentIndex;
-  protected Diagnostic[] _errors;
+  this(Json initData) {
+    super(initData.toMap);
+  }
 
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
@@ -33,6 +36,14 @@ class Lexer : UIMObject, ILexer {
 
     return true;
   }
+
+  protected string _source;
+  protected size_t _position;
+  protected size_t _line;
+  protected size_t _column;
+  protected Token[] _tokens;
+  protected size_t _currentIndex;
+  protected Diagnostic[] _errors;
 
   Token[] tokenize(string source) {
     _source = source;

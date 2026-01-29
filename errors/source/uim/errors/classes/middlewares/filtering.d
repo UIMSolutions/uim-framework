@@ -21,8 +21,26 @@ import std.algorithm : canFind;
  * Filtered errors return null, effectively stopping the middleware chain.
  */
 class FilteringMiddleware : ErrorMiddleware {
-  mixin(ObjThis!("FilteringMiddleware"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   // Codes to filter out (block)
   protected int[] _blockedCodes;
   

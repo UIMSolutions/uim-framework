@@ -17,8 +17,26 @@ import std.stdio : writeln, stderr;
  * Supports filtering by severity level.
  */
 class LoggingMiddleware : ErrorMiddleware {
-  mixin(ObjThis!("LoggingMiddleware"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   // Minimum severity level to log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
   protected string _minSeverity = "DEBUG";
   

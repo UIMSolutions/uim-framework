@@ -13,11 +13,19 @@ import uim.compilers;
  * Base implementation of a code generator.
  */
 class CodeGenerator : UIMObject, ICodeGenerator {
-  mixin(ObjThis!("CodeGenerator"));
+  this() {
+    super();
+  }
 
-  protected string _target = "generic";
-  protected string[] _supportedTargets;
+  this(Json initData) {
+    super(initData.toMap);
+  }
 
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
@@ -27,6 +35,9 @@ class CodeGenerator : UIMObject, ICodeGenerator {
 
     return true;
   }
+
+  protected string _target = "generic";
+  protected string[] _supportedTargets;
 
   CodeGenResult generate(ASTNode ast, CodeGenOptions options = CodeGenOptions.init) {
     CodeGenResult result;

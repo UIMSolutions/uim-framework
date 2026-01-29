@@ -15,16 +15,19 @@ import core.time : Duration;
  * Base implementation of a generic compiler.
  */
 class Compiler : UIMObject, ICompiler {
-  mixin(ObjThis!("Compiler"));
+  this() {
+    super();
+  }
 
-  protected ILexer _lexer;
-  protected ICompilerParser _parser;
-  protected ISemanticAnalyzer _analyzer;
-  protected IOptimizer _optimizer;
-  protected ICodeGenerator _codeGenerator;
-  protected Diagnostic[] _diagnostics;
-  protected string _version = "1.0.0";
+  this(Json initData) {
+    super(initData.toMap);
+  }
 
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
@@ -40,7 +43,15 @@ class Compiler : UIMObject, ICompiler {
     return true;
   }
 
+  protected ICompilerParser _parser;
+  protected ISemanticAnalyzer _analyzer;
+  protected IOptimizer _optimizer;
+  protected ICodeGenerator _codeGenerator;
+  protected Diagnostic[] _diagnostics;
+  protected string _version = "1.0.0";
+
   // #region Components
+  protected ILexer _lexer;
   ILexer lexer() {
     return _lexer;
   }

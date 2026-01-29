@@ -19,8 +19,26 @@ import uim.errors;
  * - Enrich errors with additional context
  */
 class TransformingMiddleware : ErrorMiddleware {
-  mixin(ObjThis!("TransformingMiddleware"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   // Transform function
   protected IError delegate(IError) @safe _transformer;
   

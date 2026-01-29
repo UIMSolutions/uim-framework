@@ -13,8 +13,26 @@ import uim.compilers;
  * Base implementation of a parser.
  */
 class Parser : UIMObject, ICompilerParser {
-  mixin(ObjThis!("Parser"));
+  this() {
+    super();
+  }
 
+  this(Json initData) {
+    super(initData.toMap);
+  }
+
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
   protected Token[] _tokens;
   protected size_t _current;
   protected Diagnostic[] _errors;

@@ -13,20 +13,29 @@ import uim.compilers;
  * Base implementation of a semantic analyzer.
  */
 class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
-  mixin(ObjThis!("SemanticAnalyzer"));
+  this() {
+    super();
+  }
 
-  protected ISymbolTable _symbolTable;
-  protected Diagnostic[] _errors;
-  protected Diagnostic[] _warnings;
+  this(Json initData) {
+    super(initData.toMap);
+  }
 
+  this(Json[string] initData) {
+    super(initData);
+  }
+
+  // Initialization hook method.
   override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
     _symbolTable = new SymbolTable();
+
     return true;
   }
+
 
   ASTNode analyze(ASTNode ast) {
     _errors = [];
@@ -37,14 +46,17 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     return ast;
   }
 
+  protected ISymbolTable _symbolTable;
   ISymbolTable symbolTable() {
     return _symbolTable;
   }
 
+  protected Diagnostic[] _errors;
   Diagnostic[] errors() {
     return _errors;
   }
 
+  protected Diagnostic[] _warnings;
   Diagnostic[] warnings() {
     return _warnings;
   }
