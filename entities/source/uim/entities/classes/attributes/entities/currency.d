@@ -14,8 +14,13 @@ mixin(ShowModule!());
 // A unique identifier for entity instances
 
 /* class CurrencyAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("CurrencyAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

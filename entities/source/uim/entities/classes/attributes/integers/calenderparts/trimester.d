@@ -17,8 +17,13 @@ mixin(ShowModule!());
 
 @safe:
 class TrimesterAttribute : IntegerCalendarPart {
-  mixin(AttributeThis!("TrimesterAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

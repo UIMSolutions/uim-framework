@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class LookupAttribute : UIMAttribute {
-  mixin(AttributeThis!("LookupAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

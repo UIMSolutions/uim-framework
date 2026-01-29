@@ -11,7 +11,8 @@ mixin(ShowModule!());
 
 @safe:
 class TagsAttribute : StringArrayAttribute {
-  mixin(AttributeThis!("TagsAttribute"));
+import uim.entities;
+@safe:
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

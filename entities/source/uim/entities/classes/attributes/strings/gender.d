@@ -16,8 +16,13 @@ is.dataFormat.big
 is.dataFormat.array
 means.demographic.gender */
 class GenderAttribute : StringAttribute {
-  mixin(AttributeThis!("GenderAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

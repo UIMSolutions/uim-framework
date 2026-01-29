@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class IntegerIntegerAttribute : LookupAttribute {
-  mixin(AttributeThis!("IntegerIntegerAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   mixin(OProperty!("int[int]", "lookups"));  
   O addLookup(this O)(int key, string value) {
     _lookups[key] = value;

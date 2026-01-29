@@ -13,8 +13,13 @@ mixin(ShowModule!());
 
 // means.measurement.color
 class ColorNameAttribute : StringAttribute {
-  mixin(AttributeThis!("ColorNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

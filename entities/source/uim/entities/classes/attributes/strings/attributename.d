@@ -13,8 +13,13 @@ mixin(ShowModule!());
 
 @safe:
 class AttributeNameAttribute : StringAttribute {
-  mixin(AttributeThis!("AttributeNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   /*
 attributeName
 Description

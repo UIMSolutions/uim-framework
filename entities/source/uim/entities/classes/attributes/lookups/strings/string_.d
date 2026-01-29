@@ -11,8 +11,14 @@ mixin(ShowModule!());
 
 @safe:
 class StringStringAttribute : LookupAttribute {
-  mixin(AttributeThis!("StringStringAttribute"));
-  
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
+    
   mixin(OProperty!("string[string]", "lookups"));
 
   override IValue createValue() {

@@ -12,8 +12,13 @@ mixin(ShowModule!());
 @safe:
 
 /* class OwnerAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("OwnerAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

@@ -13,8 +13,13 @@ mixin(ShowModule!());
 
 // means.location.city
 class CityNameAttribute : StringAttribute {
-  mixin(AttributeThis!("CityNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

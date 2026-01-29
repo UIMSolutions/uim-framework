@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class BooleanStringAttribute : UIMAttribute {
-  mixin(AttributeThis!("BooleanStringAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   mixin(OProperty!("string[bool]", "lookups"));
 
   // override IValue createValue() {
