@@ -20,7 +20,7 @@ means.userId */
 import uim.entities;
 @safe:
 
-/* class DUserAttribute : UIMEntityAttribute {
+/* class UserAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("UserAttribute"));
 
   // Initialization hook method.

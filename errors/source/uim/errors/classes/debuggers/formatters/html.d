@@ -18,7 +18,7 @@ mixin(ShowModule!());
  *
  * @internal
  */
-class DHtmlErrorFormatter : UIMErrorFormatter {
+class tmlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Html"));
 
   protected static bool outputHeader = false;

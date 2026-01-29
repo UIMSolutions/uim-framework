@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DInvalidArgumentError : UIMError {
+class alidArgumentError : UIMError {
   mixin(ErrorThis!("InvalidArgument"));
 
   override bool initialize(Json[string] initData = null) {

@@ -15,7 +15,7 @@ means.location.timezone */
 import uim.entities;
 
 @safe:
-class DTimezoneAttribute : DStringAttribute {
+class TimezoneAttribute : DStringAttribute {
   mixin(AttributeThis!("TimezoneAttribute"));
 
   // Initialization hook method.

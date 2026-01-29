@@ -8,7 +8,7 @@ module uim.entities.classes.values.uuids.uuid;
 import uim.entities;
 
 @safe:
-class DUUIDValue : UIMValue {
+class UUIDValue : UIMValue {
   mixin(ValueThis!("UUIDValue", "UUID"));  
 
   // Initialization hook method.

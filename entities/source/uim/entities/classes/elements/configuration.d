@@ -9,7 +9,7 @@ module uim.entities.classes.elements.configuration;
 import uim.entities;
 
 @safe:
-class DConfigurationElement : UIMElement {
+class ConfigurationElement : UIMElement {
   // Constructors
   this() { initialize; }
 }

@@ -11,7 +11,7 @@ mixin(ShowModule!());
 @safe:
 
 // Debug node for special messages like errors or recursion warnings.
-class DSpecialErrorNode : UIMErrorNode {
+class cialErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Special"));
 
   protected Json _data;

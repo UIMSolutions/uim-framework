@@ -8,7 +8,7 @@ module uim.entities.classes.values.arrays.tag;
 import uim.entities;
 
 @safe:
-class DTagArrayValue : DStringArrayValue {
+class TagArrayValue : DStringArrayValue {
   mixin(ValueThis!("TagArrayValue", "string[]"));  
 
   // Initialization hook method.

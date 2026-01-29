@@ -12,7 +12,7 @@ import std.array : replicate;
 @safe:
 
 // Debugger formatter for generating output with ANSI escape codes
-class DConsoleErrorFormatter : UIMErrorFormatter {
+class ConsoleErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Console"));
 
   // text colors used in colored output.

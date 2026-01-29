@@ -3,7 +3,7 @@ module uim.entities.classes.models.model;
 import uim.entities;
 
 @safe:
-class DModel : UIMObject, IModel { 
+class Model : UIMObject, IModel { 
   this() { this.name("Model").className("Model"); }
   this(Json configSettings) { this().initialize(configSettings); }
   this(IModelManager aManager, Json configSettings = Json(null)) { this().manager(aManager).initialize(configSettings); }

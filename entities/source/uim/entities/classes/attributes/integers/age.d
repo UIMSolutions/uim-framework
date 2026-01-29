@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.age;
 import uim.entities;
 
 @safe:
-class DAgeAttribute : DIntegerAttribute {
+class AgeAttribute : DIntegerAttribute {
   mixin(AttributeThis!("AgeAttribute"));
 
   // Initialization hook method.

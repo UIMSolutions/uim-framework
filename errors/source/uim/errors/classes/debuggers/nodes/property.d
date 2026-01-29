@@ -11,7 +11,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for object properties.
-class DPropertyErrorNode : UIMErrorNode {
+class opertyErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Property"));
 
   private IErrorNode _propertyValue;

@@ -8,7 +8,7 @@ module uim.entities.classes.values.object_;
 import uim.entities;
 
 @safe:
-class DJsonObjectValue : UIMValue {
+class JsonObjectValue : UIMValue {
   mixin(ValueThis!("JsonObjectValue"));  
 
   mixin(OProperty!("Json", "value"));

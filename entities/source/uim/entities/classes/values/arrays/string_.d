@@ -8,7 +8,7 @@ module uim.entities.classes.values.arrays.string_;
 import uim.entities;
 
 @safe:
-class DStringArrayValue : DArrayValue {
+class StringArrayValue : DArrayValue {
   mixin(ValueThis!("StringArrayValue", "string[]"));  
   this(DStringArrayValue arrayValue) {
     this().add(arrayValue.values);

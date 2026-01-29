@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.string_;
 import uim.entities;
 
 @safe:
-class DStringValue : UIMValue {
+class StringValue : UIMValue {
   mixin(ValueThis!("StringValue"));  
     // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

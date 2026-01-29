@@ -10,6 +10,6 @@ mixin(ShowModule!());
 
 @safe:
 
-class DJsonErrorFormatter : UIMErrorFormatter {
+class sonErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Json"));
 }

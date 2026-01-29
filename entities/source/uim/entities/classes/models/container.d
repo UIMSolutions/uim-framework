@@ -4,7 +4,7 @@ import uim.entities;
 
 @safe:
 /*
-class DModelContainer  : DNamedContainer!IModel {
+class ModelContainer  : DNamedContainer!IModel {
 }
 auto ModelContainer() { return new DModelContainer; }
 */

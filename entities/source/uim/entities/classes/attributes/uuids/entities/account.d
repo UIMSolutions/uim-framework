@@ -8,8 +8,8 @@ module uim.entities.classes.attributes.uuids.entities.account;
 import uim.entities;
 
 @safe:
-class DAccountIUIMAttribute : UIMEntityIUIMAttribute {
-  mixin(AttributeThis!("AccountIdAttribute"));
+class AccountIDAttribute : EntityIDAttribute {
+  mixin(AttributeThis!("AccountIDAttribute"));
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
@@ -19,19 +19,17 @@ class DAccountIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("accountId");
   }  
 }
-mixin(AttributeCalls!("AccountIdAttribute"));
-
 ///
 unittest {
-  auto attribute = new DAccountIdAttribute;
+  auto attribute = new AccountIDAttribute;
   assert(attribute.name == "accountId");
   assert(attribute.registerPath == "accountId");
 
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
+  IAttribute generalAttribute = attribute;
+  assert(cast(EntityIDAttribute)generalAttribute);
+  assert(cast(UUIDAttribute)generalAttribute);
+  assert(!cast(IntegerAttribute)generalAttribute);
+  
+  IValue value = attribute.createValue();
+  assert(cast(UUIDValue)value);
 }

@@ -10,7 +10,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for scalar values.
-class DScalarErrorNode : UIMErrorNode {
+class alarErrorNode : UIMErrorNode {
     mixin(ErrorNodeThis!("Scalar"));
     
     // #region type

@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.long_;
 import uim.entities;
 
 @safe:
-class DLongValue : UIMValue {
+class LongValue : UIMValue {
   this() {
     super();
   }

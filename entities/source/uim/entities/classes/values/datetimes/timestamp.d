@@ -8,7 +8,7 @@ module uim.entities.classes.values.datetimes.timestamp;
 import uim.entities;
 
 @safe:
-class DTimestampValue : DLongValue {
+class TimestampValue : DLongValue {
   mixin(ValueThis!("TimestampValue", "long"));  
 
   override UIMValue copy() {

@@ -15,7 +15,7 @@ means.iUIMEntity.name */
 import uim.entities;
 
 @safe:
-class DNameAttribute : DStringAttribute {
+class NameAttribute : DStringAttribute {
   mixin(AttributeThis!("NameAttribute"));
 
   // Initialization hook method.

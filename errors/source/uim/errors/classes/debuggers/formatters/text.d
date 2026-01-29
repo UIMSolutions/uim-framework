@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // A Debugger formatter for generating unstyled plain text output.
-class DTextErrorFormatter : UIMErrorFormatter {
+class xtErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Text"));
 
   string formatWrapper(string content, Json[string] location) {

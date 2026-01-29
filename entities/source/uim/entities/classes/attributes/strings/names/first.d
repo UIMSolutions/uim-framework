@@ -12,7 +12,7 @@ import uim.entities;
 is.dataFormat.big
 is.dataFormat.array
 means.iUIMEntity.person.firstName */
-class DFirstNameAttribute : DStringAttribute {
+class FirstNameAttribute : DStringAttribute {
   mixin(AttributeThis!("FirstNameAttribute"));
 
   // Initialization hook method.

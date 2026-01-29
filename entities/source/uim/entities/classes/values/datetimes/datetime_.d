@@ -8,7 +8,7 @@ module uim.entities.classes.values.datetimes.datetime_;
 import uim.entities;
 
 @safe:
-class DDatetimeValue : UIMValue {
+class atetimeValue : UIMValue {
   mixin(ValueThis!("DatetimeValue", "DateTime"));  
 
   protected DateTime _value;  

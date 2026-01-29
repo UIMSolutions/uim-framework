@@ -10,7 +10,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DYamlErrorFormatter : UIMErrorFormatter {
+class mlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Yaml"));
 }
 mixin(ErrorFormatterCalls!("Yaml"));

@@ -8,7 +8,7 @@ module uim.entities.classes.values.map;
 import uim.entities;
 @safe:
 
-/* class DMapValue {
+/* class MapValue {
   this() { initialize; }
 
   void initialize(Json configSettings = Json(null)) {}

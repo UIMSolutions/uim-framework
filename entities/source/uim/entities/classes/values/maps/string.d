@@ -8,7 +8,7 @@ module uim.entities.classes.values.maps.string;
 import uim.entities;
 
 @safe:
-class DStringValueMap : UIMValue {
+class StringValueMap : UIMValue {
   mixin(ValueThis!("StringValueMap"));
 
   protected UIMValue[string] _items;

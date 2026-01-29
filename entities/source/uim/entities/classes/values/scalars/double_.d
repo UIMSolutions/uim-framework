@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.double_;
 import uim.entities;
 
 @safe:
-class DDoubleValue : UIMValue {
+class oubleValue : UIMValue {
   mixin(ValueThis!("DoubleValue", "double"));  
 
   // Initialization hook method.

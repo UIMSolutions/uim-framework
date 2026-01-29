@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.integer;
 import uim.entities;
 
 @safe:
-class DIntegerValue : UIMValue {
+class IntegerValue : UIMValue {
   mixin(ValueThis!("IntegerValue", "int"));  
 
   protected int _value;  

@@ -8,7 +8,7 @@ module uim.entities.classes.values.maps.map;
 import uim.entities;
 
 @safe:
-class DMapValue(K) : UIMValue {
+class MapValue(K) : UIMValue {
   mixin(ValueThis!("MapValue"));
 
   protected UIMValue[K] _items;

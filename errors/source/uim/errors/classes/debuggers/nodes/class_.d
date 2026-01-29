@@ -11,7 +11,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for objects/class instances.
-class DClassErrorNode : UIMErrorNode {
+class lassErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Class"));
 
   this(string classname, int anId) {

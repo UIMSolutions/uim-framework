@@ -8,7 +8,7 @@ module uim.entities.classes.values.datetimes.time_;
 import uim.entities;
 
 @safe:
-class DTimeValue : UIMValue {
+class TimeValue : UIMValue {
   this() {
     super();
   }

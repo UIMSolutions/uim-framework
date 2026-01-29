@@ -8,7 +8,7 @@ module uim.entities.classes.values.datetimes.date_;
 import uim.entities;
 @safe:
 
-class DateValue : UIMValue {
+class ateValue : UIMValue {
   this() {
     super();
   }

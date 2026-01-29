@@ -10,7 +10,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DXmlErrorFormatter : UIMErrorFormatter {
+class mlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Xml"));
 }
 mixin(ErrorFormatterCalls!("Xml"));

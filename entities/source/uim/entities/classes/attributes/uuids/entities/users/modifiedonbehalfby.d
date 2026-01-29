@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.uuids.entities.users.modifiedonbehalfby;
 import uim.entities;
 
 @safe:
-class DModifiedOnBehalfByAttribute : UIMEntityIUIMAttribute {
+class ModifiedOnBehalfByAttribute : UIMEntityIUIMAttribute {
   mixin(AttributeThis!("ModifiedOnBehalfByAttribute"));
 
   // Initialization hook method.

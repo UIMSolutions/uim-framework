@@ -8,7 +8,7 @@ module uim.entities.classes.values.scalars.boolean;
 import uim.entities;
 
 @safe:
-class DBooleanValue : UIMValue {
+class BooleanValue : UIMValue {
   mixin(ValueThis!("BooleanValue", "bool"));  
 
   // Initialization hook method.

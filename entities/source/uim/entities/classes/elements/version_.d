@@ -9,7 +9,7 @@ module uim.entities.classes.elements.version_;
 import uim.entities;
 
 @safe:
-class DVersion : UIMElement {
+class Version : UIMElement {
   // static namespace = moduleName!DVersion;
 
   // Constructors

@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.languagetags.culturetag;
 import uim.entities;
 
 @safe:
-class DCultureTagAttribute : DStringAttribute {
+class CultureTagAttribute : DStringAttribute {
   mixin(AttributeThis!("CultureTagAttribute"));
 
   // Initialization hook method.

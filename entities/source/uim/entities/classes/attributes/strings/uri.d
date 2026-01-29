@@ -10,7 +10,7 @@ means.reference.URI */
 import uim.entities;
 
 @safe:
-class DUriAttribute : DStringAttribute {
+class UriAttribute : DStringAttribute {
   mixin(AttributeThis!("UriAttribute"));
 
   // Initialization hook method.

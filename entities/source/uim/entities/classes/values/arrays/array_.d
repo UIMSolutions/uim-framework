@@ -8,7 +8,7 @@ module uim.entities.classes.values.arrays.array_;
 import uim.entities;
 
 @safe:
-class DArrayValue : UIMValue {
+class ArrayValue : UIMValue {
   mixin(ValueThis!("ArrayValue"));  
   this(UIMValue[] values) {
     this();

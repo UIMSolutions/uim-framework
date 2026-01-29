@@ -8,7 +8,7 @@ module uim.entities.classes.values.null_;
 import uim.entities;
 
 @safe:
-class DNullValue : UIMValue {
+class NullValue : UIMValue {
   mixin(ValueThis!("NullValue"));  
 
   // Initialization hook method.

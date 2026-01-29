@@ -8,7 +8,7 @@ module uim.entities.classes.values.maps.options;
 import uim.entities;
 
 @safe:
-class DOptions : DMapValue!string {
+class Options : DMapValue!string {
   // Constructors
   this() { initialize; }
 
