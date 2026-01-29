@@ -17,5 +17,4 @@ class StringStringAttribute : DLookupAttribute {
     return LookupValue!(string, string).isNullable(isNullable);
   }
 }
-mixin(AttributeCalls!("StringStringAttribute"));
 

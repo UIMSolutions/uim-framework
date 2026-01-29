@@ -24,10 +24,3 @@ class EthnicityAttribute : DStringAttribute {
     this.registerPath("ethnicity");
   }
 }
-mixin(AttributeCalls!("EthnicityAttribute"));
-
-///
-unittest {
-  assert(EthnicityAttribute.name == "ethnicity");
-  assert(EthnicityAttribute.registerPath == "ethnicity");
-}

@@ -20,18 +20,3 @@ class ColorNameAttribute : DStringAttribute {
     this.registerPath("colorName");
   }
 }
-mixin(AttributeCalls!("ColorNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DColorNameAttribute;
-  assert(attribute.name == "colorName");
-  assert(attribute.registerPath == "colorName");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

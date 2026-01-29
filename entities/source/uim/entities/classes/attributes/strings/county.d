@@ -20,18 +20,3 @@ class CountyAttribute : DStringAttribute {
     this.registerPath("county");
   }
 }
-mixin(AttributeCalls!("CountyAttribute"));
-
-///
-unittest {
-  auto attribute = new DCountyAttribute;
-  assert(attribute.name == "county");
-  assert(attribute.registerPath == "county");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

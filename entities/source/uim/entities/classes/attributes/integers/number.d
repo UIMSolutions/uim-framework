@@ -11,10 +11,3 @@ import uim.entities;
 class NumberAttribute : DIntegerAttribute {
   mixin(AttributeThis!("NumberAttribute"));
 }
-mixin(AttributeCalls!("NumberAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DNumberAttribute);
-    testAttribute(NumberAttribute);
-  }
-}

@@ -17,5 +17,4 @@ class BooleanIntegerAttribute : DLookupAttribute {
     return LookupValue!(bool, int)(this).isNullable(isNullable);
   }
 }
-mixin(AttributeCalls!("BooleanIntegerAttribute"));
 

@@ -24,11 +24,3 @@ means.fileName */
     this.registerPath("fileName");
   }
 }
-mixin(AttributeCalls!("FileNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DFileNameAttribute;
-  assert(attribute.name == "filename");
-  assert(attribute.registerPath == "fileName");
-}

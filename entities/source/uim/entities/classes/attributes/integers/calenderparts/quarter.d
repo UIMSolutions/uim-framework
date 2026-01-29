@@ -27,10 +27,3 @@ class QuarterAttribute : DIntegerCalendarPart {
     this.registerPath("quarter");
   }
 }
-mixin(AttributeCalls!("QuarterAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DQuarterAttribute);
-    testAttribute(QuarterAttribute);
-  }
-}

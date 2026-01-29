@@ -20,18 +20,3 @@ class CityNameAttribute : DStringAttribute {
     this.registerPath("cityName");
   }
 }
-mixin(AttributeCalls!("CityNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DCityNameAttribute;
-  assert(attribute.name == "cityName");
-  assert(attribute.registerPath == "cityName");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

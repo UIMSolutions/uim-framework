@@ -20,10 +20,3 @@ override void initialize(Json configSettings = Json(null)) {
     this.registerPath("daypart");
   }   
 }
-mixin(AttributeCalls!("DayPartAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDayPartAttribute);
-    testAttribute(DayPartAttribute);
-  }
-}

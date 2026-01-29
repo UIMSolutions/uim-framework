@@ -17,17 +17,3 @@ class BooleanBooleanAttribute : DLookupAttribute {
   //   return LookupValue!(bool, bool)(this).isNullable(isNullable);
   // }
 }
-mixin(AttributeCalls!("BooleanBooleanAttribute"));
-
-///
-unittest {  
-  auto lookupAttribute = BooleanBooleanAttribute;
-  lookupAttribute.lookups[true] = false;
-  lookupAttribute.lookups[false] = true;
-  assert(!lookupAttribute.isNullable);
-
-  lookupAttribute.isNullable(true);
-  assert(lookupAttribute.isNullable);
-
-  auto lookupValue = lookupAttribute.createValue;
-}

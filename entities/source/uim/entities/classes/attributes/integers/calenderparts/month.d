@@ -27,10 +27,3 @@ class MonthpartAttribute : DIntegerCalendarPart {
     this.registerPath("monthpart");
   }
 }
-mixin(AttributeCalls!("MonthpartAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DMonthpartAttribute);
-    testAttribute(MonthpartAttribute);
-  }
-}

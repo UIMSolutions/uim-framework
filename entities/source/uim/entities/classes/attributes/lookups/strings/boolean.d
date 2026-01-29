@@ -17,5 +17,4 @@ class StringBooleanAttribute : DLookupAttribute {
     return LookupValue!(string, bool)(this).isNullable(isNullable);
   }
 }
-mixin(AttributeCalls!("StringBooleanAttribute"));
 

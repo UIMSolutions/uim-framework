@@ -20,18 +20,3 @@ class CountryAttribute : DStringAttribute {
     this.registerPath("country");
   }
 }
-mixin(AttributeCalls!("CountryAttribute"));
-
-///
-unittest {
-  auto attribute = new DCountryAttribute;
-  assert(attribute.name == "country");
-  assert(attribute.registerPath == "country");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

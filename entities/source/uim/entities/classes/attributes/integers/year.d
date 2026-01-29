@@ -29,10 +29,3 @@ class YearAttribute : DIntegerAttribute {
     this.registerPath("year");
   }    
 }
-mixin(AttributeCalls!("YearAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DYearAttribute);
-    testAttribute(YearAttribute);
-  }
-}

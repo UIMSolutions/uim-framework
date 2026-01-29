@@ -18,11 +18,4 @@ import uim.entities;
     this.name("team");
     this.registerPath("team");
   }  
-}
-mixin(AttributeCalls!("TeamAttribute"));
-
-version(test_uim_models) { unittest {
-  
-    // TODO 
-  }  
 } */

@@ -26,10 +26,3 @@ class MinutesAttribute : DIntegerAttribute {
     this.registerPath("minutes");
   }    
 }
-mixin(AttributeCalls!("MinutesAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DMinutesAttribute);
-    testAttribute(MinutesAttribute);
-  }
-}

@@ -34,5 +34,4 @@ class MillimeterAttribute : DMeterAttribute {
     this.registerPath("millimeter");
   }
 }
-mixin(AttributeCalls!("MillimeterAttribute"));
 

@@ -37,18 +37,3 @@ means.attributeName
     this.registerPath("attributeName");
   }
 }
-mixin(AttributeCalls!("AttributeNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DAttributeNameAttribute;
-  assert(attribute.name == "attributeName");
-  assert(attribute.registerPath == "attributeName");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

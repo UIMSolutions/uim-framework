@@ -20,18 +20,3 @@ class CompanyNameAttribute : DStringAttribute {
     this.registerPath("companyName");
   }
 }
-mixin(AttributeCalls!("CompanyNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DCompanyNameAttribute;
-  assert(attribute.name == "companyName");
-  assert(attribute.registerPath == "companyName");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

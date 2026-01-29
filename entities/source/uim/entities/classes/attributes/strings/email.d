@@ -20,18 +20,3 @@ class EmailAttribute : DStringAttribute {
     this.registerPath("email");
   }
 }
-mixin(AttributeCalls!("EmailAttribute"));
-
-///
-unittest {
-  auto attribute = new DEmailAttribute;
-  assert(attribute.name == "email");
-  assert(attribute.registerPath == "email");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

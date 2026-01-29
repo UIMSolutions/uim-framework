@@ -24,5 +24,4 @@ class LookupAttribute : UIMAttribute {
 /*   override UIMValue createValue() {
     return LookupValue(this); } */
 }
-mixin(AttributeCalls!("LookupAttribute"));
 

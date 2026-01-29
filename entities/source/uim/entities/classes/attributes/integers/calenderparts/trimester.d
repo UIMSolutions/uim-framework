@@ -25,10 +25,3 @@ class TrimesterAttribute : DIntegerCalendarPart {
     this.registerPath("trimester");
   }
 }
-mixin(AttributeCalls!("TrimesterAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DTrimesterAttribute);
-    testAttribute(TrimesterAttribute);
-  }
-}

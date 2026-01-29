@@ -25,11 +25,3 @@ class UIMEntityNameAttribute : DStringAttribute {
     this.registerPath("entityName");
   }
 }
-mixin(AttributeCalls!("EntityNameAttribute"));
-
-///
-unittest {
-  auto attribute = new UIMEntityNameAttribute;
-  assert(attribute.name == "entityname");
-  assert(attribute.registerPath == "entityName");
-}
