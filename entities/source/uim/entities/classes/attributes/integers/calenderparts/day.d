@@ -6,17 +6,24 @@
 module uim.entities.classes.attributes.integers.calenderparts.day;
 
 import uim.entities;
+
 @safe:
 
 /* means.calendar
 means.calendar.day */
 class ayPartAttribute : IntegerCalendarPart {
-  mixin(AttributeThis!("DayPartAttribute"));
+  this() {
+    super();
+  }
 
-override void initialize(Json configSettings = Json(null)) {
+  this(Json configSettings) {
+    super(configSettings);
+  }
+
+  override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
 
     this.name("daypart");
     this.registerPath("daypart");
-  }   
+  }
 }

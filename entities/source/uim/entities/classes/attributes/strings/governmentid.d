@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.governmentid;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* is.dataFormat.character

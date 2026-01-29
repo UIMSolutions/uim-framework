@@ -6,6 +6,9 @@
 module uim.entities.mixins.modelmanager;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 mixin template ModelContainerTemplate() {

@@ -6,6 +6,9 @@
 module uim.entities.classes.values.map;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class MapValue {

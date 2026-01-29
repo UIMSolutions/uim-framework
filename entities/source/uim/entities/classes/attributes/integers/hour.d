@@ -17,7 +17,6 @@ mixin(ShowModule!());
 
 @safe:
 class HourAttribute : IntegerAttribute {
-  mixin(AttributeThis!("HourAttribute"));
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

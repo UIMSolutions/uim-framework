@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.slas.sla;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class SlaAttribute : UIMEntityAttribute {

@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class PreferredContactMethodAttribute : UIMAttribute {
-  mixin(AttributeThis!("PreferredContactMethodAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

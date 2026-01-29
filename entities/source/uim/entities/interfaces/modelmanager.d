@@ -1,6 +1,9 @@
 module uim.entities.interfaces.modelmanager;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 interface IModelManager {

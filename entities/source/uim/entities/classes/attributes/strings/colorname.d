@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.colorname;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.measurement.color

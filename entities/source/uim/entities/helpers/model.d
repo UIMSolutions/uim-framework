@@ -1,6 +1,9 @@
 module uim.entities.helpers.model;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 bool isNull(IModel model) {

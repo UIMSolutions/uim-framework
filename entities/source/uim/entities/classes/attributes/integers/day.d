@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.integers.day;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
   /* Unit of measure for time in 'one earth rotation' interval

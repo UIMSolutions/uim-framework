@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.decimals.fixed;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // The 64 bit fixed (4) scale numbers used by PBI

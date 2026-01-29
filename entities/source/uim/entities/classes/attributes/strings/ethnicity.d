@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.ethnicity;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* 

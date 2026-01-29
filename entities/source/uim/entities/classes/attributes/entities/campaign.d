@@ -6,6 +6,9 @@
 module  source.uim.entities.classes.attributes.entities.campaign;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class CampaignAttribute : UIMEntityAttribute {

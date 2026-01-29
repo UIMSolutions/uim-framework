@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.codes.currency;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // is.dataFormat.character

@@ -6,6 +6,9 @@
 module uim.entities.mixins.element;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 template ElementThis(string name) {

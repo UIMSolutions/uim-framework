@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.county;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.location.county

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.list;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // A CSV contained within one string value

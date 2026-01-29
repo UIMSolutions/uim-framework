@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.uuids.entities.entity;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // A unique identifier for entity instances

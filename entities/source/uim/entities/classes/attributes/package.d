@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 public { 

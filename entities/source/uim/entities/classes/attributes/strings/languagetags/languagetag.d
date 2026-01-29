@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.languagetags.languagetag;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.reference.language.tag

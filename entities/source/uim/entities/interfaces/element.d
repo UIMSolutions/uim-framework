@@ -7,6 +7,9 @@
 module uim.entities.interfaces.element;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 interface IElement {

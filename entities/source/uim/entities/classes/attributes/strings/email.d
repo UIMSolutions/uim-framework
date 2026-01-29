@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.email;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.iUIMEntity.person.email

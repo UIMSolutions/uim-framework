@@ -21,7 +21,13 @@ mixin(ShowModule!());
 
 @safe:
 class YearAttribute : IntegerAttribute {
-  mixin(AttributeThis!("YearAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

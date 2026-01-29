@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class BooleanIntegerAttribute : LookupAttribute {
-  mixin(AttributeThis!("BooleanIntegerAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   mixin(OProperty!("int[bool]", "lookups"));
 

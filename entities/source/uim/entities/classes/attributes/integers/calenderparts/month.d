@@ -12,12 +12,21 @@ means.calendar
 means.calendar.month */
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* means.calendar
 means.calendar.day */
 class MonthpartAttribute : IntegerCalendarPart {
-  mixin(AttributeThis!("MonthpartAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

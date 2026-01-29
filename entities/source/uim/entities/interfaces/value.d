@@ -7,6 +7,9 @@
 module uim.entities.interfaces.value;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 interface IValue {

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.entity;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class UIMEntityAttribute : UIMAttribute {

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.doubles.degree;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* 

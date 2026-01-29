@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.currency;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // A unique identifier for entity instances

@@ -1,6 +1,9 @@
 module uim.entities.mixins.value;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 auto valueGetter(string name, string datatype, string valueClass, string path) {

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.doubles.latitude;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.location.latitude

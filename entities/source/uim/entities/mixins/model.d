@@ -6,6 +6,9 @@
 module uim.entities.mixins.model;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 string modelThis(string name) {

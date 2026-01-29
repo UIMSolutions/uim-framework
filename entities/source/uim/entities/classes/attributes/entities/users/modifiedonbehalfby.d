@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.users.modifiedonbehalfby;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class ModifiedOnBehalfByAttribute : UIMEntityAttribute {

@@ -1,6 +1,9 @@
 module uim.entities.classes.attributes.doubles.coulomb;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // Unit of measure for electric charge or amount of electricity in coulombs

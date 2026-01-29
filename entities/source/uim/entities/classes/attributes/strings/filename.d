@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.filename;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // A string value representing the name of a file.

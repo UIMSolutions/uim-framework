@@ -6,6 +6,9 @@
 module  source.uim.entities.classes.attributes.entities.contact;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class ContactAttribute : UIMEntityAttribute {

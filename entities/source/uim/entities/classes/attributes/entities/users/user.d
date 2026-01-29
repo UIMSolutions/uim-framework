@@ -18,10 +18,19 @@ means.iUIMEntity.entityId
 means.userId */
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class UserAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("UserAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

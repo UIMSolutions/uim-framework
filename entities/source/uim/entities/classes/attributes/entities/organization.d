@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.organization;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class OrganizationAttribute : UIMEntityAttribute {

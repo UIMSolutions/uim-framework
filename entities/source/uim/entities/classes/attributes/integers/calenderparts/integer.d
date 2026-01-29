@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class IntegerCalendarPart : IntegerAttribute {
-  mixin(AttributeThis!"IntegerCalendarPart");
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
 /* means.calendar
 means.calendar.day

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.entities.users.createdonbehalfby;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class CreatedOnBehalfByAttribute : UIMEntityAttribute {

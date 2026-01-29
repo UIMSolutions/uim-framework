@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.entityname;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* Type for trait parameters that take entity names as values

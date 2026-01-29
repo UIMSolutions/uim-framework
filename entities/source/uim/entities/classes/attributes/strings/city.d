@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.city;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.location.city

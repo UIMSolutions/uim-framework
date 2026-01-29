@@ -6,6 +6,9 @@
 module  source.uim.entities.classes.attributes.entities.file;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* class FileAttribute : UIMEntityAttribute {

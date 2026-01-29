@@ -11,5 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 class NumberAttribute : IntegerAttribute {
-  mixin(AttributeThis!("NumberAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 }

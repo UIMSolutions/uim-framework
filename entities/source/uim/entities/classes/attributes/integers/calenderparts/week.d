@@ -17,7 +17,13 @@ mixin(ShowModule!());
 
 @safe:
 class WeekAttribute : IntegerCalendarPart {
-  mixin(AttributeThis!("WeekAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

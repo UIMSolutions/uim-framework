@@ -6,4 +6,7 @@
 module uim.entities.classes.attributes.ulongs;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:

@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.doubles.meters.milli;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 /* Unit of measure for length in 10E-3 meters
