@@ -9,7 +9,13 @@ import uim.entities;
 @safe:
 
 /* class SlaAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("SlaAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

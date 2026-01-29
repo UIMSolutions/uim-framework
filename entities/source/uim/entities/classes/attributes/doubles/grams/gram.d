@@ -22,7 +22,13 @@ mixin(ShowModule!());
 
 @safe:
 class GramAttribute : DoubleAttribute {
-  mixin(AttributeThis!("GramAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

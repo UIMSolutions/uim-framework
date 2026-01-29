@@ -23,7 +23,13 @@ mixin(ShowModule!());
 
 @safe:
 class KilogramAttribute : GramAttribute {
-  mixin(AttributeThis!("KilogramAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

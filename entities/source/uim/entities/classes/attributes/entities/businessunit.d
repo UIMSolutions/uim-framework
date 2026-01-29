@@ -11,7 +11,13 @@ import uim.entities;
 // A unique identifier for entity instances
 
 /* class BusinessUnitAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("BusinessUnitAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

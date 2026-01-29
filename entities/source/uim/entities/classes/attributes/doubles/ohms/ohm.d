@@ -27,7 +27,13 @@ mixin(ShowModule!());
 
 @safe:
 class OhmAttribute : DoubleAttribute {
-  mixin(AttributeThis!("OhmAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

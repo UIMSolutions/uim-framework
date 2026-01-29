@@ -9,7 +9,13 @@ import uim.entities;
 @safe:
 
 /* class ContactAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("ContactAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

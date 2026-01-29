@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class VersionElementAttribute : UIMAttribute {
-  mixin(AttributeThis!("VersionElementAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   override IValue createValue() {
     return new ElementValue(this)

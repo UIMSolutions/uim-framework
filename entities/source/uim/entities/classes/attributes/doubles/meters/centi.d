@@ -21,7 +21,13 @@ mixin(ShowModule!());
 
 @safe:
 class CentimeterAttribute : MeterAttribute {
-  mixin(AttributeThis!("CentimeterAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

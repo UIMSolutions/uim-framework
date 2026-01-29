@@ -10,7 +10,13 @@ import uim.entities;
 
 // means.location.latitude
 class LatitudeAttribute : DoubleAttribute {
-  mixin(AttributeThis!("LatitudeAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

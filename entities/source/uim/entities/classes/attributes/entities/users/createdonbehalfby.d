@@ -9,7 +9,13 @@ import uim.entities;
 @safe:
 
 /* class CreatedOnBehalfByAttribute : UIMEntityAttribute {
-  mixin(AttributeThis!("CreatedOnBehalfByAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

@@ -24,7 +24,13 @@ mixin(ShowModule!());
 
 @safe:
 class MilliSecondAttribute : SecondAttribute {
-  mixin(AttributeThis!("MilliSecondAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

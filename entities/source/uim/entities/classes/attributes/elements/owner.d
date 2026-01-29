@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class OwnerElementAttribute : UIMAttribute {
-  mixin(AttributeThis!("OwnerElementAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   override IValue createValue() {
     return (new ElementValue)

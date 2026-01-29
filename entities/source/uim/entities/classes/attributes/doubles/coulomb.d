@@ -10,7 +10,13 @@ means.measurement.units.si.coulomb
 has.measurement.fundamentalComponent.second
 has.measurement.fundamentalComponent.ampere */
 class CoulombAttribute : DoubleAttribute {
-  mixin(AttributeThis!("CoulombAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

@@ -14,7 +14,13 @@ import uim.entities;
   means.measurement.duration.days
   has.measurement.fundamentalComponent.second */
 class DayAttribute : IntegerAttribute {
-  mixin(AttributeThis!("DayAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
