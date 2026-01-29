@@ -23,7 +23,7 @@ means.measurement.prefix.kilo */
 import uim.entities;
 
 @safe:
-class KiloVoltAttribute : DVoltAttribute {
+class KiloVoltAttribute : VoltAttribute {
   mixin(AttributeThis!("KiloVoltAttribute"));
 
   // Initialization hook method.

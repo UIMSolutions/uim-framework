@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.codes.status;
 import uim.entities;
 
 @safe:
-class StatusCodeAttribute : DIntegerStringAttribute {
+class StatusCodeAttribute : IntegerStringAttribute {
   mixin(AttributeThis!("StatusCodeAttribute"));
 
   // Initialization hook method.
@@ -16,14 +16,12 @@ class StatusCodeAttribute : DIntegerStringAttribute {
     super.initialize(configSettings);
 
     this.name("statusCode");
-      this.display("Status Reason");
-      this.lookups([
-        0: "Active",  
+    this.display("Status Reason");
+    this.lookups([
+        0: "Active",
         1: "Inactive"
       ]);
-      this.isNullable(true);
+    this.isNullable(true);
     this.registerPath("statuscode");
   }
 }
-
-

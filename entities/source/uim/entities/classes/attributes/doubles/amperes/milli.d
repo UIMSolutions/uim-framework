@@ -20,7 +20,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class DMilliAmpereAttribute : DAmpereAttribute {
+class DMilliAmpereAttribute : AmpereAttribute {
   mixin(AttributeThis!("MilliAmpereAttribute"));
 
   // Initialization hook method.

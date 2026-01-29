@@ -13,7 +13,7 @@ import uim.entities;
 // is.dataFormat.array
 // means.measurement.currencyCode
 // Value is a ISO 4217 currency code
-class CurrencyCodeAttribute : DStringStringAttribute {
+class CurrencyCodeAttribute : StringStringAttribute {
   mixin(AttributeThis!("CurrencyCodeAttribute"));
 
   // Initialization hook method.

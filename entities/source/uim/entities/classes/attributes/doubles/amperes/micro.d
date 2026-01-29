@@ -20,7 +20,7 @@ means.measurement.prefix.micro */
 import uim.entities;
 
 @safe:
-class DMicroAmpereAttribute : DAmpereAttribute {
+class MicroAmpereAttribute : AmpereAttribute {
   mixin(AttributeThis!("MicroAmpereAttribute"));
 
   // Initialization hook method.

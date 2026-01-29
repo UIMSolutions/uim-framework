@@ -21,7 +21,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class MilliVoltAttribute : DVoltAttribute {
+class MilliVoltAttribute : VoltAttribute {
   mixin(AttributeThis!("MilliVoltAttribute"));
 
   // Initialization hook method.
