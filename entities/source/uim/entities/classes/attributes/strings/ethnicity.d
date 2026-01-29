@@ -13,7 +13,7 @@ is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
 means.demographic.ethnicity */
-class DEthnicityAttribute : DStringAttribute {
+class EthnicityAttribute : DStringAttribute {
   mixin(AttributeThis!("EthnicityAttribute"));
 
   // Initialization hook method.

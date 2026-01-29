@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.displayorder;
 import uim.entities;
 
 @safe:
-class DDisplayOrderAttribute : DIntegerAttribute {
+class isplayOrderAttribute : DIntegerAttribute {
   mixin(AttributeThis!("DisplayOrderAttribute"));
 
   // Initialization hook method.

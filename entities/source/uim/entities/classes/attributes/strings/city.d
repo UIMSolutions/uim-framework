@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.location.city
-class DCityNameAttribute : DStringAttribute {
+class CityNameAttribute : DStringAttribute {
   mixin(AttributeThis!("CityNameAttribute"));
 
   // Initialization hook method.

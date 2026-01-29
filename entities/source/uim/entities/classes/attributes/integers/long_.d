@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.long_;
 import uim.entities;
 
 @safe:
-class DLongAttribute : UIMAttribute {
+class LongAttribute : UIMAttribute {
   mixin(AttributeThis!("LongAttribute"));
 
   // Initialization hook method.

@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.number;
 import uim.entities;
 
 @safe:
-class DNumberAttribute : DIntegerAttribute {
+class NumberAttribute : DIntegerAttribute {
   mixin(AttributeThis!("NumberAttribute"));
 }
 mixin(AttributeCalls!("NumberAttribute"));

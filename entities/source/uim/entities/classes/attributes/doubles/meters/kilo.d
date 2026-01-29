@@ -17,7 +17,7 @@ means.measurement.prefix.kilo */
 import uim.entities;
 
 @safe:
-class DKilometerAttribute : DMeterAttribute {
+class KilometerAttribute : DMeterAttribute {
   mixin(AttributeThis!("KilometerAttribute"));
 
   // Initialization hook method.

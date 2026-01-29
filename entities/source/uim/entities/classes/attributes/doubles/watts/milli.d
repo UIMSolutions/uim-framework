@@ -22,7 +22,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class DMilliWattAttribute : DWattAttribute {
+class MilliWattAttribute : DWattAttribute {
   mixin(AttributeThis!("MilliWattAttribute"));
 
   // Initialization hook method.

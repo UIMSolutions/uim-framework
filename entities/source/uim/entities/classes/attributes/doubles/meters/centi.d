@@ -18,7 +18,7 @@ means.measurement.prefix.centi */
 import uim.entities;
 
 @safe:
-class DCentimeterAttribute : DMeterAttribute {
+class CentimeterAttribute : DMeterAttribute {
   mixin(AttributeThis!("CentimeterAttribute"));
 
   // Initialization hook method.

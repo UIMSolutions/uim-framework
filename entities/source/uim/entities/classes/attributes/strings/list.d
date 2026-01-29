@@ -10,7 +10,7 @@ import uim.entities;
 
 // A CSV contained within one string value
 // means.content.text.CSV
-class DListAttribute : DStringAttribute {
+class ListAttribute : DStringAttribute {
   mixin(AttributeThis!("ListAttribute"));
 
   // Initialization hook method.

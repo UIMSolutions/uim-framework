@@ -19,7 +19,7 @@ means.content.text.HTML
 import uim.entities;
 
 @safe:
-class DHtmlAttribute : DStringAttribute {
+class HtmlAttribute : DStringAttribute {
   mixin(AttributeThis!("HtmlAttribute"));
 
   // Initialization hook method.

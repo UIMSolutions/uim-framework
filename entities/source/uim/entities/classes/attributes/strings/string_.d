@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.string_;
 import uim.entities;
 
 @safe:
-class DStringAttribute : DCharAttribute {
+class StringAttribute : DCharAttribute {
   mixin(AttributeThis!"StringAttribute");
 
   mixin(OProperty!("size_t", "maxLength"));

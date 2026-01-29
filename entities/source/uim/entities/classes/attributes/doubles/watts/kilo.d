@@ -22,7 +22,7 @@ means.measurement.prefix.kilo */
 import uim.entities;
 
 @safe:
-class DKiloWattAttribute : DWattAttribute {
+class KiloWattAttribute : DWattAttribute {
   mixin(AttributeThis!("KiloWattAttribute"));
 
   // Initialization hook method.

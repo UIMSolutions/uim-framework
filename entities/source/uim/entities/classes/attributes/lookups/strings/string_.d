@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.lookups.strings.string_;
 import uim.entities;
 
 @safe:
-class DStringStringAttribute : DLookupAttribute {
+class StringStringAttribute : DLookupAttribute {
   mixin(AttributeThis!("StringStringAttribute"));
   
   mixin(OProperty!("string[string]", "lookups"));

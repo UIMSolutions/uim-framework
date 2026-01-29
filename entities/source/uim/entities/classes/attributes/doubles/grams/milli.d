@@ -20,7 +20,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class DKilogramAttribute : DGramAttribute {
+class KilogramAttribute : DGramAttribute {
   mixin(AttributeThis!("KilogramAttribute"));
 
   // Initialization hook method.

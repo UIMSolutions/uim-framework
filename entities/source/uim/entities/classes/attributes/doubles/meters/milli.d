@@ -23,7 +23,7 @@ means.measurement.prefix.milli */
 import uim.entities;
 
 @safe:
-class DMillimeterAttribute : DMeterAttribute {
+class MillimeterAttribute : DMeterAttribute {
   mixin(AttributeThis!("MillimeterAttribute"));
 
   // Initialization hook method.

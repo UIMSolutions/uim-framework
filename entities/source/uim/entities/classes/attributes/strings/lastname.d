@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.iUIMEntity.person.lastName
-class DLastNameAttribute : DStringAttribute {
+class LastNameAttribute : DStringAttribute {
   mixin(AttributeThis!("LastNameAttribute"));
 
   // Initialization hook method.

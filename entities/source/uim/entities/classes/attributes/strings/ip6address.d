@@ -18,7 +18,7 @@ means.iUIMEntity.IP6Address */
 import uim.entities;
 
 @safe:
-class DIP6AddressAttribute : DStringAttribute {
+class IP6AddressAttribute : DStringAttribute {
   mixin(AttributeThis!("IP6AddressAttribute"));
 
   // Initialization hook method.

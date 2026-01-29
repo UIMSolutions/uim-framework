@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.entities.organization;
 import uim.entities;
 @safe:
 
-/* class DOrganizationAttribute : UIMEntityAttribute {
+/* class OrganizationAttribute : UIMEntityAttribute {
   mixin(AttributeThis!("OrganizationAttribute"));
 
   // Initialization hook method.

@@ -15,7 +15,7 @@ means.calendar.quarter */
 import uim.entities;
 
 @safe:
-class DQuarterAttribute : DIntegerCalendarPart {
+class QuarterAttribute : DIntegerCalendarPart {
   mixin(AttributeThis!("QuarterAttribute"));
 
   // Initialization hook method.

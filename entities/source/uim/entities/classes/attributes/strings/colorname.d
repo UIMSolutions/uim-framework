@@ -9,7 +9,7 @@ import uim.entities;
 @safe:
 
 // means.measurement.color
-class DColorNameAttribute : DStringAttribute {
+class ColorNameAttribute : DStringAttribute {
   mixin(AttributeThis!("ColorNameAttribute"));
 
   // Initialization hook method.

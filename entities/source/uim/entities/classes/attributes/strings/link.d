@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.strings.link;
 import uim.entities;
 
 @safe:
-class DLinkAttribute : DStringAttribute {
+class LinkAttribute : DStringAttribute {
   mixin(AttributeThis!("LinkAttribute"));
 
   // Initialization hook method.

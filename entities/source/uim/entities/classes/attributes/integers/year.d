@@ -18,7 +18,7 @@ has.measurement.fundamentalComponent.second */
 import uim.entities;
 
 @safe:
-class DYearAttribute : DIntegerAttribute {
+class YearAttribute : DIntegerAttribute {
   mixin(AttributeThis!("YearAttribute"));
 
   // Initialization hook method.

@@ -17,7 +17,7 @@ means.measurement.prefix.kilo */
 import uim.entities;
 
 @safe:
-class DKiloHertzAttribute : DHertzAttribute {
+class KiloHertzAttribute : DHertzAttribute {
   mixin(AttributeThis!("KiloHertzAttribute"));
 
   // Initialization hook method.

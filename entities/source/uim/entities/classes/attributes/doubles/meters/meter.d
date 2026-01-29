@@ -17,7 +17,7 @@ has.measurement.fundamentalComponent.meter */
 import uim.entities;
 
 @safe:
-class DMeterAttribute : DDoubleAttribute {
+class MeterAttribute : DDoubleAttribute {
   mixin(AttributeThis!("MeterAttribute"));
 
   // Initialization hook method.

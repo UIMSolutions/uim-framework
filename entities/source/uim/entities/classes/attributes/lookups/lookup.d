@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.lookups.lookup;
 import uim.entities;
 
 @safe:
-class DLookupAttribute : UIMAttribute {
+class LookupAttribute : UIMAttribute {
   mixin(AttributeThis!("LookupAttribute"));
 
   // Initialization hook method.

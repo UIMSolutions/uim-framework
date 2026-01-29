@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.integers.integer;
 import uim.entities;
 
 @safe:
-class DIntegerAttribute : UIMAttribute {
+class IntegerAttribute : UIMAttribute {
   mixin(AttributeThis!"IntegerAttribute");
 
   // Initialization hook method.

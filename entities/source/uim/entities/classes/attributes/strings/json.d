@@ -24,7 +24,7 @@ means.content.text.JSON
 import uim.entities;
 
 @safe:
-class DJsonAttribute : DStringAttribute {
+class JsonAttribute : DStringAttribute {
   mixin(AttributeThis!("JsonAttribute"));
 
   // Initialization hook method.

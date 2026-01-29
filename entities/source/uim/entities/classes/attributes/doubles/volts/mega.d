@@ -18,7 +18,7 @@ means.measurement.prefix.mega */
 import uim.entities;
 
 @safe:
-class DMegaVoltAttribute : DVoltAttribute {
+class MegaVoltAttribute : DVoltAttribute {
   mixin(AttributeThis!("MegaVoltAttribute"));
 
   // Initialization hook method.

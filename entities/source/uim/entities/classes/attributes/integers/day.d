@@ -13,7 +13,7 @@ import uim.entities;
   means.measurement.dimension.time
   means.measurement.duration.days
   has.measurement.fundamentalComponent.second */
-class DDayAttribute : DIntegerAttribute {
+class DayAttribute : DIntegerAttribute {
   mixin(AttributeThis!("DayAttribute"));
 
   override void initialize(Json configSettings = Json(null)) {
