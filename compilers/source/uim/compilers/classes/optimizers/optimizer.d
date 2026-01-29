@@ -31,24 +31,16 @@ class Optimizer : UIMObject, IOptimizer {
       return false;
     }
 
-    return true;
-  }
-  protected OptimizationPass[] _passes;
-  protected OptimizationStats _stats;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
     // Register default optimization passes
     registerDefaultPasses();
 
     return true;
   }
 
+  protected OptimizationPass[] _passes;
+
   ASTNode optimize(ASTNode ast, int level = 1) {
-    _stats = OptimizationStats.init;
+    _statistics = OptimizationStats.init;
 
     foreach (pass; _passes) {
       if (pass.level <= level) {
@@ -70,8 +62,9 @@ class Optimizer : UIMObject, IOptimizer {
     return _passes;
   }
 
+  protected OptimizationStats _statistics;
   OptimizationStats statistics() {
-    return _stats;
+    return _statistics;
   }
 
   protected void registerDefaultPasses() {

@@ -20,7 +20,7 @@ class UIMObject : IObject {
   }
 
   this(Json initData) {
-    if (!initData.isMap)
+    if (!initData.isObject)
       return;
 
     this.initialize(initData.toMap);

@@ -40,19 +40,12 @@ class ErrorMiddlewarePipeline : UIMObject {
 
     return true;
   }
+
   // Registered middleware
   protected IErrorMiddleware[] _middleware;
   
   // Whether the pipeline has been sorted by priority
   protected bool _sorted = false;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    return true;
-  }
 
   /**
    * Add middleware to the pipeline.

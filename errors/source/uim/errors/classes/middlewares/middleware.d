@@ -36,19 +36,12 @@ abstract class ErrorMiddleware : UIMObject, IErrorMiddleware {
 
     return true;
   }
+
   // Priority for middleware execution order (higher executes first)
   protected int _priority = 0;
   
   // Whether this middleware is enabled
   protected bool _enabled = true;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    return true;
-  }
 
   // #region priority
   int priority() {

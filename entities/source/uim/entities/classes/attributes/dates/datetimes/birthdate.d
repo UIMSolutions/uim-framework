@@ -30,16 +30,17 @@ class BirthDateAttribute : DatetimeAttribute {
       return false;
     }
 
-
     /* is.dataFormat.date
     means.measurement.date
     is.dataFormat.time
     means.measurement.time
     means.demographic.birthDate
  */
-    this.dataFormats(["time"])
-      .name("birthdate");
+    this.dataFormats(["time"]);
+    this.name("birthdate");
     this.registerPath("birthdate");
+
+    return true;
 
   }
   override IValue createValue() {

@@ -35,8 +35,11 @@ class LoggingMiddleware : ErrorMiddleware {
       return false;
     }
 
+    _priority = 100; // High priority to log early
+
     return true;
   }
+
   // Minimum severity level to log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
   protected string _minSeverity = "DEBUG";
   
@@ -45,16 +48,6 @@ class LoggingMiddleware : ErrorMiddleware {
   
   // Custom log handler
   protected void delegate(IError) @safe _logHandler;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    _priority = 100; // High priority to log early
-
-    return true;
-  }
 
   // #region minSeverity
   string minSeverity() {

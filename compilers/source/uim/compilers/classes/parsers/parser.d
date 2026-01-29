@@ -31,21 +31,14 @@ class Parser : UIMObject, ICompilerParser {
       return false;
     }
 
-    return true;
-  }
-  protected Token[] _tokens;
-  protected size_t _current;
-  protected Diagnostic[] _errors;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
     _current = 0;
 
     return true;
   }
+
+  protected Token[] _tokens;
+  protected size_t _current;
+  protected Diagnostic[] _errors;
 
   ASTNode parse(Token[] tokens) {
     _tokens = tokens;

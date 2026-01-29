@@ -37,23 +37,16 @@ class TransformingMiddleware : ErrorMiddleware {
       return false;
     }
 
+    _priority = 25; // Lower priority (transform after logging)
+
     return true;
   }
+
   // Transform function
   protected IError delegate(IError) @safe _transformer;
   
   // Whether to transform all errors or only matching ones
   protected bool delegate(IError) @safe _shouldTransform;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    _priority = 25; // Lower priority (transform after logging)
-
-    return true;
-  }
 
   // #region transformer
   TransformingMiddleware transformer(IError delegate(IError) @safe transformer) {

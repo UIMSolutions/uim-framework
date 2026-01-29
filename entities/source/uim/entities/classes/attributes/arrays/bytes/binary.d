@@ -30,8 +30,6 @@ class BinaryAttribute : UIMAttribute {
       return false;
     }
 
-
-
     /* Inheritance
     any <- byte <- binary
     Traits
@@ -41,5 +39,7 @@ class BinaryAttribute : UIMAttribute {
       .addDataFormats(["array"])
       .name("binary");
     this.registerPath("binary");
+
+        return true;
   }
 }

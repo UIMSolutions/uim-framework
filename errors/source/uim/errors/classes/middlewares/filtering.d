@@ -39,8 +39,11 @@ class FilteringMiddleware : ErrorMiddleware {
       return false;
     }
 
+    _priority = 50; // Medium priority
+
     return true;
   }
+
   // Codes to filter out (block)
   protected int[] _blockedCodes;
   
@@ -52,16 +55,6 @@ class FilteringMiddleware : ErrorMiddleware {
   
   // Custom filter predicate
   protected bool delegate(IError) @safe _filterPredicate;
-
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    _priority = 50; // Medium priority
-
-    return true;
-  }
 
   // #region blockedCodes
   int[] blockedCodes() {
