@@ -24,5 +24,4 @@ class FullNameAttribute : DStringAttribute {
     this.registerPath("fullName");
   }
 }
-mixin(AttributeCalls!("FullNameAttribute"));
 

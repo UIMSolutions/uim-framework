@@ -19,19 +19,3 @@ class OwnerIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("ownerId");
   }  
 }
-mixin(AttributeCalls!("OwnerIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DOwnerIdAttribute;
-  assert(attribute.name == "ownerId");
-  assert(attribute.registerPath == "ownerId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

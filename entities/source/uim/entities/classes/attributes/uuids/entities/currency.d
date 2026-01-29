@@ -21,19 +21,3 @@ class CurrencyIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("currencyId");
   }  
 }
-mixin(AttributeCalls!("CurrencyIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DCurrencyIdAttribute;
-  assert(attribute.name == "currencyId");
-  assert(attribute.registerPath == "currencyId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

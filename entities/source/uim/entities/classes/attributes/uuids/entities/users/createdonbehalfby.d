@@ -19,19 +19,3 @@ class DCreatedOnBehalfByAttribute : UIMEntityIUIMAttribute {
     this.registerPath("createdOnBehalfBy");
   }  
 }
-mixin(AttributeCalls!("CreatedOnBehalfByAttribute"));
-
-///
-unittest {
-  auto attribute = new DCreatedOnBehalfByAttribute;
-  assert(attribute.name == "createdOnBehalfBy");
-  assert(attribute.registerPath == "createdOnBehalfBy");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

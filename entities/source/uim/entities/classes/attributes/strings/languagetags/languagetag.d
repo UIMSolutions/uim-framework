@@ -20,5 +20,4 @@ class LanguageTagAttribute : DStringAttribute {
     this.registerPath("languagetag");
   }
 }
-mixin(AttributeCalls!("LanguageTagAttribute"));
 

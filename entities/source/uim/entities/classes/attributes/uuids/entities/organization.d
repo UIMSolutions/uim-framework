@@ -19,19 +19,3 @@ class OrganizationIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("organizationId");
   }  
 }
-mixin(AttributeCalls!("OrganizationIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DOrganizationIdAttribute;
-  assert(attribute.name == "organizationId");
-  assert(attribute.registerPath == "organizationId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

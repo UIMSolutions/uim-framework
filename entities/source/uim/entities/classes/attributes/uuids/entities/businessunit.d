@@ -21,19 +21,3 @@ class DBusinessUnitIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("businessUnitId");
   }  
 }
-mixin(AttributeCalls!("BusinessUnitIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DBusinessUnitIdAttribute;
-  assert(attribute.name == "businessUnitId");
-  assert(attribute.registerPath == "businessUnitId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

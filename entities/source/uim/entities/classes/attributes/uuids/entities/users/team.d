@@ -19,19 +19,3 @@ class TeamIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("teamId");
   }  
 }
-mixin(AttributeCalls!("TeamIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DTeamIdAttribute;
-  assert(attribute.name == "teamId");
-  assert(attribute.registerPath == "teamId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

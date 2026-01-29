@@ -26,5 +26,4 @@ class FaxAttribute : DStringAttribute {
     this.registerPath("fax");
   }
 }
-mixin(AttributeCalls!("FaxAttribute"));
 

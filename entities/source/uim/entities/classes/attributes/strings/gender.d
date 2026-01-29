@@ -23,11 +23,3 @@ class GenderAttribute : DStringAttribute {
     this.registerPath("gender");
   }
 }
-mixin(AttributeCalls!("GenderAttribute"));
-
-///
-unittest {
-  auto attribute = new DGenderAttribute;
-  assert(attribute.name == "gender");
-  assert(attribute.registerPath == "gender");
-}

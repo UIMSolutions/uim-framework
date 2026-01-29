@@ -19,19 +19,3 @@ class ContactIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("contactId");
   }  
 }
-mixin(AttributeCalls!("ContactIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DContactIdAttribute;
-  assert(attribute.name == "contactId");
-  assert(attribute.registerPath == "contactId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

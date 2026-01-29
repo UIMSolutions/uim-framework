@@ -13,4 +13,3 @@ mixin(ShowModule!());
 class mlErrorFormatter : UIMErrorFormatter {
   mixin(ErrorFormatterThis!("Yaml"));
 }
-mixin(ErrorFormatterCalls!("Yaml"));

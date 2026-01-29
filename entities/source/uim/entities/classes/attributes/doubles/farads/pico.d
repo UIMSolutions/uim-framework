@@ -34,5 +34,4 @@ class PicoFaradAttribute : DFaradAttribute {
     this.registerPath("picoFarad");
   }
 }
-mixin(AttributeCalls!("PicoFaradAttribute"));
 

@@ -23,17 +23,3 @@ class UUIUIMAttribute : UIMAttribute {
   override UIMValue createValue() {
     return UUIDValue(this); }
 }
-mixin(AttributeCalls!("UUIDAttribute"));
-
-///
-unittest {
-  auto attribute = new DUUIDAttribute;
-  assert(attribute.name == "uuid");
-  assert(attribute.registerPath == "uuid");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

@@ -123,5 +123,3 @@ class xtErrorFormatter : UIMErrorFormatter {
   }
   // #endregion export
 }
-
-mixin(ErrorFormatterCalls!("Text"));

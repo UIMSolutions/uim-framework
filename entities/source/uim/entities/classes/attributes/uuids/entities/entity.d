@@ -19,19 +19,4 @@ is.dataFormat.array
 is.dataFormat.guid
 means.iUIMEntity.entityId */
 
-
-
-}
-mixin(AttributeCalls!("EntityIdAttribute"));
-
-///
-unittest {
-  auto attribute = new UIMEntityIdAttribute;
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
 }

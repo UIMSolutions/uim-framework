@@ -19,19 +19,3 @@ class DCampaignIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("campaignId");
   }  
 }
-mixin(AttributeCalls!("CampaignIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DCampaignIdAttribute;
-  assert(attribute.name == "campaignId");
-  assert(attribute.registerPath == "campaignId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

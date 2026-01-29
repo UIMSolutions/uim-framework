@@ -370,4 +370,3 @@ class DWebErrorRenderer : UIMErrorRenderer {
       .set("method", _method);
   } */
 }
-mixin(ErrorRendererCalls!("Web"));

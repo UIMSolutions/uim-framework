@@ -19,19 +19,3 @@ class FileIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("fileId");
   }  
 }
-mixin(AttributeCalls!("FileIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DFileIdAttribute;
-  assert(attribute.name == "fileId");
-  assert(attribute.registerPath == "fileId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

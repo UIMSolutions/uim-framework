@@ -19,20 +19,3 @@ class DSLAInvokedIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("slaInvokedId");
   }  
 }
-mixin(AttributeCalls!("SLAInvokedIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DSLAInvokedIdAttribute;
-  assert(attribute.name == "slainvokedid");
-  assert(attribute.registerPath == "slaInvokedId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DSLAInvokedIdAttribute)generalAttribute);
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

@@ -12,4 +12,3 @@ mixin(ShowModule!());
 class DJsonErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Json"));
 }
-mixin(ErrorRendererCalls!("Json"));

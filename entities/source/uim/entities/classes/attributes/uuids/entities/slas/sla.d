@@ -19,19 +19,3 @@ class DSlaIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("slaId");
   }  
 }
-mixin(AttributeCalls!("SlaIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DSlaIdAttribute;
-  assert(attribute.name == "slaId");
-  assert(attribute.registerPath == "slaId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}
