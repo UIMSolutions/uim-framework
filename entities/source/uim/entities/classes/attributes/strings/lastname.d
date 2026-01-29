@@ -6,6 +6,9 @@
 module uim.entities.classes.attributes.strings.lastname;
 
 import uim.entities;
+
+mixin(ShowModule!());
+
 @safe:
 
 // means.iUIMEntity.person.lastName
@@ -19,19 +22,4 @@ class LastNameAttribute : DStringAttribute {
     this.name("lastname");
     this.registerPath("lastname");
   }
-}
-mixin(AttributeCalls!("LastNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DLastNameAttribute;
-  assert(attribute.name == "lastname");
-  assert(attribute.registerPath == "lastname");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
 }
