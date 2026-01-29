@@ -41,4 +41,3 @@ class DIntegerArrayValue : DArrayValue {
     return copy;
   }
 }
-mixin(ValueCalls!("IntegerArrayValue"));  

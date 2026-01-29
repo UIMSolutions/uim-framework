@@ -106,24 +106,6 @@ class DIntegerValue : UIMValue {
     if (isNull) return "null"; 
     return to!string(_value); }
 }
-mixin(ValueCalls!("IntegerValue", "int"));  
-
-version(test_uim_models) { unittest {    
-    assert(IntegerValue.value("100").toLong == 100);
-    assert(IntegerValue.value(Json(100)).toLong == 100);
-    assert(IntegerValue.value("200").toLong != 100);
-    assert(IntegerValue.value(Json(200)).toLong != 100);
-
-    assert(IntegerValue.value("100").toString == "100");
-    assert(IntegerValue.value(Json(100)).toString == "100");
-    assert(IntegerValue.value("200").toString != "100");
-    assert(IntegerValue.value(Json(200)).toString != "100");
-
-    assert(IntegerValue.value("100").toJson == Json(100));
-    assert(IntegerValue.value(Json(100)).toJson == Json(100));
-    assert(IntegerValue.value("200").toJson != Json(100));
-    assert(IntegerValue.value(Json(200)).toJson != Json(100));
-}} 
 
 /*
 

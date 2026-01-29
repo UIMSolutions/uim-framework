@@ -20,8 +20,3 @@ class DTimestampValue : DLongValue {
 
   alias opEquals = DLongValue.opEquals;
 }
-mixin(ValueCalls!("TimestampValue", "long"));  
-
-version(test_uim_models) { unittest {    
-    // TODO
-}} 

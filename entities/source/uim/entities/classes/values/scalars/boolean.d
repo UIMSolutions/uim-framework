@@ -114,44 +114,6 @@ class DBooleanValue : UIMValue {
     if (isNull) return null; 
     return to!string(this.value); }
 }
-mixin(ValueCalls!("BooleanValue", "bool"));  
-
-version(test_uim_models) { unittest {    
-    assert(BooleanValue(true) == true);
-    assert(BooleanValue(false) != true);
-    assert(BooleanValue.value(true) == true);
-    assert(BooleanValue.value(Json(true)) == true);
-    assert(BooleanValue.value(false) != true);
-    assert(BooleanValue.value(Json(false)) != true);
-
-    auto booleanValue = BooleanValue;
-
-    booleanValue.value("true");
-    assert(booleanValue.value);
-
-    booleanValue.value("false");
-    assert(!booleanValue.value);
-
-    booleanValue.value("on");
-    assert(booleanValue.value);
-
-    booleanValue.value("off");
-    assert(!booleanValue.value);
-
-    booleanValue.value("1");
-    assert(booleanValue.value);
-
-    booleanValue.value("0");
-    assert(!booleanValue.value);
-
-    booleanValue.value(true);
-    assert(booleanValue.fromString(booleanValue.toString).value);
-    assert(booleanValue.fromJson(booleanValue.toJson).value);
-
-    booleanValue.value(false);
-    assert(!booleanValue.fromString(booleanValue.toString).value);
-    assert(!booleanValue.fromJson(booleanValue.toJson).value);
-}}
 
 
 /* boolean

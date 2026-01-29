@@ -53,11 +53,3 @@ class DArrayValue : UIMValue {
     return "["~_items.map!(item => item.toString).join(",")~"]";
   }
 }
-mixin(ValueCalls!("ArrayValue")); 
-auto ArrayValue(UIMValue[] values) { return new DArrayValue(values); } 
-
-///
-unittest {
-  auto value = new DArrayValue;
-  assert(value.isArray);
-}

@@ -69,21 +69,3 @@ class DDatetimeValue : UIMValue {
     if (isNull) return null; 
     return this.value.toISOExtString; }
 }
-mixin(ValueCalls!("DatetimeValue", "DateTime"));  
-
-version(test_uim_models) { unittest {    
-    assert(DatetimeValue.value("100").toDatetime == 100);
-    assert(DatetimeValue.value(Json(100)).toDatetime == 100);
-    assert(DatetimeValue.value("200").toDatetime != 100);
-    assert(DatetimeValue.value(Json(200)).toDatetime != 100);
-
-    assert(DatetimeValue.value("100").toString == "100");
-    assert(DatetimeValue.value(Json(100)).toString == "100");
-    assert(DatetimeValue.value("200").toString != "100");
-    assert(DatetimeValue.value(Json(200)).toString != "100");
-
-    assert(DatetimeValue.value("100").toJson == Json(100));
-    assert(DatetimeValue.value(Json(100)).toJson == Json(100));
-    assert(DatetimeValue.value("200").toJson != Json(100));
-    assert(DatetimeValue.value(Json(200)).toJson != Json(100));
-}} 

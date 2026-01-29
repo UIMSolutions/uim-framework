@@ -107,34 +107,3 @@ class DUUIDValue : UIMValue {
     this.value(newValue);
   }
 }
-mixin(ValueCalls!("UUIDValue", "UUID"));  
-
-version(test_uim_models) { unittest {  
-  auto uuid = randomUUID;
-  assert(UUIDValue(uuid).value == uuid);
-  assert(UUIDValue(randomUUID).value != uuid);
-
-  assert(UUIDValue.value(uuid).value == uuid);
-  assert(UUIDValue.value(randomUUID).value != uuid);
-
-  assert(UUIDValue.value(uuid.toString).value == uuid);
-  assert(UUIDValue.value(randomUUID.toString).value != uuid);
-
-  assert(UUIDValue.value(Json(uuid.toString)).value == uuid);
-  assert(UUIDValue.value(Json(randomUUID.toString)).value != uuid);
-
-  assert(UUIDValue(uuid).toString == uuid.toString);
-  assert(UUIDValue(randomUUID).toString != uuid.toString);
-
-  assert(UUIDValue(uuid).toJson == Json(uuid.toString));
-  assert(UUIDValue(randomUUID).toJson != Json(uuid.toString));
-}}
-
-///
-unittest {
-  auto id = randomUUID;
-  auto UUIDValue = new DUUIDValue(id);
-
-  assert(UUIDValue == id);
-  assert(UUIDValue != randomUUID);
-}

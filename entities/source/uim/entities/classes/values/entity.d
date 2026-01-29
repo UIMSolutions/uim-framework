@@ -86,7 +86,3 @@ class UIMEntityValue : UIMValue {
     /// TODO this.value(newValue);
   }
 }
-mixin(ValueCalls!("EntityValue", "UIMEntity"));  
-
-version(test_uim_models) { unittest {  
-}}

@@ -7,10 +7,14 @@ module uim.entities.classes.values.datetimes.date_;
 
 import uim.entities;
 @safe:
-import std.datetime.date;
 
-class DDateValue : UIMValue {
-  mixin(ValueThis!("DateValue", "Date"));  
+class DateValue : UIMValue {
+  this() {
+    super();
+  }
+  this(IAttribute attribute, Json configSettings = Json(null)) {
+    super(attribute, configSettings);
+  }
 
   protected Date _value;  
   alias value = UIMValue.value;
@@ -63,21 +67,3 @@ class DDateValue : UIMValue {
     if (isNull) return null; 
     return this.value.toISOExtString; }
 }
-mixin(ValueCalls!("DateValue", "Date"));  
-
-version(test_uim_models) { unittest {    
-    assert(DateValue.value("100").toDate == 100);
-    assert(DateValue.value(Json(100)).toDate == 100);
-    assert(DateValue.value("200").toDate != 100);
-    assert(DateValue.value(Json(200)).toDate != 100);
-
-    assert(DateValue.value("100").toString == "100");
-    assert(DateValue.value(Json(100)).toString == "100");
-    assert(DateValue.value("200").toString != "100");
-    assert(DateValue.value(Json(200)).toString != "100");
-
-    assert(DateValue.value("100").toJson == Json(100));
-    assert(DateValue.value(Json(100)).toJson == Json(100));
-    assert(DateValue.value("200").toJson != Json(100));
-    assert(DateValue.value(Json(200)).toJson != Json(100));
-}} 

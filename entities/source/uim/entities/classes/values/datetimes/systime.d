@@ -8,8 +8,13 @@ module uim.entities.classes.values.datetimes.systime;
 import uim.entities;
 
 @safe:
-class DSystimeValue : UIMValue {
-  mixin(ValueThis!("SystimeValue", "SysTime"));  
+class SystimeValue : UIMValue {
+  this() {
+    super();
+  }
+  this(IAttribute attribute, Json configSettings = Json(null)) {
+    super(attribute, configSettings);
+  }
 
   protected SysTime _value;  
   alias value = UIMValue.value;
@@ -72,8 +77,3 @@ class DSystimeValue : UIMValue {
     if (isNull) return null; 
     return this.value.toISOExtString; }
 }
-mixin(ValueCalls!("SystimeValue", "SysTime"));  
-
-version(test_uim_models) { unittest {    
-    // TODO
-}} 

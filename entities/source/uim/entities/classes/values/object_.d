@@ -47,4 +47,3 @@ class DJsonObjectValue : UIMValue {
     this.value(newValue);
   }
 }
-mixin(ValueCalls!("JsonObjectValue"));  

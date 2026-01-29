@@ -42,4 +42,3 @@ class UIMValueArrayValue : DArrayValue {
     return copy;
   }
 }
-mixin(ValueCalls!("ValueArrayValue", "UIMValue[]"));  

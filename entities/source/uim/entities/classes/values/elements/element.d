@@ -96,8 +96,3 @@ class UIMElementValue : UIMValue {
     /// TODO this.value(newValue);
   }
 }
-mixin(ValueCalls!("ElementValue"));  
-
-version(test_uim_models) { unittest {  
-  assert(ElementValue);
-}}

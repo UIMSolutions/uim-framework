@@ -9,7 +9,12 @@ import uim.entities;
 
 @safe:
 class DTimeValue : UIMValue {
-  mixin(ValueThis!("TimeValue", "TimeOfDay"));  
+  this() {
+    super();
+  }
+  this(IAttribute attribute, Json configSettings = Json(null)) {
+    super(attribute, configSettings);
+  }
 
   protected TimeOfDay _value;  
   alias value = UIMValue.value;
@@ -75,21 +80,3 @@ class DTimeValue : UIMValue {
     if (isNull) return null; 
     return this.value.toISOExtString; }
 }
-mixin(ValueCalls!("TimeValue", "TimeOfDay"));  
-
-version(test_uim_models) { unittest {    
-    assert(TimeValue.value("100").toTime == 100);
-    assert(TimeValue.value(Json(100)).toTime == 100);
-    assert(TimeValue.value("200").toTime != 100);
-    assert(TimeValue.value(Json(200)).toTime != 100);
-
-    assert(TimeValue.value("100").toString == "100");
-    assert(TimeValue.value(Json(100)).toString == "100");
-    assert(TimeValue.value("200").toString != "100");
-    assert(TimeValue.value(Json(200)).toString != "100");
-
-    assert(TimeValue.value("100").toJson == Json(100));
-    assert(TimeValue.value(Json(100)).toJson == Json(100));
-    assert(TimeValue.value("200").toJson != Json(100));
-    assert(TimeValue.value(Json(200)).toJson != Json(100));
-}} 

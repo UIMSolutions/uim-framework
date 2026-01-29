@@ -29,4 +29,3 @@ class DNullValue : UIMValue {
   override Json toJson() { return Json(null); }
   override string toString() { return null; }
 }
-mixin(ValueCalls!("NullValue"));  

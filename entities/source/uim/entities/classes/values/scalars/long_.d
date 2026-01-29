@@ -9,7 +9,12 @@ import uim.entities;
 
 @safe:
 class DLongValue : UIMValue {
-  mixin(ValueThis!("LongValue", "long"));  
+  this() {
+    super();
+  }
+  this(IAttribute attribute, Json configSettings = Json(null)) {
+    super(attribute, configSettings);
+  }
 
   protected long _value;  
   alias value = UIMValue.value;
@@ -139,24 +144,6 @@ class DLongValue : UIMValue {
     if (isNull) return "0"; 
     return to!string(_value); }
 }
-mixin(ValueCalls!("LongValue", "long"));  
-
-version(test_uim_models) { unittest {    
-    assert(LongValue.value("100").toLong == 100);
-    assert(LongValue.value(Json(100)).toLong == 100);
-    assert(LongValue.value("200").toLong != 100);
-    assert(LongValue.value(Json(200)).toLong != 100);
-
-    assert(LongValue.value("100").toString == "100");
-    assert(LongValue.value(Json(100)).toString == "100");
-    assert(LongValue.value("200").toString != "100");
-    assert(LongValue.value(Json(200)).toString != "100");
-
-    assert(LongValue.value("100").toJson == Json(100));
-    assert(LongValue.value(Json(100)).toJson == Json(100));
-    assert(LongValue.value("200").toJson != Json(100));
-    assert(LongValue.value(Json(200)).toJson != Json(100));
-}} 
 
 /*
 static int

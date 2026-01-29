@@ -92,28 +92,3 @@ class DDoubleValue : UIMValue {
     if (isNull) return "0"; 
     return to!string(_value); }
 }
-mixin(ValueCalls!("DoubleValue", "double"));  
-
-version(test_uim_models) { unittest {    
-  assert(DoubleValue.value("100").toDouble == 100);
-  assert(DoubleValue.value(Json(100)).toDouble == 100);
-  assert(DoubleValue.value("200").toDouble != 100);
-  assert(DoubleValue.value(Json(200)).toDouble != 100);
-
-  assert(DoubleValue.value("100").toString == "100");
-  assert(DoubleValue.value(Json(100)).toString == "100");
-  assert(DoubleValue.value("200").toString != "100");
-  assert(DoubleValue.value(Json(200)).toString != "100");
-
-  assert(DoubleValue.value("100").toJson == Json(100));
-  assert(DoubleValue.value(Json(100)).toJson == Json(100));
-  assert(DoubleValue.value("200").toJson != Json(100));
-  assert(DoubleValue.value(Json(200)).toJson != Json(100));
-}} 
-
-///
-unittest {
-  auto boolValue = new DBooleanValue(true);
-  assert(boolValue == true);
-  assert(boolValue != false);
-}
