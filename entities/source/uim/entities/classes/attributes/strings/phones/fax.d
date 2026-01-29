@@ -18,8 +18,13 @@ mixin(ShowModule!());
 
 @safe:
 class FaxAttribute : StringAttribute {
-  mixin(AttributeThis!("FaxAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

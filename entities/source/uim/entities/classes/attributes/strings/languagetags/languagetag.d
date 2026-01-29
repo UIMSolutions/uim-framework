@@ -13,8 +13,13 @@ mixin(ShowModule!());
 
 // means.reference.language.tag
 class LanguageTagAttribute : StringAttribute {
-  mixin(AttributeThis!("LanguageTagAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

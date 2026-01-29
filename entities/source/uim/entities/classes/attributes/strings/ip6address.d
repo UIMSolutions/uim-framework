@@ -21,8 +21,13 @@ mixin(ShowModule!());
 
 @safe:
 class IP6AddressAttribute : StringAttribute {
-  mixin(AttributeThis!("IP6AddressAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

@@ -16,8 +16,13 @@ mixin(ShowModule!());
 
 @safe:
 class FullNameAttribute : StringAttribute {
-  mixin(AttributeThis!("FullNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

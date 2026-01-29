@@ -13,8 +13,13 @@ mixin(ShowModule!());
 
 // means.iUIMEntity.person.lastName
 class LastNameAttribute : StringAttribute {
-  mixin(AttributeThis!("LastNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

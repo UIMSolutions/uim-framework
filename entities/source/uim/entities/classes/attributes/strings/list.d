@@ -14,8 +14,13 @@ mixin(ShowModule!());
 // A CSV contained within one string value
 // means.content.text.CSV
 class ListAttribute : StringAttribute {
-  mixin(AttributeThis!("ListAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

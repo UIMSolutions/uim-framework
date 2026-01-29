@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class StringAttribute : CharAttribute {
-  mixin(AttributeThis!"StringAttribute");
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   mixin(OProperty!("size_t", "maxLength"));
 
   // Initialization hook method.

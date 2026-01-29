@@ -18,8 +18,13 @@ mixin(ShowModule!());
 
 @safe:
 class QuarterAttribute : IntegerCalendarPart {
-  mixin(AttributeThis!("QuarterAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

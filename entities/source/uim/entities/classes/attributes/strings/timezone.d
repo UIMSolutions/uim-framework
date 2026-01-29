@@ -18,8 +18,13 @@ mixin(ShowModule!());
 
 @safe:
 class TimezoneAttribute : StringAttribute {
-  mixin(AttributeThis!("TimezoneAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

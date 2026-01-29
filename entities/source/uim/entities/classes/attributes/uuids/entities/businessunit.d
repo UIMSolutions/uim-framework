@@ -14,8 +14,13 @@ mixin(ShowModule!());
 // A unique identifier for entity instances
 
 class BusinessUnitIdAttribute : EntityIdAttribute {
-  mixin(AttributeThis!("BusinessUnitIdAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

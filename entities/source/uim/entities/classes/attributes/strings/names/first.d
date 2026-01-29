@@ -16,8 +16,13 @@ is.dataFormat.big
 is.dataFormat.array
 means.iUIMEntity.person.firstName */
 class FirstNameAttribute : StringAttribute {
-  mixin(AttributeThis!("FirstNameAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);
