@@ -18,11 +18,4 @@ import uim.entities;
     this.name("slaInvoked");
     this.registerPath("slaInvoked");
   }  
-}
-mixin(AttributeCalls!("SLAInvokedAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DSLAInvokedAttribute);
-    testAttribute(SLAInvokedAttribute);
-  }
 }  */

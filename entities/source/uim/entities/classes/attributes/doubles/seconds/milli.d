@@ -32,5 +32,4 @@ class MilliSecondAttribute : DSecondAttribute {
     this.registerPath("milliSecond");
   }
 }
-mixin(AttributeCalls!("MilliSecondAttribute"));
 

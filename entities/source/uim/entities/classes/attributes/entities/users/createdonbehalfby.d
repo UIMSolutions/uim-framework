@@ -19,7 +19,7 @@ import uim.entities;
     this.registerPath("createdOnBehalfBy");
   }  
 }
-mixin(AttributeCalls!("CreatedOnBehalfByAttribute"));
+
 
 version(test_uim_models) { unittest {
   

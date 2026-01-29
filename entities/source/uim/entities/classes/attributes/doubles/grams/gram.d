@@ -30,5 +30,4 @@ class GramAttribute : DDoubleAttribute {
     this.registerPath("gram");
   }
 }
-mixin(AttributeCalls!("GramAttribute"));
 

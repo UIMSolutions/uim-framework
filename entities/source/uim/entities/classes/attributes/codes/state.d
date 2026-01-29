@@ -25,9 +25,4 @@ class StateCodeAttribute : DIntegerStringAttribute {
     this.registerPath("statecode");
   }
 }
-mixin(AttributeCalls!("StateCodeAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

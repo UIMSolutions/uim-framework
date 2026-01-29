@@ -18,11 +18,4 @@ import uim.entities;
     this.name("modifiedOnBehalfBy");
     this.registerPath("modifiedOnBehalfBy");
   }  
-}
-mixin(AttributeCalls!("ModifiedOnBehalfByAttribute"));
-
-version(test_uim_models) { unittest {
-  
-    // TODO 
-  }  
 } */

@@ -35,5 +35,5 @@ class PascalAttribute : DDoubleAttribute {
     this.registerPath("pascal");
   }
 }
-mixin(AttributeCalls!("PascalAttribute"));
+
 

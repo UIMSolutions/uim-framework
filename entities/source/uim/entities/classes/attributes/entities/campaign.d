@@ -18,11 +18,4 @@ import uim.entities;
     this.name("campaign");
     this.registerPath("campaign");
   }  
-}
-mixin(AttributeCalls!("CampaignAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DCampaignAttribute);
-    testAttribute(CampaignAttribute);
-  }
 } */

@@ -40,7 +40,3 @@ class IntegerIntegerAttribute : DLookupAttribute {
 }
 mixin(AttributeCalls!("IntegerIntegerAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

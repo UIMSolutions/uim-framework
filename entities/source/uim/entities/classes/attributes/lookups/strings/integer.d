@@ -19,7 +19,3 @@ class StringIntegerAttribute : DLookupAttribute {
 }
 mixin(AttributeCalls!("StringIntegerAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

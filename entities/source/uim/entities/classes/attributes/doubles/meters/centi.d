@@ -29,5 +29,4 @@ class CentimeterAttribute : DMeterAttribute {
     this.registerPath("centimeter");
   }
 }
-mixin(AttributeCalls!("CentimeterAttribute"));
 

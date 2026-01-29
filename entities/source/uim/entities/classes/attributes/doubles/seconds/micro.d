@@ -31,5 +31,4 @@ class MicroSecondAttribute : DSecondAttribute {
     this.registerPath("microsecond");
   }
 }
-mixin(AttributeCalls!("MicroSecondAttribute"));
 

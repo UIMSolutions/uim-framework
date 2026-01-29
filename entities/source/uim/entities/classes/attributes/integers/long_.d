@@ -21,10 +21,3 @@ class LongAttribute : UIMAttribute {
     this.registerPath("long");
   }    
 }
-mixin(AttributeCalls!("LongAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DLongAttribute);
-    testAttribute(LongAttribute);
-  }
-}

@@ -26,9 +26,5 @@ class CustomerSizeCodeAttribute : DIntegerStringAttribute {
     this.registerPath("customerSizeCode");
   }
 }
-mixin(AttributeCalls!("CustomerSizeCodeAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}
+

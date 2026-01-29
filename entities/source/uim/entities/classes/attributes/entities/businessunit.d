@@ -20,11 +20,4 @@ import uim.entities;
     this.name("businessUnit");
     this.registerPath("businessunit");
   }  
-}
-mixin(AttributeCalls!("BusinessUnitAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DBusinessUnitAttribute);
-    testAttribute(BusinessUnitAttribute);
-  }
 } */

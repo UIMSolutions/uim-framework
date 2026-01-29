@@ -36,5 +36,4 @@ class MegaWattAttribute : DWattAttribute {
     this.registerPath("megawatt");
   }
 }
-mixin(AttributeCalls!("MegaWattAttribute"));
 

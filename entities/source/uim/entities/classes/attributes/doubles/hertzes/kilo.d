@@ -28,5 +28,4 @@ class KiloHertzAttribute : DHertzAttribute {
     this.registerPath("kilohertz");
   }
 }
-mixin(AttributeCalls!("KiloHertzAttribute"));
 

@@ -34,5 +34,4 @@ class KiloVoltAttribute : DVoltAttribute {
     this.registerPath("kilovolt");
   }
 }
-mixin(AttributeCalls!("KiloVoltAttribute"));
 

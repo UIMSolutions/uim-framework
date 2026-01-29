@@ -20,11 +20,4 @@ import uim.entities;
     this.name("currency");
     this.registerPath("currency");
   }  
-}
-mixin(AttributeCalls!("CurrencyAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DCurrencyAttribute);
-    testAttribute(CurrencyAttribute);
-  }
 } */

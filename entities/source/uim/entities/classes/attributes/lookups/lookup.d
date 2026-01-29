@@ -26,7 +26,3 @@ class LookupAttribute : UIMAttribute {
 }
 mixin(AttributeCalls!("LookupAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

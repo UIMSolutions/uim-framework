@@ -30,11 +30,4 @@ import uim.entities;
     this.name("user");
     this.registerPath("user");
   }  
-}
-mixin(AttributeCalls!("UserAttribute"));
-
-version(test_uim_models) { unittest {
-  
-    // TODO 
-  }  
 } */

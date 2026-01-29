@@ -33,5 +33,5 @@ class KiloWattAttribute : DWattAttribute {
     this.registerPath("kilowatt");
   }
 }
-mixin(AttributeCalls!("KiloWattAttribute"));
+
 

@@ -23,10 +23,3 @@ class DayAttribute : DIntegerAttribute {
     this.registerPath("day");    
   }
 }
-mixin(AttributeCalls!("DayAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDayAttribute);
-    testAttribute(DayAttribute);
-  }
-}

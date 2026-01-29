@@ -18,11 +18,4 @@ import uim.entities;
     this.name("sla");
     this.registerPath("sla");
   }  
-}
-mixin(AttributeCalls!("SlaAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DSlaAttribute);
-    testAttribute(SlaAttribute);
-  }
 }  */

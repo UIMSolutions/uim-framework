@@ -39,5 +39,4 @@ has.measurement.fundamentalComponent.second */
     this.registerPath("hertz");
   }
 }
-mixin(AttributeCalls!("HertzAttribute"));
 

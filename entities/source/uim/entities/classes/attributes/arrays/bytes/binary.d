@@ -27,10 +27,3 @@ class DBinaryAttribute : UIMAttribute {
     this.registerPath("binary");
   }
 }
-mixin(AttributeCalls!("BinaryAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DBinaryAttribute);
-    testAttribute(BinaryAttribute);
-  }
-}

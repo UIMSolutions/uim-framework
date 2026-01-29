@@ -19,7 +19,3 @@ class StringBooleanAttribute : DLookupAttribute {
 }
 mixin(AttributeCalls!("StringBooleanAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

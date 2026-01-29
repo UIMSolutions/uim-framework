@@ -20,7 +20,7 @@ class FixedDecimalAttribute : DDecimalAttribute {
     this.registerPath("fixedDecimal");
   }
 }
-mixin(AttributeCalls!"FixedDecimalAttribute");
+
 
 version(test_uim_models) { unittest {
     testAttribute(new DFixedDecimalAttribute);

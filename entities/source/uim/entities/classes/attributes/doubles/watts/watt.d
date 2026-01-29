@@ -32,5 +32,4 @@ class WattAttribute : DDoubleAttribute {
     this.registerPath("watt");
   }
 }
-mixin(AttributeCalls!("WattAttribute"));
 

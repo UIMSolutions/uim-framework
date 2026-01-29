@@ -29,5 +29,4 @@ class MegaVoltAttribute : DVoltAttribute {
     this.registerPath("megavolt");
   }
 }
-mixin(AttributeCalls!("MegaVoltAttribute"));
 

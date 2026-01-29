@@ -25,9 +25,5 @@ class StatusCodeAttribute : DIntegerStringAttribute {
     this.registerPath("statuscode");
   }
 }
-mixin(AttributeCalls!("StatusCodeAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}
+

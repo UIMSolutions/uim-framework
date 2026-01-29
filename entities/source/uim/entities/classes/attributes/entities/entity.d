@@ -23,7 +23,7 @@ import uim.entities;
   override UIMValue createValue() {
     return EntityValue(this); }
 }
-mixin(AttributeCalls!"EntityAttribute");
+
 
 version(test_uim_models) { unittest {
     testAttribute(new UIMEntityAttribute);

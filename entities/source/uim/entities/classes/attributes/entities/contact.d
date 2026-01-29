@@ -18,11 +18,4 @@ import uim.entities;
     this.name("contact");
     this.registerPath("contact");
   }  
-}
-mixin(AttributeCalls!("ContactAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DContactAttribute);
-    testAttribute(ContactAttribute);
-  }
 } */

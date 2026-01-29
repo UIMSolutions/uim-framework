@@ -18,11 +18,4 @@ import uim.entities;
     this.name("account");
     this.registerPath("account");
   }  
-}
-mixin(AttributeCalls!("AccountAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DAccountAttribute);
-    testAttribute(AccountAttribute);
-  }
 } */

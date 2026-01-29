@@ -18,11 +18,4 @@ import uim.entities;
     this.name("organization");
     this.registerPath("organization");
   }  
-}
-mixin(AttributeCalls!("OrganizationAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DOrganizationAttribute);
-    testAttribute(OrganizationAttribute);
-  }
 } */

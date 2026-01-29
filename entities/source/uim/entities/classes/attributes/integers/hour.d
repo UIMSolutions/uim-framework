@@ -25,10 +25,3 @@ class HourAttribute : DIntegerAttribute {
     this.registerPath("hour");
   }    
 }
-mixin(AttributeCalls!("HourAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DHourAttribute);
-    testAttribute(HourAttribute);
-  }
-}

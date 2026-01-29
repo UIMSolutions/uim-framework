@@ -19,7 +19,3 @@ class BooleanIntegerAttribute : DLookupAttribute {
 }
 mixin(AttributeCalls!("BooleanIntegerAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

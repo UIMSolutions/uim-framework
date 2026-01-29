@@ -18,11 +18,4 @@ import uim.entities;
     this.name("file");
     this.registerPath("file");
   }  
-}
-mixin(AttributeCalls!("FileAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DFileAttribute);
-    testAttribute(FileAttribute);
-  }
 } */

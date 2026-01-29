@@ -38,9 +38,5 @@ class IntegerStringAttribute : DLookupAttribute {
   // override UIMValue createValue() {
   //   return LookupValue!(int, string)(this).isNullable(isNullable); }  
 }
-mixin(AttributeCalls!("IntegerStringAttribute"));
 
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}
+

@@ -19,7 +19,7 @@ import uim.entities;
     this.registerPath("owner");
   }  
 }
-mixin(AttributeCalls!("OwnerAttribute"));
+
 
 version(test_uim_models) { unittest {
   

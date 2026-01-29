@@ -24,5 +24,4 @@ class CurrencyCodeAttribute : DStringStringAttribute {
     this.registerPath("currencyCode");
   }
 }
-mixin(AttributeCalls!("CurrencyCodeAttribute"));
 

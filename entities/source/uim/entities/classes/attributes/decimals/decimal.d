@@ -20,7 +20,7 @@ class DecimalAttribute : UIMAttribute {
     this.registerPath("decimal");
   }
 }
-mixin(AttributeCalls!"DecimalAttribute");
+
 
 version(test_uim_models) { unittest {
     testAttribute(new DDecimalAttribute);
