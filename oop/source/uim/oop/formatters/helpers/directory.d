@@ -14,10 +14,4 @@ mixin(ShowModule!());
 /* 
 class FormatterDirectory : DDirectory!IFormatter {
   mixin(DirectoryThis!("Formatter"));
-}
-mixin(DirectoryCalls!("Formatter"));
-
-unittest {
-  auto directory = FormatterDirectory;
-  assert(testDirectory(directory, "Formatter"), "Test FormatterDirectory failed");
 } */
