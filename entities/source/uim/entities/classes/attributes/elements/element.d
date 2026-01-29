@@ -18,6 +18,6 @@ class ElementAttribute : UIMAttribute {
     super.initialize(configSettings);
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return ElementValue(this); }
 }

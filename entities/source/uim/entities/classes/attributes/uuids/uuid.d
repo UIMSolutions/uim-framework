@@ -22,6 +22,6 @@ class UUIDAttribute : UIMAttribute {
     this.registerPath("uuid");
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return UUIDValue(this); }
 }

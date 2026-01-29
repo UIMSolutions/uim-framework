@@ -20,7 +20,7 @@ import uim.entities;
     // means.measurement.time
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return EntityValue(this); }
 }
 

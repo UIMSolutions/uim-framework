@@ -13,7 +13,7 @@ mixin(ShowModule!());
 class OwnerElementAttribute : UIMAttribute {
   mixin(AttributeThis!("OwnerElementAttribute"));
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return ElementValue(this)
       .value(
         Element

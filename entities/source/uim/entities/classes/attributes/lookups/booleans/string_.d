@@ -15,7 +15,7 @@ class BooleanStringAttribute : UIMAttribute {
 
   mixin(OProperty!("string[bool]", "lookups"));
 
-  // override UIMValue createValue() {
+  // override IValue createValue() {
   //   return LookupValue!(bool, string)(this).isNullable(isNullable);
   // }
 }

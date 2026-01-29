@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class DBinaryAttribute : UIMAttribute {
+class BinaryAttribute : UIMAttribute {
   mixin(AttributeThis!("BinaryAttribute"));
 
   // Initialization hook method.

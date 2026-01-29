@@ -78,13 +78,13 @@ class BooleanValue : UIMValue {
   }
   ///
   unittest {
-    auto valueA = new DBooleanValue(true);
-    auto valueB = new DBooleanValue(false);
+    auto valueA = new BooleanValue(true);
+    auto valueB = new BooleanValue(false);
     assert(valueA > false);
     assert(valueB < true);
   }
 
-  int opCmp(DBooleanValue aValue) {
+  int opCmp(BooleanValue aValue) {
     if (aValue) {
       return opCmp(aValue.value);
     }
@@ -93,13 +93,13 @@ class BooleanValue : UIMValue {
 
   ///
   unittest {
-    auto valueA = new DBooleanValue(true);
-    auto valueB = new DBooleanValue(false);
+    auto valueA = new BooleanValue(true);
+    auto valueB = new BooleanValue(false);
     assert(valueA > valueB);
     assert(valueB < valueA);
 
-    auto valueC = (new DBooleanValue).value(true);
-    auto valueD = (new DBooleanValue).value(false);
+    auto valueC = (new BooleanValue).value(true);
+    auto valueD = (new BooleanValue).value(false);
     assert(valueC > valueD);
     assert(valueD < valueC);
   }

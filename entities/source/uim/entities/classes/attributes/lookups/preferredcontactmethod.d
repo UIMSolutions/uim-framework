@@ -23,6 +23,6 @@ class PreferredContactMethodAttribute : UIMAttribute {
     this.registerPath("preferredcontactmethod");
   }
 
-/*   override UIMValue createValue() {
+/*   override IValue createValue() {
     return PreferredContactMethoUIMValue(this); } */
 }

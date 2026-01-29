@@ -21,6 +21,6 @@ class TimestampAttribute : LongAttribute {
       .name("timestamp");
     this.registerPath("timestamp");
   }
-  override UIMValue createValue() {
+  override IValue createValue() {
     return TimestampValue(this); }
 }

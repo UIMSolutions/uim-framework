@@ -23,7 +23,7 @@ class DateAttribute : UIMAttribute {
     this.registerPath("date");
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return DateValue(this);
   }
 }

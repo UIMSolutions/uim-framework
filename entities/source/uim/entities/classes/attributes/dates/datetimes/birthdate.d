@@ -28,6 +28,6 @@ class BirthDateAttribute : DatetimeAttribute {
     this.registerPath("birthdate");
 
   }
-  override UIMValue createValue() {
+  override IValue createValue() {
     return DatetimeValue(this); }
 }

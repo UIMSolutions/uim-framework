@@ -67,9 +67,9 @@ class LongValue : UIMValue {
     return (this == to!long(equalValue));
   }
   unittest {
-    auto longValue = new DLongValue(100);
-    auto longValue100 = new DLongValue(100);
-    auto longValue10 = new DLongValue(10);
+    auto longValue = new LongValue(100);
+    auto longValue100 = new LongValue(100);
+    auto longValue10 = new LongValue(10);
 
     assert(longValue == 100);
     assert(longValue != 10);
@@ -88,7 +88,7 @@ class LongValue : UIMValue {
   }
   ///
   unittest {
-    auto value = new DLongValue(100_000);
+    auto value = new LongValue(100_000);
     assert(value > 100);
     assert(value >= 100);
     assert(value >= 100_000);
@@ -98,20 +98,20 @@ class LongValue : UIMValue {
     assert(value <= 100_000);    
   }
 
-  // Compares with DLongValue
-  int opCmp(DLongValue aValue) {
+  // Compares with LongValue
+  int opCmp(LongValue aValue) {
     return opCmp(aValue.value);
   }
   ///
   unittest {
-    auto value = new DLongValue(100_000);
-    assert(value > new DLongValue(100));
-    assert(value >= new DLongValue(100));
-    assert(value >= new DLongValue(100_000));
-    assert(value == new DLongValue(100_000));
-    assert(value < new DLongValue(200_000));    
-    assert(value <= new DLongValue(200_000));    
-    assert(value <= new DLongValue(100_000));    
+    auto value = new LongValue(100_000);
+    assert(value > new LongValue(100));
+    assert(value >= new LongValue(100));
+    assert(value >= new LongValue(100_000));
+    assert(value == new LongValue(100_000));
+    assert(value < new LongValue(200_000));    
+    assert(value <= new LongValue(200_000));    
+    assert(value <= new LongValue(100_000));    
   }
 
   long opCall() {

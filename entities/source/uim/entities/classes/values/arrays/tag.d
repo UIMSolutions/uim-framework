@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class TagArrayValue : DStringArrayValue {
+class TagArrayValue : StringArrayValue {
   this() {
     super;
   }  

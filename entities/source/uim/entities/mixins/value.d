@@ -47,7 +47,7 @@ template StringValueProperty(string name, string path = null) {
 } 
 
 template BooleanValueProperty(string name, string path = null) {
-  const char[] BooleanValueProperty = valueProperty("bool", name, path, "DBooleanValue");
+  const char[] BooleanValueProperty = valueProperty("bool", name, path, "BooleanValue");
 } 
 
 template UUIDValueProperty(string name, string path = null) {
@@ -82,13 +82,13 @@ template TimeStampValueProperty(string name, string path = null) {
 template LongValueProperty(string name, string path = null) {
   const char[] LongValueProperty = `
     @property long `~name~`() {
-      if (auto myValue = cast(DLongValue)valueOfKey("`~(path ? path : name)~`")) {
+      if (auto myValue = cast(LongValue)valueOfKey("`~(path ? path : name)~`")) {
         return myValue.value;
       }
       return 0;       
     }`~
     // Setter
-    valueSetter(name, "long", "DLongValue", path)~
-    valueSetter(name, "Json", "DLongValue", path)~
-    valueSetter(name, "string", "DLongValue", path);
+    valueSetter(name, "long", "LongValue", path)~
+    valueSetter(name, "Json", "LongValue", path)~
+    valueSetter(name, "string", "LongValue", path);
 } 

@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class DStringArrayAttribute : UIMAttribute {
+class StringArrayAttribute : UIMAttribute {
   mixin(AttributeThis!("StringArrayAttribute"));
 
   // Initialization hook method.
@@ -22,6 +22,6 @@ class DStringArrayAttribute : UIMAttribute {
     this.registerPath("StringArrayAttribute");
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return StringArrayValue(this); }
 }

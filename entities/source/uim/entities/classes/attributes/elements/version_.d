@@ -13,7 +13,7 @@ mixin(ShowModule!());
 class VersionElementAttribute : UIMAttribute {
   mixin(AttributeThis!("VersionElementAttribute"));
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return new ElementValue(this)
       .value(
         Version        

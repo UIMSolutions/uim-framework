@@ -21,7 +21,7 @@ class StringValueMap : UIMValue {
 
   protected UIMValue[string] _items;
 
-  DStringValueMap opIndexAssign(UIMValue value, string key) {
+  StringValueMap opIndexAssign(UIMValue value, string key) {
     if (containsKey(key)) {
       _items[key] = value; 
     } else {
@@ -30,16 +30,16 @@ class StringValueMap : UIMValue {
     return this;
   }
 
-  DStringValueMap opIndexAssign(bool value, string key) {
+  StringValueMap opIndexAssign(bool value, string key) {
     if (containsKey(key)) {
       _items[key].value(value ? "true" : "false"); 
     } else {
-    _items[key] = new DBooleanValue(value); }
+    _items[key] = new BooleanValue(value); }
 
     return this;
   }
 
-  DStringValueMap opIndexAssign(int value, string key) {
+  StringValueMap opIndexAssign(int value, string key) {
     if (containsKey(key)) {
       _items[key].value(to!string(value)); 
     } else {
@@ -48,7 +48,7 @@ class StringValueMap : UIMValue {
     return this;
   }
 
-  DStringValueMap opIndexAssign(double value, string key) {
+  StringValueMap opIndexAssign(double value, string key) {
     if (containsKey(key)) {
       _items[key].value(to!string(value)); 
     } else {
@@ -57,7 +57,7 @@ class StringValueMap : UIMValue {
     return this;
   }
 
-  DStringValueMap opIndexAssign(string value, string key) {    
+  StringValueMap opIndexAssign(string value, string key) {    
      if (containsKey(key)) {
       _items[key].value(value); 
     } else {
@@ -66,7 +66,7 @@ class StringValueMap : UIMValue {
     return this;
   }
 
-  DStringValueMap opIndexAssign(UUID value, string key) {
+  StringValueMap opIndexAssign(UUID value, string key) {
     if (containsKey(key)) {
       _items[key].value(value.toString); 
     } else {
@@ -75,7 +75,7 @@ class StringValueMap : UIMValue {
     return this;
   }
 
-  DStringValueMap opIndexAssign(UIMValue[] values, string key) {
+  StringValueMap opIndexAssign(UIMValue[] values, string key) {
     if (containsKey(key)) {
       _items[key] = new ArrayValue(values); 
     } else {

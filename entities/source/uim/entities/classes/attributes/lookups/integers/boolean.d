@@ -37,6 +37,6 @@ class IntegerBooleanAttribute : LookupAttribute {
     return false; 
   }  
 
-  // override UIMValue createValue() {
+  // override IValue createValue() {
   //   return LookupValue!(int, bool)(this).isNullable(isNullable); }  
 }

@@ -3,14 +3,14 @@ module uim.entities.helpers.model;
 import uim.entities;
 @safe:
 
-bool isNull(DModel aModel) {
+bool isNull(IModel aModel) {
   return (aModel is null ? true : false);
 }
 unittest {
-  DModel model;
+  IModel model;
   assert(model.isNull); 
 
-  model = new DModel;
+  model = new UIMModel;
   assert(!model.isNull); 
 }
 
@@ -21,6 +21,6 @@ unittest {
   IModel model;
   assert(model.isNull); 
 
-  model = new DModel;
+  model = new UIMModel;
   assert(!model.isNull); 
 }

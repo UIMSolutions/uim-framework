@@ -23,7 +23,7 @@ class StringAttribute : CharAttribute {
 this.isString(true);
     this.registerPath("string");
   }
-  override UIMValue createValue() {
+  override IValue createValue() {
     return StringValue(this)
       .maxLength(this.maxLength); }
 }

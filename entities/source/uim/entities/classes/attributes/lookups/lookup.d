@@ -23,7 +23,7 @@ class LookupAttribute : UIMAttribute {
     this.registerPath("lookup");
   }
 
-/*   override UIMValue createValue() {
+/*   override IValue createValue() {
     return LookupValue(this); } */
 }
 

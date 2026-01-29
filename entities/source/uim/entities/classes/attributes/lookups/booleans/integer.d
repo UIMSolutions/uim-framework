@@ -15,7 +15,7 @@ class BooleanIntegerAttribute : LookupAttribute {
 
   mixin(OProperty!("int[bool]", "lookups"));
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return LookupValue!(bool, int)(this).isNullable(isNullable);
   }
 }

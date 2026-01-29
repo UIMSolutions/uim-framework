@@ -37,15 +37,15 @@ class UIMElement : UIMObject, IElement {
       .requestPrefix("element_");
   }
 
-  protected DStringValueMap _values;
+  protected StringValueMap _values;
 
   /// Getter for values
-  DStringValueMap values() const @property {
+  StringValueMap values() const @property {
     return _values;
   }
 
   /// Setter for values (chainable)
-  UIMElement values(DStringValueMap value) @property {
+  UIMElement values(StringValueMap value) @property {
     _values = value;
     return this;
   }
@@ -311,16 +311,16 @@ class UIMElement : UIMObject, IElement {
 
   // Set long value
   void opIndexAssign(long value, string key) {
-    if (auto myValue = cast(DLongValue)valueOfKey(key)) {
-      // values[key] exists and value of DLongValue
+    if (auto myValue = cast(LongValue)valueOfKey(key)) {
+      // values[key] exists and value of LongValue
       myValue.value = value;
     }
   }
 
   // Set bool value
   void opIndexAssign(bool value, string key) {
-    if (auto myValue = cast(DBooleanValue)valueOfKey(key)) {
-      // values[key] exists and value of DBooleanValue
+    if (auto myValue = cast(BooleanValue)valueOfKey(key)) {
+      // values[key] exists and value of BooleanValue
       myValue.value = value;
     }
   }

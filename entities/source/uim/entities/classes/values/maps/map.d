@@ -34,7 +34,7 @@ class MapValue(K) : UIMValue {
     if (containsKey(key)) {
       _items[key].value(value ? "true" : "false"); 
     } else {
-    _items[key] = new DBooleanValue(value); }
+    _items[key] = new BooleanValue(value); }
 
     return this;
   }
@@ -156,7 +156,7 @@ unittest {
 
   assert(stringMap["key1"].toString == "value1");
   assert(cast(DStringValue)stringMap["key1"]);
-  assert(!cast(DBooleanValue)stringMap["key1"]);
+  assert(!cast(BooleanValue)stringMap["key1"]);
 
   stringMap["key2"] = "value2";
   assert(stringMap["key2"].toString == "value2");

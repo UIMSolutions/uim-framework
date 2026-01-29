@@ -15,7 +15,7 @@ class StringStringAttribute : LookupAttribute {
   
   mixin(OProperty!("string[string]", "lookups"));
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return LookupValue!(string, string).isNullable(isNullable);
   }
 }

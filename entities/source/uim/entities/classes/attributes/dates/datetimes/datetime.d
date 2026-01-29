@@ -23,6 +23,6 @@ class DatetimeAttribute : DateAttribute {
       // means.measurement.date
       // means.measurement.time
   }
-  override UIMValue createValue() {
+  override IValue createValue() {
     return DatetimeValue(this); }
 }

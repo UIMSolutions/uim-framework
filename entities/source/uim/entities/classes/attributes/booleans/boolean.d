@@ -27,6 +27,6 @@ is.dataFormat.boolean */
     this.registerPath("boolean");
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return BooleanValue(this); }
 }

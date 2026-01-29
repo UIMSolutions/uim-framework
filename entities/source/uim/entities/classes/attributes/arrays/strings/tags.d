@@ -22,6 +22,6 @@ class TagsAttribute : StringArrayAttribute {
     this.registerPath("TagsAttribute");
   }
 
-  override UIMValue createValue() {
+  override IValue createValue() {
     return TagArrayValue(this); }
 }
