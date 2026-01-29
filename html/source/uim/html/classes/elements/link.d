@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML link element (for stylesheets, etc.)
-class Link : DHtmlElement {
+class Link : HtmlElement {
     this() {
         super("link");
         this.selfClosing(true);

@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML anchor (link) element
-class A : DHtmlElement {
+class A : HtmlElement {
   this() {
     super("a");
   }

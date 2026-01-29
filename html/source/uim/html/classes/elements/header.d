@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DHeader : DHtmlElement {
+class DHeader : HtmlElement {
   this() {
     super("header");
     this.selfClosing(false);

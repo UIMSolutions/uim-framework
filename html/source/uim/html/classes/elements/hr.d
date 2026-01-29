@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML horizontal rule element
-class Hr : DHtmlElement {
+class Hr : HtmlElement {
     this() {
         super("hr");
         this.selfClosing(true);

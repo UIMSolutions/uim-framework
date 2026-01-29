@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML form element
-class Form : DHtmlElement, IHtmlForm {
+class Form : HtmlElement, IHtmlForm {
     this() {
         super("form");
     }

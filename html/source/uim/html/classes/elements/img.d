@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML image element
-class Img : DHtmlElement {
+class Img : HtmlElement {
     this() {
         super("img");
         this.selfClosing(true);

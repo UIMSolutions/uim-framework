@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// Base class for all HTML elements
-class DHtmlElement : IHtmlElement {
+class HtmlElement : IHtmlElement {
   protected string _tagName;
   protected string _content;
   protected bool _selfClosing;
@@ -106,13 +106,13 @@ class DHtmlElement : IHtmlElement {
   }
 
   /// Add a child element
-  IHtmlElement addChild(DHtmlElement child) {
+  IHtmlElement addChild(HtmlElement child) {
     _children ~= child;
     return this;
   }
 
   /// Add multiple children
-  IHtmlElement addChildren(DHtmlElement[] children...) {
+  IHtmlElement addChildren(HtmlElement[] children...) {
     foreach (child; children) {
       addChild(child);
     }
@@ -177,12 +177,12 @@ class DHtmlElement : IHtmlElement {
 
   /// Create a new element
   static IHtmlElement create(string tag) {
-    return new DHtmlElement(tag);
+    return new HtmlElement(tag);
   }
 }
 
 IHtmlElement HtmlElement(string tag) {
-  return new DHtmlElement(tag);
+  return new HtmlElement(tag);
 }
 
 unittest {

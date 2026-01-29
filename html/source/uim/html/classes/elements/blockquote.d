@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML anchor (link) element
-class Blockquote : DHtmlElement {
+class Blockquote : HtmlElement {
   this() {
     super("blockquote");
   }

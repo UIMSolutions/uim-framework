@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML heading element (h1-h6)
-class DH : DHtmlElement {
+class DH : HtmlElement {
     this(int level) {
         import std.conv : to;
         super("h" ~ level.to!string);

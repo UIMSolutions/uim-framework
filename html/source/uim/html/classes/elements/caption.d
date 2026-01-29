@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Caption : DHtmlElement {
+class Caption : HtmlElement {
   this() {
     super("caption");
     this.selfClosing(false);

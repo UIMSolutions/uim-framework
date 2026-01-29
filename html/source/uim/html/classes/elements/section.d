@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Section : DHtmlElement {
+class Section : HtmlElement {
   this() {
     super("section");
     this.selfClosing(false);

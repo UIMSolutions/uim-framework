@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML list item element
-class DLi : DHtmlElement {
+class DLi : HtmlElement {
     this() {
         super("li");
     }

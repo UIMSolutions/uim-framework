@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML span element
-class Span : DHtmlElement {
+class Span : HtmlElement {
   this() {
     super("span");
   }

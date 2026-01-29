@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML ordered list element
-class Ol : DHtmlElement {
+class Ol : HtmlElement {
   this() {
     super("ol");
   }

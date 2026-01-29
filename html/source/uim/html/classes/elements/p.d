@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML paragraph element
-class P : DHtmlElement {
+class P : HtmlElement {
   this() {
     super("p");
   }

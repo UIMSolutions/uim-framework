@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML base element
-class Base : DHtmlElement {
+class Base : HtmlElement {
   this() {
     super("base");
     this.selfClosing(true);

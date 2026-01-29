@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Cite : DHtmlElement {
+class Cite : HtmlElement {
   this() {
     super("cite");
     this.selfClosing(false);

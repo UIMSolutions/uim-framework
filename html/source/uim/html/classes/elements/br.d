@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML line break element
-class Br : DHtmlElement {
+class Br : HtmlElement {
   this() {
     super("br");
     this.selfClosing(true);

@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Nav : DHtmlElement {
+class Nav : HtmlElement {
   this() {
     super("nav");
     this.selfClosing(false);

@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Search : DHtmlElement {
+class Search : HtmlElement {
   this() {
     super("search");
     this.selfClosing(false);

@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DFooter : DHtmlElement {
+class DFooter : HtmlElement {
   this() {
     super("footer");
     this.selfClosing(false);

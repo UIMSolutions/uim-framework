@@ -282,8 +282,8 @@ auto page = Div().addClass("page")
 
 ### Custom Elements
 ```d
-// Extend DHtmlElement for custom elements
-class MyCustomElement : DHtmlElement {
+// Extend HtmlElement for custom elements
+class MyCustomElement : HtmlElement {
     this() {
         super("custom-element");
     }
@@ -298,7 +298,7 @@ class MyCustomElement : DHtmlElement {
 
 ### Core Classes
 
-- `DHtmlElement` - Base class for all HTML elements
+- `HtmlElement` - Base class for all HTML elements
 - `DHtmlAttribute` - Represents an HTML attribute
 - `DHtmlDocument` - Complete HTML document builder
 

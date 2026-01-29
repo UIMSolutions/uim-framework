@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML canvas element
-class Canvas : DHtmlElement {
+class Canvas : HtmlElement {
   this() {
     super("canvas");
   }

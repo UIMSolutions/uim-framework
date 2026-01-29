@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML table element
-class Table : DHtmlElement {
+class Table : HtmlElement {
     this() {
         super("table");
     }

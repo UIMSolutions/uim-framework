@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML table foot element
-class Tfoot : DHtmlElement {
+class Tfoot : HtmlElement {
     this() {
         super("tfoot");
     }

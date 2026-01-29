@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Fieldset : DHtmlElement {
+class Fieldset : HtmlElement {
   this() {
     super("fieldset");
   }

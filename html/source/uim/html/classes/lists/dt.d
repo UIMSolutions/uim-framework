@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML definition term element
-class DDt : DHtmlElement {
+class DDt : HtmlElement {
   this() {
     super("dt");
   }

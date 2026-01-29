@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class ialog : DHtmlElement {
+class ialog : HtmlElement {
   this() {
     super("dialog");
     this.selfClosing(false);

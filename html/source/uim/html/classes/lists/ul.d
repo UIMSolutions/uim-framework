@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML unordered list element
-class Ul : DHtmlElement {
+class Ul : HtmlElement {
     this() {
         super("ul");
     }

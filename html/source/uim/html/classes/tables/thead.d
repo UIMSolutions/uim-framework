@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML table head element
-class Thead : DHtmlElement {
+class Thead : HtmlElement {
     this() {
         super("thead");
     }

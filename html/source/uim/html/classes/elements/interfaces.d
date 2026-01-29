@@ -42,9 +42,9 @@ interface IHtmlElement {
   IHtmlElement style(string styleValue);
 
   /// Add a child element
-  IHtmlElement addChild(DHtmlElement child);
+  IHtmlElement addChild(HtmlElement child);
   /// Add multiple children
-  IHtmlElement addChildren(DHtmlElement[] children...);
+  IHtmlElement addChildren(HtmlElement[] children...);
   /// Get children array
   IHtmlElement[] children();
   /// Remove all children
