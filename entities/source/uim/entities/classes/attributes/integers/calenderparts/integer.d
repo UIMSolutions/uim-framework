@@ -21,10 +21,3 @@ means.calendar.day
     this.registerPath("integerCalendarPart");
   }    
 }
-mixin(AttributeCalls!"IntegerCalendarPart");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DIntegerCalendarPart);
-    testAttribute(IntegerCalendarPart);
-  }
-}

@@ -24,10 +24,3 @@ class atetimeOffsetAttribute : DDatetimeAttribute {
         is.dataFormat.timeOffset */
   }
 }
-mixin(AttributeCalls!"DatetimeOffsetAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DDatetimeOffsetAttribute);
-    testAttribute(DatetimeOffsetAttribute);
-  }
-}

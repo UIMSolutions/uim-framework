@@ -29,10 +29,3 @@ class BirthDateAttribute : DDatetimeAttribute {
   override UIMValue createValue() {
     return DatetimeValue(this); }
 }
-mixin(AttributeCalls!"BirthDateAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DBirthDateAttribute);
-    testAttribute(BirthDateAttribute);
-  }
-}

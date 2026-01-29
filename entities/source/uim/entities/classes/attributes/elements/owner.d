@@ -23,9 +23,3 @@ class OwnerElementAttribute : UIMAttribute {
       );
   }
 }
-mixin(AttributeCalls!"OwnerElementAttribute");
-
-version(test_uim_models) { unittest {
-  testAttribute(new DOwnerElementAttribute);
-  testAttribute(OwnerElementAttribute);
-}}

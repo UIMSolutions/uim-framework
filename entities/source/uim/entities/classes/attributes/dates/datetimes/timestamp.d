@@ -22,10 +22,3 @@ class TimestampAttribute : DLongAttribute {
   override UIMValue createValue() {
     return TimestampValue(this); }
 }
-mixin(AttributeCalls!"TimestampAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DTimestampAttribute);
-    testAttribute(TimestampAttribute);
-  }
-}

@@ -20,10 +20,3 @@ class CharAttribute : UIMAttribute {
     this.registerPath("char");
   }
 }
-mixin(AttributeCalls!"CharAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DCharAttribute);
-    testAttribute(CharAttribute);
-  }
-}

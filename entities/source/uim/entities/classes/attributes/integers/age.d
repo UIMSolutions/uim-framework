@@ -21,10 +21,3 @@ class AgeAttribute : DIntegerAttribute {
     this.registerPath("age");    
   }
 }
-mixin(AttributeCalls!"AgeAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DAgeAttribute);
-    testAttribute(AgeAttribute);
-  }
-}

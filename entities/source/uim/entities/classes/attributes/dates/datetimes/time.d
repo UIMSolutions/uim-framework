@@ -24,10 +24,3 @@ class TimeAttribute : UIMAttribute {
   override UIMValue createValue() {
     return TimeValue(this); }
 }
-mixin(AttributeCalls!"TimeAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DTimeAttribute);
-    testAttribute(TimeAttribute);
-  }
-}

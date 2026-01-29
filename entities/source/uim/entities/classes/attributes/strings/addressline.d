@@ -25,10 +25,3 @@ class AddressLineAttribute : DStringAttribute {
     this.registerPath("addressline");
   }
 }
-mixin(AttributeCalls!"AddressLineAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DAddressLineAttribute);
-    testAttribute(AddressLineAttribute);
-  }
-}

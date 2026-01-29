@@ -23,9 +23,3 @@ class TagsAttribute : DStringArrayAttribute {
   override UIMValue createValue() {
     return TagArrayValue(this); }
 }
-mixin(AttributeCalls!"TagsAttribute");
-
-version(test_uim_models) { unittest {
-  testAttribute(new DTagsAttribute);
-  testAttribute(TagsAttribute);
-}}

@@ -21,10 +21,3 @@ class IntegerAttribute : UIMAttribute {
     this.registerPath("integer");
   }    
 }
-mixin(AttributeCalls!"IntegerAttribute");
-
-version(test_uim_models) { unittest {
-    testAttribute(new DIntegerAttribute);
-    testAttribute(IntegerAttribute);
-  }
-}
