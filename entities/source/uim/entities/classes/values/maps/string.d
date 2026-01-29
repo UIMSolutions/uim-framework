@@ -62,7 +62,7 @@ class DStringValueMap : UIMValue {
     if (containsKey(key)) {
       _items[key].value(value.toString); 
     } else {
-      _items[key] = new DUUIUIMValue(value); }
+      _items[key] = new DUUIDValue(value); }
 
     return this;
   }

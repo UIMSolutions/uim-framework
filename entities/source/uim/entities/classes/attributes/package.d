@@ -61,32 +61,32 @@ void testAttribute(UIMAttribute attribute) {
 static this() {
   AttributeRegistry
     // Booleans
-    .register(BooleanAttribute)
+    .register("boolean", new BooleanAttribute)
     // Bytes
-    .register(BinaryAttribute)
-    .register(ByteAttribute)
+    .register("binary", new BinaryAttribute)
+    .register("byte", new ByteAttribute)
     // Chars
-    .register(CharAttribute)
+    .register("char", new CharAttribute)
     // Chars -> Strings
-    .register(AddressLineAttribute)
-    .register(AttributeNameAttribute)
-    .register(CityNameAttribute)
-    .register(ColorNameAttribute)
-    .register(CompanyNameAttribute)
-    .register(CountryAttribute)
-    .register(CountyAttribute)
-    .register(LanguageTagAttribute)
-    .register(LastNameAttribute)
-    .register(LinkAttribute)
-    .register(ListAttribute)
-    .register(StringAttribute)
-    .register(UrlAttribute)
+    .register("addressLine", new AddressLineAttribute)
+    .register("attributeName", new AttributeNameAttribute)
+    .register("cityName", new CityNameAttribute)
+    .register("colorName", new ColorNameAttribute)
+    .register("companyName", new CompanyNameAttribute)
+    .register("country", new CountryAttribute)
+    .register("county", new CountyAttribute)
+    .register("languageTag", new LanguageTagAttribute)
+    .register("lastName", new LastNameAttribute)
+    .register("link", new LinkAttribute)
+    .register("list", new ListAttribute)
+    .register("string", new StringAttribute)
+    .register("url", new UrlAttribute)
     // Dates
-    .register(DateAttribute)
+    .register("date", new DateAttribute)
     // DateTimes
-    .register(BirthDateAttribute)
-    .register(DatetimeAttribute)
-    .register(TimeAttribute);
+    .register("birthDate", new BirthDateAttribute)
+    .register("datetime", new DatetimeAttribute)
+    .register("time", new TimeAttribute);
     // Decimals
 }
 

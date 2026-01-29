@@ -21,7 +21,7 @@ class DUUIUIMAttribute : UIMAttribute {
   }
 
   override UIMValue createValue() {
-    return UUIUIMValue(this); }
+    return UUIDValue(this); }
 }
 mixin(AttributeCalls!("UUIDAttribute"));
 
@@ -35,5 +35,5 @@ unittest {
   assert(!cast(DIntegerAttribute)generalAttribute);
 
   UIMValue value = attribute.createValue();
-  assert(cast(DUUIUIMValue)value);
+  assert(cast(DUUIDValue)value);
 }

@@ -45,7 +45,7 @@ import uim.entities;
   }
 
   void opIndexAssign(UUID newValue, string key) {
-    _items[key] = UUIUIMValue(newValue);
+    _items[key] = UUIDValue(newValue);
   }
 
   O adUIMValues(this O)(UIMValue[string] newValues) {

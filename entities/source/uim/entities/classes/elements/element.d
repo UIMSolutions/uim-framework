@@ -301,8 +301,8 @@ class UIMElement : UIMObject, IElement {
 
   // Set UUID value
   void opIndexAssign(UUID value, string key) {
-    if (auto myValue = cast(DUUIUIMValue)valueOfKey(key)) {
-      // values[key] exists and value of DUUIUIMValue
+    if (auto myValue = cast(DUUIDValue)valueOfKey(key)) {
+      // values[key] exists and value of DUUIDValue
       myValue.value = value;
     }
   }

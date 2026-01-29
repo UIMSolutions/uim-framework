@@ -82,7 +82,7 @@ class DVersion : UIMElement {
   }
 
   // Who created version
-  mixin(UUIUIMValueProperty!("by"));
+  mixin(UUIDValueProperty!("by"));
   /// 
   unittest {
     auto id = randomUUID;
