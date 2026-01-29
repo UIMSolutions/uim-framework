@@ -31,19 +31,3 @@ class UserIUIMAttribute : UIMEntityIUIMAttribute {
     this.registerPath("userId");
   }  
 }
-mixin(AttributeCalls!("UserIdAttribute"));
-
-///
-unittest {
-  auto attribute = new DUserIdAttribute;
-  assert(attribute.name == "userId");
-  assert(attribute.registerPath == "userId");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

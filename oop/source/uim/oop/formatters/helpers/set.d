@@ -14,10 +14,4 @@ mixin(ShowModule!());
 /*
 class FormatterSet : UIMSet!IFormatter {
   mixin(SetThis!("Formatter"));
-}
-mixin(SetCalls!("Formatter"));
-
-unittest {
-  auto set = FormatterSet;
-  assert(testSet(set, "Formatter"), "Test FormatterSet failed");
 } */

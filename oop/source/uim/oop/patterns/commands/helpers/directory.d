@@ -14,10 +14,4 @@ mixin(ShowModule!());
 class DCommandDirectory : DDirectory!ICommand {
   mixin(DirectoryThis!("Command"));
 }
-mixin(DirectoryCalls!("Command"));
-
-unittest {
-  auto directory = new DCommandDirectory();
-  assert(testDirectory(directory, "CommandDirectory"), "Test of DCommandDirectory failed!");
-}
 */

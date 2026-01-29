@@ -26,5 +26,4 @@ class NameAttribute : DStringAttribute {
     this.registerPath("name");
   }
 }
-mixin(AttributeCalls!("NameAttribute"));
 

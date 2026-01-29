@@ -25,14 +25,4 @@ class DNotCreateCommandException : DCommandException {
 
     return true;
   }
-}
-
-mixin(ExceptionCalls!("NotCreateCommand"));
-
-unittest {
-  auto exception = new DNotCreateCommandException();
-  assert(exception !is null, "Failed to create DNotCreateCommandException instance");
-
-  assert(testException(exception), "Test for DNotCreateCommandException failed");
-}
 */

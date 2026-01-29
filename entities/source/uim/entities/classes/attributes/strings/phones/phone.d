@@ -26,6 +26,5 @@ class PhoneAttribute : DStringAttribute {
     this.registerPath("phone");
   }
 }
-mixin(AttributeCalls!("PhoneAttribute"));
 
 

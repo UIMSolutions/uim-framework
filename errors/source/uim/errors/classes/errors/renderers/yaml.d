@@ -12,4 +12,3 @@ mixin(ShowModule!());
 class DYamlErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Yaml"));
 }
-mixin(ErrorRendererCalls!("Yaml"));

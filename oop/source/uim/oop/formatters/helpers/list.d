@@ -15,10 +15,4 @@ mixin(ShowModule!());
 class FormatterList : UIMList!IFormatter {
   mixin(ListThis!("Formatter"));
 }
-mixin(ListCalls!("Formatter"));
-
-unittest {
-  auto list = FormatterList;
-  assert(testList(list, "Formatter"), "Test FormatterList failed");
-}
 */

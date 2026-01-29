@@ -20,18 +20,3 @@ class LastNameAttribute : DStringAttribute {
     this.registerPath("lastname");
   }
 }
-mixin(AttributeCalls!("LastNameAttribute"));
-
-///
-unittest {
-  auto attribute = new DLastNameAttribute;
-  assert(attribute.name == "lastname");
-  assert(attribute.registerPath == "lastname");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}

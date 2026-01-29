@@ -26,11 +26,4 @@ class DNotFindCommandException : DCommandException {
     return true;
   }
 }
-
-mixin(ExceptionCalls!("NotFindCommand"));
-
-unittest {
-  auto exception = new DNotFindCommandException();
-  assert(testException(exception), "Test for DNotFindCommandException failed");
-}
 */

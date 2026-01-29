@@ -14,12 +14,5 @@ mixin(ShowModule!());
 /*
 class DCommandList : UIMList!ICommand {
   mixin(ListThis!("Command"));
-}
-
-mixin(ListCalls!("Command"));
-
-unittest {
-  auto list = new DCommandList();
-  assert(testList(list, "CommandList"), "Test of DCommandList failed!");
 } 
 */

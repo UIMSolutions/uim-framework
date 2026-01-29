@@ -15,11 +15,4 @@ mixin(ShowModule!());
 class DCommandSet : UIMSet!ICommand {
   mixin(SetThis!("Command"));
 }
-
-mixin(SetCalls!("Command"));
-
-unittest {
-  auto set = new DCommandSet();
-  assert(testSet(set, "CommandSet"), "Test of DCommandSet failed!");
-}
 */

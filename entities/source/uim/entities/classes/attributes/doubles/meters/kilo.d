@@ -28,5 +28,4 @@ class KilometerAttribute : DMeterAttribute {
     this.registerPath("kilometer");
   }
 }
-mixin(AttributeCalls!("KilometerAttribute"));
 

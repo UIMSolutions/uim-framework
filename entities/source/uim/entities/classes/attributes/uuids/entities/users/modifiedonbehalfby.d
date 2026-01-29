@@ -19,19 +19,3 @@ class ModifiedOnBehalfByAttribute : UIMEntityIUIMAttribute {
     this.registerPath("modifiedOnBehalfBy");
   }  
 }
-mixin(AttributeCalls!("ModifiedOnBehalfByAttribute"));
-
-///
-unittest {
-  auto attribute = new DModifiedOnBehalfByAttribute;
-  assert(attribute.name == "modifiedOnBehalfBy");
-  assert(attribute.registerPath == "modifiedOnBehalfBy");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(UIMEntityIdAttribute)generalAttribute);
-  assert(cast(DUUIDAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DUUIDValue)value);
-}

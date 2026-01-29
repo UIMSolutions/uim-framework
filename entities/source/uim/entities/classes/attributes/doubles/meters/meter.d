@@ -28,5 +28,4 @@ class MeterAttribute : DDoubleAttribute {
     this.registerPath("meter");
   }
 }
-mixin(AttributeCalls!("MeterAttribute"));
 

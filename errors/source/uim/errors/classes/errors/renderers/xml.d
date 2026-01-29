@@ -12,4 +12,3 @@ mixin(ShowModule!());
 class DXmlErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Xml"));
 }
-mixin(ErrorRendererCalls!("Xml"));

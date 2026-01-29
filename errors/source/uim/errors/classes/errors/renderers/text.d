@@ -37,4 +37,3 @@ class DTextErrorRenderer : UIMErrorRenderer {
     return this;
   }
 }
-mixin(ErrorRendererCalls!("Text"));
