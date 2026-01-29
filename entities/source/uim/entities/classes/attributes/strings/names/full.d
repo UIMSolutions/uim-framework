@@ -29,8 +29,11 @@ class FullNameAttribute : StringAttribute {
   }
 
   // Initialization hook method.
-  override void initialize(Json configSettings = Json(null)) {
-    super.initialize(configSettings);
+    override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
 
     this.name("fullName");
     this.registerPath("fullName");

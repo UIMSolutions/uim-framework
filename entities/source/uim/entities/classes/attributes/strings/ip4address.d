@@ -34,8 +34,11 @@ class IP4AddressAttribute : StringAttribute {
   }
 
   // Initialization hook method.
-  override void initialize(Json configSettings = Json(null)) {
-    super.initialize(configSettings);
+    override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
 
     this.name("ip4address");
     this.registerPath("ip4address");

@@ -25,8 +25,11 @@ class BaseCurrencyAttribute : CurrencyAttribute {
 
 
   // Initialization hook method.
-  override void initialize(Json configSettings = Json(null)) {
-    super.initialize(configSettings);
+    override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
 
     /* 
 Value is expressed in the base currency units for the system
