@@ -7,6 +7,8 @@ module uim.html.classes.elements.cite;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Cite : DHtmlElement {

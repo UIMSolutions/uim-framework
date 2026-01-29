@@ -7,6 +7,8 @@ module uim.html.classes.elements.address;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Address : DHtmlElement {

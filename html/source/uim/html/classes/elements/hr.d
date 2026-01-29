@@ -7,6 +7,8 @@ module uim.html.classes.elements.hr;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML horizontal rule element

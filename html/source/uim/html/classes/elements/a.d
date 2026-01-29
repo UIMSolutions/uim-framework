@@ -8,6 +8,8 @@ module uim.html.classes.elements.a;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML anchor (link) element

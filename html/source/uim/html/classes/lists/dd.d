@@ -8,6 +8,8 @@ module uim.html.classes.lists.dd;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML definition description element

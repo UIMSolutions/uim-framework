@@ -7,6 +7,8 @@ module uim.html.classes.elements.nav;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Nav : DHtmlElement {

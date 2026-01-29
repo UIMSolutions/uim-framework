@@ -8,6 +8,8 @@ module uim.html.classes.tables.td;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML table cell element

@@ -7,6 +7,8 @@ module uim.html.classes.lists.dt;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML definition term element

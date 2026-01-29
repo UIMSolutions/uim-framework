@@ -7,6 +7,8 @@ module uim.html.classes.elements.canvas;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML canvas element

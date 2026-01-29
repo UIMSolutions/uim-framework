@@ -8,6 +8,8 @@ module uim.html.classes.lists.ul;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML unordered list element

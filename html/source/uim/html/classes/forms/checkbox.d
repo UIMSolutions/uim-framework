@@ -2,6 +2,8 @@ module uim.html.classes.forms.checkbox;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Checkbox : DInput {

@@ -7,6 +7,8 @@ module uim.html.classes.elements.small;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Small : DHtmlElement {

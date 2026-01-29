@@ -7,6 +7,8 @@ module uim.html.classes.attributes.attribute;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Represents an HTML attribute with name and value

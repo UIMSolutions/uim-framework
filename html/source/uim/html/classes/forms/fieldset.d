@@ -2,6 +2,8 @@ module uim.html.classes.forms.fieldset;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Fieldset : DHtmlElement {

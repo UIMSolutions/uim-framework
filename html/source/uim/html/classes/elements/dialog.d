@@ -7,6 +7,8 @@ module uim.html.classes.elements.dialog;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class ialog : DHtmlElement {

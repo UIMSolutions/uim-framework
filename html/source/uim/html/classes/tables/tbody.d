@@ -8,6 +8,8 @@ module uim.html.classes.tables.tbody;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML table body element

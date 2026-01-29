@@ -7,6 +7,8 @@ module uim.html.classes.elements.interfaces;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 interface IHtmlElement {

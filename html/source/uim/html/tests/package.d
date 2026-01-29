@@ -8,6 +8,8 @@ module uim.html.tests;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Run all tests for the HTML library

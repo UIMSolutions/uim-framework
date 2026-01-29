@@ -7,6 +7,8 @@ module uim.html.classes.forms.interfaces;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Interface for form elements with name attribute

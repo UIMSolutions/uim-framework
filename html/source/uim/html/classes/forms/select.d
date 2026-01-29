@@ -7,6 +7,8 @@ module uim.html.classes.forms.select;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML select element

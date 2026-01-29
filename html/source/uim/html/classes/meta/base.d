@@ -7,6 +7,8 @@ module uim.html.classes.meta.base;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML base element

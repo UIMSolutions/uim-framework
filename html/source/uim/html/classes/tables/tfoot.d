@@ -8,6 +8,8 @@ module uim.html.classes.tables.tfoot;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML table foot element

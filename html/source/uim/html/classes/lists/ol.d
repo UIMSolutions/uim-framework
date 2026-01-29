@@ -7,6 +7,8 @@ module uim.html.classes.lists.ol;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML ordered list element

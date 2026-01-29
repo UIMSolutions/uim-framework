@@ -8,6 +8,8 @@ module uim.html.classes.elements.element;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Base class for all HTML elements

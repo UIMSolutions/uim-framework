@@ -7,6 +7,8 @@ module uim.html.classes.attributes.interfaces;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 interface IHtmlAttribute {

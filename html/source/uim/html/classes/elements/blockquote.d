@@ -8,6 +8,8 @@ module uim.html.classes.elements.blockquote;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML anchor (link) element

@@ -7,6 +7,8 @@ module uim.html.classes.document;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Represents a complete HTML document

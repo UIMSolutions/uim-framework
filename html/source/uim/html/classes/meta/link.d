@@ -7,6 +7,8 @@ module uim.html.classes.meta.link;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML base element

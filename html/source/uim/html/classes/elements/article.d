@@ -7,6 +7,8 @@ module uim.html.classes.elements.article;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Article : DHtmlElement {

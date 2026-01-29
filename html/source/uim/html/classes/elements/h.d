@@ -7,6 +7,8 @@ module uim.html.classes.elements.h;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML heading element (h1-h6)

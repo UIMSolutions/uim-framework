@@ -8,6 +8,8 @@ module uim.html.classes.elements.br;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML line break element

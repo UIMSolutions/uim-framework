@@ -7,6 +7,8 @@ module uim.html.classes.elements.caption;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Caption : DHtmlElement {

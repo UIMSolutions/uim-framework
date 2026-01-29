@@ -7,6 +7,8 @@ module uim.html.classes.elements.img;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML image element

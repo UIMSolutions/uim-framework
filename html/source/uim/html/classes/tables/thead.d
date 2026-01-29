@@ -8,6 +8,8 @@ module uim.html.classes.tables.thead;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML table head element

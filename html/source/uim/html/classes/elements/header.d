@@ -7,6 +7,8 @@ module uim.html.classes.elements.header;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class DHeader : DHtmlElement {

@@ -7,6 +7,8 @@ module uim.html.classes.elements.span;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML span element

@@ -7,6 +7,8 @@ module uim.html.classes.elements.search;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Search : DHtmlElement {

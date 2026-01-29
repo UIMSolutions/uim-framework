@@ -7,6 +7,8 @@ module uim.html.classes.elements.p;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML paragraph element

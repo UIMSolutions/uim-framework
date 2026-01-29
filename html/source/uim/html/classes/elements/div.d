@@ -8,6 +8,8 @@ module uim.html.classes.elements.div;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML div element

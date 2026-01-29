@@ -7,6 +7,8 @@ module uim.html.classes.elements.hgroup;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Hgroup : DHtmlElement {

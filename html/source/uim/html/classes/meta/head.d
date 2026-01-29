@@ -7,6 +7,8 @@ module uim.html.classes.meta.head;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Head : DHtmlElement {

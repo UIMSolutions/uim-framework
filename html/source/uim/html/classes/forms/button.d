@@ -8,6 +8,8 @@ module uim.html.classes.forms.button;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML button element

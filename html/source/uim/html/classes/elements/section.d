@@ -7,6 +7,8 @@ module uim.html.classes.elements.section;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Section : DHtmlElement {

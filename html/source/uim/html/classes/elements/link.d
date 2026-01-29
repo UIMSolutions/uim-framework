@@ -7,6 +7,8 @@ module uim.html.classes.elements.link;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML link element (for stylesheets, etc.)

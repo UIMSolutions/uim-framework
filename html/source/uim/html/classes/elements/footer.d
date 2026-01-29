@@ -7,6 +7,8 @@ module uim.html.classes.elements.footer;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class DFooter : DHtmlElement {

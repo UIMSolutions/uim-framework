@@ -7,6 +7,8 @@ module uim.html.classes.elements.aside;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 class Aside : DHtmlElement {

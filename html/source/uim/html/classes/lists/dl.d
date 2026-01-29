@@ -8,6 +8,8 @@ module uim.html.classes.lists.dl;
 
 import uim.html;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// HTML definition list element
