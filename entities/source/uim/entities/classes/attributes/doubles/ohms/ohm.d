@@ -37,7 +37,3 @@ class OhmAttribute : DDoubleAttribute {
 }
 mixin(AttributeCalls!("OhmAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

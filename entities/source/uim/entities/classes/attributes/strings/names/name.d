@@ -28,7 +28,3 @@ class NameAttribute : DStringAttribute {
 }
 mixin(AttributeCalls!("NameAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

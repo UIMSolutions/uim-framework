@@ -20,9 +20,3 @@ class LatitudeAttribute : DDoubleAttribute {
     this.registerPath("latitude");
   }
 }
-mixin(AttributeCalls!("LatitudeAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

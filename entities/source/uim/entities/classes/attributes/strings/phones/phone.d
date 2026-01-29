@@ -28,7 +28,4 @@ class PhoneAttribute : DStringAttribute {
 }
 mixin(AttributeCalls!("PhoneAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}
+

@@ -37,7 +37,3 @@ class PascalAttribute : DDoubleAttribute {
 }
 mixin(AttributeCalls!("PascalAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

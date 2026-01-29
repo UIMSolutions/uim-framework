@@ -28,9 +28,3 @@ class AmpereAttribute : DDoubleAttribute {
     this.registerPath("ampere");
   }
 }
-mixin(AttributeCalls!("AmpereAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

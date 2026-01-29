@@ -32,7 +32,3 @@ class GramAttribute : DDoubleAttribute {
 }
 mixin(AttributeCalls!("GramAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

@@ -33,9 +33,3 @@ class FaradAttribute : DDoubleAttribute {
     this.registerPath("farad");
   }  
 }
-mixin(AttributeCalls!("FaradAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

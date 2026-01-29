@@ -19,9 +19,3 @@ class PercentageAttribute : DDoubleAttribute {
     this.registerPath("percentage");
   }
 }
-mixin(AttributeCalls!("PercentageAttribute"));
-
-version(test_uim_models) { unittest {  
-    // TODO tests
-  }
-}

@@ -31,9 +31,3 @@ class KilogramAttribute : DGramAttribute {
     this.registerPath("kilogram");
   }
 }
-mixin(AttributeCalls!("KilogramAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

@@ -32,7 +32,3 @@ class KilogramAttribute : DGramAttribute {
 }
 mixin(AttributeCalls!("KilogramAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

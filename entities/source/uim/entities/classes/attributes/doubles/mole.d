@@ -30,9 +30,3 @@ class MoleAttribute : DDoubleAttribute {
     this.registerPath("mole");
   }
 }
-mixin(AttributeCalls!("MoleAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

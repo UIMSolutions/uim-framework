@@ -32,9 +32,3 @@ class JouleAttribute : DDoubleAttribute {
     this.registerPath("joule");
   }
 }
-mixin(AttributeCalls!("JouleAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

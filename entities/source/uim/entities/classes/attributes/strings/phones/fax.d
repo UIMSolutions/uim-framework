@@ -28,7 +28,3 @@ class FaxAttribute : DStringAttribute {
 }
 mixin(AttributeCalls!("FaxAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

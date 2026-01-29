@@ -30,7 +30,3 @@ class KiloHertzAttribute : DHertzAttribute {
 }
 mixin(AttributeCalls!("KiloHertzAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

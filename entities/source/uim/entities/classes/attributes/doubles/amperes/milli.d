@@ -31,9 +31,5 @@ class DMilliAmpereAttribute : DAmpereAttribute {
     this.registerPath("milliAmpere");
   }
 }
-mixin(AttributeCalls!("MilliAmpereAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
   }
 }

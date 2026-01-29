@@ -36,7 +36,3 @@ class MillimeterAttribute : DMeterAttribute {
 }
 mixin(AttributeCalls!("MillimeterAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

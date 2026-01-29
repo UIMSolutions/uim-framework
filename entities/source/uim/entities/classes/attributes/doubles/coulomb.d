@@ -20,9 +20,3 @@ class CoulombAttribute : DDoubleAttribute {
     this.registerPath("coulomb");
   }
 }
-mixin(AttributeCalls!("CoulombAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

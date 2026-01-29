@@ -30,7 +30,3 @@ class KilometerAttribute : DMeterAttribute {
 }
 mixin(AttributeCalls!("KilometerAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

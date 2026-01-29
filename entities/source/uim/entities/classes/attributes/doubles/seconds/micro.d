@@ -33,7 +33,3 @@ class MicroSecondAttribute : DSecondAttribute {
 }
 mixin(AttributeCalls!("MicroSecondAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

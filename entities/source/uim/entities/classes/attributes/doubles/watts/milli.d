@@ -35,7 +35,3 @@ class MilliWattAttribute : DWattAttribute {
 }
 mixin(AttributeCalls!("MilliWattAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

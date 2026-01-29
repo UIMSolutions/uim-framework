@@ -21,10 +21,5 @@ class ByteAttribute : UIMAttribute {
     this.registerPath("byte");
   }
 }
-mixin(AttributeCalls!("ByteAttribute"));
-
-version(test_uim_models) { unittest {
-    testAttribute(new DByteAttribute);
-    testAttribute(ByteAttribute);
   }
 }

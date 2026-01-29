@@ -33,7 +33,3 @@ class SecondAttribute : DDoubleAttribute {
 }
 mixin(AttributeCalls!("SecondAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

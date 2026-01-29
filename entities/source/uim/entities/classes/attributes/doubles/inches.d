@@ -26,9 +26,3 @@ class InchesAttribute : DDoubleAttribute {
     this.registerPath("inches");
   }
 }
-mixin(AttributeCalls!("InchesAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

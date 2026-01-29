@@ -30,9 +30,3 @@ class RadianAttribute : DDoubleAttribute {
     this.registerPath("radian");
   }
 }
-mixin(AttributeCalls!("RadianAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

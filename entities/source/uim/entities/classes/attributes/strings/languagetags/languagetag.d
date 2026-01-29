@@ -22,7 +22,3 @@ class LanguageTagAttribute : DStringAttribute {
 }
 mixin(AttributeCalls!("LanguageTagAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

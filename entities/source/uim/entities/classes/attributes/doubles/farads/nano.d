@@ -34,9 +34,3 @@ class NanoFaradAttribute : DFaradAttribute {
     this.registerPath("nanoFarad");
   }
 }
-mixin(AttributeCalls!("NanoFaradAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

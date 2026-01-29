@@ -25,9 +25,3 @@ class LongitudeAttribute : DDoubleAttribute {
     this.registerPath("longitude");
   }
 }
-mixin(AttributeCalls!("LongitudeAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

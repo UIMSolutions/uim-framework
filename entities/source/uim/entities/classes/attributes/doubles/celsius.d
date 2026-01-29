@@ -21,9 +21,3 @@ class CelsiusAttribute : DDoubleAttribute {
     this.registerPath("celsius");
   }
 }
-mixin(AttributeCalls!("CelsiusAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

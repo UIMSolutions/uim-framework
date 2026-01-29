@@ -34,9 +34,3 @@ class MicroFaradAttribute : DFaradAttribute {
     this.registerPath("microFarad");
   }
 }
-mixin(AttributeCalls!("MicroFaradAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

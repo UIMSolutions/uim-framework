@@ -30,9 +30,3 @@ class KelvinAttribute : DDoubleAttribute {
     this.registerPath("kelvin");
   }
 }
-mixin(AttributeCalls!("KelvinAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

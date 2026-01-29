@@ -30,7 +30,3 @@ class MeterAttribute : DDoubleAttribute {
 }
 mixin(AttributeCalls!("MeterAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

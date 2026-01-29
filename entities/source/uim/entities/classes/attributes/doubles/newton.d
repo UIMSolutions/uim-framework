@@ -32,9 +32,3 @@ class NewtonAttribute : DDoubleAttribute {
     this.registerPath("newton");
   }
 }
-mixin(AttributeCalls!("NewtonAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

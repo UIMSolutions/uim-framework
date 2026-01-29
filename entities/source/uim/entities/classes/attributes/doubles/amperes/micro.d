@@ -31,9 +31,3 @@ class DMicroAmpereAttribute : DAmpereAttribute {
     this.registerPath("microAmpere");
   }
 }
-mixin(AttributeCalls!("MicroAmpereAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

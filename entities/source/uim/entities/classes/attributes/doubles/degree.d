@@ -24,9 +24,3 @@ class DegreeAttribute : DDoubleAttribute {
     this.registerPath("degree");
   }
 }
-mixin(AttributeCalls!("DegreeAttribute"));
-
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

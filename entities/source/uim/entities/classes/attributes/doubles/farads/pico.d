@@ -36,7 +36,3 @@ class PicoFaradAttribute : DFaradAttribute {
 }
 mixin(AttributeCalls!("PicoFaradAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}

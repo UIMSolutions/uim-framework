@@ -31,7 +31,3 @@ class CentimeterAttribute : DMeterAttribute {
 }
 mixin(AttributeCalls!("CentimeterAttribute"));
 
-version(test_uim_models) { unittest {
-    // TODO
-  }
-}
