@@ -24,7 +24,13 @@ mixin(ShowModule!());
 
 @safe:
 class NewtonAttribute : DoubleAttribute {
-  mixin(AttributeThis!("NewtonAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

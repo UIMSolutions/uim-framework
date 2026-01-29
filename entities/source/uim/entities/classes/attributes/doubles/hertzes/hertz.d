@@ -25,7 +25,13 @@ mixin(ShowModule!());
 
 @safe:
 class HertzAttribute : DoubleAttribute {
-  mixin(AttributeThis!("HertzAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

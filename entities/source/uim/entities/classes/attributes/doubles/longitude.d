@@ -17,7 +17,13 @@ mixin(ShowModule!());
 
 @safe:
 class LongitudeAttribute : DoubleAttribute {
-  mixin(AttributeThis!("LongitudeAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

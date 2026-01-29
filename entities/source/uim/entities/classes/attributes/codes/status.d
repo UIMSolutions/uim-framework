@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class StatusCodeAttribute : IntegerStringAttribute {
-  mixin(AttributeThis!("StatusCodeAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

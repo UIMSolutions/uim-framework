@@ -23,7 +23,13 @@ mixin(ShowModule!());
 
 @safe:
 class DMilliAmpereAttribute : AmpereAttribute {
-  mixin(AttributeThis!("MilliAmpereAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

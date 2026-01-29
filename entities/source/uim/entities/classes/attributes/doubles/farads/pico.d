@@ -25,8 +25,13 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class PicoFaradAttribute : FaradAttribute {
-  mixin(AttributeThis!("PicoFaradAttribute"));
+class PicoFaradAttribute : FaradAttribute {  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

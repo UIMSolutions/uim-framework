@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class PercentageAttribute : DoubleAttribute {
-  mixin(AttributeThis!("PercentageAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

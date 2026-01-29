@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class DoubleAttribute : UIMAttribute {
-  mixin(AttributeThis!("DoubleAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

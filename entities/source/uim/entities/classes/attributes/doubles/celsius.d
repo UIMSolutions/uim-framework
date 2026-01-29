@@ -13,7 +13,13 @@ mixin(ShowModule!());
 
 @safe:
 class CelsiusAttribute : DoubleAttribute {
-  mixin(AttributeThis!("CelsiusAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

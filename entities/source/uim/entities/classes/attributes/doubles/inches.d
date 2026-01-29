@@ -18,7 +18,13 @@ mixin(ShowModule!());
 
 @safe:
 class InchesAttribute : DoubleAttribute {
-  mixin(AttributeThis!("InchesAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

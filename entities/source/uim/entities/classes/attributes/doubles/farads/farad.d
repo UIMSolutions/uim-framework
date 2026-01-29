@@ -25,7 +25,13 @@ mixin(ShowModule!());
 
 @safe:
 class FaradAttribute : DoubleAttribute {
-  mixin(AttributeThis!("FaradAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

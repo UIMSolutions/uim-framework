@@ -14,7 +14,13 @@ means.measurement.dimension.angle
 means.measurement.units.degree
 has.measurement.fundamentalComponent */
 class DegreeAttribute : DoubleAttribute {
-  mixin(AttributeThis!("DegreeAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
