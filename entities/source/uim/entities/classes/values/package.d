@@ -7,6 +7,8 @@ module uim.entities.classes.values;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 
 public {

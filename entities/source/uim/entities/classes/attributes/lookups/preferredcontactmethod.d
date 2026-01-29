@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.lookups.preferredcontactmethod;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PreferredContactMethodAttribute : UIMAttribute {
   mixin(AttributeThis!("PreferredContactMethodAttribute"));

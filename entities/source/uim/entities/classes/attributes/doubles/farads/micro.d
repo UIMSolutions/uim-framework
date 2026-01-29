@@ -22,6 +22,8 @@ means.measurement.prefix.micro */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MicroFaradAttribute : FaradAttribute {
   mixin(AttributeThis!("MicroFaradAttribute"));

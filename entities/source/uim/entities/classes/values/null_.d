@@ -7,6 +7,8 @@ module uim.entities.classes.values.null_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class NullValue : UIMValue {
   this() {

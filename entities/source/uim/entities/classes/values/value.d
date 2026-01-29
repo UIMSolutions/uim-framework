@@ -7,6 +7,8 @@ module uim.entities.classes.values.value;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UIMValue : UIMObject, IData {
   // --- Explicit property getters and setters for marked fields ---

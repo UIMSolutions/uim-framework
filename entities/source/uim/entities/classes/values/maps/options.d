@@ -7,6 +7,8 @@ module uim.entities.classes.values.maps.options;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class Options : DMapValue!string {
   // Constructors

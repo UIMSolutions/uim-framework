@@ -7,6 +7,8 @@ module uim.entities.classes.values.datetimes.time_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TimeValue : UIMValue {
   this() {

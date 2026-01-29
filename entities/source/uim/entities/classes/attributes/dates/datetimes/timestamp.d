@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.datetimes.timestamp;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TimestampAttribute : LongAttribute {
   mixin(AttributeThis!("TimestampAttribute"));

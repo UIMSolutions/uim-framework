@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.arrays.bytes.binary;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DBinaryAttribute : UIMAttribute {
   mixin(AttributeThis!("BinaryAttribute"));

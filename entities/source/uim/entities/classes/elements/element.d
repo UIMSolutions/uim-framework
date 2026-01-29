@@ -8,6 +8,8 @@ module uim.entities.classes.elements.element;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UIMElement : UIMObject, IElement {
   // // static namespace = moduleName!UIMElement;

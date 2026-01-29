@@ -5,6 +5,8 @@ module uim.entities.classes.attributes.doubles.candela;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CandelaAttribute : DoubleAttribute {
   mixin(AttributeThis!("CandelaAttribute"));

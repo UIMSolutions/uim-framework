@@ -14,6 +14,8 @@ means.iUIMEntity.tickerSymbol */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TickerSymbolAttribute : StringAttribute {
   mixin(AttributeThis!("TickerSymbolAttribute"));

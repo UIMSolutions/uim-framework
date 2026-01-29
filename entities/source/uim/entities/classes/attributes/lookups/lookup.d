@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.lookups.lookup;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class LookupAttribute : UIMAttribute {
   mixin(AttributeThis!("LookupAttribute"));

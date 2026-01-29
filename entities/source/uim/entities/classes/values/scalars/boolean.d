@@ -7,6 +7,8 @@ module uim.entities.classes.values.scalars.boolean;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class BooleanValue : UIMValue {
   this() {

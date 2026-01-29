@@ -14,6 +14,8 @@ means.location.timezone */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TimezoneAttribute : StringAttribute {
   mixin(AttributeThis!("TimezoneAttribute"));

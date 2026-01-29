@@ -19,6 +19,8 @@ means.measurement.prefix.milli */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class KilogramAttribute : GramAttribute {
   mixin(AttributeThis!("KilogramAttribute"));

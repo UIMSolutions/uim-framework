@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.decimals.currencies.currency;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CurrencyAttribute : DecimalAttribute {
   mixin(AttributeThis!("CurrencyAttribute"));

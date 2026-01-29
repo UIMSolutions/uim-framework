@@ -16,6 +16,8 @@ has.measurement.fundamentalComponent.meter */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MeterAttribute : DoubleAttribute {
   mixin(AttributeThis!("MeterAttribute"));

@@ -14,6 +14,8 @@ means.iUIMEntity.person.middleName */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MiddleNameAttribute : StringAttribute {
   mixin(AttributeThis!("MiddleNameAttribute"));

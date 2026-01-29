@@ -7,6 +7,8 @@ module uim.entities.classes.values.maps.map;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MapValue(K) : UIMValue {
   this() {

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.lookups.strings.string_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class StringStringAttribute : LookupAttribute {
   mixin(AttributeThis!("StringStringAttribute"));

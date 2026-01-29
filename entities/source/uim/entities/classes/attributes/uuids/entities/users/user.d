@@ -19,6 +19,8 @@ means.userId */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UserIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("UserIdAttribute"));

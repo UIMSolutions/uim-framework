@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.users.createdonbehalfby;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DCreatedOnBehalfByAttribute : EntityIdAttribute {
   mixin(AttributeThis!("CreatedOnBehalfByAttribute"));

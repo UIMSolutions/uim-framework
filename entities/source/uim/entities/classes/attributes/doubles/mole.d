@@ -18,6 +18,8 @@ has.measurement.fundamentalComponent.mole */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MoleAttribute : DoubleAttribute {
   mixin(AttributeThis!("MoleAttribute"));

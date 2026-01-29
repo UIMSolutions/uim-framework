@@ -8,6 +8,8 @@ module uim.entities.interfaces.attribute;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 
 interface IAttribute {

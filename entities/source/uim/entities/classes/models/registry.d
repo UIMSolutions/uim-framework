@@ -7,6 +7,8 @@ module uim.entities.classes.models.registry;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class ModelRegistry : UIMRegistry!(string, IModel) {
 }

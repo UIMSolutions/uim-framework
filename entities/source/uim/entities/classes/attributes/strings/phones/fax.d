@@ -14,6 +14,8 @@ means.iUIMEntity.service.phone.fax */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class FaxAttribute : StringAttribute {
   mixin(AttributeThis!("FaxAttribute"));

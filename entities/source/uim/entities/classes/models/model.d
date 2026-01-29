@@ -2,6 +2,8 @@ module uim.entities.classes.models.model;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class Model : UIMObject, IModel { 
   this() { this.name("Model").className("Model"); }

@@ -22,6 +22,8 @@ means.measurement.prefix.milli */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MillimeterAttribute : MeterAttribute {
   mixin(AttributeThis!("MillimeterAttribute"));

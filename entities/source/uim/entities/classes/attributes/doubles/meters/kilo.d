@@ -16,6 +16,8 @@ means.measurement.prefix.kilo */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class KilometerAttribute : MeterAttribute {
   mixin(AttributeThis!("KilometerAttribute"));

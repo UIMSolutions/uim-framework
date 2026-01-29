@@ -12,6 +12,8 @@ means.iUIMEntity.person.fullName */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class FullNameAttribute : StringAttribute {
   mixin(AttributeThis!("FullNameAttribute"));

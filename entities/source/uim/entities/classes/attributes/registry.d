@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.registry;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class AttributeRegistry : UIMRegistry!(string, UIMAttribute) {
 }

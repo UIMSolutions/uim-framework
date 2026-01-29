@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.users.team;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TeamIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("TeamIdAttribute"));

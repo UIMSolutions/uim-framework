@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.bytes.byte_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class ByteAttribute : UIMAttribute {
   mixin(AttributeThis!("ByteAttribute"));

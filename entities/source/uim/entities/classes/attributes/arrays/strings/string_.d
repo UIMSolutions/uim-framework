@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.arrays.strings.string_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DStringArrayAttribute : UIMAttribute {
   mixin(AttributeThis!("StringArrayAttribute"));

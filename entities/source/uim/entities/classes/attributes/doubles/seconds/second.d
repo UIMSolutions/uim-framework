@@ -19,6 +19,8 @@ means.measurement.duration.seconds */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class SecondAttribute : DoubleAttribute {
   mixin(AttributeThis!("SecondAttribute"));

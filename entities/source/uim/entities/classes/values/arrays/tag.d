@@ -7,6 +7,8 @@ module uim.entities.classes.values.arrays.tag;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TagArrayValue : DStringArrayValue {
   this() {

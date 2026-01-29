@@ -18,6 +18,8 @@ has.measurement.fundamentalComponent.kilogram */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class KilogramAttribute : GramAttribute {
   mixin(AttributeThis!("KilogramAttribute"));

@@ -17,6 +17,8 @@ means.iUIMEntity.IP4Address */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class IP4AddressAttribute : StringAttribute {
   mixin(AttributeThis!("IP4AddressAttribute"));

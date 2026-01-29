@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.codes.customersize;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CustomerSizeCodeAttribute : IntegerStringAttribute {
   mixin(AttributeThis!("CustomerSizeCodeAttribute"));

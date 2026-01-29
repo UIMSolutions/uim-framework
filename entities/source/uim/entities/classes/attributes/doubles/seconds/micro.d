@@ -19,6 +19,8 @@ means.measurement.prefix.micro */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MicroSecondAttribute : SecondAttribute {
   mixin(AttributeThis!("MicroSecondAttribute"));

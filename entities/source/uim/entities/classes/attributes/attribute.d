@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.attribute;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UIMAttribute : UIMObject, IAttribute {
   // --- Explicit property getters and setters for marked fields ---    

@@ -2,6 +2,8 @@ module uim.entities.classes.elements.registry;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UIMElementRegistry : UIMRegistry!(string, UIMElement) {
   static UIMElementRegistry registry;

@@ -20,6 +20,8 @@ has.measurement.fundamentalComponent.second */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class NewtonAttribute : DoubleAttribute {
   mixin(AttributeThis!("NewtonAttribute"));

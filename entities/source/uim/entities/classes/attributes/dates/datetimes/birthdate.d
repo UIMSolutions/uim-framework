@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.datetimes.birthdate;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class BirthDateAttribute : DatetimeAttribute {
   mixin(AttributeThis!("BirthDateAttribute"));

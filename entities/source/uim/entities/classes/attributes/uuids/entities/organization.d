@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.organization;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class OrganizationIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("OrganizationIdAttribute"));

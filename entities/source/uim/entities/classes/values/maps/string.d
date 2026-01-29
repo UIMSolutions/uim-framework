@@ -7,6 +7,8 @@ module uim.entities.classes.values.maps.string;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class StringValueMap : UIMValue {
   this() {

@@ -7,6 +7,8 @@ module uim.entities.classes.values.scalars.integer;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class IntegerValue : UIMValue {
   this() {

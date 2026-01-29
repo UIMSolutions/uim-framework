@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.doubles.double_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DoubleAttribute : UIMAttribute {
   mixin(AttributeThis!("DoubleAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.strings.link;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class LinkAttribute : StringAttribute {
   mixin(AttributeThis!("LinkAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.elements.version_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class VersionElementAttribute : UIMAttribute {
   mixin(AttributeThis!("VersionElementAttribute"));

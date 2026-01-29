@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.integers.age;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class AgeAttribute : IntegerAttribute {
   mixin(AttributeThis!("AgeAttribute"));

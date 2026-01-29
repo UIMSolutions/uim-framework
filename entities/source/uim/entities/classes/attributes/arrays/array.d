@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.arrays.array;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DArrayAttribute : UIMAttribute {
   mixin(AttributeThis!("ArrayAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.values.arrays.value;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UIMValueArrayValue : ArrayValue {
   this() {

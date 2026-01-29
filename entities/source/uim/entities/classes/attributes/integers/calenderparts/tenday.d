@@ -13,6 +13,8 @@ means.calendar.tenday */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TendayAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("TendayAttribute"));

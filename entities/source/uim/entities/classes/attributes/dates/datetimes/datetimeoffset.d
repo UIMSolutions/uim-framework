@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.dates.datetimes.datetimeoffset;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DatetimeOffsetAttribute : DatetimeAttribute {
   mixin(AttributeThis!("DatetimeOffsetAttribute"));

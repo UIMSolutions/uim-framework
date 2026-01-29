@@ -14,6 +14,8 @@ means.measurement.distance.inches */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class InchesAttribute : DoubleAttribute {
   mixin(AttributeThis!("InchesAttribute"));

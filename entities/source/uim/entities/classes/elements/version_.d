@@ -3,10 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-
 module uim.entities.classes.elements.version_;
 
 import uim.entities;
+
+mixin(ShowModule!());
 
 @safe:
 class Version : UIMElement {
@@ -49,7 +50,7 @@ class Version : UIMElement {
   }
 
   /// Setter for number (chainable)
-  DVersion number(long value) @property {
+  Version number(long value) @property {
     _number = value;
     return this;
   }
@@ -64,7 +65,7 @@ class Version : UIMElement {
   }
 
   /// Setter for on (chainable)
-  DVersion on(long value) @property {
+  Version on(long value) @property {
     _on = value;
     return this;
   }

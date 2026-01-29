@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.codes.status;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class StatusCodeAttribute : IntegerStringAttribute {
   mixin(AttributeThis!("StatusCodeAttribute"));

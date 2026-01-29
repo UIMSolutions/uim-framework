@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.uuid;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UUIDAttribute : UIMAttribute {
   mixin(AttributeThis!("UUIDAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.values.object_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class JsonObjectValue : UIMValue {
   this() {

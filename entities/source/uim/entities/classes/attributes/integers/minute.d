@@ -17,6 +17,8 @@ has.measurement.fundamentalComponent.second */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MinuteAttribute : IntegerAttribute {
   mixin(AttributeThis!("MinuteAttribute"));

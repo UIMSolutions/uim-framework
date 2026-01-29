@@ -13,6 +13,8 @@ means.location.longitude */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class LongitudeAttribute : DoubleAttribute {
   mixin(AttributeThis!("LongitudeAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.strings.url;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UrlAttribute : StringAttribute {
   mixin(AttributeThis!("UrlAttribute"));

@@ -20,6 +20,8 @@ means.measurement.prefix.milli */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MilliVoltAttribute : VoltAttribute {
   mixin(AttributeThis!("MilliVoltAttribute"));

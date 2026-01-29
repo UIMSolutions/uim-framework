@@ -9,6 +9,8 @@ module uim.entities.classes.attributes.strings.attributename;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class AttributeNameAttribute : StringAttribute {
   mixin(AttributeThis!("AttributeNameAttribute"));

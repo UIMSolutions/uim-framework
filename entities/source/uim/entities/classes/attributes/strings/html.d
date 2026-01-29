@@ -18,6 +18,8 @@ means.content.text.HTML
  
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class HtmlAttribute : StringAttribute {
   mixin(AttributeThis!("HtmlAttribute"));

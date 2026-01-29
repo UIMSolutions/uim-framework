@@ -22,6 +22,8 @@ means.measurement.prefix.kilo */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class KiloVoltAttribute : VoltAttribute {
   mixin(AttributeThis!("KiloVoltAttribute"));

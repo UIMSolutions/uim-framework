@@ -7,6 +7,8 @@ module uim.entities.classes.values.scalars.string_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class StringValue : UIMValue {
   this() {

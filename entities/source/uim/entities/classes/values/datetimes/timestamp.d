@@ -7,8 +7,10 @@ module uim.entities.classes.values.datetimes.timestamp;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
-class TimestampValue : DLongValue {
+class TimestampValue : LongValue {
   this() {
     super;
   }  
@@ -24,5 +26,5 @@ class TimestampValue : DLongValue {
     return copy;
   }
 
-  alias opEquals = DLongValue.opEquals;
+  alias opEquals = LongValue.opEquals;
 }

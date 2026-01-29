@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.booleans.boolean;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class BooleanAttribute : UIMAttribute {
   mixin(AttributeThis!("BooleanAttribute"));

@@ -8,6 +8,8 @@ module uim.entities.classes.elements.configuration;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class ConfigurationElement : UIMElement {
   // Constructors

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.arrays.strings.tags;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TagsAttribute : StringArrayAttribute {
   mixin(AttributeThis!("TagsAttribute"));

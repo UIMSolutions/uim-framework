@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.integers.displayorder;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class isplayOrderAttribute : IntegerAttribute {
   mixin(AttributeThis!("DisplayOrderAttribute"));

@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.datetimes.time;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TimeAttribute : UIMAttribute {
   mixin(AttributeThis!("TimeAttribute"));

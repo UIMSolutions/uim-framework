@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.file;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class FileIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("FileIdAttribute"));

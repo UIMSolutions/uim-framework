@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.doubles.percentage;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PercentageAttribute : DoubleAttribute {
   mixin(AttributeThis!("PercentageAttribute"));

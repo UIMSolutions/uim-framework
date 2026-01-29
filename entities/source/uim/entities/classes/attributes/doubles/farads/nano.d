@@ -22,6 +22,8 @@ means.measurement.prefix.nano */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class NanoFaradAttribute : FaradAttribute {
   mixin(AttributeThis!("NanoFaradAttribute"));

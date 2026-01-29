@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.decimals.currencies.base;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class BaseCurrencyAttribute : CurrencyAttribute {
   mixin(AttributeThis!("BaseCurrencyAttribute"));

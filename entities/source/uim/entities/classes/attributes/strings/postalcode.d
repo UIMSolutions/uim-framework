@@ -13,6 +13,8 @@ means.location.postalCode */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PostalCodeAttribute : StringAttribute {
   mixin(AttributeThis!("PostalCodeAttribute"));

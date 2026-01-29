@@ -9,6 +9,8 @@ has.measurement.fundamentalComponent.kelvin */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CelsiusAttribute : DoubleAttribute {
   mixin(AttributeThis!("CelsiusAttribute"));

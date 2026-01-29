@@ -7,6 +7,8 @@ module uim.entities.classes.values.lookups.lookup;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class LookupValue(K, V) : UIMValue {
   this() {

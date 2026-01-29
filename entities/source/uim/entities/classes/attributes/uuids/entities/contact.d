@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.contact;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class ContactIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("ContactIdAttribute"));

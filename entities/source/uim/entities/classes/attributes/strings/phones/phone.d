@@ -14,6 +14,8 @@ means.iUIMEntity.service.phone */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PhoneAttribute : StringAttribute {
   mixin(AttributeThis!("PhoneAttribute"));

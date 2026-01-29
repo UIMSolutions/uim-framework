@@ -17,6 +17,8 @@ means.measurement.prefix.mega */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MegaVoltAttribute : VoltAttribute {
   mixin(AttributeThis!("MegaVoltAttribute"));

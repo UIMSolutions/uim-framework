@@ -14,6 +14,8 @@ means.iUIMEntity.name */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class NameAttribute : StringAttribute {
   mixin(AttributeThis!("NameAttribute"));

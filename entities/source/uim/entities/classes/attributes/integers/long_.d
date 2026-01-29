@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.integers.long_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class LongAttribute : UIMAttribute {
   mixin(AttributeThis!("LongAttribute"));

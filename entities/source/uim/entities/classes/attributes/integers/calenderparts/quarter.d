@@ -14,6 +14,8 @@ means.calendar.quarter */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class QuarterAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("QuarterAttribute"));

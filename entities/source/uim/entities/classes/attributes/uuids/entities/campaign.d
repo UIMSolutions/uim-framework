@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.uuids.entities.campaign;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DCampaignIdAttribute : EntityIdAttribute {
   mixin(AttributeThis!("CampaignIdAttribute"));

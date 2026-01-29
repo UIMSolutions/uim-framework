@@ -13,6 +13,8 @@ means.content.image.image */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class ImageAttribute : BinaryAttribute {
   mixin(AttributeThis!("ImageAttribute"));

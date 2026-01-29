@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.decimals.decimal;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class DecimalAttribute : UIMAttribute {
   mixin(AttributeThis!("DecimalAttribute"));

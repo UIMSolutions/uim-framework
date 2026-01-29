@@ -23,6 +23,8 @@ has.measurement.fundamentalComponent.ampere */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class OhmAttribute : DoubleAttribute {
   mixin(AttributeThis!("OhmAttribute"));

@@ -16,6 +16,8 @@ means.measurement.prefix.kilo */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class KiloHertzAttribute : HertzAttribute {
   mixin(AttributeThis!("KiloHertzAttribute"));

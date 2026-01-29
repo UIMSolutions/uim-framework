@@ -18,6 +18,8 @@ has.measurement.fundamentalComponent */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class RadianAttribute : DoubleAttribute {
   mixin(AttributeThis!("RadianAttribute"));

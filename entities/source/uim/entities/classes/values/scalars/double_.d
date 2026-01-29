@@ -7,6 +7,8 @@ module uim.entities.classes.values.scalars.double_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class oubleValue : UIMValue {
   this() {

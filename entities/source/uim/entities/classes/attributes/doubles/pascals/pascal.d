@@ -23,6 +23,8 @@ has.measurement.fundamentalComponent.second */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PascalAttribute : DoubleAttribute {
   mixin(AttributeThis!("PascalAttribute"));

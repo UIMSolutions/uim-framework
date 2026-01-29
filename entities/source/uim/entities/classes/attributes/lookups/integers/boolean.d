@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.lookups.integers.boolean;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class IntegerBooleanAttribute : LookupAttribute {
   mixin(AttributeThis!("IntegerBooleanAttribute"));

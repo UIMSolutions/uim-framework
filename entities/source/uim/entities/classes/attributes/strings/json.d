@@ -23,6 +23,8 @@ means.content.text.JSON
  
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class JsonAttribute : StringAttribute {
   mixin(AttributeThis!("JsonAttribute"));

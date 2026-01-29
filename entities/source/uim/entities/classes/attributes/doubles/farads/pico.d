@@ -22,6 +22,8 @@ means.measurement.prefix.pico */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class PicoFaradAttribute : FaradAttribute {
   mixin(AttributeThis!("PicoFaradAttribute"));

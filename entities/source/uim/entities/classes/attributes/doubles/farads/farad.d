@@ -21,6 +21,8 @@ has.measurement.fundamentalComponent.ampere */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class FaradAttribute : DoubleAttribute {
   mixin(AttributeThis!("FaradAttribute"));

@@ -24,6 +24,8 @@ means.measurement.prefix.mega */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class MegaWattAttribute : WattAttribute {
   mixin(AttributeThis!("MegaWattAttribute"));

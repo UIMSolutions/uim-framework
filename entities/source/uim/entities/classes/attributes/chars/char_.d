@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.chars.char_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CharAttribute : UIMAttribute {
   mixin(AttributeThis!"CharAttribute");

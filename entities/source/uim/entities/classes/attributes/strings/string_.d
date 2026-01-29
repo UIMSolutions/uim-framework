@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.strings.string_;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class StringAttribute : CharAttribute {
   mixin(AttributeThis!"StringAttribute");

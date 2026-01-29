@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.integers.number;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class NumberAttribute : IntegerAttribute {
   mixin(AttributeThis!("NumberAttribute"));

@@ -17,6 +17,8 @@ means.measurement.prefix.centi */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CentimeterAttribute : MeterAttribute {
   mixin(AttributeThis!("CentimeterAttribute"));

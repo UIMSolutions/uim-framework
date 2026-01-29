@@ -18,6 +18,8 @@ has.measurement.fundamentalComponent.gram */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class GramAttribute : DoubleAttribute {
   mixin(AttributeThis!("GramAttribute"));

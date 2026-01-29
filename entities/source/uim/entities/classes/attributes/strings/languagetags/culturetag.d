@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.strings.languagetags.culturetag;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class CultureTagAttribute : StringAttribute {
   mixin(AttributeThis!("CultureTagAttribute"));

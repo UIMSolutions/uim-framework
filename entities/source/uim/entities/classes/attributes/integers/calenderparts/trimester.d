@@ -13,6 +13,8 @@ means.calendar.trimester */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class TrimesterAttribute : IntegerCalendarPart {
   mixin(AttributeThis!("TrimesterAttribute"));

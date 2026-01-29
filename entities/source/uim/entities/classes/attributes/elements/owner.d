@@ -7,6 +7,8 @@ module uim.entities.classes.attributes.elements.owner;
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class OwnerElementAttribute : UIMAttribute {
   mixin(AttributeThis!("OwnerElementAttribute"));
