@@ -9,6 +9,8 @@ means.reference.URI */
 
 import uim.entities;
 
+mixin(ShowModule!());
+
 @safe:
 class UriAttribute : DStringAttribute {
   mixin(AttributeThis!("UriAttribute"));

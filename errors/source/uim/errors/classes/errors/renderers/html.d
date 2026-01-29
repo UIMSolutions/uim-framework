@@ -12,3 +12,7 @@ mixin(ShowModule!());
 class HtmlErrorRenderer : UIMErrorRenderer { 
   mixin(ErrorRendererThis!("Html"));
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> c47de0c054ce6f333e5a9caf816cd85e7f333dd3
