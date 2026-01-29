@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class TimestampValue : DLongValue {
-  mixin(ValueThis!("TimestampValue", "long"));  
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   override UIMValue copy() {
     return TimestampValue(attribute, toJson);

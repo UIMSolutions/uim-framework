@@ -9,11 +9,13 @@ import uim.entities;
 
 @safe:
 class ArrayValue : UIMValue {
-  mixin(ValueThis!("ArrayValue"));  
-  this(UIMValue[] values) {
-    this();
-    _items = values.dup;
-  }
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   UIMValue[] _items;
 

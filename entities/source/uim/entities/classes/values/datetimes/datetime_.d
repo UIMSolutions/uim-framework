@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class atetimeValue : UIMValue {
-  mixin(ValueThis!("DatetimeValue", "DateTime"));  
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   protected DateTime _value;  
   alias value = UIMValue.value;

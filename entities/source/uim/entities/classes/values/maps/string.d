@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class StringValueMap : UIMValue {
-  mixin(ValueThis!("StringValueMap"));
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   protected UIMValue[string] _items;
 

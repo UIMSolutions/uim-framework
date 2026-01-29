@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class LookupValue(K, V) : UIMValue {
-  mixin(ValueThis!("LookupValue"));
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   V[K] _items;
 

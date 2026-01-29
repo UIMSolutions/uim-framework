@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class MapValue(K) : UIMValue {
-  mixin(ValueThis!("MapValue"));
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   protected UIMValue[K] _items;
 

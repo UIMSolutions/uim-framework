@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class JsonObjectValue : UIMValue {
-  mixin(ValueThis!("JsonObjectValue"));  
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   mixin(OProperty!("Json", "value"));
 

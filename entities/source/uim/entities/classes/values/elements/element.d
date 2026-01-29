@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class UIMElementValue : UIMValue {
-  mixin(ValueThis!("ElementValue", "UIMElement"));    
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

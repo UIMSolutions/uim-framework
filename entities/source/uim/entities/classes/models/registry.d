@@ -8,5 +8,5 @@ module uim.entities.classes.models.registry;
 import uim.entities;
 
 @safe:
-class ModelRegistry : UIMRegistry!(string, DModel) {
+class ModelRegistry : UIMRegistry!(string, IModel) {
 }

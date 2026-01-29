@@ -9,7 +9,13 @@ import uim.entities;
 
 @safe:
 class IntegerValue : UIMValue {
-  mixin(ValueThis!("IntegerValue", "int"));  
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   protected int _value;  
   alias value = UIMValue.value;

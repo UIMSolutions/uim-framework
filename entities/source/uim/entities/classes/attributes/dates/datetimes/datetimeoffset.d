@@ -8,7 +8,7 @@ module uim.entities.classes.attributes.dates.datetimes.datetimeoffset;
 import uim.entities;
 
 @safe:
-class atetimeOffsetAttribute : DatetimeAttribute {
+class DatetimeOffsetAttribute : DatetimeAttribute {
   mixin(AttributeThis!("DatetimeOffsetAttribute"));
 
   // Initialization hook method.

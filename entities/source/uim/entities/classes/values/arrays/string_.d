@@ -9,10 +9,13 @@ import uim.entities;
 
 @safe:
 class StringArrayValue : ArrayValue {
-  mixin(ValueThis!("StringArrayValue", "string[]"));  
-  this(DStringArrayValue arrayValue) {
-    this().add(arrayValue.values);
-  }
+  this() {
+    super;
+  }  
+
+  this(IAttribute attribute, Json toJson = Json(null)) {
+    super(attribute, toJson);
+  }  
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
