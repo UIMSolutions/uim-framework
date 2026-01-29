@@ -29,15 +29,15 @@ class TendayAttribute : IntegerCalendarPart {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("tenday");
     this.registerPath("tenday");
+
+    return true;
   }
 }

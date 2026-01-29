@@ -33,9 +33,10 @@ class MilliWattAttribute : WattAttribute {
       return false;
     }
 
-
     this.name("milliwatt");
     this.registerPath("milliwatt");
+
+    return true;
   }
 }
 

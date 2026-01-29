@@ -43,9 +43,10 @@ class MilliVoltAttribute : VoltAttribute {
       return false;
     }
 
-
     this.name("millivolt");
     this.registerPath("millivolt");
+
+    return true;
   }
 }
 

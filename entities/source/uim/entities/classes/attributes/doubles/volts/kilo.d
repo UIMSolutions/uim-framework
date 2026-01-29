@@ -38,16 +38,16 @@ class KiloVoltAttribute : VoltAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("kilovolt");
     this.registerPath("kilovolt");
+
+    return true;
   }
 }
 

@@ -29,14 +29,14 @@ class DayAttribute : IntegerAttribute {
     super(initData);
   }
 
-
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("day");
     this.registerPath("day");    
+
+    return true;
   }
 }

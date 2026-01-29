@@ -20,12 +20,13 @@ import uim.entities;
       return false;
     }
 
-
     this.name("TagsAttribute");
     this.dataFormats(["string", "array"]);
     this.registerPath("TagsAttribute");
+
+    return true;
   }
 
   override IValue createValue() {
-    return TagArrayValue(this); }
+    return new TagArrayValue(this); }
 }

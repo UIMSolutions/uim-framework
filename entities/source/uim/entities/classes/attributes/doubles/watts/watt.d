@@ -43,9 +43,10 @@ class WattAttribute : DoubleAttribute {
       return false;
     }
 
-
     this.name("watt");
     this.registerPath("watt");
+
+    return true;
   }
 }
 

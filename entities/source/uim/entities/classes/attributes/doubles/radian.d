@@ -34,15 +34,15 @@ class RadianAttribute : DoubleAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("radian");
     this.registerPath("radian");
+
+    return true;
   }
 }

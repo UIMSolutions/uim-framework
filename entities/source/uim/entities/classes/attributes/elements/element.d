@@ -30,6 +30,7 @@ class ElementAttribute : UIMAttribute {
       return false;
     }
 
+    return true;
   }
 
   override IValue createValue() {

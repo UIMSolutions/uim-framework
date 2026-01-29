@@ -36,15 +36,15 @@ class NewtonAttribute : DoubleAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("newton");
     this.registerPath("newton");
+
+    return true;
   }
 }

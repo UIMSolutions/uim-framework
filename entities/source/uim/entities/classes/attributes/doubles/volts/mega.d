@@ -39,9 +39,10 @@ class MegaVoltAttribute : VoltAttribute {
       return false;
     }
 
-
     this.name("megavolt");
     this.registerPath("megavolt");
+
+    return true;
   }
 }
 
