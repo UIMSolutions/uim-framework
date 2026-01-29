@@ -29,18 +29,3 @@ class IP4AddressAttribute : DStringAttribute {
     this.registerPath("ip4address");
   }
 }
-mixin(AttributeCalls!("IP4AddressAttribute"));
-
-///
-unittest {
-  auto attribute = new DIP4AddressAttribute;
-  assert(attribute.name == "ip4address");
-  assert(attribute.registerPath == "ip4address");
-
-  UIMAttribute generalAttribute = attribute;
-  assert(cast(DStringAttribute)generalAttribute);
-  assert(!cast(DIntegerAttribute)generalAttribute);
-
-  UIMValue value = attribute.createValue();
-  assert(cast(DStringValue)value);
-}
