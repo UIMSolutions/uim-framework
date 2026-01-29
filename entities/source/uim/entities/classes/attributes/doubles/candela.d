@@ -8,7 +8,14 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class CandelaAttribute : DoubleAttribute {
+class CandelaAttribute : DoubleAttribute {  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
+
   mixin(AttributeThis!("CandelaAttribute"));
 
   // Initialization hook method.

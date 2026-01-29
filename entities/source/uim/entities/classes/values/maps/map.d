@@ -147,15 +147,13 @@ class MapValue(K) : UIMValue {
     return "["~results.join(",") ~"]";
   }
 }
-auto MapValue(K)() { return new MapValue!K(); }
-
 ///
 unittest {  
-  auto stringMap = MapValue!string();
-  stringMap["key1"] = StringValue("value1");
+  auto stringMap = new MapValue!string();
+  stringMap["key1"] = new StringValue("value1");
 
   assert(stringMap["key1"].toString == "value1");
-  assert(cast(DStringValue)stringMap["key1"]);
+  assert(cast(StringValue)stringMap["key1"]);
   assert(!cast(BooleanValue)stringMap["key1"]);
 
   stringMap["key2"] = "value2";

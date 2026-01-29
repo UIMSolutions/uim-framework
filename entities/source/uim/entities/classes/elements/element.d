@@ -101,13 +101,11 @@ class UIMElement : UIMObject, IElement {
   string name() {
     return _name;
   }
-
-  version (test_uim_models) {
+  ///
     unittest {
       assert(Entity.name("name1").name == "name1");
       assert(Entity.name("name1").name("name2").name == "name2");
       assert(Entity.name("name name").name == "name_name");
-    }
   }
 
   protected string[string] _parameters;
@@ -424,11 +422,9 @@ auto createElement(string name) {
 auto createElement(Json json) {
   return new UIMElement(json);
 }
-
-version (test_uim_models) {
+/// 
   unittest {
-    assert(Element);
-    assert(Element.name("test").name == "test");
-    assert(Element.name("testName").name == "testname");
+    auto element = createElement();
+    assert(element.name("test").name == "test");
+    assert(element.name("testName").name == "testname");
   }
-}

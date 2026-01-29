@@ -458,8 +458,8 @@ class UIMAttribute : UIMObject, IAttribute {
   /*   auto createAttribute() {
     return createAttribute(_name); } */
 
-  UIMValue createValue() {
-    return NullValue;
+  IValue createValue() {
+    return null;
   }
 
   /* // Create a new attribute based on this attribute an a giving name 

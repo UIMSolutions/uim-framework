@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class DatetimeOffsetAttribute : DatetimeAttribute {
-  mixin(AttributeThis!("DatetimeOffsetAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

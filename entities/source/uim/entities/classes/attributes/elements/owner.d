@@ -14,7 +14,8 @@ class OwnerElementAttribute : UIMAttribute {
   mixin(AttributeThis!("OwnerElementAttribute"));
 
   override IValue createValue() {
-    return ElementValue(this)
+    return (new ElementValue)
+      .attribute(this)
       .value(
         Element
           .name("owner")
@@ -22,6 +23,6 @@ class OwnerElementAttribute : UIMAttribute {
             "id": UUIDAttribute, // Owner Id"]),
             "idType": StringAttribute, // The type of owner, either User or Team."
           ])
-      );
+    );
   }
 }

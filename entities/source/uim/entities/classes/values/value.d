@@ -236,8 +236,7 @@ class UIMValue : UIMObject, IValue {
   void fromString(string newValue) {
   }
 }
-
-version (test_uim_models) {
+///
   unittest {
     auto value = new UIMValue;
     assert(!value.isNull);
@@ -248,5 +247,4 @@ version (test_uim_models) {
     assert(!value.isNullable);
     assert(!value.isObject);
     assert(!value.isArray);
-  }
 }

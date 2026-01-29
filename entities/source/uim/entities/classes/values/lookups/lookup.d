@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 class LookupValue(K, V) : UIMValue {
   this() {
-    super;
+    super();
   }  
 
   this(IAttribute attribute, Json toJson = Json(null)) {

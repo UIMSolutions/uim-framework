@@ -14,7 +14,13 @@ import uim.entities;
 // means.measurement.currencyCode
 // Value is a ISO 4217 currency code
 class CurrencyCodeAttribute : StringStringAttribute {
-  mixin(AttributeThis!("CurrencyCodeAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {

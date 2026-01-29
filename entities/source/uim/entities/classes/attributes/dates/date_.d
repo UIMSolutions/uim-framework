@@ -11,7 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class DateAttribute : UIMAttribute {
-  mixin(AttributeThis!("DateAttribute"));
+  this() {
+    super();
+  }
+
+  this(Json configSettings) {
+    super(configSettings);
+  }
 
   // Initialization hook method.  // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
