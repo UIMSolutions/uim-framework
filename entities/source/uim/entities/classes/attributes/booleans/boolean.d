@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class BooleanAttribute : UIMAttribute {
-  mixin(AttributeThis!("BooleanAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
 /* Inheritance
 any <- boolean
 Traits

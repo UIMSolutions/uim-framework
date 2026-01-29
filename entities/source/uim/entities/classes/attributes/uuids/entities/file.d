@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class FileIdAttribute : EntityIdAttribute {
-  mixin(AttributeThis!("FileIdAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

@@ -18,8 +18,13 @@ mixin(ShowModule!());
 
 @safe:
 class PhoneAttribute : StringAttribute {
-  mixin(AttributeThis!("PhoneAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

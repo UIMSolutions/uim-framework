@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class AccountIdAttribute : EntityIdAttribute {
-  mixin(AttributeThis!("AccountIdAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

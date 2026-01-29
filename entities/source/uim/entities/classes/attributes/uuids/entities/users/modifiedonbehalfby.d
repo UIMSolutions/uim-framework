@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 class ModifiedOnBehalfByAttribute : EntityIdAttribute {
-  mixin(AttributeThis!("ModifiedOnBehalfByAttribute"));
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
   // Initialization hook method.
   override void initialize(Json configSettings = Json(null)) {
     super.initialize(configSettings);

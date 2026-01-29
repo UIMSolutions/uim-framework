@@ -13,9 +13,14 @@ mixin(ShowModule!());
 
 // A unique identifier for entity instances
 
-class EntityIdAttribute : UUIDAttribute {
-  mixin(AttributeThis!("EntityIdAttribute"));
+class EntityIdAttribute : UUIDAttribute {0
+  this() {
+    super();
+  }
 
+  this(Json configSettings) {
+    super(configSettings);
+  }
 /*   is.dataFormat.character
 is.dataFormat.big
 is.dataFormat.array
