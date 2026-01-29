@@ -25,11 +25,11 @@ class ArrayValue : UIMValue {
       .isArray(true);
   }
 
-  DArrayValue add(UIMValue[] values...) { 
+  ArrayValue add(UIMValue[] values...) { 
     this.add(values.dup); 
     return this; }
 
-  DArrayValue add(UIMValue[] values) {
+  ArrayValue add(UIMValue[] values) {
     _items ~= values.dup; 
     return this;
   }
@@ -43,7 +43,7 @@ class ArrayValue : UIMValue {
   UIMValue[] values() { return _items; }
 
   override UIMValue copy() {
-    return ArrayValue(attribute, toJson);
+    return new ArrayValue(attribute, toJson);
   }
   override UIMValue dup() {
     return copy;

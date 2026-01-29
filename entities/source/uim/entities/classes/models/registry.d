@@ -9,7 +9,4 @@ import uim.entities;
 
 @safe:
 class ModelRegistry : UIMRegistry!(string, DModel) {
-  this() {}
-
-  static DModelRegistry registry; 
 }

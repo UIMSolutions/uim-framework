@@ -69,9 +69,9 @@ class MapValue(K) : UIMValue {
 
   DMapValue opIndexAssign(UIMValue[] values, K key) {
     if (containsKey(key)) {
-      _items[key] = new DArrayValue(values); 
+      _items[key] = new ArrayValue(values); 
     } else {
-      _items[key] = new DArrayValue(values); }
+      _items[key] = new ArrayValue(values); }
 
     return this;
   }

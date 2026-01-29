@@ -25,7 +25,7 @@ means.measurement.prefix.mega */
 import uim.entities;
 
 @safe:
-class MegaWattAttribute : DWattAttribute {
+class MegaWattAttribute : WattAttribute {
   mixin(AttributeThis!("MegaWattAttribute"));
 
   // Initialization hook method.

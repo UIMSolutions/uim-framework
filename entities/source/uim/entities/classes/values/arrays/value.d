@@ -8,7 +8,7 @@ module uim.entities.classes.values.arrays.value;
 import uim.entities;
 
 @safe:
-class UIMValueArrayValue : DArrayValue {
+class UIMValueArrayValue : ArrayValue {
   mixin(ValueThis!("ValueArrayValue", "UIMValue[]"));  
 
   // Initialization hook method.
