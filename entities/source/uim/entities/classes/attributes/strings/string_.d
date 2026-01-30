@@ -26,21 +26,22 @@ class StringAttribute : CharAttribute {
   mixin(OProperty!("size_t", "maxLength"));
 
   // Initialization hook method.
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("string");
-this.isString(true);
+    this.isString(true);
     this.registerPath("string");
 
     return true;
   }
+
   override IValue createValue() {
-    return StringValue(this)
-      .maxLength(this.maxLength); }
+    return new StringValue(this)
+      .maxLength(this.maxLength);
+  }
 }
 ///
 unittest {

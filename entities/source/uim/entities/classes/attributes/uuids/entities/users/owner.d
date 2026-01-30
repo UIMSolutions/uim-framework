@@ -32,5 +32,7 @@ class OwnerIdAttribute : EntityIdAttribute {
 
     this.name("ownerId");
     this.registerPath("ownerId");
+    
+    return true;
   }  
 }

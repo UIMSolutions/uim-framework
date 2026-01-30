@@ -10,6 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
+/* 
 class StringBooleanAttribute : LookupAttribute {
   this() {
     super();
@@ -28,5 +29,5 @@ class StringBooleanAttribute : LookupAttribute {
   override IValue createValue() {
     return new LookupValue!(string, bool)(this).isNullable(isNullable);
   }
-}
+}*/ 
 

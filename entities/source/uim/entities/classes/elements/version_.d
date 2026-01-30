@@ -35,7 +35,7 @@ class Version : UIMElement {
 
 
     this
-      .adUIMValues([
+      .addValues([
         "description": StringAttribute,
         "by": UUIDAttribute,
         "display": StringAttribute,

@@ -32,5 +32,7 @@ class TeamIdAttribute : EntityIdAttribute {
 
     this.name("teamId");
     this.registerPath("teamId");
+    
+    return true;
   }  
 }

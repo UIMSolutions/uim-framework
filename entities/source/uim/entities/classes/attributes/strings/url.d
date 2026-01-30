@@ -29,8 +29,9 @@ class UrlAttribute : StringAttribute {
       return false;
     }
 
-
     this.name("url");
     this.registerPath("url");
+    
+    return true;
   }
 }

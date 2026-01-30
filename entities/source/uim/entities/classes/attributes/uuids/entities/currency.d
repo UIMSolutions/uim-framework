@@ -35,5 +35,7 @@ class CurrencyIdAttribute : EntityIdAttribute {
 
     this.name("currencyId");
     this.registerPath("currencyId");
+
+    return true;
   }  
-}
+}    

@@ -37,8 +37,8 @@ class IntegerIntegerAttribute : LookupAttribute {
 
     // means.measurement.lookup
 
-    this.name("lookup")
-      .dataFormats(["lookup", "integer", "string"]);
+    this.name("lookup");
+    this.dataFormats(["lookup", "integer", "string"]);
     this.registerPath("lookup");
 
     return true;

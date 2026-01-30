@@ -32,5 +32,7 @@ class DCreatedOnBehalfByAttribute : EntityIdAttribute {
 
     this.name("createdOnBehalfBy");
     this.registerPath("createdOnBehalfBy");
+    
+    return true;
   }  
 }

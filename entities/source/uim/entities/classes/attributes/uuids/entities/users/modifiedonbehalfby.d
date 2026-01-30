@@ -32,5 +32,7 @@ class ModifiedOnBehalfByAttribute : EntityIdAttribute {
 
     this.name("modifiedOnBehalfBy");
     this.registerPath("modifiedOnBehalfBy");
+    
+    return true;
   }  
 }

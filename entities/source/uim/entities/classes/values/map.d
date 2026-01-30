@@ -51,12 +51,12 @@ mixin(ShowModule!());
     _items[key] = UUIDValue(newValue);
   }
 
-  O adUIMValues(this O)(UIMValue[string] newValues) {
+  O addValues(this O)(UIMValue[string] newValues) {
     newValues.byKey.each!(key => adUIMValue(key, newValues[key]));
     return cast(O)this;
   }
 
-  O adUIMValues(this O)(DAttribute[string] attributes) {
+  O addValues(this O)(DAttribute[string] attributes) {
     attributes.byKey.each!(key => adUIMValue(key, attributes[key].createValue));
     return cast(O)this;
   }

@@ -32,5 +32,7 @@ class DSLAInvokedIdAttribute : EntityIdAttribute {
 
     this.name("slainvokedid");
     this.registerPath("slaInvokedId");
+
+    return true;
   }  
 }

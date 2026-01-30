@@ -44,5 +44,7 @@ class UserIdAttribute : EntityIdAttribute {
 
     this.name("userId");
     this.registerPath("userId");
+    
+    return true;
   }  
 }

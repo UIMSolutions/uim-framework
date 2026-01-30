@@ -35,5 +35,7 @@ class BusinessUnitIdAttribute : EntityIdAttribute {
 
     this.name("businessUnitId");
     this.registerPath("businessUnitId");
+    
+    return true;
   }  
 }

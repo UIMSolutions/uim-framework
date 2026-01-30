@@ -30,9 +30,11 @@ class UUIDAttribute : UIMAttribute {
     }
 
 
-    this.name("uuid")
-      .dataFormats(["uuid"]);
+    this.name("uuid");
+    this.dataFormats(["uuid"]);
     this.registerPath("uuid");
+    
+    return true;
   }
 
   override IValue createValue() {

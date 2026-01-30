@@ -32,5 +32,7 @@ class DSlaIdAttribute : EntityIdAttribute {
 
     this.name("slaId");
     this.registerPath("slaId");
+    
+    return true;
   }  
 }

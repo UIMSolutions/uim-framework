@@ -32,5 +32,7 @@ class OrganizationIdAttribute : EntityIdAttribute {
 
     this.name("organizationId");
     this.registerPath("organizationId");
+    
+    return true;
   }  
 }

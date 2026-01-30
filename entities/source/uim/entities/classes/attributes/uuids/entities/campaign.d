@@ -32,5 +32,7 @@ class DCampaignIdAttribute : EntityIdAttribute {
 
     this.name("campaignId");
     this.registerPath("campaignId");
+    
+    return true;
   }  
 }

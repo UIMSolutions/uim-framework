@@ -34,5 +34,7 @@ class UriAttribute : StringAttribute {
 
     this.name("uri");
     this.registerPath("uri");
+    
+    return true;
   }
 }

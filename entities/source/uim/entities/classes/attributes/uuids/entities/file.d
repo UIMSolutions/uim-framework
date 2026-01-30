@@ -31,6 +31,7 @@ class FileIdAttribute : EntityIdAttribute {
 
 
     this.name("fileId");
+    return true;
     this.registerPath("fileId");
   }  
 }

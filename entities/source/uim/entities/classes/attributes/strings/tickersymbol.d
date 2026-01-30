@@ -39,5 +39,7 @@ class TickerSymbolAttribute : StringAttribute {
 
     this.name("tickerSymbol");
     this.registerPath("tickerSymbol");
+    
+    return true;
   }
 }

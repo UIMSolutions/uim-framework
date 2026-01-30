@@ -32,5 +32,7 @@ class ContactIdAttribute : EntityIdAttribute {
 
     this.name("contactId");
     this.registerPath("contactId");
+    
+    return true;
   }  
 }

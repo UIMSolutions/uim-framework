@@ -39,5 +39,7 @@ class TimezoneAttribute : StringAttribute {
 
     this.name("timezone");
     this.registerPath("timezone");
+    
+    return true;
   }
 }

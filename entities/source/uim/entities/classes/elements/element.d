@@ -31,7 +31,7 @@ class UIMElement : UIMObject, IElement {
 
   void initialize(Json configSettings = Json(null)) {
     this
-      .values(StringValueMap);
+      .values(new StringValueMap);
 
     this
       .requestPrefix("element_");
@@ -40,9 +40,10 @@ class UIMElement : UIMObject, IElement {
   protected StringValueMap _values;
 
   /// Getter for values
-  StringValueMap values() const @property {
+  /* StringValueMap values() const @property {
     return _values;
   }
+  */ 
 
   /// Setter for values (chainable)
   UIMElement values(StringValueMap value) @property {
@@ -110,7 +111,7 @@ class UIMElement : UIMObject, IElement {
 
   protected string[string] _parameters;
   string[string] parameters() const {
-    return _parameters;
+    return _parameters.dup;
   }
 
   auto parameters(string[string] value) {
@@ -221,7 +222,7 @@ class UIMElement : UIMObject, IElement {
   ///
   unittest {
     auto element = new UIMElement;
-    element.adUIMValues(["test": StringAttribute]);
+    element.addValues(["test": StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
@@ -249,7 +250,7 @@ class UIMElement : UIMObject, IElement {
       }
 
       if (!isStatic) { // can add new values
-        auto myValue = StringAttribute.createValue;
+        auto myValue = new StringAttribute.createValue;
         myValue.set(newValue);
         values[key] = myValue;
       }
@@ -259,7 +260,7 @@ class UIMElement : UIMObject, IElement {
   ///
   unittest {
     auto element = new UIMElement;
-    element.adUIMValues(["test": StringAttribute]);
+    element.addValues(["test": StringAttribute]);
     element["test"] = "something";
     assert(element["test"] == "something");
     assert(element["test"] != "a thing");
@@ -287,7 +288,7 @@ class UIMElement : UIMObject, IElement {
   ///
   unittest {
     auto element2 = new UIMElement;
-    element2.adUIMValues(["level2": StringAttribute]);
+    element2.addValues(["level2": StringAttribute]);
     element2["level2"] = "valueLevel2";
 
     auto value2 = new ElementValue;
