@@ -48,5 +48,7 @@ class JsonAttribute : StringAttribute {
 
     this.name("json");
     this.registerPath("json");
+
+    return true;
   }
 }

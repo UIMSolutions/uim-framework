@@ -39,6 +39,8 @@ class FaxAttribute : StringAttribute {
 
     this.name("fax");
     this.registerPath("fax");
+
+    return true;
   }
 }
 

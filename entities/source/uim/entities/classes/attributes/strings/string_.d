@@ -35,6 +35,8 @@ class StringAttribute : CharAttribute {
     this.name("string");
 this.isString(true);
     this.registerPath("string");
+
+    return true;
   }
   override IValue createValue() {
     return StringValue(this)

@@ -34,6 +34,8 @@ class CultureTagAttribute : StringAttribute {
     means.reference.culture.tag */
     this.name("languageTag");
     this.registerPath("languagetag");
+
+    return true;
   }
 }
 

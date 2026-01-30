@@ -39,6 +39,8 @@ class MiddleNameAttribute : StringAttribute {
 
     this.name("middleName");
     this.registerPath("middleName");
+
+    return true;
   }
 }
 

@@ -38,5 +38,7 @@ class PostalCodeAttribute : StringAttribute {
 
     this.name("postalcode");
     this.registerPath("postalcode");
+
+    return true;
   }
 }

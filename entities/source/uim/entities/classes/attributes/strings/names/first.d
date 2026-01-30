@@ -37,6 +37,8 @@ class FirstNameAttribute : StringAttribute {
 
     this.name("firstName");
     this.registerPath("firstname");
+
+    return true;
   }
 }
 

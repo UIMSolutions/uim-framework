@@ -39,6 +39,8 @@ class PhoneAttribute : StringAttribute {
 
     this.name("phone");
     this.registerPath("phone");
+
+    return true;
   }
 }
 

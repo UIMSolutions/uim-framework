@@ -37,5 +37,7 @@ class GovernmentIdAttribute : StringAttribute {
 
     this.name("governmentId");
     this.registerPath("governmentId");
+
+    return true;
   }
 }

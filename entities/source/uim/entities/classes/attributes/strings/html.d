@@ -43,5 +43,7 @@ class HtmlAttribute : StringAttribute {
 
     this.name("html");
     this.registerPath("html");
+
+    return true;
   }
 }

@@ -39,6 +39,8 @@ class NameAttribute : StringAttribute {
 
     this.name("name");
     this.registerPath("name");
+
+    return true;
   }
 }
 

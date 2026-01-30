@@ -38,5 +38,7 @@ is.dataFormat.array
 means.fileName */
     this.name("filename");
     this.registerPath("fileName");
+
+    return true;
   }
 }

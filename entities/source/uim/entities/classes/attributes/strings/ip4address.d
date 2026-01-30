@@ -42,5 +42,7 @@ class IP4AddressAttribute : StringAttribute {
 
     this.name("ip4address");
     this.registerPath("ip4address");
+
+    return true;
   }
 }
