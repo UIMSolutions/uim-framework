@@ -33,5 +33,7 @@ class ayPartAttribute : IntegerCalendarPart {
 
     this.name("daypart");
     this.registerPath("daypart");
+    
+    return true;
   }
 }

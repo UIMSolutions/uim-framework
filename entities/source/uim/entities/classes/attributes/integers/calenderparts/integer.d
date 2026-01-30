@@ -23,7 +23,6 @@ class IntegerCalendarPart : IntegerAttribute {
     super(initData);
   }
 
-
 /* means.calendar
 means.calendar.day
  */  // Initialization hook method.
@@ -32,8 +31,9 @@ means.calendar.day
       return false;
     }
 
-
     this.name("integerCalendarPart");
     this.registerPath("integerCalendarPart");
+    
+    return true;
   }    
 }

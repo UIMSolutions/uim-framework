@@ -35,8 +35,9 @@ class TrimesterAttribute : IntegerCalendarPart {
       return false;
     }
 
-
     this.name("trimester");
     this.registerPath("trimester");
+    
+    return true;
   }
 }

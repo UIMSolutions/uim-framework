@@ -36,7 +36,6 @@ class StringArrayAttribute : UIMAttribute {
     this.registerPath("StringArrayAttribute");
 
         return true;
-
   }
 
   override IValue createValue() {

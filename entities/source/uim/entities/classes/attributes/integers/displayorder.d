@@ -23,15 +23,15 @@ class isplayOrderAttribute : IntegerAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("displayOrder");
-    this.registerPath("displayOrder");    
+    this.registerPath("displayOrder");
+
+    return true; 
   }
 }

@@ -39,8 +39,9 @@ class MonthpartAttribute : IntegerCalendarPart {
       return false;
     }
 
-
     this.name("monthpart");
     this.registerPath("monthpart");
+    
+    return true;
   }
 }

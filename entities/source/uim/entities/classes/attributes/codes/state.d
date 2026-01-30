@@ -30,7 +30,6 @@ class StateCodeAttribute : IntegerStringAttribute {
       return false;
     }
 
-
     this.name("stateCode");
     this.display("Status Reason");
     this.lookups([

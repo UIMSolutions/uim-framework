@@ -23,7 +23,6 @@ class VersionElementAttribute : UIMAttribute {
     super(initData);
   }
 
-
   override IValue createValue() {
     return new ElementValue(this)
       .value(

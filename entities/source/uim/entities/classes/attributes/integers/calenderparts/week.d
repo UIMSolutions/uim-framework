@@ -36,8 +36,9 @@ class WeekAttribute : IntegerCalendarPart {
       return false;
     }
 
-
     this.name("week");
     this.registerPath("week");
+    
+    return true;
   }
 }

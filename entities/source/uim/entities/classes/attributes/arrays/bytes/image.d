@@ -29,13 +29,11 @@ class ImageAttribute : BinaryAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
-
 
     /* 
 means.content.binary.image */
