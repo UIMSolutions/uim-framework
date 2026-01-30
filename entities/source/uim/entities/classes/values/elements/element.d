@@ -10,21 +10,20 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class UIMElementValue : UIMValue {
+class ElementValue : UIMValue {
   this() {
     super;
-  }  
+  }
 
   this(IAttribute attribute, Json toJson = Json(null)) {
     super(attribute, toJson);
-  }  
+  }
 
   // Initialization hook method.
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
-
 
     this
       .isNull(false);
@@ -34,19 +33,23 @@ class UIMElementValue : UIMValue {
   alias value = UIMValue.value;
   O value(this O)(UIMElement newValue) {
     _value = newValue;
-    return cast(O)this; 
+    return cast(O)this;
   }
+
   UIMElement value() {
-    return _value; 
+    return _value;
   }
-  version(test_uim_models) { unittest {    
-    auto Element = SystemUser; // some kind of Element
-    assert(ElementValue.value(Element).value.id == Element.id);
-  }}
+
+  version (test_uim_models) {
+    unittest {
+      auto Element = SystemUser; // some kind of Element
+      assert(ElementValue.value(Element).value.id == Element.id);
+    }
+  }
 
   override void set(string newValue) {
     /// TODO
-  }  
+  }
 
   override void set(Json newValue) {
     /// TODO
@@ -57,16 +60,16 @@ class UIMElementValue : UIMValue {
       this.isNull(false);
       _value = newValue;
       return;
-    } 
+    }
 
     if (isNullable) {
       this.isNull(true);
-      _value = null;      
+      _value = null;
     }
   }
 
   alias opEquals = UIMValue.opEquals;
-  bool opEquals(UIMElementValue otherValue) {
+  bool opEquals(ElementValue otherValue) {
     string left = value.toString;
     string right = otherValue.value.toString;
     return (left == right);
@@ -80,7 +83,7 @@ class UIMElementValue : UIMValue {
     return (value.toString == otherValue);
   }
 
-/*   int opCmp(UIMElement otherValue) {
+  /*   int opCmp(UIMElement otherValue) {
     /// TODO
     return 1;
   }  */
@@ -88,22 +91,25 @@ class UIMElementValue : UIMValue {
   override UIMValue copy() {
     return ElementValue(attribute, toJson);
   }
+
   override UIMValue dup() {
     return copy;
   }
 
-  override Json toJson() { 
-    if (isNull) return Json(null); 
-    return this.value.toJson; 
+  override Json toJson() {
+    if (isNull)
+      return Json(null);
+    return this.value.toJson;
   }
 
   // ElementValue converts to a JsonSTtring
-  override string toString() { 
-    if (isNull) return null; 
-    return this.value.toString; 
+  override string toString() {
+    if (isNull)
+      return null;
+    return this.value.toString;
   }
 
-  override void fromString(string newValue) { 
+  override void fromString(string newValue) {
     /// TODO this.value(newValue);
   }
 }

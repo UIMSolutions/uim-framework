@@ -40,5 +40,7 @@ class MinutesAttribute : IntegerAttribute {
 
     this.name("minutes");
     this.registerPath("minutes");
+
+    return true;
   }    
 }

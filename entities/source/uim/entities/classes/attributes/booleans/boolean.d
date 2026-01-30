@@ -38,6 +38,8 @@ is.dataFormat.boolean */
     this.name("boolean");
     this.addDataFormats(["boolean"]);
     this.registerPath("boolean");
+
+    return true;
   }
 
   override IValue createValue() {

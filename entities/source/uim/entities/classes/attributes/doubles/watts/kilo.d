@@ -47,6 +47,8 @@ class KiloWattAttribute : WattAttribute {
 
     this.name("kilowatt");
     this.registerPath("kilowatt");
+
+    return true;
   }
 }
 

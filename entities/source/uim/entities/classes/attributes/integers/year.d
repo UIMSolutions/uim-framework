@@ -43,5 +43,7 @@ class YearAttribute : IntegerAttribute {
 
     this.name("year");
     this.registerPath("year");
+
+    return true;
   }    
 }

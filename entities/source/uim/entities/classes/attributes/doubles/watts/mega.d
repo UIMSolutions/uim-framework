@@ -47,9 +47,10 @@ class MegaWattAttribute : WattAttribute {
       return false;
     }
 
-
     this.name("megawatt");
     this.registerPath("megawatt");
+
+    return true;
   }
 }
 

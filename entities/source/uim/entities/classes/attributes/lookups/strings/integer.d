@@ -23,10 +23,22 @@ class StringIntegerAttribute : LookupAttribute {
     super(initData);
   }
 
-  mixin(OProperty!("int[string]", "lookups"));
+  protected int[string] _lookups;
+
+  /// Getter for the 'lookups' property
+  int[string] getLookups() const {
+    return this.lookups;
+  }
+
+  /// Setter for the 'lookups' property
+  void setLookups(int[string] value) {
+    this.lookups = value;
+  }
 
   override IValue createValue() {
-    return LookupValue!(string, int).isNullable(isNullable);
+    auto value = new LookupValue!(string, int);
+    value.isNullable(isNullable);
+    return value;
   }
 }
 

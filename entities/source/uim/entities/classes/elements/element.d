@@ -276,7 +276,7 @@ class UIMElement : UIMObject, IElement {
       }
 
       UIMValue myValue = values[keys[0]];
-      if (auto myElementValue = cast(UIMElementValue)myValue) {
+      if (auto myElementValue = cast(ElementValue)myValue) {
         myValue = myElementValue.value.valueOfKey(keys[1 .. $].join("."));
       }
       return myValue;
@@ -290,7 +290,7 @@ class UIMElement : UIMObject, IElement {
     element2.adUIMValues(["level2": StringAttribute]);
     element2["level2"] = "valueLevel2";
 
-    auto value2 = new UIMElementValue;
+    auto value2 = new ElementValue;
     value2.set(element2);
 
     auto element1 = new UIMElement;
@@ -325,8 +325,8 @@ class UIMElement : UIMObject, IElement {
 
   // Set field(key) if type Entity
   void opIndexAssign(UIMElement value, string key) {
-    if (auto myValue = cast(UIMElementValue)valueOfKey(key)) {
-      // values[key] exists and value of UIMElementValue
+    if (auto myValue = cast(ElementValue)valueOfKey(key)) {
+      // values[key] exists and value of ElementValue
       myValue.value = value;
     }
   }

@@ -27,5 +27,7 @@ class HourAttribute : IntegerAttribute {
 
     this.name("hour");
     this.registerPath("hour");
+
+    return true;
   }    
 }

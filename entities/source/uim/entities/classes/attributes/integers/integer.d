@@ -35,5 +35,7 @@ class IntegerAttribute : UIMAttribute {
       .addDataFormats(["integer"])
       .name("integer");
     this.registerPath("integer");
+
+    return true;
   }    
 }

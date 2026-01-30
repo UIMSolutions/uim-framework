@@ -11,6 +11,34 @@ mixin(ShowModule!());
 
 @safe:
 class UIMValue : UIMObject, IValue {
+  this() {
+    initialize();
+  }
+
+  this(IAttribute attribute) {
+    super();
+    this.attribute(attribute);
+  }
+
+  this(IAttribute attribute, Json initData) {
+    super(initData);
+    this.attribute(attribute);
+  }
+
+  this(IAttribute attribute, Json[string] initData) {
+    super(initData);
+    this.attribute(attribute);
+  }
+
+  // Hook
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
+    return true;
+  }
+
   // --- Explicit property getters and setters for marked fields ---
   @property IAttribute attribute() const {
     return _attribute;
@@ -146,29 +174,6 @@ class UIMValue : UIMObject, IValue {
 
   @property void isNullable(bool v) {
     _isNullable = v;
-  }
-
-  this() {
-    initialize();
-  }
-
-  this(IAttribute attribute) {
-    super();
-    this.attribute(attribute);
-  }
-
-  this(IAttribute attribute, Json[string] initData) {
-    super(initData);
-    this.attribute(attribute);
-  }
-
-  // Hook
-  override bool initialize(Json[string] initData = null) {
-    if (!super.initialize(initData)) {
-      return false;
-    }
-
-    return true;
   }
 
   // #region isNull

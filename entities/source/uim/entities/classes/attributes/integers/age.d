@@ -35,5 +35,7 @@ class AgeAttribute : IntegerAttribute {
     //means.measurement.age
     this.name("age");
     this.registerPath("age");    
+
+    return true;
   }
 }

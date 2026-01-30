@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class ateValue : UIMValue {
+class DateValue : UIMValue {
   this() {
     super();
   }

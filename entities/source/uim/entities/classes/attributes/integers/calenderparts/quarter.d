@@ -40,5 +40,7 @@ class QuarterAttribute : IntegerCalendarPart {
 
     this.name("quarter");
     this.registerPath("quarter");
+
+    return true;
   }
 }
