@@ -47,9 +47,6 @@ class UIMValueArrayValue : ArrayValue {
   alias opEquals = UIMValue.opEquals;
 
   override UIMValue copy() {
-    return ValueArrayValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new ValueArrayValue(attribute, toJson);
   }
 }

@@ -42,5 +42,7 @@ class IP6AddressAttribute : StringAttribute {
 
     this.name("ip6address");
     this.registerPath("ip6address");
+
+    return true;
   }
 }

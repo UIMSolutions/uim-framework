@@ -10,6 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
+/* 
 class LookupValue(K, V) : UIMValue {
   this() {
     super();
@@ -49,3 +50,4 @@ class LookupValue(K, V) : UIMValue {
   // }
 }
 
+*/ 

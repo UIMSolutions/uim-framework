@@ -50,5 +50,7 @@ means.attributeName
 
     this.name("attributeName");
     this.registerPath("attributeName");
+
+    return true;
   }
 }

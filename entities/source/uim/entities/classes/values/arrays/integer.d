@@ -46,9 +46,6 @@ class IntegerArrayValue : ArrayValue {
   alias opEquals = UIMValue.opEquals;
   
   override UIMValue copy() {
-    return IntegerArrayValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new IntegerArrayValue(attribute, toJson);
   }
 }

@@ -53,6 +53,7 @@ class IntegerIntegerAttribute : LookupAttribute {
   }  
 
   override IValue createValue() {
-    return new LookupValue!(int, int)(this).isNullable(isNullable); }  
+    return null; // TODO return new LookupValue!(int, int)(this).isNullable(isNullable); }  
+  }
 }
 

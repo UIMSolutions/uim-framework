@@ -131,10 +131,7 @@ class LongValue : UIMValue {
   }  
 
   override UIMValue copy() {
-    return LongValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new LongValue(attribute, toJson);
   }
 
   long toLong() { 

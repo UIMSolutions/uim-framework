@@ -121,10 +121,7 @@ class MapValue(K) : UIMValue {
   }
 
   override UIMValue copy() {
-    return NullValue; // MapValue!K(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new NullValue; // MapValue!K(attribute, toJson);
   }
 
   override Json toJson() {

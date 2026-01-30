@@ -41,7 +41,7 @@ class IntegerBooleanAttribute : LookupAttribute {
     this.dataFormats(["lookup", "integer", "string"]);
     this.registerPath("lookup");
 
-    return this;
+    return true;
   }
 
   bool hasLookupKey(int key) {

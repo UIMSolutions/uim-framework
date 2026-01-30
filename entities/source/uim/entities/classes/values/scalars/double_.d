@@ -87,9 +87,6 @@ class oubleValue : UIMValue {
   override UIMValue copy() {
     return DoubleValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return DoubleValue(attribute, toJson);
-  }
 
   double toDouble() { 
     if (isNull) return 0; 

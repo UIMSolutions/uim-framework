@@ -73,10 +73,7 @@ class StringArrayValue : ArrayValue {
   }
 
   override UIMValue copy() {
-    return StringArrayValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new StringArrayValue(attribute, toJson);
   }
 
   override Json toJson() {

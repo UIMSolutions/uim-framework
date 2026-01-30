@@ -10,6 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
+/* 
 class BooleanIntegerAttribute : LookupAttribute {
   this() {
     super();
@@ -40,4 +41,4 @@ class BooleanIntegerAttribute : LookupAttribute {
     return new LookupValue!(bool, int)(this).isNullable(isNullable);
   }
 }
-
+*/

@@ -37,5 +37,8 @@ class GenderAttribute : StringAttribute {
 
     this.name("gender");
     this.registerPath("gender");
+
+
+    return true;
   }
 }

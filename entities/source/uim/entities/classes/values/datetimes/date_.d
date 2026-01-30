@@ -58,10 +58,7 @@ class DateValue : UIMValue {
   }
 
   override UIMValue copy() {
-    return DateValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new DateValue(attribute, toJson);
   }
 
   override Json toJson() { 

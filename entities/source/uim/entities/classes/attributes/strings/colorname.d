@@ -34,5 +34,7 @@ class ColorNameAttribute : StringAttribute {
 
     this.name("colorName");
     this.registerPath("colorName");
+
+    return true;
   }
 }

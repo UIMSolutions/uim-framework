@@ -68,10 +68,7 @@ class SystimeValue : UIMValue {
   }
 
   override UIMValue copy() {
-    return SystimeValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new SystimeValue(attribute, toJson);
   }
 
   override Json toJson() { 

@@ -35,5 +35,7 @@ class LongAttribute : UIMAttribute {
       .addDataFormats(["long"])
       .name("long");
     this.registerPath("long");
+
+    return true;
   }    
 }

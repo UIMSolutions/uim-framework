@@ -46,7 +46,7 @@ class VoltAttribute : DoubleAttribute {
     this.name("volt");
     this.registerPath("volt");
 
-    return this;
+    return true;
   }
 }
 

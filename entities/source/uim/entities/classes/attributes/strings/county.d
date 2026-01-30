@@ -34,5 +34,7 @@ class CountyAttribute : StringAttribute {
 
     this.name("county");
     this.registerPath("county");
+
+    return true;
   }
 }

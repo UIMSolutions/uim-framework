@@ -39,7 +39,7 @@ class LookupAttribute : UIMAttribute {
   }
 
   override IValue createValue() {
-    return LookupValue(this); 
+    return new LookupValue(this); 
   } 
 }
 

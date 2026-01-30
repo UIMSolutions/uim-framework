@@ -121,10 +121,7 @@ class StringValueMap : UIMValue {
   }
 
   override UIMValue copy() {
-    return NullValue; // StringValueMap(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new NullValue; // StringValueMap(attribute, toJson);
   }
 
   override Json toJson() {

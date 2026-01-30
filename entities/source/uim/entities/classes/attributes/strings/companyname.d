@@ -34,5 +34,7 @@ class CompanyNameAttribute : StringAttribute {
 
     this.name("companyName");
     this.registerPath("companyName");
+
+    return true;
   }
 }

@@ -239,7 +239,6 @@ class UIMValue : UIMObject, IValue {
   }
 
   abstract UIMValue copy();
-  abstract UIMValue dup();
 
   Json toJson() {
     return Json(null);

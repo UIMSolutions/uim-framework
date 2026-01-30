@@ -38,5 +38,7 @@ class EthnicityAttribute : StringAttribute {
 
     this.name("ethnicity");
     this.registerPath("ethnicity");
+
+    return true;
   }
 }

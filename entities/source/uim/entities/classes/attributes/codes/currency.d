@@ -16,6 +16,7 @@ mixin(ShowModule!());
 // is.dataFormat.array
 // means.measurement.currencyCode
 // Value is a ISO 4217 currency code
+/*
 class CurrencyCodeAttribute : StringStringAttribute {
   this() {
     super();
@@ -42,4 +43,5 @@ class CurrencyCodeAttribute : StringStringAttribute {
     return true;
   }
 }
+*/
 

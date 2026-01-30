@@ -41,9 +41,6 @@ class JsonObjectValue : UIMValue {
   override UIMValue copy() {
     return JsonObjectValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return copy;
-  }
   
   override Json toJson() {
     if (isNull) return Json(null);

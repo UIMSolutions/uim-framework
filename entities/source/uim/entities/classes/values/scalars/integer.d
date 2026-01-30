@@ -101,9 +101,6 @@ class IntegerValue : UIMValue {
   override UIMValue copy() {
     return IntegerValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return IntegerValue(attribute, toJson);
-  }
 
   int toLong() { 
     if (isNull) return 0; 

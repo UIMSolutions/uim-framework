@@ -20,10 +20,7 @@ class TimestampValue : LongValue {
   }  
 
   override UIMValue copy() {
-    return TimestampValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new TimestampValue(attribute, toJson);
   }
 
   alias opEquals = LongValue.opEquals;

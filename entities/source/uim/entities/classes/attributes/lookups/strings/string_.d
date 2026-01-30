@@ -10,6 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
+/* 
 class StringStringAttribute : LookupAttribute {
   this() {
     super();
@@ -39,4 +40,5 @@ class StringStringAttribute : LookupAttribute {
     return new LookupValue!(string, string).isNullable(isNullable);
   }
 }
+*/
 

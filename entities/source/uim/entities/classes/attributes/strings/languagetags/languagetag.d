@@ -34,6 +34,8 @@ class LanguageTagAttribute : StringAttribute {
 
     this.name("languageTag");
     this.registerPath("languagetag");
+
+    return true;
   }
 }
 

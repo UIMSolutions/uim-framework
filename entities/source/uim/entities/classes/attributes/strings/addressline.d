@@ -39,5 +39,7 @@ class AddressLineAttribute : StringAttribute {
     // means.location.address
     this.name("addressLine");
     this.registerPath("addressline");
+
+    return true;
   }
 }

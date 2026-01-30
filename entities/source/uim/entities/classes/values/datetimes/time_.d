@@ -69,10 +69,7 @@ class TimeValue : UIMValue {
   alias opEquals = UIMValue.opEquals;
 
   override UIMValue copy() {
-    return TimeValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new TimeValue(attribute, toJson);
   }
 
   alias opEquals = Object.opEquals;

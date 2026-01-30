@@ -33,9 +33,6 @@ class NullValue : UIMValue {
   override UIMValue copy() {
     return NullValue;
   }
-  override UIMValue dup() {
-    return NullValue;
-  }
   
   override Json toJson() { return Json(null); }
   override string toString() { return null; }

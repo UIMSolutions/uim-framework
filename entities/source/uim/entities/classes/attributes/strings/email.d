@@ -34,5 +34,7 @@ class EmailAttribute : StringAttribute {
 
     this.name("email");
     this.registerPath("email");
+
+    return true;
   }
 }

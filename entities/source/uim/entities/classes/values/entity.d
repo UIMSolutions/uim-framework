@@ -78,9 +78,6 @@ class UIMEntityValue : UIMValue {
   override UIMValue copy() {
     return EntityValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return copy;
-  }
 
   override Json toJson() { 
     if (isNull) return Json(null); 

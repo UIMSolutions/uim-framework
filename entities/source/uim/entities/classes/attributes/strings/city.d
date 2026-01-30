@@ -34,5 +34,7 @@ class CityNameAttribute : StringAttribute {
 
     this.name("cityName");
     this.registerPath("cityName");
+
+    return true;
   }
 }

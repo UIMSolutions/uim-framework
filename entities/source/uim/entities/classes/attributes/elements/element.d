@@ -34,7 +34,6 @@ class ElementAttribute : UIMAttribute {
   }
 
   override IValue createValue() {
-    return (new ElementValue)
-      .attribute(this);
+    return new ElementValue(this);
   }
 }

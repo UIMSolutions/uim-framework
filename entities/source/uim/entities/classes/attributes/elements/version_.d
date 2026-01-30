@@ -26,7 +26,7 @@ class VersionElementAttribute : UIMAttribute {
   override IValue createValue() {
     return new ElementValue(this)
       .value(
-        Version        
+        new Version        
       );
   }
 }

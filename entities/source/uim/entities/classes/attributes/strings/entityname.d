@@ -39,5 +39,7 @@ class UIMEntityNameAttribute : StringAttribute {
 
     this.name("entityname");
     this.registerPath("entityName");
+
+    return true;
   }
 }

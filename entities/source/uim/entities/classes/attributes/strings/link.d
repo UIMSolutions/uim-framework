@@ -32,5 +32,7 @@ class LinkAttribute : StringAttribute {
 
     this.name("link");
     this.registerPath("link");
+
+    return true;
   }
 }

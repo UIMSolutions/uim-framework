@@ -98,10 +98,7 @@ class UUIDValue : UIMValue {
   }
 
   override UIMValue copy() {
-    return UUIDValue(value);
-  }
-  override UIMValue dup() {
-    return UUIDValue(value);
+    return new UUIDValue(value);
   }
 
   override Json toJson() { 

@@ -47,13 +47,10 @@ class ArrayValue : UIMValue {
   
   alias opEquals = UIMValue.opEquals;
 
-  UIMValue[] values() { return _items; }
+  IValue[] values() { return _items; }
 
   override UIMValue copy() {
     return new ArrayValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
   }
 
   override string toString() {

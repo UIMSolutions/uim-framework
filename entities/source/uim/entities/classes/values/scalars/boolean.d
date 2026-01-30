@@ -108,12 +108,8 @@ class BooleanValue : UIMValue {
   }
   
   override UIMValue copy() {
-    return BooleanValue(attribute, toJson);
+    return new BooleanValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return BooleanValue(attribute, toJson);
-  }
-  
   bool toBool() { 
     return _value; }
 

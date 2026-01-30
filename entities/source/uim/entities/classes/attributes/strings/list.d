@@ -35,5 +35,7 @@ class ListAttribute : StringAttribute {
 
     this.name("list");
     this.registerPath("list");
+
+    return true;
   }
 }

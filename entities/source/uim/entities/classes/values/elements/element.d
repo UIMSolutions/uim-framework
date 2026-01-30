@@ -89,11 +89,7 @@ class ElementValue : UIMValue {
   }  */
 
   override UIMValue copy() {
-    return ElementValue(attribute, toJson);
-  }
-
-  override UIMValue dup() {
-    return copy;
+    return new ElementValue(attribute, toJson);
   }
 
   override Json toJson() {

@@ -38,10 +38,7 @@ class TagArrayValue : StringArrayValue {
   alias opEquals = UIMValue.opEquals;
 
   override UIMValue copy() {
-    return TagArrayValue(attribute, toJson);
-  }
-  override UIMValue dup() {
-    return copy;
+    return new TagArrayValue(attribute, toJson);
   }
   
   override string toString() {

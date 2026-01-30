@@ -25,9 +25,8 @@ class OwnerElementAttribute : UIMAttribute {
 
 
   override IValue createValue() {
-    return (new ElementValue)
-      .attribute(this)
-      .value(
+    auto value = (new ElementValue(this));
+      value.value(
         Element
           .name("owner")
           .adUIMValues([
@@ -35,5 +34,6 @@ class OwnerElementAttribute : UIMAttribute {
             "idType": StringAttribute, // The type of owner, either User or Team."
           ])
     );
+    return value;
   }
 }

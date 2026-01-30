@@ -41,7 +41,7 @@ class MeterAttribute : DoubleAttribute {
     this.name("meter");
     this.registerPath("meter");
 
-    return this;
+    return true;
   }
 }
 

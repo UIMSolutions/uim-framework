@@ -89,9 +89,6 @@ class StringValue : UIMValue {
   override UIMValue copy() {
     return StringValue(attribute, toJson);
   }
-  override UIMValue dup() {
-    return copy;
-  }
 
   version(test_uim_models) { unittest {    
     assert(StringValue("test").value == "test");

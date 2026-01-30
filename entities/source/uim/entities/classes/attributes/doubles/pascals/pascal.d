@@ -48,7 +48,7 @@ class PascalAttribute : DoubleAttribute {
     this.name("pascal");
     this.registerPath("pascal");
 
-    return this;
+    return true;
   }
 }
 

@@ -31,8 +31,9 @@ class LastNameAttribute : StringAttribute {
       return false;
     }
 
-
     this.name("lastname");
     this.registerPath("lastname");
+
+    return true;
   }
 }

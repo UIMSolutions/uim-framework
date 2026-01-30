@@ -10,6 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
+/* 
 class StringIntegerAttribute : LookupAttribute {
   this() {
     super();
@@ -26,7 +27,7 @@ class StringIntegerAttribute : LookupAttribute {
   protected int[string] _lookups;
 
   /// Getter for the 'lookups' property
-  int[string] lookups() const {
+  int[string] lookups() {
     return _lookups;
   }
 
@@ -41,4 +42,4 @@ class StringIntegerAttribute : LookupAttribute {
     return value;
   }
 }
-
+*/

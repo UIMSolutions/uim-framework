@@ -35,5 +35,7 @@ class CountryAttribute : StringAttribute {
 
     this.name("country");
     this.registerPath("country");
+
+    return true;
   }
 }
