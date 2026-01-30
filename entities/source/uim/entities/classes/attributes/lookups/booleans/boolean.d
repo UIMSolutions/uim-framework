@@ -27,6 +27,6 @@ class BooleanBooleanAttribute : LookupAttribute {
   mixin(OProperty!("bool[bool]", "lookups"));
 
   // override IValue createValue() {
-  //   return LookupValue!(bool, bool)(this).isNullable(isNullable);
+  //   return new LookupValue!(bool, bool)(this).isNullable(isNullable);
   // }
 }

@@ -22,12 +22,21 @@ class StringStringAttribute : LookupAttribute {
   this(Json[string] initData) {
     super(initData);
   }
-
     
-  mixin(OProperty!("string[string]", "lookups"));
+  protected string[string] _lookups;
+
+  /// Getter for the 'lookups' property
+  string[string] getLookups() const {
+    return this.lookups;
+  }
+
+  /// Setter for the 'lookups' property
+  void setLookups(string[string] value) {
+    this.lookups = value;
+  }
 
   override IValue createValue() {
-    return LookupValue!(string, string).isNullable(isNullable);
+    return new LookupValue!(string, string).isNullable(isNullable);
   }
 }
 

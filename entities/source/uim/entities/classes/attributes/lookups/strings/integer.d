@@ -26,13 +26,13 @@ class StringIntegerAttribute : LookupAttribute {
   protected int[string] _lookups;
 
   /// Getter for the 'lookups' property
-  int[string] getLookups() const {
-    return this.lookups;
+  int[string] lookups() const {
+    return _lookups;
   }
 
   /// Setter for the 'lookups' property
-  void setLookups(int[string] value) {
-    this.lookups = value;
+  void lookups(int[string] value) {
+    _lookups = value;
   }
 
   override IValue createValue() {

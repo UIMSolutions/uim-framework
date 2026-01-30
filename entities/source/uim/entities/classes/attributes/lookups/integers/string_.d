@@ -40,6 +40,8 @@ class IntegerStringAttribute : LookupAttribute {
     this.name("lookup");
     this.dataFormats(["lookup", "integer", "string"]);
     this.registerPath("lookup");
+
+    return this;
   }
 
   bool hasLookupKey(int key) {
@@ -51,7 +53,7 @@ class IntegerStringAttribute : LookupAttribute {
   }  
 
   // override IValue createValue() {
-  //   return LookupValue!(int, string)(this).isNullable(isNullable); }  
+  //   return new LookupValue!(int, string)(this).isNullable(isNullable); }  
 }
 
 

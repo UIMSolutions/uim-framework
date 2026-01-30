@@ -42,7 +42,7 @@ class LookupValue(K, V) : UIMValue {
   alias opEquals = UIMValue.opEquals;
 
   // override UIMValue copy() {
-  //   return LookupValue!(K, V)(attribute, toJson);
+  //   return new LookupValue!(K, V)(attribute, toJson);
   // }
   // override UIMValue dup() {
   //   return copy;

@@ -34,6 +34,8 @@ class LookupAttribute : UIMAttribute {
     this.name("lookup");
     this.dataFormats(["lookup"]);
     this.registerPath("lookup");
+
+    return this;
   }
 
   override IValue createValue() {

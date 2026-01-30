@@ -24,10 +24,20 @@ class BooleanIntegerAttribute : LookupAttribute {
   }
 
 
-  mixin(OProperty!("int[bool]", "lookups"));
+  protected int[bool] _lookups;
+
+  /// Getter for the 'lookups' property
+  int[bool] lookups() const {
+    return _lookups;
+  }
+
+  /// Setter for the 'lookups' property
+  void lookups(int[bool] value) {
+    _lookups = value;
+  }
 
   override IValue createValue() {
-    return LookupValue!(bool, int)(this).isNullable(isNullable);
+    return new LookupValue!(bool, int)(this).isNullable(isNullable);
   }
 }
 

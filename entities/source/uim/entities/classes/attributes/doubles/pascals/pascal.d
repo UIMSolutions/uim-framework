@@ -39,16 +39,16 @@ class PascalAttribute : DoubleAttribute {
     super(initData);
   }
 
-
   // Initialization hook method.
     override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
-
     this.name("pascal");
     this.registerPath("pascal");
+
+    return this;
   }
 }
 

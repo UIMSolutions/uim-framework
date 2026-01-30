@@ -43,5 +43,5 @@ is.dataFormat.boolean */
   }
 
   override IValue createValue() {
-    return BooleanValue(this); }
+    return new BooleanValue(this); }
 }
