@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.jsons.geo.feature;
 
-import uim.jsons;
+import uim.jsons.geo;
 
 mixin(ShowModule!());
 

@@ -1,0 +1,45 @@
+module uim.jsons.geo.helpers.collection;
+
+/**
+ * GeometryCollection
+ */
+class GeoJsonGeometryCollection : GeoJsonGeometry {
+    protected GeoJsonGeometry[] _geometries;
+    
+    alias toJson = UIMObject.toJson;
+    
+    @property GeoJsonGeometry[] geometries() { return _geometries; }
+    @property void geometries(GeoJsonGeometry[] value) { _geometries = value; }
+    
+    this() {
+        super(GeometryType.GeometryCollection);
+    }
+    
+    this(GeoJsonGeometry[] geoms) {
+        this();
+        this._geometries = geoms;
+    }
+    
+    override Json toJson() @trusted {
+        auto result = Json.emptyObject;
+        result["type"] = GeometryType.GeometryCollection.to!string;
+        auto geomArray = Json.emptyArray;
+        foreach (geom; _geometries) {
+            geomArray ~= geom.toJson();
+        }
+        result["geometries"] = geomArray;
+        return result;
+    }
+    
+    override void fromJson(Json json) @trusted {
+        if ("geometries" in json) {
+            _geometries = [];
+            foreach (geomJson; json["geometries"]) {
+                auto geom = parseGeometry(geomJson);
+                if (geom !is null) {
+                    _geometries ~= geom;
+                }
+            }
+        }
+    }
+}

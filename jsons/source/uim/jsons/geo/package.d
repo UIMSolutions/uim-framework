@@ -8,6 +8,12 @@ module uim.jsons.geo;
 public {
   import uim.jsons.geo.geometry;
   import uim.jsons.geo.feature;
-  import uim.jsons.geo.featurecollection;
   import uim.jsons.geo.types;
+}
+public {
+  import uim.jsons.geo.classes;
+  import uim.jsons.geo.helpers;
+  import uim.jsons.geo.errors;
+  import uim.jsons.geo.exceptions;
+  import uim.jsons.geo.interfaces;
 }
