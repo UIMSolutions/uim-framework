@@ -6,7 +6,21 @@
 module uim.neural;
 
 public {
+  import uim.core;
   import uim.oop;
 
-  import uim.neural;
+  import uim.neural.activations;
+  import uim.neural.layers;
+  import uim.neural.losses;
+  import uim.neural.network;
+  import uim.neural.server;
+  import uim.neural.training;
+}
+
+public {
+  import uim.neural.classes;
+  import uim.neural.helpers;
+  import uim.neural.interfaces;
+  import uim.neural.errors;
+  import uim.neural.exceptions;
 }

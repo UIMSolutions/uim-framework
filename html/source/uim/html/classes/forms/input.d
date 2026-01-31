@@ -76,7 +76,7 @@ auto input() {
   return new Input();
 }
 
-auto inputText(string name = null) {
+auto textInput(string name = null) {
   auto input = new Input();
   input.type("text");
   if (name)
@@ -84,7 +84,7 @@ auto inputText(string name = null) {
   return input;
 }
 
-auto inputPassword(string name = null) {
+auto passwordInput(string name = null) {
   auto input = new Input();
   input.type("password");
   if (name)
@@ -108,7 +108,7 @@ auto inputNumber(string name = null) {
   return input;
 }
 
-auto inputCheckbox(string name = null) {
+auto checkboxInput(string name = null) {
   auto input = new Input();
   input.type("checkbox");
   if (name)
@@ -148,6 +148,6 @@ auto inputSubmit(string value = "Submit") {
 }
 
 unittest {
-  auto input = inputText("username");
+  auto input = textInput("username");
   assert(input.toString().indexOf("type=\"text\"") > 0);
 }

@@ -6,6 +6,7 @@
 module uim.neural.network;
 
 import uim.neural;
+import std.random : Random, unpredictableSeed;
 
 @safe:
 
@@ -62,5 +63,5 @@ class NeuralNetwork : UIMObject {
   }
 
   DenseLayer[] layers;
-  Random rng;
+  std.random.Random rng;
 }

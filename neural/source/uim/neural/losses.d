@@ -68,7 +68,7 @@ private LossResult crossEntropyLoss(const double[] logitsOrProbabilities, const 
     double p = probs[i];
     double t = target[i];
     double clamped = clampProbability(p, eps);
-    value -= t * log(clamped);
+    value -= t * std.math.exponential.log(clamped);
     grad[i] = (p - t) / n; // gradient w.r.t logits when softmax is used
   }
 

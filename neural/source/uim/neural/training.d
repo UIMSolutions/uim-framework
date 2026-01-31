@@ -6,6 +6,7 @@
 module uim.neural.training;
 
 import uim.neural;
+import std.random : Random, unpredictableSeed, randomShuffle;
 
 @safe:
 
@@ -111,7 +112,7 @@ TrainLog[] train(ref NeuralNetwork net, Dataset data, const Loss l, TrainConfig 
 
   foreach (epoch; 0 .. cfg.epochs) {
     if (cfg.shuffleBatches) {
-      shuffle(indices, rng);
+      randomShuffle(indices, rng);
     }
 
     double epochLoss = 0.0;

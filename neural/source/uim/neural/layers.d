@@ -6,7 +6,9 @@
 module uim.neural.layers;
 
 import uim.neural;
-
+import std.random : Random, unpredictableSeed;
+import uim.neural.activations : Activation, applyActivation, activationDerivative;
+import std.random : uniform;
 @safe:
 
 /// A fully-connected layer with optional activation.
@@ -17,7 +19,7 @@ public:
     this(inputSize, outputSize, activation, initScale, rng);
   }
 
-  this(size_t inputSize, size_t outputSize, Activation activation, double initScale, ref Random rng) {
+  this(size_t inputSize, size_t outputSize, Activation activation, double initScale, ref std.random.Random rng) {
     enforce(inputSize > 0 && outputSize > 0, "Layer dimensions must be positive");
     this.inputSize = inputSize;
     this.outputSize = outputSize;
@@ -29,9 +31,9 @@ public:
     foreach (o; 0 .. outputSize) {
       weights[o].length = inputSize;
       foreach (i; 0 .. inputSize) {
-        weights[o][i] = uniform!double(-initScale, initScale, rng);
+        weights[o][i] = uniform(to!double(-initScale), to!double(initScale), rng);
       }
-      bias[o] = uniform!double(-initScale, initScale, rng);
+      bias[o] = uniform(to!double(-initScale), to!double(initScale), rng);
     }
   }
 

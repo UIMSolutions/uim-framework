@@ -19,7 +19,7 @@ import uim.security.crypto : constantTimeEquals;
 
 /// Signs a Json payload into a JWT using HS256. Adds `exp` if missing using the provided ttl.
 string signJWT(Json claims, string secret, Duration ttl) @trusted {
-  enforce(claims.type == JsonType.object, "JWT claims must be a Json object");
+  enforce(claims.isObject, "JWT claims must be a Json object");
 
   auto header = Json([
     "alg": Json("HS256"),
@@ -54,7 +54,7 @@ Json verifyJWT(string token, string secret) @trusted {
   auto payloadBytes = Base64URLNoPadding.decode(parts[1]);
   // Safe to cast: we know these bytes are UTF-8 encoded Json from what we created
   auto payload = parseJson(cast(string) payloadBytes);
-  enforce(payload.type == JsonType.object, "JWT payload must be an object");
+  enforce(payload.isObject, "JWT payload must be an object");
 
   if (auto expNode = "exp" in payload.object) {
     auto now = Clock.currTime().toUnixTime();

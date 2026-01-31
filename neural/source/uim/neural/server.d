@@ -57,37 +57,25 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
 }
 
 private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
-  enforce(payload.type == JsonType.object, "Json body must be an object with an 'inputs' array");
+  enforce(payload.isObject, "Json body must be an object with an 'inputs' array");
   auto inputsNode = payload["inputs"];
-  enforce(inputsNode.type == JsonType.array, "'inputs' must be an array of number arrays");
+  enforce(inputsNode.isArray, "'inputs' must be an array of number arrays");
 
-  auto rows = inputsNode.array;
+  auto rows = inputsNode.toArray;
   enforce(rows.length <= maxBatch, "Batch exceeds configured maxBatch");
 
   double[][] inputs;
   inputs.length = rows.length;
 
   foreach (i, rowNode; rows) {
-    enforce(rowNode.type == JsonType.array, "Each input must be an array");
-    auto cols = rowNode.array;
+    enforce(rowNode.isArray, "Each input must be an array");
+    auto cols = rowNode.toArray;
     inputs[i].length = cols.length;
     foreach (j, valueNode; cols) {
-      enforce(valueNode.type == JsonType.float_ || valueNode.type == JsonType.integer || valueNode.type == JsonType.uinteger, "Inputs must contain numeric values");
-
       double numeric;
-      final switch (valueNode.type) {
-        case JsonType.float_:
-          numeric = valueNode.floating;
-          break;
-        case JsonType.integer:
-          numeric = to!double(valueNode.integer);
-          break;
-        case JsonType.uinteger:
-          numeric = to!double(valueNode.uinteger);
-          break;
-        default:
-          numeric = 0.0;
-      }
+      if (valueNode.isDouble) numeric = valueNode.get!double;
+      else if (valueNode.isInteger) numeric = to!double(valueNode.get!int);
+      else numeric = 0.0;
 
       inputs[i][j] = numeric;
     }
