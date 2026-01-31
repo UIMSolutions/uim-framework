@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 
 // Dump node for Array values.
-class ArrayErrorNode : UIMErrorNode {
+class ArrayErrorNode : ErrorNode {
   mixin(ErrorNodeThis!("Array"));
 
   this(ArrayItemErrorNode[] nodes = null) {

@@ -21,7 +21,7 @@ mixin(ShowModule!());
  * #### Using a subclass of ErrorRenderer
  */
 
-class UIMErrorRenderer : UIMObject, IErrorRenderer {
+class ErrorRenderer : UIMObject, IErrorRenderer {
   mixin(ErrorRendererThis!());
 
   override bool initialize(Json[string] initData = null) {
@@ -387,7 +387,7 @@ mixin(ShowModule!());
  * Using a subclass of ErrorRenderer gives you full control over how Errors are rendered, you
  * can configure your class in your config/app.D.
  * /
-class UIMErrorRenderer { // }: IErrorRenderer
+class ErrorRenderer { // }: IErrorRenderer
   this() {
     initialize();
   }

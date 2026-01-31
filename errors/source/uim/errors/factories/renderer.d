@@ -10,20 +10,20 @@ mixin(ShowModule!());
 import uim.errors;
 @safe:
 
-class UIMErrorRendererFactory : UIMFactory!(string, UIMErrorRenderer) {
+class ErrorRendererFactory : UIMFactory!(string, ErrorRenderer) {
   this() {
-    super(() => new UIMErrorRenderer());
+    super(() => new ErrorRenderer());
   }
   
-  private static UIMErrorRendererFactory _instance;
-  static UIMErrorRendererFactory instance() {
+  private static ErrorRendererFactory _instance;
+  static ErrorRendererFactory instance() {
     if (_instance is null) {
-      _instance = new UIMErrorRendererFactory();
+      _instance = new ErrorRendererFactory();
     }
     return _instance;
   }
 }
-auto ErrorRendererFactory() { return UIMErrorRendererFactory.instance; }
+auto ErrorRendererFactory() { return ErrorRendererFactory.instance; }
 
 static this() {
   ErrorRendererFactory.register("console", () @safe {

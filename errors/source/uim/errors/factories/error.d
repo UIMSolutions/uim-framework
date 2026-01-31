@@ -19,8 +19,8 @@ class ErrorFactory : UIMFactory!(string, IError) {
 
   // Register common error types
   private void registerCommonErrors() {
-    register("InvalidArgument", () => new DInvalidArgumentError());
-    register("UnknownEditor", () => new DUnknownEditorError());
+    register("InvalidArgument", () => new InvalidArgumentError());
+    register("UnknownEditor", () => new UnknownEditorError());
   }
 
   // Register a custom error type

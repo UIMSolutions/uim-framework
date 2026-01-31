@@ -11,7 +11,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for objects/class instances.
-class lassErrorNode : UIMErrorNode {
+class ClassErrorNode : ErrorNode {
   mixin(ErrorNodeThis!("Class"));
 
   this(string classname, int anId) {
@@ -21,7 +21,7 @@ class lassErrorNode : UIMErrorNode {
   }
 
   // Add a property
-  void addProperty(DPropertyErrorNode node) {
+  void addProperty(PropertyErrorNode node) {
     _children ~= node;
   }
 
@@ -31,7 +31,7 @@ class lassErrorNode : UIMErrorNode {
     return _classname;
   }
 
-  DClassErrorNode classname(string name) {
+  ClassErrorNode classname(string name) {
     _classname = name;
     return this;
   }
@@ -42,7 +42,7 @@ class lassErrorNode : UIMErrorNode {
     return _id;
   }
 
-  DClassErrorNode id(int newId) {
+  ClassErrorNode id(int newId) {
     _id = newId;
     return this;
   }
@@ -50,23 +50,23 @@ class lassErrorNode : UIMErrorNode {
 
 /* unittest {
   // Test addProperty actually adds to _children
-  auto node = new DClassErrorNode("TestClass", 1);
+  auto node = new ClassErrorNode("TestClass", 1);
 
-  auto dummy1 = new DScalarErrorNode("string", Json("dummyValue1"));  
-  auto property1 = new DPropertyErrorNode("propName1", "public", dummy1);
+  auto dummy1 = new ScalarErrorNode("string", Json("dummyValue1"));  
+  auto property1 = new PropertyErrorNode("propName1", "public", dummy1);
 
-  auto dummy2 = new DScalarErrorNode("string", Json("dummyValue2"));  
-  auto property2 = new DPropertyErrorNode("propName2", "private", dummy2);
+  auto dummy2 = new ScalarErrorNode("string", Json("dummyValue2"));  
+  auto property2 = new PropertyErrorNode("propName2", "private", dummy2);
 
   node.addProperty(property1);
   node.addProperty(property2);
 
-  auto node2 = new DClassErrorNode("TestClass2", 2);
+  auto node2 = new ClassErrorNode("TestClass2", 2);
 
   node2.addProperty(property1);
   node2.addProperty(property2);
 
-  auto property3 = new DPropertyErrorNode("class1", "protected", node2);
+  auto property3 = new PropertyErrorNode("class1", "protected", node2);
   node.addProperty(property3);
 
   // Downcast to access _children for testing

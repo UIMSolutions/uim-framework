@@ -10,7 +10,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class UIMErrorNode : UIMObject, IErrorNode {
+class ErrorNode : UIMObject, IErrorNode {
   mixin(ErrorNodeThis!());
 
   // #region value
@@ -51,7 +51,7 @@ unittest {
 /*   Json json = Json.emptyObject;
   json["a"] = 1;
 
-  auto node = new UIMErrorNode;
+  auto node = new ErrorNode;
   node.value(json);
   assert(node.value["a"] == 1);
   assert(node.children.length == 0); */

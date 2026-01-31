@@ -11,7 +11,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for object properties.
-class opertyErrorNode : UIMErrorNode {
+class PropertyErrorNode : ErrorNode {
   mixin(ErrorNodeThis!("Property"));
 
   private IErrorNode _propertyValue;
@@ -44,8 +44,8 @@ class opertyErrorNode : UIMErrorNode {
 
 /* 
 unittest {
-  auto dummy = new UIMErrorNode("dummyValue");
-  auto node = new DPropertyErrorNode("propName", "public", dummy);
+  auto dummy = new ErrorNode("dummyValue");
+  auto node = new PropertyErrorNode("propName", "public", dummy);
 
   // Act & Assert
   assert(node.name == "propName");

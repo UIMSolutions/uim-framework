@@ -9,7 +9,7 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-class DWebErrorRenderer : UIMErrorRenderer { 
+class WebErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Web"));
 
   /**
@@ -213,7 +213,7 @@ class DWebErrorRenderer : UIMErrorRenderer {
     } */
 
   // Emit the response content
-  alias write = UIMErrorRenderer.write;
+  alias write = ErrorRenderer.write;
   void write(string outputText) {
     writeln(outputText);
   }

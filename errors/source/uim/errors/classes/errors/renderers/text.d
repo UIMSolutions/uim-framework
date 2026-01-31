@@ -13,7 +13,7 @@ mixin(ShowModule!());
  * Plain text error rendering with a stack trace.
  * Useful in CI or plain text environments.
  */
-class DTextErrorRenderer : UIMErrorRenderer {
+class DTextErrorRenderer : ErrorRenderer {
   mixin(ErrorRendererThis!("Text"));
 
   private IError _error;

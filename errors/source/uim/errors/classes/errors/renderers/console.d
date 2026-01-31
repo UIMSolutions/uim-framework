@@ -14,7 +14,7 @@ mixin(ShowModule!());
  * Plain text error rendering with a stack trace.
  * Writes to STDERR via a UIM\Console\OutputConsole instance for console environments
  */
-class DConsoleErrorRenderer : UIMErrorRenderer {
+class ConsoleErrorRenderer : ErrorRenderer {
   mixin(ErrorRendererThis!("Console"));
 
   override bool initialize(Json[string] initData = null) {

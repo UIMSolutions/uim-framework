@@ -9,6 +9,6 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-class DXmlErrorRenderer : UIMErrorRenderer { 
+class XmlErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Xml"));
 }

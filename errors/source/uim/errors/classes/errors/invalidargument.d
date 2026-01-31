@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class alidArgumentError : UIMError {
+class InvalidArgumentError : UIMError {
   mixin(ErrorThis!("InvalidArgument"));
 
   override bool initialize(Json[string] initData = null) {
@@ -38,13 +38,13 @@ class alidArgumentError : UIMError {
 auto invalidArgumentError() {
   Json[string] initData;
   initData["message"] = "Invalid Argument";
-  return new DInvalidArgumentError(initData);
+  return new InvalidArgumentError(initData);
 }
 
 auto invalidArgumentError(string message) {
   Json[string] initData;
   initData["message"] = message;
-  return new DInvalidArgumentError(initData);
+  return new InvalidArgumentError(initData);
 }
 
 auto invalidArgumentError(string message, string fileName, size_t lineNumber = 0) {
@@ -52,7 +52,7 @@ auto invalidArgumentError(string message, string fileName, size_t lineNumber = 0
   initData["message"] = message;
   initData["fileName"] = fileName;
   initData["lineNumber"] = lineNumber;
-  return new DInvalidArgumentError(initData);
+  return new InvalidArgumentError(initData);
 }
 ///
 unittest {

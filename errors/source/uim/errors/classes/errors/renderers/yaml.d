@@ -9,6 +9,6 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-class DYamlErrorRenderer : UIMErrorRenderer { 
+class YamlErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Yaml"));
 }

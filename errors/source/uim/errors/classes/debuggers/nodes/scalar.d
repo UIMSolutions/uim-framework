@@ -10,7 +10,7 @@ mixin(ShowModule!());
 @safe:
 
 // Dump node for scalar values.
-class alarErrorNode : UIMErrorNode {
+class ScalarErrorNode : ErrorNode {
     mixin(ErrorNodeThis!("Scalar"));
     
     // #region type
@@ -20,7 +20,7 @@ class alarErrorNode : UIMErrorNode {
     string type() {
         return _type;
     }
-    DScalarErrorNode type(string aType) {
+    ScalarErrorNode type(string aType) {
         _type = aType;
         return this;
     }
@@ -32,7 +32,7 @@ class alarErrorNode : UIMErrorNode {
         return _data;
     }
     
-    DScalarErrorNode data(Json newData) {
+    ScalarErrorNode data(Json newData) {
         _data = newData;
         return this;
     }
@@ -42,7 +42,7 @@ class alarErrorNode : UIMErrorNode {
 unittest {
     // Test construction and getters
     auto value = parseJsonString(`42`);
-    auto node = new DScalarErrorNode("int", value);
+    auto node = new ScalarErrorNode("int", value);
 
     assert(node.type == "int");
     assert(node.data == value);

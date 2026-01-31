@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class DUnknownEditorError : UIMError {
+class UnknownEditorError : UIMError {
   mixin(ErrorThis!("UnknownEditor"));
 
   override bool initialize(Json[string] initData = null) {

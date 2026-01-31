@@ -84,7 +84,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
   }
 
   // #region export
-  protected override string exportArray(DArrayErrorNode node, size_t indentLevel) {
+  protected override string exportArray(ArrayErrorNode node, size_t indentLevel) {
     super.exportArray(node, indentLevel);
 
     if (node is null) {
@@ -111,7 +111,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
         style("punct", ",") ~ "</span>";
   }
 
-  protected override string exportReference(DReferenceErrorNode node, size_t indentLevel) {
+  protected override string exportReference(ReferenceErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -136,7 +136,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
         style("punct", " {}") ~ "</span>";
   }
 
-  protected override string exportClass(DClassErrorNode node, size_t indentLevel) {
+  protected override string exportClass(ClassErrorNode node, size_t indentLevel) {
     super.exportClass(node, indentLevel);
 
     if (node is null) {
@@ -151,7 +151,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
       style("number", node.id.to!string) ~ style("punct", " {") ~
       `<samp class="uim-debug-object-props">`;
 
-    string[] props = node.children.map!(property => exportProperty(cast(DPropertyErrorNode) property, indentLevel)).array;
+    string[] props = node.children.map!(property => exportProperty(cast(PropertyErrorNode) property, indentLevel)).array;
 
     auto endTag = "</samp>" ~
       endBreak ~

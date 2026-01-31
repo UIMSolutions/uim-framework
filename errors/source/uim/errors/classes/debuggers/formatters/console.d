@@ -5,9 +5,9 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debuggers.formatters.console;
 
-mixin(ShowModule!());
 import uim.errors;
-import std.array : replicate;
+
+mixin(ShowModule!());
 
 @safe:
 
@@ -75,7 +75,7 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
 
   // #region export 
   // Export an array type object
-  override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+  override protected string exportArray(ArrayErrorNode node, size_t indentLevel) {
     super.exportArray(node, indentLevel);
 
     if (node is null) {
@@ -101,7 +101,7 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
     return startBreak ~ export_(node, indentLevel) ~ arrowText ~ export_(node, indentLevel);
   }
 
-  override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
+  override protected string exportReference(ReferenceErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -113,7 +113,7 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
       style("punct", " {}");
   }
 
-  override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+  override protected string exportClass(ClassErrorNode node, size_t indentLevel) {
     string startBreak = "\n" ~ replicate(" ", indentLevel);
     string endBreak = "\n" ~ replicate(" ", indentLevel - 1) ~ style("punct", "}");
 
@@ -129,13 +129,13 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
       style("number", to!string(node.id)) ~ style("punct", " {");
 
     string[] exportedProperties = node.children
-      .map!(prop => exportProperty(cast(DPropertyErrorNode) prop, indentLevel)).array;
+      .map!(prop => exportProperty(cast(PropertyErrorNode) prop, indentLevel)).array;
 
     return result ~ (exportedProperties.length > 0
         ? startBreak ~ exportedProperties.join(startBreak) ~ endBreak : style("punct", "}"));
   }
 
-  override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+  override protected string exportProperty(PropertyErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -150,7 +150,7 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
       : style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel);
   }
 
-  override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+  override protected string exportScalar(ScalarErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -170,7 +170,7 @@ class ConsoleErrorFormatter : UIMErrorFormatter {
     return null;
   }
 
-  override protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+  override protected string exportSpecial(SpecialErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }

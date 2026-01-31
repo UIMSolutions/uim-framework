@@ -9,6 +9,6 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-class DJsonErrorRenderer : UIMErrorRenderer { 
+class JsonErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Json"));
 }

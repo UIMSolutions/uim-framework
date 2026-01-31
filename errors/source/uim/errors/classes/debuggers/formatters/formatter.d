@@ -47,22 +47,22 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
     startBreak(indentLevel);
     endBreak(indentLevel);
 
-    if (auto errorNode = cast(DArrayErrorNode) node) {
+    if (auto errorNode = cast(ArrayErrorNode) node) {
       return exportArray(errorNode, indentLevel);
     }
-    if (auto errorNode = cast(DClassErrorNode) node) {
+    if (auto errorNode = cast(ClassErrorNode) node) {
       return exportClass(errorNode, indentLevel);
     }
-    if (auto errorNode = cast(DReferenceErrorNode) node) {
+    if (auto errorNode = cast(ReferenceErrorNode) node) {
       return exportReference(errorNode, indentLevel);
     }
-    if (auto errorNode = cast(DPropertyErrorNode) node) {
+    if (auto errorNode = cast(PropertyErrorNode) node) {
       return exportProperty(errorNode, indentLevel);
     }
-    if (auto errorNode = cast(DScalarErrorNode) node) {
+    if (auto errorNode = cast(ScalarErrorNode) node) {
       return exportScalar(errorNode, indentLevel);
     }
-    if (auto errorNode = cast(DSpecialErrorNode) node) {
+    if (auto errorNode = cast(SpecialErrorNode) node) {
       return exportSpecial(errorNode, indentLevel);
     }
     return ""; // throw invalidArgumentError("Unknown node received " ~ node.classinfo.baseName).throwError();

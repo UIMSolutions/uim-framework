@@ -9,6 +9,6 @@ import uim.errors;
 mixin(ShowModule!());
 @safe:
 
-class HtmlErrorRenderer : UIMErrorRenderer { 
+class HtmlErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Html"));
 }

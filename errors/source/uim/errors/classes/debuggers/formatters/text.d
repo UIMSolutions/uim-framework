@@ -31,7 +31,7 @@ class xtErrorFormatter : UIMErrorFormatter {
   }
 
   // #region export
-  override protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+  override protected string exportArray(ArrayErrorNode node, size_t indentLevel) {
     super.exportArray(node, indentLevel);
 
     auto nodes = node.children
@@ -50,7 +50,7 @@ class xtErrorFormatter : UIMErrorFormatter {
       export_(node.value, indentLevel) ~ ": " ~ export_(node.value, indentLevel);
   }
 
-  override protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
+  override protected string exportReference(ReferenceErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -59,7 +59,7 @@ class xtErrorFormatter : UIMErrorFormatter {
       ["nodeClassname": node.classname, "nodeId": node.id.to!string]);
   }
 
-  override protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+  override protected string exportClass(ClassErrorNode node, size_t indentLevel) {
     super.exportClass(node, indentLevel);
 
     if (node is null) {
@@ -77,7 +77,7 @@ class xtErrorFormatter : UIMErrorFormatter {
         ? startBreak(indentLevel+1) ~ items.join(startBreak(indentLevel+1)) ~ endBreak((indentLevel)) : "") ~ "}";
   }
 
-  override protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+  override protected string exportProperty(PropertyErrorNode node, size_t indentLevel) {
     super.exportProperty(node, indentLevel);
 
     if (node is null) {
@@ -92,7 +92,7 @@ class xtErrorFormatter : UIMErrorFormatter {
       ]) ~ export_(node.value, indentLevel);
   }
 
-  override protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+  override protected string exportScalar(ScalarErrorNode node, size_t indentLevel) {
     super.exportScalar(node, indentLevel);
 
     if (node is null) {
@@ -112,7 +112,7 @@ class xtErrorFormatter : UIMErrorFormatter {
     }
   }
 
-  override protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+  override protected string exportSpecial(SpecialErrorNode node, size_t indentLevel) {
     super.exportSpecial(node, indentLevel);
 
     if (node is null) {
