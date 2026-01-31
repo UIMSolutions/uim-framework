@@ -14,7 +14,7 @@ module uim.oop.containers.plist;
  * Features:
  * - Multiple data types: string, integer, float, boolean, date, data, array, dictionary
  * - XML plist format support (Apple's traditional format)
- * - JSON format support
+ * - Json format support
  * - Type-safe value access with automatic conversions
  * - Reading and writing property lists
  * - Validation and error handling
@@ -37,9 +37,9 @@ module uim.oop.containers.plist;
  * auto parser = new XMLPlistParser();
  * auto loaded = parser.parse(xml);
  * 
- * // Convert to JSON
- * auto converter = new JSONPlistConverter();
- * string json = converter.toJSON(plist);
+ * // Convert to Json
+ * auto converter = new JsonPlistConverter();
+ * string json = converter.toJson(plist);
  * ---
  */
 

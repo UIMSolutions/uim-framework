@@ -9,7 +9,7 @@ Property lists (plists) are data structures used to store configuration data and
 - Property list data structure with type-safe value storage
 - Support for various data types (string, number, boolean, array, dictionary, date, data)
 - XML plist format support (Apple's traditional format)
-- JSON format support for modern applications
+- Json format support for modern applications
 - Binary plist format (planned)
 - Reading and writing property lists
 - Type-safe value access with conversion utilities
@@ -18,10 +18,10 @@ Property lists (plists) are data structures used to store configuration data and
 ## Features
 
 - **Multiple Data Types**: String, Integer, Float, Boolean, Array, Dictionary, Date, Data
-- **Format Support**: XML plist, JSON (binary planned)
+- **Format Support**: XML plist, Json (binary planned)
 - **Type Safety**: Strong typing with automatic conversions
 - **Nested Structures**: Support for nested arrays and dictionaries
-- **Serialization**: Convert to/from XML and JSON
+- **Serialization**: Convert to/from XML and Json
 - **Validation**: Built-in validation for structure and types
 - **Error Handling**: Comprehensive exception handling
 
@@ -89,17 +89,17 @@ string xmlContent = plist.toXML();
 auto loaded = PropertyList.fromXML(xmlContent);
 ```
 
-### JSON Format
+### Json Format
 
 ```d
-// Convert to JSON
+// Convert to Json
 auto plist = new PropertyList();
 plist.set("key", "value");
 
-string jsonContent = plist.toJSON();
+string jsonContent = plist.toJson();
 
-// Parse from JSON
-auto loaded = PropertyList.fromJSON(jsonContent);
+// Parse from Json
+auto loaded = PropertyList.fromJson(jsonContent);
 ```
 
 ## API Reference
@@ -122,9 +122,9 @@ Main class for working with property lists.
 - `remove(string key)` - Remove a key
 - `keys()` - Get all keys
 - `toXML()` - Export to XML format
-- `toJSON()` - Export to JSON format
+- `toJson()` - Export to Json format
 - `static fromXML(string xml)` - Parse from XML
-- `static fromJSON(string json)` - Parse from JSON
+- `static fromJson(string json)` - Parse from Json
 
 ### PlistValue Struct
 

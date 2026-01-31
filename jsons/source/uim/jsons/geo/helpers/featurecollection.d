@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * GeoJSON FeatureCollection
+ * GeoJson FeatureCollection
  * A collection of feature objects
  */
 class GeoJsonFeatureCollection : UIMObject {
@@ -41,7 +41,7 @@ class GeoJsonFeatureCollection : UIMObject {
     }
     
     /**
-     * Convert to JSON
+     * Convert to Json
      */
     Json toJson() @trusted {
         auto result = Json.emptyObject;
@@ -57,7 +57,7 @@ class GeoJsonFeatureCollection : UIMObject {
     }
     
     /**
-     * Parse from JSON
+     * Parse from Json
      */
     void fromJson(Json json) @trusted {
         if ("features" in json) {
@@ -95,7 +95,7 @@ class GeoJsonFeatureCollection : UIMObject {
 }
 
 /**
- * Parse a feature collection from JSON string
+ * Parse a feature collection from Json string
  */
 DGeoJsonFeatureCollection parseFeatureCollection(string jsonString) @trusted {
     auto json = parseJsonString(jsonString);
@@ -103,7 +103,7 @@ DGeoJsonFeatureCollection parseFeatureCollection(string jsonString) @trusted {
 }
 
 /**
- * Parse a feature collection from JSON object
+ * Parse a feature collection from Json object
  */
 DGeoJsonFeatureCollection parseFeatureCollection(Json json) @trusted {
     auto collection = new DGeoJsonFeatureCollection();

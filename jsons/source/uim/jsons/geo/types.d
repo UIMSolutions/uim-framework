@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * GeoJSON geometry types
+ * GeoJson geometry types
  */
 enum GeometryType : string {
     Point = "Point",
@@ -25,7 +25,7 @@ enum GeometryType : string {
 }
 
 /**
- * GeoJSON object types
+ * GeoJson object types
  */
 enum GeoJsonType : string {
     Feature = "Feature",

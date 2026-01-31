@@ -1,6 +1,6 @@
 # UIM DataSources - Data Source Management Library
 
-A flexible, async-friendly data source management library for D language built with vibe.d. Provides abstraction for multiple data sources (JSON, CSV, Database, REST APIs) with filtering, caching, and transformation capabilities.
+A flexible, async-friendly data source management library for D language built with vibe.d. Provides abstraction for multiple data sources (Json, CSV, Database, REST APIs) with filtering, caching, and transformation capabilities.
 
 ## Overview
 
@@ -9,11 +9,11 @@ UIM DataSources provides a unified interface for working with multiple data sour
 ## Key Features
 
 ### Core Capabilities
-- **Multiple Sources**: Support for JSON, CSV, Database, REST APIs, XML, YAML
+- **Multiple Sources**: Support for Json, CSV, Database, REST APIs, XML, YAML
 - **Unified Interface**: IValueSource interface for all source types
 - **Provider Pattern**: Manage multiple data sources through DataProvider
 - **Async Operations**: All operations are asynchronous with vibe.d integration
-- **Type Safe**: Leverages D's strong type system with JSON serialization
+- **Type Safe**: Leverages D's strong type system with Json serialization
 
 ### Advanced Features
 - **Filtering**: Fluent query builder with multiple operators
@@ -23,7 +23,7 @@ UIM DataSources provides a unified interface for working with multiple data sour
 - **Result Wrapping**: Standardized result objects with metadata
 
 ### Data Source Types
-- **JSON**: In-memory JSON document storage
+- **Json**: In-memory Json document storage
 - **CSV**: Comma-separated values (interface, implementation extensible)
 - **Database**: Database connectivity (interface, implementation extensible)
 - **REST**: HTTP REST API endpoints (interface, implementation extensible)
@@ -45,7 +45,7 @@ dependency "uim-datasources" version="*"
 import uim.datasources;
 
 void main() {
-    // Create a JSON data source
+    // Create a Json data source
     auto jsonSource = new JsonDataSource("users", [
         Json(["id": Json(1), "name": Json("Alice")]),
         Json(["id": Json(2), "name": Json("Bob")])
@@ -322,7 +322,7 @@ class OrderDataProcessor {
 ```d
 class CustomDataSource : BaseDataSource {
     this(string name) {
-        super(name, DataSourceType.JSON);
+        super(name, DataSourceType.Json);
     }
 
     override void connect(void delegate(bool success) @safe callback) @trusted {

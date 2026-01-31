@@ -1,4 +1,4 @@
-# UIM-JSONLD - JSON-LD Library
+# UIM-JsonLD - Json-LD Library
 
 **Version**: 1.0.0
 **Author**: Ozan Nurettin Süel (aka UIManufaktur)
@@ -7,18 +7,18 @@
 
 ## Overview
 
-UIM-JSONLD is a comprehensive JSON-LD (JSON for Linking Data) library for the D programming language. It provides tools for creating, parsing, and manipulating JSON-LD documents with support for contexts, graphs, and semantic web features.
+UIM-JsonLD is a comprehensive Json-LD (Json for Linking Data) library for the D programming language. It provides tools for creating, parsing, and manipulating Json-LD documents with support for contexts, graphs, and semantic web features.
 
 ## Features
 
 - **Context Management**: Define and manage @context with vocabularies, terms, and prefixes
-- **Node Objects**: Create and manipulate JSON-LD nodes with IDs, types, and properties
+- **Node Objects**: Create and manipulate Json-LD nodes with IDs, types, and properties
 - **Graph Support**: Build and manage graphs containing multiple nodes
-- **Document Structure**: Complete JSON-LD document with context and graph
+- **Document Structure**: Complete Json-LD document with context and graph
 - **Fluent Builder API**: Easy-to-use chainable interface
 - **Type Safety**: Strongly typed D implementation
-- **Standard Compliant**: Follows JSON-LD 1.1 specification
-- **File I/O**: Load and save JSON-LD documents
+- **Standard Compliant**: Follows Json-LD 1.1 specification
+- **File I/O**: Load and save Json-LD documents
 
 ## Installation
 
@@ -28,9 +28,9 @@ Add to your `dub.sdl`:
 dependency "uim-jsons" path=".."
 ```
 
-## JSON-LD Overview
+## Json-LD Overview
 
-JSON-LD is a lightweight Linked Data format that extends JSON with semantic annotations. It uses special keywords prefixed with `@` to add structured data capabilities.
+Json-LD is a lightweight Linked Data format that extends Json with semantic annotations. It uses special keywords prefixed with `@` to add structured data capabilities.
 
 ### Key Concepts
 
@@ -47,13 +47,13 @@ JSON-LD is a lightweight Linked Data format that extends JSON with semantic anno
 ```d
 import uim.jsons;
 
-auto doc = new DJSONLDDocument();
+auto doc = new DJsonLDDocument();
 
 // Set vocabulary
 doc.context.vocab("http://schema.org/");
 
 // Create a person node
-auto person = new DJSONLDNode("http://example.com/person/john");
+auto person = new DJsonLDNode("http://example.com/person/john");
 person.addType("Person");
 person.set("name", "John Doe");
 person.set("email", "john@example.com");
@@ -61,7 +61,7 @@ person.set("age", 30);
 
 doc.addNode(person);
 
-// Output JSON-LD
+// Output Json-LD
 writeln(doc.toString());
 
 /* Output:
@@ -101,7 +101,7 @@ writeln(doc.toString());
 import uim.jsons;
 
 // Create context
-auto ctx = new DJSONLDContext();
+auto ctx = new DJsonLDContext();
 
 // Set vocabulary
 ctx.vocab("http://schema.org/");
@@ -193,7 +193,7 @@ writeln(product.toString());
 ```d
 import uim.jsons;
 
-auto node = new DJSONLDNode("http://example.com/resource");
+auto node = new DJsonLDNode("http://example.com/resource");
 node.addType("http://schema.org/Person");
 node.addType("http://schema.org/Artist");
 node.addType("http://xmlns.com/foaf/0.1/Agent");
@@ -209,7 +209,7 @@ node.set("name", "Leonardo da Vinci");
 */
 ```
 
-### Parsing JSON-LD Documents
+### Parsing Json-LD Documents
 
 ```d
 import uim.jsons;
@@ -224,7 +224,7 @@ string jsonldStr = `{
   "email": "john@example.com"
 }`;
 
-auto doc = DJSONLDDocument.parse(jsonldStr);
+auto doc = DJsonLDDocument.parse(jsonldStr);
 
 auto person = doc.graph.nodes()[0];
 writeln("Name: ", person.get("name").get!string);
@@ -236,15 +236,15 @@ writeln("Email: ", person.get("email").get!string);
 ```d
 import uim.jsons;
 
-auto graph = new DJSONLDGraph("http://example.com/graph1");
+auto graph = new DJsonLDGraph("http://example.com/graph1");
 
 // Add multiple nodes
-auto alice = new DJSONLDNode("http://example.com/alice");
+auto alice = new DJsonLDNode("http://example.com/alice");
 alice.addType("http://schema.org/Person");
 alice.set("name", "Alice");
 graph.addNode(alice);
 
-auto bob = new DJSONLDNode("http://example.com/bob");
+auto bob = new DJsonLDNode("http://example.com/bob");
 bob.addType("http://schema.org/Person");
 bob.set("name", "Bob");
 graph.addNode(bob);
@@ -277,7 +277,7 @@ auto doc = jsonld()
 doc.saveFile("person.jsonld");
 
 // Load from file
-auto loaded = DJSONLDDocument.loadFile("person.jsonld");
+auto loaded = DJsonLDDocument.loadFile("person.jsonld");
 writeln(loaded.toString());
 ```
 
@@ -373,7 +373,7 @@ writeln(org.toString());
 ```d
 import uim.jsons;
 
-auto person = new DJSONLDNode("http://example.com/person/1");
+auto person = new DJsonLDNode("http://example.com/person/1");
 person.set("name", "John Doe");
 person.set("age", 30);
 person.set("active", true);
@@ -400,15 +400,15 @@ bool active = person.get("active").get!bool;
 import uim.jsons;
 
 try {
-    auto doc = DJSONLDDocument.loadFile("config.jsonld");
+    auto doc = DJsonLDDocument.loadFile("config.jsonld");
   
     auto node = doc.graph.getNode("http://example.com/missing");
     if (node is null) {
         writeln("Node not found");
     }
   
-} catch (JSONLDException e) {
-    writeln("JSON-LD error: ", e.msg);
+} catch (JsonLDException e) {
+    writeln("Json-LD error: ", e.msg);
 } catch (InvalidDocumentException e) {
     writeln("Invalid document: ", e.msg);
 } catch (ContextException e) {
@@ -418,18 +418,18 @@ try {
 
 ## API Reference
 
-### DJSONLDDocument
+### DJsonLDDocument
 
-- `context()` / `context(DJSONLDContext)` - Get/set context
-- `graph()` / `graph(DJSONLDGraph)` - Get/set graph
-- `addNode(DJSONLDNode)` - Add node to document
+- `context()` / `context(DJsonLDContext)` - Get/set context
+- `graph()` / `graph(DJsonLDGraph)` - Get/set graph
+- `addNode(DJsonLDNode)` - Add node to document
 - `getNode(string id)` - Get node by ID
-- `toJson()` - Convert to JSON
+- `toJson()` - Convert to Json
 - `toString()` - Pretty print
-- `parse(string)` - Parse from JSON string
+- `parse(string)` - Parse from Json string
 - `loadFile(string)` / `saveFile(string)` - File I/O
 
-### DJSONLDContext
+### DJsonLDContext
 
 - `vocab()` / `vocab(string)` - Get/set vocabulary
 - `base()` / `base(string)` - Get/set base IRI
@@ -437,9 +437,9 @@ try {
 - `addPrefix(string, string)` - Add prefix mapping
 - `expand(string)` - Expand compact IRI
 - `hasTerm(string)` - Check term existence
-- `merge(DJSONLDContext)` - Merge contexts
+- `merge(DJsonLDContext)` - Merge contexts
 
-### DJSONLDNode
+### DJsonLDNode
 
 - `id()` / `id(string)` - Get/set node ID
 - `types()` - Get all types
@@ -448,12 +448,12 @@ try {
 - `get(string)` - Get property value
 - `has(string)` - Check property existence
 - `propertyNames()` - Get all property names
-- `toJson()` / `fromJson(Json)` - JSON conversion
+- `toJson()` / `fromJson(Json)` - Json conversion
 
-### DJSONLDGraph
+### DJsonLDGraph
 
 - `id()` / `id(string)` - Get/set graph ID
-- `addNode(DJSONLDNode)` - Add node
+- `addNode(DJsonLDNode)` - Add node
 - `getNode(string)` - Get node by ID
 - `hasNode(string)` - Check node existence
 - `removeNode(string)` - Remove node
@@ -462,7 +462,7 @@ try {
 - `findByType(string)` - Find nodes by type
 - `count()` - Get node count
 
-### DJSONLDBuilder
+### DJsonLDBuilder
 
 - `vocab(string)` - Set vocabulary
 - `base(string)` - Set base IRI
@@ -473,7 +473,7 @@ try {
 - `property(string, value)` - Add property
 - `build()` - Build document
 
-## JSON-LD Keywords
+## Json-LD Keywords
 
 - `@context` - Context definition
 - `@id` - Node identifier
@@ -512,11 +512,11 @@ Licensed under the Apache License, Version 2.0.
 
 - uim-oop - Object-oriented patterns
 - uim-core - Core utilities
-- uim-json - JSON processing
+- uim-json - Json processing
 
 ## Resources
 
-- [JSON-LD 1.1 Specification](https://www.w3.org/TR/json-ld11/)
-- [JSON-LD Playground](https://json-ld.org/playground/)
+- [Json-LD 1.1 Specification](https://www.w3.org/TR/json-ld11/)
+- [Json-LD Playground](https://json-ld.org/playground/)
 - [Schema.org](https://schema.org/)
 - [Linked Data](https://www.w3.org/DesignIssues/LinkedData.html)

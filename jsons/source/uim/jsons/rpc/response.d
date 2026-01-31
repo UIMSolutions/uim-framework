@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 /**
- * JSON-RPC 2.0 response.
+ * Json-RPC 2.0 response.
  */
 class JsonRpcResponse : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -73,7 +73,7 @@ class JsonRpcResponse : UIMObject {
   }
 
   /**
-   * Convert to JSON object.
+   * Convert to Json object.
    */
   Json toJson() {
     auto response = Json.emptyObject;
@@ -91,14 +91,14 @@ class JsonRpcResponse : UIMObject {
   }
 
   /**
-   * Create from JSON object.
+   * Create from Json object.
    */
   static JsonRpcResponse fromJson(Json json) {
     auto response = new JsonRpcResponse();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
-        throw new Exception("Invalid JSON-RPC version");
+        throw new Exception("Invalid Json-RPC version");
       }
     }
     
@@ -133,9 +133,9 @@ class JsonRpcResponse : UIMObject {
 
   override string toString() const {
     if (_error !is null) {
-      return "JSON-RPC Error Response: " ~ _error.toString();
+      return "Json-RPC Error Response: " ~ _error.toString();
     }
-    return "JSON-RPC Success Response (id: " ~ _id.toString() ~ ")";
+    return "Json-RPC Success Response (id: " ~ _id.toString() ~ ")";
   }
 }
 

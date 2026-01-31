@@ -13,7 +13,7 @@ A comprehensive, interface-driven logging library for the UIM framework built wi
 - Structured logging with context and metadata
 - Async logging support via vibe.d
 - Thread-safe logging operations
-- Customizable log formatters (text, JSON, etc.)
+- Customizable log formatters (text, Json, etc.)
 - Log filtering and level control
 
 ## Installation
@@ -91,7 +91,7 @@ auto logger = new DLogger("MyApp");
 logger.setFormatter(new DTextFormatter()); // Text format
 logger.info("Plain text log entry");
 
-logger.setFormatter(new JsonLogFormatter()); // JSON format
+logger.setFormatter(new JsonLogFormatter()); // Json format
 logger.info("Structured log entry");
 ```
 

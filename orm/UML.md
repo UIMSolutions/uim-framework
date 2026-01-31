@@ -529,8 +529,8 @@ deactivate Model
 **Responsibilities**:
 - Map database columns to entity properties
 - Apply automatic timestamps
-- Serialize entities to JSON
-- Deserialize JSON to entities
+- Serialize entities to Json
+- Deserialize Json to entities
 
 ### Relationship
 **Purpose**: Define relationships between models

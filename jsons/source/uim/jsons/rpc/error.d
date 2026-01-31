@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON-RPC 2.0 error codes.
+ * Json-RPC 2.0 error codes.
  */
 enum JsonRpcErrorCode : int {
   ParseError = -32700,
@@ -24,7 +24,7 @@ enum JsonRpcErrorCode : int {
 }
 
 /**
- * JSON-RPC error object.
+ * Json-RPC error object.
  */
 class JsonRpcError : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -56,7 +56,7 @@ class JsonRpcError : UIMObject {
   void data(Json value) { _data = value; }
 
   /**
-   * Convert to JSON object.
+   * Convert to Json object.
    */
   Json toJson() {
     auto result = Json.emptyObject;
@@ -69,7 +69,7 @@ class JsonRpcError : UIMObject {
   }
 
   /**
-   * Create from JSON object.
+   * Create from Json object.
    */
   static JsonRpcError fromJson(Json json) {
     auto error = new JsonRpcError();
@@ -90,7 +90,7 @@ class JsonRpcError : UIMObject {
   }
 
   override string toString() const {
-    return "JSON-RPC Error " ~ _code.to!string ~ ": " ~ _message;
+    return "Json-RPC Error " ~ _code.to!string ~ ": " ~ _message;
   }
 }
 

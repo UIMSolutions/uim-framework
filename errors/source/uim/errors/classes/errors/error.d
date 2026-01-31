@@ -31,7 +31,7 @@ mixin(ShowModule!());
  * - trace: The stack trace as an array of associative arrays.
  *
  * Methods:
- * - initialize: Initializes the error object with optional JSON data.
+ * - initialize: Initializes the error object with optional Json data.
  * - loglabel / loglabel(string): Gets or sets the log label.
  * - loglevel: Gets the log level based on the log label.
  * - line: Gets the line number as a string.

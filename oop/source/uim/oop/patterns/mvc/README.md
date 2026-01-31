@@ -72,7 +72,7 @@ The MVC pattern is an architectural pattern that separates an application into t
     ┌──────┴──────┬──────────┬────────┐
     │             │          │        │
 ┌───────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐
-│ Template  │ │  JSON   │ │  HTML   │ │   ...    │
+│ Template  │ │  Json   │ │  HTML   │ │   ...    │
 │   View    │ │  View   │ │  View   │ │          │
 └───────────┘ └─────────┘ └─────────┘ └──────────┘
 
@@ -291,7 +291,7 @@ Controller       Model                View1        View2
 │  ├──────────────────────────────────────────┤   │
 │  │ Model       View      Controller         │   │
 │  │ DataModel   TemplateView  RESTController │   │
-│  │ Observable  JSONView      Validation...  │   │
+│  │ Observable  JsonView      Validation...  │   │
 │  │ Model       HTMLView      AsyncController│   │
 │  └──────────────────────────────────────────┘   │
 │           │                                       │
@@ -343,7 +343,7 @@ observable.set("status", "active"); // Triggers callback
 The View is responsible for presenting the model data to the user.
 
 **Key Features**:
-- Multiple rendering formats (text, JSON, HTML, templates)
+- Multiple rendering formats (text, Json, HTML, templates)
 - Automatic updates when model changes
 - Template variable substitution
 - Custom formatting support
@@ -351,7 +351,7 @@ The View is responsible for presenting the model data to the user.
 **View Types**:
 - `View` - Basic view with simple rendering
 - `TemplateView` - Supports `{{variable}}` placeholders
-- `JSONView` - Renders data as JSON
+- `JsonView` - Renders data as Json
 - `HTMLView` - Renders data as HTML
 
 **Example**:
@@ -368,8 +368,8 @@ writeln(view.render());
 auto templateView = new TemplateView(model, "Hello {{name}}, age {{age}}!");
 writeln(templateView.render()); // "Hello Alice, age 30!"
 
-// JSON view
-auto jsonView = new JSONView(model);
+// Json view
+auto jsonView = new JsonView(model);
 writeln(jsonView.render()); // {"name": "Alice", "age": "30"}
 
 // HTML view
@@ -481,7 +481,7 @@ if (controller.validateInput(formData)) {
 ### 3. API Endpoints
 ```d
 auto model = new MVCModel();
-auto view = new JSONView(model);
+auto view = new JsonView(model);
 auto controller = new RESTController(model, view);
 
 // Handle API request
@@ -489,7 +489,7 @@ auto jsonResponse = controller.handleRequest([
     "action": "show",
     "id": "123"
 ]);
-// Returns JSON formatted data
+// Returns Json formatted data
 ```
 
 ### 4. Real-time Updates
@@ -498,7 +498,7 @@ auto model = new ObservableModel();
 
 // Attach multiple views
 auto textView = new View(model);
-auto jsonView = new JSONView(model);
+auto jsonView = new JsonView(model);
 auto htmlView = new HTMLView(model);
 
 model.attachView(textView);
@@ -626,7 +626,7 @@ MVC Pattern
 ├── View (Presentation)
 │   ├── View - Basic view
 │   ├── TemplateView - Template support
-│   ├── JSONView - JSON output
+│   ├── JsonView - Json output
 │   └── HTMLView - HTML output
 │
 ├── Controller (Coordination)

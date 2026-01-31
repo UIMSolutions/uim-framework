@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON-RPC 2.0 request.
+ * Json-RPC 2.0 request.
  */
 class JsonRpcRequest : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -54,7 +54,7 @@ class JsonRpcRequest : UIMObject {
   }
 
   /**
-   * Convert to JSON object.
+   * Convert to Json object.
    */
   Json toJson() {
     auto result = Json.emptyObject;
@@ -73,14 +73,14 @@ class JsonRpcRequest : UIMObject {
   }
 
   /**
-   * Create from JSON object.
+   * Create from Json object.
    */
   static JsonRpcRequest fromJson(Json json) {
     auto request = new JsonRpcRequest();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
-        throw new Exception("Invalid JSON-RPC version");
+        throw new Exception("Invalid Json-RPC version");
       }
     } else {
       throw new Exception("Missing jsonRpc field");
@@ -129,7 +129,7 @@ class JsonRpcRequest : UIMObject {
   }
 
   override string toString() const {
-    return "JSON-RPC Request: " ~ _method ~ " (id: " ~ _id.toString() ~ ")";
+    return "Json-RPC Request: " ~ _method ~ " (id: " ~ _id.toString() ~ ")";
   }
 }
 

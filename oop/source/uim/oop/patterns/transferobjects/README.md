@@ -44,9 +44,9 @@ Base interface for all transfer objects.
 - `fromMap(data)` - Populate from associative array
 
 #### `ISerializableTransferObject`
-Extension for JSON serialization support.
-- `toJson()` - Serialize to JSON string
-- `fromJson(json)` - Deserialize from JSON string
+Extension for Json serialization support.
+- `toJson()` - Serialize to Json string
+- `fromJson(json)` - Deserialize from Json string
 
 #### `ITransferObjectAssembler`
 Converts between domain and transfer objects.
@@ -68,9 +68,9 @@ Abstract base class for transfer objects.
 - Requires implementation of toMap/fromMap
 
 #### `SerializableTransferObject`
-Transfer object with JSON support.
-- Automatic JSON serialization
-- Handles JSON parsing
+Transfer object with Json support.
+- Automatic Json serialization
+- Handles Json parsing
 
 #### `TransferObjectAssembler`
 Base assembler for conversions.
@@ -150,15 +150,15 @@ class ProductTO : SerializableTransferObject {
     }
 }
 
-// Serialize to JSON
+// Serialize to Json
 auto product = new ProductTO();
 product.name = "Laptop";
 product.price = "999.99";
 
 string json = product.toJson();
-// Send JSON to API
+// Send Json to API
 
-// Deserialize from JSON
+// Deserialize from Json
 auto receivedProduct = new ProductTO();
 receivedProduct.fromJson(json);
 ```
@@ -257,7 +257,7 @@ auto assembler = new UserAssembler();
 User[] users = getAllUsersFromDatabase();
 UserTO[] userTOs = assembler.toTransferObjects(users);
 
-// Send array to client as JSON
+// Send array to client as Json
 
 // Receive array from client
 UserTO[] receivedTOs = receiveFromClient();
@@ -438,7 +438,7 @@ class UserTOV2 : TransferObject { } // Extended version
 - **Assembler conversion**: O(n) for n objects
 
 ### Serialization Performance
-- JSON serialization: O(n) for n fields
+- Json serialization: O(n) for n fields
 - Map conversion: O(n) for n fields
 - Batch conversion: O(n*m) for n objects with m fields
 

@@ -34,11 +34,11 @@ abstract class TransferObject : ITransferObject {
 }
 
 /**
- * Serializable Transfer Object with JSON support.
+ * Serializable Transfer Object with Json support.
  */
 abstract class SerializableTransferObject : TransferObject, ISerializableTransferObject {
   /**
-   * Serialize to JSON string.
+   * Serialize to Json string.
    */
   string toJson() @safe {
     import vibe.data.json : Json;
@@ -51,7 +51,7 @@ abstract class SerializableTransferObject : TransferObject, ISerializableTransfe
   }
 
   /**
-   * Deserialize from JSON string.
+   * Deserialize from Json string.
    */
   void fromJson(string jsonStr) @trusted {
     import vibe.data.json : parseJsonString;

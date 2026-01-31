@@ -46,13 +46,13 @@ abstract class BaseDataSource : UIMObject, IValueSource {
 }
 
 /**
- * In-memory JSON data source
+ * In-memory Json data source
  */
 class JsonDataSource : BaseDataSource {
   protected Json[] _data;
 
   this(string sourceName, Json[] initialData = []) {
-    super(sourceName, DataSourceType.JSON);
+    super(sourceName, DataSourceType.Json);
     _data = initialData.dup;
     _isConnected = true;
   }

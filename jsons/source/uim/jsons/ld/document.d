@@ -10,7 +10,7 @@ import uim.jsons;
 @safe:
 
 /**
- * Complete JSON-LD document.
+ * Complete Json-LD document.
  */
 class JsonLDDocument : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -48,7 +48,7 @@ class JsonLDDocument : UIMObject {
   }
 
   /**
-   * Convert to JSON-LD format.
+   * Convert to Json-LD format.
    */
   Json toJson() {
     auto result = Json.emptyObject;
@@ -56,7 +56,7 @@ class JsonLDDocument : UIMObject {
     // Add context
     if (!_context.context.isObject || 
         _context.context.toMap.length > 0) {
-      result[JSONLDKeywords.context] = _context.toJson();
+      result[JsonLDKeywords.context] = _context.toJson();
     }
     
     // Add graph
@@ -72,7 +72,7 @@ class JsonLDDocument : UIMObject {
         }
       } else {
         // Multiple nodes - use @graph
-        result[JSONLDKeywords.graph] = graphJson;
+        result[JsonLDKeywords.graph] = graphJson;
       }
     } else if (graphJson.isObject) {
       auto obj = graphJson.get!(Json[string]);
@@ -99,7 +99,7 @@ class JsonLDDocument : UIMObject {
   }
 
   /**
-   * Create from JSON string.
+   * Create from Json string.
    */
   static JsonLDDocument parse(string jsonStr) {
     auto json = parseJsonString(jsonStr);
@@ -107,7 +107,7 @@ class JsonLDDocument : UIMObject {
   }
 
   /**
-   * Create from JSON.
+   * Create from Json.
    */
   static JsonLDDocument fromJson(Json json) {
     auto doc = new JsonLDDocument();
@@ -119,12 +119,12 @@ class JsonLDDocument : UIMObject {
     auto obj = json.get!(Json[string]);
     
     // Extract context
-    if (auto contextValue = JSONLDKeywords.context in obj) {
+    if (auto contextValue = JsonLDKeywords.context in obj) {
       doc._context = new JsonLDContext(*contextValue);
     }
     
     // Extract graph
-    if (auto graphValue = JSONLDKeywords.graph in obj) {
+    if (auto graphValue = JsonLDKeywords.graph in obj) {
       doc._graph = JsonLDGraph.fromJson(*graphValue);
     } else {
       // Single node or implicit graph
@@ -145,7 +145,7 @@ class JsonLDDocument : UIMObject {
       string content = readText(filePath);
       return parse(content);
     } catch (Exception e) {
-      throw new JSONLDException("Failed to load file: " ~ filePath ~ " - " ~ e.msg);
+      throw new JsonLDException("Failed to load file: " ~ filePath ~ " - " ~ e.msg);
     }
   }
 
@@ -159,7 +159,7 @@ class JsonLDDocument : UIMObject {
       string content = pretty ? toString() : toCompactString();
       std.file.write(filePath, content);
     } catch (Exception e) {
-      throw new JSONLDException("Failed to save file: " ~ filePath ~ " - " ~ e.msg);
+      throw new JsonLDException("Failed to save file: " ~ filePath ~ " - " ~ e.msg);
     }
   }
 }
@@ -175,5 +175,5 @@ unittest {
   doc.addNode(person);
   
   auto json = doc.toJson();
-  assert(JSONLDKeywords.context in json);
+  assert(JsonLDKeywords.context in json);
 }

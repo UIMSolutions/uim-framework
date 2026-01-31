@@ -16,14 +16,14 @@ struct InferenceServerConfig {
   size_t maxBatch = 256;
 }
 
-/// Starts a simple JSON inference endpoint for a neural network.
+/// Starts a simple Json inference endpoint for a neural network.
 void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = InferenceServerConfig.init) @safe {
   auto router = new URLRouter;
 
   router.post(cfg.route, (scope HTTPServerRequest req, scope HTTPServerResponse res) {
     try {
       auto body = req.bodyReader.readAllUTF8();
-      auto json = parseJSON(body);
+      auto json = parseJson(body);
       auto inputs = parseInputs(json, cfg.maxBatch);
 
       auto outputs = new double[][](inputs.length);
@@ -57,9 +57,9 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
 }
 
 private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
-  enforce(payload.type == JSONType.object, "JSON body must be an object with an 'inputs' array");
+  enforce(payload.type == JsonType.object, "Json body must be an object with an 'inputs' array");
   auto inputsNode = payload["inputs"];
-  enforce(inputsNode.type == JSONType.array, "'inputs' must be an array of number arrays");
+  enforce(inputsNode.type == JsonType.array, "'inputs' must be an array of number arrays");
 
   auto rows = inputsNode.array;
   enforce(rows.length <= maxBatch, "Batch exceeds configured maxBatch");
@@ -68,21 +68,21 @@ private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
   inputs.length = rows.length;
 
   foreach (i, rowNode; rows) {
-    enforce(rowNode.type == JSONType.array, "Each input must be an array");
+    enforce(rowNode.type == JsonType.array, "Each input must be an array");
     auto cols = rowNode.array;
     inputs[i].length = cols.length;
     foreach (j, valueNode; cols) {
-      enforce(valueNode.type == JSONType.float_ || valueNode.type == JSONType.integer || valueNode.type == JSONType.uinteger, "Inputs must contain numeric values");
+      enforce(valueNode.type == JsonType.float_ || valueNode.type == JsonType.integer || valueNode.type == JsonType.uinteger, "Inputs must contain numeric values");
 
       double numeric;
       final switch (valueNode.type) {
-        case JSONType.float_:
+        case JsonType.float_:
           numeric = valueNode.floating;
           break;
-        case JSONType.integer:
+        case JsonType.integer:
           numeric = to!double(valueNode.integer);
           break;
-        case JSONType.uinteger:
+        case JsonType.uinteger:
           numeric = to!double(valueNode.uinteger);
           break;
         default:

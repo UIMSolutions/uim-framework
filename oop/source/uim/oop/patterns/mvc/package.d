@@ -38,7 +38,7 @@ module uim.oop.patterns.mvc;
  * 
  * - **Separation of Concerns**: Clear separation between data, presentation, and logic
  * - **Observer Pattern**: Views automatically update when model changes
- * - **Flexible Views**: Support for templates, JSON, HTML rendering
+ * - **Flexible Views**: Support for templates, Json, HTML rendering
  * - **Action-based Controllers**: Register custom actions with handlers
  * - **RESTful Support**: Built-in REST controller with CRUD operations
  * - **Validation**: Controller-level input validation
@@ -55,7 +55,7 @@ module uim.oop.patterns.mvc;
  * ### Views
  * - `View` - Basic view with model rendering
  * - `TemplateView` - View with template variable substitution
- * - `JSONView` - Renders model data as JSON
+ * - `JsonView` - Renders model data as Json
  * - `HTMLView` - Renders model data as HTML
  * 
  * ### Controllers

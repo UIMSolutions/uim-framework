@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON-RPC 2.0 server.
+ * Json-RPC 2.0 server.
  */
 class JsonRpcServer : UIMObject {
   protected JsonRpcHandlerRegistry _handlers;
@@ -31,7 +31,7 @@ class JsonRpcServer : UIMObject {
   }
 
   /**
-   * Process a JSON-RPC request string.
+   * Process a Json-RPC request string.
    */
   string handleRequest(string requestJson) {
     try {

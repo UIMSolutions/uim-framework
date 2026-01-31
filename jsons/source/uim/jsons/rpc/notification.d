@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON-RPC 2.0 notification (request without id).
+ * Json-RPC 2.0 notification (request without id).
  */
 class JsonRpcNotification : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -42,7 +42,7 @@ class JsonRpcNotification : UIMObject {
   void params(Json value) { _params = value; }
 
   /**
-   * Convert to JSON object.
+   * Convert to Json object.
    */
   Json toJson() {
     auto result = Json.emptyObject;
@@ -57,14 +57,14 @@ class JsonRpcNotification : UIMObject {
   }
 
   /**
-   * Create from JSON object.
+   * Create from Json object.
    */
   static JsonRpcNotification fromJson(Json json) {
     auto notification = new JsonRpcNotification();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
-        throw new Exception("Invalid JSON-RPC version");
+        throw new Exception("Invalid Json-RPC version");
       }
     }
     
@@ -89,7 +89,7 @@ class JsonRpcNotification : UIMObject {
   }
 
   override string toString() const {
-    return "JSON-RPC Notification: " ~ _method;
+    return "Json-RPC Notification: " ~ _method;
   }
 }
 

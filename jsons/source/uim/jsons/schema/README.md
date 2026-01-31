@@ -1,4 +1,4 @@
-# UIM-JSONSchema - JSON Schema Library
+# UIM-JsonSchema - Json Schema Library
 
 **Version**: 1.0.0  
 **Author**: Ozan Nurettin Süel (aka UIManufaktur)  
@@ -7,13 +7,13 @@
 
 ## Overview
 
-UIM-JSONSchema is a comprehensive JSON Schema validation and generation library for the D programming language, supporting JSON Schema Draft 7. It provides tools for defining, validating, and working with JSON schemas.
+UIM-JsonSchema is a comprehensive Json Schema validation and generation library for the D programming language, supporting Json Schema Draft 7. It provides tools for defining, validating, and working with Json schemas.
 
 ## Features
 
-- **Schema Definition**: Create JSON schemas programmatically
-- **Validation**: Validate JSON data against schemas
-- **Type Support**: All JSON Schema types (string, number, integer, boolean, object, array, null)
+- **Schema Definition**: Create Json schemas programmatically
+- **Validation**: Validate Json data against schemas
+- **Type Support**: All Json Schema types (string, number, integer, boolean, object, array, null)
 - **Constraints**: Min/max, length, patterns, formats, enums
 - **Composition**: allOf, anyOf, oneOf, not
 - **Format Validators**: Email, URI, date, datetime, IPv4, IPv6
@@ -36,14 +36,14 @@ dependency "uim-jsonschema" path="../jsonschema"
 import uim.jsons;;
 
 // Create a string schema
-auto schema = new DJSONSchema();
+auto schema = new DJsonSchema();
 schema.type = "string";
 schema.minLength = 3;
 schema.maxLength = 50;
 schema.pattern = "^[A-Za-z]+$";
 
 // Validate data
-auto validator = new DJSONSchemaValidator(schema);
+auto validator = new DJsonSchemaValidator(schema);
 auto result = validator.validate(Json("hello"));
 
 if (result.valid) {
@@ -86,7 +86,7 @@ auto userSchema = schemaBuilder("object")
     .build();
 
 // Use the schema
-auto validator = new DJSONSchemaValidator(userSchema);
+auto validator = new DJsonSchemaValidator(userSchema);
 ```
 
 ### Type Helper Functions
@@ -151,7 +151,7 @@ auto quantitySchema = schemaBuilder("integer")
 ```d
 // Email validation
 auto emailSchema = SchemaTypes.email();
-auto validator = new DJSONSchemaValidator(emailSchema);
+auto validator = new DJsonSchemaValidator(emailSchema);
 assert(validator.validate(Json("user@example.com")).valid);
 assert(!validator.validate(Json("invalid")).valid);
 
@@ -179,7 +179,7 @@ auto tagsSchema = schemaBuilder("array")
     .build();
 
 auto data = Json([Json("tag1"), Json("tag2"), Json("tag3")]);
-auto result = new DJSONSchemaValidator(tagsSchema).validate(data);
+auto result = new DJsonSchemaValidator(tagsSchema).validate(data);
 ```
 
 ### Enum Values
@@ -207,18 +207,18 @@ auto patternSchema = schemaBuilder("string")
     .pattern("^[A-Z]")  // Must start with uppercase
     .build();
 
-auto composedSchema = new DJSONSchema();
+auto composedSchema = new DJsonSchema();
 composedSchema.allOf([nameSchema, patternSchema]);
 
 // anyOf - Must match at least one
-auto stringOrNumber = new DJSONSchema();
+auto stringOrNumber = new DJsonSchema();
 stringOrNumber.anyOf([
     SchemaTypes.string_(),
     SchemaTypes.number()
 ]);
 
 // oneOf - Must match exactly one
-auto strictType = new DJSONSchema();
+auto strictType = new DJsonSchema();
 strictType.oneOf([
     SchemaTypes.string_(),
     SchemaTypes.integer()
@@ -248,7 +248,7 @@ auto data = Json.emptyObject;
 data["name"] = "Jo";  // Too short
 // Missing 'age' field
 
-auto validator = new DJSONSchemaValidator(schema);
+auto validator = new DJsonSchemaValidator(schema);
 auto result = validator.validate(data);
 
 if (!result.valid) {
@@ -277,7 +277,7 @@ class CustomFormatValidator : DFormatValidator {
 }
 
 // Register in validator
-auto validator = new DJSONSchemaValidator(schema);
+auto validator = new DJsonSchemaValidator(schema);
 // Note: Currently format validators are registered in constructor
 ```
 
@@ -318,7 +318,7 @@ void main() {
     userData["terms"] = true;
 
     // Validate
-    auto validator = new DJSONSchemaValidator(registrationSchema);
+    auto validator = new DJsonSchemaValidator(registrationSchema);
     auto result = validator.validate(userData);
 
     if (result.valid) {
@@ -332,7 +332,7 @@ void main() {
 }
 ```
 
-## Supported JSON Schema Features
+## Supported Json Schema Features
 
 ### Types
 - ✅ string
@@ -398,7 +398,7 @@ uim.jsons;
 - Remote schema loading
 - Schema compilation for performance
 - Custom vocabulary support
-- JSON Schema 2020-12 support
+- Json Schema 2020-12 support
 - Schema generation from D types
 - OpenAPI integration
 
@@ -419,7 +419,7 @@ Licensed under the Apache License, Version 2.0.
 
 - uim-oop - Object-oriented patterns
 - uim-core - Core utilities  
-- uim-json - JSON processing
+- uim-json - Json processing
 
 ## Building
 

@@ -12,31 +12,31 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSONPlistConverter - Converts property lists to/from JSON format
+ * JsonPlistConverter - Converts property lists to/from Json format
  */
-class JSONPlistConverter {
+class JsonPlistConverter {
     /**
-     * Converts a PropertyList to JSON format
+     * Converts a PropertyList to Json format
      */
-    string toJSON(const PropertyList plist) {
+    string toJson(const PropertyList plist) {
         Json root = Json.emptyObject;
         
         auto data = plist.getData();
         foreach (key, value; data) {
-            root[key] = valueToJSON(value);
+            root[key] = valueToJson(value);
         }
         
         return root.toPrettyString();
     }
 
     /**
-     * Parses a PropertyList from JSON format
+     * Parses a PropertyList from Json format
      */
-    PropertyList fromJSON(string jsonContent) @trusted {
+    PropertyList fromJson(string jsonContent) @trusted {
         auto json = parseJsonString(jsonContent);
         
         if (!json.isObject) {
-            throw new PlistParseException("JSON root must be an object");
+            throw new PlistParseException("Json root must be an object");
         }
         
         PlistValue[string] data;
@@ -47,7 +47,7 @@ class JSONPlistConverter {
         return new PropertyList(data);
     }
 
-    private Json valueToJSON(PlistValue value) const {
+    private Json valueToJson(PlistValue value) const {
         switch (value.type) {
             case PlistType.String:
                 return Json(value.asString());
@@ -65,13 +65,13 @@ class JSONPlistConverter {
                 return Json(value.asString());
                 
             case PlistType.Data:
-                // Store data as base64 string in JSON
+                // Store data as base64 string in Json
                 return Json(value.asString());
                 
             case PlistType.Array:
                 Json[] arr;
                 foreach (item; value.asArray()) {
-                    arr ~= valueToJSON(item);
+                    arr ~= valueToJson(item);
                 }
                 return Json(arr);
                 
@@ -79,7 +79,7 @@ class JSONPlistConverter {
                 Json dict = Json.emptyObject;
                 auto dictData = value.asDict();
                 foreach (key, val; dictData) {
-                    dict[key] = valueToJSON(val);
+                    dict[key] = valueToJson(val);
                 }
                 return dict;
                 
@@ -120,7 +120,7 @@ class JSONPlistConverter {
                 return PlistValue("");
                 
             default:
-                throw new PlistParseException("Unsupported JSON type");
+                throw new PlistParseException("Unsupported Json type");
         }
     }
 }
@@ -133,8 +133,8 @@ unittest {
     plist.set("active", true);
     plist.set("ratio", 3.14);
     
-    auto converter = new JSONPlistConverter();
-    auto json = converter.toJSON(plist);
+    auto converter = new JsonPlistConverter();
+    auto json = converter.toJson(plist);
     
     assert(json.canFind("\"name\""));
     assert(json.canFind("\"Test\""));
@@ -149,8 +149,8 @@ unittest {
         "ratio": 3.14
     }`;
     
-    auto converter = new JSONPlistConverter();
-    auto plist = converter.fromJSON(jsonStr);
+    auto converter = new JsonPlistConverter();
+    auto plist = converter.fromJson(jsonStr);
     
     assert(plist.getString("name") == "Test");
     assert(plist.getInt("count") == 42);
@@ -163,9 +163,9 @@ unittest {
     auto plist = new PropertyList();
     plist.set("colors", ["red", "green", "blue"]);
     
-    auto converter = new JSONPlistConverter();
-    auto json = converter.toJSON(plist);
-    auto loaded = converter.fromJSON(json);
+    auto converter = new JsonPlistConverter();
+    auto json = converter.toJson(plist);
+    auto loaded = converter.fromJson(json);
     
     auto colors = loaded.getArray("colors");
     assert(colors.length == 3);

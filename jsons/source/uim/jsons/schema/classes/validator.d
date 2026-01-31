@@ -12,13 +12,13 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON Schema validator.
+ * Json Schema validator.
  */
-class JSONSchemaValidator : UIMObject {
-  protected JSONSchema _schema;
+class JsonSchemaValidator : UIMObject {
+  protected JsonSchema _schema;
   protected IFormatValidator[string] _formatValidators;
 
-  this(JSONSchema schema) {
+  this(JsonSchema schema) {
     super();
     _schema = schema;
     registerDefaultFormatValidators();
@@ -37,7 +37,7 @@ class JSONSchemaValidator : UIMObject {
   }
 
   /**
-   * Validate JSON data against the schema.
+   * Validate Json data against the schema.
    */
   ValidationResult validate(Json data) {
     ValidationError[] errors;
@@ -63,7 +63,7 @@ class JSONSchemaValidator : UIMObject {
       string expectedType = typeField.get!string;
       string actualType;
 
-      // Map JSON types
+      // Map Json types
       if (data.type == Json.Type.string) {
         actualType = "string";
       } else if (data.isInteger || data.isDouble) {
@@ -278,8 +278,8 @@ class JSONSchemaValidator : UIMObject {
 
     // Validate items
     if (auto items = "items" in schema) {
-      auto itemSchema = new DJSONSchema(*items);
-      auto itemValidator = new DJSONSchemaValidator(itemSchema);
+      auto itemSchema = new DJsonSchema(*items);
+      auto itemValidator = new DJsonSchemaValidator(itemSchema);
       
       foreach (idx, item; arr) {
         auto result = itemValidator.validate(item);
@@ -344,7 +344,7 @@ class JSONSchemaValidator : UIMObject {
       auto properties = props.get!(Json[string]);
       foreach (propName, propSchema; properties) {
         if (propName in obj) {
-          auto propValidator = new DJSONSchemaValidator(new DJSONSchema(propSchema));
+          auto propValidator = new DJsonSchemaValidator(new DJsonSchema(propSchema));
           auto result = propValidator.validate(obj[propName]);
           if (!result.valid) {
             foreach (err; result.errors) {
@@ -378,11 +378,11 @@ class JSONSchemaValidator : UIMObject {
 }
 ///
 unittest {
-  auto schema = new DJSONSchema();
+  auto schema = new DJsonSchema();
   schema.type = "string";
   schema.minLength = 3;
   
-  auto validator = new DJSONSchemaValidator(schema);
+  auto validator = new DJsonSchemaValidator(schema);
   
   auto result1 = validator.validate(Json("hello"));
   writeln("result1: ", result1);

@@ -24,7 +24,7 @@ A comprehensive logging library for the UIM framework built with D language and 
 
 #### 4. **Formatters** (`source/uim/logging/classes/formatters/`)
 - `text.d`: `DTextFormatter` - Customizable text formatting
-- `json.d`: `DJsonFormatter` - JSON structured logging
+- `json.d`: `DJsonFormatter` - Json structured logging
 
 #### 5. **Utilities**
 - `mixins/logger.d`: `TLogger` mixin template for easy class integration
@@ -37,7 +37,7 @@ A comprehensive logging library for the UIM framework built with D language and 
 3. **File Rotation**: Automatic log file rotation based on size
 4. **Context Logging**: Attach key-value metadata to log entries
 5. **Thread-Safe**: File logger uses mutex for concurrent access
-6. **Customizable Formatting**: Text and JSON formatters included
+6. **Customizable Formatting**: Text and Json formatters included
 7. **Mixin Support**: Easy integration into any class
 8. **Global Logger**: Convenience functions for quick logging
 9. **Factory Methods**: Helper functions to create pre-configured loggers

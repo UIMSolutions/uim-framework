@@ -4,7 +4,7 @@ import uim.jsons.geo;
 @safe:
 
 /**
- * Base class for all GeoJSON geometries
+ * Base class for all GeoJson geometries
  */
 abstract class GeoJsonGeometry : UIMObject {
     protected GeometryType _geometryType;

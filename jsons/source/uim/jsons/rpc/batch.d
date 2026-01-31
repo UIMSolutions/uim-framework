@@ -10,7 +10,7 @@ import uim.jsons;
 @safe:
 
 /**
- * JSON-RPC 2.0 batch request.
+ * Json-RPC 2.0 batch request.
  */
 class JsonRpcBatchRequest : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -51,7 +51,7 @@ class JsonRpcBatchRequest : UIMObject {
   }
 
   /**
-   * Convert to JSON array.
+   * Convert to Json array.
    */
   Json toJson() {
     Json[] jsonArray;
@@ -62,7 +62,7 @@ class JsonRpcBatchRequest : UIMObject {
   }
 
   /**
-   * Create from JSON array.
+   * Create from Json array.
    */
   static JsonRpcBatchRequest fromJson(Json json) {
     auto batch = new JsonRpcBatchRequest();
@@ -80,7 +80,7 @@ class JsonRpcBatchRequest : UIMObject {
 }
 
 /**
- * JSON-RPC 2.0 batch response.
+ * Json-RPC 2.0 batch response.
  */
 class JsonRpcBatchResponse : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -121,7 +121,7 @@ class JsonRpcBatchResponse : UIMObject {
   }
 
   /**
-   * Convert to JSON array.
+   * Convert to Json array.
    */
   Json toJson() {
     Json[] jsonArray;
@@ -132,7 +132,7 @@ class JsonRpcBatchResponse : UIMObject {
   }
 
   /**
-   * Create from JSON array.
+   * Create from Json array.
    */
   static JsonRpcBatchResponse fromJson(Json json) {
     auto batch = new JsonRpcBatchResponse();

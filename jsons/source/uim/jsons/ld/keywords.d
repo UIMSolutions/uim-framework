@@ -8,9 +8,9 @@ module uim.jsons.ld.keywords;
 @safe:
 
 /**
- * JSON-LD keywords as defined in the specification.
+ * Json-LD keywords as defined in the specification.
  */
-struct JSONLDKeywords {
+struct JsonLDKeywords {
   // Core keywords
   static immutable string context = "@context";
   static immutable string id = "@id";
@@ -42,7 +42,7 @@ struct JSONLDKeywords {
   static immutable string _version = "@version";
   
   /**
-   * Check if a string is a JSON-LD keyword.
+   * Check if a string is a Json-LD keyword.
    */
   static bool isKeyword(string str) {
     return str.length > 0 && str[0] == '@';

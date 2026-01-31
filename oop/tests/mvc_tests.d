@@ -66,23 +66,23 @@ unittest {
     writeln("✓ TemplateView tests passed");
 }
 
-// Test JSONView
+// Test JsonView
 unittest {
     import std.stdio : writeln;
-    mixins(ShowTest!"Testing JSONView...");
+    mixins(ShowTest!"Testing JsonView...");
 
     auto model = new Model();
     model.set("key", "value");
     
-    auto view = new JSONView(model);
+    auto view = new JsonView(model);
     auto output = view.render();
     
-    assert(output.length > 0, "JSONView render failed");
+    assert(output.length > 0, "JsonView render failed");
     import std.string : indexOf;
-    assert(output.indexOf("key") >= 0, "JSONView missing key");
-    assert(output.indexOf("value") >= 0, "JSONView missing value");
+    assert(output.indexOf("key") >= 0, "JsonView missing key");
+    assert(output.indexOf("value") >= 0, "JsonView missing value");
     
-    mixin(ShowTest!"✓ JSONView tests passed");
+    mixin(ShowTest!"✓ JsonView tests passed");
 }
 
 // Test HTMLView

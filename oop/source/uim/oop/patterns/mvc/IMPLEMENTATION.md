@@ -21,7 +21,7 @@ Successfully implemented a comprehensive MVC (Model-View-Controller) pattern for
 3. **view.d** - View implementations
    - `View` - Basic view with model rendering
    - `TemplateView` - Template-based view with `{{variable}}` substitution
-   - `JSONView` - Renders model data as JSON
+   - `JsonView` - Renders model data as Json
    - `HTMLView` - Renders model data as HTML with CSS classes
 
 4. **controller.d** - Controller implementations
@@ -61,7 +61,7 @@ Successfully implemented a comprehensive MVC (Model-View-Controller) pattern for
 ### Tests
 10. **mvc_tests.d** - Comprehensive test suite
     - Model tests (basic, typed, observable)
-    - View tests (basic, template, JSON, HTML)
+    - View tests (basic, template, Json, HTML)
     - Controller tests (basic, REST, validation, async)
     - Model-View synchronization tests
     - Full integration tests
@@ -93,7 +93,7 @@ Successfully implemented a comprehensive MVC (Model-View-Controller) pattern for
 ### 3. Multiple View Types
 - Text-based views
 - Template views with variable substitution
-- JSON views for APIs
+- Json views for APIs
 - HTML views for web applications
 
 ### 4. Flexible Controllers

@@ -12,7 +12,7 @@ A high-performance, type-safe genetic algorithm framework for D language with fu
 - **Advanced Mutations**: Bit-flip, Gaussian, and swap mutation operators
 - **Fitness Evaluation**: Async parallel evaluation support
 - **Population Management**: Efficient population tracking with statistics
-- **Serialization**: JSON serialization/deserialization for individuals
+- **Serialization**: Json serialization/deserialization for individuals
 - **Extensible Design**: Create custom fitness evaluators, operators, and strategies
 
 ## Installation
@@ -211,6 +211,6 @@ dub test
 - **Memory Efficiency**: Genomes stored as byte arrays
 - **Async-Ready**: Integrates with vibe.d fiber-based concurrency
 - **Extensible**: Implement interfaces for custom components
-- **JSON Support**: Serialize individuals for persistence or communication
+- **Json Support**: Serialize individuals for persistence or communication
 
 This library provides everything needed to build sophisticated genetic algorithm applications in D with modern async patterns and type safety.

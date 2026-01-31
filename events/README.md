@@ -22,7 +22,7 @@ The UIM Events library offers a robust event-driven architecture that enables lo
 - **UDA Support**: Declarative event handling using `@EventListener` and `@EventListenerOnce` attributes
 - **Annotated Handlers**: Automatic listener registration from class methods via reflection
 - **Event Interface**: `IEvent` interface for maximum flexibility and testability
-- **Metadata Storage**: Attach arbitrary JSON data to events for rich context passing
+- **Metadata Storage**: Attach arbitrary Json data to events for rich context passing
 - **Event Subscribers**: Organize related listeners into subscriber classes
 
 ## Installation
@@ -170,7 +170,7 @@ dispatcher.on("validation.check", (IEvent event) {
 
 ### Event Metadata
 
-Attach arbitrary data to events using JSON:
+Attach arbitrary data to events using Json:
 
 ```d
 auto event = Event("data.processed");

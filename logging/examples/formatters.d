@@ -23,8 +23,8 @@ void main() {
     customTextLogger.formatter = textFormatter;
     customTextLogger.info("Using custom text format");
     
-    // JSON formatter for structured logging
-    writeln("\n--- JSON Formatter ---");
+    // Json formatter for structured logging
+    writeln("\n--- Json Formatter ---");
     auto jsonLogger = ConsoleLogger("JsonLogger");
     jsonLogger.formatter = new DJsonFormatter();
     jsonLogger.info("Structured log entry", [
@@ -33,8 +33,8 @@ void main() {
         "success": "true"
     ]);
     
-    // JSON formatter to file for log aggregation systems
-    writeln("\n--- JSON to File ---");
+    // Json formatter to file for log aggregation systems
+    writeln("\n--- Json to File ---");
     auto jsonFileLogger = FileLogger("logs/structured.json", "StructuredLogger");
     jsonFileLogger.formatter = new DJsonFormatter();
     jsonFileLogger.info("Application started", ["version": "1.0.0"]);

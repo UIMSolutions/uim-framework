@@ -10,9 +10,9 @@ import uim.jsons;
 @safe:
 
 /**
- * JSON-LD node object.
+ * Json-LD node object.
  */
-class SONLDNode : UIMObject {
+class JsonLDNode : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _id;
@@ -97,24 +97,24 @@ class SONLDNode : UIMObject {
   }
 
   /**
-   * Convert to JSON-LD format.
+   * Convert to Json-LD format.
    */
   Json toJson() {
     auto result = Json.emptyObject;
     
     if (_id.length > 0) {
-      result[JSONLDKeywords.id] = _id;
+      result[JsonLDKeywords.id] = _id;
     }
     
     if (_types.length > 0) {
       if (_types.length == 1) {
-        result[JSONLDKeywords.type] = _types[0];
+        result[JsonLDKeywords.type] = _types[0];
       } else {
         Json[] typeArray;
         foreach (type; _types) {
           typeArray ~= Json(type);
         }
-        result[JSONLDKeywords.type] = Json(typeArray);
+        result[JsonLDKeywords.type] = Json(typeArray);
       }
     }
     
@@ -126,7 +126,7 @@ class SONLDNode : UIMObject {
   }
 
   /**
-   * Create from JSON.
+   * Create from Json.
    */
   static JsonLDNode fromJson(Json json) {
     auto node = new JsonLDNode();
@@ -138,12 +138,12 @@ class SONLDNode : UIMObject {
     auto obj = json.get!(Json[string]);
     
     // Extract @id
-    if (auto iUIMValue = JSONLDKeywords.id in obj) {
+    if (auto iUIMValue = JsonLDKeywords.id in obj) {
       node._id = iUIMValue.get!string;
     }
     
     // Extract @type
-    if (auto typeValue = JSONLDKeywords.type in obj) {
+    if (auto typeValue = JsonLDKeywords.type in obj) {
       if (typeValue.type == Json.Type.string) {
         node._types ~= typeValue.get!string;
       } else if (typeValue.type == Json.Type.array) {
@@ -155,7 +155,7 @@ class SONLDNode : UIMObject {
     
     // Extract properties
     foreach (key, value; obj) {
-      if (key != JSONLDKeywords.id && key != JSONLDKeywords.type) {
+      if (key != JsonLDKeywords.id && key != JsonLDKeywords.type) {
         node._properties[key] = value;
       }
     }

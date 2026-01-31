@@ -12,10 +12,10 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * JSON Schema representation.
- * Supports JSON Schema Draft 7.
+ * Json Schema representation.
+ * Supports Json Schema Draft 7.
  */
-class JSONSchema : UIMObject {
+class JsonSchema : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected Json _schema;
@@ -37,7 +37,7 @@ class JSONSchema : UIMObject {
   }
 
   /**
-   * Get the schema as JSON.
+   * Get the schema as Json.
    */
   Json toJson() {
     return _schema;
@@ -91,7 +91,7 @@ class JSONSchema : UIMObject {
   /**
    * Add a property to object schema.
    */
-  void addProperty(string name, JSONSchema propertySchema) {
+  void addProperty(string name, JsonSchema propertySchema) {
     if ("properties" !in _schema) {
       _schema["properties"] = Json.emptyObject;
     }
@@ -178,7 +178,7 @@ class JSONSchema : UIMObject {
   /**
    * Set array items schema.
    */
-  void items(JSONSchema itemSchema) {
+  void items(JsonSchema itemSchema) {
     _schema["items"] = itemSchema.toJson;
   }
 
@@ -206,7 +206,7 @@ class JSONSchema : UIMObject {
   /**
    * Add allOf composition.
    */
-  void allOf(JSONSchema[] schemas) {
+  void allOf(JsonSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -217,7 +217,7 @@ class JSONSchema : UIMObject {
   /**
    * Add anyOf composition.
    */
-  void anyOf(JSONSchema[] schemas) {
+  void anyOf(JsonSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -228,7 +228,7 @@ class JSONSchema : UIMObject {
   /**
    * Add oneOf composition.
    */
-  void oneOf(JSONSchema[] schemas) {
+  void oneOf(JsonSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -239,7 +239,7 @@ class JSONSchema : UIMObject {
   /**
    * Set not schema.
    */
-  void not(JSONSchema schema) {
+  void not(JsonSchema schema) {
     _schema["not"] = schema.toJson;
   }
 
@@ -253,7 +253,7 @@ class JSONSchema : UIMObject {
   /**
    * Set additional properties schema.
    */
-  void additionalProperties(JSONSchema schema) {
+  void additionalProperties(JsonSchema schema) {
     _schema["additionalProperties"] = schema.toJson;
   }
 
@@ -274,7 +274,7 @@ class JSONSchema : UIMObject {
   /**
    * Add a definition (reusable schema).
    */
-  void addDefinition(string name, JSONSchema schema) {
+  void addDefinition(string name, JsonSchema schema) {
     if ("definitions" !in _schema) {
       _schema["definitions"] = Json.emptyObject;
     }
@@ -297,7 +297,7 @@ class JSONSchema : UIMObject {
 }
 ///
 unittest {
-  auto schema = new JSONSchema();
+  auto schema = new JsonSchema();
   schema.type = "string";
   schema.minLength = 5;
   schema.maxLength = 50;

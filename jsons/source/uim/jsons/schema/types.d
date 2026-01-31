@@ -17,101 +17,101 @@ mixin(ShowModule!());
  * Helper functions for creating type schemas.
  */
 class SchemaTypes {
-  static JSONSchema string_() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.String;
+  static JsonSchema string_() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.String;
     return schema;
   }
 
-  static JSONSchema string_(size_t minLen, size_t maxLen) {
+  static JsonSchema string_(size_t minLen, size_t maxLen) {
     auto schema = string_();
     schema.minLength = minLen;
     schema.maxLength = maxLen;
     return schema;
   }
 
-  static JSONSchema number() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Number;
+  static JsonSchema number() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Number;
     return schema;
   }
 
-  static JSONSchema number(double min, double max) {
+  static JsonSchema number(double min, double max) {
     auto schema = number();
     schema.minimum = min;
     schema.maximum = max;
     return schema;
   }
 
-  static JSONSchema integer() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Integer;
+  static JsonSchema integer() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Integer;
     return schema;
   }
 
-  static JSONSchema integer(long min, long max) {
+  static JsonSchema integer(long min, long max) {
     auto schema = integer();
     schema.minimum = min;
     schema.maximum = max;
     return schema;
   }
 
-  static JSONSchema boolean() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Boolean;
+  static JsonSchema boolean() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Boolean;
     return schema;
   }
 
-  static JSONSchema object() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Object;
+  static JsonSchema object() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Object;
     return schema;
   }
 
-  static JSONSchema array(JSONSchema itemSchema) {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Array;
+  static JsonSchema array(JsonSchema itemSchema) {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Array;
     schema.items = itemSchema;
     return schema;
   }
 
-  static JSONSchema null_() {
-    auto schema = new JSONSchema();
-    schema.type = JSONSchemaType.Null;
+  static JsonSchema null_() {
+    auto schema = new JsonSchema();
+    schema.type = JsonSchemaType.Null;
     return schema;
   }
 
-  static JSONSchema email() {
+  static JsonSchema email() {
     auto schema = string_();
     schema.format = "email";
     return schema;
   }
 
-  static JSONSchema uri() {
+  static JsonSchema uri() {
     auto schema = string_();
     schema.format = "uri";
     return schema;
   }
 
-  static JSONSchema date() {
+  static JsonSchema date() {
     auto schema = string_();
     schema.format = "date";
     return schema;
   }
 
-  static JSONSchema dateTime() {
+  static JsonSchema dateTime() {
     auto schema = string_();
     schema.format = "date-time";
     return schema;
   }
 
-  static JSONSchema ipv4() {
+  static JsonSchema ipv4() {
     auto schema = string_();
     schema.format = "ipv4";
     return schema;
   }
 
-  static JSONSchema ipv6() {
+  static JsonSchema ipv6() {
     auto schema = string_();
     schema.format = "ipv6";
     return schema;

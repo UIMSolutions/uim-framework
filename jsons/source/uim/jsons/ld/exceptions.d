@@ -8,9 +8,9 @@ module uim.jsons.ld.exceptions;
 @safe:
 
 /**
- * Base exception for JSON-LD operations.
+ * Base exception for Json-LD operations.
  */
-class JSONLDException : Exception {
+class JsonLDException : Exception {
   this(string msg, string file = __FILE__, size_t line = __LINE__) {
     super(msg, file, line);
   }
@@ -19,7 +19,7 @@ class JSONLDException : Exception {
 /**
  * Exception thrown when context processing fails.
  */
-class ContextException : JSONLDException {
+class ContextException : JsonLDException {
   this(string msg, string file = __FILE__, size_t line = __LINE__) {
     super("Context error: " ~ msg, file, line);
   }
@@ -28,16 +28,16 @@ class ContextException : JSONLDException {
 /**
  * Exception thrown when document is invalid.
  */
-class InvalidDocumentException : JSONLDException {
+class InvalidDocumentException : JsonLDException {
   this(string msg, string file = __FILE__, size_t line = __LINE__) {
-    super("Invalid JSON-LD document: " ~ msg, file, line);
+    super("Invalid Json-LD document: " ~ msg, file, line);
   }
 }
 
 /**
  * Exception thrown when expansion fails.
  */
-class ExpansionException : JSONLDException {
+class ExpansionException : JsonLDException {
   this(string msg, string file = __FILE__, size_t line = __LINE__) {
     super("Expansion error: " ~ msg, file, line);
   }
@@ -46,7 +46,7 @@ class ExpansionException : JSONLDException {
 /**
  * Exception thrown when compaction fails.
  */
-class CompactionException : JSONLDException {
+class CompactionException : JsonLDException {
   this(string msg, string file = __FILE__, size_t line = __LINE__) {
     super("Compaction error: " ~ msg, file, line);
   }

@@ -191,7 +191,7 @@ sorted = sorter.sort(data);
 - `MVCApplication` - Complete MVC application
 - `DataModel!T` - Typed model support
 - `ObservableModel` - Model with change callbacks
-- `TemplateView`, `JSONView`, `HTMLView` - Different view types
+- `TemplateView`, `JsonView`, `HTMLView` - Different view types
 - `RESTController` - RESTful CRUD operations
 - `ValidationController` - Input validation
 - `AsyncController` - Before/after action hooks

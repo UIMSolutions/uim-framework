@@ -25,7 +25,7 @@ mixin(ShowModule!());
 
 
 /**
- * Parse a geometry from JSON
+ * Parse a geometry from Json
  */
 GeoJsonGeometry parseGeometry(Json json) @trusted {
     if ("type" !in json) return null;

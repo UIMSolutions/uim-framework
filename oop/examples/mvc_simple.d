@@ -67,9 +67,9 @@ void runSimpleMVCExample() {
     writeln(view.render());
     writeln();
 
-    // 7. Create a JSON view for API response
-    writeln("7. Creating JSON View for API...");
-    auto jsonView = new JSONView(model);
+    // 7. Create a Json view for API response
+    writeln("7. Creating Json View for API...");
+    auto jsonView = new JsonView(model);
     writeln("   API Response:");
     writeln("   " ~ jsonView.render());
     writeln();

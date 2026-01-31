@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * Data source type enumeration
  */
 enum DataSourceType {
-  JSON,
+  Json,
   CSV,
   Database,
   REST,

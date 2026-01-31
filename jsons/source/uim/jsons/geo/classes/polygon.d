@@ -6,7 +6,7 @@ import uim.jsons.geo;
 /**
  * Polygon geometry
  */
-class GeoJsonPolygon : DGeoJsonGeometry {
+class GeoJsonPolygon : GeoJsonGeometry {
     protected PolygonCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;

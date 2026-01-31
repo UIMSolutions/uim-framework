@@ -15,11 +15,11 @@ mixin(ShowModule!());
   * Update the Json object with another Json object.
   *
   * Params:
-  *   json = The JSON object to update.
-  *   map = The JSON object containing key-value pairs to set in the original JSON object.
+  *   json = The Json object to update.
+  *   map = The Json object containing key-value pairs to set in the original Json object.
   *
   * Returns:
-  *   The updated JSON object.
+  *   The updated Json object.
   */
 Json update(Json json, Json updateMap) {
   if (!json.isObject || !updateMap.isObject) {
@@ -47,11 +47,11 @@ unittest {
   * Update the Json object with a string-keyed associative array.
   *
   * Params:
-  *   json = The JSON object to update.
-  *   values = An associative array of string keys and values to set in the JSON object.
+  *   json = The Json object to update.
+  *   values = An associative array of string keys and values to set in the Json object.
   *
   * Returns:
-  *   The updated JSON object.
+  *   The updated Json object.
   */
 Json update(Json json, Json[string] map) {
   if (!json.isObject) {
@@ -78,12 +78,12 @@ unittest {
   * Update the Json object at the specified keys with the given value.
   *
   * Params:
-  *   json = The JSON object to update.
+  *   json = The Json object to update.
   *   keys = An array of keys representing the keys to update.
   *   value = The value to set at the specified keys.
   *
   * Returns:
-  *   The updated JSON object.
+  *   The updated Json object.
   */
 Json update(Json json, string[] keys, Json value) {
   if (!json.isObject) {
@@ -108,12 +108,12 @@ unittest {
   * Update the Json object at the specified key with the given value.
   *
   * Params:
-  *   json = The JSON object to update.
+  *   json = The Json object to update.
   *   key = The key to update.
   *   value = The value to set at the specified key.
   *
   * Returns:
-  *   The updated JSON object.
+  *   The updated Json object.
   */
 Json update(Json json, string key, Json value) {
   Json result  = json;

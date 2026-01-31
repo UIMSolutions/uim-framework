@@ -10,7 +10,7 @@ import uim.jsons;
 @safe:
 
 /**
- * JSON-LD graph containing multiple nodes.
+ * Json-LD graph containing multiple nodes.
  */
 class JsonLDGraph : UIMObject {
   alias toJson = UIMObject.toJson;
@@ -121,7 +121,7 @@ class JsonLDGraph : UIMObject {
   }
 
   /**
-   * Convert to JSON-LD format.
+   * Convert to Json-LD format.
    */
   Json toJson() {
     Json[] graphArray;
@@ -132,8 +132,8 @@ class JsonLDGraph : UIMObject {
     
     if (_id.length > 0) {
       auto result = Json.emptyObject;
-      result[JSONLDKeywords.id] = _id;
-      result[JSONLDKeywords.graph] = Json(graphArray);
+      result[JsonLDKeywords.id] = _id;
+      result[JsonLDKeywords.graph] = Json(graphArray);
       return result;
     }
     
@@ -141,7 +141,7 @@ class JsonLDGraph : UIMObject {
   }
 
   /**
-   * Create from JSON.
+   * Create from Json.
    */
   static JsonLDGraph fromJson(Json json) {
     auto graph = new JsonLDGraph();
@@ -155,12 +155,12 @@ class JsonLDGraph : UIMObject {
       auto obj = json.get!(Json[string]);
       
       // Check for @id
-      if (auto iUIMValue = JSONLDKeywords.id in obj) {
+      if (auto iUIMValue = JsonLDKeywords.id in obj) {
         graph._id = iUIMValue.get!string;
       }
       
       // Check for @graph
-      if (auto graphValue = JSONLDKeywords.graph in obj) {
+      if (auto graphValue = JsonLDKeywords.graph in obj) {
         if ((*graphValue).isArray) {
           foreach (item; (*graphValue).toArray) {
             graph.addNode(JsonLDNode.fromJson(item));

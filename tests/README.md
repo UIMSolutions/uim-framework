@@ -4,7 +4,7 @@ A comprehensive, async-friendly unit testing framework for D language built on v
 
 ## Overview
 
-UIM Tests is a modern unit testing framework designed for D language, offering intuitive assertions, flexible test organization, and multiple output formats (Console, JSON, TAP). It's built on top of the UIM framework and leverages vibe.d for async/await support.
+UIM Tests is a modern unit testing framework designed for D language, offering intuitive assertions, flexible test organization, and multiple output formats (Console, Json, TAP). It's built on top of the UIM framework and leverages vibe.d for async/await support.
 
 ## Key Features
 
@@ -12,7 +12,7 @@ UIM Tests is a modern unit testing framework designed for D language, offering i
 - **Fluent Assertions**: Intuitive assertion syntax with method chaining
 - **Test Suites**: Organize tests into logical groups
 - **Setup/Teardown**: Lifecycle hooks for test initialization and cleanup
-- **Multiple Reporters**: Console, JSON, and TAP (Test Anything Protocol) output formats
+- **Multiple Reporters**: Console, Json, and TAP (Test Anything Protocol) output formats
 - **Type Safety**: Strong compile-time type checking for assertions
 - **Async Support**: Native vibe.d integration for async test execution
 
@@ -202,16 +202,16 @@ Math Tests:
   Results: 2/2 passed (100.0%) in 0.80s
 ```
 
-### JSON Reporter
+### Json Reporter
 
-Machine-readable JSON format:
+Machine-readable Json format:
 
 ```d
 auto runner = new TestRunner();
 runner.addReporter(new JsonReporter());
 
 string jsonReport = runner.getReport();
-// Returns structured JSON with all test results
+// Returns structured Json with all test results
 ```
 
 ### TAP Reporter
@@ -362,7 +362,7 @@ runner.addReporter(tapReporter);
 string tapOutput = runner.getReport();
 ```
 
-### JSON Output for Reporting
+### Json Output for Reporting
 
 ```d
 auto jsonReporter = new JsonReporter();

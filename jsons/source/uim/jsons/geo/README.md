@@ -1,13 +1,13 @@
-# UIM GeoJSON Module
+# UIM GeoJson Module
 
-A D language library for working with GeoJSON data format. This module provides full support for the [GeoJSON specification (RFC 7946)](https://tools.ietf.org/html/rfc7946).
+A D language library for working with GeoJson data format. This module provides full support for the [GeoJson specification (RFC 7946)](https://tools.ietf.org/html/rfc7946).
 
 ## Features
 
-- **Complete GeoJSON Support**: All geometry types (Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)
-- **Feature & FeatureCollection**: Full support for GeoJSON features with properties
+- **Complete GeoJson Support**: All geometry types (Point, LineString, Polygon, MultiPoint, MultiLineString, MultiPolygon, GeometryCollection)
+- **Feature & FeatureCollection**: Full support for GeoJson features with properties
 - **Type-Safe**: Strongly typed geometry classes with compile-time safety
-- **JSON Serialization**: Built-in JSON serialization/deserialization using vibe.d
+- **Json Serialization**: Built-in Json serialization/deserialization using vibe.d
 - **Object-Oriented**: Clean class hierarchy based on UIM framework
 
 ## Geometry Types
@@ -51,7 +51,7 @@ A collection of heterogeneous geometries.
 
 ## Features
 
-A GeoJSON Feature represents a spatially bounded entity:
+A GeoJson Feature represents a spatially bounded entity:
 ```d
 auto point = new DGeoJsonPoint(-122.4194, 37.7749);
 auto feature = new DGeoJsonFeature(point);
@@ -69,7 +69,7 @@ auto collection = new DGeoJsonFeatureCollection();
 collection.addFeature(feature1);
 collection.addFeature(feature2);
 
-// Convert to JSON
+// Convert to Json
 auto json = collection.toJson();
 ```
 
@@ -88,12 +88,12 @@ auto feature = new DGeoJsonFeature(point);
 feature.setProperty("name", Json("San Francisco"));
 feature.setProperty("population", Json(883305));
 
-// Serialize to JSON
+// Serialize to Json
 auto json = feature.toJson();
 writeln(json.toPrettyString());
 ```
 
-### Parsing GeoJSON
+### Parsing GeoJson
 
 ```d
 import uim.jsons.geo;
@@ -151,11 +151,11 @@ dub test
 ## Dependencies
 
 - **uim-framework:oop** - Base OOP functionality
-- **vibe-d** - JSON serialization
+- **vibe-d** - Json serialization
 
 ## Standards Compliance
 
-This library implements the [GeoJSON Format (RFC 7946)](https://tools.ietf.org/html/rfc7946) specification:
+This library implements the [GeoJson Format (RFC 7946)](https://tools.ietf.org/html/rfc7946) specification:
 - Right-hand rule for polygon orientation
 - Longitude/latitude coordinate order (WGS84)
 - Optional altitude support

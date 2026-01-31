@@ -7,7 +7,7 @@ A lightweight neural network toolkit for D that integrates with vibe.d. Build sm
 - Losses: mean squared error and categorical cross entropy with softmax
 - Simple SGD training loop with batch support and shuffling helpers
 - Dataset utilities for mini-batch iteration and normalization
-- Vibe.d HTTP server helper for JSON-based inference endpoints
+- Vibe.d HTTP server helper for Json-based inference endpoints
 
 
 ## Quick Start

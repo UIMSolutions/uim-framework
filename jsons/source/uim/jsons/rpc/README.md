@@ -1,4 +1,4 @@
-# UIM-JSONRPC - JSON-RPC 2.0 Library
+# UIM-JsonRPC - Json-RPC 2.0 Library
 
 **Version**: 1.0.0  
 **Author**: Ozan Nurettin Süel (aka UIManufaktur)  
@@ -7,11 +7,11 @@
 
 ## Overview
 
-UIM-JSONRPC is a complete JSON-RPC 2.0 protocol implementation for the D programming language. It provides both client and server functionality with full support for the JSON-RPC 2.0 specification.
+UIM-JsonRPC is a complete Json-RPC 2.0 protocol implementation for the D programming language. It provides both client and server functionality with full support for the Json-RPC 2.0 specification.
 
 ## Features
 
-- **Full JSON-RPC 2.0 Support**: Complete implementation of the specification
+- **Full Json-RPC 2.0 Support**: Complete implementation of the specification
 - **Request/Response**: Standard request-response pattern
 - **Notifications**: Fire-and-forget calls without responses
 - **Batch Requests**: Execute multiple calls in a single request
@@ -28,9 +28,9 @@ Add to your `dub.sdl`:
 dependency "uim-jsonrpc" path="../jsonrpc"
 ```
 
-## JSON-RPC 2.0 Specification
+## Json-RPC 2.0 Specification
 
-JSON-RPC is a stateless, light-weight remote procedure call (RPC) protocol. It uses JSON as data format.
+Json-RPC is a stateless, light-weight remote procedure call (RPC) protocol. It uses Json as data format.
 
 ### Request Format
 ```json
@@ -71,7 +71,7 @@ JSON-RPC is a stateless, light-weight remote procedure call (RPC) protocol. It u
 import uim.jsons;
 
 // Create server
-auto server = new DJSONRPCServer();
+auto server = new DJsonRPCServer();
 
 // Register methods
 server.register("add", (Json params) {
@@ -105,7 +105,7 @@ string responseJson = server.handleRequest(requestJson);
 import uim.jsons;
 
 // Create client
-auto client = new DJSONRPCClient();
+auto client = new DJsonRPCClient();
 
 // Build a request
 string requestJson = client.buildCall("add", Json([Json(5), Json(3)]));
@@ -186,7 +186,7 @@ import std.stdio;
 
 void main() {
     // Create and configure server
-    auto server = new DJSONRPCServer();
+    auto server = new DJsonRPCServer();
     
     // Register calculator methods
     server.register("add", (Json params) {
@@ -216,7 +216,7 @@ void main() {
     });
     
     // Create client
-    auto client = new DJSONRPCClient();
+    auto client = new DJsonRPCClient();
     
     // Test operations
     void testOperation(string method, double a, double b) {
@@ -298,17 +298,17 @@ server.register("updateUser", &service.handleUpdateUser);
 
 ```d
 // Standard error codes
-enum JSONRPCErrorCode : int {
-    ParseError = -32700,      // Invalid JSON
+enum JsonRPCErrorCode : int {
+    ParseError = -32700,      // Invalid Json
     InvalidRequest = -32600,  // Invalid Request object
     MethodNotFound = -32601,  // Method does not exist
     InvalidParams = -32602,   // Invalid method parameters
-    InternalError = -32603,   // Internal JSON-RPC error
+    InternalError = -32603,   // Internal Json-RPC error
     ServerError = -32000      // -32000 to -32099 reserved
 }
 
 // Validate request
-auto request = DJSONRPCRequest.fromJson(json);
+auto request = DJsonRPCRequest.fromJson(json);
 if (!request.validate()) {
     return errorResponse(invalidRequest(), request.id);
 }
@@ -319,7 +319,7 @@ if (!request.validate()) {
 ```d
 import std.parallelism : task;
 
-class AsyncJSONRPCServer : DJSONRPCServer {
+class AsyncJsonRPCServer : DJsonRPCServer {
     string handleRequestAsync(string requestJson) {
         auto t = task!handleRequest(requestJson);
         t.executeInNewThread();
@@ -333,51 +333,51 @@ class AsyncJSONRPCServer : DJSONRPCServer {
 
 ### Classes
 
-#### `DJSONRPCRequest`
+#### `DJsonRPCRequest`
 - `method()` / `method(string)` - Get/set method name
 - `params()` / `params(Json)` - Get/set parameters
 - `id()` / `id(Json)` - Get/set request ID
 - `isNotification()` - Check if notification
-- `toJson()` - Convert to JSON
-- `fromJson(Json)` - Create from JSON
+- `toJson()` - Convert to Json
+- `fromJson(Json)` - Create from Json
 - `validate()` - Validate request structure
 
-#### `DJSONRPCResponse`
+#### `DJsonRPCResponse`
 - `result()` / `result(Json)` - Get/set result
-- `error()` / `error(DJSONRPCError)` - Get/set error
+- `error()` / `error(DJsonRPCError)` - Get/set error
 - `id()` / `id(Json)` - Get/set response ID
 - `isSuccess()` - Check if successful
 - `isError()` - Check if error
-- `toJson()` - Convert to JSON
-- `fromJson(Json)` - Create from JSON
+- `toJson()` - Convert to Json
+- `fromJson(Json)` - Create from Json
 
-#### `DJSONRPCError`
+#### `DJsonRPCError`
 - `code()` / `code(int)` - Get/set error code
 - `message()` / `message(string)` - Get/set error message
 - `data()` / `data(Json)` - Get/set additional error data
-- `toJson()` - Convert to JSON
+- `toJson()` - Convert to Json
 
-#### `DJSONRPCServer`
-- `register(string, JSONRPCHandler)` - Register method handler
-- `handleRequest(string)` - Process request JSON string
+#### `DJsonRPCServer`
+- `register(string, JsonRPCHandler)` - Register method handler
+- `handleRequest(string)` - Process request Json string
 - `methods()` - Get list of registered methods
 
-#### `DJSONRPCClient`
+#### `DJsonRPCClient`
 - `createRequest(string, Json)` - Create new request
 - `createNotification(string, Json)` - Create notification
 - `createBatch()` - Create batch request
-- `buildCall(string, Json)` - Build request JSON string
-- `parseResponse(string)` - Parse response JSON string
+- `buildCall(string, Json)` - Build request Json string
+- `parseResponse(string)` - Parse response Json string
 
 ## Error Codes
 
 | Code | Message | Description |
 |------|---------|-------------|
-| -32700 | Parse error | Invalid JSON received |
+| -32700 | Parse error | Invalid Json received |
 | -32600 | Invalid Request | Invalid Request object |
 | -32601 | Method not found | Method does not exist |
 | -32602 | Invalid params | Invalid method parameters |
-| -32603 | Internal error | Internal JSON-RPC error |
+| -32603 | Internal error | Internal Json-RPC error |
 | -32000 to -32099 | Server error | Implementation-defined server errors |
 
 ## Testing
@@ -414,9 +414,9 @@ Licensed under the Apache License, Version 2.0.
 
 - uim-oop - Object-oriented patterns
 - uim-core - Core utilities
-- uim-json - JSON processing
+- uim-json - Json processing
 
 ## Resources
 
-- [JSON-RPC 2.0 Specification](https://www.jsonrpc.org/specification)
-- [JSON-RPC Wikipedia](https://en.wikipedia.org/wiki/JSON-RPC)
+- [Json-RPC 2.0 Specification](https://www.jsonrpc.org/specification)
+- [Json-RPC Wikipedia](https://en.wikipedia.org/wiki/Json-RPC)

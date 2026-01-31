@@ -66,7 +66,7 @@ class ConsoleReporter : UIMObject, ITestReporter {
 }
 
 /**
- * JSON test reporter
+ * Json test reporter
  */
 class JsonReporter : UIMObject, ITestReporter {
   protected Json _report;

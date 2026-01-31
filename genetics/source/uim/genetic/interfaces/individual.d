@@ -51,12 +51,12 @@ interface IIndividual {
   IIndividual clone() @safe;
 
   /**
-   * Get individual as JSON for serialization.
+   * Get individual as Json for serialization.
    */
   Json toJson() @safe;
 
   /**
-   * Create individual from JSON.
+   * Create individual from Json.
    */
   static IIndividual fromJson(Json data) @safe;
 }

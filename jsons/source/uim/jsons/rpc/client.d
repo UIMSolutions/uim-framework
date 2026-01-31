@@ -10,7 +10,7 @@ import uim.jsons;
 @safe:
 
 /**
- * JSON-RPC 2.0 client.
+ * Json-RPC 2.0 client.
  */
 class JsonRpcClient : UIMObject {
   protected long _nextId = 1;
@@ -43,14 +43,14 @@ class JsonRpcClient : UIMObject {
   }
 
   /**
-   * Build a JSON-RPC call.
+   * Build a Json-RPC call.
    */
   string buildCall(string method, Json params = Json(null)) {
     return createRequest(method, params).toJson().toString();
   }
 
   /**
-   * Build a JSON-RPC notification.
+   * Build a Json-RPC notification.
    */
   string buildNotification(string method, Json params = Json(null)) {
     return createNotification(method, params).toJson().toString();

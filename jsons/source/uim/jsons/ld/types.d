@@ -8,7 +8,7 @@ module uim.jsons.ld.types;
 @safe:
 
 /**
- * Common XSD datatypes used in JSON-LD.
+ * Common XSD datatypes used in Json-LD.
  */
 struct XSDTypes {
   static immutable string string_ = "http://www.w3.org/2001/XMLSchema#string";
@@ -23,16 +23,16 @@ struct XSDTypes {
 }
 
 /**
- * Common RDF types used in JSON-LD.
+ * Common RDF types used in Json-LD.
  */
 struct RDFTypes {
   static immutable string langString = "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString";
-  static immutable string JSON = "http://www.w3.org/1999/02/22-rdf-syntax-ns#JSON";
+  static immutable string Json = "http://www.w3.org/1999/02/22-rdf-syntax-ns#Json";
   static immutable string XMLLiteral = "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral";
 }
 
 /**
- * Common container types in JSON-LD.
+ * Common container types in Json-LD.
  */
 enum ContainerType : string {
   list = "@list",

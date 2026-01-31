@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.docker.resources;
 
-import std.json : Json, JSONType;
+import std.json : Json, JsonType;
 
 // Container resource wrapper
 struct Container {

@@ -8,7 +8,7 @@ module uim.logging.classes.formatters.json;
 import uim.logging;
 
 /**
- * JSON formatter for structured log messages
+ * Json formatter for structured log messages
  */
 class JsonFormatter : ILogFormatter {
     this() {}

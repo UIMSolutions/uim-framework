@@ -590,14 +590,14 @@ unittest {
 */
 // #region has
 /** 
-  * Checks if the given JSON value has the specified path.
+  * Checks if the given Json value has the specified path.
   *
   * Params:
-  *   json = The JSON value to check.
+  *   json = The Json value to check.
   *   path = An array of keys representing the path to check.
   *
   * Returns:
-  *   `true` if the JSON value has the specified path, `false` otherwise.
+  *   `true` if the Json value has the specified path, `false` otherwise.
   */
 bool hasPath(Json json, string[] path) {
   if (!json.isObject || path.length == 0) {
@@ -714,14 +714,14 @@ unittest {
 
 // #region hasKey
 /** 
-  * Checks if the given JSON value has the specified key.
+  * Checks if the given Json value has the specified key.
   *
   * Params:
-  *   json = The JSON value to check.
+  *   json = The Json value to check.
   *   key = The key to check for.
   *
   * Returns:
-  *   `true` if the JSON value has the specified key, `false` otherwise.
+  *   `true` if the Json value has the specified key, `false` otherwise.
   */
 bool hasKey(Json json, string key) {
   return json.isObject && key in json;
@@ -730,7 +730,7 @@ bool hasKey(Json json, string key) {
 unittest {
   mixin(ShowTest!"Testing hasKey for Json with key");
 
-  // Non-object JSON -> always false
+  // Non-object Json -> always false
   auto json1 = Json(1);
   assert(!hasKey(json1, "foo"));
   assert(!hasKey(json1, ""));

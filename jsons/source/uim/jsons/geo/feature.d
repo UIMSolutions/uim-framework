@@ -12,18 +12,18 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * GeoJSON Feature
+ * GeoJson Feature
  * A feature object represents a spatially bounded thing
  */
 class GeoJsonFeature : UIMObject {
-    protected DGeoJsonGeometry _geometry;
+    protected GeoJsonGeometry _geometry;
     protected Json _properties;
     protected Json _id;
     
     alias toJson = UIMObject.toJson;
     
-    @property DGeoJsonGeometry geometry() { return _geometry; }
-    @property void geometry(DGeoJsonGeometry value) { _geometry = value; }
+    @property GeoJsonGeometry geometry() { return _geometry; }
+    @property void geometry(GeoJsonGeometry value) { _geometry = value; }
     
     @property Json properties() { return _properties; }
     @property void properties(Json value) { _properties = value; }
@@ -37,18 +37,18 @@ class GeoJsonFeature : UIMObject {
         _id = Json.undefined;
     }
     
-    this(DGeoJsonGeometry geom) {
+    this(GeoJsonGeometry geom) {
         this();
         this._geometry = geom;
     }
     
-    this(DGeoJsonGeometry geom, Json props) {
+    this(GeoJsonGeometry geom, Json props) {
         this(geom);
         this._properties = props;
     }
     
     /**
-     * Convert feature to JSON
+     * Convert feature to Json
      */
     Json toJson() @trusted {
         auto result = Json.emptyObject;
@@ -70,7 +70,7 @@ class GeoJsonFeature : UIMObject {
     }
     
     /**
-     * Parse feature from JSON
+     * Parse feature from Json
      */
     void fromJson(Json json) @trusted {
         if ("geometry" in json && json["geometry"].type != Json.Type.null_) {
@@ -117,18 +117,18 @@ class GeoJsonFeature : UIMObject {
 }
 
 /**
- * Parse a feature from JSON string
+ * Parse a feature from Json string
  */
-DGeoJsonFeature parseFeature(string jsonString) @trusted {
+GeoJsonFeature parseFeature(string jsonString) @trusted {
     auto json = parseJsonString(jsonString);
     return parseFeature(json);
 }
 
 /**
- * Parse a feature from JSON object
+ * Parse a feature from Json object
  */
-DGeoJsonFeature parseFeature(Json json) @trusted {
-    auto feature = new DGeoJsonFeature();
+GeoJsonFeature parseFeature(Json json) @trusted {
+    auto feature = new GeoJsonFeature();
     feature.fromJson(json);
     return feature;
 }

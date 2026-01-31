@@ -230,7 +230,7 @@ Potential future enhancements:
 1. Async query support via vibe.d tasks
 2. B-tree index implementation for O(log n) queries
 3. Transaction support (ACID properties)
-4. JSON serialization/deserialization
+4. Json serialization/deserialization
 5. Migration system for schema versions
 6. Connection pooling for multi-table operations
 7. Query optimization with join support

@@ -10,7 +10,7 @@ import vibe.data.json;
 import std.stdio;
 
 void main() {
-    writeln("=== UIM GeoJSON Library Example ===\n");
+    writeln("=== UIM GeoJson Library Example ===\n");
 
     // Example 1: Creating a Point
     writeln("1. Point geometry:");
@@ -99,8 +99,8 @@ void main() {
     writeln("  Bay Area landmarks: ", landmarks.toJson().toPrettyString());
     writeln();
 
-    // Example 8: Parsing GeoJSON string
-    writeln("8. Parsing GeoJSON from string:");
+    // Example 8: Parsing GeoJson string
+    writeln("8. Parsing GeoJson from string:");
     string geojsonString = `{
         "type": "Feature",
         "geometry": {

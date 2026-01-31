@@ -9,7 +9,7 @@ import uim.plist;
 import std.stdio;
 
 void main() {
-    writeln("=== JSON Property List Example ===\n");
+    writeln("=== Json Property List Example ===\n");
 
     // Create a property list
     auto plist = new PropertyList();
@@ -44,17 +44,17 @@ void main() {
 
     writeln("Created property list with ", plist.length(), " items\n");
 
-    // Convert to JSON
-    writeln("=== Converting to JSON ===\n");
-    auto converter = new JSONPlistConverter();
-    string jsonContent = converter.toJSON(plist);
+    // Convert to Json
+    writeln("=== Converting to Json ===\n");
+    auto converter = new JsonPlistConverter();
+    string jsonContent = converter.toJson(plist);
     
     writeln(jsonContent);
-    writeln("\n✓ JSON generated successfully\n");
+    writeln("\n✓ Json generated successfully\n");
 
-    // Parse back from JSON
-    writeln("=== Parsing from JSON ===\n");
-    auto loadedPlist = converter.fromJSON(jsonContent);
+    // Parse back from Json
+    writeln("=== Parsing from Json ===\n");
+    auto loadedPlist = converter.fromJson(jsonContent);
 
     writeln("Parsed property list:");
     writeln("  Username: ", loadedPlist.getString("username"));
@@ -82,8 +82,8 @@ void main() {
         writeln("    ", i + 1, ". ", tag["name"].asString(), " (", tag["color"].asString(), ")");
     }
 
-    // Demonstrate JSON to XML conversion
-    writeln("\n=== Converting JSON to XML ===\n");
+    // Demonstrate Json to XML conversion
+    writeln("\n=== Converting Json to XML ===\n");
     auto writer = new XMLPlistWriter();
     string xmlContent = writer.write(loadedPlist);
     writeln(xmlContent);

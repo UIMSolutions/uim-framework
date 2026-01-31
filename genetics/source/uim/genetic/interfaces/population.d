@@ -60,7 +60,7 @@ interface IPopulation {
   void clear() @safe;
 
   /**
-   * Get population statistics as JSON.
+   * Get population statistics as Json.
    */
   Json statistics() @safe;
 }

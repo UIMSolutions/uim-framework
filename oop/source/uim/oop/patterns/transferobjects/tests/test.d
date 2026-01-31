@@ -243,7 +243,7 @@ class OrderAssembler : TransferObjectAssembler!(Order, OrderTO) {
   customer.email = "alice@example.com";
   
   string json = customer.toJson();
-  assert(json.length > 0, "JSON should not be empty");
+  assert(json.length > 0, "Json should not be empty");
   
   auto customer2 = new CustomerTO();
   customer2.fromJson(json);
@@ -457,7 +457,7 @@ class OrderAssembler : TransferObjectAssembler!(Order, OrderTO) {
   assert(orderWithItems.getChildren().length == 2);
   assert(orderWithItems.validate());
   
-  // Serialize to JSON for API transfer
+  // Serialize to Json for API transfer
   string customerJson = customerTO.toJson();
   assert(customerJson.length > 0);
   

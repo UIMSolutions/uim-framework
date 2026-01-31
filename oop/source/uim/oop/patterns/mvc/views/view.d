@@ -190,17 +190,17 @@ class TemplateView : View {
 }
 
 /**
- * JSONView - View that renders data as JSON
+ * JsonView - View that renders data as Json
  */
-class JSONView : View {
+class JsonView : View {
     this(IMVCModel model = null) {
         super(model);
     }
 
     /**
-     * Renders the view as JSON
+     * Renders the view as Json
      * 
-     * Returns: JSON formatted string
+     * Returns: Json formatted string
      */
     override string render() {
         if (_model is null) {
@@ -316,7 +316,7 @@ unittest {
     auto model = new MVCModel();
     model.set("key", "value");
 
-    auto view = new JSONView(model);
+    auto view = new JsonView(model);
     auto output = view.render();
     assert(output.length > 0);
 }

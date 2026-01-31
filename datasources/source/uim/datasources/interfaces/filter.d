@@ -67,7 +67,7 @@ interface IFilter {
   IFilter offset(size_t count);
 
   /**
-   * Get filters as JSON
+   * Get filters as Json
    */
   Json toJson();
 

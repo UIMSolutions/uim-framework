@@ -10,16 +10,16 @@ import std.datetime : Clock, Duration, SysTime, seconds;
 import std.digest.hmac : hmac;
 import std.digest.sha : SHA256;
 import std.exception : enforce;
-import std.json : Json, JSONType, parseJSON;
+import std.json : Json, JsonType, parseJson;
 import std.string : split;
 
 import uim.security.crypto : constantTimeEquals;
 
-// Note: JSON object property access is @system, so we mark functions @trusted where needed
+// Note: Json object property access is @system, so we mark functions @trusted where needed
 
-/// Signs a JSON payload into a JWT using HS256. Adds `exp` if missing using the provided ttl.
+/// Signs a Json payload into a JWT using HS256. Adds `exp` if missing using the provided ttl.
 string signJWT(Json claims, string secret, Duration ttl) @trusted {
-  enforce(claims.type == JSONType.object, "JWT claims must be a JSON object");
+  enforce(claims.type == JsonType.object, "JWT claims must be a Json object");
 
   auto header = Json([
     "alg": Json("HS256"),
@@ -52,14 +52,14 @@ Json verifyJWT(string token, string secret) @trusted {
   enforce(constantTimeEquals(expectedSig, parts[2]), "JWT signature mismatch");
 
   auto payloadBytes = Base64URLNoPadding.decode(parts[1]);
-  // Safe to cast: we know these bytes are UTF-8 encoded JSON from what we created
-  auto payload = parseJSON(cast(string) payloadBytes);
-  enforce(payload.type == JSONType.object, "JWT payload must be an object");
+  // Safe to cast: we know these bytes are UTF-8 encoded Json from what we created
+  auto payload = parseJson(cast(string) payloadBytes);
+  enforce(payload.type == JsonType.object, "JWT payload must be an object");
 
   if (auto expNode = "exp" in payload.object) {
     auto now = Clock.currTime().toUnixTime();
-    enforce(expNode.type == JSONType.integer || expNode.type == JSONType.uinteger, "exp must be numeric");
-    long expVal = expNode.type == JSONType.integer ? expNode.integer : cast(long) expNode.uinteger;
+    enforce(expNode.type == JsonType.integer || expNode.type == JsonType.uinteger, "exp must be numeric");
+    long expVal = expNode.type == JsonType.integer ? expNode.integer : cast(long) expNode.uinteger;
     enforce(now <= expVal, "JWT expired");
   }
 

@@ -32,12 +32,12 @@ interface ITransferObject {
  */
 interface ISerializableTransferObject : ITransferObject {
   /**
-   * Serialize to JSON string.
+   * Serialize to Json string.
    */
   string toJson() @safe;
 
   /**
-   * Deserialize from JSON string.
+   * Deserialize from Json string.
    */
   void fromJson(string json) @trusted;
 }

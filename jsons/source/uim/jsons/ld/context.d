@@ -10,9 +10,9 @@ import uim.jsons;
 @safe:
 
 /**
- * JSON-LD context definition.
+ * Json-LD context definition.
  */
-class JSONLDContext : UIMObject {
+class JsonLDContext : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected Json _context;
@@ -40,18 +40,18 @@ class JSONLDContext : UIMObject {
   // Setters
   void vocab(string value) { 
     _vocab = value;
-    _context[JSONLDKeywords.vocab] = value;
+    _context[JsonLDKeywords.vocab] = value;
   }
   
   void base(string value) { 
     _base = value;
-    _context[JSONLDKeywords.base] = value;
+    _context[JsonLDKeywords.base] = value;
   }
 
   /**
    * Add a term mapping.
    */
-  DJSONLDContext addTerm(string term, string iri) {
+  JsonLDContext addTerm(string term, string iri) {
     _terms[term] = iri;
     _context[term] = iri;
     return this;
@@ -60,7 +60,7 @@ class JSONLDContext : UIMObject {
   /**
    * Add a prefix mapping.
    */
-  DJSONLDContext addPrefix(string prefix, string iri) {
+  JsonLDContext addPrefix(string prefix, string iri) {
     _prefixes[prefix] = iri;
     _context[prefix] = iri;
     return this;
@@ -125,9 +125,9 @@ class JSONLDContext : UIMObject {
     }
 
     foreach (string key, value; _context.get!(Json[string])) {
-      if (key == JSONLDKeywords.vocab) {
+      if (key == JsonLDKeywords.vocab) {
         _vocab = value.get!string;
-      } else if (key == JSONLDKeywords.base) {
+      } else if (key == JsonLDKeywords.base) {
         _base = value.get!string;
       } else if (value.type == Json.Type.string) {
         _terms[key] = value.get!string;
@@ -143,8 +143,8 @@ class JSONLDContext : UIMObject {
   /**
    * Merge with another context.
    */
-  DJSONLDContext merge(DJSONLDContext other) {
-    auto merged = new DJSONLDContext();
+  JsonLDContext merge(JsonLDContext other) {
+    auto merged = new JsonLDContext();
     
     // Copy this context
     foreach (key, value; _terms) {
@@ -174,7 +174,7 @@ class JSONLDContext : UIMObject {
   }
 
   /**
-   * Convert to JSON.
+   * Convert to Json.
    */
   Json toJson() {
     return _context;
@@ -182,7 +182,7 @@ class JSONLDContext : UIMObject {
 }
 
 unittest {
-  auto ctx = new DJSONLDContext();
+  auto ctx = new JsonLDContext();
   ctx.vocab("http://schema.org/");
   ctx.addTerm("name", "http://schema.org/name");
   ctx.addPrefix("ex", "http://example.com/");

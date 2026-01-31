@@ -10,23 +10,23 @@ import uim.jsons;
 @safe:
 
 /**
- * Fluent builder for JSON-LD documents.
+ * Fluent builder for Json-LD documents.
  */
-class JSONLDBuilder : UIMObject {
+class JsonLDBuilder : UIMObject {
   alias toJson = UIMObject.toJson;
   
-  protected DJSONLDDocument _document;
-  protected DJSONLDNode _currentNode;
+  protected JsonLDDocument _document;
+  protected JsonLDNode _currentNode;
 
   this() {
     super();
-    _document = new DJSONLDDocument();
+    _document = new JsonLDDocument();
   }
 
   /**
    * Set vocabulary.
    */
-  DJSONLDBuilder vocab(string vocab) {
+  JsonLDBuilder vocab(string vocab) {
     _document.context.vocab(vocab);
     return this;
   }
@@ -34,7 +34,7 @@ class JSONLDBuilder : UIMObject {
   /**
    * Set base IRI.
    */
-  DJSONLDBuilder base(string base) {
+  JsonLDBuilder base(string base) {
     _document.context.base(base);
     return this;
   }
@@ -42,7 +42,7 @@ class JSONLDBuilder : UIMObject {
   /**
    * Add term to context.
    */
-  DJSONLDBuilder term(string term, string iri) {
+  JsonLDBuilder term(string term, string iri) {
     _document.context.addTerm(term, iri);
     return this;
   }
@@ -50,7 +50,7 @@ class JSONLDBuilder : UIMObject {
   /**
    * Add prefix to context.
    */
-  DJSONLDBuilder prefix(string prefix, string iri) {
+  JsonLDBuilder prefix(string prefix, string iri) {
     _document.context.addPrefix(prefix, iri);
     return this;
   }
@@ -58,8 +58,8 @@ class JSONLDBuilder : UIMObject {
   /**
    * Start a new node.
    */
-  DJSONLDBuilder node(string id = "") {
-    _currentNode = new DJSONLDNode(id);
+  JsonLDBuilder node(string id = "") {
+    _currentNode = new JsonLDNode(id);
     _document.addNode(_currentNode);
     return this;
   }
@@ -67,7 +67,7 @@ class JSONLDBuilder : UIMObject {
   /**
    * Add type to current node.
    */
-  DJSONLDBuilder type(string type) {
+  JsonLDBuilder type(string type) {
     if (_currentNode is null) {
       node();
     }
@@ -78,7 +78,7 @@ class JSONLDBuilder : UIMObject {
   /**
    * Add property to current node.
    */
-  DJSONLDBuilder property(string name, Json value) {
+  JsonLDBuilder property(string name, Json value) {
     if (_currentNode is null) {
       node();
     }
@@ -89,33 +89,33 @@ class JSONLDBuilder : UIMObject {
   /**
    * Add string property.
    */
-  DJSONLDBuilder property(string name, string value) {
+  JsonLDBuilder property(string name, string value) {
     return property(name, Json(value));
   }
 
   /**
    * Add integer property.
    */
-  DJSONLDBuilder property(string name, long value) {
+  JsonLDBuilder property(string name, long value) {
     return property(name, Json(value));
   }
 
   /**
    * Add boolean property.
    */
-  DJSONLDBuilder property(string name, bool value) {
+  JsonLDBuilder property(string name, bool value) {
     return property(name, Json(value));
   }
 
   /**
    * Build the document.
    */
-  DJSONLDDocument build() {
+  JsonLDDocument build() {
     return _document;
   }
 
   /**
-   * Get JSON representation.
+   * Get Json representation.
    */
   Json toJson() {
     return _document.toJson();
@@ -125,13 +125,13 @@ class JSONLDBuilder : UIMObject {
    * Get string representation.
    */
   override string toString() const @trusted {
-    return (cast(DJSONLDBuilder)this)._document.toString();
+    return (cast(JsonLDBuilder)this)._document.toString();
   }
 }
 
 // Convenience function
-DJSONLDBuilder jsonld() {
-  return new DJSONLDBuilder();
+JsonLDBuilder jsonld() {
+  return new JsonLDBuilder();
 }
 
 unittest {

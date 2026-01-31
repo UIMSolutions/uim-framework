@@ -11,7 +11,7 @@ The UIM Errors module provides a comprehensive error handling system for D appli
 - **Severity Levels**: Categorize errors by severity (error, warning, notice, critical, debug)
 - **Error Codes**: Numeric error codes for programmatic handling
 - **Timestamps**: Automatic timestamping of errors
-- **Formatters & Renderers**: Multiple output formats (console, HTML, JSON, XML, YAML)
+- **Formatters & Renderers**: Multiple output formats (console, HTML, Json, XML, YAML)
 - **Type Safety**: Strongly typed error classes instead of exceptions
 
 ## Core Components
@@ -114,7 +114,7 @@ Multiple renderers for different output formats:
 
 - **ConsoleRenderer**: Terminal output
 - **HTMLRenderer**: HTML formatted errors
-- **JSONRenderer**: JSON structured errors
+- **JsonRenderer**: Json structured errors
 - **XMLRenderer**: XML formatted errors
 - **YAMLRenderer**: YAML formatted errors
 - **TextRenderer**: Plain text output

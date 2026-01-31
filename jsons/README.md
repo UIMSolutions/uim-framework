@@ -1,15 +1,15 @@
-# UIM JSONs Library
+# UIM Jsons Library
 
-A robust JSON serialization and manipulation library for the UIM framework, built with D language and vibe.d.
+A robust Json serialization and manipulation library for the UIM framework, built with D language and vibe.d.
 
 ## Features
 
-- Fast JSON parsing and serialization
+- Fast Json parsing and serialization
 - Support for D structs, classes, arrays, and associative arrays
-- Type-safe access to JSON values
+- Type-safe access to Json values
 - Customizable serialization formats
 - Integration with UIM framework data sources and entities
-- Error handling for malformed JSON
+- Error handling for malformed Json
 - Extensible via interfaces for custom types
 
 ## Installation
@@ -33,17 +33,17 @@ Or to your `dub.json`:
 ```d
 import uim.jsons;
 
-// Parse JSON string
+// Parse Json string
 auto doc = parseJson(`{"name": "Alice", "age": 30}`);
 string name = doc["name"].get!string;
 int age = doc["age"].get!int;
 
-// Serialize D struct to JSON
+// Serialize D struct to Json
 struct User { string name; int age; }
 User user = User("Bob", 25);
 auto jsonStr = toJson(user);
 
-// Manipulate JSON
+// Manipulate Json
 if (doc.containsKey("name")) {
     doc["name"] = "Charlie";
 }
@@ -66,14 +66,14 @@ foreach (val; arr) {
 try {
     auto doc = parseJson(`{"invalid": }`);
 } catch (JsonParseException e) {
-    writeln("Malformed JSON: ", e.msg);
+    writeln("Malformed Json: ", e.msg);
 }
 ```
 
 ## Architecture
 
 - **Interfaces**: For extensible serialization and parsing
-- **Classes/Structs**: For JSON documents, values, and errors
+- **Classes/Structs**: For Json documents, values, and errors
 - **Integration**: Works with UIM entities, datasources, and services
 
 ## License

@@ -485,7 +485,7 @@ class UIMEvent {
 }
 
 note right of UIMEvent
-  Event data is stored as JSON:
+  Event data is stored as Json:
   
   // Set data
   event.setData("userId", Json(123))
@@ -629,7 +629,7 @@ dispatcher.dispatchAsync(event);  // Returns immediately
 ```
 
 ### 6. Event Data Management
-Events carry arbitrary JSON data:
+Events carry arbitrary Json data:
 ```d
 auto event = Event("user.action");
 event.setData("userId", Json(123));
