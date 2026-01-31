@@ -16,22 +16,22 @@ class Hgroup : HtmlElement {
     super("hgroup");
     this.selfClosing(false);
   }
-}
 
-auto hgroup() {
-  return new Hgroup();
-}
+  static Hgroup opCall() {
+    return new Hgroup();
+  }
 
-auto hgroup(string content) {
-  auto element = new Hgroup();
-  element.text(content);
-  return element;
+  static Hgroup opCall(string content) {
+    auto element = new Hgroup();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto hgroup = hgroup();
-  assert(hgroup.toString() == "<hgroup></hgroup>");
+  auto hgroup = Hgroup();
+  assert(hgroup == "<hgroup></hgroup>");
 
-  auto hgroupWithContent = hgroup("Hello");
-  assert(hgroupWithContent.toString() == "<hgroup>Hello</hgroup>");
+  auto hgroupWithContent = Hgroup("Hello");
+  assert(hgroupWithContent == "<hgroup>Hello</hgroup>");
 }

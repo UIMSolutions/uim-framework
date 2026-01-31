@@ -16,22 +16,22 @@ class Header : HtmlElement {
     super("header");
     this.selfClosing(false);
   }
-}
 
-auto header() {
-  return new Header();
-}
+  static Header opCall() {
+    return new Header();
+  }
 
-auto header(string content) {
-  auto element = new Header();
-  element.text(content);
-  return element;
+  static Header opCall(string content) {
+    auto element = new Header();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto header = header();
-  assert(header.toString() == "<header></header>");
+  auto header = Header();
+  assert(header == "<header></header>");
 
-  auto headerWithContent = header("Hello");
-  assert(headerWithContent.toString() == "<header>Hello</header>");
+  auto headerWithContent = Header("Hello");
+  assert(headerWithContent == "<header>Hello</header>");
 }

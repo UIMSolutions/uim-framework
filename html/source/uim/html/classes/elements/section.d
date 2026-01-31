@@ -16,22 +16,22 @@ class Section : HtmlElement {
     super("section");
     this.selfClosing(false);
   }
-}
 
-auto section() {
-  return new Section();
-}
+  static Section opCall() {
+    return new Section();
+  }
 
-auto section(string content) {
-  auto element = new Section();
-  element.text(content);
-  return element;
+  static Section opCall(string content) {
+    auto element = new Section();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto section = section();
-  assert(section.toString() == "<section></section>");
+  auto section = Section();
+  assert(section == "<section></section>");
 
-  auto sectionWithContent = section("Hello");
-  assert(sectionWithContent.toString() == "<section>Hello</section>");
+  auto sectionWithContent = Section("Hello");
+  assert(sectionWithContent == "<section>Hello</section>");
 }

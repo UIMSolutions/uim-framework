@@ -16,22 +16,22 @@ class Footer : HtmlElement {
     super("footer");
     this.selfClosing(false);
   }
-}
 
-auto footer() {
-  return new Footer();
-}
+  static Footer opCall() {
+    return new Footer();
+  }
 
-auto footer(string content) {
-  auto element = new Footer();
-  element.text(content);
-  return element;
+  static Footer opCall(string content) {
+    auto element = new Footer();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto footer = footer();
+  auto footer = Footer();
   assert(footer.toString() == "<footer></footer>");
 
-  auto footerWithContent = footer("Hello");
+  auto footerWithContent = Footer("Hello");
   assert(footerWithContent.toString() == "<footer>Hello</footer>");
 }

@@ -1,4 +1,6 @@
-# UIM HTML Library
+# Library 📚 uim-html
+
+[![D](https://github.com/UIMSolutions/uim/actions/workflows/uim-html.yml/badge.svg)](https://github.com/UIMSolutions/uim/actions/workflows/uim-html.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A comprehensive D language library for generating HTML programmatically.
 
@@ -14,11 +16,13 @@ A comprehensive D language library for generating HTML programmatically.
 ## Installation
 
 Add to your `dub.sdl`:
+
 ```sdl
 dependency "uim-html" version="~>1.0.0"
 ```
 
 Or `dub.json`:
+
 ```json
 {
     "dependencies": {
@@ -36,16 +40,16 @@ void main() {
     // Create a simple div
     auto div = Div("Hello World");
     writeln(div); // <div>Hello World</div>
-    
+  
     // Add attributes
     div.id("main").addClass("container");
-    
+  
     // Create nested elements
     auto container = Div()
         .id("wrapper")
         .addChild(H1("Welcome"))
         .addChild(P("This is a paragraph"));
-    
+  
     writeln(container);
 }
 ```
@@ -53,6 +57,7 @@ void main() {
 ## Basic Elements
 
 ### Text Elements
+
 ```d
 // Headings
 auto h1 = H1("Main Title");
@@ -68,6 +73,7 @@ auto div = Div("Block content");
 ```
 
 ### Links and Images
+
 ```d
 // Link
 auto link = A("https://example.com", "Click here");
@@ -79,6 +85,7 @@ img.width("300").height("200");
 ```
 
 ### Line Breaks and Rules
+
 ```d
 auto br = Br();  // <br />
 auto hr = Hr();  // <hr />
@@ -87,6 +94,7 @@ auto hr = Hr();  // <hr />
 ## Forms
 
 ### Basic Form
+
 ```d
 auto form = Form()
     .action("/submit")
@@ -109,6 +117,7 @@ auto form = Form()
 ```
 
 ### Input Types
+
 ```d
 auto textInput = TextInput("name");
 auto password = PasswordInput("password");
@@ -122,6 +131,7 @@ auto submit = SubmitInput("Submit");
 ```
 
 ### Other Form Elements
+
 ```d
 // Textarea
 auto textarea = Textarea("comment")
@@ -167,6 +177,7 @@ table.addChild(thead).addChild(tbody);
 ```
 
 ### Table Attributes
+
 ```d
 // Cell spanning
 auto td = Td("Content").colspan("2").rowspan("3");
@@ -176,6 +187,7 @@ auto th = Th("Header").scope("col");
 ## Lists
 
 ### Unordered List
+
 ```d
 auto ul = Ul()
     .addChild(Li("First item"))
@@ -184,6 +196,7 @@ auto ul = Ul()
 ```
 
 ### Ordered List
+
 ```d
 auto ol = Ol()
     .start("5")  // Start from 5
@@ -192,6 +205,7 @@ auto ol = Ol()
 ```
 
 ### Definition List
+
 ```d
 auto dl = Dl()
     .addChild(Dt("HTML"))
@@ -239,6 +253,7 @@ writeln(doc);
 ## Working with Attributes
 
 ### Common Attributes
+
 ```d
 auto element = Div()
     .id("main")                    // Set ID
@@ -249,6 +264,7 @@ auto element = Div()
 ```
 
 ### Getting Attributes
+
 ```d
 string id = element.id();  // Get ID
 auto classAttr = element.attribute("class");  // Get attribute object
@@ -257,6 +273,7 @@ auto classAttr = element.attribute("class");  // Get attribute object
 ## Advanced Usage
 
 ### Building Complex Structures
+
 ```d
 auto page = Div().addClass("page")
     .addChild(
@@ -281,13 +298,14 @@ auto page = Div().addClass("page")
 ```
 
 ### Custom Elements
+
 ```d
 // Extend HtmlElement for custom elements
 class MyCustom : HtmlElement {
     this() {
         super("custom-element");
     }
-    
+  
     auto customMethod(string value) {
         return attribute("custom-attr", value);
     }

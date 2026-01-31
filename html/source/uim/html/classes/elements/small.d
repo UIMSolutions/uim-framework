@@ -16,22 +16,22 @@ class Small : HtmlElement {
     super("small");
     this.selfClosing(false);
   }
-}
 
-auto small() {
-  return new Small();
-}
+  static Small opCall() {
+    return new Small();
+  }
 
-auto small(string content) {
-  auto element = new Small();
-  element.text(content);
-  return element;
+  static Small opCall(string content) {
+    auto element = new Small();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto small = small();
-  assert(small.toString() == "<small></small>");
+  auto small = Small();
+  assert(small == "<small></small>");
 
-  auto smallWithContent = small("Hello");
-  assert(smallWithContent.toString() == "<small>Hello</small>");
+  auto smallWithContent = Small("Hello");
+  assert(smallWithContent == "<small>Hello</small>");
 }

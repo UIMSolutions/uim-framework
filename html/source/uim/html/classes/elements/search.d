@@ -16,22 +16,22 @@ class Search : HtmlElement {
     super("search");
     this.selfClosing(false);
   }
-}
 
-auto search() {
-  return new Search();
-}
+  static Search opCall() {
+    return new Search();
+  }
 
-auto search(string content) {
-  auto element = new Search();
-  element.text(content);
-  return element;
+  static Search opCall(string content) {
+    auto element = new Search();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto search = search();
-  assert(search.toString() == "<search></search>");
+  auto search = Search();
+  assert(search == "<search></search>");
 
-  auto searchWithContent = search("Hello");
-  assert(searchWithContent.toString() == "<search>Hello</search>");
+  auto searchWithContent = Search("Hello");
+  assert(searchWithContent == "<search>Hello</search>");
 }
