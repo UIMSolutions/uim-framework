@@ -67,10 +67,10 @@ class Relationship : UIMObject {
  * Eager loader for relationships
  */
 class RelationshipLoader : UIMObject {
-  protected IValuebase _database;
+  protected IDatabase _database;
   protected Relationship _relationship;
 
-  this(IValuebase database, Relationship relationship) {
+  this(IDatabase database, Relationship relationship) {
     super();
     _database = database;
     _relationship = relationship;

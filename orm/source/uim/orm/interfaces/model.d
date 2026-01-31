@@ -68,5 +68,5 @@ interface IORMModel {
   /**
    * Get the database connection
    */
-  IValuebase database();
+  IDatabase database();
 }

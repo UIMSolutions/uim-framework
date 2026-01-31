@@ -148,7 +148,7 @@ class GeneticAlgorithm {
       }
 
       if (_fitnessEvaluator !is null) {
-        auto individuals = _population.individuals().dup;
+        auto individuals = _population.individuals();
         _fitnessEvaluator.evaluatePopulation(cast(IIndividual[])individuals, 
           (IIndividual[] evaluated) @safe {
             foreach (ind; evaluated) {

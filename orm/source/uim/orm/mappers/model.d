@@ -23,7 +23,7 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
   protected string[string] _attributes;
   protected string[] _errors;
   protected string[string] _originalAttributes;
-  protected IValuebase _database;
+  protected IDatabase _database;
   protected IQuery _queryBuilder;
 
   this() {
@@ -119,7 +119,7 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
   bool isDirty() { return _state == EntityState.Dirty; }
   bool isDeleted() { return _state == EntityState.Deleted; }
 
-  Json toJson(string[] showKeys = null, string[] hideKeys = null) {
+  override Json toJson(string[] showKeys = null, string[] hideKeys = null) {
     Json result = Json.emptyObject;
     foreach (key, value; _attributes) {
       result[key] = Json(value);
@@ -134,14 +134,14 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
   // IORMModel implementation
   void find(long id, void delegate(bool success, IEntity entity) @safe callback) @trusted {
     if (_database !is null) {
-      _queryBuilder = _database.query(null);
+      // TODO:_queryBuilder = _database.query(null);
       // Implementation would continue with actual query
     }
   }
 
   void all(void delegate(bool success, IEntity[] entities) @safe callback) @trusted {
     if (_database !is null) {
-      _queryBuilder = _database.query(null);
+      // TODO:_queryBuilder = _database.query(null);
       // Implementation would continue with actual query
     }
   }
@@ -160,7 +160,7 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
     }
   }
 
-  void delete(IEntity entity, void delegate(bool success) @safe callback) @trusted {
+  void delete_(IEntity entity, void delegate(bool success) @safe callback) @trusted {
     // Delete from database
     if (_database !is null) {
       // Implementation continues with DELETE query
@@ -175,11 +175,11 @@ abstract class ORMModel : UIMObject, IORMModel, IEntity {
     return _queryBuilder;
   }
 
-  IValuebase database() {
+  IDatabase database() {
     return _database;
   }
 
-  void setDatabase(IValuebase db) @trusted {
+  void setDatabase(IDatabase db) @trusted {
     _database = db;
   }
 }

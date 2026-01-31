@@ -4,18 +4,12 @@ homepage "https://www.sueel.de/uim/orm"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
-
-// target
-targetName "uim-orm"
-targetType "library"
-
-// uim dependencies
-dependency "uim-framework:core" version="*"
-dependency "uim-framework:oop" version="*"
 dependency "uim-framework:entities" version="*"
+dependency "uim-framework:core" version="*"
+dependency "vibe-d" version="~>0.10.3"
 dependency "uim-framework:events" version="*"
-
-// External dependencies
-dependency "vibe-d" version="~>0.9.6"
-dependency "mysql-native" version="~>1.2.11"
+dependency "uim-framework:oop" version="*"
 dependency "d2sqlite3" version="~>1.0.0"
+dependency "mysql-native" version="~>3.2.4"
+targetType "library"
+targetName "uim-orm"

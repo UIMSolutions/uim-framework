@@ -25,9 +25,9 @@ class SQLQueryBuilder : UIMObject, IQuery {
   protected string[] _groupBy;
   protected string[] _joins;
   protected string _having;
-  protected IValuebase _database;
+  protected IDatabase _database;
 
-  this(IValuebase database) {
+  this(IDatabase database) {
     super();
     _database = database;
     _columns = ["*"];

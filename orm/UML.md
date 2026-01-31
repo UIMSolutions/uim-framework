@@ -17,7 +17,7 @@ Defines contracts for all ORM components:
 ```plantuml
 @startuml ORM_Interfaces
 
-interface IValuebase {
+interface IDatabase {
   + driver(): string
   + isConnected(): bool
   + connect(): void
@@ -63,7 +63,7 @@ interface IORMModel {
   + update(entity: IEntity, callback: delegate): void
   + delete(entity: IEntity, callback: delegate): void
   + query(): IQuery
-  + database(): IValuebase
+  + database(): IDatabase
 }
 
 interface IMigration {
@@ -71,8 +71,8 @@ interface IMigration {
   + down(): void
 }
 
-IValuebase --> IQuery : creates
-IORMModel --> IValuebase : uses
+IDatabase --> IQuery : creates
+IORMModel --> IDatabase : uses
 IORMModel --> IQuery : uses
 
 @enduml
@@ -119,18 +119,18 @@ class SQLiteDatabase {
 }
 
 class DatabaseConnectionPool {
-  - _connections: IValuebase[string]
+  - _connections: IDatabase[string]
   - _activeConnections: size_t
   - _maxConnections: size_t
-  - _queue: IValuebase[]
+  - _queue: IDatabase[]
   
-  + getConnection(name: string): IValuebase
-  + releaseConnection(conn: IValuebase): void
+  + getConnection(name: string): IDatabase
+  + releaseConnection(conn: IDatabase): void
   + closeAll(): void
   + getActiveCount(): size_t
 }
 
-BaseDatabase ..|> IValuebase
+BaseDatabase ..|> IDatabase
 MySQLDatabase --|> BaseDatabase
 SQLiteDatabase --|> BaseDatabase
 
@@ -143,7 +143,7 @@ SQLiteDatabase --|> BaseDatabase
 @startuml ORM_QueryBuilder
 
 class SQLQueryBuilder {
-  - _database: IValuebase
+  - _database: IDatabase
   - _select: string[]
   - _from: string
   - _where: string[]
@@ -155,7 +155,7 @@ class SQLQueryBuilder {
   - _groupBy: string[]
   - _having: string
   
-  + this(database: IValuebase)
+  + this(database: IDatabase)
   + select(columns: string[]): IQuery
   + from(table: string): IQuery
   + where(condition: string): IQuery
@@ -175,7 +175,7 @@ class SQLQueryBuilder {
 }
 
 SQLQueryBuilder ..|> IQuery
-SQLQueryBuilder --> IValuebase : uses
+SQLQueryBuilder --> IDatabase : uses
 
 @enduml
 ```
@@ -186,7 +186,7 @@ SQLQueryBuilder --> IValuebase : uses
 @startuml ORM_ModelMapping
 
 abstract class ORMModel {
-  # _database: IValuebase
+  # _database: IDatabase
   # _data: Json[string]
   # _isDirty: bool
   # _originalData: Json[string]
@@ -202,8 +202,8 @@ abstract class ORMModel {
   + update(entity: IEntity, callback: delegate): void
   + delete(entity: IEntity, callback: delegate): void
   + query(): IQuery
-  + database(): IValuebase
-  + database(db: IValuebase): void
+  + database(): IDatabase
+  + database(db: IDatabase): void
   + save(callback: delegate): void
   + fill(data: Json[string]): void
   + toJson(): Json
@@ -223,7 +223,7 @@ class EntityMapper {
 
 ORMModel ..|> IORMModel
 ORMModel ..|> IEntity
-ORMModel --> IValuebase : uses
+ORMModel --> IDatabase : uses
 ORMModel --> IQuery : uses
 EntityMapper --> ORMModel : converts
 
@@ -288,10 +288,10 @@ interface IMigration {
 }
 
 abstract class Migration {
-  # _database: IValuebase
+  # _database: IDatabase
   # _tableName: string
   
-  + this(database: IValuebase)
+  + this(database: IDatabase)
   + up(): void
   + down(): void
   # createTable(name: string, columns: Column[]): void
@@ -303,10 +303,10 @@ abstract class Migration {
 
 class MigrationRunner {
   - _migrations: IMigration[]
-  - _database: IValuebase
+  - _database: IDatabase
   - _migrationsTable: string
   
-  + this(database: IValuebase)
+  + this(database: IDatabase)
   + registerMigration(migration: IMigration): void
   + runPending(callback: delegate): void
   + rollback(steps: int, callback: delegate): void
@@ -336,7 +336,7 @@ MigrationRunner --> Column : uses
 @startuml ORM_System_Overview
 
 package "uim.orm.interfaces" {
-  interface IValuebase
+  interface IDatabase
   interface IQuery
   interface IORMModel
   interface IMigration
@@ -368,16 +368,16 @@ package "uim.orm.migrations" {
   class MigrationRunner
 }
 
-BaseDatabase ..|> IValuebase
+BaseDatabase ..|> IDatabase
 MySQLDatabase --|> BaseDatabase
 SQLiteDatabase --|> BaseDatabase
-DatabaseConnectionPool --> IValuebase
+DatabaseConnectionPool --> IDatabase
 
 SQLQueryBuilder ..|> IQuery
-SQLQueryBuilder --> IValuebase
+SQLQueryBuilder --> IDatabase
 
 ORMModel ..|> IORMModel
-ORMModel --> IValuebase
+ORMModel --> IDatabase
 ORMModel --> IQuery
 EntityMapper --> ORMModel
 
@@ -497,7 +497,7 @@ deactivate Model
 
 ## Component Descriptions
 
-### IValuebase / BaseDatabase
+### IDatabase / BaseDatabase
 **Purpose**: Manage database connections and execute raw queries
 **Responsibilities**:
 - Maintain connection state (open/closed)

@@ -1,6 +1,8 @@
-# UIM Jsons Library
+# Library 📚 uim-jsons
 
-A robust Json serialization and manipulation library for the UIM framework, built with D language and vibe.d.
+[![uim-jsons](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-jsons.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-jsons.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A Json serialization and manipulation library for the UIM framework, built with D language and vibe.d.
 
 ## Features
 

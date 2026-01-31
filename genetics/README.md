@@ -1,6 +1,8 @@
-# UIM Genetic Algorithms Library
+# Library 📚 uim-genetics
 
-A high-performance, type-safe genetic algorithm framework for D language with full vibe.d async/await support. Designed for building evolutionary computation systems, optimization algorithms, and machine learning applications.
+[![uim-genetics](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-genetics.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-genetics.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A type-safe genetic algorithm framework for D language with full vibe.d async/await support. Designed for building evolutionary computation systems, optimization algorithms, and machine learning applications.
 
 ## Features
 
@@ -98,15 +100,18 @@ void main() {
 ### Operators
 
 **Selection Strategies:**
+
 - `RouletteWheelSelection`: Probability-weighted selection
 - `TournamentSelection`: Competitive tournament selection
 - `RankSelection`: Rank-based probability selection
 
 **Crossover Operators:**
+
 - `SinglePointCrossover`: Single crossover point
 - `TwoPointCrossover`: Two crossover points
 
 **Mutation Operators:**
+
 - `BitFlipMutation`: Flip individual bits in genome
 - `GaussianMutation`: Add Gaussian noise to genes
 - `SwapMutation`: Swap genome segments
@@ -162,7 +167,7 @@ writeln("Average fitness: ", stats["average"].get!double);
 class MyEvaluator : IFitnessEvaluator {
     override void evaluate(IIndividual individual,
         void delegate(double fitness) @safe callback) @trusted {
-        
+    
         // Your evaluation logic here
         double fitness = calculateFitness(individual);
         callback(fitness);
@@ -170,7 +175,7 @@ class MyEvaluator : IFitnessEvaluator {
 
     override void evaluatePopulation(IIndividual[] individuals,
         void delegate(IIndividual[]) @safe callback) @trusted {
-        
+    
         // Optional: parallel evaluation for performance
         foreach (ind; individuals) {
             evaluate(ind, (double fit) @safe {
