@@ -16,22 +16,22 @@ class Code : HtmlElement {
     super("code");
     this.selfClosing(false);
   }
-}
 
-auto Code() {
-  return new DCode();
-}
+  static Code opCall() {
+    return new Code();
+  }
 
-auto Code(string content) {
-  auto element = new DCode();
-  element.text(content);
-  return element;
+  static Code opCall(string content) {
+    auto element = new Code();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto code = Code();
   assert(code.toString() == "<code></code>");
 
   auto codeWithContent = Code("Hello");
-  assert(codeWithContent.toString() == "<code>Hello</code>");
+  assert(codeWithContent == "<code>Hello</code>");
 }

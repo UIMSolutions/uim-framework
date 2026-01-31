@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML textarea element
-class Textarea : DHtmlFormElement {
+class Textarea : HtmlFormElement {
   this() {
     super("textarea");
   }

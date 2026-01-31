@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML label element
-class Label : DHtmlFormElement {
+class Label : HtmlFormElement {
   this() {
     super("label");
   }
@@ -20,25 +20,25 @@ class Label : DHtmlFormElement {
   auto forElement(string elementId) {
     return attribute("for", elementId);
   }
-}
 
-auto label() {
+  static Label opCall() {
   return new Label();
 }
 
-auto label(string text) {
-  auto lbl = new Label();
+  static Label opCall(string text) {
+    auto lbl = new Label();
   lbl.text(text);
   return lbl;
 }
 
-auto label(string forId, string text) {
-  auto lbl = new Label();
-  lbl.forElement(forId).text(text);
-  return lbl;
+  static Label opCall(string forId, string text) {
+    auto lbl = new Label();
+    lbl.forElement(forId).text(text);
+    return lbl;
+  }
 }
-
+///
 unittest {
-  auto label = label("username", "Username:");
+  auto label = Label("username", "Username:");
   assert(label.toString().indexOf("label") > 0);
 }

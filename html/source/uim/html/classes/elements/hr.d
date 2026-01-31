@@ -17,10 +17,12 @@ class Hr : HtmlElement {
         super("hr");
         this.selfClosing(true);
     }
+
+    static Hr opCall() {
+        return new Hr();
+    }
 }
-
-auto Hr() { return new DHr(); }
-
+///
 unittest {
     auto hr = Hr();
     assert(hr.toString() == "<hr />");

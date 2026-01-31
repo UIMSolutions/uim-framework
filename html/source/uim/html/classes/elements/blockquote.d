@@ -1,4 +1,3 @@
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
@@ -26,15 +25,14 @@ class Blockquote : HtmlElement {
   IHtmlAttribute cite() {
     return attribute("cite");
   }
-}
 
-auto Blockquote() {
-  return new DBlockquote();
-}
+  static Blockquote opCall() {
+    return new Blockquote();
+  }
 
-auto Blockquote(string url, string text = null) {
-  auto element = new DBlockquote();
-  element.cite(url);
-  return element;
+  static Blockquote opCall(string url, string text = null) {
+    auto element = new Blockquote();
+    element.cite(url);
+    return element;
+  }
 }
-

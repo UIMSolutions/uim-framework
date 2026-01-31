@@ -1,4 +1,3 @@
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
@@ -17,18 +16,22 @@ class Div : HtmlElement {
   this() {
     super("div");
   }
-}
 
-auto Div() {
-  return new DDiv();
-}
+  bool opEquals(R)(string html) const {
+    return this.toString() == html;
+  }
+  
+  static Div opCall() {
+    return new Div();
+  }
 
-auto Div(string content) {
-  auto element = new DDiv();
-  element.text(content);
-  return element;
+  static Div opCall(string content) {
+    auto element = new Div();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto div = Div();
   assert(div.toString() == "<div></div>");

@@ -13,7 +13,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML button element
-class Button : DHtmlFormElement {
+class Button : HtmlFormElement {
   this() {
     super("button");
   }

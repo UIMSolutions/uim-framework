@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class HtmlForm : HtmlElement, IHtmlFormElement {
+class HtmlFormElement : HtmlElement, IHtmlFormElement {
   this(string tagName) {
     super(tagName);
   }

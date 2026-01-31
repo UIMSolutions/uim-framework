@@ -16,16 +16,16 @@ class Head : HtmlElement {
     super("head");
     this.selfClosing(false);
   }
-}
 
-auto Head() {
-  return new DHead();
-}
+  static Head opCall() {
+    return new Head();
+  }
 
-auto Head(string content) {
-  auto element = new DHead();
-  element.text(content);
-  return element;
+  static Head opCall(string content) {
+    auto element = new Head();
+    element.text(content);
+    return element;
+  }
 }
 ///
 unittest {

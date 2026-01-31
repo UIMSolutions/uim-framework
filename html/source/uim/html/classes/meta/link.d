@@ -160,7 +160,9 @@ class Base : HtmlElement {
   IHtmlAttribute type() {
     return attribute("type");
   }
-}
-auto Base() {
-  return new DBase();
+
+  // Create a new Base element
+  static Base opCall() {
+    return new Base();
+  }
 }

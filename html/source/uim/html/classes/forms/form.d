@@ -25,7 +25,7 @@ class Form : HtmlElement, IHtmlForm {
         attribute("name", nameValue);
         return this;
     }
-    
+
     IHtmlForm action(string url) {
         attribute("action", url);
         return this;
@@ -48,10 +48,12 @@ class Form : HtmlElement, IHtmlForm {
         attribute("enctype", value);
         return this;
     }
+
+    static Form opCall() {
+        return new Form();
+    }
 }
-
-auto Form() { return new DForm(); }
-
+///
 unittest {
     auto form = Form().action("/submit").post();
     assert(form.toString().indexOf("action=\"/submit\"") > 0);

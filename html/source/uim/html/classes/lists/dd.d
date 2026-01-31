@@ -17,11 +17,16 @@ class Dd : HtmlElement {
     this() {
         super("dd");
     }
+    static Dd opCall() {
+        return new Dd();
+    }
+    static Dd opCall(string content) {
+        auto dd = new Dd();
+        dd.text(content);
+        return dd;
+    }
 }
-
-auto Dd() { return new DDd(); }
-auto Dd(string content) { auto dd = new DDd(); dd.text(content); return dd; }
-
+///
 unittest {
     auto dd = Dd("Description");
     assert(dd.toString() == "<dd>Description</dd>");

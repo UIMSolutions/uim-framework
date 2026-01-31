@@ -16,18 +16,18 @@ class Caption : HtmlElement {
     super("caption");
     this.selfClosing(false);
   }
-}
 
-auto Caption() {
-  return new DCaption();
-}
+  static Caption opCall() {
+    return new Caption();
+  }
 
-auto Caption(string content) {
-  auto element = new DCaption();
-  element.text(content);
-  return element;
+  static Caption opCall(string content) {
+    auto element = new Caption();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto caption = Caption();
   assert(caption.toString() == "<caption></caption>");

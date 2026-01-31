@@ -18,12 +18,11 @@ class Br : HtmlElement {
     super("br");
     this.selfClosing(true);
   }
+  static Br opCall() {
+    return new Br();
+  }
 }
-
-auto Br() {
-  return new DBr();
-}
-
+///
 unittest {
   auto br = Br();
   assert(br.toString() == "<br />");

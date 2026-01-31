@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Radio : DInput  {
+class Radio : Input  {
   this() {
     super("input");
     attribute("type", "radio");

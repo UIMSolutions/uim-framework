@@ -14,6 +14,16 @@ mixin(ShowModule!());
 
 /// Base class for all HTML elements
 class HtmlElement : IHtmlElement {
+  this() {
+    // super();
+    _selfClosing = false;
+  }
+
+  this(string tag) {
+    this();
+    this.tagName(tag);
+  }
+
   protected string _tagName;
   protected string _content;
   protected bool _selfClosing;
@@ -54,16 +64,9 @@ class HtmlElement : IHtmlElement {
   protected IHtmlAttribute[string] _attributes;
   protected IHtmlElement[] _children;
 
-  this() {
-    // super();
-    _selfClosing = false;
+  bool opEquals(R)(string html) const {
+    return this.toString() == html;
   }
-
-  this(string tag) {
-    this();
-    this.tagName(tag);
-  }
-
   /// Add an attribute to the element
   IHtmlElement attribute(string name, string value) {
     _attributes[name] = new DHtmlAttribute(name, value);
@@ -176,15 +179,11 @@ class HtmlElement : IHtmlElement {
   }
 
   /// Create a new element
-  static IHtmlElement create(string tag) {
+  static HtmlElement opCall(string tag) {
     return new HtmlElement(tag);
   }
 }
-
-IHtmlElement HtmlElement(string tag) {
-  return new HtmlElement(tag);
-}
-
+///
 unittest {
   auto div = HtmlElement("div");
   div.id("test").addClass("container");

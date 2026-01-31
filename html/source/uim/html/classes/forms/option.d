@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML option element
-class SelectOption : DHtmlFormElement {
+class SelectOption : HtmlFormElement {
     this() {
         super("option");
     }
@@ -28,7 +28,21 @@ class SelectOption : DHtmlFormElement {
     auto disabled() {
         return attribute("disabled", "");
     }
-}
 
-auto selectOption() { return new SelectOption(); }
-auto selectOption(string value, string text) { auto opt = new SelectOption(); opt.value(value).text(text); return opt; }
+    static SelectOption opCall() {
+        return new SelectOption();
+    }
+
+    static SelectOption opCall(string value, string text) {
+        auto opt = new SelectOption();
+        opt.value(value).text(text);
+        return opt;
+    }
+}
+///
+unittest {
+    mixin(ShowTest!"Testing SelectOption Class");
+
+    auto option = SelectOption("1", "Option 1");
+    assert(option.toString() == "<option value=\"1\">Option 1</option>");
+}

@@ -16,18 +16,18 @@ class Main : HtmlElement {
     super("main");
     this.selfClosing(false);
   }
-}
 
-auto Main() {
-  return new DMain();
-}
+  static Main opCall() {
+    return new Main();
+  }
 
-auto Main(string content) {
-  auto element = new DMain();
-  element.text(content);
-  return element;
+  static Main opCall(string content) {
+    auto element = new Main();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto main = Main();
   assert(main.toString() == "<main></main>");

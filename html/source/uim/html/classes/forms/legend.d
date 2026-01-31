@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Legend : DHtmlFormElement {
+class Legend : HtmlFormElement {
   this() {
     super("legend");
   }

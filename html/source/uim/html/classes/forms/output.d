@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML output element
-class Output : DHtmlFormElement {
+/** 
+  HTML output element
+
+  The output element represents the result of a calculation or user action. 
+  It is typically used in forms to display results that are computed based on user input.
+*/
+class Output : HtmlFormElement {
   this() {
     super("output");
   }
@@ -21,25 +26,26 @@ class Output : DHtmlFormElement {
   auto forElement(string elementId) {
     return attribute("for", elementId);
   }
-}
 
-auto Output() {
-  return new DOutput();
-}
+  static Output opCall() {
+    return new Output();
+  }
 
-auto Output(string text) {
-  auto lbl = new DOutput();
-  lbl.text(text);
-  return lbl;
-}
+  static Output opCall(string text) {
+    auto lbl = new Output();
+    lbl.text(text);
+    return lbl;
+  }
 
-auto Output(string forId, string text) {
-  auto lbl = new DOutput();
-  lbl.forElement(forId).text(text);
-  return lbl;
+  static Output opCall(string forId, string text) {
+    auto lbl = new Output();
+    lbl.forElement(forId).text(text);
+    return lbl;
+  }
 }
-
+///
 unittest {
   auto output = Output("username", "Username:");
-  assert(output.toString().indexOf("output") > 0);
+  assert(output == "<output for=\"username\">Username:</output>");
+
 }

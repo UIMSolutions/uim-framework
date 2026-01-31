@@ -39,11 +39,7 @@ class Base : HtmlElement {
     return attribute("target");
   }
   // #endregion target
-}
-
-auto Base() {
-  return new DBase();
-}
-
-unittest {
+  static Base opCall() {
+    return new Base();
+  }
 }

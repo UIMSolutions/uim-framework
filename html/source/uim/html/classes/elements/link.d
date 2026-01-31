@@ -22,6 +22,7 @@ class Link : HtmlElement {
         attribute("rel", relValue);
         return this;
     }
+
     IHtmlAttribute rel() {
         return attribute("rel");
     }
@@ -43,13 +44,15 @@ class Link : HtmlElement {
     IHtmlAttribute type() {
         return attribute("type");
     }
-}
 
-auto Link() { return new DLink(); }
-auto Link(string href, string rel = "stylesheet") { 
-    auto element = new DLink(); 
-    element.href(href);
-    element.rel(rel);
-    return element; 
-}
+    static Link opCall() {
+        return new Link();
+    }
 
+    static Link opCall(string href, string rel = "stylesheet") {
+        auto element = new Link();
+        element.href(href);
+        element.rel(rel);
+        return element;
+    }
+}

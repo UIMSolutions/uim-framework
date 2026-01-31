@@ -16,18 +16,18 @@ class P : HtmlElement {
   this() {
     super("p");
   }
-}
 
-auto P() {
-  return new DP();
-}
+  static P opCall() {
+    return new P();
+  }
 
-auto P(string content) {
-  auto element = new DP();
-  element.text(content);
-  return element;
+  static P opCall(string content) {
+    auto element = new P();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto p = P("Paragraph text");
   assert(p.toString() == "<p>Paragraph text</p>");

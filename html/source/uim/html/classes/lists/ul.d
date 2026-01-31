@@ -17,10 +17,12 @@ class Ul : HtmlElement {
     this() {
         super("ul");
     }
+
+    static Ul opCall() {
+        return new Ul();
+    }
 }
-
-auto Ul() { return new DUl(); }
-
+///
 unittest {
     auto ul = Ul();
     assert(ul.toString() == "<ul></ul>");

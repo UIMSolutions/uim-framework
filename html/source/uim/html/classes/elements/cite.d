@@ -16,22 +16,22 @@ class Cite : HtmlElement {
     super("cite");
     this.selfClosing(false);
   }
-}
 
-auto Cite() {
-  return new DCite();
-}
+  static Cite opCall() {
+    return new Cite();
+  }
 
-auto Cite(string content) {
-  auto element = new DCite();
-  element.text(content);
-  return element;
+  static Cite opCall(string content) {
+    auto element = new Cite();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
   auto cite = Cite();
   assert(cite.toString() == "<cite></cite>");
 
   auto citeWithContent = Cite("Hello");
-  assert(citeWithContent.toString() == "<cite>Hello</cite>");
+  assert(citeWithContent == "<cite>Hello</cite>");
 }

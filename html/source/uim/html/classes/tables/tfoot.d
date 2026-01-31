@@ -17,10 +17,11 @@ class Tfoot : HtmlElement {
     this() {
         super("tfoot");
     }
+    static Tfoot opCall() {
+        return new Tfoot();
+    }
 }
-
-auto Tfoot() { return new DTfoot(); }
-
+///
 unittest {
     auto tfoot = Tfoot();
     assert(tfoot.toString() == "<tfoot></tfoot>");
