@@ -18,7 +18,7 @@ A comprehensive D language library for generating HTML programmatically.
 Add to your `dub.sdl`:
 
 ```sdl
-dependency "uim-html" version="~>1.0.0"
+dependency "uim-framework:html" version="~>26.1.4"
 ```
 
 Or `dub.json`:
@@ -26,7 +26,7 @@ Or `dub.json`:
 ```json
 {
     "dependencies": {
-        "uim-html": "~>1.0.0"
+        "uim-framework:html": "~>26.1.4"
     }
 }
 ```
