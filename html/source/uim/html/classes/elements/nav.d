@@ -16,22 +16,26 @@ class Nav : HtmlElement {
     super("nav");
     this.selfClosing(false);
   }
+
+  static Nav opCall() {
+    return new Nav();
+  }
 }
 
-auto Nav() {
-  return new DNav();
+auto nav() {
+  return new Nav();
 }
 
-auto Nav(string content) {
-  auto element = new DNav();
+auto nav(string content) {
+  auto element = new Nav();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto nav = Nav();
+  auto nav = nav();
   assert(nav.toString() == "<nav></nav>");
 
-  auto navWithContent = Nav("Hello");
+  auto navWithContent = nav("Hello");
   assert(navWithContent.toString() == "<nav>Hello</nav>");
 }

@@ -30,5 +30,5 @@ class SelectOption : DHtmlFormElement {
     }
 }
 
-auto SelectOption() { return new DSelectOption(); }
-auto SelectOption(string value, string text) { auto opt = new DSelectOption(); opt.value(value).text(text); return opt; }
+auto selectOption() { return new SelectOption(); }
+auto selectOption(string value, string text) { auto opt = new SelectOption(); opt.value(value).text(text); return opt; }

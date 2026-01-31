@@ -22,23 +22,23 @@ class Label : DHtmlFormElement {
   }
 }
 
-auto Label() {
-  return new DLabel();
+auto label() {
+  return new Label();
 }
 
-auto Label(string text) {
-  auto lbl = new DLabel();
+auto label(string text) {
+  auto lbl = new Label();
   lbl.text(text);
   return lbl;
 }
 
-auto Label(string forId, string text) {
-  auto lbl = new DLabel();
+auto label(string forId, string text) {
+  auto lbl = new Label();
   lbl.forElement(forId).text(text);
   return lbl;
 }
 
 unittest {
-  auto label = Label("username", "Username:");
+  auto label = label("username", "Username:");
   assert(label.toString().indexOf("label") > 0);
 }

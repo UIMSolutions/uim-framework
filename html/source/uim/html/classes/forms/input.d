@@ -72,82 +72,82 @@ class Input : DHtmlFormElement, IInput {
   }
 }
 
-auto Input() {
-  return new DInput();
+auto input() {
+  return new Input();
 }
 
-auto InputText(string name = null) {
-  auto input = new DInput();
+auto inputText(string name = null) {
+  auto input = new Input();
   input.type("text");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputPassword(string name = null) {
-  auto input = new DInput();
+auto inputPassword(string name = null) {
+  auto input = new Input();
   input.type("password");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputEmail(string name = null) {
-  auto input = new DInput();
+auto inputEmail(string name = null) {
+  auto input = new Input();
   input.type("email");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputNumber(string name = null) {
-  auto input = new DInput();
+auto inputNumber(string name = null) {
+  auto input = new Input();
   input.type("number");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputCheckbox(string name = null) {
-  auto input = new DInput();
+auto inputCheckbox(string name = null) {
+  auto input = new Input();
   input.type("checkbox");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputRadio(string name = null) {
-  auto input = new DInput();
+auto inputRadio(string name = null) {
+  auto input = new Input();
   input.type("radio");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputFile(string name = null) {
-  auto input = new DInput();
+auto inputFile(string name = null) {
+  auto input = new Input();
   input.type("file");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputHidden(string name = null) {
-  auto input = new DInput();
+auto inputHidden(string name = null) {
+  auto input = new Input();
   input.type("hidden");
   if (name)
     input.name(name);
   return input;
 }
 
-auto InputSubmit(string value = "Submit") {
-  auto input = new DInput();
+auto inputSubmit(string value = "Submit") {
+  auto input = new Input();
   input.type("submit");
   input.value(value);
   return input;
 }
 
 unittest {
-  auto input = InputText("username");
+  auto input = inputText("username");
   assert(input.toString().indexOf("type=\"text\"") > 0);
 }

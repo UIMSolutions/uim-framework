@@ -31,10 +31,10 @@ class Th : HtmlElement {
     }
 }
 
-auto Th() { return new DTh(); }
-auto Th(string content) { auto th = new DTh(); th.text(content); return th; }
+auto th() { return new Th(); }
+auto th(string content) { auto th = new Th(); th.text(content); return th; }
 
 unittest {
-    auto th = Th("Header");
+    auto th = th("Header");
     assert(th.toString() == "<th>Header</th>");
 }

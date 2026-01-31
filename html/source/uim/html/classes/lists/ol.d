@@ -36,11 +36,11 @@ class Ol : HtmlElement {
   }
 }
 
-auto Ol() {
-  return new DOl();
+auto ol() {
+  return new Ol();
 }
 
 unittest {
-  auto ol = Ol();
+  auto ol = ol();
   assert(ol.toString() == "<ol></ol>");
 }

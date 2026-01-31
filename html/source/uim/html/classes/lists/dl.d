@@ -19,9 +19,9 @@ class Dl : HtmlElement {
     }
 }
 
-auto Dl() { return new DDl(); }
+auto dl() { return new Dl(); }
 
 unittest {
-    auto dl = Dl();
+    auto dl = dl();
     assert(dl.toString() == "<dl></dl>");
 }

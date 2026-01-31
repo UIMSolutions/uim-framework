@@ -47,6 +47,10 @@ class Select : DHtmlFormElement {
     }
 }
 
-auto Select() { return new DSelect(); }
-auto Select(string name) { auto sel = new DSelect(); sel.name(name); return sel; }
+auto select() { return new Select(); }
+auto select(string name) { auto sel = new Select(); sel.name(name); return sel; }
 
+unittest {
+    auto sel = select("mySelect").multiple().addOption("1", "Option 1").addOption("2", "Option 2");
+    assert(sel.toString().indexOf("select") > 0);
+}   
