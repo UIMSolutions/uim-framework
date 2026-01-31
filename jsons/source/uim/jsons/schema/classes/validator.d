@@ -378,11 +378,11 @@ class JsonSchemaValidator : UIMObject {
 }
 ///
 unittest {
-  auto schema = new DJsonSchema();
+  auto schema = new JsonSchema();
   schema.type = "string";
   schema.minLength = 3;
   
-  auto validator = new DJsonSchemaValidator(schema);
+  auto validator = new JsonSchemaValidator(schema);
   
   auto result1 = validator.validate(Json("hello"));
   writeln("result1: ", result1);

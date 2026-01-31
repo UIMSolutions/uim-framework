@@ -75,7 +75,7 @@ class JsonRpcHandlerRegistry : UIMObject {
 }
 
 unittest {
-  auto registry = new DJsonRpcHandlerRegistry();
+  auto registry = new JsonRpcHandlerRegistry();
   
   registry.register("add", (Json params) {
     auto arr = params.get!(Json[]);
