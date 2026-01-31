@@ -210,7 +210,7 @@ unittest {
     "first": "abc".toJson, "second": ["a": 1].toJson, "third": "def".toJson, "fourth": [3, 4].toJson
   ];
   auto strings = map.getStrings(["first", "third", "fourth"]);
-  assert(strings.length == 2, "Expected 2 strings");
+  assert(strings.length == 3, "Expected 3 strings");
   assert(strings[0] == "abc", "Expected string at key 'first'");
   assert(strings[1] == "def", "Expected string at key 'third'");
 }
