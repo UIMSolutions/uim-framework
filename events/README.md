@@ -1,14 +1,17 @@
-# UIM Events Library
+# Library 📚 uim-events
 
-A comprehensive, type-safe event management system for D language applications, providing powerful event dispatching, listener management, and declarative event handling through User Defined Attributes (UDAs).
+[![uim-events](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-events.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-events.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A type-safe event management system for D language applications, providing powerful event dispatching, listener management, and declarative event handling through User Defined Attributes (UDAs).
 
 ## Overview
 
-The UIM Events library offers a robust event-driven architecture that enables loose coupling between components in your application. Built on top of `uim-core` and `uim-oop`, it provides both imperative and declarative approaches to event handling with strong compile-time type checking.
+The UIM Events library offers a event-driven architecture that enables loose coupling between components in your application. Built on top of `uim-core` and `uim-oop`, it provides both imperative and declarative approaches to event handling with strong compile-time type checking.
 
 ## Key Features
 
 ### Core Capabilities
+
 - **Event Objects**: Strongly-typed event objects with metadata and timestamp tracking
 - **Event Dispatcher**: Centralized event dispatching system with efficient listener management
 - **Event Listeners**: Flexible listener registration with callback support
@@ -19,6 +22,7 @@ The UIM Events library offers a robust event-driven architecture that enables lo
 - **Type Safety**: Full compile-time type checking for events and handlers
 
 ### Advanced Features
+
 - **UDA Support**: Declarative event handling using `@EventListener` and `@EventListenerOnce` attributes
 - **Annotated Handlers**: Automatic listener registration from class methods via reflection
 - **Event Interface**: `IEvent` interface for maximum flexibility and testability
@@ -30,15 +34,17 @@ The UIM Events library offers a robust event-driven architecture that enables lo
 Add the dependency to your `dub.sdl` or `dub.json`:
 
 **dub.sdl:**
+
 ```d
-dependency "uim-events" version="~>1.0.0"
+dependency "uim-framework:events" version="~>24.1.4"
 ```
 
 **dub.json:**
+
 ```json
 {
     "dependencies": {
-        "uim-events": "~>1.0.0"
+        "uim-framework:events": "~>24.1.4"
     }
 }
 ```
@@ -73,7 +79,7 @@ Create custom event classes to carry domain-specific data:
 class UserRegistereUIMEvent : UIMEvent {
     string username;
     string email;
-    
+  
     this(string username, string email) {
         super("user.registered");
         this.username = username;
@@ -197,11 +203,11 @@ class UserEventSubscriber : UIMEventSubscriber {
         dispatcher.on("user.login", (IEvent event) {
             // Handle login
         });
-        
+    
         dispatcher.on("user.logout", (IEvent event) {
             // Handle logout
         });
-        
+    
         dispatcher.on("user.registered", (IEvent event) {
             // Handle registration
         }, 10);
@@ -228,14 +234,14 @@ class UserEventHandler : DAnnotateUIMEventHandler {
     void onUserLogin(IEvent event) {
         writeln("User logged in");
     }
-    
+  
     // Listener with custom priority
     @EventListener("user.registered", 10)
     void sendWelcomeEmail(IEvent event) {
         auto userEvent = cast(UserRegistereUIMEvent)event;
         writeln("Sending email to: ", userEvent.email);
     }
-    
+  
     // One-time listener
     @EventListenerOnce("app.initialized")
     void onAppStart(IEvent event) {
@@ -260,7 +266,7 @@ dispatcher.dispatch(new UserRegistereUIMEvent("john", "john@example.com"));
 class UserRegistereUIMEvent : UIMEvent {
     string username;
     string email;
-    
+  
     this(string username, string email) {
         super("user.registered");
         this.username = username;
@@ -279,12 +285,12 @@ class OrderEventHandler : DAnnotateUIMEventHandler {
     void validateOrder(IEvent event) {
         writeln("1. Validating order...");
     }
-    
+  
     @EventListener("order.placed", 5)
     void processPayment(IEvent event) {
         writeln("2. Processing payment...");
     }
-    
+  
     @EventListener("order.placed", 0)
     void sendConfirmation(IEvent event) {
         writeln("3. Sending confirmation...");
@@ -297,34 +303,36 @@ class OrderEventHandler : DAnnotateUIMEventHandler {
 ### Available UDAs
 
 - **`@EventListener("event.name", priority)`** - Mark a method as an event listener
+
   - `priority` is optional, defaults to 0
   - Higher priority values execute first
-  
 - **`@EventListenerOnce("event.name", priority)`** - Mark a method as a one-time event listener
+
   - Automatically unregisters after first execution
   - `priority` is optional, defaults to 0
-
 - **`@UseEvent("event.name")`** - Mark an event class (documentation/metadata)
 
 ### Core Interfaces
 
 #### IEvent
+
 Interface that defines the contract for all events:
+
 ```d
 interface IEvent {
     // Properties
     string name();
     IEvent name(string value);
-    
+  
     SysTime timestamp();
     IEvent timestamp(SysTime value);
-    
+  
     bool stopped();
     IEvent stopped(bool value);
-    
+  
     Json[string] data();
     IEvent data(Json[string] value);
-    
+  
     // Methods
     void stopPropagation();
     bool isPropagationStopped();
@@ -335,45 +343,49 @@ interface IEvent {
 ```
 
 #### IEventDispatcher
+
 Interface that defines the contract for event dispatchers:
+
 ```d
 interface IEventDispatcher {
     // Listener management
     IEventDispatcher addListener(string eventName, UIMEventListener listener);
     IEventDispatcher removeListener(string eventName, UIMEventListener listener);
     IEventDispatcher removeListeners(string eventName);
-    
+  
     // Query listeners
     UIMEventListener[] getListeners(string eventName);
     bool hasListeners(string eventName);
-    
+  
     // Listener registration
     IEventDispatcher on(string eventName, EventCallback callback, int priority = 0);
     IEventDispatcher once(string eventName, EventCallback callback, int priority = 0);
-    
+  
     // Event dispatching
     IEvent dispatch(IEvent event);
     void dispatchAsync(IEvent event) @trusted;
-    
+  
     // Cleanup
     void clearListeners();
 }
 ```
 
 #### IEventListener
+
 Interface that defines the contract for event listeners:
+
 ```d
 interface IEventListener {
     // Properties
     EventCallback callback();
     IEventListener callback(EventCallback value);
-    
+  
     int priority();
     IEventListener priority(int value);
-    
+  
     bool once();
     IEventListener once(bool value);
-    
+  
     // Methods
     void execute(IEvent event);
     bool hasExecuted();
@@ -384,17 +396,19 @@ interface IEventListener {
 ### Core Classes
 
 #### UIMEvent
+
 Base class for all events:
+
 ```d
 class UIMEvent : UIMObject, IEvent {
     this(string eventName);
-    
+  
     // Properties
     string name();
     SysTime timestamp();
     bool stopped();
     Json[string] data();
-    
+  
     // Methods
     void stopPropagation();
     bool isPropagationStopped();
@@ -405,29 +419,33 @@ class UIMEvent : UIMObject, IEvent {
 ```
 
 #### UIMEventDispatcher
+
 Central event dispatcher:
+
 ```d
 class UIMEventDispatcher : UIMObject {
     // Add listeners
     UIMEventDispatcher addListener(string eventName, UIMEventListener listener);
     UIMEventDispatcher on(string eventName, EventCallback callback, int priority = 0);
     UIMEventDispatcher once(string eventName, EventCallback callback, int priority = 0);
-    
+  
     // Remove listeners
     UIMEventDispatcher removeListener(string eventName, UIMEventListener listener);
     UIMEventDispatcher removeListeners(string eventName);
-    
+  
     // Query listeners
     UIMEventListener[] getListeners(string eventName);
     bool hasListeners(string eventName);
-    
+  
     // Dispatch events
     IEvent dispatch(IEvent event);
 }
 ```
 
 #### DAnnotateUIMEventHandler
+
 Base class for handlers using UDAs:
+
 ```d
 class DAnnotateUIMEventHandler : UIMObject {
     void registerWith(UIMEventDispatcher dispatcher);
@@ -435,7 +453,9 @@ class DAnnotateUIMEventHandler : UIMObject {
 ```
 
 #### UIMEventSubscriber
+
 Base class for event subscribers:
+
 ```d
 abstract class UIMEventSubscriber : UIMObject, IEventSubscriber {
     abstract void subscribe(UIMEventDispatcher dispatcher);
@@ -453,7 +473,7 @@ import uim.events;
 class UserLoginEvent : UIMEvent {
     string username;
     string ipAddress;
-    
+  
     this(string username, string ipAddress) {
         super("user.login");
         this.username = username;
@@ -463,7 +483,7 @@ class UserLoginEvent : UIMEvent {
 
 class UserLogoutEvent : UIMEvent {
     string username;
-    
+  
     this(string username) {
         super("user.logout");
         this.username = username;
@@ -477,13 +497,13 @@ class AuthEventHandler : DAnnotateUIMEventHandler {
         auto loginEvent = cast(UserLoginEvent)event;
         writeln("Login: ", loginEvent.username, " from ", loginEvent.ipAddress);
     }
-    
+  
     @EventListener("user.login", 5)
     void updateLastSeen(IEvent event) {
         auto loginEvent = cast(UserLoginEvent)event;
         // Update database...
     }
-    
+  
     @EventListener("user.logout")
     void logLogout(IEvent event) {
         auto logoutEvent = cast(UserLogoutEvent)event;
@@ -506,7 +526,7 @@ dispatcher.dispatch(new UserLogoutEvent("alice"));
 class OrderPlaceUIMEvent : UIMEvent {
     int orderId;
     decimal total;
-    
+  
     this(int orderId, decimal total) {
         super("order.placed");
         this.orderId = orderId;
@@ -523,13 +543,13 @@ class OrderEventHandler : DAnnotateUIMEventHandler {
             return;
         }
     }
-    
+  
     @EventListener("order.placed", 5)
     void processPayment(IEvent event) {
         auto order = cast(OrderPlaceUIMEvent)event;
         // Process payment for order.total
     }
-    
+  
     @EventListener("order.placed", 0)
     void sendConfirmation(IEvent event) {
         auto order = cast(OrderPlaceUIMEvent)event;
@@ -548,14 +568,14 @@ class AppEventSubscriber : UIMEventSubscriber {
             writeln("Initializing application...");
             // Load configuration, connect to database, etc.
         });
-        
+    
         // Health check events
         dispatcher.on("app.healthcheck", (IEvent event) {
             // Perform health checks
             event.setData("status", Json("healthy"));
             event.setData("uptime", Json(getUptime()));
         });
-        
+    
         // Application shutdown
         dispatcher.once("app.shutdown", (IEvent event) {
             writeln("Shutting down gracefully...");
@@ -568,22 +588,16 @@ class AppEventSubscriber : UIMEventSubscriber {
 ## Best Practices
 
 1. **Use Descriptive Event Names**: Use dot-notation for namespacing (e.g., `user.login`, `order.placed`, `payment.processed`)
-
 2. **Create Custom Event Classes**: For events with data, create dedicated event classes rather than using metadata
-
 3. **Set Appropriate Priorities**: Use priorities to control execution order:
+
    - Validation: 10+
    - Business logic: 5-10
    - Side effects (logging, notifications): 0-5
-
 4. **Use Stop Propagation Wisely**: Only stop propagation when absolutely necessary (e.g., validation failures)
-
 5. **Prefer UDAs for Static Handlers**: Use `@EventListener` for handlers that don't change at runtime
-
 6. **Use Subscribers for Grouping**: Group related event handlers into subscriber classes for better organization
-
 7. **Type Safety**: Always cast events to their specific type to access custom properties safely
-
 8. **One-Time Listeners**: Use `once()` or `@EventListenerOnce` for initialization or setup events
 
 ## Testing
@@ -602,10 +616,12 @@ dub test
 ## Examples
 
 Complete working examples can be found in the `examples/` directory:
+
 - `example.d` - Basic usage examples
 - `example_uda.d` - UDA-based event handling examples
 
 Run examples:
+
 ```bash
 cd examples
 dub run
@@ -614,6 +630,7 @@ dub run
 ## Contributing
 
 Contributions are welcome! Please ensure:
+
 - All tests pass
 - New features include tests
 - Code follows the existing style
