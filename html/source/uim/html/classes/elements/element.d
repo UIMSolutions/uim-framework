@@ -69,7 +69,7 @@ class HtmlElement : IHtmlElement {
   }
   /// Add an attribute to the element
   IHtmlElement attribute(string name, string value) {
-    _attributes[name] = new DHtmlAttribute(name, value);
+    _attributes[name] = new HtmlAttribute(name, value);
     return this;
   }
 

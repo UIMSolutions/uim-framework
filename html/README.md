@@ -95,13 +95,13 @@ auto form = Form()
         Label("username", "Username:")
     )
     .addChild(
-        InputText("username").placeholder("Enter username")
+        TextInput("username").placeholder("Enter username")
     )
     .addChild(
         Label("password", "Password:")
     )
     .addChild(
-        InputPassword("password")
+        PasswordInput("password")
     )
     .addChild(
         ButtonSubmit("Login")
@@ -110,15 +110,15 @@ auto form = Form()
 
 ### Input Types
 ```d
-auto textInput = InputText("name");
-auto password = InputPassword("password");
+auto textInput = TextInput("name");
+auto password = PasswordInput("password");
 auto email = InputEmail("email");
 auto number = InputNumber("age");
 auto checkbox = InputCheckbox("agree");
 auto radio = InputRadio("option");
 auto file = InputFile("upload");
 auto hidden = InputHidden("token");
-auto submit = InputSubmit("Submit");
+auto submit = SubmitInput("Submit");
 ```
 
 ### Other Form Elements
@@ -299,8 +299,8 @@ class MyCustom : HtmlElement {
 ### Core Classes
 
 - `HtmlElement` - Base class for all HTML elements
-- `DHtmlAttribute` - Represents an HTML attribute
-- `DHtmlDocument` - Complete HTML document builder
+- `HtmlAttribute` - Represents an HTML attribute
+- `HtmlDocument` - Complete HTML document builder
 
 ### Element Categories
 

@@ -71,7 +71,7 @@ void formExample() {
             Div().addClass("form-group")
                 .addChild(Label("username", "Username:"))
                 .addChild(
-                    InputText("username")
+                    TextInput("username")
                         .placeholder("Enter username")
                         .required()
                 )
@@ -80,7 +80,7 @@ void formExample() {
             Div().addClass("form-group")
                 .addChild(Label("password", "Password:"))
                 .addChild(
-                    InputPassword("password")
+                    PasswordInput("password")
                         .placeholder("Enter password")
                         .required()
                 )

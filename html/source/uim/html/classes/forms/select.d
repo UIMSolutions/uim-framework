@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML select element
-class Select : HtmlFormElement {
+class Select : FormElement {
     this() {
         super("select");
     }

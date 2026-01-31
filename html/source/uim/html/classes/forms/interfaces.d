@@ -28,12 +28,12 @@ interface IHtmlForm : IHtmlElement {
   IHtmlForm enctype(string value);
 }
 
-interface IInput : IHtmlFormElement {
+interface IInput : IFormElement {
     IHtmlAttribute type();
     IInput type(string typeValue);
 }
 
-interface IHtmlFormElement : IHtmlElement {
+interface IFormElement : IHtmlElement {
     IHtmlAttribute form();
-    IHtmlFormElement form(string formId);
+    IFormElement form(string formId);
 }

@@ -48,12 +48,12 @@ class HtmlAttribute : /* UIMObject, */ IHtmlAttribute {
 
     /// Create a new attribute
     static IHtmlAttribute create(string name, string value = null) {
-        return new DHtmlAttribute(name, value);
+        return new HtmlAttribute(name, value);
     }
 }
 
-auto htmlAttribute() { return new DHtmlAttribute(); }
-auto htmlAttribute(string name, string value = null) { return new DHtmlAttribute(name, value); }
+auto htmlAttribute() { return new HtmlAttribute(); }
+auto htmlAttribute(string name, string value = null) { return new HtmlAttribute(name, value); }
 
 unittest {
     auto attr = HtmlAttribute("class", "test");

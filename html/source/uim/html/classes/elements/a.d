@@ -34,11 +34,11 @@ class A : HtmlElement {
 }
 
 auto a() {
-  return new AElement();
+  return new A();
 }
 
 auto a(string url, string text = null) {
-  auto element = new AElement();
+  auto element = new A();
   element.href(url);
   if (text)
     element.text(text);

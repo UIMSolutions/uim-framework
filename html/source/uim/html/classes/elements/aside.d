@@ -19,17 +19,17 @@ class Aside : HtmlElement {
 }
 
 auto aside() {
-  return new AsideElement();
+  return new Aside();
 }
 
 auto aside(string content) {
-  auto element = new AsideElement();
+  auto element = new Aside();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto aside = Aside();
+  auto aside = aside();
   assert(aside.toString() == "<aside></aside>");
 
   auto asideWithContent = Aside("Hello");

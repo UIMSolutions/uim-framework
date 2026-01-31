@@ -50,31 +50,31 @@ class HtmlDocument : UIMObject {
     }
 
     /// Add a meta tag
-    DHtmlDocument addMeta(string name, string content) {
+    HtmlDocument addMeta(string name, string content) {
         _metaTags ~= `<meta name="` ~ name ~ `" content="` ~ content ~ `">`;
         return this;
     }
 
     /// Add a stylesheet link
-    DHtmlDocument addStylesheet(string href) {
+    HtmlDocument addStylesheet(string href) {
         _stylesheets ~= `<link rel="stylesheet" href="` ~ href ~ `">`;
         return this;
     }
 
     /// Add a script tag
-    DHtmlDocument addScript(string src) {
+    HtmlDocument addScript(string src) {
         _scripts ~= `<script src="` ~ src ~ `"></script>`;
         return this;
     }
 
     /// Add inline style
-    DHtmlDocument addInlineStyle(string css) {
+    HtmlDocument addInlineStyle(string css) {
         _stylesheets ~= `<style>` ~ css ~ `</style>`;
         return this;
     }
 
     /// Add inline script
-    DHtmlDocument addInlineScript(string js) {
+    HtmlDocument addInlineScript(string js) {
         _scripts ~= `<script>` ~ js ~ `</script>`;
         return this;
     }
@@ -138,7 +138,7 @@ class HtmlDocument : UIMObject {
     }
 }
 
-auto htmlDocument() { return new DHtmlDocument(); }
+auto htmlDocument() { return new HtmlDocument(); }
 
 unittest {
     auto doc = HtmlDocument();

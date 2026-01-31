@@ -49,9 +49,9 @@ void testFormElements() {
     form.post();
     
     // Test inputs
-    auto input = InputText("username").placeholder("Enter username");
-    auto password = InputPassword("password");
-    auto submit = InputSubmit("Login");
+    auto input = TextInput("username").placeholder("Enter username");
+    auto password = PasswordInput("password");
+    auto submit = ("Login");
     
     // Test button
     auto btn = HtmlButton("Click me");

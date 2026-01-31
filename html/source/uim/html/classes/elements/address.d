@@ -19,11 +19,11 @@ class Address : HtmlElement {
 }
 
 auto address() {
-  return new DAddress();
+  return new Address();
 }
 
 auto address(string content) {
-  auto element = new DAddress();
+  auto element = new Address();
   element.text(content);
   return element;
 }

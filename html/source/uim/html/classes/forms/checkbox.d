@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Checkbox : DInput {
+class Checkbox : Input {
   this() {
     super("input");
     type("checkbox");

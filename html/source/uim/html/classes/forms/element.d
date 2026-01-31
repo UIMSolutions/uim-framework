@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class HtmlFormElement : HtmlElement, IHtmlFormElement {
+class FormElement : HtmlElement, IFormElement {
   this(string tagName) {
     super(tagName);
   }
@@ -15,7 +15,7 @@ class HtmlFormElement : HtmlElement, IHtmlFormElement {
     return attribute("form");
   }
 
-  IHtmlFormElement form(string formId) {
+  IFormElement form(string formId) {
     attribute("form", formId);
     return this;
   }
