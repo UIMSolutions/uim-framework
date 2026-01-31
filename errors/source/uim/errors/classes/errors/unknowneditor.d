@@ -39,7 +39,7 @@ class UnknownEditorError : UIMError {
 auto unknownEditorError() {
   Json[string] initData;
   initData["message"] = "Unknown Editor";
-  return new DUnknownEditorError(initData);
+  return new UnknownEditorError(initData);
 }
 
 /** 
@@ -48,7 +48,7 @@ auto unknownEditorError() {
 auto unknownEditorError(string message) {
   Json[string] initData;
   initData["message"] = message;
-  return new DUnknownEditorError(initData);
+  return new UnknownEditorError(initData);
 }
 
 /** 
@@ -59,12 +59,12 @@ auto unknownEditorError(string message, string fileName, size_t lineNumber = 0) 
   initData["message"] = message;
   initData["fileName"] = fileName;
   initData["lineNumber"] = lineNumber;
-  return new DUnknownEditorError(initData);
+  return new UnknownEditorError(initData);
 }
 /// 
 unittest {
   auto error = unknownEditorError();
-  assert(error !is null, "Failed to create DUnknownEditorError instance");
+  assert(error !is null, "Failed to create UnknownEditorError instance");
   assert(error.message() == "Unknown Editor", "Error message mismatch");
   assert(error.loglabel() == "UnknownEditor", "Error log label mismatch");
 

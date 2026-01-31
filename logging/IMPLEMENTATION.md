@@ -17,7 +17,7 @@ A comprehensive logging library for the UIM framework built with D language and 
 - `formatter.d`: `ILogFormatter` interface for formatting log entries
 
 #### 3. **Loggers** (`source/uim/logging/classes/loggers/`)
-- `base.d`: `DLogger` - Abstract base class with common functionality
+- `base.d`: `UIMLogger` - Abstract base class with common functionality
 - `console.d`: `DConsoleLogger` - Console output with optional colors
 - `file.d`: `DFileLogger` - File-based logging with rotation support
 - `multi.d`: `DMultiLogger` - Dispatches to multiple loggers

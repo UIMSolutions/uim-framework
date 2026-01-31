@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.logging.interfaces.formatter;
 
-import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
-
+import uim.logging;
+@safe:
 /**
  * Interface for log formatters
  */

@@ -5,17 +5,14 @@
 *****************************************************************************************************************/
 module uim.logging;
 
-public { // uim libraries
-  import uim.core;
-  import uim.oop;
-}
+public import uim.oop;
 
 public { // uim.logging libraries
-  import uim.logging.enumerations;
-  import uim.logging.interfaces;
   import uim.logging.classes;
-  import uim.logging.mixins;
+  import uim.logging.enumerations;
   import uim.logging.helpers;
+  import uim.logging.interfaces;
+  import uim.logging.mixins;
 }
 
 // Re-export with alias to avoid conflicts

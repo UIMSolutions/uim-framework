@@ -39,7 +39,7 @@ Or to your `dub.json`:
 import uim.logging;
 
 // Create a logger (implements ILogLogger)
-auto logger = new DLogger("MyApp");
+auto logger = new UIMLogger("MyApp");
 
 // Log messages at different levels
 logger.trace("Detailed trace information");
@@ -87,7 +87,7 @@ Formatters implement the `ILogFormatter` interface. You can use built-in or cust
 ```d
 import uim.logging.classes.formatters.text;
 
-auto logger = new DLogger("MyApp");
+auto logger = new UIMLogger("MyApp");
 logger.setFormatter(new DTextFormatter()); // Text format
 logger.info("Plain text log entry");
 
@@ -110,7 +110,7 @@ logger.info("Structured log entry");
 Configure logging behavior:
 
 ```d
-auto logger = new DLogger("MyApp");
+auto logger = new UIMLogger("MyApp");
 logger.setLevel(LogLevel.INFO); // Only log INFO and above
 logger.setFormat("%t [%l] %n: %m"); // Custom format
 ```
@@ -121,7 +121,7 @@ logger.setFormat("%t [%l] %n: %m"); // Custom format
 The library follows UIM framework patterns:
 
 - **Interfaces**: `ILogLogger`, `ILogFormatter` for abstraction and extensibility
-- **Classes**: Concrete implementations (DLogger, ConsoleLogger, FileLogger)
+- **Classes**: Concrete implementations (UIMLogger, ConsoleLogger, FileLogger)
 - **Mixins**: Reusable logging functionality
 - **Factories**: Create logger instances
 

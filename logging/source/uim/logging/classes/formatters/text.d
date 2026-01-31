@@ -6,11 +6,11 @@
 module uim.logging.classes.formatters.text;
 
 import uim.logging;
-
+@safe:
 /**
  * Text formatter for log messages
  */
-class extFormatter : ILogFormatter {
+class TextFormatter : ILogFormatter {
     private {
         string _format = "%t [%l] %n: %m";
         string _dateFormat = "yyyy-MM-dd HH:mm:ss";

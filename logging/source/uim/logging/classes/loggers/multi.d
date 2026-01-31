@@ -5,14 +5,12 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.multi;
 
-import uim.logging.classes.loggers.base;
-import uim.logging.interfaces;
-import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
-
+import uim.logging;
+@safe:
 /**
  * Multi-logger that dispatches to multiple loggers
  */
-class MultiLogger : DLogger {
+class MultiLogger : UIMLogger {
     private {
         ILogger[] _loggers;
     }

@@ -5,13 +5,13 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.console;
 
-import uim.logging.classes.loggers.base;
-import std.stdio;
+import uim.logging;
+@safe:
 
 /**
  * Console logger that writes to stdout with colored output
  */
-class ConsoleLogger : DLogger {
+class ConsoleLogger : UIMLogger {
     private {
         bool _useColors = true;
     }
@@ -37,6 +37,6 @@ class ConsoleLogger : DLogger {
 /**
  * Factory function to create a console logger
  */
-DConsoleLogger ConsoleLogger(string name = "Console") {
-    return new DConsoleLogger(name);
+ConsoleLogger consoleLogger(string name = "Console") {
+    return new ConsoleLogger(name);
 }

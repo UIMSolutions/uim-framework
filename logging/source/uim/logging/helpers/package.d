@@ -66,7 +66,7 @@ void fatal(string message, string[string] context = null) {
  * Create a new logger with the specified name
  */
 ILogger createLogger(string name, UIMLogLevel level = UIMLogLevel.info) {
-    auto logger = ConsoleLogger(name);
+    auto logger = consoleLogger(name);
     logger.level = level;
     return logger;
 }
@@ -75,7 +75,7 @@ ILogger createLogger(string name, UIMLogLevel level = UIMLogLevel.info) {
  * Create a file logger
  */
 ILogger createFileLogger(string filename, string name = "File", UIMLogLevel level = UIMLogLevel.info) {
-    auto logger = FileLogger(filename, name);
+    auto logger = fileLogger(filename, name);
     logger.level = level;
     return logger;
 }
@@ -83,8 +83,8 @@ ILogger createFileLogger(string filename, string name = "File", UIMLogLevel leve
 /**
  * Create a multi-logger that logs to both console and file
  */
-ILogger createMultiLogger(string filename, string name = "Multi", UIMLogLevel level = UIMLogLevel.info) {
-    auto multiLogger = new DMultiLogger(name);
+ILogger multiLogger(string filename, string name = "Multi", UIMLogLevel level = UIMLogLevel.info) {
+    auto multiLogger = new MultiLogger(name);
     multiLogger.addLogger(ConsoleLogger(name ~ ".Console"));
     multiLogger.addLogger(FileLogger(filename, name ~ ".File"));
     multiLogger.level = level;

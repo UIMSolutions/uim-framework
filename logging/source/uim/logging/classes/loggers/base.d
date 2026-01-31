@@ -5,15 +5,13 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.base;
 
-import uim.logging.interfaces;
-import uim.logging.enumerations.loglevel : UIMLogLevel = LogLevel;
-import uim.logging.classes.formatters.text;
-import std.datetime;
+import uim.logging;
+@safe:
 
 /**
  * Base logger class providing common functionality
  */
-abstract class Logger : ILogger {
+abstract class UIMLogger : ILogger {
     protected {
         string _name;
         UIMLogLevel _level = UIMLogLevel.info;
@@ -22,7 +20,7 @@ abstract class Logger : ILogger {
     
     this(string loggerName = "Default") {
         _name = loggerName;
-        _formatter = new DTextFormatter();
+        _formatter = new TextFormatter();
     }
     
     // Properties

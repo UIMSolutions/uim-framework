@@ -5,6 +5,7 @@
 *****************************************************************************************************************/
 module uim.logging.enumerations.loglevel;
 
+@safe:
 /**
  * Enumeration for logging levels
  */

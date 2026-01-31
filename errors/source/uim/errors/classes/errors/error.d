@@ -142,7 +142,7 @@ class UIMError : UIMObject, IError {
 
   // #region loglevel
   string loglevel() {
-    return uim.core.logging.LogLevels.level(loglabel());
+    return logLevels.level(loglabel());
   }
   // #endregion loglevel
 

@@ -5,16 +5,17 @@
 *****************************************************************************************************************/
 module uim.logging.classes.loggers.file;
 
-import uim.logging.classes.loggers.base;
+import uim.logging;
 import std.stdio : File;
 import std.file : exists, mkdirRecurse;
 import std.path : dirName;
 import core.sync.mutex;
+@safe:
 
 /**
  * File logger that writes logs to a file
  */
-class FileLogger : DLogger {
+class FileLogger : UIMLogger {
     private {
         string _filename;
         File _file;
@@ -135,6 +136,6 @@ class FileLogger : DLogger {
 /**
  * Factory function to create a file logger
  */
-DFileLogger FileLogger(string filename, string name = "File") {
-    return new DFileLogger(filename, name);
+FileLogger fileLogger(string filename, string name = "File") {
+    return new FileLogger(filename, name);
 }

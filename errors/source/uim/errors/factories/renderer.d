@@ -23,34 +23,34 @@ class ErrorRendererFactory : UIMFactory!(string, ErrorRenderer) {
     return _instance;
   }
 }
-auto ErrorRendererFactory() { return ErrorRendererFactory.instance; }
+auto errorRendererFactory() { return ErrorRendererFactory.instance; }
 
 static this() {
-  ErrorRendererFactory.register("console", () @safe {
-    return new DConsoleErrorRenderer();
+  errorRendererFactory.register("console", () @safe {
+    return new ConsoleErrorRenderer();
   });
 
-  ErrorRendererFactory.register("html", () @safe {
-    return new DHtmlErrorRenderer();
+  errorRendererFactory.register("html", () @safe {
+    return new HtmlErrorRenderer();
   });
 
-  ErrorRendererFactory.register("json", () @safe {
-    return new DJsonErrorRenderer();
+  errorRendererFactory.register("json", () @safe {
+    return new JsonErrorRenderer();
   });
 
-  ErrorRendererFactory.register("text", () @safe {
-    return new DTextErrorRenderer();
+  errorRendererFactory.register("text", () @safe {
+    return new TextErrorRenderer();
   });
 
-  ErrorRendererFactory.register("xml", () @safe {
-    return new DXmlErrorRenderer();
+  errorRendererFactory.register("xml", () @safe {
+    return new XmlErrorRenderer();
   });
 
-  ErrorRendererFactory.register("web", () @safe {
-    return new DWebErrorRenderer();
+  errorRendererFactory.register("web", () @safe {
+    return new WebErrorRenderer();
   });
 
-  ErrorRendererFactory.register("yaml", () @safe {
-    return new DYamlErrorRenderer();
+  errorRendererFactory.register("yaml", () @safe {
+    return new YamlErrorRenderer();
   });
 }

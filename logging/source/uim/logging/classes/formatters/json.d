@@ -6,7 +6,7 @@
 module uim.logging.classes.formatters.json;
 
 import uim.logging;
-
+@safe:
 /**
  * Json formatter for structured log messages
  */
