@@ -16,8 +16,9 @@ class HierarchicalRegistry(K, V) : IRegistry!(K, V) {
     _parent = parent;
   }
 
-  void register(K key, V value) {
+  IRegistry!(K, V) register(K key, V value) {
     _items[key] = value;
+    return this;
   }
 
   V get(K key) {
@@ -48,12 +49,14 @@ class HierarchicalRegistry(K, V) : IRegistry!(K, V) {
     return (key in _items) !is null;
   }
 
-  void unregister(K key) {
+  IRegistry!(K, V) unregister(K key) {
     _items.remove(key);
+    return this;
   }
 
-  void clear() {
+  IRegistry!(K, V) clear() {
     _items.clear();
+    return this;
   }
 
   K[] keys() {

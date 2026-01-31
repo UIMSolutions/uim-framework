@@ -237,7 +237,7 @@ auto Set(T)(string name, T[] initialItems = null) {
 unittest {
     import std.stdio : writeln;
     
-    writeln("Testing DSet class...");
+    // TODO: writeln("Testing DSet class...");
     
     // Test basic creation
     auto set = Set!int();
@@ -316,5 +316,5 @@ unittest {
     set.clear();
     assert(set.isEmpty());
     
-    writeln("✓ DSet tests passed!");
+    // writeln("✓ DSet tests passed!");
 }

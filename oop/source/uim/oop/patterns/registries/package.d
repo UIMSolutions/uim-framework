@@ -17,4 +17,5 @@ public {
   import uim.oop.patterns.registries.singleton;
   import uim.oop.patterns.registries.threadsafe;
   import uim.oop.patterns.registries.typed;
+  import uim.oop.patterns.registries.interfaces;
 }

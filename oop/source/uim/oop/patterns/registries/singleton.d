@@ -13,12 +13,14 @@ class SingletonRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _instances;
   private V delegate() @safe[K] _factories;
 
-  void register(K key, V delegate() @safe factory) {
+  IRegistry!(K, V) register(K key, V delegate() @safe factory) {
     _factories[key] = factory;
+    return this;
   }
 
-  void register(K key, V value) {
+  IRegistry!(K, V) register(K key, V value) {
     _instances[key] = value;
+    return this;
   }
 
   V get(K key) {
@@ -41,14 +43,16 @@ class SingletonRegistry(K, V) : IRegistry!(K, V) {
     return (key in _instances) !is null || (key in _factories) !is null;
   }
 
-  void unregister(K key) {
+  IRegistry!(K, V)  unregister(K key) {
     _instances.remove(key);
     _factories.remove(key);
+    return this;
   }
 
-  void clear() {
+  IRegistry!(K, V) clear() {
     _instances.clear();
     _factories.clear();
+    return this;
   }
 
   K[] keys() {

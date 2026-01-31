@@ -28,9 +28,9 @@ class View : IView {
      * Params:
      *   model = Optional model to associate with this view
      */
-    this(IMVCModel model = null) {
-        if (model !is null) {
-            setModel(model);
+    this(IMVCModel aModel = null) {
+        if (aModel !is null) {
+            model(aModel);
         }
     }
 
@@ -96,8 +96,8 @@ class View : IView {
      * Params:
      *   controller = The controller to associate with this view
      */
-    void setController(IController controller) {
-        _controller = controller;
+    void controller(IController aController) {
+        _controller = aController;
     }
 
     /**
@@ -105,7 +105,7 @@ class View : IView {
      * 
      * Returns: The associated controller
      */
-    IController getController() {
+    IController controller() {
         return _controller;
     }
 
@@ -114,7 +114,7 @@ class View : IView {
      * 
      * Returns: The associated model
      */
-    IMVCModel getModel() {
+    IMVCModel model() {
         return _model;
     }
 
@@ -124,8 +124,8 @@ class View : IView {
      * Params:
      *   model = The model to associate with this view
      */
-    void setModel(IMVCModel model) {
-        _model = model;
+    void model(IMVCModel aModel) {
+        _model = aModel;
         _model.attachView(this);
     }
 
@@ -135,7 +135,7 @@ class View : IView {
      * Params:
      *   templateStr = The template string
      */
-    void setTemplate(string templateStr) {
+    void template_(string templateStr) {
         _template = templateStr;
     }
 
@@ -144,7 +144,7 @@ class View : IView {
      * 
      * Returns: The template string
      */
-    string getTemplate() {
+    string template_() {
         return _template;
     }
 }
@@ -155,8 +155,8 @@ class View : IView {
  * Supports placeholder replacement in templates
  */
 class TemplateView : View {
-    this(IMVCModel model = null, string templateStr = null) {
-        super(model);
+    this(IMVCModel aModel = null, string templateStr = null) {
+        super(aModel);
         if (templateStr !is null) {
             _template = templateStr;
         }
@@ -295,7 +295,7 @@ unittest {
     import std.stdio : writeln;
 
     auto model = new MVCModel();
-    model.set("title", "Test");
+    model.data("title", "Test");
 
     auto view = new View(model);
     auto output = view.render();
@@ -304,8 +304,8 @@ unittest {
 
 unittest {
     auto model = new MVCModel();
-    model.set("name", "John");
-    model.set("age", "30");
+    model.data("name", "John");
+    model.data("age", "30");
 
     auto view = new TemplateView(model, "Hello {{name}}, you are {{age}} years old!");
     auto output = view.render();
@@ -314,7 +314,7 @@ unittest {
 
 unittest {
     auto model = new MVCModel();
-    model.set("key", "value");
+    model.data("key", "value");
 
     auto view = new JsonView(model);
     auto output = view.render();

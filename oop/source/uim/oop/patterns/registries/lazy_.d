@@ -13,12 +13,14 @@ class LazyRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _cache;
   private V delegate() @safe[K] _factories;
 
-  void register(K key, V delegate() @safe factory) {
+  IRegistry!(K, V) register(K key, V delegate() @safe factory) {
     _factories[key] = factory;
+    return this;
   }
 
-  void register(K key, V value) {
+  IRegistry!(K, V) register(K key, V value) {
     _cache[key] = value;
+    return this;
   }
 
   V get(K key) {
@@ -45,14 +47,16 @@ class LazyRegistry(K, V) : IRegistry!(K, V) {
     return (key in _cache) !is null;
   }
 
-  void unregister(K key) {
+  IRegistry!(K, V) unregister(K key) {
     _cache.remove(key);
     _factories.remove(key);
+    return this;
   }
 
-  void clear() {
+  IRegistry!(K, V) clear() {
     _cache.clear();
     _factories.clear();
+    return this;
   }
 
   void clearCache() {

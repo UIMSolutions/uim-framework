@@ -37,21 +37,21 @@ interface IView {
      * Params:
      *   controller = The controller to associate with this view
      */
-    void setController(IController controller);
+    void controller(IController controller);
 
     /**
      * Gets the controller associated with this view
      * 
      * Returns: The associated controller
      */
-    IController getController();
+    IController controller();
 
     /**
      * Gets the model associated with this view
      * 
      * Returns: The associated model
      */
-    IMVCModel getModel();
+    IMVCModel model();
 
     /**
      * Sets the model for this view
@@ -59,5 +59,5 @@ interface IView {
      * Params:
      *   model = The model to associate with this view
      */
-    void setModel(IMVCModel model);
+    void model(IMVCModel model);
 }

@@ -29,12 +29,12 @@ class Controller : IController {
      *   model = Optional model to control
      *   view = Optional view to control
      */
-    this(IMVCModel model = null, IView view = null) {
-        if (model !is null) {
-            setModel(model);
+    this(IMVCModel aModel = null, IView aView = null) {
+        if (aModel !is null) {
+            model(aModel);
         }
-        if (view !is null) {
-            setView(view);
+        if (aView !is null) {
+            view(aView);
         }
         
         registerDefaultActions();
@@ -121,7 +121,7 @@ class Controller : IController {
      * Params:
      *   model = The model to control
      */
-    void setModel(IMVCModel model) {
+    void model(IMVCModel model) {
         _model = model;
     }
 
@@ -130,7 +130,7 @@ class Controller : IController {
      * 
      * Returns: The associated model
      */
-    IMVCModel getModel() {
+    IMVCModel model() {
         return _model;
     }
 
@@ -140,10 +140,10 @@ class Controller : IController {
      * Params:
      *   view = The view to control
      */
-    void setView(IView view) {
+    void view(IView view) {
         _view = view;
         if (_view !is null) {
-            _view.setController(this);
+            _view.controller(this);
         }
     }
 
@@ -152,7 +152,7 @@ class Controller : IController {
      * 
      * Returns: The associated view
      */
-    IView getView() {
+    IView view() {
         return _view;
     }
 
@@ -195,8 +195,8 @@ unittest {
     auto view = new View(model);
     auto controller = new Controller(model, view);
 
-    assert(controller.getModel() is model);
-    assert(controller.getView() is view);
+    assert(controller.model() is model);
+    assert(controller.view() is view);
 }
 
 unittest {
@@ -204,7 +204,7 @@ unittest {
     auto controller = new RESTController(model);
 
     auto result = controller.executeAction("create", ["name": "Test", "value": "123"]);
-    assert(model.get("name") == "Test");
+    assert(model.data("name") == "Test");
 }
 
 unittest {

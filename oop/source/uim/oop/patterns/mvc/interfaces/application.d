@@ -35,19 +35,19 @@ interface IMVCApplication {
      * 
      * Returns: The application model
      */
-    IMVCModel getModel();
+    IMVCModel model();
 
     /**
      * Gets the view of the application
      * 
      * Returns: The application view
      */
-    IView getView();
+    IView view();
 
     /**
      * Gets the controller of the application
      * 
      * Returns: The application controller
      */
-    IController getController();
+    IController controller();
 }

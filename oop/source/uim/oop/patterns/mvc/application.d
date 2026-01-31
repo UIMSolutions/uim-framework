@@ -58,20 +58,20 @@ class MVCApplication : IMVCApplication {
         }
 
         // Wire up the components
-        if (_controller.getModel() is null) {
-            _controller.setModel(_model);
+        if (_controller.model() is null) {
+            _controller.model(_model);
         }
 
-        if (_controller.getView() is null) {
-            _controller.setView(_view);
+        if (_controller.view() is null) {
+            _controller.view(_view);
         }
 
-        if (_view.getModel() is null) {
-            _view.setModel(_model);
+        if (_view.model() is null) {
+            _view.model(_model);
         }
 
-        if (_view.getController() is null) {
-            _view.setController(_controller);
+        if (_view.controller() is null) {
+            _view.controller(_controller);
         }
 
         _initialized = true;
@@ -98,7 +98,7 @@ class MVCApplication : IMVCApplication {
      * 
      * Returns: The application model
      */
-    IMVCModel getModel() {
+    IMVCModel model() {
         return _model;
     }
 
@@ -107,7 +107,7 @@ class MVCApplication : IMVCApplication {
      * 
      * Returns: The application view
      */
-    IView getView() {
+    IView view() {
         return _view;
     }
 
@@ -116,7 +116,7 @@ class MVCApplication : IMVCApplication {
      * 
      * Returns: The application controller
      */
-    IController getController() {
+    IController controller() {
         return _controller;
     }
 
@@ -186,14 +186,14 @@ unittest {
     import std.stdio : writeln;
 
     auto app = createMVCApplication();
-    assert(app.getModel() !is null);
-    assert(app.getView() !is null);
-    assert(app.getController() !is null);
+    assert(app.model() !is null);
+    assert(app.view() !is null);
+    assert(app.controller() !is null);
 }
 
 unittest {
     auto model = new MVCModel();
-    model.set("greeting", "Hello");
+    model.data("greeting", "Hello");
     
     auto view = new View(model);
     auto controller = new Controller(model, view);
@@ -208,8 +208,8 @@ unittest {
     auto app = new MVCApplication();
     app.initialize();
     
-    auto model = app.getModel();
-    model.set("test", "value");
+    auto model = app.model();
+    model.data("test", "value");
     
-    assert(model.get("test") == "value");
+    assert(model.data("test") == "value");
 }

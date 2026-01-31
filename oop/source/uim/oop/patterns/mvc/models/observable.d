@@ -48,6 +48,11 @@ class ObservableModel : MVCModel {
      *   value = The value to set
      */
     override void data(string key, string value) {
+        if (!(key in _data)) {
+            // Key does not exist, treat as normal set
+            super.data(key, value);
+            return;
+        }
         string olUIMValue = _data[key];
 
         // Call before change callbacks
