@@ -36,7 +36,7 @@ class PreferredContactMethodAttribute : UIMAttribute {
     this.dataFormats(["preferredcontactmethod"]);
     this.registerPath("preferredcontactmethod");
 
-    return this;
+    return true;
   }
 
 /*   override IValue createValue() {

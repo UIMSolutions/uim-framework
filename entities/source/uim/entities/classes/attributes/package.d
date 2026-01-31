@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 public { 
 	import uim.entities.classes.attributes.attribute;
-	import uim.entities.classes.attributes.registry;
+	import uim.entities.classes.attributes.helpers;
 }
 
 public { 
@@ -62,7 +62,7 @@ void testAttribute(UIMAttribute attribute) {
 }
 
 static this() {
-  AttributeRegistry
+  attributeRegistry()
     // Booleans
     .register("boolean", new BooleanAttribute)
     // Bytes
@@ -94,10 +94,10 @@ static this() {
 }
 
 version(test_uim_models) { unittest {
-    writeln(AttributeRegistry["boolean"].name);
-    writeln(AttributeRegistry["byte"].name);
-    writeln(AttributeRegistry["binary"].name);
+    writeln(attributeRegistry()["boolean"].name);
+    writeln(attributeRegistry()["byte"].name);
+    writeln(attributeRegistry()["binary"].name);
 
-    writeln(AttributeRegistry.paths);
+    writeln(attributeRegistry().paths);
   }
 }

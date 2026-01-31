@@ -52,16 +52,16 @@ mixin(ShowModule!());
   }
 
   O addValues(this O)(UIMValue[string] newValues) {
-    newValues.byKey.each!(key => adUIMValue(key, newValues[key]));
+    newValues.byKey.each!(key => addValue(key, newValues[key]));
     return cast(O)this;
   }
 
   O addValues(this O)(DAttribute[string] attributes) {
-    attributes.byKey.each!(key => adUIMValue(key, attributes[key].createValue));
+    attributes.byKey.each!(key => addValue(key, attributes[key].createValue));
     return cast(O)this;
   }
 
-  O adUIMValue(this O)(string fieldName, UIMValue newValue) {
+  O addValue(this O)(string fieldName, UIMValue newValue) {
     _items[fieldName] = newValue;
     return cast(O)this;
   }

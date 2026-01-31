@@ -18,31 +18,30 @@ class Version : UIMElement {
     super();
   }
 
-  this(string myName) {
-    super(myName);
+  this(Json initData) {
+    super(initData.toMap);
   }
 
-  this(Json aJson) {
-    this();
-    if (aJson != Json(null))
-      this.fromJson(aJson);
+  this(Json[string] initData) {
+    super(initData);
   }
 
-    override bool initialize(Json[string] initData = null) {
+  override bool initialize(Json[string] initData = null) {
     if (!super.initialize(initData)) {
       return false;
     }
 
+    // this
+    //   .addValues([
+    //     "description": new StringAttribute,
+    //     "by": new UUIDAttribute,
+    //     "display": new StringAttribute,
+    //     "mode": new StringAttribute,
+    //     "number": new LongAttribute,
+    //     "on": new TimestampAttribute
+    //   ]);
 
-    this
-      .addValues([
-        "description": StringAttribute,
-        "by": UUIDAttribute,
-        "display": StringAttribute,
-        "mode": StringAttribute,
-        "number": LongAttribute,
-        "on": TimestampAttribute
-      ]);
+    return true;
   }
 
   protected long _number;

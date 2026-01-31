@@ -26,6 +26,13 @@ class UIMFactory(K, V) : IFactory!(K, V) {
     _defaultCreator = creator;
   }
 
+  private static UIMFactory!(K, V) _instance;
+  static UIMFactory!(K, V) instance() {
+    if (_instance is null) {
+      _instance = new UIMFactory!(K, V)();
+    }
+    return _instance;
+  }
   /** 
    * Creates and returns an instance using the default creator.
    * 

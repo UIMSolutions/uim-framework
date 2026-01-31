@@ -35,11 +35,11 @@ class LookupAttribute : UIMAttribute {
     this.dataFormats(["lookup"]);
     this.registerPath("lookup");
 
-    return this;
+    return true;
   }
 
-  override IValue createValue() {
+  /* override IValue createValue() {
     return new LookupValue(this); 
-  } 
+  } */
 }
 

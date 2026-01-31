@@ -27,12 +27,12 @@ class OwnerElementAttribute : UIMAttribute {
   override IValue createValue() {
     auto value = (new ElementValue(this));
       value.value(
-        new UIMElement
+       (new UIMElement)
           .name("owner")
-          .addValues([
-            "id": new UUIDAttribute, // Owner Id"]),
-            "idType": new StringAttribute, // The type of owner, either User or Team."
-          ])
+          // .addValues([
+          //   "id": new UUIDAttribute, // Owner Id"]),
+          //   "idType": new StringAttribute, // The type of owner, either User or Team."
+          // ])
     );
     return value;
   }

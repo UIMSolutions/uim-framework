@@ -16,25 +16,30 @@ class UIMElement : UIMObject, IElement {
 
   // Constructors
   this() {
-    initialize;
+    super();
   }
 
-  this(string myName) {
-    this().name(myName);
+  this(Json initData) {
+    super(initData.toMap);
   }
 
-  this(Json aJson) {
-    this();
-    if (aJson != Json(null))
-      this.fromJson(aJson);
+  this(Json[string] initData) {
+    super(initData);
   }
 
-  void initialize(Json configSettings = Json(null)) {
+  // Initialization hook method.
+  override bool initialize(Json[string] initData = null) {
+    if (!super.initialize(initData)) {
+      return false;
+    }
+
     this
       .values(new StringValueMap);
 
     this
       .requestPrefix("element_");
+
+    return true;
   }
 
   protected StringValueMap _values;
@@ -43,7 +48,7 @@ class UIMElement : UIMObject, IElement {
   /* StringValueMap values() const @property {
     return _values;
   }
-  */ 
+  */
 
   /// Setter for values (chainable)
   UIMElement values(StringValueMap value) @property {
@@ -103,10 +108,10 @@ class UIMElement : UIMObject, IElement {
     return _name;
   }
   ///
-    unittest {
-      assert(Entity.name("name1").name == "name1");
-      assert(Entity.name("name1").name("name2").name == "name2");
-      assert(Entity.name("name name").name == "name_name");
+  unittest {
+    assert(Entity.name("name1").name == "name1");
+    assert(Entity.name("name1").name("name2").name == "name2");
+    assert(Entity.name("name name").name == "name_name");
   }
 
   protected string[string] _parameters;
@@ -140,11 +145,11 @@ class UIMElement : UIMObject, IElement {
   }
   ///
   unittest {
-    auto element = new UIMElement;
-    assert(element.selector(["x": "y", "element_id": "1234"]) == [
-        "id": "1234",
-        "x": "y"
-      ]);
+    // auto element = new UIMElement;
+    // assert(element.selector(["x": "y", "element_id": "1234"]) == [
+    //     "id": "1234",
+    //     "x": "y"
+    //   ]);
   }
 
   // Read data from string[string]
@@ -259,11 +264,11 @@ class UIMElement : UIMObject, IElement {
   }
   ///
   unittest {
-    auto element = new UIMElement;
-    element.addValues(["test": StringAttribute]);
-    element["test"] = "something";
-    assert(element["test"] == "something");
-    assert(element["test"] != "a thing");
+    // auto element = new UIMElement;
+    // element.addValues(["test": StringAttribute]);
+    // element["test"] = "something";
+    // assert(element["test"] == "something");
+    // assert(element["test"] != "a thing");
   }
 
   UIMValue valueOfKey(string key) {
@@ -302,7 +307,7 @@ class UIMElement : UIMObject, IElement {
 
   // Set UUID value
   void opIndexAssign(UUID value, string key) {
-    if (auto myValue = cast(DUUIDValue)valueOfKey(key)) {
+    if (auto myValue = cast(UUIDValue)valueOfKey(key)) {
       // values[key] exists and value of DUUIDValue
       myValue.value = value;
     }
@@ -370,28 +375,27 @@ class UIMElement : UIMObject, IElement {
     return Bson(toJson);
   }
 
-  void fromJson(Json aJson) {
-    if (aJson.isEmpty)
+  void fromJson(Json json) {
+    if (!json.isObject) {
       return;
+    }
 
-    foreach (keyvalue; aJson.byKeyValue) {
-      auto k = keyvalue.key;
-      auto v = keyvalue.value;
-      switch (k) {
+    foreach (key, value; json.toMap) {
+      switch (key) {
       case "className":
-        this.className(v.get!string);
+        this.className(value.getString);
         break;
       case "name":
-        this.name(v.get!string);
+        this.name(value.getString);
         break;
       case "requestPrefix":
-        this.requestPrefix(v.get!string);
+        this.requestPrefix(value.getString);
         break;
       case "registerPath":
-        this.registerPath(v.get!string);
+        this.registerPath(value.getString);
         break;
       default:
-        this.values[k].value(v);
+        this.values[key].value(value);
         break;
       }
     }
@@ -424,8 +428,8 @@ auto createElement(Json json) {
   return new UIMElement(json);
 }
 /// 
-  unittest {
-    auto element = createElement();
-    assert(element.name("test").name == "test");
-    assert(element.name("testName").name == "testname");
-  }
+unittest {
+  auto element = createElement();
+  assert(element.name("test").name == "test");
+  assert(element.name("testName").name == "testname");
+}

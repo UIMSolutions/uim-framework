@@ -38,5 +38,5 @@ class UUIDAttribute : UIMAttribute {
   }
 
   override IValue createValue() {
-    return UUIDValue(this); }
+    return new UUIDValue(this); }
 }
