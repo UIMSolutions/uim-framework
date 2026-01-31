@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.jsons.rpc;
 
+// UIM libraries
+public import uim.oop;
+
 public {
   import uim.jsons.rpc.errors;
   import uim.jsons.rpc.exceptions;

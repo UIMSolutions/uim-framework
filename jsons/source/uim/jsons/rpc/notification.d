@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 notification (request without id).
  */
-class sonRpcNotification : UIMObject {
+class JsonRpcNotification : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _jsonRpc = "2.0";
@@ -59,8 +59,8 @@ class sonRpcNotification : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJsonRpcNotification fromJson(Json json) {
-    auto notification = new DJsonRpcNotification();
+  static JsonRpcNotification fromJson(Json json) {
+    auto notification = new JsonRpcNotification();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
@@ -84,8 +84,8 @@ class sonRpcNotification : UIMObject {
   /**
    * Convert to request (for internal use).
    */
-  DJsonRpcRequest toRequest() {
-    return new DJsonRpcRequest(_method, _params, Json(null));
+  JsonRpcRequest toRequest() {
+    return new JsonRpcRequest(_method, _params, Json(null));
   }
 
   override string toString() const {
@@ -94,16 +94,16 @@ class sonRpcNotification : UIMObject {
 }
 
 // Factory functions
-DJsonRpcNotification notification(string method, Json params = Json(null)) {
-  return new DJsonRpcNotification(method, params);
+JsonRpcNotification notification(string method, Json params = Json(null)) {
+  return new JsonRpcNotification(method, params);
 }
 
-DJsonRpcNotification notificationWithArrayParams(string method, Json[] params) {
-  return new DJsonRpcNotification(method, Json(params));
+JsonRpcNotification notificationWithArrayParams(string method, Json[] params) {
+  return new JsonRpcNotification(method, Json(params));
 }
 
-DJsonRpcNotification notificationWithObjectParams(string method, Json[string] params) {
-  return new DJsonRpcNotification(method, Json(params));
+JsonRpcNotification notificationWithObjectParams(string method, Json[string] params) {
+  return new JsonRpcNotification(method, Json(params));
 }
 
 unittest {

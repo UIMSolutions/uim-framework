@@ -12,30 +12,30 @@ import uim.jsons;
 /**
  * Complete JSON-LD document.
  */
-class JSONLDDocument : UIMObject {
+class JsonLDDocument : UIMObject {
   alias toJson = UIMObject.toJson;
   
-  protected DJSONLDContext _context;
-  protected DJSONLDGraph _graph;
+  protected JsonLDContext _context;
+  protected JsonLDGraph _graph;
 
   this() {
     super();
-    _context = new DJSONLDContext();
-    _graph = new DJSONLDGraph();
+    _context = new JsonLDContext();
+    _graph = new JsonLDGraph();
   }
 
   // Getters
-  DJSONLDContext context() { return _context; }
-  DJSONLDGraph graph() { return _graph; }
+  JsonLDContext context() { return _context; }
+  JsonLDGraph graph() { return _graph; }
 
   // Setters
-  void context(DJSONLDContext value) { _context = value; }
-  void graph(DJSONLDGraph value) { _graph = value; }
+  void context(JsonLDContext value) { _context = value; }
+  void graph(JsonLDGraph value) { _graph = value; }
 
   /**
    * Add a node to the document.
    */
-  DJSONLDDocument addNode(DJSONLDNode node) {
+  JsonLDDocument addNode(JsonLDNode node) {
     _graph.addNode(node);
     return this;
   }
@@ -43,7 +43,7 @@ class JSONLDDocument : UIMObject {
   /**
    * Get a node by ID.
    */
-  DJSONLDNode getNode(string id) {
+  JsonLDNode getNode(string id) {
     return _graph.getNode(id);
   }
 
@@ -88,7 +88,7 @@ class JSONLDDocument : UIMObject {
    * Convert to string (pretty printed).
    */
   override string toString() const @trusted {
-    return (cast(DJSONLDDocument)this).toJson().toPrettyString();
+    return (cast(JsonLDDocument)this).toJson().toPrettyString();
   }
 
   /**
@@ -101,7 +101,7 @@ class JSONLDDocument : UIMObject {
   /**
    * Create from JSON string.
    */
-  static DJSONLDDocument parse(string jsonStr) {
+  static JsonLDDocument parse(string jsonStr) {
     auto json = parseJsonString(jsonStr);
     return fromJson(json);
   }
@@ -109,8 +109,8 @@ class JSONLDDocument : UIMObject {
   /**
    * Create from JSON.
    */
-  static DJSONLDDocument fromJson(Json json) {
-    auto doc = new DJSONLDDocument();
+  static JsonLDDocument fromJson(Json json) {
+    auto doc = new JsonLDDocument();
     
     if (json.type != Json.Type.object) {
       throw new InvalidDocumentException("Document must be an object");
@@ -120,15 +120,15 @@ class JSONLDDocument : UIMObject {
     
     // Extract context
     if (auto contextValue = JSONLDKeywords.context in obj) {
-      doc._context = new DJSONLDContext(*contextValue);
+      doc._context = new JsonLDContext(*contextValue);
     }
     
     // Extract graph
     if (auto graphValue = JSONLDKeywords.graph in obj) {
-      doc._graph = DJSONLDGraph.fromJson(*graphValue);
+      doc._graph = JsonLDGraph.fromJson(*graphValue);
     } else {
       // Single node or implicit graph
-      auto node = DJSONLDNode.fromJson(json);
+      auto node = JsonLDNode.fromJson(json);
       doc._graph.addNode(node);
     }
     
@@ -138,7 +138,7 @@ class JSONLDDocument : UIMObject {
   /**
    * Load from file.
    */
-  static DJSONLDDocument loadFile(string filePath) {
+  static JsonLDDocument loadFile(string filePath) {
     import std.file : readText;
     
     try {
@@ -165,10 +165,10 @@ class JSONLDDocument : UIMObject {
 }
 
 unittest {
-  auto doc = new DJSONLDDocument();
+  auto doc = new JsonLDDocument();
   doc.context.vocab("http://schema.org/");
   
-  auto person = new DJSONLDNode("http://example.com/person/1");
+  auto person = new JsonLDNode("http://example.com/person/1");
   person.addType("Person");
   person.set("name", "John Doe");
   

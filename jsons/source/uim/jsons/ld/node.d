@@ -38,7 +38,7 @@ class SONLDNode : UIMObject {
   /**
    * Add a type.
    */
-  DJSONLDNode addType(string type) {
+  JsonLDNode addType(string type) {
     _types ~= type;
     return this;
   }
@@ -46,7 +46,7 @@ class SONLDNode : UIMObject {
   /**
    * Set property value.
    */
-  DJSONLDNode set(string property, Json value) {
+  JsonLDNode set(string property, Json value) {
     _properties[property] = value;
     return this;
   }
@@ -54,21 +54,21 @@ class SONLDNode : UIMObject {
   /**
    * Set property with string value.
    */
-  DJSONLDNode set(string property, string value) {
+  JsonLDNode set(string property, string value) {
     return set(property, Json(value));
   }
 
   /**
    * Set property with integer value.
    */
-  DJSONLDNode set(string property, long value) {
+  JsonLDNode set(string property, long value) {
     return set(property, Json(value));
   }
 
   /**
    * Set property with boolean value.
    */
-  DJSONLDNode set(string property, bool value) {
+  JsonLDNode set(string property, bool value) {
     return set(property, Json(value));
   }
 
@@ -128,8 +128,8 @@ class SONLDNode : UIMObject {
   /**
    * Create from JSON.
    */
-  static DJSONLDNode fromJson(Json json) {
-    auto node = new DJSONLDNode();
+  static JsonLDNode fromJson(Json json) {
+    auto node = new JsonLDNode();
     
     if (json.type != Json.Type.object) {
       throw new InvalidDocumentException("Node must be an object");
@@ -165,7 +165,7 @@ class SONLDNode : UIMObject {
 }
 
 unittest {
-  auto node = new DJSONLDNode("http://example.com/person/1");
+  auto node = new JsonLDNode("http://example.com/person/1");
   node.addType("http://schema.org/Person");
   node.set("name", "John Doe");
   node.set("age", 30);

@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.jsons.geo;
 
+// UIM libraries
+public import uim.oop;
+
 public {
   import uim.jsons.geo.geometry;
   import uim.jsons.geo.feature;

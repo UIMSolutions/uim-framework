@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsons.schema.validator;
+module uim.jsons.schema.classes.validator;
 
-import uim.jsons;
+import uim.jsons.schema;
 
 mixin(ShowModule!());
 
@@ -14,11 +14,11 @@ mixin(ShowModule!());
 /**
  * JSON Schema validator.
  */
-class SONSchemaValidator : UIMObject {
-  protected DJSONSchema _schema;
-  protected DFormatValidator[string] _formatValidators;
+class JSONSchemaValidator : UIMObject {
+  protected JSONSchema _schema;
+  protected IFormatValidator[string] _formatValidators;
 
-  this(DJSONSchema schema) {
+  this(JSONSchema schema) {
     super();
     _schema = schema;
     registerDefaultFormatValidators();
@@ -28,12 +28,12 @@ class SONSchemaValidator : UIMObject {
    * Register default format validators.
    */
   protected final void registerDefaultFormatValidators() {
-    _formatValidators["email"] = new DEmailFormatValidator();
-    _formatValidators["uri"] = new DURIFormatValidator();
-    _formatValidators["date"] = new DDateFormatValidator();
-    _formatValidators["date-time"] = new DDateTimeFormatValidator();
-    _formatValidators["ipv4"] = new DIPv4FormatValidator();
-    _formatValidators["ipv6"] = new DIPv6FormatValidator();
+    _formatValidators["email"] = new EmailFormatValidator();
+    _formatValidators["uri"] = new URIFormatValidator();
+    _formatValidators["date"] = new DateFormatValidator();
+    _formatValidators["date-time"] = new DateTimeFormatValidator();
+    _formatValidators["ipv4"] = new IPv4FormatValidator();
+    _formatValidators["ipv6"] = new IPv6FormatValidator();
   }
 
   /**

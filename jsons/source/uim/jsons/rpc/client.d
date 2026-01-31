@@ -22,7 +22,7 @@ class JsonRpcClient : UIMObject {
   /**
    * Create a request.
    */
-  DJsonRpcRequest createRequest(string method, Json params = Json(null)) {
+  JsonRpcRequest createRequest(string method, Json params = Json(null)) {
     auto req = request(method, params, _nextId);
     _nextId++;
     return req;
@@ -31,15 +31,15 @@ class JsonRpcClient : UIMObject {
   /**
    * Create a notification.
    */
-  DJsonRpcNotification createNotification(string method, Json params = Json(null)) {
+  JsonRpcNotification createNotification(string method, Json params = Json(null)) {
     return notification(method, params);
   }
 
   /**
    * Create a batch request.
    */
-  DJsonRpcBatchRequest createBatch() {
-    return new DJsonRpcBatchRequest();
+  JsonRpcBatchRequest createBatch() {
+    return new JsonRpcBatchRequest();
   }
 
   /**
@@ -59,17 +59,17 @@ class JsonRpcClient : UIMObject {
   /**
    * Parse a response string.
    */
-  DJsonRpcResponse parseResponse(string responseJson) {
+  JsonRpcResponse parseResponse(string responseJson) {
     auto json = parseJsonString(responseJson);
-    return DJsonRpcResponse.fromJson(json);
+    return JsonRpcResponse.fromJson(json);
   }
 
   /**
    * Parse a batch response string.
    */
-  DJsonRpcBatchResponse parseBatchResponse(string responseJson) {
+  JsonRpcBatchResponse parseBatchResponse(string responseJson) {
     auto json = parseJsonString(responseJson);
-    return DJsonRpcBatchResponse.fromJson(json);
+    return JsonRpcBatchResponse.fromJson(json);
   }
 
   /**
@@ -88,7 +88,7 @@ class JsonRpcClient : UIMObject {
 }
 
 unittest {
-  auto client = new DJsonRpcClient();
+  auto client = new JsonRpcClient();
   
   auto req = client.createRequest("testMethod", Json([Json(1), Json(2)]));
   assert(req.id.get!long == 1);

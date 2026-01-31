@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 error codes.
  */
-enum jsonRpcErrorCode : int {
+enum JsonRpcErrorCode : int {
   ParseError = -32700,
   InvalidRequest = -32600,
   MethodNotFound = -32601,
@@ -26,7 +26,7 @@ enum jsonRpcErrorCode : int {
 /**
  * JSON-RPC error object.
  */
-class sonRpcError : UIMObject {
+class JsonRpcError : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected int _code;
@@ -71,8 +71,8 @@ class sonRpcError : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJsonRpcError fromJson(Json json) {
-    auto error = new DJsonRpcError();
+  static JsonRpcError fromJson(Json json) {
+    auto error = new JsonRpcError();
     
     if (auto code = "code" in json) {
       error.code = code.get!int;
@@ -95,61 +95,61 @@ class sonRpcError : UIMObject {
 }
 
 // Factory functions for common errors
-DJsonRpcError parseError(string details = "") {
+JsonRpcError parseError(string details = "") {
   auto data = details.length > 0 ? Json(details) : Json(null);
-  return new DJsonRpcError(
-    jsonRpcErrorCode.ParseError,
+  return new JsonRpcError(
+    JsonRpcErrorCode.ParseError,
     "Parse error",
     data
   );
 }
 
-DJsonRpcError invalidRequest(string details = "") {
+JsonRpcError invalidRequest(string details = "") {
   auto data = details.length > 0 ? Json(details) : Json(null);
-  return new DJsonRpcError(
-    jsonRpcErrorCode.InvalidRequest,
+  return new JsonRpcError(
+    JsonRpcErrorCode.InvalidRequest,
     "Invalid Request",
     data
   );
 }
 
-DJsonRpcError methodNotFound(string methodName = "") {
+JsonRpcError methodNotFound(string methodName = "") {
   auto data = methodName.length > 0 ? Json(methodName) : Json(null);
-  return new DJsonRpcError(
-    jsonRpcErrorCode.MethodNotFound,
+  return new JsonRpcError(
+    JsonRpcErrorCode.MethodNotFound,
     "Method not found",
     data
   );
 }
 
-DJsonRpcError invalidParams(string details = "") {
+JsonRpcError invalidParams(string details = "") {
   auto data = details.length > 0 ? Json(details) : Json(null);
-  return new DJsonRpcError(
-    jsonRpcErrorCode.InvalidParams,
+  return new JsonRpcError(
+    JsonRpcErrorCode.InvalidParams,
     "Invalid params",
     data
   );
 }
 
-DJsonRpcError internalError(string details = "") {
+JsonRpcError internalError(string details = "") {
   auto data = details.length > 0 ? Json(details) : Json(null);
-  return new DJsonRpcError(
-    jsonRpcErrorCode.InternalError,
+  return new JsonRpcError(
+    JsonRpcErrorCode.InternalError,
     "Internal error",
     data
   );
 }
 
-DJsonRpcError serverError(int code, string message, Json data = Json(null)) {
+JsonRpcError serverError(int code, string message, Json data = Json(null)) {
   if (code < -32099 || code > -32000) {
-    code = jsonRpcErrorCode.ServerError;
+    code = JsonRpcErrorCode.ServerError;
   }
-  return new DJsonRpcError(code, message, data);
+  return new JsonRpcError(code, message, data);
 }
 
 unittest {
   auto error = methodNotFound("testMethod");
-  assert(error.code == jsonRpcErrorCode.MethodNotFound);
+  assert(error.code == JsonRpcErrorCode.MethodNotFound);
   assert(error.message == "Method not found");
   
   auto json = error.toJson();

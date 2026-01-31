@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * Base interface for format validators.
  */
-interface DFormatValidator {
+interface IFormatValidator {
   bool validate(string value);
   string formatName();
 }
@@ -22,7 +22,7 @@ interface DFormatValidator {
 /**
  * Email format validator.
  */
-class EmailFormatValidator : DFormatValidator {
+class EmailFormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto emailRegex = regex(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
@@ -37,7 +37,7 @@ class EmailFormatValidator : DFormatValidator {
 /**
  * URI format validator.
  */
-class URIFormatValidator : DFormatValidator {
+class URIFormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto uriRegex = regex(r"^[a-z][a-z0-9+.-]*:");
@@ -52,7 +52,7 @@ class URIFormatValidator : DFormatValidator {
 /**
  * Date format validator (YYYY-MM-DD).
  */
-class ateFormatValidator : DFormatValidator {
+class DateFormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto dateRegex = regex(r"^\d{4}-\d{2}-\d{2}$");
@@ -67,7 +67,7 @@ class ateFormatValidator : DFormatValidator {
 /**
  * DateTime format validator (ISO 8601).
  */
-class DateTimeFormatValidator : DFormatValidator {
+class DateTimeFormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto dateTimeRegex = regex(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}");
@@ -82,7 +82,7 @@ class DateTimeFormatValidator : DFormatValidator {
 /**
  * IPv4 format validator.
  */
-class IPv4FormatValidator : DFormatValidator {
+class IPv4FormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto ipv4Regex = regex(r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
@@ -97,7 +97,7 @@ class IPv4FormatValidator : DFormatValidator {
 /**
  * IPv6 format validator.
  */
-class IPv6FormatValidator : DFormatValidator {
+class IPv6FormatValidator : IFormatValidator {
   bool validate(string value) {
     import std.regex : regex, matchFirst;
     auto ipv6Regex = regex(r"^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4})$");
@@ -110,11 +110,11 @@ class IPv6FormatValidator : DFormatValidator {
 }
 
 unittest {
-  auto emailValidator = new DEmailFormatValidator();
+  auto emailValidator = new EmailFormatValidator();
   assert(emailValidator.validate("test@example.com"));
   assert(!emailValidator.validate("invalid-email"));
   
-  auto dateValidator = new DDateFormatValidator();
+  auto dateValidator = new DateFormatValidator();
   assert(dateValidator.validate("2026-01-19"));
   assert(!dateValidator.validate("19-01-2026"));
 }

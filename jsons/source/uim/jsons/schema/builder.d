@@ -15,10 +15,10 @@ mixin(ShowModule!());
  * Fluent schema builder.
  */
 class JSONSchemaBuilder {
-  protected DJSONSchema _schema;
+  protected JSONSchema _schema;
 
   this() {
-    _schema = new DJSONSchema();
+    _schema = new JSONSchema();
   }
 
   this(string type) {
@@ -26,112 +26,112 @@ class JSONSchemaBuilder {
     _schema.type = type;
   }
 
-  DJSONSchemaBuilder type(string t) {
+  JSONSchemaBuilder type(string t) {
     _schema.type = t;
     return this;
   }
 
-  DJSONSchemaBuilder title(string t) {
+  JSONSchemaBuilder title(string t) {
     _schema.title = t;
     return this;
   }
 
-  DJSONSchemaBuilder description(string desc) {
+  JSONSchemaBuilder description(string desc) {
     _schema.description = desc;
     return this;
   }
 
-  DJSONSchemaBuilder defaultValue(Json value) {
+  JSONSchemaBuilder defaultValue(Json value) {
     _schema.defaultValue = value;
     return this;
   }
 
-  DJSONSchemaBuilder required(string[] fields) {
+  JSONSchemaBuilder required(string[] fields) {
     _schema.required = fields;
     return this;
   }
 
-  DJSONSchemaBuilder property(string name, DJSONSchema propSchema) {
+  JSONSchemaBuilder property(string name, JSONSchema propSchema) {
     _schema.addProperty(name, propSchema);
     return this;
   }
 
-  DJSONSchemaBuilder property(string name, DJSONSchemaBuilder propBuilder) {
+  JSONSchemaBuilder property(string name, JSONSchemaBuilder propBuilder) {
     _schema.addProperty(name, propBuilder.build());
     return this;
   }
 
-  DJSONSchemaBuilder minimum(double value) {
+  JSONSchemaBuilder minimum(double value) {
     _schema.minimum = value;
     return this;
   }
 
-  DJSONSchemaBuilder maximum(double value) {
+  JSONSchemaBuilder maximum(double value) {
     _schema.maximum = value;
     return this;
   }
 
-  DJSONSchemaBuilder minLength(size_t length) {
+  JSONSchemaBuilder minLength(size_t length) {
     _schema.minLength = length;
     return this;
   }
 
-  DJSONSchemaBuilder maxLength(size_t length) {
+  JSONSchemaBuilder maxLength(size_t length) {
     _schema.maxLength = length;
     return this;
   }
 
-  DJSONSchemaBuilder pattern(string regex) {
+  JSONSchemaBuilder pattern(string regex) {
     _schema.pattern = regex;
     return this;
   }
 
-  DJSONSchemaBuilder format(string fmt) {
+  JSONSchemaBuilder format(string fmt) {
     _schema.format = fmt;
     return this;
   }
 
-  DJSONSchemaBuilder enumValues(Json[] values) {
+  JSONSchemaBuilder enumValues(Json[] values) {
     _schema.enumValues = values;
     return this;
   }
 
-  DJSONSchemaBuilder items(DJSONSchema itemSchema) {
+  JSONSchemaBuilder items(JSONSchema itemSchema) {
     _schema.items = itemSchema;
     return this;
   }
 
-  DJSONSchemaBuilder items(DJSONSchemaBuilder itemBuilder) {
+  JSONSchemaBuilder items(JSONSchemaBuilder itemBuilder) {
     _schema.items = itemBuilder.build();
     return this;
   }
 
-  DJSONSchemaBuilder minItems(size_t count) {
+  JSONSchemaBuilder minItems(size_t count) {
     _schema.minItems = count;
     return this;
   }
 
-  DJSONSchemaBuilder maxItems(size_t count) {
+  JSONSchemaBuilder maxItems(size_t count) {
     _schema.maxItems = count;
     return this;
   }
 
-  DJSONSchemaBuilder uniqueItems(bool unique = true) {
+  JSONSchemaBuilder uniqueItems(bool unique = true) {
     _schema.uniqueItems = unique;
     return this;
   }
 
-  DJSONSchemaBuilder additionalProperties(bool allowed) {
+  JSONSchemaBuilder additionalProperties(bool allowed) {
     _schema.additionalProperties = allowed;
     return this;
   }
 
-  DJSONSchemaBuilder ref_(string reference) {
+  JSONSchemaBuilder ref_(string reference) {
     _schema.ref_ = reference;
     return this;
   }
 
-  DJSONSchema build() {
+  JSONSchema build() {
     return _schema;
   }
 }
@@ -139,12 +139,12 @@ class JSONSchemaBuilder {
 /**
  * Helper function to create a builder.
  */
-DJSONSchemaBuilder schemaBuilder() {
-  return new DJSONSchemaBuilder();
+JSONSchemaBuilder schemaBuilder() {
+  return new JSONSchemaBuilder();
 }
 
-DJSONSchemaBuilder schemaBuilder(string type) {
-  return new DJSONSchemaBuilder(type);
+JSONSchemaBuilder schemaBuilder(string type) {
+  return new JSONSchemaBuilder(type);
 }
 
 unittest {

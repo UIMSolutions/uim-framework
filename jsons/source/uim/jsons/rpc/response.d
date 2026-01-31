@@ -18,7 +18,7 @@ class JsonRpcResponse : UIMObject {
   
   protected string _jsonRpc = "2.0";
   protected Json _result;
-  protected DJsonRpcError _error;
+  protected JsonRpcError _error;
   protected Json _id;
 
   this() {
@@ -33,7 +33,7 @@ class JsonRpcResponse : UIMObject {
     _id = id;
   }
 
-  this(DJsonRpcError error, Json id) {
+  this(JsonRpcError error, Json id) {
     this();
     _error = error;
     _id = id;
@@ -42,7 +42,7 @@ class JsonRpcResponse : UIMObject {
   // Getters
   string jsonRpc() { return _jsonRpc; }
   Json result() { return _result; }
-  DJsonRpcError error() { return _error; }
+  JsonRpcError error() { return _error; }
   Json id() { return _id; }
 
   // Setters
@@ -51,7 +51,7 @@ class JsonRpcResponse : UIMObject {
     _error = null;
   }
   
-  void error(DJsonRpcError value) { 
+  void error(JsonRpcError value) { 
     _error = value;
     _result = Json(null);
   }
@@ -93,8 +93,8 @@ class JsonRpcResponse : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJsonRpcResponse fromJson(Json json) {
-    auto response = new DJsonRpcResponse();
+  static JsonRpcResponse fromJson(Json json) {
+    auto response = new JsonRpcResponse();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
@@ -107,7 +107,7 @@ class JsonRpcResponse : UIMObject {
     }
     
     if (auto error = "error" in json) {
-      response.error = DJsonRpcError.fromJson(*error);
+      response.error = JsonRpcError.fromJson(*error);
     } else if (auto result = "result" in json) {
       response.result = *result;
     }
@@ -140,28 +140,28 @@ class JsonRpcResponse : UIMObject {
 }
 
 // Factory functions
-DJsonRpcResponse successResponse(Json result, Json id) {
-  return new DJsonRpcResponse(result, id);
+JsonRpcResponse successResponse(Json result, Json id) {
+  return new JsonRpcResponse(result, id);
 }
 
-DJsonRpcResponse successResponse(Json result, long id) {
-  return new DJsonRpcResponse(result, Json(id));
+JsonRpcResponse successResponse(Json result, long id) {
+  return new JsonRpcResponse(result, Json(id));
 }
 
-DJsonRpcResponse successResponse(Json result, string id) {
-  return new DJsonRpcResponse(result, Json(id));
+JsonRpcResponse successResponse(Json result, string id) {
+  return new JsonRpcResponse(result, Json(id));
 }
 
-DJsonRpcResponse errorResponse(DJsonRpcError error, Json id) {
-  return new DJsonRpcResponse(error, id);
+JsonRpcResponse errorResponse(JsonRpcError error, Json id) {
+  return new JsonRpcResponse(error, id);
 }
 
-DJsonRpcResponse errorResponse(DJsonRpcError error, long id) {
-  return new DJsonRpcResponse(error, Json(id));
+JsonRpcResponse errorResponse(JsonRpcError error, long id) {
+  return new JsonRpcResponse(error, Json(id));
 }
 
-DJsonRpcResponse errorResponse(DJsonRpcError error, string id) {
-  return new DJsonRpcResponse(error, Json(id));
+JsonRpcResponse errorResponse(JsonRpcError error, string id) {
+  return new JsonRpcResponse(error, Json(id));
 }
 
 unittest {

@@ -5,13 +5,22 @@
 *****************************************************************************************************************/
 module uim.jsons.schema;
 
+// UIM libraries
+public import uim.oop;
+
 public {
   import uim.jsons.schema.builder;
   import uim.jsons.schema.errors;
   import uim.jsons.schema.formats;
   import uim.jsons.schema.result;
-  import uim.jsons.schema.schema;
   import uim.jsons.schema.schematype;
   import uim.jsons.schema.types;
-  import uim.jsons.schema.validator;
+}
+
+public {
+  import uim.jsons.schema.classes;
+  import uim.jsons.schema.exceptions;
+  import uim.jsons.schema.helpers;
+  import uim.jsons.schema.interfaces;
+  import uim.jsons.schema.tests;
 }

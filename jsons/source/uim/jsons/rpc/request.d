@@ -14,7 +14,7 @@ mixin(ShowModule!());
 /**
  * JSON-RPC 2.0 request.
  */
-class sonRpcRequest : UIMObject {
+class JsonRpcRequest : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _jsonRpc = "2.0";
@@ -75,8 +75,8 @@ class sonRpcRequest : UIMObject {
   /**
    * Create from JSON object.
    */
-  static DJsonRpcRequest fromJson(Json json) {
-    auto request = new DJsonRpcRequest();
+  static JsonRpcRequest fromJson(Json json) {
+    auto request = new JsonRpcRequest();
     
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
@@ -134,20 +134,20 @@ class sonRpcRequest : UIMObject {
 }
 
 // Factory functions
-DJsonRpcRequest request(string method, Json params = Json(null), long id = 1) {
-  return new DJsonRpcRequest(method, params, Json(id));
+JsonRpcRequest request(string method, Json params = Json(null), long id = 1) {
+  return new JsonRpcRequest(method, params, Json(id));
 }
 
-DJsonRpcRequest request(string method, Json params, string id) {
-  return new DJsonRpcRequest(method, params, Json(id));
+JsonRpcRequest request(string method, Json params, string id) {
+  return new JsonRpcRequest(method, params, Json(id));
 }
 
-DJsonRpcRequest requestWithArrayParams(string method, Json[] params, long id = 1) {
-  return new DJsonRpcRequest(method, Json(params), Json(id));
+JsonRpcRequest requestWithArrayParams(string method, Json[] params, long id = 1) {
+  return new JsonRpcRequest(method, Json(params), Json(id));
 }
 
-DJsonRpcRequest requestWithObjectParams(string method, Json[string] params, long id = 1) {
-  return new DJsonRpcRequest(method, Json(params), Json(id));
+JsonRpcRequest requestWithObjectParams(string method, Json[string] params, long id = 1) {
+  return new JsonRpcRequest(method, Json(params), Json(id));
 }
 
 unittest {

@@ -15,17 +15,17 @@ mixin(ShowModule!());
  * JSON-RPC 2.0 server.
  */
 class JsonRpcServer : UIMObject {
-  protected DJsonRpcHandlerRegistry _handlers;
+  protected JsonRpcHandlerRegistry _handlers;
 
   this() {
     super();
-    _handlers = new DJsonRpcHandlerRegistry();
+    _handlers = new JsonRpcHandlerRegistry();
   }
 
   /**
    * Register a method handler.
    */
-  DJsonRpcServer register(string methodName, jsonRpcHandler handler) {
+  JsonRpcServer register(string methodName, jsonRpcHandler handler) {
     _handlers.register(methodName, handler);
     return this;
   }
@@ -52,9 +52,9 @@ class JsonRpcServer : UIMObject {
   /**
    * Process a single request.
    */
-  protected DJsonRpcResponse handleSingleRequest(Json json) {
+  protected JsonRpcResponse handleSingleRequest(Json json) {
     try {
-      auto request = DJsonRpcRequest.fromJson(json);
+      auto request = JsonRpcRequest.fromJson(json);
       
       if (!request.validate()) {
         return errorResponse(invalidRequest(), request.id);
@@ -83,8 +83,8 @@ class JsonRpcServer : UIMObject {
   /**
    * Process a batch request.
    */
-  protected DJsonRpcBatchResponse handleBatchRequest(Json json) {
-    auto batchResponse = new DJsonRpcBatchResponse();
+  protected JsonRpcBatchResponse handleBatchRequest(Json json) {
+    auto batchResponse = new JsonRpcBatchResponse();
     
     if (json.get!(Json[]).length == 0) {
       batchResponse.add(errorResponse(invalidRequest("Empty array"), Json(null)));
@@ -96,7 +96,7 @@ class JsonRpcServer : UIMObject {
       
       // Don't include responses for notifications
       try {
-        auto request = DJsonRpcRequest.fromJson(item);
+        auto request = JsonRpcRequest.fromJson(item);
         if (!request.isNotification()) {
           batchResponse.add(response);
         }
@@ -117,7 +117,7 @@ class JsonRpcServer : UIMObject {
 }
 
 unittest {
-  auto server = new DJsonRpcServer();
+  auto server = new JsonRpcServer();
   
   // Register methods
   server.register("add", (Json params) {

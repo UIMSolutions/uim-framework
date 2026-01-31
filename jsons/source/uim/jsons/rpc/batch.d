@@ -12,27 +12,27 @@ import uim.jsons;
 /**
  * JSON-RPC 2.0 batch request.
  */
-class sonRpcBatchRequest : UIMObject {
+class JsonRpcBatchRequest : UIMObject {
   alias toJson = UIMObject.toJson;
   
-  protected DJsonRpcRequest[] _requests;
+  protected JsonRpcRequest[] _requests;
 
   this() {
     super();
   }
 
-  this(DJsonRpcRequest[] requests) {
+  this(JsonRpcRequest[] requests) {
     this();
     _requests = requests;
   }
 
   // Getters
-  DJsonRpcRequest[] requests() { return _requests.dup; }
+  JsonRpcRequest[] requests() { return _requests.dup; }
 
   /**
    * Add a request to the batch.
    */
-  void add(DJsonRpcRequest request) {
+  void add(JsonRpcRequest request) {
     _requests ~= request;
   }
 
@@ -64,15 +64,15 @@ class sonRpcBatchRequest : UIMObject {
   /**
    * Create from JSON array.
    */
-  static DJsonRpcBatchRequest fromJson(Json json) {
-    auto batch = new DJsonRpcBatchRequest();
+  static JsonRpcBatchRequest fromJson(Json json) {
+    auto batch = new JsonRpcBatchRequest();
     
     if (json.type != Json.Type.array) {
       throw new Exception("Batch request must be an array");
     }
     
     foreach (item; json.get!(Json[])) {
-      batch.add(DJsonRpcRequest.fromJson(item));
+      batch.add(JsonRpcRequest.fromJson(item));
     }
     
     return batch;
@@ -85,24 +85,24 @@ class sonRpcBatchRequest : UIMObject {
 class JsonRpcBatchResponse : UIMObject {
   alias toJson = UIMObject.toJson;
   
-  protected DJsonRpcResponse[] _responses;
+  protected JsonRpcResponse[] _responses;
 
   this() {
     super();
   }
 
-  this(DJsonRpcResponse[] responses) {
+  this(JsonRpcResponse[] responses) {
     this();
     _responses = responses;
   }
 
   // Getters
-  DJsonRpcResponse[] responses() { return _responses.dup; }
+  JsonRpcResponse[] responses() { return _responses.dup; }
 
   /**
    * Add a response to the batch.
    */
-  void add(DJsonRpcResponse response) {
+  void add(JsonRpcResponse response) {
     _responses ~= response;
   }
 
@@ -134,15 +134,15 @@ class JsonRpcBatchResponse : UIMObject {
   /**
    * Create from JSON array.
    */
-  static DJsonRpcBatchResponse fromJson(Json json) {
-    auto batch = new DJsonRpcBatchResponse();
+  static JsonRpcBatchResponse fromJson(Json json) {
+    auto batch = new JsonRpcBatchResponse();
     
     if (json.type != Json.Type.array) {
       throw new Exception("Batch response must be an array");
     }
     
     foreach (item; json.get!(Json[])) {
-      batch.add(DJsonRpcResponse.fromJson(item));
+      batch.add(JsonRpcResponse.fromJson(item));
     }
     
     return batch;
@@ -150,7 +150,7 @@ class JsonRpcBatchResponse : UIMObject {
 }
 
 unittest {
-  auto batch = new DJsonRpcBatchRequest();
+  auto batch = new JsonRpcBatchRequest();
   batch.add(request("method1", Json(null), 1));
   batch.add(request("method2", Json(null), 2));
   

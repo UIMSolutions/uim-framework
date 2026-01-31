@@ -12,11 +12,11 @@ import uim.jsons;
 /**
  * JSON-LD graph containing multiple nodes.
  */
-class SONLDGraph : UIMObject {
+class JsonLDGraph : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected string _id;
-  protected DJSONLDNode[string] _nodes;
+  protected JsonLDNode[string] _nodes;
 
   this() {
     super();
@@ -36,7 +36,7 @@ class SONLDGraph : UIMObject {
   /**
    * Add a node to the graph.
    */
-  DJSONLDGraph addNode(DJSONLDNode node) {
+  JsonLDGraph addNode(JsonLDNode node) {
     if (node.id.length > 0) {
       _nodes[node.id] = node;
     } else {
@@ -51,7 +51,7 @@ class SONLDGraph : UIMObject {
   /**
    * Get a node by ID.
    */
-  DJSONLDNode getNode(string id) {
+  JsonLDNode getNode(string id) {
     if (auto node = id in _nodes) {
       return *node;
     }
@@ -86,7 +86,7 @@ class SONLDGraph : UIMObject {
   /**
    * Get all nodes.
    */
-  DJSONLDNode[] nodes() {
+  JsonLDNode[] nodes() {
     return _nodes.values;
   }
 
@@ -107,8 +107,8 @@ class SONLDGraph : UIMObject {
   /**
    * Find nodes by type.
    */
-  DJSONLDNode[] findByType(string type) {
-    DJSONLDNode[] result;
+  JsonLDNode[] findByType(string type) {
+    JsonLDNode[] result;
     foreach (node; _nodes.values) {
       foreach (nodeType; node.types()) {
         if (nodeType == type) {
@@ -143,13 +143,13 @@ class SONLDGraph : UIMObject {
   /**
    * Create from JSON.
    */
-  static DJSONLDGraph fromJson(Json json) {
-    auto graph = new DJSONLDGraph();
+  static JsonLDGraph fromJson(Json json) {
+    auto graph = new JsonLDGraph();
     
     if (json.isArray) {
       // Array of nodes
       foreach (item; json.toArray) {
-        graph.addNode(DJSONLDNode.fromJson(item));
+        graph.addNode(JsonLDNode.fromJson(item));
       }
     } else if (json.isObject) {
       auto obj = json.get!(Json[string]);
@@ -163,7 +163,7 @@ class SONLDGraph : UIMObject {
       if (auto graphValue = JSONLDKeywords.graph in obj) {
         if ((*graphValue).isArray) {
           foreach (item; (*graphValue).toArray) {
-            graph.addNode(DJSONLDNode.fromJson(item));
+            graph.addNode(JsonLDNode.fromJson(item));
           }
         }
       }
@@ -174,9 +174,9 @@ class SONLDGraph : UIMObject {
 }
 
 unittest {
-  auto graph = new DJSONLDGraph();
+  auto graph = new JsonLDGraph();
   
-  auto person = new DJSONLDNode("http://example.com/person/1");
+  auto person = new JsonLDNode("http://example.com/person/1");
   person.addType("http://schema.org/Person");
   person.set("name", "John Doe");
   

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
-module uim.jsons.schema.schema;
+module uim.jsons.schema.classes.schema;
 
 import uim.jsons;
 
@@ -15,7 +15,7 @@ mixin(ShowModule!());
  * JSON Schema representation.
  * Supports JSON Schema Draft 7.
  */
-class SONSchema : UIMObject {
+class JSONSchema : UIMObject {
   alias toJson = UIMObject.toJson;
   
   protected Json _schema;
@@ -91,7 +91,7 @@ class SONSchema : UIMObject {
   /**
    * Add a property to object schema.
    */
-  void addProperty(string name, DJSONSchema propertySchema) {
+  void addProperty(string name, JSONSchema propertySchema) {
     if ("properties" !in _schema) {
       _schema["properties"] = Json.emptyObject;
     }
@@ -178,7 +178,7 @@ class SONSchema : UIMObject {
   /**
    * Set array items schema.
    */
-  void items(DJSONSchema itemSchema) {
+  void items(JSONSchema itemSchema) {
     _schema["items"] = itemSchema.toJson;
   }
 
@@ -206,7 +206,7 @@ class SONSchema : UIMObject {
   /**
    * Add allOf composition.
    */
-  void allOf(DJSONSchema[] schemas) {
+  void allOf(JSONSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -217,7 +217,7 @@ class SONSchema : UIMObject {
   /**
    * Add anyOf composition.
    */
-  void anyOf(DJSONSchema[] schemas) {
+  void anyOf(JSONSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -228,7 +228,7 @@ class SONSchema : UIMObject {
   /**
    * Add oneOf composition.
    */
-  void oneOf(DJSONSchema[] schemas) {
+  void oneOf(JSONSchema[] schemas) {
     Json[] schemaArray;
     foreach (schema; schemas) {
       schemaArray ~= schema.toJson;
@@ -239,7 +239,7 @@ class SONSchema : UIMObject {
   /**
    * Set not schema.
    */
-  void not(DJSONSchema schema) {
+  void not(JSONSchema schema) {
     _schema["not"] = schema.toJson;
   }
 
@@ -253,7 +253,7 @@ class SONSchema : UIMObject {
   /**
    * Set additional properties schema.
    */
-  void additionalProperties(DJSONSchema schema) {
+  void additionalProperties(JSONSchema schema) {
     _schema["additionalProperties"] = schema.toJson;
   }
 
@@ -274,7 +274,7 @@ class SONSchema : UIMObject {
   /**
    * Add a definition (reusable schema).
    */
-  void addDefinition(string name, DJSONSchema schema) {
+  void addDefinition(string name, JSONSchema schema) {
     if ("definitions" !in _schema) {
       _schema["definitions"] = Json.emptyObject;
     }
@@ -295,9 +295,9 @@ class SONSchema : UIMObject {
     return true;
   }
 }
-
+///
 unittest {
-  auto schema = new DJSONSchema();
+  auto schema = new JSONSchema();
   schema.type = "string";
   schema.minLength = 5;
   schema.maxLength = 50;
