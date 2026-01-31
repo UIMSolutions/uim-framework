@@ -96,7 +96,7 @@ void testListElements() {
 }
 
 void testDocument() {
-    auto doc = htmlDocument();
+    auto doc = HtmlDocument();
     doc.title("Test Page");
     doc.addStylesheet("style.css");
     doc.addScript("script.js");

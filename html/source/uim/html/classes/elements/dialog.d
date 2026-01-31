@@ -36,22 +36,22 @@ class Dialog : HtmlElement {
     attribute("open", "");
     return this;
   }
-}
 
-auto dialog() {
-  return new Dialog();
-}
+  static Dialog opCall() {
+    return new Dialog();
+  }
 
-auto dialog(string content) {
-  auto element = new Dialog();
-  element.text(content);
-  return element;
+  static Dialog opCall(string content) {
+    auto element = new Dialog();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto dialog = dialog();
+  auto dialog = Dialog();
   assert(dialog.toString() == "<dialog></dialog>");
 
-  auto dialogWithContent = dialog("Hello");
+  auto dialogWithContent = Dialog("Hello");
   assert(dialogWithContent.toString() == "<dialog>Hello</dialog>");
 }

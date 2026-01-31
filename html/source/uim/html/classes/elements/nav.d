@@ -20,22 +20,18 @@ class Nav : HtmlElement {
   static Nav opCall() {
     return new Nav();
   }
-}
 
-auto nav() {
-  return new Nav();
-}
-
-auto nav(string content) {
-  auto element = new Nav();
-  element.text(content);
-  return element;
+  static Nav opCall(string content) {
+    auto element = new Nav();
+    element.text(content);
+    return element;
+  }
 }
 
 unittest {
-  auto nav = nav();
+  auto nav = Nav();
   assert(nav.toString() == "<nav></nav>");
 
-  auto navWithContent = nav("Hello");
+  auto navWithContent = Nav("Hello");
   assert(navWithContent.toString() == "<nav>Hello</nav>");
 }

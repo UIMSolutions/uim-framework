@@ -18,22 +18,37 @@ class HtmlDocument : UIMObject {
     protected string _charset;
 
     // Getter for title
-    string title() { return _title; }
-    
+    string title() {
+        return _title;
+    }
+
     // Setter for title
-    auto title(string value) { _title = value; return this; }
-    
+    auto title(string value) {
+        _title = value;
+        return this;
+    }
+
     // Getter for lang
-    string lang() { return _lang; }
-    
+    string lang() {
+        return _lang;
+    }
+
     // Setter for lang
-    auto lang(string value) { _lang = value; return this; }
-    
+    auto lang(string value) {
+        _lang = value;
+        return this;
+    }
+
     // Getter for charset
-    string charset() { return _charset; }
-    
+    string charset() {
+        return _charset;
+    }
+
     // Setter for charset
-    auto charset(string value) { _charset = value; return this; }
+    auto charset(string value) {
+        _charset = value;
+        return this;
+    }
 
     protected IHtmlElement _head;
     protected IHtmlElement _body;
@@ -97,7 +112,7 @@ class HtmlDocument : UIMObject {
         html ~= `<html lang="` ~ _lang ~ `">` ~ "\n";
         html ~= "<head>\n";
         html ~= `<meta charset="` ~ _charset ~ `">` ~ "\n";
-        
+
         if (_title.length > 0) {
             html ~= "<title>" ~ _title ~ "</title>\n";
         }
@@ -117,7 +132,7 @@ class HtmlDocument : UIMObject {
 
         html ~= "</head>\n";
         html ~= "<body>\n";
-        
+
         // Add body content
         if (_body.content().length > 0) {
             html ~= _body.content() ~ "\n";
@@ -133,16 +148,18 @@ class HtmlDocument : UIMObject {
 
         html ~= "</body>\n";
         html ~= "</html>";
-        
+
         return html;
     }
-}
 
-auto htmlDocument() { return new HtmlDocument(); }
+    static HtmlDocument opCall() {
+        return new HtmlDocument();
+    }
+}
 
 unittest {
     auto doc = HtmlDocument();
     doc.title("Test Page").lang("en");
-    assert(doc.title == "Test Page");
-    assert(doc.lang == "en");
+    assert(doc.title() == "Test Page");
+    assert(doc.lang() == "en");
 }

@@ -12,21 +12,31 @@ mixin(ShowModule!());
 @safe:
 
 /// Represents an HTML attribute with name and value
-class HtmlAttribute : /* UIMObject, */ IHtmlAttribute {
+class HtmlAttribute :  /* UIMObject, */ IHtmlAttribute {
     protected string _name;
     protected string _value;
 
     // Getter for name
-    override string name() { return _name; }
-    
+    override string name() {
+        return _name;
+    }
+
     // Setter for name
-    override IHtmlAttribute name(string value) { _name = value; return this; }
-    
+    override IHtmlAttribute name(string value) {
+        _name = value;
+        return this;
+    }
+
     // Getter for value
-    override string value() { return _value; }
-    
+    override string value() {
+        return _value;
+    }
+
     // Setter for value
-    override IHtmlAttribute value(string val) { _value = val; return this; }
+    override IHtmlAttribute value(string val) {
+        _value = val;
+        return this;
+    }
 
     this() {
         // super();
@@ -50,14 +60,19 @@ class HtmlAttribute : /* UIMObject, */ IHtmlAttribute {
     static IHtmlAttribute create(string name, string value = null) {
         return new HtmlAttribute(name, value);
     }
+
+    static HtmlAttribute opCall() {
+        return new HtmlAttribute();
+    }
+
+    static HtmlAttribute opCall(string name, string value = null) {
+        return new HtmlAttribute(name, value);
+    }
 }
-
-auto htmlAttribute() { return new HtmlAttribute(); }
-auto htmlAttribute(string name, string value = null) { return new HtmlAttribute(name, value); }
-
+///
 unittest {
     auto attr = HtmlAttribute("class", "test");
-    assert(attr.name == "class");
-    assert(attr.value == "test");
+    assert(attr.name() == "class");
+    assert(attr.value() == "test");
     assert(attr.toString() == `class="test"`);
 }

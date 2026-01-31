@@ -16,22 +16,23 @@ class Address : HtmlElement {
     super("address");
     this.selfClosing(false);
   }
-}
 
-auto address() {
-  return new Address();
-}
+  static Address opCall() {
+    return new Address();
+  }
 
-auto address(string content) {
-  auto element = new Address();
-  element.text(content);
-  return element;
-}
+  static Address opCall(string content) {
+    auto element = new Address();
+    element.content(content);
+    return element;
+  }
 
+}
+///
 unittest {
-  auto address = address();
-  assert(address.toString() == "<address></address>");
+  auto address = Address();
+  assert(address == "<address></address>");
 
-  auto addressWithContent = address("Hello");
-  assert(addressWithContent.toString() == "<address>Hello</address>");
+  auto addressWithContent = Address("Hello");
+  assert(addressWithContent == "<address>Hello</address>");
 }

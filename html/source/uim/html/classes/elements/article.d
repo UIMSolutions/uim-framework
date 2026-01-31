@@ -16,22 +16,22 @@ class Article : HtmlElement {
     super("article");
     this.selfClosing(false);
   }
-}
 
-auto article() {
-  return new Article();
-}
+  static Article opCall() {
+    return new Article();
+  }
 
-auto article(string content) {
-  auto element = new Article();
-  element.text(content);
-  return element;
+  static Article opCall(string content) {
+    auto element = new Article();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto article = article();
+  auto article = Article();
   assert(article.toString() == "<article></article>");
 
-  auto articleWithContent = article("Hello");
+  auto articleWithContent = Article("Hello");
   assert(articleWithContent.toString() == "<article>Hello</article>");
 }

@@ -41,6 +41,15 @@ class Button : FormElement {
     attribute("disabled", "");
     return this;
   }
+
+  static Button opCall() {
+    return new Button();
+  }
+}
+/// 
+unittest {
+  auto btn = Button();
+  assert(btn == "<button></button>");
 }
 
 auto button() {

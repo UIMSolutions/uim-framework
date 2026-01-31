@@ -16,20 +16,20 @@ class Aside : HtmlElement {
     super("aside");
     this.selfClosing(false);
   }
-}
 
-auto aside() {
-  return new Aside();
-}
+  static Aside opCall() {
+    return new Aside();
+  }
 
-auto aside(string content) {
-  auto element = new Aside();
-  element.text(content);
-  return element;
+  static Aside opCall(string content) {
+    auto element = new Aside();
+    element.text(content);
+    return element;
+  }
 }
-
+///
 unittest {
-  auto aside = aside();
+  auto aside = Aside();
   assert(aside.toString() == "<aside></aside>");
 
   auto asideWithContent = Aside("Hello");

@@ -64,8 +64,8 @@ class HtmlElement : IHtmlElement {
   protected IHtmlAttribute[string] _attributes;
   protected IHtmlElement[] _children;
 
-  bool opEquals(R)(string html) const {
-    return this.toString() == html;
+  bool opEquals(const string html) {
+    return toString() == html;
   }
   /// Add an attribute to the element
   IHtmlElement attribute(string name, string value) {
