@@ -18,20 +18,20 @@ class Small : HtmlElement {
   }
 }
 
-auto Small() {
-  return new DSmall();
+auto small() {
+  return new Small();
 }
 
-auto Small(string content) {
-  auto element = new DSmall();
+auto small(string content) {
+  auto element = new Small();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto small = Small();
+  auto small = small();
   assert(small.toString() == "<small></small>");
 
-  auto smallWithContent = Small("Hello");
+  auto smallWithContent = small("Hello");
   assert(smallWithContent.toString() == "<small>Hello</small>");
 }

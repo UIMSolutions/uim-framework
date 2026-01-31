@@ -18,20 +18,20 @@ class Hgroup : HtmlElement {
   }
 }
 
-auto Hgroup() {
-  return new DHgroup();
+auto hgroup() {
+  return new Hgroup();
 }
 
-auto Hgroup(string content) {
-  auto element = new DHgroup();
+auto hgroup(string content) {
+  auto element = new Hgroup();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto hgroup = Hgroup();
+  auto hgroup = hgroup();
   assert(hgroup.toString() == "<hgroup></hgroup>");
 
-  auto hgroupWithContent = Hgroup("Hello");
+  auto hgroupWithContent = hgroup("Hello");
   assert(hgroupWithContent.toString() == "<hgroup>Hello</hgroup>");
 }

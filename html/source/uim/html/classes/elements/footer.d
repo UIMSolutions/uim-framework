@@ -11,27 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-class DFooter : HtmlElement {
+class Footer : HtmlElement {
   this() {
     super("footer");
     this.selfClosing(false);
   }
 }
 
-auto Footer() {
-  return new DFooter();
+auto footer() {
+  return new Footer();
 }
 
-auto Footer(string content) {
-  auto element = new DFooter();
+auto footer(string content) {
+  auto element = new Footer();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto footer = Footer();
+  auto footer = footer();
   assert(footer.toString() == "<footer></footer>");
 
-  auto footerWithContent = Footer("Hello");
+  auto footerWithContent = footer("Hello");
   assert(footerWithContent.toString() == "<footer>Hello</footer>");
 }

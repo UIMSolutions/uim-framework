@@ -29,10 +29,10 @@ class Col : HtmlElement {
     }
 }
 
-auto Col() { return new DCol(); }
-auto Col(string content) { auto col = new DCol(); col.text(content); return col; }
+auto col() { return new Col(); }
+auto col(string content) { auto col = new Col(); col.text(content); return col; }
 
 unittest {
-    auto col = Col("Cell content");
+    auto col = col("Cell content");
     assert(col.toString() == "<col>Cell content</col>");
 }

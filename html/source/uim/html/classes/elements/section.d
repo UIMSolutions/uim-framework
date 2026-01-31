@@ -18,20 +18,20 @@ class Section : HtmlElement {
   }
 }
 
-auto Section() {
-  return new DSection();
+auto section() {
+  return new Section();
 }
 
-auto Section(string content) {
-  auto element = new DSection();
+auto section(string content) {
+  auto element = new Section();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto section = Section();
+  auto section = section();
   assert(section.toString() == "<section></section>");
 
-  auto sectionWithContent = Section("Hello");
+  auto sectionWithContent = section("Hello");
   assert(sectionWithContent.toString() == "<section>Hello</section>");
 }

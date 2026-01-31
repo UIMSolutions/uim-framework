@@ -29,10 +29,10 @@ class Td : HtmlElement {
     }
 }
 
-auto Td() { return new DTd(); }
-auto Td(string content) { auto td = new DTd(); td.text(content); return td; }
+auto td() { return new Td(); }
+auto td(string content) { auto td = new Td(); td.text(content); return td; }
 
 unittest {
-    auto td = Td("Cell content");
+    auto td = td("Cell content");
     assert(td.toString() == "<td>Cell content</td>");
 }

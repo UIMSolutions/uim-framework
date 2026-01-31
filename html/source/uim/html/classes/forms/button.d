@@ -43,41 +43,41 @@ class Button : DHtmlFormElement {
   }
 }
 
-auto Button() {
-  return new DButton();
+auto button() {
+  return new Button();
 }
 
-auto Button(string text) {
-  auto btn = new DButton();
+auto button(string text) {
+  auto btn = new Button();
   btn.text(text);
   return btn;
 }
 
-auto HtmlButton() {
-  return new DButton();
+auto htmlButton() {
+  return new Button();
 }
 
-auto HtmlButton(string text) {
-  auto btn = new DButton();
+auto htmlButton(string text) {
+  auto btn = new Button();
   btn.text(text);
   return btn;
 }
 
-auto ButtonSubmit(string text = "Submit") {
-  auto btn = new DButton();
+auto buttonSubmit(string text = "Submit") {
+  auto btn = new Button();
   btn.text(text);
   btn.submit();
   return btn;
 }
 
-auto ButtonReset(string text = "Reset") {
-  auto btn = new DButton();
+auto buttonReset(string text = "Reset") {
+  auto btn = new Button();
   btn.text(text);
   btn.reset();
   return btn;
 }
 
 unittest {
-  auto btn = Button("Click me");
+  auto btn = button("Click me");
   assert(btn.toString() == "<button>Click me</button>");
 }

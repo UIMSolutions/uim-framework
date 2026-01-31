@@ -58,12 +58,12 @@ class Img : HtmlElement {
     // #endregion width
 }
 
-auto Img() {
-    return new DImg();
+auto img() {
+    return new Img();
 }
 
-auto Img(string src, string alt = null) {
-    auto element = new DImg();
+auto img(string src, string alt = null) {
+    auto element = new Img();
     element.src(src);
     if (alt)
         element.alt(alt);

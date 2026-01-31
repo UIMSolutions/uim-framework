@@ -11,27 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-class DHeader : HtmlElement {
+class Header : HtmlElement {
   this() {
     super("header");
     this.selfClosing(false);
   }
 }
 
-auto Header() {
-  return new DHeader();
+auto header() {
+  return new Header();
 }
 
-auto Header(string content) {
-  auto element = new DHeader();
+auto header(string content) {
+  auto element = new Header();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto header = Header();
+  auto header = header();
   assert(header.toString() == "<header></header>");
 
-  auto headerWithContent = Header("Hello");
+  auto headerWithContent = header("Hello");
   assert(headerWithContent.toString() == "<header>Hello</header>");
 }

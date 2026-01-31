@@ -68,17 +68,17 @@ class Textarea : DHtmlFormElement {
   }
 }
 
-auto Textarea() {
-  return new DTextarea();
+auto textarea() {
+  return new Textarea();
 }
 
-auto Textarea(string name) {
-  auto ta = new DTextarea();
+auto textarea(string name) {
+  auto ta = new Textarea();
   ta.name(name);
   return ta;
 }
 
 unittest {
-  auto ta = Textarea("comment");
+  auto ta = textarea("comment");
   assert(ta.toString().indexOf("textarea") > 0);
 }

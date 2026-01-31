@@ -17,11 +17,15 @@ class Tbody : HtmlElement {
     this() {
         super("tbody");
     }
+
+    static Tbody opCall() {
+        return new Tbody();
+    }
 }
 
-auto Tbody() { return new DTbody(); }
+auto tbody() { return new Tbody(); }
 
 unittest {
-    auto tbody = Tbody();
+    auto tbody = tbody();
     assert(tbody.toString() == "<tbody></tbody>");
 }

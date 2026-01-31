@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class ialog : HtmlElement {
+class Dialog : HtmlElement {
   this() {
     super("dialog");
     this.selfClosing(false);
@@ -38,20 +38,20 @@ class ialog : HtmlElement {
   }
 }
 
-auto Dialog() {
-  return new DDialog();
+auto dialog() {
+  return new Dialog();
 }
 
-auto Dialog(string content) {
-  auto element = new DDialog();
+auto dialog(string content) {
+  auto element = new Dialog();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto dialog = Dialog();
+  auto dialog = dialog();
   assert(dialog.toString() == "<dialog></dialog>");
 
-  auto dialogWithContent = Dialog("Hello");
+  auto dialogWithContent = dialog("Hello");
   assert(dialogWithContent.toString() == "<dialog>Hello</dialog>");
 }

@@ -18,20 +18,20 @@ class Search : HtmlElement {
   }
 }
 
-auto Search() {
-  return new DSearch();
+auto search() {
+  return new Search();
 }
 
-auto Search(string content) {
-  auto element = new DSearch();
+auto search(string content) {
+  auto element = new Search();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto search = Search();
+  auto search = search();
   assert(search.toString() == "<search></search>");
 
-  auto searchWithContent = Search("Hello");
+  auto searchWithContent = search("Hello");
   assert(searchWithContent.toString() == "<search>Hello</search>");
 }

@@ -19,9 +19,9 @@ class Tr : HtmlElement {
     }
 }
 
-auto Tr() { return new DTr(); }
+auto tr() { return new Tr(); }
 
 unittest {
-    auto tr = Tr();
+    auto tr = tr();
     assert(tr.toString() == "<tr></tr>");
 }
