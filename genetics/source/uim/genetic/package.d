@@ -6,6 +6,8 @@
 module uim.genetic;
 
 public {
+  import uim.oop;
+  
   import uim.genetic.interfaces;
   import uim.genetic.base;
   import uim.genetic.operators;

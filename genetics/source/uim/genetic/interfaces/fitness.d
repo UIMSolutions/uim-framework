@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.interfaces.fitness;
 
-import uim.genetic.interfaces.individual;
-import vibe.d;
+import uim.genetic;
 
 @safe:
 

@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.interfaces.selection;
 
-import uim.genetic.interfaces.individual;
-import uim.genetic.interfaces.population;
+import uim.genetic;
 
 @safe:
 

@@ -5,11 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.algorithms.genetic;
 
-import uim.genetic.interfaces;
-import uim.genetic.base;
-import uim.genetic.operators;
-import vibe.d;
-import std.algorithm : sort;
+import uim.genetic;
 
 @safe:
 

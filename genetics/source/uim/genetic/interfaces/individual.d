@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.interfaces.individual;
 
-import vibe.d;
+import uim.genetic;
 
 @safe:
 
