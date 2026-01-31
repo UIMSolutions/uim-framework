@@ -5,7 +5,7 @@ import uim.jsons.geo;
 /**
  * Point geometry
  */
-class GeoJsonPoint : DGeoJsonGeometry {
+class GeoJsonPoint : GeoJsonGeometry {
     protected PointCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;

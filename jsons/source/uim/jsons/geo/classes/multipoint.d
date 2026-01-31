@@ -6,7 +6,7 @@ import uim.jsons.geo;
 /**
  * MultiPoint geometry
  */
-class GeoJsonMultiPoint : DGeoJsonGeometry {
+class GeoJsonMultiPoint : GeoJsonGeometry {
     protected MultiPointCoordinates _coordinates;
     
     alias toJson = UIMObject.toJson;

@@ -68,7 +68,7 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
     return ""; // throw invalidArgumentError("Unknown node received " ~ node.classinfo.baseName).throwError();
   }
 
-  protected string exportArray(DArrayErrorNode node, size_t indentLevel) {
+  protected string exportArray(ArrayErrorNode node, size_t indentLevel) {
     return null;
   }
 
@@ -76,23 +76,23 @@ class UIMErrorFormatter : UIMObject, IErrorFormatter {
     return export_(node, indentLevel);
   }
 
-  protected string exportReference(DReferenceErrorNode node, size_t indentLevel) {
+  protected string exportReference(ReferenceErrorNode node, size_t indentLevel) {
     return null;
   }
 
-  protected string exportClass(DClassErrorNode node, size_t indentLevel) {
+  protected string exportClass(ClassErrorNode node, size_t indentLevel) {
     return null;
   }
 
-  protected string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+  protected string exportProperty(PropertyErrorNode node, size_t indentLevel) {
     return null;
   }
 
-  protected string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+  protected string exportScalar(ScalarErrorNode node, size_t indentLevel) {
     return null;
   }
 
-  protected string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+  protected string exportSpecial(SpecialErrorNode node, size_t indentLevel) {
     return null;
   }
   // #endregion export

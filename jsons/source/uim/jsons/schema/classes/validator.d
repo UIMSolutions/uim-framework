@@ -278,8 +278,8 @@ class JsonSchemaValidator : UIMObject {
 
     // Validate items
     if (auto items = "items" in schema) {
-      auto itemSchema = new DJsonSchema(*items);
-      auto itemValidator = new DJsonSchemaValidator(itemSchema);
+      auto itemSchema = new JsonSchema(*items);
+      auto itemValidator = new JsonSchemaValidator(itemSchema);
       
       foreach (idx, item; arr) {
         auto result = itemValidator.validate(item);
@@ -344,7 +344,7 @@ class JsonSchemaValidator : UIMObject {
       auto properties = props.get!(Json[string]);
       foreach (propName, propSchema; properties) {
         if (propName in obj) {
-          auto propValidator = new DJsonSchemaValidator(new DJsonSchema(propSchema));
+          auto propValidator = new JsonSchemaValidator(new JsonSchema(propSchema));
           auto result = propValidator.validate(obj[propName]);
           if (!result.valid) {
             foreach (err; result.errors) {

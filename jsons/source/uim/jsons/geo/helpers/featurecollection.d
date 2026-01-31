@@ -16,19 +16,19 @@ mixin(ShowModule!());
  * A collection of feature objects
  */
 class GeoJsonFeatureCollection : UIMObject {
-    protected DGeoJsonFeature[] _features;
+    protected GeoJsonFeature[] _features;
     
     alias toJson = UIMObject.toJson;
     
-    @property DGeoJsonFeature[] features() { return _features; }
-    @property void features(DGeoJsonFeature[] value) { _features = value; }
+    @property GeoJsonFeature[] features() { return _features; }
+    @property void features(GeoJsonFeature[] value) { _features = value; }
     
     this() {
         super();
         _features = [];
     }
     
-    this(DGeoJsonFeature[] feats) {
+    this(GeoJsonFeature[] feats) {
         this();
         this._features = feats;
     }
@@ -36,7 +36,7 @@ class GeoJsonFeatureCollection : UIMObject {
     /**
      * Add a feature to the collection
      */
-    void addFeature(DGeoJsonFeature feature) {
+    void addFeature(GeoJsonFeature feature) {
         _features ~= feature;
     }
     
@@ -63,7 +63,7 @@ class GeoJsonFeatureCollection : UIMObject {
         if ("features" in json) {
             _features = [];
             foreach (featJson; json["features"]) {
-                auto feature = new DGeoJsonFeature();
+                auto feature = new GeoJsonFeature();
                 feature.fromJson(featJson);
                 _features ~= feature;
             }
@@ -80,8 +80,8 @@ class GeoJsonFeatureCollection : UIMObject {
     /**
      * Filter features by property
      */
-    DGeoJsonFeature[] filterByProperty(string propName, Json value) @trusted {
-        DGeoJsonFeature[] result;
+    GeoJsonFeature[] filterByProperty(string propName, Json value) @trusted {
+        GeoJsonFeature[] result;
         foreach (feature; _features) {
             if (feature.hasProperty(propName)) {
                 auto propValue = feature.getProperty(propName);
@@ -97,7 +97,7 @@ class GeoJsonFeatureCollection : UIMObject {
 /**
  * Parse a feature collection from Json string
  */
-DGeoJsonFeatureCollection parseFeatureCollection(string jsonString) @trusted {
+GeoJsonFeatureCollection parseFeatureCollection(string jsonString) @trusted {
     auto json = parseJsonString(jsonString);
     return parseFeatureCollection(json);
 }
@@ -105,8 +105,8 @@ DGeoJsonFeatureCollection parseFeatureCollection(string jsonString) @trusted {
 /**
  * Parse a feature collection from Json object
  */
-DGeoJsonFeatureCollection parseFeatureCollection(Json json) @trusted {
-    auto collection = new DGeoJsonFeatureCollection();
+GeoJsonFeatureCollection parseFeatureCollection(Json json) @trusted {
+    auto collection = new GeoJsonFeatureCollection();
     collection.fromJson(json);
     return collection;
 }

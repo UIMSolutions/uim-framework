@@ -1,5 +1,7 @@
 module uim.jsons.geo.helpers.collection;
 
+import uim.jsons.geo;
+@safe:
 /**
  * GeometryCollection
  */

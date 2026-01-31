@@ -161,7 +161,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
     return result ~ (props.length > 0 ? props.join("") : "") ~ endTag;
   }
 
-  protected override string exportProperty(DPropertyErrorNode node, size_t indentLevel) {
+  protected override string exportProperty(PropertyErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -179,7 +179,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
         (style("property", nodeName) ~ arrow ~ export_(node.value(), indentLevel)) ~ "</span>";
   }
 
-  protected override string exportScalar(DScalarErrorNode node, size_t indentLevel) {
+  protected override string exportScalar(ScalarErrorNode node, size_t indentLevel) {
     if (node is null) {
       return null;
     }
@@ -200,7 +200,7 @@ class tmlErrorFormatter : UIMErrorFormatter {
     };
   }
 
-  protected override string exportSpecial(DSpecialErrorNode node, size_t indentLevel) {
+  protected override string exportSpecial(SpecialErrorNode node, size_t indentLevel) {
     return null;
   }
   // #endregion export

@@ -34,31 +34,31 @@ GeoJsonGeometry parseGeometry(Json json) @trusted {
     
     switch (typeStr) {
         case "Point":
-            auto point = new DGeoJsonPoint();
+            auto point = new GeoJsonPoint();
             point.fromJson(json);
             return point;
         case "LineString":
-            auto lineString = new DGeoJsonLineString();
+            auto lineString = new GeoJsonLineString();
             lineString.fromJson(json);
             return lineString;
         case "Polygon":
-            auto polygon = new DGeoJsonPolygon();
+            auto polygon = new GeoJsonPolygon();
             polygon.fromJson(json);
             return polygon;
         case "MultiPoint":
-            auto multiPoint = new DGeoJsonMultiPoint();
+            auto multiPoint = new GeoJsonMultiPoint();
             multiPoint.fromJson(json);
             return multiPoint;
         case "MultiLineString":
-            auto multiLineString = new DGeoJsonMultiLineString();
+            auto multiLineString = new GeoJsonMultiLineString();
             multiLineString.fromJson(json);
             return multiLineString;
         case "MultiPolygon":
-            auto multiPolygon = new DGeoJsonMultiPolygon();
+            auto multiPolygon = new GeoJsonMultiPolygon();
             multiPolygon.fromJson(json);
             return multiPolygon;
         case "GeometryCollection":
-            auto collection = new DGeoJsonGeometryCollection();
+            auto collection = new GeoJsonGeometryCollection();
             collection.fromJson(json);
             return collection;
         default:

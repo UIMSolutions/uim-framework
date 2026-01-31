@@ -15,13 +15,13 @@ A D language library for working with GeoJson data format. This module provides 
 ### Point
 Represents a single position (longitude, latitude, optional altitude):
 ```d
-auto point = new DGeoJsonPoint(-122.4194, 37.7749); // San Francisco
+auto point = new GeoJsonPoint(-122.4194, 37.7749); // San Francisco
 ```
 
 ### LineString
 Represents a series of connected positions:
 ```d
-auto line = new DGeoJsonLineString([
+auto line = new GeoJsonLineString([
     [-122.4194, 37.7749],
     [-122.4084, 37.7849]
 ]);
@@ -30,7 +30,7 @@ auto line = new DGeoJsonLineString([
 ### Polygon
 Represents an area with optional holes:
 ```d
-auto polygon = new DGeoJsonPolygon([
+auto polygon = new GeoJsonPolygon([
     [ // Outer ring
         [-122.5, 37.8],
         [-122.4, 37.8],
@@ -53,8 +53,8 @@ A collection of heterogeneous geometries.
 
 A GeoJson Feature represents a spatially bounded entity:
 ```d
-auto point = new DGeoJsonPoint(-122.4194, 37.7749);
-auto feature = new DGeoJsonFeature(point);
+auto point = new GeoJsonPoint(-122.4194, 37.7749);
+auto feature = new GeoJsonFeature(point);
 
 // Add properties
 feature.setProperty("name", Json("Golden Gate Bridge"));
@@ -65,7 +65,7 @@ feature.setProperty("year", Json(1937));
 
 A collection of features:
 ```d
-auto collection = new DGeoJsonFeatureCollection();
+auto collection = new GeoJsonFeatureCollection();
 collection.addFeature(feature1);
 collection.addFeature(feature2);
 
@@ -81,10 +81,10 @@ auto json = collection.toJson();
 import uim.jsons.geo;
 
 // Create a point
-auto point = new DGeoJsonPoint(-122.4194, 37.7749);
+auto point = new GeoJsonPoint(-122.4194, 37.7749);
 
 // Create a feature with properties
-auto feature = new DGeoJsonFeature(point);
+auto feature = new GeoJsonFeature(point);
 feature.setProperty("name", Json("San Francisco"));
 feature.setProperty("population", Json(883305));
 
@@ -118,12 +118,12 @@ auto name = feature.getProperty("name").get!string;
 ```d
 import uim.jsons.geo;
 
-auto collection = new DGeoJsonFeatureCollection();
+auto collection = new GeoJsonFeatureCollection();
 
 // Add multiple features
 foreach (i; 0..10) {
-    auto point = new DGeoJsonPoint(i * 1.0, i * 2.0);
-    auto feature = new DGeoJsonFeature(point);
+    auto point = new GeoJsonPoint(i * 1.0, i * 2.0);
+    auto feature = new GeoJsonFeature(point);
     feature.setProperty("id", Json(i));
     collection.addFeature(feature);
 }

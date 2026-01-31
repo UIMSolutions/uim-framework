@@ -11,14 +11,14 @@ mixin(ShowModule!());
 
 
 // Dump node for Array values.
-class rayErrorNode : UIMErrorNode {
+class ArrayErrorNode : UIMErrorNode {
   mixin(ErrorNodeThis!("Array"));
 
-  this(DArrayItemErrorNode[] nodes = null) {
+  this(ArrayItemErrorNode[] nodes = null) {
     add(nodes);
   }
 
-  void add(DArrayItemErrorNode[] nodes) {
+  void add(ArrayItemErrorNode[] nodes) {
     _children ~= nodes; 
   }
 }
