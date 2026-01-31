@@ -10,7 +10,7 @@ import uim.entities;
 mixin(ShowModule!());
 
 @safe:
-class Version : UIMElement {
+class UIMVersion : UIMElement {
   // static namespace = moduleName!DVersion;
 
   // Constructors
@@ -52,7 +52,7 @@ class Version : UIMElement {
   }
 
   /// Setter for number (chainable)
-  Version number(long value) @property {
+  UIMVersion number(long value) @property {
     _number = value;
     return this;
   }
@@ -67,14 +67,14 @@ class Version : UIMElement {
   }
 
   /// Setter for on (chainable)
-  Version on(long value) @property {
+  UIMVersion on(long value) @property {
     _on = value;
     return this;
   }
   /// 
   unittest {
     auto timestamp = toTimestamp(now);
-    auto element = new DVersion;
+    auto element = new UIMVersion;
     element.on = timestamp;
     assert(element.on == timestamp);
     assert(element.on != 1);
@@ -89,7 +89,7 @@ class Version : UIMElement {
   /// 
   unittest {
     auto id = randomUUID;
-    auto element = new DVersion;
+    auto element = new UIMVersion;
     element.by = id;
     assert(element.by == id);
     assert(element.by != randomUUID);
@@ -102,7 +102,7 @@ class Version : UIMElement {
   mixin(ValueProperty!("string", "description"));
   /// 
   unittest {
-    auto element = new DVersion;
+    auto element = new UIMVersion;
     element.description = "newDescription";
     assert(element.description == "newDescription");
     assert(element.description != "noDescription");
@@ -114,7 +114,7 @@ class Version : UIMElement {
   mixin(ValueProperty!("string", "display"));
   /// 
   unittest {
-    auto element = new DVersion;
+    auto element = new UIMVersion;
     element.display = "newDisplay";
     assert(element.display == "newDisplay");
     assert(element.display != "noDisplay");
@@ -126,7 +126,7 @@ class Version : UIMElement {
   mixin(ValueProperty!("string", "mode"));
   /// 
   unittest {
-    auto element = new DVersion;
+    auto element = new UIMVersion;
     element.mode = "newMode";
     assert(element.mode == "newMode");
     assert(element.mode != "noMode");
@@ -136,6 +136,6 @@ class Version : UIMElement {
   }
 
   override UIMElement create() {
-    return new DVersion;
+    return new UIMVersion;
   }
 }

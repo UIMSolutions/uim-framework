@@ -9,11 +9,11 @@ mixin(ShowModule!());
  * Generic registry interface
  */
 interface IRegistry(K, V) {
-  void register(K key, V value);
+  IRegistry!(K, V) register(K key, V value);
   V get(K key);
   bool has(K key);
-  void unregister(K key);
-  void clear();
+  IRegistry!(K, V) unregister(K key);
+  IRegistry!(K, V) clear();
   K[] keys();
   V[] values();
   size_t count();

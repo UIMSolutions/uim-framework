@@ -62,7 +62,7 @@ void testAttribute(UIMAttribute attribute) {
 }
 
 static this() {
-  attributeRegistry()
+  AttributeRegistry.instance
     // Booleans
     .register("boolean", new BooleanAttribute)
     // Bytes

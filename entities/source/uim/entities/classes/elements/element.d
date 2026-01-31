@@ -116,7 +116,7 @@ class UIMElement : UIMObject, IElement {
 
   protected string[string] _parameters;
   string[string] parameters() const {
-    return _parameters.dup;
+    return _parameters;
   }
 
   auto parameters(string[string] value) {
@@ -155,7 +155,7 @@ class UIMElement : UIMObject, IElement {
   // Read data from string[string]
   // Implement IElement interface functions
   override void readFromMap(string[string] reqParameters, bool usePrefix = false) {
-    reqParameters.byKeyValue.each!((k, v) => this[k] = v);
+    reqParameters.byKeyValue.each!(kv => this[kv.key] = kv.value);
   }
 
   override void readFromRequest(string[string] requestValues, bool usePrefix = true) {

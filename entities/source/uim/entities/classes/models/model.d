@@ -37,7 +37,7 @@ class Model : UIMObject, IModel {
   IModel manager(IModelManager value) { _manager = value; return this; }
 
   protected string[string] _parameters;
-  string[string] parameters() const { return _parameters; }
+  string[string] parameters() { return _parameters; }
   auto parameters(string[string] value) { _parameters = value; return this; }
 
   /**
@@ -45,16 +45,16 @@ class Model : UIMObject, IModel {
     * These are merged with user-provided config when the component is used.
     */
   protected IValue[string] _defaultConfig;
-  IValue[string] defaultConfig() const { return _defaultConfig; }
+  IValue[string] defaultConfig()  { return _defaultConfig; }
   IModel defaultConfig(IValue[string] value) { _defaultConfig = value; return this; }
 
   // Configuration of model
   protected IValue[string] _config;
-  IValue[string] config() const { return _config; }
+  IValue[string] config() { return _config; }
   IModel config(IValue[string] value) { _config = value; return this; }
 
   IModel create() {
-    return Model;
+    return new Model;
   }
   IModel copy() {
     auto result = create;

@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 class ArrayValue : UIMValue {
   this() {
-    super;
+    super();
   }  
 
   this(IAttribute attribute, Json toJson = Json(null)) {
