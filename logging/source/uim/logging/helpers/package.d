@@ -19,7 +19,7 @@ private ILogger _globalLogger;
  */
 ILogger globalLogger() {
     if (_globalLogger is null) {
-        _globalLogger = ConsoleLogger("Global");
+        _globalLogger = consoleLogger("Global");
     }
     return _globalLogger;
 }
@@ -85,8 +85,8 @@ ILogger createFileLogger(string filename, string name = "File", UIMLogLevel leve
  */
 ILogger multiLogger(string filename, string name = "Multi", UIMLogLevel level = UIMLogLevel.info) {
     auto multiLogger = new MultiLogger(name);
-    multiLogger.addLogger(ConsoleLogger(name ~ ".Console"));
-    multiLogger.addLogger(FileLogger(filename, name ~ ".File"));
+    multiLogger.addLogger(consoleLogger(name ~ ".Console"));
+    multiLogger.addLogger(fileLogger(filename, name ~ ".File"));
     multiLogger.level = level;
     return multiLogger;
 }

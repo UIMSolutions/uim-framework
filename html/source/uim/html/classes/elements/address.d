@@ -18,20 +18,20 @@ class Address : HtmlElement {
   }
 }
 
-auto Address() {
+auto address() {
   return new DAddress();
 }
 
-auto Address(string content) {
+auto address(string content) {
   auto element = new DAddress();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto address = Address();
+  auto address = address();
   assert(address.toString() == "<address></address>");
 
-  auto addressWithContent = Address("Hello");
+  auto addressWithContent = address("Hello");
   assert(addressWithContent.toString() == "<address>Hello</address>");
 }

@@ -65,19 +65,19 @@ class MultiLogger : UIMLogger {
         }
         
         foreach (logger; _loggers) {
-            logger.log(level, message, context);
+            // TODO: logger.log(level, message, context);
         }
     }
     
     override void flush() {
         foreach (logger; _loggers) {
-            logger.flush();
+            // TODO: logger.flush();
         }
     }
     
     override void close() {
         foreach (logger; _loggers) {
-            logger.close();
+            // TODO: logger.close();
         }
     }
 }

@@ -18,12 +18,12 @@ class Aside : HtmlElement {
   }
 }
 
-auto Aside() {
-  return new DAside();
+auto aside() {
+  return new AsideElement();
 }
 
-auto Aside(string content) {
-  auto element = new DAside();
+auto aside(string content) {
+  auto element = new AsideElement();
   element.text(content);
   return element;
 }

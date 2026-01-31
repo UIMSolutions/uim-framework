@@ -18,20 +18,20 @@ class Article : HtmlElement {
   }
 }
 
-auto Article() {
-  return new DArticle();
+auto article() {
+  return new Article();
 }
 
-auto Article(string content) {
-  auto element = new DArticle();
+auto article(string content) {
+  auto element = new Article();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto article = Article();
+  auto article = article();
   assert(article.toString() == "<article></article>");
 
-  auto articleWithContent = Article("Hello");
+  auto articleWithContent = article("Hello");
   assert(articleWithContent.toString() == "<article>Hello</article>");
 }

@@ -138,10 +138,11 @@ class HtmlDocument : UIMObject {
     }
 }
 
-auto HtmlDocument() { return new DHtmlDocument(); }
+auto htmlDocument() { return new DHtmlDocument(); }
 
 unittest {
     auto doc = HtmlDocument();
     doc.title("Test Page").lang("en");
     assert(doc.title == "Test Page");
+    assert(doc.lang == "en");
 }

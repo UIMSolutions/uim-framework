@@ -33,12 +33,12 @@ class A : HtmlElement {
   }
 }
 
-auto A() {
-  return new DA();
+auto a() {
+  return new AElement();
 }
 
-auto A(string url, string text = null) {
-  auto element = new DA();
+auto a(string url, string text = null) {
+  auto element = new AElement();
   element.href(url);
   if (text)
     element.text(text);
@@ -46,6 +46,6 @@ auto A(string url, string text = null) {
 }
 
 unittest {
-  auto link = A("https://example.com", "Example");
+  auto link = a("https://example.com", "Example");
   assert(link.toString() == `<a href="https://example.com">Example</a>`);
 }

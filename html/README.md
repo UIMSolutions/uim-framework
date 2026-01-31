@@ -283,7 +283,7 @@ auto page = Div().addClass("page")
 ### Custom Elements
 ```d
 // Extend HtmlElement for custom elements
-class MyCustomElement : HtmlElement {
+class MyCustom : HtmlElement {
     this() {
         super("custom-element");
     }

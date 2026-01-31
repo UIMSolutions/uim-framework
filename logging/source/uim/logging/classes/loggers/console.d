@@ -30,7 +30,7 @@ class ConsoleLogger : UIMLogger {
         } else {
             writeln(formattedMessage);
         }
-        stdout.flush();
+        // TODO: stdout.flush();
     }
 }
 

@@ -39,12 +39,12 @@ class Canvas : HtmlElement {
   // #endregion width
 }
 
-auto Canvas() {
-  return new DCanvas();
+auto canvas() {
+  return new Canvas();
 }
 
-auto Canvas(string height, string width) {
-  auto element = new DCanvas();
+auto canvas(string height, string width) {
+  auto element = new Canvas();
   element.height(height);
   element.width(width);
   return element;

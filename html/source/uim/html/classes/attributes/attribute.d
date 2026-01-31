@@ -52,8 +52,8 @@ class HtmlAttribute : /* UIMObject, */ IHtmlAttribute {
     }
 }
 
-auto HtmlAttribute() { return new DHtmlAttribute(); }
-auto HtmlAttribute(string name, string value = null) { return new DHtmlAttribute(name, value); }
+auto htmlAttribute() { return new DHtmlAttribute(); }
+auto htmlAttribute(string name, string value = null) { return new DHtmlAttribute(name, value); }
 
 unittest {
     auto attr = HtmlAttribute("class", "test");
