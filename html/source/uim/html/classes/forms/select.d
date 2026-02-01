@@ -45,16 +45,16 @@ class Select : FormElement {
         addChild(SelectOption(value, text));
         return this;
     }
-}
 
-auto select() {
-    return new Select();
-}
+    static Select opCall() {
+        return new Select();
+    }
 
-auto select(string name) {
-    auto sel = new Select();
-    sel.name(name);
-    return sel;
+    static Select opCall(string name) {
+        auto sel = new Select();
+        sel.name(name);
+        return sel;
+    }
 }
 
 unittest {

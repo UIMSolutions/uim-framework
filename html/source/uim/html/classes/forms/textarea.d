@@ -1,9 +1,9 @@
 module uim.html.classes.forms.textarea;
 
 /****************************************************************************************************************
-* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
-* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+* Authors: Ozan Nurettin Süel (aka UIManufaktur)
 *****************************************************************************************************************/
 
 import uim.html;
@@ -66,19 +66,20 @@ class Textarea : FormElement {
     _content = value;
     return this;
   }
-}
 
-auto textarea() {
+  static Textarea opCall() {
   return new Textarea();
 }
 
-auto textarea(string name) {
+static Textarea opCall(string name) {
   auto ta = new Textarea();
   ta.name(name);
   return ta;
 }
 
+}
+///
 unittest {
-  auto ta = textarea("comment");
+  auto ta = Textarea("comment");
   assert(ta.toString().indexOf("textarea") > 0);
 }

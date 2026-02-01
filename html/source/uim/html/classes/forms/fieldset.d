@@ -25,4 +25,15 @@ class Fieldset : HtmlElement {
     attribute("name", nameValue);
     return this;
   }
+
+  static Fieldset opCall() {
+    return new Fieldset();
+  }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing Fieldset Class");
+
+  auto fs = Fieldset();
+  assert(fs == "<fieldset></fieldset>");
 }

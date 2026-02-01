@@ -24,6 +24,5 @@ class Ul : HtmlElement {
 }
 ///
 unittest {
-    auto ul = Ul();
-    assert(ul.toString() == "<ul></ul>");
+    assert(Ul() == "<ul></ul>");
 }

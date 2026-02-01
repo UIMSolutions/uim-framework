@@ -70,13 +70,23 @@ class Input : FormElement, IInput {
     attribute("checked", "");
     return this;
   }
+
+  static Input opCall() {
+    return new Input();
+  }
+
+  static Input opCall(string tag) {
+    return new Input(tag);
+  }
+
+}
+///
+unittest {
+  auto input = TextInput("username");
+  assert(input.toString().indexOf("type=\"text\"") > 0);
 }
 
-auto input() {
-  return new Input();
-}
-
-auto textInput(string name = null) {
+static Input TextInput(string name = null) {
   auto input = new Input();
   input.type("text");
   if (name)
@@ -84,7 +94,7 @@ auto textInput(string name = null) {
   return input;
 }
 
-auto passwordInput(string name = null) {
+static Input PasswordInput(string name = null) {
   auto input = new Input();
   input.type("password");
   if (name)
@@ -92,7 +102,7 @@ auto passwordInput(string name = null) {
   return input;
 }
 
-auto inputEmail(string name = null) {
+static Input EmailInput(string name = null) {
   auto input = new Input();
   input.type("email");
   if (name)
@@ -100,7 +110,7 @@ auto inputEmail(string name = null) {
   return input;
 }
 
-auto inputNumber(string name = null) {
+static Input NumberInput(string name = null) {
   auto input = new Input();
   input.type("number");
   if (name)
@@ -108,7 +118,7 @@ auto inputNumber(string name = null) {
   return input;
 }
 
-auto checkboxInput(string name = null) {
+static Input CheckboxInput(string name = null) {
   auto input = new Input();
   input.type("checkbox");
   if (name)
@@ -116,7 +126,7 @@ auto checkboxInput(string name = null) {
   return input;
 }
 
-auto inputRadio(string name = null) {
+static Input RadioInput(string name = null) {
   auto input = new Input();
   input.type("radio");
   if (name)
@@ -124,7 +134,7 @@ auto inputRadio(string name = null) {
   return input;
 }
 
-auto inputFile(string name = null) {
+static Input FileInput(string name = null) {
   auto input = new Input();
   input.type("file");
   if (name)
@@ -132,7 +142,7 @@ auto inputFile(string name = null) {
   return input;
 }
 
-auto inputHidden(string name = null) {
+static Input HiddenInput(string name = null) {
   auto input = new Input();
   input.type("hidden");
   if (name)
@@ -140,14 +150,9 @@ auto inputHidden(string name = null) {
   return input;
 }
 
-auto inputSubmit(string value = "Submit") {
+static Input SubmitInput(string value = "Submit") {
   auto input = new Input();
   input.type("submit");
   input.value(value);
   return input;
-}
-
-unittest {
-  auto input = textInput("username");
-  assert(input.toString().indexOf("type=\"text\"") > 0);
 }

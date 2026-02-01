@@ -1,10 +1,9 @@
-module uim.html.tests;
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
+module uim.html.tests;
 
 import uim.html;
 
@@ -49,19 +48,21 @@ void testFormElements() {
     form.post();
 
     // Test inputs
-    auto input = textInput("username").placeholder("Enter username");
-    auto password = passwordInput("password");
-    auto submit = inputSubmit("Login");
+    auto input = TextInput("username").placeholder("Enter username");
+    auto password = PasswordInput("password");
+    auto submit = SubmitInput("Login");
 
     // Test button
-    auto btn = htmlButton("Click me");
+    auto btn = HtmlButton("Click me");
     assert(btn.toString() == "<button>Click me</button>");
 
     // Test textarea
-    auto ta = textarea("comment").rows("5");
+    auto ta = Textarea("comment");
+    ta.rows("5");
+    ta.cols("30");
 
     // Test select
-    auto select = select("country");
+    auto select = uim.html.classes.forms.select.Select("country");
     select.addOption("us", "USA");
     select.addOption("uk", "UK");
 }
@@ -74,8 +75,8 @@ void testTableElements() {
     auto th = Th("Header");
     auto td = Td("Cell");
 
-    assert(th.toString() == "<th>Header</th>");
-    assert(td.toString() == "<td>Cell</td>");
+    assert(th == "<th>Header</th>");
+    assert(td == "<td>Cell</td>");
 }
 
 void testListElements() {

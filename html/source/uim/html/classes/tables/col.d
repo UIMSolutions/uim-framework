@@ -13,25 +13,31 @@ mixin(ShowModule!());
 
 /// HTML table cell element
 class Col : HtmlElement {
-    this() {
-        super("col");
-    }
+  this() {
+    super("col");
+  }
 
-    IHtmlElement colspan(string value) {
-        attribute("colspan", value);
-        return this;
-    }
+  IHtmlElement colspan(string value) {
+    attribute("colspan", value);
+    return this;
+  }
 
-    IHtmlElement rowspan(string value) {
-        attribute("rowspan", value);
-        return this;
-    }
+  IHtmlElement rowspan(string value) {
+    attribute("rowspan", value);
+    return this;
+  }
+
+  static Col opCall() {
+    return new Col();
+  }
+
+  static Col opCall(string content) {
+    auto col = new Col();
+    col.text(content);
+    return col;
+  }
 }
 
-auto col() { return new Col(); }
-auto col(string content) { auto col = new Col(); col.text(content); return col; }
-
 unittest {
-    auto col = col("Cell content");
-    assert(col.toString() == "<col>Cell content</col>");
+  assert(Col("Cell content") == "<col>Cell content</col>");
 }

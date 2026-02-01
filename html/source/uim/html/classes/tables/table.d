@@ -40,6 +40,5 @@ class Table : HtmlElement {
 unittest {
     mixin(ShowTest!"Testing Table Class");
 
-    auto table = Table();
-    assert(table.toString() == "<table></table>");
+    assert(Table() == "<table></table>");
 }

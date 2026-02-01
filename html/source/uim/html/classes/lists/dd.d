@@ -28,6 +28,5 @@ class Dd : HtmlElement {
 }
 ///
 unittest {
-    auto dd = Dd("Description");
-    assert(dd.toString() == "<dd>Description</dd>");
+    assert(Dd("Description") == "<dd>Description</dd>");
 }

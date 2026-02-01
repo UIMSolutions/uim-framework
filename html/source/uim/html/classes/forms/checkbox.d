@@ -21,4 +21,8 @@ class Checkbox : Input {
     super(tag);
     type("checkbox");
   }
+
+  static Checkbox opCall() {
+    return new Checkbox();
+  }
 }

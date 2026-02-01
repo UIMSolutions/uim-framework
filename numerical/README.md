@@ -1,15 +1,21 @@
-# UIM Numerical - Numerical Computing Library
+# Library 📚 uim-numerical
 
-A comprehensive D language library for numerical computing, mathematical operations, and solving numerical problems.
+Updated on 1. February 2026
+
+[![uim-numerical](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-numerical.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-numerical.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A D language library for numerical computing, mathematical operations, and solving numerical problems.
 
 ## Features
 
 ### Linear Algebra
+
 - **Vectors** - Mathematical vectors with operations (add, subtract, dot product, cross product, norm)
 - **Matrices** - Matrix operations (add, subtract, multiply, transpose, determinant, trace, LU decomposition)
 - **Linear Systems** - Solve Ax = b using Gaussian elimination with partial pivoting
 
 ### Solvers
+
 - **Root Finding**
   - Bisection method
   - Newton's method
@@ -19,12 +25,14 @@ A comprehensive D language library for numerical computing, mathematical operati
   - Gradient descent
 
 ### Statistics
+
 - Basic statistics (mean, median, variance, standard deviation)
 - Correlation and covariance
 - Linear regression with R² calculation
 - Percentiles and quartiles
 
 ### Numerical Integration & Differentiation
+
 - **Integration Methods**
   - Trapezoidal rule
   - Simpson's rule
@@ -158,7 +166,7 @@ double deriv2 = secondDerivative(f, x0);
 struct Vector {
     this(double[] values);
     this(size_t size);
-    
+  
     Vector opBinary(string op)(const Vector rhs);  // +, -
     Vector opBinary(string op)(double scalar);      // *, /
     double dot(const Vector rhs);
@@ -182,7 +190,7 @@ Vector arange(double start, double stop, double step = 1.0);
 struct Matrix {
     this(double[][] values);
     this(size_t rows, size_t cols);
-    
+  
     Matrix opBinary(string op)(const Matrix rhs);  // +, -, *
     Matrix opBinary(string op)(double scalar);      // *
     Vector opBinary(string op)(const Vector v);     // *

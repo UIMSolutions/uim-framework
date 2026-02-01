@@ -45,11 +45,11 @@ class Button : FormElement {
     return new Button();
   }
 
-static Button opCall(string text) {
-  auto btn = new Button();
-  btn.text(text);
-  return btn;
-}
+  static Button opCall(string text) {
+    auto btn = new Button();
+    btn.text(text);
+    return btn;
+  }
 }
 /// 
 unittest {
@@ -57,26 +57,24 @@ unittest {
   assert(btn == "<button></button>");
 }
 
-
-
-auto htmlButton() {
+static Button HtmlButton() {
   return new Button();
 }
 
-auto htmlButton(string text) {
+static Button HtmlButton(string text) {
   auto btn = new Button();
   btn.text(text);
   return btn;
 }
 
-auto buttonSubmit(string text = "Submit") {
+static Button SubmitButton(string text = "Submit") {
   auto btn = new Button();
   btn.text(text);
   btn.submit();
   return btn;
 }
 
-auto buttonReset(string text = "Reset") {
+static Button ResetButton(string text = "Reset") {
   auto btn = new Button();
   btn.text(text);
   btn.reset();
@@ -84,6 +82,6 @@ auto buttonReset(string text = "Reset") {
 }
 
 unittest {
-  auto btn = button("Click me");
-  assert(btn.toString() == "<button>Click me</button>");
+  auto btn = Button("Click me");
+  assert(btn == "<button>Click me</button>");
 }
