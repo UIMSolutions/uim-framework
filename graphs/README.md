@@ -1,5 +1,8 @@
 # UIM Graphs
 
+Updated on 1. February 2026
+
+
 A graph/network modeling library for D that supports entities (nodes), relationships (edges), and common graph algorithms like BFS, DFS, and Dijkstra's shortest path.
 
 ## Features

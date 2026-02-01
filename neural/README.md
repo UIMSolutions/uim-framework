@@ -1,5 +1,8 @@
 # UIM Neural - Neural Networks for D + vibe.d
 
+Updated on 1. February 2026
+
+
 A lightweight neural network toolkit for D that integrates with vibe.d. Build small feedforward models, train them with backpropagation, and expose inference over HTTP with only a few lines of code.
 
 ## Features

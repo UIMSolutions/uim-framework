@@ -1,5 +1,8 @@
 # UIM Errors Module
 
+Updated on 1. February 2026
+
+
 The UIM Errors module provides a comprehensive error handling system for D applications built with the UIM framework.
 
 ## Features

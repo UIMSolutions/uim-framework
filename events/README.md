@@ -1,5 +1,8 @@
 # Library 📚 uim-events
 
+Updated on 1. February 2026
+
+
 [![uim-events](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-events.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-events.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A type-safe event management system for D language applications, providing powerful event dispatching, listener management, and declarative event handling through User Defined Attributes (UDAs).

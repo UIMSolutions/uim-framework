@@ -1,5 +1,8 @@
 # UIM DataSources - Data Source Management Library
 
+Updated on 1. February 2026
+
+
 A flexible, async-friendly data source management library for D language built with vibe.d. Provides abstraction for multiple data sources (Json, CSV, Database, REST APIs) with filtering, caching, and transformation capabilities.
 
 ## Overview

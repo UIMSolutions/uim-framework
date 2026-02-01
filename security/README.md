@@ -1,5 +1,8 @@
 # Library 📚 uim-security
 
+Updated on 1. February 2026
+
+
 [![uim-security](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-security.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-security.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Small security helpers for D applications using vibe.d. Includes password hashing, JWT utilities, API-key and CSRF helpers, rate limiting, and HTTP guard helpers you can drop into route handlers.
