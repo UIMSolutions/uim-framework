@@ -1,5 +1,7 @@
 # Package 📦 uim.errors.errors
 
+Updated on 1. February 2026
+
 The UIM library has error and error handling capabilities. Errors are caught, displayed or logged.
 Errors, however, are handled in the program flow.
 

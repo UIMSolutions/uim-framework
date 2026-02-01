@@ -1,5 +1,7 @@
 # UIM In-Memory Database
 
+Updated on 1. February 2026
+
 A high-performance, type-safe in-memory database library for D with optimized queries, indexing, and batch operations.
 
 ## Features
@@ -39,28 +41,28 @@ void main() {
     // Create database and table
     auto db = new InMemoryDatabase();
     auto usersTable = db.createTable("users", ["id", "name", "email"]);
-    
+  
     // Insert single row
     usersTable.insert([
         "id": Variant(1),
         "name": Variant("Alice"),
         "email": Variant("alice@example.com")
     ]);
-    
+  
     // Insert batch
     usersTable.insertBatch([
         ["id": Variant(2), "name": Variant("Bob"), "email": Variant("bob@example.com")],
         ["id": Variant(3), "name": Variant("Charlie"), "email": Variant("charlie@example.com")]
     ]);
-    
+  
     // Query all rows
     auto allUsers = usersTable.select();
-    
+  
     // Query with filter
     auto alice = usersTable.select(
         (const Row r) @safe => r["name"].get!string() == "Alice"
     );
-    
+  
     // Query with sorting and limit
     auto limited = usersTable.select(
         null,  // no filter
@@ -68,22 +70,22 @@ void main() {
         true,  // ascending
         2      // limit 2 rows
     );
-    
+  
     // Count rows
     ulong total = usersTable.count();
     ulong filtered = usersTable.count(
         (const Row r) @safe => r["id"].get!int() >= 2
     );
-    
+  
     // Update rows
     usersTable.update(
         (const Row r) @safe => r["id"].get!int() == 1,
         (const Row r) @safe => Row(["id": Variant(1), "name": Variant("Alice Updated"), "email": r["email"]])
     );
-    
+  
     // Delete rows
     usersTable.delete_((const Row r) @safe => r["id"].get!int() == 3);
-    
+  
     // Drop table
     db.dropTable("users");
 }
@@ -156,6 +158,7 @@ database/
 ## Examples
 
 The `examples/` directory contains practical demonstrations:
+
 - `basic.d` - Basic CRUD operations
 - `batch.d` - Batch insert performance
 - `queries.d` - Advanced filtering and sorting
@@ -164,19 +167,25 @@ The `examples/` directory contains practical demonstrations:
 ## Patterns Used
 
 ### Factory Pattern
+
 The library uses a factory approach for table creation:
+
 ```d
 ITable table = db.createTable(name, columns);
 ```
 
 ### Builder Pattern
+
 QueryBuilder and BatchInsertBuilder provide fluent configuration:
+
 ```d
 auto results = table.select(...).orderBy(...).limit(...);
 ```
 
 ### Strategy Pattern
+
 Delegates allow custom filtering/transformation strategies:
+
 ```d
 table.select((const Row r) @safe => customFilter(r));
 ```

@@ -1,8 +1,11 @@
 # UIM Compiler Library
 
+Updated on 1. February 2026
+
 A modular compiler toolkit for D that covers the full pipeline from lexing to code generation. It ships with interfaces, helpers, and mixins to assemble custom compilers while keeping phases decoupled.
 
 ## Features
+
 - Interfaces for lexer, parser, semantic analyzer, optimizer, and code generator
 - Ready-to-use base classes and helpers for each phase
 - Diagnostics pipeline with recoverable errors
@@ -11,6 +14,7 @@ A modular compiler toolkit for D that covers the full pipeline from lexing to co
 - Examples that demonstrate tokens, AST building, optimization, and templated codegen
 
 ## Installation
+
 Add the dependency in `dub.sdl`:
 
 ```sdl
@@ -28,6 +32,7 @@ Or in `dub.json`:
 ```
 
 ## Quick Start
+
 Create a minimal compiler by plugging in your components:
 
 ```d
@@ -61,6 +66,7 @@ if (result.success) {
 ```
 
 ## Architecture
+
 - **Interfaces** (`uim.compilers.interfaces.*`): Contracts for each compiler phase
 - **Classes** (`uim.compilers.classes.*`): Base implementations and utilities
 - **Factories & Registries**: Pluggable creation and lookup for each component:
@@ -75,7 +81,9 @@ if (result.success) {
 - **Tests** (`uim.compilers.tests.*`): Test helpers for compiler components
 
 ## Examples
+
 See `compilers/examples` for reference implementations:
+
 - `basic_compiler.d`: End-to-end pipeline
 - `lexers/` helpers in `string_mixins` and `templates.d`
 - `traits.d` and `udas.d` for compile-time reflection patterns
@@ -132,20 +140,20 @@ import uim.compilers;
 class CustomCompiler : Compiler {
     this() {
         super();
-        
+      
         auto lexerRegistry = new LexerRegistry();
         auto parserRegistry = new ParserRegistry();
         auto analyzerRegistry = new SemanticAnalyzerRegistry();
         auto optimizerRegistry = new OptimizerRegistry();
         auto codegenRegistry = new CodeGeneratorRegistry();
-        
+      
         // Register implementations
         lexerRegistry.register("default", new Lexer());
         parserRegistry.register("default", new Parser());
         analyzerRegistry.register("default", new SemanticAnalyzer());
         optimizerRegistry.register("default", new Optimizer());
         codegenRegistry.register("default", new CodeGenerator());
-        
+      
         // Wire them together
         lexer(lexerRegistry.get("default"));
         parser(parserRegistry.get("default"));
@@ -160,6 +168,7 @@ auto result = compiler.compile(sourceCode);
 ```
 
 ## Testing
+
 Run the suite for this package:
 
 ```bash
@@ -168,6 +177,7 @@ dub test
 ```
 
 ## Notes
+
 - The compiled artifact is exposed as target `uim-compiler` while the package name remains `compilers`.
 - Components are @safe-ready where possible; prefer pure/nothrow on phase logic for predictability.
 - **Factories** allow lazy or conditional creation of components with custom logic.

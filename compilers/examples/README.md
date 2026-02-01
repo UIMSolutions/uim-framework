@@ -1,13 +1,17 @@
 # UIM Compilers Module - Examples
 
+Updated on 1. February 2026
+
 This directory contains examples demonstrating D language's powerful compile-time features. These examples showcase metaprogramming capabilities that make D unique and powerful.
 
 ## Examples Overview
 
 ### 1. String Mixins (`string_mixins.d`)
+
 Demonstrates D's ability to generate and inject code at compile-time using string mixins.
 
 **Topics covered:**
+
 - Basic string mixin syntax
 - Compile-time function generation (getters/setters)
 - Math operation generation
@@ -16,15 +20,18 @@ Demonstrates D's ability to generate and inject code at compile-time using strin
 - Template-based code generation
 
 **Run:**
+
 ```bash
 cd /home/oz/DEV/D/UIM2026/LIBS/uim-framework/compilers
 dub run :string_mixins
 ```
 
 ### 2. Compile-Time Function Execution (`ctfe.d`)
+
 Shows how D can execute functions at compile-time, computing values and generating data before your program even runs.
 
 **Topics covered:**
+
 - Fibonacci calculation at compile-time
 - String manipulation during compilation
 - Lookup table generation
@@ -35,14 +42,17 @@ Shows how D can execute functions at compile-time, computing values and generati
 - Version string building
 
 **Run:**
+
 ```bash
 dub run :ctfe
 ```
 
 ### 3. Template Metaprogramming (`templates.d`)
+
 Explores D's template system for generic programming and compile-time computation.
 
 **Topics covered:**
+
 - Basic function templates
 - Template constraints
 - Template specialization
@@ -53,14 +63,17 @@ Explores D's template system for generic programming and compile-time computatio
 - Compile-time power calculations
 
 **Run:**
+
 ```bash
 dub run :templates
 ```
 
 ### 4. Traits and Type Introspection (`traits.d`)
+
 Demonstrates D's comprehensive compile-time type introspection capabilities.
 
 **Topics covered:**
+
 - Type checking (isNumeric, isFloatingPoint, etc.)
 - Function traits (return type, parameters)
 - Struct/class member introspection
@@ -71,14 +84,17 @@ Demonstrates D's comprehensive compile-time type introspection capabilities.
 - Generic printing using traits
 
 **Run:**
+
 ```bash
 dub run :traits
 ```
 
 ### 5. User Defined Attributes (`udas.d`)
+
 Shows how to use UDAs (User Defined Attributes) for metadata and compile-time annotations.
 
 **Topics covered:**
+
 - Simple marker attributes
 - Attributes with parameters
 - Multiple attributes on symbols
@@ -89,6 +105,7 @@ Shows how to use UDAs (User Defined Attributes) for metadata and compile-time an
 - Dependency injection markers
 
 **Run:**
+
 ```bash
 dub run :udas
 ```
@@ -119,11 +136,14 @@ For beginners to D's metaprogramming features, we recommend following this order
 ## Key Concepts
 
 ### Compile-Time vs Runtime
+
 D can execute a lot of code at compile-time:
+
 - **Compile-time**: Happens during compilation, results are baked into the binary
 - **Runtime**: Traditional program execution
 
 Benefits of compile-time execution:
+
 - Zero runtime overhead for computed values
 - Earlier error detection
 - Smaller binary sizes (pre-computed data)

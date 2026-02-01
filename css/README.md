@@ -1,5 +1,7 @@
 # UIM CSS Library
 
+Updated on 1. February 2026
+
 A comprehensive CSS parsing, manipulation, and generation library for D.
 
 ## Features
@@ -50,6 +52,7 @@ writeln(stylesheet.toString());
 ```
 
 Output:
+
 ```css
 .button {
   background-color: #007bff;
@@ -71,7 +74,7 @@ string cssCode = `
         width: 1200px;
         margin: 0 auto;
     }
-    
+  
     .button {
         background-color: #007bff;
         color: white;
@@ -162,16 +165,16 @@ auto stylesheet = parseCSS(".box { width: 100px; }");
 auto rules = stylesheet.findRules(".box");
 if (rules.length > 0) {
     auto rule = rules[0];
-    
+  
     // Add or update properties
     rule.setProperty("height", "100px");
     rule.setProperty("background-color", "#f0f0f0");
-    
+  
     // Check if property exists
     if (rule.hasProperty("width")) {
         writeln("Width: ", rule.getProperty("width"));
     }
-    
+  
     // Remove property
     rule.removeProperty("width");
 }
@@ -230,6 +233,7 @@ Fluent API for building stylesheets.
 - `build()` - Get the stylesheet
 
 Convenience methods:
+
 - `color(value)`, `backgroundColor(value)`
 - `fontSize(value)`, `fontWeight(value)`
 - `margin(value)`, `padding(value)`
@@ -253,6 +257,7 @@ See the [examples](examples/) directory for complete working examples:
 - `example.d` - Comprehensive examples of all features
 
 Run the example:
+
 ```bash
 cd examples
 dub run
@@ -261,16 +266,19 @@ dub run
 ## Building and Testing
 
 Build the library:
+
 ```bash
 dub build
 ```
 
 Run tests:
+
 ```bash
 dub test
 ```
 
 Build documentation:
+
 ```bash
 dub build --build=docs
 ```

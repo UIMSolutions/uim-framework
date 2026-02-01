@@ -1,10 +1,13 @@
 # UIM Filesystems Library
 
-A comprehensive filesystem operations library for D, providing both synchronous and asynchronous file/directory operations with vibe.d integration.
+Updated on 1. February 2026
+
+A  filesystem operations library for D, providing both synchronous and asynchronous file/directory operations with vibe.d integration.
 
 ## Features
 
 ### File Operations
+
 - **Read/Write**: Sync and async file reading/writing with various encodings
 - **Copy/Move**: Efficient file copying and moving with progress callbacks
 - **Delete**: Safe file deletion with backup options
@@ -12,6 +15,7 @@ A comprehensive filesystem operations library for D, providing both synchronous 
 - **Locking**: File locking mechanisms for concurrent access control
 
 ### Directory Operations
+
 - **Creation**: Create single or nested directories
 - **Listing**: List directory contents with filtering and sorting
 - **Traversal**: Recursive directory walking with callbacks
@@ -19,12 +23,14 @@ A comprehensive filesystem operations library for D, providing both synchronous 
 - **Monitoring**: Watch directories for changes (file system events)
 
 ### Path Utilities
+
 - **Normalization**: Clean and normalize file paths
 - **Resolution**: Resolve relative paths, symlinks
 - **Manipulation**: Join, split, get extensions, basenames
 - **Validation**: Check path validity, existence, types
 
 ### Advanced Features
+
 - **Temporary Files**: Create and manage temporary files/directories
 - **File Watching**: Monitor filesystem changes in real-time
 - **Atomic Operations**: Atomic file writes with transactions
@@ -70,29 +76,37 @@ runTask({
 ## Modules
 
 ### `uim.filesystems.files`
+
 Core file operations: read, write, copy, move, delete, metadata.
 
 ### `uim.filesystems.directories`
+
 Directory operations: create, list, traverse, delete, search.
 
 ### `uim.filesystems.paths`
+
 Path manipulation utilities: normalize, join, split, resolve.
 
 ### `uim.filesystems.watcher`
+
 File system monitoring: watch directories and files for changes.
 
 ### `uim.filesystems.temporary`
+
 Temporary file/directory management with automatic cleanup.
 
 ### `uim.filesystems.async`
+
 Asynchronous filesystem operations using vibe.d.
 
 ### `uim.filesystems.metadata`
+
 File metadata and attributes: permissions, timestamps, ownership.
 
 ## Installation
 
 Add to your `dub.sdl`:
+
 ```sdl
 dependency "uim-framework:filesystems" version="*"
 ```
