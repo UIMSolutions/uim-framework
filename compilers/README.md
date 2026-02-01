@@ -1,6 +1,8 @@
-# UIM Compiler Library
+# Library 📚 uim-compilers
 
 Updated on 1. February 2026
+
+[![uim-compilers](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-compilers.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-compilers.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A modular compiler toolkit for D that covers the full pipeline from lexing to code generation. It ships with interfaces, helpers, and mixins to assemble custom compilers while keeping phases decoupled.
 
@@ -26,7 +28,7 @@ Or in `dub.json`:
 ```json
 {
   "dependencies": {
-    "uim-framework:compilers": "~>1.0.0"
+    "uim-framework:framework:compilers": "~>1.0.0"
   }
 }
 ```

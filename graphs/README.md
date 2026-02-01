@@ -1,7 +1,8 @@
-# UIM Graphs
+# Library 📚 uim-graphs
 
 Updated on 1. February 2026
 
+[![uim-graphs](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-graphs.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-graphs.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A graph/network modeling library for D that supports entities (nodes), relationships (edges), and common graph algorithms like BFS, DFS, and Dijkstra's shortest path.
 

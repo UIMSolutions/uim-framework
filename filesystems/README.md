@@ -1,8 +1,10 @@
-# UIM Filesystems Library
+# Library 📚 uim-filesystems
 
 Updated on 1. February 2026
 
-A  filesystem operations library for D, providing both synchronous and asynchronous file/directory operations with vibe.d integration.
+[![uim-filesystems](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-filesystems.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-filesystems.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A filesystem operations library for D, providing both synchronous and asynchronous file/directory operations with vibe.d integration.
 
 ## Features
 

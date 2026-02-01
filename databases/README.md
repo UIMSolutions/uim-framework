@@ -1,6 +1,8 @@
-# UIM In-Memory Database
+# Library 📚 uim-databases
 
 Updated on 1. February 2026
+
+[![uim-databases](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-databases.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-databases.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 A high-performance, type-safe in-memory database library for D with optimized queries, indexing, and batch operations.
 
@@ -24,7 +26,7 @@ Add to your `dub.json`:
 ```json
 {
   "dependencies": {
-    "uim-database": {"path": "../path/to/database"}
+    "uim-framework:database": "~>26.2.1"
   }
 }
 ```

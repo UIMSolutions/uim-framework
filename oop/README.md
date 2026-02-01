@@ -87,7 +87,7 @@ Add `uim-oop` as a dependency to your `dub.json` or `dub.sdl`:
 ```json
 {
   "dependencies": {
-    "uim-oop": "*"
+    "uim-framework:oop": "*"
   }
 }
 ```

@@ -1,8 +1,10 @@
-# UIM CSS Library
+# Library 📚 uim-css
 
 Updated on 1. February 2026
 
-A comprehensive CSS parsing, manipulation, and generation library for D.
+[![uim-css](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-css.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-css.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A CSS parsing, manipulation, and generation library for D.
 
 ## Features
 

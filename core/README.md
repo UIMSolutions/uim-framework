@@ -55,7 +55,7 @@ Add `uim-core` as a dependency to your `dub.json` or `dub.sdl`:
 ```json
 {
   "dependencies": {
-    "uim-core": "*"
+    "uim-framework:core": "*"
   }
 }
 ```

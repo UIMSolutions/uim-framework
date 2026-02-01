@@ -28,7 +28,7 @@ Or to your `dub.json`:
 
 ```json
 "dependencies": {
-    "uim-framework:jsons": "~>1.0.0"
+    "uim-framework:framework:jsons": "~>1.0.0"
 }
 ```
 
