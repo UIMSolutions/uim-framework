@@ -131,7 +131,7 @@ class UIMError : UIMObject, IError {
   protected Json[string] _attributes;
   Json[string] attributes() {
     if (_attributes is null) {
-      _attributes = new Json[string];
+      _attributes = null;
     }
     return _attributes;
   }
