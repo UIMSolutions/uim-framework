@@ -1,6 +1,10 @@
-# UIM i18n - Internationalization Library
+# Library 📚 uim-i18n
 
-A comprehensive D language library for internationalization (i18n) and translations using Gettext PO files.
+Updated on 1. February 2026
+
+[![uim-i18n](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-i18n.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-i18n.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A D language library for internationalization (i18n) and translations using Gettext PO files.
 
 ## Features
 
@@ -236,7 +240,7 @@ Apache-2.0
 
 ## Author
 
-Ozan Nurettin Süel (aka UIManufaktur)
+Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 
 ## Copyright
 

@@ -1,6 +1,10 @@
-# UIM ORM - Object-Relational Mapping Library
+# Library 📚 uim-orm 
 
-A comprehensive, type-safe ORM (Object-Relational Mapping) library for D language with async/await support via vibe.d. Provides query builders, model mapping, relationships, migrations, and connection pooling.
+Updated on 1. February 2026
+
+[![uim-orm](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-orm.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-orm.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+A type-safe ORM (Object-Relational Mapping) library for D language with async/await support via vibe.d. Provides query builders, model mapping, relationships, migrations, and connection pooling.
 
 ## Overview
 

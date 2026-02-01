@@ -1,7 +1,7 @@
 # UIM-JsonRPC - Json-RPC 2.0 Library
 
 **Version**: 1.0.0  
-**Author**: Ozan Nurettin Süel (aka UIManufaktur)  
+**Author**: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)  
 **License**: Apache 2.0  
 **Language**: D
 
@@ -406,7 +406,7 @@ Contributions welcome! Please ensure:
 
 ## License
 
-Copyright © 2018-2026 Ozan Nurettin Süel (aka UIManufaktur)
+Copyright © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 
 Licensed under the Apache License, Version 2.0.
 

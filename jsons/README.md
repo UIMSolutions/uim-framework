@@ -86,6 +86,6 @@ Apache License 2.0
 
 ## Author
 
-Ozan Nurettin Süel (aka UIManufaktur)
+Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 
 Copyright © 2018-2026

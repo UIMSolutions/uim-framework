@@ -163,6 +163,6 @@ logger.info("Hello, logging!");
 ```
 
 ---
-**Author**: Ozan Nurettin Süel (aka UIManufaktur)
+**Author**: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 **License**: Apache 2.0
 **Created**: January 25, 2026

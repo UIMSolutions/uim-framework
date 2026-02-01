@@ -1,6 +1,6 @@
 name "plist"
 description "Property List (plist) parser and writer library for UIM framework"
-authors "Ozan Nurettin Süel (aka UIManufaktur)"
+authors "Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)"
 license "Apache-2.0"
 copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
 

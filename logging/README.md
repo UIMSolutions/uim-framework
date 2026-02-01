@@ -1,8 +1,10 @@
+# Library 📚 uim-logging
 
-# UIM Logging Library
+Updated on 1. February 2026
 
-A comprehensive, interface-driven logging library for the UIM framework built with D language and vibe.d.
+[![uim-logging](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-logging.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-logging.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+An interface-driven logging library for the UIM framework built with D language and vibe.d.
 
 ## Features
 
@@ -132,6 +134,6 @@ Apache License 2.0
 
 ## Author
 
-Ozan Nurettin Süel (aka UIManufaktur)
+Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 
 Copyright © 2018-2026
