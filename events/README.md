@@ -645,7 +645,7 @@ Apache 2.0 License - See [LICENSE.txt](LICENSE.txt)
 
 ## Authors
 
-© 2018-2026 Ozan Nurettin Süel (aka UIManufaktur)
+© 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 
 ## See Also
 
