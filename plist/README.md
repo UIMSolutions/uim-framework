@@ -1,4 +1,8 @@
-# UIM Property List (plist) Library
+plists
+
+# Library 📚 uim-plists
+
+[![uim-plists](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-plists.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-plists.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 Property List library for the UIM framework providing comprehensive support for working with property lists in various formats.
 

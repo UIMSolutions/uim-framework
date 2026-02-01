@@ -6,4 +6,5 @@ public {
 
 public {
     import uim.compilers.classes.analyzers.analyzer;
+    import uim.compilers.classes.analyzers.symboltable;
 }
