@@ -44,6 +44,12 @@ class Button : FormElement {
   static Button opCall() {
     return new Button();
   }
+
+static Button opCall(string text) {
+  auto btn = new Button();
+  btn.text(text);
+  return btn;
+}
 }
 /// 
 unittest {
@@ -51,15 +57,7 @@ unittest {
   assert(btn == "<button></button>");
 }
 
-auto button() {
-  return new Button();
-}
 
-auto button(string text) {
-  auto btn = new Button();
-  btn.text(text);
-  return btn;
-}
 
 auto htmlButton() {
   return new Button();
