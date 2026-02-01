@@ -6,6 +6,7 @@
 module oop.tests.patterns.mementos;
 
 import uim.oop;
+mixin(ShowModule!());
 import std.datetime;
 
 // Test 1: Create basic memento

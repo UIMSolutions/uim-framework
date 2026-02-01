@@ -7,4 +7,6 @@ module uim.tests.assertions;
 
 public {
   import uim.tests.assertions.assertion;
+  import uim.tests.assertions.matcher;
+  import uim.tests.assertions.exception;
 }
