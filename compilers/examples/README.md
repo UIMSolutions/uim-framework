@@ -1,6 +1,8 @@
-# UIM Compilers Module - Examples
+# Library 📚 uim-compilers
 
 Updated on 1. February 2026
+
+[![uim-compilers](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-compilers.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-compilers.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 This directory contains examples demonstrating D language's powerful compile-time features. These examples showcase metaprogramming capabilities that make D unique and powerful.
 
@@ -176,4 +178,4 @@ Subject to the terms of the Apache 2.0 license, as written in the included LICEN
 
 ## Author
 
-Ozan Nurettin Süel (aka UIManufaktur)
+Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
