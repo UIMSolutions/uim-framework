@@ -30,7 +30,7 @@ Or to your `dub.json`:
 
 ```json
 "dependencies": {
-    "uim-framework:logging": "~>1.0.0"
+    "uim-framework:framework:logging": "~>1.0.0"
 }
 ```
 
