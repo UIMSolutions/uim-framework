@@ -48,3 +48,10 @@ configuration "runtests" {
   importPaths "source" "tests"
   mainSourceFile "tests/runner.d"
 }
+
+configuration "examples_plists" {
+  targetType "executable"
+  sourcePaths "source" "examples"
+  importPaths "source" "examples"
+  mainSourceFile "examples/plists.d"
+}

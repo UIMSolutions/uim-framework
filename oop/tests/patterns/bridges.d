@@ -7,8 +7,10 @@ module oop.tests.patterns.bridges;
 
 import uim.oop.patterns.bridges;
 import std.string : toUpper, toLower;
+@safe:
 
-@safe unittest {
+
+unittest {
     // Test basic abstraction with implementor A
     auto implA = new ConcreteImplementorA();
     auto abstraction = new BridgeAbstraction(implA);
@@ -18,7 +20,7 @@ import std.string : toUpper, toLower;
     assert(result.indexOf("ConcreteImplementorA") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test basic abstraction with implementor B
     auto implB = new ConcreteImplementorB();
     auto abstraction = new BridgeAbstraction(implB);
@@ -28,7 +30,7 @@ import std.string : toUpper, toLower;
     assert(result.indexOf("ConcreteImplementorB") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test switching implementors at runtime
     auto implA = new ConcreteImplementorA();
     auto implB = new ConcreteImplementorB();
@@ -43,7 +45,7 @@ import std.string : toUpper, toLower;
     assert(resultA != resultB);
 }
 
-@safe unittest {
+unittest {
     // Test extended abstraction
     auto impl = new ConcreteImplementorA();
     auto extended = new ExtendedAbstraction(impl);
@@ -56,7 +58,7 @@ import std.string : toUpper, toLower;
     assert(extendedResult.length > basicResult.length);
 }
 
-@safe unittest {
+unittest {
     // Test refined abstraction
     auto impl = new ConcreteImplementorB();
     auto refined = new RefinedAbstraction("MyDevice", impl);
@@ -71,7 +73,7 @@ import std.string : toUpper, toLower;
     assert(specialResult.indexOf("Refined processing") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test generic string processor with uppercase
     auto upperImpl = new StringProcessorImpl("Upper", (string s) => s.toUpper());
     auto abstraction = new GenericAbstraction!string(upperImpl);
@@ -81,7 +83,7 @@ import std.string : toUpper, toLower;
     assert(abstraction.implementor.name == "Upper");
 }
 
-@safe unittest {
+unittest {
     // Test generic string processor with lowercase
     auto lowerImpl = new StringProcessorImpl("Lower", (string s) => s.toLower());
     auto abstraction = new GenericAbstraction!string(lowerImpl);
@@ -90,7 +92,7 @@ import std.string : toUpper, toLower;
     assert(result == "hello world");
 }
 
-@safe unittest {
+unittest {
     // Test generic int processor with doubling
     auto doubleImpl = new IntProcessorImpl("Double", (int x) => x * 2);
     auto abstraction = new GenericAbstraction!int(doubleImpl);
@@ -99,7 +101,7 @@ import std.string : toUpper, toLower;
     assert(result == 20);
 }
 
-@safe unittest {
+unittest {
     // Test generic int processor with squaring
     auto squareImpl = new IntProcessorImpl("Square", (int x) => x * x);
     auto abstraction = new GenericAbstraction!int(squareImpl);
@@ -108,7 +110,7 @@ import std.string : toUpper, toLower;
     assert(result == 25);
 }
 
-@safe unittest {
+unittest {
     // Test switching generic implementors
     auto upper = new StringProcessorImpl("Upper", (string s) => s.toUpper());
     auto lower = new StringProcessorImpl("Lower", (string s) => s.toLower());
@@ -120,7 +122,7 @@ import std.string : toUpper, toLower;
     assert(abstraction.execute("Test") == "test");
 }
 
-@safe unittest {
+unittest {
     // Test caching abstraction
     int processCount = 0;
     auto impl = new IntProcessorImpl("Counter", (int x) {
@@ -151,7 +153,7 @@ import std.string : toUpper, toLower;
     assert(processCount == 2); // Now incremented
 }
 
-@safe unittest {
+unittest {
     // Test Windows platform
     auto windows = new WindowsPlatform();
     assert(windows.getName() == "Windows");
@@ -161,7 +163,7 @@ import std.string : toUpper, toLower;
     assert(button.indexOf("OK") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test Linux platform
     auto linux = new LinuxPlatform();
     assert(linux.getName() == "Linux");
@@ -170,7 +172,7 @@ import std.string : toUpper, toLower;
     assert(button.indexOf("OK") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test remote control on Windows
     auto windows = new WindowsPlatform();
     auto remote = new RemoteControl("TV", windows);
@@ -181,7 +183,7 @@ import std.string : toUpper, toLower;
     assert(rendered.indexOf("Power") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test remote control on Linux
     auto linux = new LinuxPlatform();
     auto remote = new RemoteControl("TV", linux);
@@ -191,7 +193,7 @@ import std.string : toUpper, toLower;
     assert(rendered.indexOf("Linux") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test switching platforms at runtime
     auto windows = new WindowsPlatform();
     auto linux = new LinuxPlatform();
@@ -206,7 +208,7 @@ import std.string : toUpper, toLower;
     assert(windowsRender != linuxRender);
 }
 
-@safe unittest {
+unittest {
     // Test advanced remote control
     auto windows = new WindowsPlatform();
     auto advanced = new AdvancedRemote("Smart TV", windows);
@@ -220,7 +222,7 @@ import std.string : toUpper, toLower;
     assert(settings.indexOf("Device Name") >= 0);
 }
 
-@safe unittest {
+unittest {
     // Test multiple abstractions with same implementor
     auto impl = new ConcreteImplementorA();
     auto abs1 = new BridgeAbstraction(impl);
