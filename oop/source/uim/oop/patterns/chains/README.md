@@ -1,9 +1,11 @@
+# Package 📦 uim.oop.patterns.chains.chain
+
 # Chain of Responsibility Pattern
 
-## Purpose
 The Chain of Responsibility Pattern is a behavioral design pattern that lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain. This pattern promotes loose coupling by allowing multiple objects to handle a request without the sender knowing which object will ultimately process it.
 
 ## Problem It Solves
+
 - **Tight Coupling**: When the sender of a request is tightly coupled to specific receivers
 - **Dynamic Processing**: When the set of handlers and their order should be determined at runtime
 - **Multiple Handlers**: When more than one object can handle a request, and the handler isn't known in advance
@@ -11,6 +13,7 @@ The Chain of Responsibility Pattern is a behavioral design pattern that lets you
 - **Flexible Pipeline**: When you need a flexible processing pipeline that can be easily modified
 
 ## UML Class Diagram
+
 ```
 ┌────────────────┐
 │  <<interface>> │
@@ -46,7 +49,9 @@ Client ──► IHandler ──next──► IHandler ──next──► IHand
 ## Components
 
 ### 1. IHandler
+
 The handler interface declaring methods for setting the next handler and processing requests.
+
 ```d
 interface IHandler {
     IHandler setNext(IHandler handler);
@@ -55,16 +60,18 @@ interface IHandler {
 ```
 
 ### 2. BaseHandler
+
 Abstract base class implementing the chain mechanism.
+
 ```d
 abstract class BaseHandler : IHandler {
     protected IHandler _nextHandler;
-    
+  
     IHandler setNext(IHandler handler) {
         _nextHandler = handler;
         return handler;
     }
-    
+  
     string handle(string request) {
         if (_nextHandler !is null) {
             return _nextHandler.handle(request);
@@ -75,7 +82,9 @@ abstract class BaseHandler : IHandler {
 ```
 
 ### 3. ConditionalHandler
+
 Handler with filtering capability.
+
 ```d
 abstract class ConditionalHandler : BaseHandler {
     override string handle(string request) {
@@ -84,14 +93,16 @@ abstract class ConditionalHandler : BaseHandler {
         }
         return super.handle(request);
     }
-    
+  
     abstract bool shouldHandle(string request);
     protected abstract string doHandle(string request);
 }
 ```
 
 ### 4. ChainBuilder
+
 Builder for constructing handler chains.
+
 ```d
 class ChainBuilder : IChainBuilder {
     IChainBuilder addHandler(IHandler handler);
@@ -100,7 +111,9 @@ class ChainBuilder : IChainBuilder {
 ```
 
 ### 5. IChainCoordinator
+
 Manages multiple named chains.
+
 ```d
 interface IChainCoordinator {
     void registerChain(string name, IHandler handler);
@@ -112,7 +125,9 @@ interface IChainCoordinator {
 ## Real-World Examples
 
 ### Example 1: Support Ticket System
+
 A customer support system with escalation levels:
+
 ```d
 auto level1 = new Level1Support();
 auto level2 = new Level2Support();
@@ -135,13 +150,16 @@ auto result3 = level1.handle("critical server outage");
 ```
 
 **Key Features:**
+
 - Automatic escalation based on issue type
 - Each level handles specific categories
 - Unhandled requests escalate to management
 - Flexible addition of new support levels
 
 ### Example 2: Purchase Approval Workflow
+
 An organizational purchase approval system:
+
 ```d
 auto teamLead = new TeamLeadApproval();
 auto manager = new ManagerApproval();
@@ -163,13 +181,16 @@ auto r3 = teamLead.handle("Purchase: $15000");
 ```
 
 **Key Features:**
+
 - Approval authority based on amount
 - Hierarchical approval structure
 - Automatic routing to appropriate level
 - Clear audit trail
 
 ### Example 3: HTTP Request Pipeline
+
 Middleware-style request processing:
+
 ```d
 auto auth = new AuthenticationHandler();
 auto authz = new AuthorizationHandler();
@@ -184,6 +205,7 @@ auto result = auth.handle("auth:token role:admin validate:data");
 ```
 
 **Key Features:**
+
 - Authentication verification
 - Authorization checks
 - Request validation
@@ -218,7 +240,9 @@ auto result = auth.handle("auth:token role:admin validate:data");
 ## Implementation Considerations
 
 ### 1. Return Value or Pass Through
+
 Decide whether handlers return a value or modify the request:
+
 ```d
 // Return value approach
 string handle(string request) {
@@ -236,7 +260,9 @@ string handle(string request) {
 ```
 
 ### 2. Chain Termination
+
 Determine what happens when no handler processes the request:
+
 ```d
 // Return null
 string handle(string request) {
@@ -263,7 +289,9 @@ class FallbackHandler : BaseHandler {
 ```
 
 ### 3. Conditional Processing
+
 Use conditional handlers for filtering:
+
 ```d
 abstract class ConditionalHandler : BaseHandler {
     override string handle(string request) {
@@ -272,14 +300,16 @@ abstract class ConditionalHandler : BaseHandler {
         }
         return super.handle(request);
     }
-    
+  
     abstract bool shouldHandle(string request);
     protected abstract string doHandle(string request);
 }
 ```
 
 ### 4. Chain Building
+
 Use builder pattern for complex chains:
+
 ```d
 auto builder = new ChainBuilder();
 auto chain = builder
@@ -292,11 +322,13 @@ auto chain = builder
 ## Advanced Features
 
 ### 1. Logging Handlers
+
 Track request flow through the chain:
+
 ```d
 class LoggingHandler : BaseHandler, ILoggingHandler {
     private string[] _log;
-    
+  
     override string handle(string request) {
         _log ~= "Received: " ~ request;
         auto result = super.handle(request);
@@ -309,7 +341,9 @@ class LoggingHandler : BaseHandler, ILoggingHandler {
 ```
 
 ### 2. Priority-Based Handling
+
 Handlers with priority levels:
+
 ```d
 interface IPriorityHandler : IHandler {
     int priority() const;
@@ -320,7 +354,9 @@ handlers.sort!((a, b) => a.priority() > b.priority());
 ```
 
 ### 3. Chain Coordinator
+
 Manage multiple independent chains:
+
 ```d
 auto coordinator = new ChainCoordinator();
 coordinator.registerChain("support", supportChain);
@@ -331,7 +367,9 @@ coordinator.processRequest("support", "help needed");
 ```
 
 ### 4. Generic Handlers
+
 Type-safe handlers with generic requests/responses:
+
 ```d
 interface IGenericHandler(TRequest, TResponse) {
     IGenericHandler!(TRequest, TResponse) setNext(...);
@@ -343,14 +381,17 @@ interface IGenericHandler(TRequest, TResponse) {
 ## Comparison with Other Patterns
 
 ### Chain of Responsibility vs Command
+
 - **Chain**: Multiple handlers, one may process the request
 - **Command**: Single receiver for each command
 
 ### Chain of Responsibility vs Decorator
+
 - **Chain**: Handlers can stop propagation
 - **Decorator**: All decorators always execute
 
 ### Chain of Responsibility vs Observer
+
 - **Chain**: Sequential processing, one handler responds
 - **Observer**: Parallel processing, all observers notified
 
@@ -386,15 +427,18 @@ interface IGenericHandler(TRequest, TResponse) {
 ## Performance Considerations
 
 ### Time Complexity
+
 - Best case: O(1) - first handler processes the request
 - Worst case: O(n) - request passes through all n handlers
 - Average: Depends on chain length and request distribution
 
 ### Space Complexity
+
 - O(n) for storing n handlers in the chain
 - O(1) per handler for storing next reference
 
 ### Optimization Tips
+
 - Place frequently matched handlers early in the chain
 - Use conditional handlers to filter efficiently
 - Consider caching for expensive checks
@@ -409,6 +453,7 @@ interface IGenericHandler(TRequest, TResponse) {
 - **Template Method**: Can be used within handler implementations
 
 ## See Also
+
 - [Command Pattern](../commands/README.md)
 - [Strategy Pattern](../strategies/README.md)
 - [Decorator Pattern](../decorators/README.md)

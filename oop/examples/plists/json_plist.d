@@ -3,10 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module plist.examples.json_plist;
+module uim.oop.examples.json_plist;
 
-import uim.plist;
-import std.stdio;
+import uim.oop;
 
 void main() {
     writeln("=== Json Property List Example ===\n");
