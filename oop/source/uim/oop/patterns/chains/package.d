@@ -5,11 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.chains;
 
-public {
+public { // Packages
+  import uim.oop.patterns.chains.classes;
   import uim.oop.patterns.chains.helpers;
   import uim.oop.patterns.chains.interfaces;
 }
 
-public {
-  import uim.oop.patterns.chains.chain;
+public { // Modules
 }

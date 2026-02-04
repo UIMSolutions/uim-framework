@@ -22,6 +22,7 @@ interface IFactory(K, V) {
      * 
      * Params:
      *     K key = The key associated with the object to be created.
+      *     Json initData = Optional initialization data.
      * 
      * Returns:
      *     An instance of type T.

@@ -124,8 +124,8 @@ class View : IView {
      * Params:
      *   model = The model to associate with this view
      */
-    void model(IMVCModel aModel) {
-        _model = aModel;
+    void model(IMVCModel model) {
+        _model = model;
         _model.attachView(this);
     }
 

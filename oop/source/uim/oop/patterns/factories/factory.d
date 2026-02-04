@@ -44,46 +44,57 @@ class UIMFactory(K, V) : IFactory!(K, V) {
   }
 
   /** 
-     * Creates and returns an instance of type T.
-     * 
-     * Params:
-     *     K key = The key associated with the object to be created.
-     * 
-     * Returns:
-     *     An instance of type T.
-     */
+    * Creates and returns an instance of type T.
+    * 
+    * Params:
+    *     K key = The key associated with the object to be created.
+    *     Json initData = Optional initialization data.
+    * 
+    * Returns:
+    *     An instance of type T.
+    */
   V create(K key, Json initData) {
     return create(key, initData.isObject ? initData.toMap : null);
   }
 
+  /** 
+    * Creates and returns an instance of type T.
+    * 
+    * Params:
+    *     K key = The key associated with the object to be created.
+    *     Json[string] initData = Optional initialization data.
+    * 
+    * Returns:
+    *     An instance of type T.
+    */
   V create(K key, Json[string] initData = null) {
     return isRegistered(key) ? _creators[key]() : null;
   }
 
   /** 
-     * Registers a creator function for a specific key.
-     * 
-     * Params:
-     *     K key = The key to register the creator function under.
-     *     V delegate() @safe creator = The creator function that returns an instance of type V.
-     * 
-     * Returns:
-     *     The factory instance for method chaining.
-     */
+    * Registers a creator function for a specific key.
+    * 
+    * Params:
+    *     K key = The key to register the creator function under.
+    *     V delegate() @safe creator = The creator function that returns an instance of type V.
+    * 
+    * Returns:
+    *     The factory instance for method chaining.
+    */
   IFactory!(K, V) register(K key, V delegate() @safe creator) {
     _creators[key] = creator;
     return this;
   }
 
   /** 
-     * Checks if a key is registered in the factory.
-     * 
-     * Params:
-     *     K key = The key to check for registration.
-     * 
-     * Returns:
-     *     true if the key is registered, false otherwise.
-     */
+    * Checks if a key is registered in the factory.
+    * 
+    * Params:
+    *     K key = The key to check for registration.
+    * 
+    * Returns:
+    *     true if the key is registered, false otherwise.
+    */
   bool isRegistered(K key) {
     return key in _creators ? true : false;
   }
@@ -129,7 +140,9 @@ unittest {
 
   class Product {
     int value;
-    this(int v) { value = v; }
+    this(int v) {
+      value = v;
+    }
   }
 
   auto factory = new UIMFactory!(string, Product)(() => new Product(0));
