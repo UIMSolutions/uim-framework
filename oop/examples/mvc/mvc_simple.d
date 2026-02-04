@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module oop.examples.mvc_simple;
+module oop.examples.mvc.mvc_simple;
 
 import uim.oop;
 import std.stdio;
@@ -24,7 +24,7 @@ void runSimpleMVCExample() {
 
     // 1. Create the Model
     writeln("1. Creating Model...");
-    auto model = new Model();
+    auto model = new MVCModel();
     model.set("username", "john_doe");
     model.set("email", "john@example.com");
     model.set("role", "admin");

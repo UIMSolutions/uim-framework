@@ -1,0 +1,31 @@
+// Metadata
+name "datascience"
+description "uim data science library for statistical analysis, machine learning, and data manipulation"
+homepage "https://www.sueel.de/uim/framework/datascience"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// Target
+targetName "uim-datascience"
+targetType "library"
+
+// Dependencies
+dependency "uim-framework:core" version="*"
+dependency "uim-framework:numerical" version="*"
+dependency "vibe-d" version="~>0.10.3"
+
+// Configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}

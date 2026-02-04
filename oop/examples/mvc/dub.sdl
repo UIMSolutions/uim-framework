@@ -1,0 +1,27 @@
+// Metadata
+name "mvc-examples"
+description "uim library for MVC pattern examples"
+homepage "https://www.sueel.de/uim/framework/mvc-examples"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// Target
+targetName "mvc-examples"
+targetType "executable"
+
+// Dependencies
+dependency "uim-framework:oop" version="*"
+
+// Configurations
+configuration "example_mvc_simple" {
+	targetType "executable"
+	versions "example_mvc_simple"
+	sourceFiles "mvc_simple.d"
+}
+
+configuration "example_mvc" {
+	targetType "executable"
+	versions "example_mvc"
+	sourceFiles "mvc_todolist.d"
+}
