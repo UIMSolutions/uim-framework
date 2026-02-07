@@ -56,16 +56,21 @@ class Img : HtmlElement {
         return attribute("width");
     }
     // #endregion width
-}
 
-auto img() {
-    return new Img();
-}
+    static Img opCall() {
+        return new Img();
+    }
 
-auto img(string src, string alt = null) {
-    auto element = new Img();
-    element.src(src);
-    if (alt)
-        element.alt(alt);
-    return element;
+    static Img opCall(string src, string alt = null) {
+        auto element = new Img();
+        element.src(src);
+        if (alt)
+            element.alt(alt);
+        return element;
+    }
+}
+///
+unittest {
+    assert(Img() == `<img />`);
+    assert(Img("image.png", "An image") == `<img alt="An image" src="image.png" />`);
 }

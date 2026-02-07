@@ -29,9 +29,6 @@ class Small : HtmlElement {
 }
 ///
 unittest {
-  auto small = Small();
-  assert(small == "<small></small>");
-
-  auto smallWithContent = Small("Hello");
-  assert(smallWithContent == "<small>Hello</small>");
+  assert(Small() == "<small></small>");
+  assert(Small("Hello") == "<small>Hello</small>");
 }

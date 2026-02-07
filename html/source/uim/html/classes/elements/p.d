@@ -29,6 +29,6 @@ class P : HtmlElement {
 }
 ///
 unittest {
-  auto p = P("Paragraph text");
-  assert(p.toString() == "<p>Paragraph text</p>");
+  assert(P() == "<p></p>");
+  assert(P("Paragraph text") == "<p>Paragraph text</p>");
 }

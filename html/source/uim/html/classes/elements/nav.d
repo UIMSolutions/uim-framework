@@ -29,9 +29,6 @@ class Nav : HtmlElement {
 }
 
 unittest {
-  auto nav = Nav();
-  assert(nav.toString() == "<nav></nav>");
-
-  auto navWithContent = Nav("Hello");
-  assert(navWithContent.toString() == "<nav>Hello</nav>");
+  assert(Nav() == "<nav></nav>");
+  assert(Nav("Hello") == "<nav>Hello</nav>");
 }

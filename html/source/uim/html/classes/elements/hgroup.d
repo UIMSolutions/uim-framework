@@ -29,9 +29,6 @@ class Hgroup : HtmlElement {
 }
 ///
 unittest {
-  auto hgroup = Hgroup();
-  assert(hgroup == "<hgroup></hgroup>");
-
-  auto hgroupWithContent = Hgroup("Hello");
-  assert(hgroupWithContent == "<hgroup>Hello</hgroup>");
+  assert(Hgroup() == "<hgroup></hgroup>");
+  assert(Hgroup("Hello") == "<hgroup>Hello</hgroup>");
 }

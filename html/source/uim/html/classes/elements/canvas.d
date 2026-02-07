@@ -41,11 +41,11 @@ class Canvas : HtmlElement {
   }
   // #endregion width
 
-  auto Canvas opCall() {
+  static Canvas opCall() {
     return new Canvas();
   }
 
-  auto Canvas opCall(string height, string width) {
+  static Canvas opCall(string height, string width) {
     auto element = new Canvas();
     element.height(height);
     element.width(width);

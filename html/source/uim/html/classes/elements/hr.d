@@ -24,6 +24,5 @@ class Hr : HtmlElement {
 }
 ///
 unittest {
-    auto hr = Hr();
-    assert(hr.toString() == "<hr />");
+    assert(Hr() == "<hr />");
 }

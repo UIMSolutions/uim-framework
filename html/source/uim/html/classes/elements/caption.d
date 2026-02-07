@@ -30,5 +30,5 @@ class Caption : HtmlElement {
 ///
 unittest {
   assert(Caption() == "<caption></caption>");
-  assert(Caption() == "<caption>Hello</caption>");
+  assert(Caption("Hello") == "<caption>Hello</caption>");
 }

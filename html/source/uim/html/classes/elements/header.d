@@ -29,9 +29,6 @@ class Header : HtmlElement {
 }
 ///
 unittest {
-  auto header = Header();
-  assert(header == "<header></header>");
-
-  auto headerWithContent = Header("Hello");
-  assert(headerWithContent == "<header>Hello</header>");
+  assert(Header() == "<header></header>");
+  assert(Header("Hello") == "<header>Hello</header>");
 }

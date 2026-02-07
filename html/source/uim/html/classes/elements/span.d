@@ -18,17 +18,17 @@ class Span : HtmlElement {
   }
 }
 
-auto span() {
+static Span opCall() {
   return new Span();
 }
 
-auto span(string content) {
+static Span opCall(string content) {
   auto element = new Span();
   element.text(content);
   return element;
 }
 
 unittest {
-  auto span = span("Text");
-  assert(span.toString() == "<span>Text</span>");
+  assert(Span() == "<span></span>");
+  assert(Span("Text") == "<span>Text</span>");
 }

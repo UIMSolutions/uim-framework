@@ -29,9 +29,6 @@ class Footer : HtmlElement {
 }
 ///
 unittest {
-  auto footer = Footer();
-  assert(footer.toString() == "<footer></footer>");
-
-  auto footerWithContent = Footer("Hello");
-  assert(footerWithContent.toString() == "<footer>Hello</footer>");
+  assert(Footer() == "<footer></footer>");
+  assert(Footer("Hello") == "<footer>Hello</footer>");
 }

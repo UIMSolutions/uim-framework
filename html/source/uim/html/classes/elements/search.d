@@ -29,9 +29,6 @@ class Search : HtmlElement {
 }
 ///
 unittest {
-  auto search = Search();
-  assert(search == "<search></search>");
-
-  auto searchWithContent = Search("Hello");
-  assert(searchWithContent == "<search>Hello</search>");
+  assert(Search() == "<search></search>");
+  assert(Search("Hello") == "<search>Hello</search>");
 }

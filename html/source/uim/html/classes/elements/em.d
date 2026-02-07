@@ -29,9 +29,6 @@ auto Em(string content) {
 }
 
 unittest {
-  auto em = Em();
-  assert(em.toString() == "<em></em>");
-
-  auto emWithContent = Em("Hello");
-  assert(emWithContent.toString() == "<em>Hello</em>");
+  assert(Em() == "<em></em>");
+  assert(Em("Hello") == "<em>Hello</em>");
 }

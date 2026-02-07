@@ -29,9 +29,6 @@ class Section : HtmlElement {
 }
 ///
 unittest {
-  auto section = Section();
-  assert(section == "<section></section>");
-
-  auto sectionWithContent = Section("Hello");
-  assert(sectionWithContent == "<section>Hello</section>");
+  assert(Section() == "<section></section>");
+  assert(Section("Hello") == "<section>Hello</section>");
 }
