@@ -17,36 +17,43 @@ class Canvas : HtmlElement {
     super("canvas");
   }
 
-  IHtmlElement height(string h) {
-    attribute("height", h);
+  /// Set height attribute
+  IHtmlElement height(string heightValue) {
+    attribute("height", heightValue);
     return this;
   }
 
+  /// Get height attribute
   IHtmlAttribute height() {
     return attribute("height");
   }
 
   // #region width
-  // Width attribute
-  IHtmlElement width(string w) {
-    attribute("width", w);
+  /// Set width attribute
+  IHtmlElement width(string widthValue) {
+    attribute("width", widthValue);
     return this;
   }
 
+  /// Get width attribute
   IHtmlAttribute width() {
     return attribute("width");
   }
   // #endregion width
-}
 
-auto canvas() {
-  return new Canvas();
-}
+  auto Canvas opCall() {
+    return new Canvas();
+  }
 
-auto canvas(string height, string width) {
-  auto element = new Canvas();
-  element.height(height);
-  element.width(width);
-  return element;
+  auto Canvas opCall(string height, string width) {
+    auto element = new Canvas();
+    element.height(height);
+    element.width(width);
+    return element;
+  }
 }
-
+///
+unittest {
+  assert(Canvas() == `<canvas></canvas>`);
+  assert(Canvas("400", "600") == `<canvas height="400" width="600"></canvas>`);
+}

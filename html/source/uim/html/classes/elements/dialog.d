@@ -49,9 +49,6 @@ class Dialog : HtmlElement {
 }
 ///
 unittest {
-  auto dialog = Dialog();
-  assert(dialog.toString() == "<dialog></dialog>");
-
-  auto dialogWithContent = Dialog("Hello");
-  assert(dialogWithContent.toString() == "<dialog>Hello</dialog>");
+  assert(Dialog() == "<dialog></dialog>");
+  assert(Dialog("Hello") == "<dialog>Hello</dialog>");
 }

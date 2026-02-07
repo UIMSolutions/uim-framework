@@ -18,16 +18,19 @@ class A : HtmlElement {
     super("a");
   }
 
+  // Setting the href attribute
   IHtmlElement href(string url) {
     attribute("href", url);
     return this;
   }
 
+  // Setting the target attribute
   IHtmlElement target(string targetValue) {
     attribute("target", targetValue);
     return this;
   }
 
+  // Setting target="_blank"
   IHtmlElement targetBlank() {
     return target("_blank");
   }

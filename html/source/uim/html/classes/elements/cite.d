@@ -29,9 +29,6 @@ class Cite : HtmlElement {
 }
 ///
 unittest {
-  auto cite = Cite();
-  assert(cite.toString() == "<cite></cite>");
-
-  auto citeWithContent = Cite("Hello");
-  assert(citeWithContent == "<cite>Hello</cite>");
+  assert(Cite() == "<cite></cite>");
+  assert(Cite("Hello") == "<cite>Hello</cite>");
 }

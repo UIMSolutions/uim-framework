@@ -29,9 +29,6 @@ class Caption : HtmlElement {
 }
 ///
 unittest {
-  auto caption = Caption();
-  assert(caption.toString() == "<caption></caption>");
-
-  auto captionWithContent = Caption("Hello");
-  assert(captionWithContent.toString() == "<caption>Hello</caption>");
+  assert(Caption() == "<caption></caption>");
+  assert(Caption() == "<caption>Hello</caption>");
 }

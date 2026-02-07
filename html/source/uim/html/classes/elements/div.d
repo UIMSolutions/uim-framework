@@ -33,9 +33,6 @@ class Div : HtmlElement {
 }
 ///
 unittest {
-  auto div = Div();
-  assert(div.toString() == "<div></div>");
-
-  auto divWithContent = Div("Hello");
-  assert(divWithContent.toString() == "<div>Hello</div>");
+  assert(Div() == "<div></div>");
+  assert(Div("Hello") == "<div>Hello</div>");
 }

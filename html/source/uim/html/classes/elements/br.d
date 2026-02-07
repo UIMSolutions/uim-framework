@@ -18,12 +18,13 @@ class Br : HtmlElement {
     super("br");
     this.selfClosing(true);
   }
+  
+  // Factory methods
   static Br opCall() {
     return new Br();
   }
 }
 ///
 unittest {
-  auto br = Br();
-  assert(br.toString() == "<br />");
+  assert(Br() == "<br />");
 }

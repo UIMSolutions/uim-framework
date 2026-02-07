@@ -29,9 +29,6 @@ class Code : HtmlElement {
 }
 ///
 unittest {
-  auto code = Code();
-  assert(code.toString() == "<code></code>");
-
-  auto codeWithContent = Code("Hello");
-  assert(codeWithContent == "<code>Hello</code>");
+  assert(Code() == "<code></code>");
+  assert(Code("Hello") == "<code>Hello</code>");
 }

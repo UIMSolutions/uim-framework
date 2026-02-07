@@ -29,9 +29,6 @@ class Article : HtmlElement {
 }
 ///
 unittest {
-  auto article = Article();
-  assert(article.toString() == "<article></article>");
-
-  auto articleWithContent = Article("Hello");
-  assert(articleWithContent.toString() == "<article>Hello</article>");
+  assert(Article() == "<article></article>");
+  assert(Article("Hello") == "<article>Hello</article>");
 }

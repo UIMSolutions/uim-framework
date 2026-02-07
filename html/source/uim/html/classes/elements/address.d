@@ -17,10 +17,12 @@ class Address : HtmlElement {
     this.selfClosing(false);
   }
 
+  // Factory methods
   static Address opCall() {
     return new Address();
   }
 
+  // Factory methods
   static Address opCall(string content) {
     auto element = new Address();
     element.content(content);
@@ -30,9 +32,6 @@ class Address : HtmlElement {
 }
 ///
 unittest {
-  auto address = Address();
-  assert(address == "<address></address>");
-
-  auto addressWithContent = Address("Hello");
-  assert(addressWithContent == "<address>Hello</address>");
+  assert(Address() == "<address></address>");
+  assert(Address("Hello") == "<address>Hello</address>");
 }

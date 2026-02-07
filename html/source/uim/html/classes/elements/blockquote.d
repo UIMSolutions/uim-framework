@@ -36,3 +36,8 @@ class Blockquote : HtmlElement {
     return element;
   }
 }
+///
+unittest {
+  assert(Blockquote() == `<blockquote></blockquote>`);
+  assert(Blockquote("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
+}

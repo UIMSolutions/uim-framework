@@ -29,9 +29,6 @@ class Aside : HtmlElement {
 }
 ///
 unittest {
-  auto aside = Aside();
-  assert(aside.toString() == "<aside></aside>");
-
-  auto asideWithContent = Aside("Hello");
-  assert(asideWithContent.toString() == "<aside>Hello</aside>");
+  assert(Aside() == "<aside></aside>");
+  assert(Aside("Hello") == "<aside>Hello</aside>");
 }
