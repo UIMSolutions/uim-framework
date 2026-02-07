@@ -1,6 +1,6 @@
 name "logging"
 description "Logging library for the uim framework"
-homepage "https://www.sueel.de"
+// TODO: homepage "https://www.sueel.de"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"

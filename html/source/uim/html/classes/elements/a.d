@@ -31,21 +31,20 @@ class A : HtmlElement {
   IHtmlElement targetBlank() {
     return target("_blank");
   }
-}
 
-auto a() {
-  return new A();
-}
+  static IHtmlElement opCall() {
+    return new A();
+  }
 
-auto a(string url, string text = null) {
-  auto element = new A();
-  element.href(url);
-  if (text)
-    element.text(text);
-  return element;
+  static IHtmlElement opCall(string url, string text) {
+    auto link = new A();
+    link.href(url);
+    link.text(text);
+    return link;
+  }
 }
-
+///
 unittest {
-  auto link = a("https://example.com", "Example");
+  auto link = A("https://example.com", "Example");
   assert(link.toString() == `<a href="https://example.com">Example</a>`);
 }

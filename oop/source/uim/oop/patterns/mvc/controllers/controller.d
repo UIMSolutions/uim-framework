@@ -30,12 +30,12 @@ class Controller : IController {
      *   view = Optional view to control
      */
     this(IMVCModel model = null, IView view = null) {
-        if (model !is null) {
-            model(model);
-        }
-        if (view !is null) {
-            view(view);
-        }
+        // TODO: if (model !is null) {
+        // TODO:     model(model);
+        // TODO: }
+        // TODO: if (view !is null) {
+        // TODO:     view(view);
+        // TODO: }
         
         registerDefaultActions();
     }
