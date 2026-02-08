@@ -11,16 +11,19 @@ class Fieldset : HtmlElement {
     super("fieldset");
   }
 
+  /// Sets the disabled attribute of the fieldset element.
   IHtmlElement disabled() {
     attribute("disabled", "");
     return this;
   }
 
+  /// Sets the form attribute of the fieldset element.
   IHtmlElement form(string formId) {
     attribute("form", formId);
     return this;
   }
 
+  /// Sets the name attribute of the fieldset element.
   IHtmlElement name(string nameValue) {
     attribute("name", nameValue);
     return this;
@@ -34,6 +37,5 @@ class Fieldset : HtmlElement {
 unittest {
   mixin(ShowTest!"Testing Fieldset Class");
 
-  auto fs = Fieldset();
-  assert(fs == "<fieldset></fieldset>");
+  assert(Fieldset() == "<fieldset></fieldset>");
 }

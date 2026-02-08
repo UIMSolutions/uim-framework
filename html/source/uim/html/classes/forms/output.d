@@ -22,7 +22,7 @@ class Output : FormElement {
     super("output");
   }
 
-  // Associates the output element with other elements
+  /// Associates the output element with other elements
   auto forElement(string elementId) {
     return attribute("for", elementId);
   }
@@ -45,6 +45,9 @@ class Output : FormElement {
 }
 ///
 unittest {
+  assert(Output() == "<output></output>");
+  assert(Output("Username:") == "<output>Username:</output>");
+
   auto output = Output("username", "Username:");
   assert(output == "<output for=\"username\">Username:</output>");
 

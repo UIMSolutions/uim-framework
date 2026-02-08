@@ -13,48 +13,51 @@ mixin(ShowModule!());
 
 /// HTML form element
 class Form : HtmlElement, IHtmlForm {
-    this() {
-        super("form");
-    }
+  this() {
+    super("form");
+  }
 
-    IHtmlAttribute name() {
-        return attribute("name");
-    }
+  IHtmlAttribute name() {
+    return attribute("name");
+  }
 
-    override IHtmlForm name(string nameValue) {
-        attribute("name", nameValue);
-        return this;
-    }
+  override IHtmlForm name(string nameValue) {
+    attribute("name", nameValue);
+    return this;
+  }
 
-    IHtmlForm action(string url) {
-        attribute("action", url);
-        return this;
-    }
+  IHtmlForm action(string url) {
+    attribute("action", url);
+    return this;
+  }
 
-    IHtmlForm method(string methoUIMValue) {
-        attribute("method", methoUIMValue);
-        return this;
-    }
+  IHtmlForm method(string methoUIMValue) {
+    attribute("method", methoUIMValue);
+    return this;
+  }
 
-    IHtmlForm post() {
-        return method("POST");
-    }
+  /// Sets the method attribute of the form to "POST".
+  IHtmlForm post() {
+    return method("POST");
+  }
 
-    IHtmlForm get() {
-        return method("GET");
-    }
+  /// Sets the method attribute of the form to "GET".
+  IHtmlForm get() {
+    return method("GET");
+  }
 
-    IHtmlForm enctype(string value) {
-        attribute("enctype", value);
-        return this;
-    }
+  /// Sets the enctype attribute of the form.
+  IHtmlForm enctype(string value) {
+    attribute("enctype", value);
+    return this;
+  }
 
-    static Form opCall() {
-        return new Form();
-    }
+  static Form opCall() {
+    return new Form();
+  }
 }
 ///
 unittest {
-    auto form = Form().action("/submit").post();
-    assert(form.toString().indexOf("action=\"/submit\"") > 0);
+  auto form = Form().action("/submit").post();
+  assert(form.toString().indexOf("action=\"/submit\"") > 0);
 }

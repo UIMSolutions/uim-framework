@@ -22,14 +22,14 @@ class Label : FormElement {
   }
 
   static Label opCall() {
-  return new Label();
-}
+    return new Label();
+  }
 
   static Label opCall(string text) {
     auto lbl = new Label();
-  lbl.text(text);
-  return lbl;
-}
+    lbl.text(text);
+    return lbl;
+  }
 
   static Label opCall(string forId, string text) {
     auto lbl = new Label();
@@ -39,6 +39,9 @@ class Label : FormElement {
 }
 ///
 unittest {
+  assert(Label() == "<label></label>");
+  assert(Label("Username:") == "<label>Username:</label>");
+
   auto label = Label("username", "Username:");
   assert(label.toString().indexOf("label") > 0);
 }

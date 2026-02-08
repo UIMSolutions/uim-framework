@@ -26,3 +26,7 @@ class Checkbox : Input {
     return new Checkbox();
   }
 }
+/// 
+unittest {
+  assert(Checkbox() == "<input type=\"checkbox\">");
+} 

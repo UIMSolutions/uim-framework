@@ -53,35 +53,9 @@ class Button : FormElement {
 }
 /// 
 unittest {
-  auto btn = Button();
-  assert(btn == "<button></button>");
-}
-
-static Button HtmlButton() {
-  return new Button();
-}
-
-static Button HtmlButton(string text) {
-  auto btn = new Button();
-  btn.text(text);
-  return btn;
-}
-
-static Button SubmitButton(string text = "Submit") {
-  auto btn = new Button();
-  btn.text(text);
-  btn.submit();
-  return btn;
-}
-
-static Button ResetButton(string text = "Reset") {
-  auto btn = new Button();
-  btn.text(text);
-  btn.reset();
-  return btn;
-}
-
-unittest {
-  auto btn = Button("Click me");
-  assert(btn == "<button>Click me</button>");
+  assert(Button() == "<button></button>");
+  assert(Button("Click me") == "<button>Click me</button>");
+  assert(Button().submit() == "<button type=\"submit\"></button>");
+  assert(Button().reset() == "<button type=\"reset\"></button>");
+  assert(Button().disabled() == "<button disabled></button>");
 }

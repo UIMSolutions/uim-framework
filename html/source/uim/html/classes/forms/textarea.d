@@ -80,6 +80,7 @@ static Textarea opCall(string name) {
 }
 ///
 unittest {
+  assert(Textarea() == "<textarea></textarea>");
   auto ta = Textarea("comment");
   assert(ta.toString().indexOf("textarea") > 0);
 }
