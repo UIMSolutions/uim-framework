@@ -1,4 +1,3 @@
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
@@ -13,21 +12,33 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML list item element
-class DLi : HtmlElement {
-    this() {
-        super("li");
-    }
+class Li : HtmlElement {
+  this() {
+    super("li");
+  }
 
-    IHtmlElement value(string itemValue) {
-        attribute("value", itemValue);
-        return this;
-    }
+  /// Gets the value of the "value" attribute, which specifies the ordinal value of the list item in an ordered list.
+  IHtmlAttribute value() {
+    return attribute("value");
+  }
+
+  IHtmlElement value(string itemValue) {
+    attribute("value", itemValue);
+    return this;
+  }
+
+  static Li opCall() {
+    return new Li();
+  }
+
+  static Li opCall(string content) {
+    auto html = new Li();
+    html.text(content);
+    return html;
+  }
 }
-
-auto Li() { return new DLi(); }
-auto Li(string content) { auto li = new DLi(); li.text(content); return li; }
-
+///
 unittest {
-    auto li = Li("Item");
-    assert(li.toString() == "<li>Item</li>");
+  assert(Li() == "<li></li>");
+  assert(Li("Item") == "<li>Item</li>");
 }

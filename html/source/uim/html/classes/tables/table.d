@@ -13,32 +13,35 @@ mixin(ShowModule!());
 
 /// HTML table element
 class Table : HtmlElement {
-    this() {
-        super("table");
-    }
+  this() {
+    super("table");
+  }
 
-    IHtmlElement border(string borderValue) {
-        attribute("border", borderValue);
-        return this;
-    }
+  ///  Gets or sets the border width of a table. This attribute is only applicable to "table" elements.
+  IHtmlElement border(string borderValue) {
+    attribute("border", borderValue);
+    return this;
+  }
 
-    IHtmlElement cellspacing(string value) {
-        attribute("cellspacing", value);
-        return this;
-    }
+  ///   Gets or sets the amount of space between the borders of adjacent cells in a table. This attribute is only applicable to "table" elements.
+  IHtmlElement cellspacing(string value) {
+    attribute("cellspacing", value);
+    return this;
+  }
 
-    IHtmlElement cellpadding(string value) {
-        attribute("cellpadding", value);
-        return this;
-    }
+  /// Gets or sets the amount of space between the borders of adjacent cells in a table. This attribute is only applicable to "table" elements.
+  IHtmlElement cellpadding(string value) {
+    attribute("cellpadding", value);
+    return this;
+  }
 
-    static Table opCall() {
-        return new Table();
-    }
+  static Table opCall() {
+    return new Table();
+  }
 }
 ///
 unittest {
-    mixin(ShowTest!"Testing Table Class");
+  mixin(ShowTest!"Testing Table Class");
 
-    assert(Table() == "<table></table>");
+  assert(Table() == "<table></table>");
 }

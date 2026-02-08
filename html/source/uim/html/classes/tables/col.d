@@ -17,6 +17,7 @@ class Col : HtmlElement {
     super("col");
   }
 
+  /// Sets the number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
   IHtmlElement colspan(string value) {
     attribute("colspan", value);
     return this;
@@ -40,4 +41,5 @@ class Col : HtmlElement {
 
 unittest {
   assert(Col("Cell content") == "<col>Cell content</col>");
+  assert(Col() == "<col></col>");
 }

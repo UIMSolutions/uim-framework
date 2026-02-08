@@ -17,30 +17,34 @@ class Ol : HtmlElement {
     super("ol");
   }
 
+  /// Sets the type of numbering for the list items in an ordered list. 
+  /// Valid values are "1" for numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
   IHtmlElement type(string listType) {
     attribute("type", listType);
     return this;
   }
 
+  /// Gets the value of the "type" attribute, which specifies the type of numbering for the list items in an ordered list.
   IHtmlAttribute type() {
     return attribute("type");
   }
 
+  /// Sets the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
   IHtmlElement start(string startValue) {
     attribute("start", startValue);
     return this;
   }
 
+  /// Gets the value of the "start" attribute, which specifies the starting value for the first list item in an ordered list.
   IHtmlAttribute start() {
     return attribute("start");
   }
-}
 
-auto ol() {
-  return new Ol();
+  static Ol opCall() {
+    return new Ol();
+  }
 }
-
+/// Creates an ordered list with the specified content. The content can be a string or any object that can be converted to a string.
 unittest {
-  auto ol = ol();
-  assert(ol.toString() == "<ol></ol>");
+  assert(Ol() == "<ol></ol>");
 }

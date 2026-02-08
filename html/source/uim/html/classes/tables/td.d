@@ -14,25 +14,32 @@ mixin(ShowModule!());
 
 /// HTML table cell element
 class Td : HtmlElement {
-    this() {
-        super("td");
-    }
+  this() {
+    super("td");
+  }
 
-    IHtmlElement colspan(string value) {
-        attribute("colspan", value);
-        return this;
-    }
+  IHtmlElement colspan(string value) {
+    attribute("colspan", value);
+    return this;
+  }
 
-    IHtmlElement rowspan(string value) {
-        attribute("rowspan", value);
-        return this;
-    }
+  IHtmlElement rowspan(string value) {
+    attribute("rowspan", value);
+    return this;
+  }
+
+  static Td opCall() {
+    return new Td();
+  }
+
+  static Td opCall(string content) {
+    auto td = new Td();
+    td.text(content);
+    return td;
+  }
 }
-
-auto td() { return new Td(); }
-auto td(string content) { auto td = new Td(); td.text(content); return td; }
-
+///
 unittest {
-    auto td = td("Cell content");
-    assert(td.toString() == "<td>Cell content</td>");
+  assert(Td() == "<td></td>");
+  assert(Td("Cell content") == "<td>Cell content</td>");
 }

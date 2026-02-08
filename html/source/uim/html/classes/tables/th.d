@@ -29,12 +29,19 @@ class Th : HtmlElement {
     auto scope_(string value) {
         return attribute("scope", value);
     }
+
+    static Th opCall() {
+        return new Th();
+    }
+
+    static Th opCall(string content) {
+        auto th = new Th();
+        th.text(content);
+        return th;
+    }
 }
 
-auto th() { return new Th(); }
-auto th(string content) { auto th = new Th(); th.text(content); return th; }
-
 unittest {
-    auto th = th("Header");
-    assert(th.toString() == "<th>Header</th>");
+    assert(Th() == "<th></th>");
+    assert(Th("Header") == "<th>Header</th>");
 }

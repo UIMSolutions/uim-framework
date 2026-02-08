@@ -23,6 +23,5 @@ class Thead : HtmlElement {
 }
 ///
 unittest {
-    auto thead = Thead();
-    assert(thead.toString() == "<thead></thead>");
+    assert(Thead() == "<thead></thead>");
 }

@@ -22,10 +22,7 @@ class Tbody : HtmlElement {
         return new Tbody();
     }
 }
-
-auto tbody() { return new Tbody(); }
-
+///
 unittest {
-    auto tbody = tbody();
-    assert(tbody.toString() == "<tbody></tbody>");
+    assert(Tbody() == "<tbody></tbody>");
 }

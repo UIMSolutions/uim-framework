@@ -16,19 +16,19 @@ class DDt : HtmlElement {
   this() {
     super("dt");
   }
-}
 
-auto Dt() {
-  return new DDt();
-}
+  static Dt opCall() {
+    return new DDt();
+  }
 
-auto Dt(string content) {
-  auto dt = new DDt();
-  dt.text(content);
-  return dt;
+  static Dt opCall(string content) {
+    auto dt = new DDt();
+    dt.text(content);
+    return dt;
+  }
 }
-
+///
 unittest {
-  auto dt = Dt("Term");
-  assert(dt.toString() == "<dt>Term</dt>");
+  assert(Dt() == "<dt></dt>");
+  assert(Dt("Term") == "<dt>Term</dt>");
 }

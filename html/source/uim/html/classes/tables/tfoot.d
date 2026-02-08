@@ -23,6 +23,5 @@ class Tfoot : HtmlElement {
 }
 ///
 unittest {
-    auto tfoot = Tfoot();
-    assert(tfoot.toString() == "<tfoot></tfoot>");
+    assert(Tfoot() == "<tfoot></tfoot>");
 }
