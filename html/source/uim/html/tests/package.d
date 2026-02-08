@@ -53,7 +53,7 @@ void testFormElements() {
     auto submit = SubmitInput("Login");
 
     // Test button
-    auto btn = HtmlButton("Click me");
+    auto btn = Button("Click me");
     assert(btn.toString() == "<button>Click me</button>");
 
     // Test textarea

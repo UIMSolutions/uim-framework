@@ -316,29 +316,29 @@ class Aircraft {
  * Dialog mediator coordinating UI components.
  */
 class DialogMediator {
-    private Button _submitButton;
-    private Button _cancelButton;
-    private TextBox _nameInput;
-    private CheckBox _agreeCheckbox;
+    private MediatorButton _submitButton;
+    private MediatorButton _cancelButton;
+    private MediatorTextBox _nameInput;
+    private MediatorCheckBox _agreeCheckbox;
     
-    void setSubmitButton(Button button) @safe {
+    void setSubmitButton(MediatorButton button) @safe {
         _submitButton = button;
         button.setMediator(this);
         updateSubmitButton();
     }
     
-    void setCancelButton(Button button) @safe {
+    void setCancelButton(MediatorButton button) @safe {
         _cancelButton = button;
         button.setMediator(this);
     }
     
-    void setNameInput(TextBox input) @safe {
+    void setNameInput(MediatorTextBox input) @safe {
         _nameInput = input;
         input.setMediator(this);
         updateSubmitButton();
     }
     
-    void setAgreeCheckbox(CheckBox checkbox) @safe {
+    void setAgreeCheckbox(MediatorCheckBox checkbox) @safe {
         _agreeCheckbox = checkbox;
         checkbox.setMediator(this);
         updateSubmitButton();
@@ -375,7 +375,7 @@ class DialogMediator {
 /**
  * UI Button component.
  */
-class Button {
+class MediatorButton {
     private string _name;
     private bool _enabled;
     private DialogMediator _mediator;
@@ -403,7 +403,7 @@ class Button {
 /**
  * UI TextBox component.
  */
-class TextBox {
+class MediatorTextBox {
     private string _name;
     private string _text;
     private DialogMediator _mediator;
@@ -431,7 +431,7 @@ class TextBox {
 /**
  * UI CheckBox component.
  */
-class CheckBox {
+class MediatorCheckBox {
     private string _name;
     private bool _isChecked;
     private DialogMediator _mediator;
@@ -533,9 +533,9 @@ class CheckBox {
 @safe unittest {
     // Test dialog mediator
     auto mediator = new DialogMediator();
-    auto submitBtn = new Button("submit");
-    auto nameInput = new TextBox("name");
-    auto agreeBox = new CheckBox("agree");
+    auto submitBtn = new MediatorButton("submit");
+    auto nameInput = new MediatorTextBox("name");
+    auto agreeBox = new MediatorCheckBox("agree");
     
     mediator.setSubmitButton(submitBtn);
     mediator.setNameInput(nameInput);
