@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.small;
+module uim.html.classes.elements.inlinetext.sup;
 
 import uim.html;
 
@@ -11,24 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-class Small : HtmlElement {
+// The <sup> HTML element defines superscript text. Superscripts are typically used for footnotes, like this: "This is some text.<sup>1</sup>".
+class Sup : HtmlElement {
   this() {
-    super("small");
+    super("sup");
     this.selfClosing(false);
   }
 
-  static Small opCall() {
-    return new Small();
+  static Sup opCall() {
+    return new Sup();
   }
 
-  static Small opCall(string content) {
-    auto element = new Small();
+  static Sup opCall(string content) {
+    auto element = new Sup();
     element.text(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Small() == "<small></small>");
-  assert(Small("Hello") == "<small>Hello</small>");
+  assert(Sup() == "<sup></sup>");
+  assert(Sup("Hello") == "<sup>Hello</sup>");
 }
