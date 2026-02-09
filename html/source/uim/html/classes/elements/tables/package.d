@@ -6,11 +6,15 @@ module uim.html.classes.tables;
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
 
-public import uim.html.classes.tables.interfaces;
-public import uim.html.classes.tables.table;
-public import uim.html.classes.tables.tr;
-public import uim.html.classes.tables.td;
-public import uim.html.classes.tables.th;
-public import uim.html.classes.tables.thead;
-public import uim.html.classes.tables.tbody;
-public import uim.html.classes.tables.tfoot;
+public {
+  import uim.html.classes.elements.tables.caption;
+  import uim.html.classes.elements.tables.col;
+  import uim.html.classes.elements.tables.colgroup;
+  import uim.html.classes.elements.tables.table;
+  import uim.html.classes.elements.tables.tbody;
+  import uim.html.classes.elements.tables.td;
+  import uim.html.classes.elements.tables.tfoot;
+  import uim.html.classes.elements.tables.th;
+  import uim.html.classes.elements.tables.thead;
+  import uim.html.classes.elements.tables.tr;
+}

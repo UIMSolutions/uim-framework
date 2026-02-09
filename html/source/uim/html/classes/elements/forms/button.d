@@ -11,7 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML button element
+/**
+  * HTML button element
+  * 
+  * The <button> element represents a clickable button, which can be used in forms or anywhere in a document that needs simple, standard button functionality.
+  * 
+  * Example usage:
+  * 
+  * <button type="submit">Submit</button>
+  * <button type="reset">Reset</button>
+  * <button disabled>Disabled Button</button>
+  *
+  * The content of the <button> element can include text and other inline elements, making it more flexible
+  * than the <input type="button"> element, which cannot contain content.
+  */
 class Button : FormElement {
   this() {
     super("button");

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.dialog;
+module uim.html.classes.elements.interactive.dialog;
 
 import uim.html;
 
@@ -11,6 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <dialog> HTML element represents a dialog box or other interactive component, such as a dismissible alert, inspector, or subwindow.
+  * The <dialog> element makes it easy to create pop-up dialogs in a web page. It can be used to create modals, pop-ups, lightboxes, and more.
+  * The <dialog> element is not displayed by default. You can use the open attribute to show the dialog.
+  * The <dialog> element also has a method called showModal() that can be used to display the dialog as a modal.
+  */
 class Dialog : HtmlElement {
   this() {
     super("dialog");
