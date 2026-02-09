@@ -6,4 +6,3 @@ module uim.html.classes.lists;
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
 
-public import uim.html.classes.lists.ul;

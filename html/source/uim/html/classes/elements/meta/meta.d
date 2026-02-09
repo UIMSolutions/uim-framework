@@ -11,6 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <meta> HTML element represents metadata that cannot be represented by other HTML elements. 
+  * It is typically used to specify page description, keywords, author of the document, and other metadata. 
+  * The <meta> element is placed within the <head> section of an HTML document and is not displayed on the page.
+  * It can also be used to specify the character encoding for the document using the charset attribute.
+  * Additionally, <meta> tags can be used for SEO purposes, providing information about the content of the page to search engines.
+* 
+  * Example usage:
+  * <head>
+  *   <meta charset="UTF-8">
+  *   <meta name="description" content="A brief description of the page">
+  *   <meta name="keywords" content="HTML, meta tags, SEO">
+  *   <meta name="author" content="John Doe">
+  * </head>
+  */
 class Meta : HtmlElement {
   this() {
     super("meta");
@@ -32,6 +47,5 @@ class Meta : HtmlElement {
 }
 ///
 unittest {
-  assert(Meta() == "<meta></meta>");
-  assert(Meta("Hello") == "<meta>Hello</meta>");
+  assert(Meta() == "<meta />");
 }

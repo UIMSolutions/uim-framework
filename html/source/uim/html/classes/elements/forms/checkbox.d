@@ -28,5 +28,5 @@ class Checkbox : Input {
 }
 /// 
 unittest {
-  assert(Checkbox() == "<input type=\"checkbox\">");
+  assert(Checkbox() == `<input type="checkbox" />`);
 } 

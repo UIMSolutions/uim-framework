@@ -23,7 +23,7 @@ class Section : HtmlElement {
 
   static Section opCall(string content) {
     auto element = new Section();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

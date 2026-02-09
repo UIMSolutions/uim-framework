@@ -17,9 +17,7 @@ public {
   import uim.html.classes.elements.nav;
   import uim.html.classes.elements.section;
   import uim.html.classes.elements.search;
-  import uim.html.classes.elements.p;
   import uim.html.classes.elements.h;
-  import uim.html.classes.elements.br;
   import uim.html.classes.elements.link;
   import uim.html.classes.elements.interfaces;
 

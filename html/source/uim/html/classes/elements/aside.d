@@ -23,7 +23,7 @@ class Aside : HtmlElement {
 
   static Aside opCall(string content) {
     auto element = new Aside();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

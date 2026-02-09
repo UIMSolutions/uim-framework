@@ -23,7 +23,7 @@ class Caption : HtmlElement {
 
   static Caption opCall(string content) {
     auto element = new Caption();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

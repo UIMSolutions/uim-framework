@@ -23,7 +23,7 @@ class Fencedframe : HtmlElement {
 
   static Fencedframe opCall(string content) {
     auto element = new Fencedframe();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

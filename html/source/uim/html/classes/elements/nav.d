@@ -23,7 +23,7 @@ class Nav : HtmlElement {
 
   static Nav opCall(string content) {
     auto element = new Nav();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

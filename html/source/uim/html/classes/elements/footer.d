@@ -23,7 +23,7 @@ class Footer : HtmlElement {
 
   static Footer opCall(string content) {
     auto element = new Footer();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

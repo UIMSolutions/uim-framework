@@ -23,7 +23,7 @@ class B : HtmlElement {
 
   static B opCall(string content) {
     auto element = new B();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

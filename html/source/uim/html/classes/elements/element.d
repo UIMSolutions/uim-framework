@@ -25,7 +25,6 @@ class HtmlElement : IHtmlElement {
   }
 
   protected string _tagName;
-  protected string _content;
   protected bool _selfClosing;
 
   // Getter for tagName
@@ -39,16 +38,34 @@ class HtmlElement : IHtmlElement {
     return this;
   }
 
+  // #region content
   // Getter for content
   string content() {
     return _content;
   }
 
   // Setter for content
+  protected string _content;
   IHtmlElement content(string value) {
     _content = value;
     return this;
   }
+
+  IHtmlElement content(IHtmlElement[] elements) {
+    _content = elements.map!(e => e.toString()).join("");
+    return this;
+  }
+
+  IHtmlElement content(IHtmlElement element) {
+    _content = element.toString();
+    return this;
+  }
+
+  IHtmlElement addContent(IHtmlElement element) {
+    _content ~= element.toString();
+    return this;
+  }
+  // #endregion content
 
   // Getter for selfClosing
   bool selfClosing() {
@@ -109,13 +126,13 @@ class HtmlElement : IHtmlElement {
   }
 
   /// Add a child element
-  IHtmlElement addChild(HtmlElement child) {
+  IHtmlElement addChild(IHtmlElement child) {
     _children ~= child;
     return this;
   }
 
   /// Add multiple children
-  IHtmlElement addChildren(HtmlElement[] children...) {
+  IHtmlElement addChildren(IHtmlElement[] children...) {
     foreach (child; children) {
       addChild(child);
     }

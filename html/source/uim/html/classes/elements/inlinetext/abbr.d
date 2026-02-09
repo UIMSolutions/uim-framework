@@ -23,7 +23,7 @@ class Abbr : HtmlElement {
 
   static Abbr opCall(string content) {
     auto element = new Abbr();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

@@ -23,7 +23,7 @@ class Source : HtmlElement {
 
   static Source opCall(string content) {
     auto element = new Source();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

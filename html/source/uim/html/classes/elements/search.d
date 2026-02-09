@@ -23,7 +23,7 @@ class Search : HtmlElement {
 
   static Search opCall(string content) {
     auto element = new Search();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

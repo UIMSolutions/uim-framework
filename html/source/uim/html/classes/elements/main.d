@@ -23,7 +23,7 @@ class Main : HtmlElement {
 
   static Main opCall(string content) {
     auto element = new Main();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

@@ -23,7 +23,7 @@ class Article : HtmlElement {
 
   static Article opCall(string content) {
     auto element = new Article();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

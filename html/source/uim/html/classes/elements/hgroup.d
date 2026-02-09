@@ -23,7 +23,7 @@ class Hgroup : HtmlElement {
 
   static Hgroup opCall(string content) {
     auto element = new Hgroup();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

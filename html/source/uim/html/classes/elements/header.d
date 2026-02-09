@@ -23,7 +23,7 @@ class Header : HtmlElement {
 
   static Header opCall(string content) {
     auto element = new Header();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

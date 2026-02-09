@@ -18,5 +18,5 @@ class Radio : Input  {
 }
 ///
 unittest {
-  assert(Radio() == "<input type=\"radio\"></input>");
+  assert(Radio() == `<input type="radio" />`);
 }

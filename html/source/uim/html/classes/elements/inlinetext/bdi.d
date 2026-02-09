@@ -28,7 +28,7 @@ class Bdi : HtmlElement {
 
   static Bdi opCall(string content) {
     auto element = new Bdi();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

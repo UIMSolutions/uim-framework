@@ -23,7 +23,7 @@ class Iframe : HtmlElement {
 
   static Iframe opCall(string content) {
     auto element = new Iframe();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

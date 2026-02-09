@@ -26,7 +26,7 @@ auto H1() {
 
 auto H1(string content) {
   auto element = new DH(1);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
@@ -36,7 +36,7 @@ auto H2() {
 
 auto H2(string content) {
   auto element = new DH(2);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
@@ -46,7 +46,7 @@ auto H3() {
 
 auto H3(string content) {
   auto element = new DH(3);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
@@ -56,7 +56,7 @@ auto H4() {
 
 auto H4(string content) {
   auto element = new DH(4);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
@@ -66,7 +66,7 @@ auto H5() {
 
 auto H5(string content) {
   auto element = new DH(5);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
@@ -76,7 +76,7 @@ auto H6() {
 
 auto H6(string content) {
   auto element = new DH(6);
-  element.text(content);
+  element.content(content);
   return element;
 }
 
