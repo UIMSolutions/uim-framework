@@ -11,25 +11,29 @@ mixin(ShowModule!());
 
 @safe:
 
-// The <sub> HTML element defines subscript text. Subscripts are typically used for chemical formulas, like this: "H<sub>2</sub>O".
-class Abbr : HtmlElement {
+/**
+  * The <sub> HTML element specifies inline text which should be displayed as subscript for solely typographical reasons. 
+  * It is typically used for chemical formulas, mathematical expressions, and other notations that require subscript formatting. 
+  * The <sub> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned lower than the surrounding text.
+  */
+class Sub : HtmlElement {
   this() {
-    super("abbr");
+    super("sub");
     this.selfClosing(false);
   }
 
-  static Abbr opCall() {
-    return new Abbr();
+  static Sub opCall() {
+    return new Sub();
   }
 
-  static Abbr opCall(string content) {
-    auto element = new Abbr();
+  static Sub opCall(string content) {
+    auto element = new Sub();
     element.text(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Abbr() == "<abbr></abbr>");
-  assert(Abbr("Hello") == "<abbr>Hello</abbr>");
+  assert(Sub() == "<sub></sub>");
+  assert(Sub("Hello") == "<sub>Hello</sub>");
 }

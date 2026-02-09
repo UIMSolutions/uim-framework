@@ -11,6 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <rp> HTML element is used to provide fall-back parentheses for browsers that do not support display of ruby annotations using the <ruby> element. 
+ * It is typically used in conjunction with the <rt> element, which specifies the ruby text (the annotation) that should be displayed above or below the base text (the content of the <ruby> element). 
+ * The <rp> element allows authors to specify what should be displayed in place of the ruby text for browsers that do not support it, ensuring that the content remains readable and understandable even without ruby annotation support.
+ */
 class Rp : HtmlElement {
   this() {
     super("rp");

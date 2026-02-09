@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.inlinetext.strong;
+module uim.html.classes.elements.inlinetext.wbr;
 
 import uim.html;
 
@@ -11,28 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-/** 
- * The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. 
- * Browsers typically render the contents in bold type.
- */
-class Strong : HtmlElement {
+// The <wbr> HTML element represents a word break opportunity—a position within text where the browser may optionally break a line, though its line-breaking rules would not otherwise create a break at that location.
+class Wbr : HtmlElement {
   this() {
-    super("strong");
-    this.selfClosing(false);
+    super("wbr");
+    this.selfClosing(true);
   }
 
-  static Strong opCall() {
-    return new Strong();
+  static Wbr opCall() {
+    return new Wbr();
   }
 
-  static Strong opCall(string content) {
-    auto element = new Strong();
+  static Wbr opCall(string content) {
+    auto element = new Wbr();
     element.text(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Strong() == "<strong></strong>");
-  assert(Strong("Hello") == "<strong>Hello</strong>");
+  assert(Wbr() == "<wbr></wbr>");
+  assert(Wbr("Hello") == "<wbr>Hello</wbr>");
 }

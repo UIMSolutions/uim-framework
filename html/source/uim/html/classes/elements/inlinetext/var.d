@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.inlinetext.data;
+module uim.html.classes.elements.inlinetext.var;
 
 import uim.html;
 
@@ -11,29 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-/** 
- * The <data> HTML element links a given content with a machine-readable translation. 
- * If the content is time- or date-related, the datetime attribute must be present and contain a valid date string. 
- * If the content is a number, the value attribute must be present and contain a valid floating point number.
- */
-class Data : HtmlElement {
+// The <var> HTML element represents a variable in a mathematical expression or a programming context.
+class Var : HtmlElement {
   this() {
-    super("data");
+    super("var");
     this.selfClosing(false);
   }
 
-  static Data opCall() {
-    return new Data();
+  static Var opCall() {
+    return new Var();
   }
 
-  static Data opCall(string content) {
-    auto element = new Data();
+  static Var opCall(string content) {
+    auto element = new Var();
     element.text(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Data() == "<data></data>");
-  assert(Data("Hello") == "<data>Hello</data>");
+  assert(Var() == "<var></var>");
+  assert(Var("Hello") == "<var>Hello</var>");
 }

@@ -11,6 +11,8 @@ mixin(ShowModule!());
 
 @safe:
 
+/** The <bdo> HTML element is used to override the current text direction. It can be used to display text in a different direction than the surrounding text, such as for displaying right-to-left text in a left-to-right context, or vice versa. The 'dir' attribute is used to specify the text direction, with possible values of 'ltr' (left-to-right) or 'rtl' (right-to-left).
+*/
 class Bdo : HtmlElement {
   this() {
     super("bdo");

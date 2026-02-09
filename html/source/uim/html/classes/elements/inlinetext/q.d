@@ -11,6 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <q> HTML element indicates that the enclosed text is a short inline quotation. 
+ * Most modern browsers implement this by surrounding the text in quotation marks. 
+ * This element is intended for short quotations that do not require paragraph breaks. 
+ * For longer quotations, the <blockquote> element should be used instead.
+ */
 class Q : HtmlElement {
   this() {
     super("q");

@@ -11,6 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <samp> HTML element is used to enclose inline text which represents sample (or quoted) output from a computer program. 
+ * By default, it is displayed in the browser's default monospace font, and it preserves whitespace and line breaks. 
+ * The <samp> element can be used to display sample output from a command-line interface, a programming language, or any other type of computer-generated output.
+ */
 class Samp : HtmlElement {
   this() {
     super("samp");

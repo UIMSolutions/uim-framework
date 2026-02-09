@@ -11,6 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <bdi> HTML element represents a span of text that is isolated from its surrounding text in terms of bidirectional text formatting. 
+ * It allows for the correct display of text that may have a different directionality than the surrounding text, such as when embedding a right-to-left language within a left-to-right context, or vice versa. 
+ * The <bdi> element does not affect the directionality of the text it contains, but it prevents the surrounding text from affecting the directionality of the contained text.
+ */
 class Bdi : HtmlElement {
   this() {
     super("bdi");

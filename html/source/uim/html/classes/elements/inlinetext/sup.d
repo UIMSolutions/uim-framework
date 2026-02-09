@@ -11,7 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
-// The <sup> HTML element defines superscript text. Superscripts are typically used for footnotes, like this: "This is some text.<sup>1</sup>".
+/**
+  * The <sup> HTML element specifies inline text which should be displayed as superscript for solely typographical reasons. 
+  * It is typically used for footnotes, mathematical expressions, and other notations that require superscript formatting. 
+  * The <sup> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned higher than the surrounding text.
+  */
 class Sup : HtmlElement {
   this() {
     super("sup");

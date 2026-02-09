@@ -11,6 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <code> HTML element is used to define a fragment of computer code. 
+ * By default, it is displayed in the browser's default monospace font, and it preserves whitespace and line breaks. 
+ * The <code> element can be used to display code snippets, programming language keywords, or any other text that represents code.
+ */
 class Code : HtmlElement {
   this() {
     super("code");

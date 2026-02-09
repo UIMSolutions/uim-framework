@@ -11,6 +11,10 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance in another context. 
+ * It is often used to highlight parts of a text that are relevant to a search query, or to indicate a part of a text that has been changed or added in a document.
+ */
 class Mark : HtmlElement {
   this() {
     super("mark");
