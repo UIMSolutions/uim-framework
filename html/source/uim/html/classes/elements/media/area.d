@@ -23,7 +23,7 @@ class Area : HtmlElement {
 
   static Area opCall(string content) {
     auto element = new Area();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

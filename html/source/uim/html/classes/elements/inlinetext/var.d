@@ -24,7 +24,7 @@ class Var : HtmlElement {
 
   static Var opCall(string content) {
     auto element = new Var();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

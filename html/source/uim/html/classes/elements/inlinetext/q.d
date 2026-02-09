@@ -29,7 +29,7 @@ class Q : HtmlElement {
 
   static Q opCall(string content) {
     auto element = new Q();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

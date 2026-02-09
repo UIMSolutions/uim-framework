@@ -23,7 +23,7 @@ class Audio : HtmlElement {
 
   static Audio opCall(string content) {
     auto element = new Audio();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

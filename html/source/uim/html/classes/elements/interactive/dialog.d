@@ -49,7 +49,7 @@ class Dialog : HtmlElement {
 
   static Dialog opCall(string content) {
     auto element = new Dialog();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

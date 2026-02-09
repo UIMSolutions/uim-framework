@@ -24,7 +24,7 @@ auto Em() {
 
 auto Em(string content) {
   auto element = new DEm();
-  element.text(content);
+  element.content(content);
   return element;
 }
 

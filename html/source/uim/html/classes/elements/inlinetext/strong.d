@@ -27,7 +27,7 @@ class Strong : HtmlElement {
 
   static Strong opCall(string content) {
     auto element = new Strong();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

@@ -28,7 +28,7 @@ class Sub : HtmlElement {
 
   static Sub opCall(string content) {
     auto element = new Sub();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

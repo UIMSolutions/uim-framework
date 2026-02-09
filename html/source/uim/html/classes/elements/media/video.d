@@ -23,7 +23,7 @@ class Video : HtmlElement {
 
   static Video opCall(string content) {
     auto element = new Video();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

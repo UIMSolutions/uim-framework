@@ -28,7 +28,7 @@ class Data : HtmlElement {
 
   static Data opCall(string content) {
     auto element = new Data();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

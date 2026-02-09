@@ -27,7 +27,7 @@ class Mark : HtmlElement {
 
   static Mark opCall(string content) {
     auto element = new Mark();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

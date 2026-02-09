@@ -23,7 +23,7 @@ class Kbd : HtmlElement {
 
   static Kbd opCall(string content) {
     auto element = new Kbd();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

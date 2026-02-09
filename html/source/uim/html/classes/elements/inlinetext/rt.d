@@ -23,7 +23,7 @@ class Rt : HtmlElement {
 
   static Rt opCall(string content) {
     auto element = new Rt();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

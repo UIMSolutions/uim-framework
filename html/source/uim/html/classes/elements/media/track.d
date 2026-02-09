@@ -43,7 +43,7 @@ class Track : HtmlElement {
 
   static Track opCall(string content) {
     auto element = new Track();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

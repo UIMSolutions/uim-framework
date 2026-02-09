@@ -23,7 +23,7 @@ class Small : HtmlElement {
 
   static Small opCall(string content) {
     auto element = new Small();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

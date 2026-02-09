@@ -28,7 +28,7 @@ class Rp : HtmlElement {
 
   static Rp opCall(string content) {
     auto element = new Rp();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

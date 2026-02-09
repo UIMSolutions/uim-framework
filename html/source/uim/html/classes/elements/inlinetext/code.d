@@ -28,7 +28,7 @@ class Code : HtmlElement {
 
   static Code opCall(string content) {
     auto element = new Code();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

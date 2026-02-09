@@ -28,7 +28,7 @@ class P : HtmlElement {
 
   static P opCall(string content) {
     auto element = new P();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

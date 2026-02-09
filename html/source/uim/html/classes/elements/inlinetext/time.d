@@ -24,7 +24,7 @@ class Time : HtmlElement {
 
   static Time opCall(string content) {
     auto element = new Time();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

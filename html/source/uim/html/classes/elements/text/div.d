@@ -29,7 +29,7 @@ class Div : HtmlElement {
 
   static Div opCall(string content) {
     auto element = new Div();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

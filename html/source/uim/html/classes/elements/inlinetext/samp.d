@@ -28,7 +28,7 @@ class Samp : HtmlElement {
 
   static Samp opCall(string content) {
     auto element = new Samp();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

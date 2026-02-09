@@ -23,7 +23,7 @@ class Ruby : HtmlElement {
 
   static Ruby opCall(string content) {
     auto element = new Ruby();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

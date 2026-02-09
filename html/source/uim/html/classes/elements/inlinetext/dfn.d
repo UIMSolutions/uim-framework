@@ -23,7 +23,7 @@ class Dfn : HtmlElement {
 
   static Dfn opCall(string content) {
     auto element = new Dfn();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }

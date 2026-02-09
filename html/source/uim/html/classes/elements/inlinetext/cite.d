@@ -28,7 +28,7 @@ class Cite : HtmlElement {
 
   static Cite opCall(string content) {
     auto element = new Cite();
-    element.text(content);
+    element.content(content);
     return element;
   }
 }
