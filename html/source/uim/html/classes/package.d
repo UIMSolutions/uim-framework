@@ -9,7 +9,3 @@ module uim.html.classes;
 public import uim.html.classes.attributes;
 public import uim.html.classes.document;
 public import uim.html.classes.elements;
-public import uim.html.classes.forms;
-public import uim.html.classes.tables;
-public import uim.html.classes.lists;
-public import uim.html.classes.meta;

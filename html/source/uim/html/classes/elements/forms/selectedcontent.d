@@ -20,7 +20,7 @@ class Selectedcontent : HtmlElement {
     return new Selectedcontent();
   }
 
-  static Selectedcontent opCall(sselectedcontenting content) {
+  static Selectedcontent opCall(string content) {
     auto html = new Selectedcontent();
     html.text(content);
     return html;

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.embedded.object;
+module uim.html.classes.elements.meta.title;
 
 import uim.html;
 
@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class H5Object : HtmlElement {
+/// HTML title element
+class Title : HtmlElement {
   this() {
-    super("object");
+    super("title");
     this.selfClosing(false);
   }
 
-  static H5Object opCall() {
-    return new H5Object();
+  static Title opCall() {
+    return new Title();
   }
 
-  static H5Object opCall(string content) {
-    auto element = new H5Object();
-    element.content(content);
-    return element;
+  static Title opCall(string content) {
+    auto title = new Title();
+    title.content(content);
+    return title;
   }
 }
-///
-unittest {
-  assert(H5Object() == "<object></object>");
-  assert(H5Object("Hello") == "<object>Hello</object>");
-}
+/// 

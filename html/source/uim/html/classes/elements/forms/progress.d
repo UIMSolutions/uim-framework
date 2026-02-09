@@ -20,7 +20,7 @@ class Progress : HtmlElement {
     return new Progress();
   }
 
-  static Progress opCall(sprogressing content) {
+  static Progress opCall(string content) {
     auto html = new Progress();
     html.text(content);
     return html;

@@ -20,7 +20,7 @@ class Meter : HtmlElement {
     return new Meter();
   }
 
-  static Meter opCall(smetering content) {
+  static Meter opCall(string content) {
     auto html = new Meter();
     html.text(content);
     return html;

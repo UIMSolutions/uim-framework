@@ -20,7 +20,7 @@ class Optgroup : HtmlElement {
     return new Optgroup();
   }
 
-  static Optgroup opCall(soptgrouping content) {
+  static Optgroup opCall(string content) {
     auto html = new Optgroup();
     html.text(content);
     return html;

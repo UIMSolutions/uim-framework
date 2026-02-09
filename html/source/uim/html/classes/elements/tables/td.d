@@ -1,4 +1,4 @@
-module uim.html.classes.tables.td;
+module uim.html.classes.elements.tables.td;
 
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
