@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.forms.checkbox;
+module uim.html.classes.elements.scripting.script;
 
 import uim.html;
 
@@ -11,22 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-class Checkbox : Input {
+class Script : HtmlElement {
   this() {
-    super("input");
-    type("checkbox");
+    super("script");
+    this.selfClosing(false);
   }
 
-  this(string tag) {
-    super(tag);
-    type("checkbox");
+  // Factory methods
+  static Script opCall() {
+    return new Script();
   }
 
-  static Checkbox opCall() {
-    return new Checkbox();
+  // Factory methods
+  static Script opCall(string content) {
+    auto element = new Script();
+    element.content(content);
+    return element;
   }
+
 }
-/// 
+///
 unittest {
-  assert(Checkbox() == "<input type=\"checkbox\">");
-} 
+  assert(Script() == "<script></script>");
+  assert(Script("Hello") == "<script>Hello</script>");
+}

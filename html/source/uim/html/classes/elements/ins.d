@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.tables.thead;
+module uim.html.classes.elements.ins;
 
 import uim.html;
 
@@ -11,17 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table head element
-class Thead : HtmlElement {
-    this() {
-        super("thead");
-    }
+class Ins : HtmlElement {
+  this() {
+    super("ins");
+    this.selfClosing(false);
+  }
 
-    static Thead opCall() {
-        return new Thead();
-    }
+  // Factory methods
+  static Ins opCall() {
+    return new Ins();
+  }
+
+  // Factory methods
+  static Ins opCall(string content) {
+    auto element = new Ins();
+    element.content(content);
+    return element;
+  }
+
 }
 ///
 unittest {
-    assert(Thead() == "<thead></thead>");
+  assert(Ins() == "<ins></ins>");
+  assert(Ins("Hello") == "<ins>Hello</ins>");
 }

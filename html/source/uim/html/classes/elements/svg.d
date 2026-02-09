@@ -1,10 +1,9 @@
-module uim.html.classes.tables.tbody;
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
+module uim.html.classes.elements.svg;
 
 import uim.html;
 
@@ -12,17 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table body element
-class Tbody : HtmlElement {
-    this() {
-        super("tbody");
-    }
+class Svg : HtmlElement {
+  this() {
+    super("svg");
+    this.selfClosing(false);
+  }
 
-    static Tbody opCall() {
-        return new Tbody();
-    }
+  // Factory methods
+  static Svg opCall() {
+    return new Svg();
+  }
+
+  // Factory methods
+  static Svg opCall(string content) {
+    auto element = new Svg();
+    element.content(content);
+    return element;
+  }
+
 }
 ///
 unittest {
-    assert(Tbody() == "<tbody></tbody>");
+  assert(Svg() == "<svg></svg>");
+  assert(Svg("Hello") == "<svg>Hello</svg>");
 }
