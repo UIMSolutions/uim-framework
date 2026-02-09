@@ -11,7 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML ordered list element
+/** 
+ * The <ol> HTML element represents an ordered list of items, where the order of the items is important. 
+ * Each item in the list is typically represented by a <li> element, and the list can be styled using CSS to customize its appearance. 
+ * The <ol> element can also include attributes such as "type" to specify the type of numbering for the list items, and "start" to specify the starting value for the first list item. 
+ * When rendered in a web browser, the <ol> element typically displays the list items with numbers or letters to indicate their order.
+ */
 class Ol : HtmlElement {
   this() {
     super("ol");

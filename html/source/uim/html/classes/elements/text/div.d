@@ -11,7 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML div element
+/** 
+ * The <div> HTML element is a generic container for flow content that by itself does not represent anything. 
+ * It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. 
+ * It is also commonly used as a container for JavaScript to manipulate groups of elements. 
+ * When no other semantic element is appropriate, the <div> element can be used as a last resort.
+ */
 class Div : HtmlElement {
   this() {
     super("div");
@@ -33,6 +38,6 @@ class Div : HtmlElement {
 }
 ///
 unittest {
-  // TODO: assert(Div() == "<div></div>");
-  // TODO: assert(Div("Hello") == "<div>Hello</div>");
+  assert(Div() == "<div></div>");
+  assert(Div("Hello") == "<div>Hello</div>");
 }

@@ -11,7 +11,11 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML definition description element
+/** 
+ * The <dd> HTML element provides the description, definition, or value for the preceding term (dt) in a description list (dl). 
+ * It is typically used to describe a term or name defined by a <dt> element, and it can contain any flow content, including text, images, and other HTML elements. 
+ * The <dd> element is usually indented from the left margin to visually distinguish it from the <dt> element, and it can be used multiple times within a single <dl> to provide multiple descriptions for a single term.
+ */
 class Dd : HtmlElement {
   this() {
     super("dd");

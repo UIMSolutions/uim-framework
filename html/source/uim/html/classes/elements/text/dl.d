@@ -11,7 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML definition list element
+/** 
+ * The <dl> HTML element represents a description list. 
+ * A description list is a list of terms and their descriptions, and it is typically used to create a glossary or a list of questions and answers. 
+ * The <dl> element contains one or more pairs of <dt> (definition term) and <dd> (definition description) elements, where each <dt> element represents a term and each <dd> element provides the corresponding description for that term. 
+ * The <dl> element can also contain other flow content, such as headings, paragraphs, and images, to provide additional context or information about the terms and their descriptions.
+ */
 class Dl : HtmlElement {
   this() {
     super("dl");
@@ -25,7 +30,7 @@ class Dl : HtmlElement {
 auto dl() {
   return new Dl();
 }
-
+///
 unittest {
   assert(Dl() == "<dl></dl>");
 }

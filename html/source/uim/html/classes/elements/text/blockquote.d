@@ -11,7 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML anchor (link) element
+/** 
+ * The <blockquote> HTML element indicates that the enclosed text is an extended quotation. 
+ * Usually, this is rendered visually by indentation (see CSS text-indent property). 
+ * A URL for the source of the quotation may be given using the cite attribute, while a text reference to the source may be given using the cite element. 
+ * The <blockquote> element is typically used for longer quotations that may contain multiple paragraphs, while the <q> element is used for shorter inline quotations.
+ */
 class Blockquote : HtmlElement {
   this() {
     super("blockquote");

@@ -12,7 +12,11 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML unordered list element
+/** 
+ * The <ul> HTML element represents an unordered list of items, where the order of the items is not important. 
+ * Each item in the list is typically represented by a <li> element, and the list can be styled using CSS to customize its appearance. 
+ * When rendered in a web browser, the <ul> element typically displays the list items with bullet points to indicate that they are part of an unordered list.
+ */
 class Ul : HtmlElement {
     this() {
         super("ul");

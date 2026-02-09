@@ -11,7 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML definition description element
+/** 
+ * The <figure> HTML element represents self-contained content, frequently with a caption (figcaption), and is typically referenced as a single unit. 
+ * It is used to group media content, such as images, diagrams, photos, code snippets, or other illustrations, along with their associated caption or description. 
+ * The <figure> element can be used to provide context and meaning to the media content, making it more accessible and understandable to users. 
+ * When used in conjunction with the <figcaption> element, the <figure> element helps to create a clear association between the media content and its caption or description.
+ */
 class Figure : HtmlElement {
   this() {
     super("figure");
