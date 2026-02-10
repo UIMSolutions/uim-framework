@@ -31,57 +31,59 @@ class GeneticAlgorithm {
   }
 
   // Setters for algorithm components
-  void population(IPopulation pop) @safe {
+  void population(IPopulation pop) {
     _population = pop;
   }
 
-  void fitnessEvaluator(IFitnessEvaluator evaluator) @safe {
+  void fitnessEvaluator(IFitnessEvaluator evaluator) {
     _fitnessEvaluator = evaluator;
   }
 
-  void selectionStrategy(ISelectionStrategy strategy) @safe {
+  void selectionStrategy(ISelectionStrategy strategy) {
     _selectionStrategy = strategy;
   }
 
-  void crossoverOperator(ICrossoverOperator op) @safe {
+  void crossoverOperator(ICrossoverOperator op) {
     _crossoverOperator = op;
   }
 
-  void mutationOperator(IMutationOperator op) @safe {
+  void mutationOperator(IMutationOperator op) {
     _mutationOperator = op;
   }
 
-  void maxGenerations(size_t max) @safe {
+  void maxGenerations(size_t max) {
     _maxGenerations = max;
   }
 
-  void targetFitness(double target) @safe {
+  void targetFitness(double target) {
     _targetFitness = target;
   }
 
   // Getters
-  IPopulation population() @safe {
+  IPopulation population() {
     return _population;
   }
 
-  size_t generation() @safe {
+  size_t generation() {
     return _generation;
   }
 
-  bool isRunning() @safe {
+  bool isRunning() {
     return _running;
   }
 
   /**
    * Initialize population with random individuals.
    */
-  void initializePopulation(size_t populationSize, size_t genomeLength) @safe {
+  void initializePopulation(size_t populationSize, size_t genomeLength) {
     _population.clear();
     for (size_t i = 0; i < populationSize; i++) {
       auto genome = new ubyte[genomeLength];
       import std.random : randomShuffle;
+
       for (size_t j = 0; j < genomeLength; j++) {
         import std.random : uniform;
+
         genome[j] = cast(ubyte)uniform(0, 256);
       }
       _population.add(new Individual(genome));
@@ -92,8 +94,9 @@ class GeneticAlgorithm {
   /**
    * Run one generation of the genetic algorithm.
    */
-  void step() @safe {
-    if (_population.size() == 0) return;
+  void step() {
+    if (_population.size() == 0)
+      return;
 
     // Create new population through selection, crossover, and mutation
     IIndividual[] newPopulation;
@@ -131,10 +134,20 @@ class GeneticAlgorithm {
   /**
    * Run genetic algorithm asynchronously.
    */
-  void runAsync(void delegate(bool success, IIndividual best) @safe callback) @trusted {
+  void runAsync(void delegate(bool success, IIndividual best) callback) @trusted {
     _running = true;
 
     void runStep() {
+
+      void runNextGeneration() {
+        if (_population.best().fitness() >= _targetFitness) {
+          _running = false;
+          callback(true, _population.best());
+        } else {
+          runStep();
+        }
+      }
+
       if (_generation >= _maxGenerations || !_running) {
         _running = false;
         _population.sort();
@@ -145,27 +158,19 @@ class GeneticAlgorithm {
 
       if (_fitnessEvaluator !is null) {
         auto individuals = _population.individuals();
-        _fitnessEvaluator.evaluatePopulation(cast(IIndividual[])individuals, 
-          (IIndividual[] evaluated) @safe {
-            foreach (ind; evaluated) {
-              // Update fitness in population
-            }
-            step();
-            this.runNextGeneration();
+        auto inds = individuals.map!(ind => cast(IIndividual)ind).array;
+        _fitnessEvaluator.evaluatePopulation(inds,
+          (IIndividual[] evaluated) {
+          foreach (ind; evaluated) {
+            // Update fitness in population
           }
+          step();
+          runNextGeneration();
+        }
         );
       } else {
         step();
         runNextGeneration();
-      }
-    }
-
-    void runNextGeneration() {
-      if (_population.best().fitness() >= _targetFitness) {
-        _running = false;
-        callback(true, _population.best());
-      } else {
-        runStep();
       }
     }
 
@@ -175,17 +180,17 @@ class GeneticAlgorithm {
   /**
    * Stop the algorithm.
    */
-  void stop() @safe {
+  void stop() {
     _running = false;
   }
 
   /**
    * Get statistics about current population.
    */
-  Json statistics() @safe {
-    Json stats = _population.statistics();
-    stats["generation"] = Json(_generation);
-    stats["running"] = Json(_running);
-    return stats;
+  Json statistics() {
+    Json statistics = _population.statistics();
+    statistics["generation"] = _generation.toJson;
+    statistics["running"] = _running.toJson;
+    return statistics;
   }
 }

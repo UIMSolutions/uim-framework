@@ -12,7 +12,7 @@ class TextEditor : IOriginator {
     private string _content;
     private int _cursorPosition;
     
-    this() @safe {
+    this() {
         _content = "";
         _cursorPosition = 0;
     }
@@ -60,7 +60,7 @@ class TextEditor : IOriginator {
         private string _savedContent;
         private int _savedCursor;
         
-        this(string content, int cursor) @safe {
+        this(string content, int cursor) {
             super("TextEditor");
             _savedContent = content;
             _savedCursor = cursor;

@@ -23,7 +23,7 @@ class BitFlipMutation : IMutationOperator {
     _rate = rate;
   }
 
-  override void mutate(IIndividual individual) @safe {
+  override void mutate(IIndividual individual) {
     auto genome = individual.genome().dup;
     
     foreach (ref gene; genome) {
@@ -37,11 +37,11 @@ class BitFlipMutation : IMutationOperator {
     individual.genome(genome);
   }
 
-  override double rate() @safe {
+  override double rate() {
     return _rate;
   }
 
-  override void rate(double value) @safe {
+  override void rate(double value) {
     _rate = value;
   }
 }
@@ -61,7 +61,7 @@ class GaussianMutation : IMutationOperator {
     _sigma = sigma;
   }
 
-  override void mutate(IIndividual individual) @safe {
+  override void mutate(IIndividual individual) {
     auto genome = individual.genome().dup;
 
     foreach (ref gene; genome) {
@@ -79,11 +79,11 @@ class GaussianMutation : IMutationOperator {
     individual.genome(genome);
   }
 
-  override double rate() @safe {
+  override double rate() {
     return _rate;
   }
 
-  override void rate(double value) @safe {
+  override void rate(double value) {
     _rate = value;
   }
 }
@@ -101,7 +101,7 @@ class SwapMutation : IMutationOperator {
     _rate = rate;
   }
 
-  override void mutate(IIndividual individual) @safe {
+  override void mutate(IIndividual individual) {
     auto genome = individual.genome().dup;
 
     if (genome.length < 2) return;
@@ -118,11 +118,11 @@ class SwapMutation : IMutationOperator {
     individual.genome(genome);
   }
 
-  override double rate() @safe {
+  override double rate() {
     return _rate;
   }
 
-  override void rate(double value) @safe {
+  override void rate(double value) {
     _rate = value;
   }
 }

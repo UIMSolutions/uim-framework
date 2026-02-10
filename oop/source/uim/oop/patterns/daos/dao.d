@@ -466,7 +466,7 @@ version(unittest) {
     string email;
     int age;
 
-    this(string name, string email, int age = 0) @safe {
+    this(string name, string email, int age = 0) {
       this.name = name;
       this.email = email;
       this.age = age;

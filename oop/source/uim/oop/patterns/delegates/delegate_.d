@@ -381,7 +381,7 @@ version(unittest) {
     private string _name;
     private string _result;
 
-    this(string name, string result) @safe {
+    this(string name, string result) {
       _name = name;
       _result = result;
     }

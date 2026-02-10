@@ -26,12 +26,12 @@ struct loss {
   static immutable Loss crossEntropy = Loss("cross_entropy", &crossEntropyLoss);
 }
 
-LossResult computeLoss(const Loss l, const double[] prediction, const double[] target) @safe {
+LossResult computeLoss(const Loss l, const double[] prediction, const double[] target) {
   enforce(prediction.length == target.length, "Prediction and target sizes must match");
   return l.evaluate(prediction, target);
 }
 
-private LossResult mseLoss(const double[] prediction, const double[] target) @safe {
+private LossResult mseLoss(const double[] prediction, const double[] target) {
   double value = 0.0;
   const size_t n = prediction.length ? prediction.length : 1;
   auto grad = new double[prediction.length];
@@ -46,7 +46,7 @@ private LossResult mseLoss(const double[] prediction, const double[] target) @sa
   return LossResult(value, grad);
 }
 
-private LossResult crossEntropyLoss(const double[] logitsOrProbabilities, const double[] target) @safe {
+private LossResult crossEntropyLoss(const double[] logitsOrProbabilities, const double[] target) {
   enforce(logitsOrProbabilities.length == target.length, "Logits and targets must align");
   const double eps = 1e-9;
 

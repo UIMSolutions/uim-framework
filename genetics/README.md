@@ -46,7 +46,7 @@ void main() {
     ga.maxGenerations(100);
 
     // Run evolution
-    ga.runAsync((bool success, IIndividual best) @safe {
+    ga.runAsync((bool success, IIndividual best) {
         if (success) {
             writeln("Best solution found:");
             writeln("Fitness: ", best.fitness());
@@ -63,7 +63,7 @@ import uim.genetic;
 
 void main() {
     // Optimize a mathematical function
-    auto evaluator = new NumericalOptimizer((double x) @safe {
+    auto evaluator = new NumericalOptimizer((double x) {
         return -(x - 0.5) * (x - 0.5); // Peak at x=0.5
     });
 
@@ -73,7 +73,7 @@ void main() {
     ga.maxGenerations(50);
     ga.targetFitness(0.99);
 
-    ga.runAsync((bool success, IIndividual best) @safe {
+    ga.runAsync((bool success, IIndividual best) {
         if (success) {
             writeln("Optimization complete!");
             writeln("Best fitness: ", best.fitness());
@@ -141,7 +141,7 @@ ga.targetFitness(0.95);
 All intensive operations run asynchronously:
 
 ```d
-ga.runAsync((bool success, IIndividual best) @safe {
+ga.runAsync((bool success, IIndividual best) {
     if (success) {
         // Access results in callback
         writeln("Converged after ", ga.generation(), " generations");
@@ -180,7 +180,7 @@ class MyEvaluator : IFitnessEvaluator {
   
         // Optional: parallel evaluation for performance
         foreach (ind; individuals) {
-            evaluate(ind, (double fit) @safe {
+            evaluate(ind, (double fit) {
                 ind.fitness(fit);
             });
         }

@@ -122,15 +122,15 @@ void main() {
     
     writeln("   Setting up message handlers...");
     
-    genericMediator.register("Logger", (string sender, string message) @safe {
+    genericMediator.register("Logger", (string sender, string message) {
         writeln("     [Logger] ", sender, ": ", message);
     });
     
-    genericMediator.register("Validator", (string sender, string message) @safe {
+    genericMediator.register("Validator", (string sender, string message) {
         writeln("     [Validator] Received from ", sender, ": '", message, "'");
     });
     
-    genericMediator.register("Storage", (string sender, string message) @safe {
+    genericMediator.register("Storage", (string sender, string message) {
         writeln("     [Storage] Storing message from ", sender);
     });
     
@@ -147,16 +147,16 @@ void main() {
     writeln("   Subscribing to events...");
     
     int loginCount = 0;
-    eventMediator.subscribe("userLogin", (string data) @safe {
+    eventMediator.subscribe("userLogin", (string data) {
         loginCount++;
         writeln("     [Auth] User logged in: ", data);
     });
     
-    eventMediator.subscribe("userLogin", (string data) @safe {
+    eventMediator.subscribe("userLogin", (string data) {
         writeln("     [Analytics] Recording login for: ", data);
     });
     
-    eventMediator.subscribe("userLogout", (string data) @safe {
+    eventMediator.subscribe("userLogout", (string data) {
         writeln("     [Auth] User logged out: ", data);
     });
     
@@ -175,15 +175,15 @@ void main() {
     
     writeln("   Registering request handlers...");
     
-    rrMediator.registerHandler("getUser", (string id) @safe {
+    rrMediator.registerHandler("getUser", (string id) {
         return "User{id: " ~ id ~ ", name: 'John Doe'}";
     });
     
-    rrMediator.registerHandler("calculateTotal", (string items) @safe {
+    rrMediator.registerHandler("calculateTotal", (string items) {
         return "Total: $125.50";
     });
     
-    rrMediator.registerHandler("validateEmail", (string email) @safe {
+    rrMediator.registerHandler("validateEmail", (string email) {
         return email.indexOf("@") > 0 ? "Valid" : "Invalid";
     });
     

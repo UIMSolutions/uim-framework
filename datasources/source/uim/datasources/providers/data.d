@@ -63,7 +63,7 @@ class DataProvider : UIMObject, IValueProvider {
     }
   }
 
-  bool areSourcesAvailable() @safe {
+  bool areSourcesAvailable() {
     foreach (source; _sources.byValue()) {
       if (!source.isAvailable()) {
         return false;

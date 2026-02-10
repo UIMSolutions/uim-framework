@@ -27,7 +27,7 @@ class Translator {
      *   locale = The locale code (e.g., "de_DE", "en_US")
      *   domain = The translation domain (e.g., "messages", "app")
      */
-    this(string locale, string domain = "messages") @safe {
+    this(string locale, string domain = "messages") {
         this.locale = locale;
         this.domain = domain;
     }
@@ -55,7 +55,7 @@ class Translator {
      * Params:
      *   translator = The fallback translator to use
      */
-    void setFallback(Translator translator) @safe {
+    void setFallback(Translator translator) {
         this.fallbackTranslator = translator;
     }
     
@@ -203,14 +203,14 @@ private Translator g_translator;
 /**
  * Sets the global translator
  */
-void setGlobalTranslator(Translator translator) @safe {
+void setGlobalTranslator(Translator translator) {
     g_translator = translator;
 }
 
 /**
  * Gets the global translator
  */
-Translator getGlobalTranslator() @safe {
+Translator getGlobalTranslator() {
     return g_translator;
 }
 

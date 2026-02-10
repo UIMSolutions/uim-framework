@@ -36,17 +36,17 @@ class MemoryFilesystem : UIMFilesystem {
     }
     
     /// Get filesystem name
-    override string name() const @safe {
+    override string name() const {
         return _name;
     }
     
     /// Get filesystem label
-    override string label() const @safe {
+    override string label() const {
         return _label;
     }
     
     /// Get filesystem type
-    override string type() const @safe {
+    override string type() const {
         return _type;
     } */ 
 }

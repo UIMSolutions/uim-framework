@@ -11,7 +11,7 @@ mixin(ShowModule!());
 class GenericMemento(TState) : Memento, IGenericMemento!TState {
     private TState _state;
     
-    this(string name, TState state) @safe {
+    this(string name, TState state) {
         super(name);
         _state = state;
     }

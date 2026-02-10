@@ -49,7 +49,7 @@ class Configuration : IOriginator {
     private static class ConfigMemento : Memento {
         private string[string] _savedSettings;
         
-        this(string[string] settings) @safe {
+        this(string[string] settings) {
             super("Configuration");
             _savedSettings = settings;
         }

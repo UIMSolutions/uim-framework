@@ -15,11 +15,11 @@ class BreadthFirstTraversal {
     private Graph _graph;
     private string[] _visited;
 
-    this(Graph graph) @safe {
+    this(Graph graph) {
         _graph = graph;
     }
 
-    string[] traverse(string startId) @safe {
+    string[] traverse(string startId) {
         _visited = [];
         auto queue = DList!string([startId]);
         
@@ -41,7 +41,7 @@ class BreadthFirstTraversal {
         return _visited;
     }
 
-    private bool _isVisited(string id) @safe {
+    private bool _isVisited(string id) {
         foreach (v; _visited) {
             if (v == id) return true;
         }
@@ -53,17 +53,17 @@ class DepthFirstTraversal {
     private Graph _graph;
     private string[] _visited;
 
-    this(Graph graph) @safe {
+    this(Graph graph) {
         _graph = graph;
     }
 
-    string[] traverse(string startId) @safe {
+    string[] traverse(string startId) {
         _visited = [];
         _dfs(startId);
         return _visited;
     }
 
-    private void _dfs(string nodeId) @safe {
+    private void _dfs(string nodeId) {
         if (_isVisited(nodeId)) return;
         _visited ~= nodeId;
         
@@ -74,7 +74,7 @@ class DepthFirstTraversal {
         }
     }
 
-    private bool _isVisited(string id) @safe {
+    private bool _isVisited(string id) {
         foreach (v; _visited) {
             if (v == id) return true;
         }

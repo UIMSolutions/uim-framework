@@ -39,15 +39,15 @@ abstract class BaseDatabase : UIMObject, IDatabase {
     return _driver;
   }
 
-  bool isConnected() @safe {
+  bool isConnected() {
     return _isConnected;
   }
 
-  long lastInsertId() @safe {
+  long lastInsertId() {
     return _lastInsertId;
   }
 
-  long affectedRows() @safe {
+  long affectedRows() {
     return _affectedRows;
   }
 

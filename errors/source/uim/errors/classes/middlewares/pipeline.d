@@ -139,7 +139,7 @@ class ErrorMiddlewarePipeline : UIMObject {
     }
 
     // Execute current middleware with continuation
-    return current.process(error, (IError err) @safe {
+    return current.process(error, (IError err) {
       if (err is null) {
         // Error was filtered, stop pipeline
         return null;

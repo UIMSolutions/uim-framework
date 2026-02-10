@@ -26,31 +26,31 @@ class ErrorRendererFactory : UIMFactory!(string, ErrorRenderer) {
 auto errorRendererFactory() { return ErrorRendererFactory.instance; }
 
 static this() {
-  errorRendererFactory.register("console", () @safe {
+  errorRendererFactory.register("console", () {
     return new ConsoleErrorRenderer();
   });
 
-  errorRendererFactory.register("html", () @safe {
+  errorRendererFactory.register("html", () {
     return new HtmlErrorRenderer();
   });
 
-  errorRendererFactory.register("json", () @safe {
+  errorRendererFactory.register("json", () {
     return new JsonErrorRenderer();
   });
 
-  errorRendererFactory.register("text", () @safe {
+  errorRendererFactory.register("text", () {
     return new TextErrorRenderer();
   });
 
-  errorRendererFactory.register("xml", () @safe {
+  errorRendererFactory.register("xml", () {
     return new XmlErrorRenderer();
   });
 
-  errorRendererFactory.register("web", () @safe {
+  errorRendererFactory.register("web", () {
     return new WebErrorRenderer();
   });
 
-  errorRendererFactory.register("yaml", () @safe {
+  errorRendererFactory.register("yaml", () {
     return new YamlErrorRenderer();
   });
 }

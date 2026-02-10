@@ -16,7 +16,7 @@ import std.stdio;
  * objects and compositions uniformly.
  */
 
-void main() @safe {
+void main() {
   writeln("\n=== Composite Pattern Examples ===\n");
   
   // Example 1: File System
@@ -32,7 +32,7 @@ void main() @safe {
   menuExample();
 }
 
-void fileSystemExample() @safe {
+void fileSystemExample() {
   writeln("1. File System Example:");
   writeln("-----------------------");
   
@@ -98,7 +98,7 @@ void fileSystemExample() @safe {
   writeln("Total size: ", root.totalSize(), " KB\n");
 }
 
-void organizationExample() @safe {
+void organizationExample() {
   writeln("2. Organization Structure Example:");
   writeln("-----------------------------------");
   
@@ -165,7 +165,7 @@ void organizationExample() @safe {
   writeln("Total Budget: $", company.totalBudget(), "\n");
 }
 
-void graphicsExample() @safe {
+void graphicsExample() {
   writeln("3. Graphics System Example:");
   writeln("---------------------------");
   
@@ -216,7 +216,7 @@ void graphicsExample() @safe {
   writeln(canvas.execute());
 }
 
-void menuExample() @safe {
+void menuExample() {
   writeln("4. Menu System Example:");
   writeln("-----------------------");
   

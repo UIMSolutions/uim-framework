@@ -150,7 +150,7 @@ class SQLQueryBuilder : UIMObject, IQuery {
 
   void first(void delegate(bool success, Json result) @safe callback) @trusted {
     limit(1);
-    execute((bool success, Json result) @safe {
+    execute((bool success, Json result) {
       if (success && result.type == Json.Type.array && result.length > 0) {
         callback(true, result[0]);
       } else {
@@ -160,7 +160,7 @@ class SQLQueryBuilder : UIMObject, IQuery {
   }
 
   void get(void delegate(bool success, Json[] results) @safe callback) @trusted {
-    execute((bool success, Json result) @safe {
+    execute((bool success, Json result) {
       if (success && result.type == Json.Type.array) {
         callback(true, result.get!(Json[]));
       } else {
@@ -174,7 +174,7 @@ class SQLQueryBuilder : UIMObject, IQuery {
     auto oldColumns = _columns;
     _columns = ["COUNT(*) as count"];
 
-    execute((bool success, Json result) @safe {
+    execute((bool success, Json result) {
       _columns = oldColumns;
       if (success && result.type == Json.Type.array && result.length > 0) {
         callback(true, result[0]["count"].get!long);

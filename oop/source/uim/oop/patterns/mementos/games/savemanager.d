@@ -12,7 +12,7 @@ class GameSaveManager : ISnapshotManager {
     private GameCharacter _character;
     private IMemento[string] _snapshots;
     
-    this(GameCharacter character) @safe {
+    this(GameCharacter character) {
         _character = character;
     }
     

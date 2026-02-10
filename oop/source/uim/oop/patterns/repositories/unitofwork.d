@@ -101,7 +101,7 @@ class UnitOfWork(T, ID) : IUnitOfWork {
 
 // Unit tests
 /*class MyException : Exception {
-  this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable nextInChain = null) pure nothrow @nogc @safe {
+  this(string msg, string file = __FILE__, size_t line = __LINE__, Throwable nextInChain = null) pure nothrow @nogc {
     super(msg, file, line, nextInChain);
   }
 }

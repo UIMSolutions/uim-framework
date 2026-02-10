@@ -22,7 +22,7 @@ auto aggregate(T, OUT)(T[] items, OUT delegate(ref OUT aggregate, in T item) agg
 /// 
 unittest {
     auto items = [1, 2, 3, 4, 5];
-    auto sum = aggregate!int(items, (ref int agg, in int item) @safe {
+    auto sum = aggregate!int(items, (ref int agg, in int item) {
         agg += item;
     }, 0);
     assert(sum == 15);

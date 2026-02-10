@@ -29,7 +29,7 @@ abstract class BaseDataSource : UIMObject, IValueSource {
   string name() { return _name; }
   DataSourceType type() { return _type; }
   
-  bool isAvailable() @safe {
+  bool isAvailable() {
     return _isConnected;
   }
 
@@ -62,7 +62,7 @@ class JsonDataSource : BaseDataSource {
     callback(true);
   }
 
-  void disconnect() @safe {
+  void disconnect() {
     _isConnected = false;
   }
 

@@ -58,31 +58,31 @@ class CSSRule {
     CSSSelector[] selectors;
     CSSProperty[] properties;
     
-    this() pure nothrow @safe {
+    this() pure nothrow {
     }
     
-    this(string selector) @safe {
+    this(string selector) {
         addSelector(selector);
     }
     
     /**
      * Adds a selector to this rule
      */
-    void addSelector(string selector) @safe {
+    void addSelector(string selector) {
         selectors ~= CSSSelector(selector);
     }
     
     /**
      * Adds a property to this rule
      */
-    void addProperty(string name, string value, bool important = false) pure nothrow @safe {
+    void addProperty(string name, string value, bool important = false) pure nothrow {
         properties ~= CSSProperty(name, value, important);
     }
     
     /**
      * Gets a property value by name
      */
-    string getProperty(string name) const pure nothrow @safe {
+    string getProperty(string name) const pure nothrow {
         foreach (prop; properties) {
             if (prop.name == name) {
                 return prop.value;
@@ -94,21 +94,21 @@ class CSSRule {
     /**
      * Checks if a property exists
      */
-    bool hasProperty(string name) const pure nothrow @safe {
+    bool hasProperty(string name) const pure nothrow {
         return properties.any!(p => p.name == name);
     }
     
     /**
      * Removes a property by name
      */
-    void removeProperty(string name) @safe {
+    void removeProperty(string name) {
         properties = properties.filter!(p => p.name != name).array;
     }
     
     /**
      * Sets or updates a property
      */
-    void setProperty(string name, string value, bool important = false) @safe {
+    void setProperty(string name, string value, bool important = false) {
         foreach (ref prop; properties) {
             if (prop.name == name) {
                 prop.value = value;
@@ -150,7 +150,7 @@ class CSSMediaQuery {
     string[] conditions;
     CSSRule[] rules;
     
-    this(string mediaType, string[] conditions = null) pure nothrow @safe {
+    this(string mediaType, string[] conditions = null) pure nothrow {
         this.mediaType = mediaType;
         this.conditions = conditions;
     }
@@ -158,7 +158,7 @@ class CSSMediaQuery {
     /**
      * Adds a rule to this media query
      */
-    void addRule(CSSRule rule) pure nothrow @safe {
+    void addRule(CSSRule rule) pure nothrow {
         rules ~= rule;
     }
     
@@ -192,27 +192,27 @@ class CSSStyleSheet {
     CSSMediaQuery[] mediaQueries;
     string[string] variables;  // CSS custom properties (variables)
     
-    this() pure nothrow @safe {
+    this() pure nothrow {
     }
     
     /**
      * Adds a rule to the stylesheet
      */
-    void addRule(CSSRule rule) pure nothrow @safe {
+    void addRule(CSSRule rule) pure nothrow {
         rules ~= rule;
     }
     
     /**
      * Adds a media query to the stylesheet
      */
-    void addMediaQuery(CSSMediaQuery query) pure nothrow @safe {
+    void addMediaQuery(CSSMediaQuery query) pure nothrow {
         mediaQueries ~= query;
     }
     
     /**
      * Sets a CSS variable
      */
-    void setVariable(string name, string value) @safe {
+    void setVariable(string name, string value) {
         if (!name.startsWith("--")) {
             name = "--" ~ name;
         }
@@ -222,7 +222,7 @@ class CSSStyleSheet {
     /**
      * Gets a CSS variable
      */
-    string getVariable(string name) const @safe {
+    string getVariable(string name) const {
         if (!name.startsWith("--")) {
             name = "--" ~ name;
         }
@@ -232,7 +232,7 @@ class CSSStyleSheet {
     /**
      * Finds rules by selector
      */
-    const(CSSRule)[] findRules(string selector) const @safe {
+    const(CSSRule)[] findRules(string selector) const {
         const(CSSRule)[] found;
         foreach (rule; rules) {
             foreach (sel; rule.selectors) {

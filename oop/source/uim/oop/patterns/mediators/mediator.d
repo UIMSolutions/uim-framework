@@ -13,11 +13,11 @@ mixin(ShowModule!());
 abstract class BaseColleague : IColleague {
     protected IMediator _mediator;
     
-    void mediator(IMediator mediator) @safe {
+    void mediator(IMediator mediator) {
         _mediator = mediator;
     }
     
-    IMediator mediator() @safe {
+    IMediator mediator() {
         return _mediator;
     }
 }
@@ -28,16 +28,16 @@ abstract class BaseColleague : IColleague {
 class ConcreteMediator : IMediator {
     private IColleague[] _colleagues;
     
-    void addColleague(IColleague colleague) @safe {
+    void addColleague(IColleague colleague) {
         _colleagues ~= colleague;
         colleague.mediator = this;
     }
     
-    void notify(IColleague sender, string event) @safe {
+    void notify(IColleague sender, string event) {
         // Override in subclass to handle specific events
     }
     
-    size_t colleagueCount() const @safe {
+    size_t colleagueCount() const {
         return _colleagues.length;
     }
 }
@@ -48,7 +48,7 @@ class ConcreteMediator : IMediator {
 class GenericMediator(TMessage) : IGenericMediator!TMessage {
     private void delegate(string sender, TMessage message) @safe[string] _handlers;
     
-    void send(string sender, TMessage message) @safe {
+    void send(string sender, TMessage message) {
         foreach (receiver, handler; _handlers) {
             if (receiver != sender) {
                 handler(sender, message);
@@ -56,15 +56,15 @@ class GenericMediator(TMessage) : IGenericMediator!TMessage {
         }
     }
     
-    void register(string receiver, void delegate(string sender, TMessage message) @safe handler) @safe {
+    void register(string receiver, void delegate(string sender, TMessage message) @safe handler) {
         _handlers[receiver] = handler;
     }
     
-    void unregister(string receiver) @safe {
+    void unregister(string receiver) {
         _handlers.remove(receiver);
     }
     
-    size_t handlerCount() const @safe {
+    size_t handlerCount() const {
         return _handlers.length;
     }
 }
@@ -75,18 +75,18 @@ class GenericMediator(TMessage) : IGenericMediator!TMessage {
 class EventMediator : IEventMediator {
     private void delegate(string eventData) @safe[][string] _subscribers;
     
-    void subscribe(string eventName, void delegate(string eventData) @safe handler) @safe {
+    void subscribe(string eventName, void delegate(string eventData) @safe handler) {
         _subscribers[eventName] ~= handler;
     }
     
-    void unsubscribe(string eventName, void delegate(string eventData) @safe handler) @safe {
+    void unsubscribe(string eventName, void delegate(string eventData) @safe handler) {
         if (auto handlers = eventName in _subscribers) {
             // Note: delegate comparison might not work as expected
             // In production, consider using unique IDs
         }
     }
     
-    void publish(string eventName, string eventData) @safe {
+    void publish(string eventName, string eventData) {
         if (auto handlers = eventName in _subscribers) {
             foreach (handler; *handlers) {
                 handler(eventData);
@@ -94,7 +94,7 @@ class EventMediator : IEventMediator {
         }
     }
     
-    size_t subscriberCount(string eventName) const @safe {
+    size_t subscriberCount(string eventName) const {
         if (auto handlers = eventName in _subscribers) {
             return handlers.length;
         }
@@ -108,18 +108,18 @@ class EventMediator : IEventMediator {
 class RequestResponseMediator : IRequestResponseMediator {
     private string delegate(string requestData) @safe[string] _handlers;
     
-    string request(string requestType, string requestData) @safe {
+    string request(string requestType, string requestData) {
         if (auto handler = requestType in _handlers) {
             return (*handler)(requestData);
         }
         return "No handler found for: " ~ requestType;
     }
     
-    void registerHandler(string requestType, string delegate(string requestData) @safe handler) @safe {
+    void registerHandler(string requestType, string delegate(string requestData) @safe handler) {
         _handlers[requestType] = handler;
     }
     
-    bool hasHandler(string requestType) const @safe {
+    bool hasHandler(string requestType) const {
         return (requestType in _handlers) !is null;
     }
 }
@@ -133,12 +133,12 @@ class ChatRoom : IMediator {
     private User[string] _users;
     private string[] _messageLog;
     
-    void registerUser(User user) @safe {
+    void registerUser(User user) {
         _users[user.name] = user;
         user.mediator = this;
     }
     
-    void notify(IColleague sender, string event) @safe {
+    void notify(IColleague sender, string event) {
         if (auto user = cast(User)sender) {
             // Parse event format: "message:targetUser:content"
             auto parts = event.split(":");
@@ -155,7 +155,7 @@ class ChatRoom : IMediator {
         }
     }
     
-    private void broadcastMessage(string senderName, string message) @safe {
+    private void broadcastMessage(string senderName, string message) {
         string logEntry = format("[%s to all]: %s", senderName, message);
         _messageLog ~= logEntry;
         
@@ -166,7 +166,7 @@ class ChatRoom : IMediator {
         }
     }
     
-    private void sendPrivateMessage(string senderName, string recipientName, string message) @safe {
+    private void sendPrivateMessage(string senderName, string recipientName, string message) {
         string logEntry = format("[%s to %s]: %s", senderName, recipientName, message);
         _messageLog ~= logEntry;
         
@@ -175,11 +175,11 @@ class ChatRoom : IMediator {
         }
     }
     
-    string[] messageLog() const @safe {
+    string[] messageLog() const {
         return _messageLog.dup;
     }
     
-    size_t userCount() const @safe {
+    size_t userCount() const {
         return _users.length;
     }
 }
@@ -191,26 +191,26 @@ class User : BaseColleague {
     private string _name;
     private string[] _receivedMessages;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
     }
     
-    @property string name() const @safe {
+    @property string name() const {
         return _name;
     }
     
-    void sendMessage(string recipient, string message) @safe {
+    void sendMessage(string recipient, string message) {
         string event = format("message:%s:%s", recipient, message);
         if (_mediator !is null) {
             _mediator.notify(this, event);
         }
     }
     
-    void receiveMessage(string sender, string message) @safe {
+    void receiveMessage(string sender, string message) {
         _receivedMessages ~= format("From %s: %s", sender, message);
     }
     
-    string[] receivedMessages() const @safe {
+    string[] receivedMessages() const {
         return _receivedMessages.dup;
     }
 }
@@ -224,13 +224,13 @@ class AirTrafficControl {
     private Aircraft[string] _aircraft;
     private string[] _communicationLog;
     
-    void registerAircraft(Aircraft aircraft) @safe {
+    void registerAircraft(Aircraft aircraft) {
         _aircraft[aircraft.callSign] = aircraft;
         aircraft.setControl(this);
         logCommunication(format("%s registered with ATC", aircraft.callSign));
     }
     
-    void requestLanding(string callSign) @safe {
+    void requestLanding(string callSign) {
         logCommunication(format("%s requesting landing permission", callSign));
         
         if (auto aircraft = callSign in _aircraft) {
@@ -238,7 +238,7 @@ class AirTrafficControl {
         }
     }
     
-    void requestTakeoff(string callSign) @safe {
+    void requestTakeoff(string callSign) {
         logCommunication(format("%s requesting takeoff clearance", callSign));
         
         if (auto aircraft = callSign in _aircraft) {
@@ -246,19 +246,19 @@ class AirTrafficControl {
         }
     }
     
-    void reportPosition(string callSign, string position) @safe {
+    void reportPosition(string callSign, string position) {
         logCommunication(format("%s reporting position: %s", callSign, position));
     }
     
-    private void logCommunication(string message) @safe {
+    private void logCommunication(string message) {
         _communicationLog ~= message;
     }
     
-    string[] communicationLog() const @safe {
+    string[] communicationLog() const {
         return _communicationLog.dup;
     }
     
-    size_t aircraftCount() const @safe {
+    size_t aircraftCount() const {
         return _aircraft.length;
     }
 }
@@ -271,41 +271,41 @@ class Aircraft {
     private AirTrafficControl _control;
     private string[] _receivedClearances;
     
-    this(string callSign) @safe {
+    this(string callSign) {
         _callSign = callSign;
     }
     
-    @property string callSign() const @safe {
+    @property string callSign() const {
         return _callSign;
     }
     
-    void setControl(AirTrafficControl control) @safe {
+    void setControl(AirTrafficControl control) {
         _control = control;
     }
     
-    void requestLanding() @safe {
+    void requestLanding() {
         if (_control !is null) {
             _control.requestLanding(_callSign);
         }
     }
     
-    void requestTakeoff() @safe {
+    void requestTakeoff() {
         if (_control !is null) {
             _control.requestTakeoff(_callSign);
         }
     }
     
-    void reportPosition(string position) @safe {
+    void reportPosition(string position) {
         if (_control !is null) {
             _control.reportPosition(_callSign, position);
         }
     }
     
-    void receiveClearance(string clearance) @safe {
+    void receiveClearance(string clearance) {
         _receivedClearances ~= clearance;
     }
     
-    string[] receivedClearances() const @safe {
+    string[] receivedClearances() const {
         return _receivedClearances.dup;
     }
 }
@@ -321,30 +321,30 @@ class DialogMediator {
     private MediatorTextBox _nameInput;
     private MediatorCheckBox _agreeCheckbox;
     
-    void setSubmitButton(MediatorButton button) @safe {
+    void setSubmitButton(MediatorButton button) {
         _submitButton = button;
         button.setMediator(this);
         updateSubmitButton();
     }
     
-    void setCancelButton(MediatorButton button) @safe {
+    void setCancelButton(MediatorButton button) {
         _cancelButton = button;
         button.setMediator(this);
     }
     
-    void setNameInput(MediatorTextBox input) @safe {
+    void setNameInput(MediatorTextBox input) {
         _nameInput = input;
         input.setMediator(this);
         updateSubmitButton();
     }
     
-    void setAgreeCheckbox(MediatorCheckBox checkbox) @safe {
+    void setAgreeCheckbox(MediatorCheckBox checkbox) {
         _agreeCheckbox = checkbox;
         checkbox.setMediator(this);
         updateSubmitButton();
     }
     
-    void notify(string componentName, string event) @safe {
+    void notify(string componentName, string event) {
         if (event == "textChanged") {
             updateSubmitButton();
         } else if (event == "checkChanged") {
@@ -356,18 +356,18 @@ class DialogMediator {
         }
     }
     
-    private void updateSubmitButton() @safe {
+    private void updateSubmitButton() {
         if (_submitButton !is null && _nameInput !is null && _agreeCheckbox !is null) {
             bool canSubmit = _nameInput.text.length > 0 && _agreeCheckbox.isChecked;
             _submitButton.enabled = canSubmit;
         }
     }
     
-    private void handleSubmit() @safe {
+    private void handleSubmit() {
         // Handle form submission
     }
     
-    private void handleCancel() @safe {
+    private void handleCancel() {
         // Handle cancellation
     }
 }
@@ -380,20 +380,20 @@ class MediatorButton {
     private bool _enabled;
     private DialogMediator _mediator;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _enabled = true;
     }
     
-    @property string name() const @safe { return _name; }
-    @property bool enabled() const @safe { return _enabled; }
-    @property void enabled(bool value) @safe { _enabled = value; }
+    @property string name() const { return _name; }
+    @property bool enabled() const { return _enabled; }
+    @property void enabled(bool value) { _enabled = value; }
     
-    void setMediator(DialogMediator mediator) @safe {
+    void setMediator(DialogMediator mediator) {
         _mediator = mediator;
     }
     
-    void click() @safe {
+    void click() {
         if (_enabled && _mediator !is null) {
             _mediator.notify(_name, _name ~ "Clicked");
         }
@@ -408,22 +408,22 @@ class MediatorTextBox {
     private string _text;
     private DialogMediator _mediator;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _text = "";
     }
     
-    @property string name() const @safe { return _name; }
-    @property string text() const @safe { return _text; }
+    @property string name() const { return _name; }
+    @property string text() const { return _text; }
     
-    @property void text(string value) @safe {
+    @property void text(string value) {
         _text = value;
         if (_mediator !is null) {
             _mediator.notify(_name, "textChanged");
         }
     }
     
-    void setMediator(DialogMediator mediator) @safe {
+    void setMediator(DialogMediator mediator) {
         _mediator = mediator;
     }
 }
@@ -436,22 +436,22 @@ class MediatorCheckBox {
     private bool _isChecked;
     private DialogMediator _mediator;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _isChecked = false;
     }
     
-    @property string name() const @safe { return _name; }
-    @property bool isChecked() const @safe { return _isChecked; }
+    @property string name() const { return _name; }
+    @property bool isChecked() const { return _isChecked; }
     
-    @property void isChecked(bool value) @safe {
+    @property void isChecked(bool value) {
         _isChecked = value;
         if (_mediator !is null) {
             _mediator.notify(_name, "checkChanged");
         }
     }
     
-    void setMediator(DialogMediator mediator) @safe {
+    void setMediator(DialogMediator mediator) {
         _mediator = mediator;
     }
 }
@@ -467,7 +467,7 @@ class MediatorCheckBox {
     auto mediator = new GenericMediator!string();
     
     string received = "";
-    mediator.register("receiver", (string sender, string message) @safe {
+    mediator.register("receiver", (string sender, string message) {
         received = message;
     });
     
@@ -480,7 +480,7 @@ class MediatorCheckBox {
     auto mediator = new EventMediator();
     
     int eventCount = 0;
-    mediator.subscribe("test", (string data) @safe {
+    mediator.subscribe("test", (string data) {
         eventCount++;
     });
     
@@ -492,7 +492,7 @@ class MediatorCheckBox {
     // Test request-response mediator
     auto mediator = new RequestResponseMediator();
     
-    mediator.registerHandler("echo", (string data) @safe {
+    mediator.registerHandler("echo", (string data) {
         return "Echo: " ~ data;
     });
     

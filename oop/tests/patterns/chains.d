@@ -126,7 +126,7 @@ import std.string : indexOf;
 @safe unittest {
     class NumHandler : BaseHandler {
         int num;
-        this(int n) @safe { num = n; }
+        this(int n) { num = n; }
         
         override string handle(string request) {
             import std.conv : to;
@@ -572,7 +572,7 @@ import std.string : indexOf;
         int order;
         static int lastProcessed = 0;
         
-        this(int o) @safe { order = o; }
+        this(int o) { order = o; }
         
         override string handle(string request) {
             lastProcessed = order;

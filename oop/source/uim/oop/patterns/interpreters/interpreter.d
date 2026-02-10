@@ -89,7 +89,7 @@ class LiteralExpression : Expression, ILiteralExpression {
 class VariableExpression : Expression, IVariableExpression {
     private string _name;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
     }
     
@@ -118,7 +118,7 @@ abstract class BinaryExpression : Expression, IBinaryExpression {
     protected IExpression _right;
     protected string _operator;
     
-    this(IExpression left, IExpression right, string operator) @safe {
+    this(IExpression left, IExpression right, string operator) {
         _left = left;
         _right = right;
         _operator = operator;
@@ -151,7 +151,7 @@ abstract class BinaryExpression : Expression, IBinaryExpression {
  * Addition expression.
  */
 class AddExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "+");
     }
     
@@ -174,7 +174,7 @@ class AddExpression : BinaryExpression {
  * Subtraction expression.
  */
 class SubtractExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "-");
     }
     
@@ -197,7 +197,7 @@ class SubtractExpression : BinaryExpression {
  * Multiplication expression.
  */
 class MultiplyExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "*");
     }
     
@@ -220,7 +220,7 @@ class MultiplyExpression : BinaryExpression {
  * Division expression.
  */
 class DivideExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "/");
     }
     
@@ -248,7 +248,7 @@ class DivideExpression : BinaryExpression {
  * AND expression.
  */
 class AndExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "AND");
     }
     
@@ -267,7 +267,7 @@ class AndExpression : BinaryExpression {
  * OR expression.
  */
 class OrExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "OR");
     }
     
@@ -289,7 +289,7 @@ abstract class UnaryExpression : Expression, IUnaryExpression {
     protected IExpression _operand;
     protected string _operator;
     
-    this(IExpression operand, string operator) @safe {
+    this(IExpression operand, string operator) {
         _operand = operand;
         _operator = operator;
     }
@@ -315,7 +315,7 @@ abstract class UnaryExpression : Expression, IUnaryExpression {
  * NOT expression.
  */
 class NotExpression : UnaryExpression {
-    this(IExpression operand) @safe {
+    this(IExpression operand) {
         super(operand, "NOT");
     }
     
@@ -333,7 +333,7 @@ class NotExpression : UnaryExpression {
  * Negation expression.
  */
 class NegateExpression : UnaryExpression {
-    this(IExpression operand) @safe {
+    this(IExpression operand) {
         super(operand, "-");
     }
     
@@ -355,7 +355,7 @@ class NegateExpression : UnaryExpression {
  * Equals expression.
  */
 class EqualsExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "==");
     }
     
@@ -382,7 +382,7 @@ class EqualsExpression : BinaryExpression {
  * Greater than expression.
  */
 class GreaterThanExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, ">");
     }
     
@@ -405,7 +405,7 @@ class GreaterThanExpression : BinaryExpression {
  * Less than expression.
  */
 class LessThanExpression : BinaryExpression {
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super(left, right, "<");
     }
     
@@ -433,7 +433,7 @@ class RomanNumeralContext {
     private string _input;
     private int _output;
     
-    this(string input) @safe {
+    this(string input) {
         _input = input;
         _output = 0;
     }
@@ -462,7 +462,7 @@ class RomanNumeralExpression {
     private string _roman;
     private int _decimal;
     
-    this(string roman, int decimal) @safe {
+    this(string roman, int decimal) {
         _roman = roman;
         _decimal = decimal;
     }
@@ -481,7 +481,7 @@ class RomanNumeralExpression {
 class RomanNumeralInterpreter {
     private RomanNumeralExpression[] _expressions;
     
-    this() @safe {
+    this() {
         _expressions = [
             new RomanNumeralExpression("M", 1000),
             new RomanNumeralExpression("CM", 900),
@@ -539,7 +539,7 @@ class SelectExpression {
     private string _tableName;
     private string _condition;
     
-    this(string tableName, string condition = "") @safe {
+    this(string tableName, string condition = "") {
         _tableName = tableName;
         _condition = condition;
     }
@@ -569,7 +569,7 @@ class WhereExpression {
     private string _operator;
     private string _value;
     
-    this(string field, string operator, string value) @safe {
+    this(string field, string operator, string value) {
         _field = field;
         _operator = operator;
         _value = value;
@@ -591,7 +591,7 @@ class RegexContext {
     private string _input;
     private size_t _position;
     
-    this(string input) @safe {
+    this(string input) {
         _input = input;
         _position = 0;
     }
@@ -626,7 +626,7 @@ class RegexContext {
 class LiteralPattern {
     private char _char;
     
-    this(char c) @safe {
+    this(char c) {
         _char = c;
     }
     

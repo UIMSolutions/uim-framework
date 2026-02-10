@@ -16,7 +16,7 @@ import std.stdio;
  * objects from the same class.
  */
 
-void main() @safe {
+void main() {
   writeln("\n=== Decorator Pattern Examples ===\n");
   
   // Example 1: Text Formatting
@@ -29,7 +29,7 @@ void main() @safe {
   loggingDecoratorExample();
 }
 
-void textFormattingExample() @safe {
+void textFormattingExample() {
   writeln("1. Text Formatting Example:");
   writeln("---------------------------");
   
@@ -75,7 +75,7 @@ void textFormattingExample() @safe {
   writeln();
 }
 
-void coffeeShopExample() @safe {
+void coffeeShopExample() {
   writeln("2. Coffee Shop Example:");
   writeln("-----------------------");
   
@@ -133,7 +133,7 @@ void coffeeShopExample() @safe {
   writeln();
 }
 
-void loggingDecoratorExample() @safe {
+void loggingDecoratorExample() {
   writeln("3. Logging Decorator Example:");
   writeln("-----------------------------");
   

@@ -10,12 +10,12 @@ import uim.filesystems;
 @safe:
 
 /// Read file asynchronously
-auto readFileAsync(string path) @safe {
+auto readFileAsync(string path) {
     return readFile(NativePath(path));
 }
 
 /// Write file asynchronously
-void writeFileAsync(string path, const(ubyte)[] data) @safe {
+void writeFileAsync(string path, const(ubyte)[] data) {
     writeFile(NativePath(path), data);
 }
 
@@ -26,17 +26,17 @@ void appendFileAsync(string path, const(ubyte)[] data) @trusted {
 }
 
 /// Copy file asynchronously
-void copyFileAsync(string source, string dest) @safe {
+void copyFileAsync(string source, string dest) {
     copyFile(NativePath(source), NativePath(dest));
 }
 
 /// Move file asynchronously
-void moveFileAsync(string source, string dest) @safe {
+void moveFileAsync(string source, string dest) {
     moveFile(NativePath(source), NativePath(dest));
 }
 
 /// Delete file asynchronously
-void deleteFileAsync(string path) @safe {
+void deleteFileAsync(string path) {
     removeFile(NativePath(path));
 }
 
@@ -50,34 +50,34 @@ bool existsFileAsync(string path) @safe nothrow {
 }
 
 /// Get file info asynchronously
-auto getFileInfoAsync(string path) @safe {
+auto getFileInfoAsync(string path) {
     return getFileInfo(NativePath(path));
 }
 
 /// Open file stream for reading
-auto openFileRead(string path) @safe {
+auto openFileRead(string path) {
     return openFile(NativePath(path), FileMode.read);
 }
 
 /// Open file stream for writing
-auto openFileWrite(string path) @safe {
+auto openFileWrite(string path) {
     return openFile(NativePath(path), FileMode.createTrunc);
 }
 
 /// Open file stream for appending
-auto openFileAppend(string path) @safe {
+auto openFileAppend(string path) {
     return openFile(NativePath(path), FileMode.append);
 }
 
 /// Read file stream asynchronously with callback
-void readFileStream(string path, void delegate(scope FileStream stream) @safe callback) @safe {
+void readFileStream(string path, void delegate(scope FileStream stream) @safe callback) {
     auto stream = openFileRead(path);
     scope(exit) stream.close();
     callback(stream);
 }
 
 /// Write file stream asynchronously with callback
-void writeFileStream(string path, void delegate(scope FileStream stream) @safe callback) @safe {
+void writeFileStream(string path, void delegate(scope FileStream stream) @safe callback) {
     auto stream = openFileWrite(path);
     scope(exit) stream.close();
     callback(stream);
@@ -90,7 +90,7 @@ string readTextAsync(string path) @trusted {
 }
 
 /// Write text file asynchronously
-void writeTextAsync(string path, string content) @safe {
+void writeTextAsync(string path, string content) {
     writeFileAsync(path, cast(const(ubyte)[]) content);
 }
 
@@ -98,12 +98,12 @@ void writeTextAsync(string path, string content) @safe {
 struct AsyncFile {
     private NativePath _path;
     
-    this(string path) @safe {
+    this(string path) {
         _path = NativePath(path);
     }
     
     /// Read entire file
-    ubyte[] read() @safe {
+    ubyte[] read() {
         return readFile(_path);
     }
     
@@ -113,12 +113,12 @@ struct AsyncFile {
     }
     
     /// Write data to file
-    void write(const(ubyte)[] data) @safe {
+    void write(const(ubyte)[] data) {
         writeFile(_path, data);
     }
     
     /// Write text to file
-    void writeText(string content) @safe {
+    void writeText(string content) {
         writeFile(_path, cast(const(ubyte)[]) content);
     }
     
@@ -129,17 +129,17 @@ struct AsyncFile {
     }
     
     /// Copy to destination
-    void copyTo(string dest) @safe {
+    void copyTo(string dest) {
         copyFile(_path, NativePath(dest));
     }
     
     /// Move to destination
-    void moveTo(string dest) @safe {
+    void moveTo(string dest) {
         moveFile(_path, NativePath(dest));
     }
     
     /// Delete file
-    void remove() @safe {
+    void remove() {
         removeFile(_path);
     }
     
@@ -153,13 +153,13 @@ struct AsyncFile {
     }
     
     /// Get file info
-    auto info() @safe {
+    auto info() {
         return getFileInfo(_path);
     }
 }
 
 /// Create async file handle
-AsyncFile asyncFile(string path) @safe {
+AsyncFile asyncFile(string path) {
     return AsyncFile(path);
 }
 

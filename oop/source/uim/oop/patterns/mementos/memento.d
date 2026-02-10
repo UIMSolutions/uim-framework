@@ -18,7 +18,7 @@ class Memento : IMemento {
     private string _name;
     private SysTime _timestamp;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _timestamp = Clock.currTime();
     }
@@ -41,7 +41,7 @@ class VersionedMemento : Memento, IVersionedMemento {
     private int _version;
     private string _description;
     
-    this(string name, int ver, string desc) @safe {
+    this(string name, int ver, string desc) {
         super(name);
         _version = ver;
         _description = desc;
@@ -67,7 +67,7 @@ class EditorHistory : IHistoryManager {
     private uim.oop.patterns.mementos.texteditor.TextEditor _editor;
     private IMemento[] _history;
     
-    this(uim.oop.patterns.mementos.texteditor.TextEditor editor) @safe {
+    this(uim.oop.patterns.mementos.texteditor.TextEditor editor) {
         _editor = editor;
     }
     
@@ -108,7 +108,7 @@ class GameCharacter : IOriginator {
     private int _level;
     private int[string] _inventory;
     
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _health = 100;
         _mana = 50;
@@ -182,7 +182,7 @@ class GameCharacter : IOriginator {
         private int _savedLevel;
         private int[string] _savedInventory;
         
-        this(int health, int mana, int level, int[string] inventory) @safe {
+        this(int health, int mana, int level, int[string] inventory) {
             super("GameCharacter");
             _savedHealth = health;
             _savedMana = mana;
@@ -225,7 +225,7 @@ class MultiLevelUndoManager : IMultiLevelUndoManager {
     private string[] _redoDescriptions;
     private IMemento _currentState;
     
-    this(IOriginator originator) @safe {
+    this(IOriginator originator) {
         _originator = originator;
         _currentState = originator.save();
     }

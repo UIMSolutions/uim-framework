@@ -28,40 +28,40 @@ class Individual : IIndividual {
     _genome = genome.dup;
   }
 
-  override double fitness() @safe {
+  override double fitness() {
     return _fitness;
   }
 
-  override void fitness(double value) @safe {
+  override void fitness(double value) {
     _fitness = value;
     _evaluated = true;
   }
 
-  override const(ubyte)[] genome() @safe {
+  override const(ubyte)[] genome() {
     return _genome;
   }
 
-  override void genome(ubyte[] genes) @safe {
+  override void genome(ubyte[] genes) {
     _genome = genes.dup;
     _evaluated = false;
   }
 
-  override size_t genomeLength() @safe {
+  override size_t genomeLength() {
     return _genome.length;
   }
 
-  override bool isEvaluated() @safe {
+  override bool isEvaluated() {
     return _evaluated;
   }
 
-  override IIndividual clone() @safe {
+  override IIndividual clone() {
     auto copy = new Individual(_genome.dup);
     copy._fitness = _fitness;
     copy._evaluated = _evaluated;
     return copy;
   }
 
-  override Json toJson() @safe {
+  override Json toJson() {
     Json result;
     result["genome"] = _genome.toJson;
     result["fitness"] = Json(_fitness);
@@ -69,7 +69,7 @@ class Individual : IIndividual {
     return result;
   }
 
-  static IIndividual fromJson(Json data) @safe {
+  static IIndividual fromJson(Json data) {
     auto ind = new Individual();
     if (auto genome = "genome" in data) {
       ubyte[] genes;

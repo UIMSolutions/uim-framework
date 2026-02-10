@@ -19,30 +19,30 @@ class CachedDataSource : UIMObject, IValueSource {
     _cache = new DataCache(cacheSize);
   }
 
-  void enableCache() @safe {
+  void enableCache() {
     _cacheEnabled = true;
     _cache.enable();
   }
 
-  void disableCache() @safe {
+  void disableCache() {
     _cacheEnabled = false;
     _cache.disable();
   }
 
-  void clearCache() @safe {
+  void clearCache() {
     _cache.clear();
   }
 
   string name() { return _source.name(); }
   DataSourceType type() { return _source.type(); }
-  bool isAvailable() @safe { return _source.isAvailable(); }
+  bool isAvailable() { return _source.isAvailable(); }
   string[string] schema() { return _source.schema(); }
 
   void connect(void delegate(bool success) @safe callback) @trusted {
     _source.connect(callback);
   }
 
-  void disconnect() @safe {
+  void disconnect() {
     _source.disconnect();
   }
 
@@ -55,7 +55,7 @@ class CachedDataSource : UIMObject, IValueSource {
       return;
     }
 
-    _source.readAll((bool success, Json[] results) @safe {
+    _source.readAll((bool success, Json[] results) {
       if (success && _cacheEnabled) {
         _cache.set(cacheKey, Json(results));
       }
@@ -70,7 +70,7 @@ class CachedDataSource : UIMObject, IValueSource {
       return;
     }
 
-    _source.read(query, (bool success, Json[] results) @safe {
+    _source.read(query, (bool success, Json[] results) {
       if (success && _cacheEnabled) {
         _cache.set(query, Json(results));
       }
@@ -79,7 +79,7 @@ class CachedDataSource : UIMObject, IValueSource {
   }
 
   void write(Json data, void delegate(bool success, Json result) @safe callback) @trusted {
-    _source.write(data, (bool success, Json result) @safe {
+    _source.write(data, (bool success, Json result) {
       if (success) {
         _cache.clear(); // Invalidate cache on write
       }

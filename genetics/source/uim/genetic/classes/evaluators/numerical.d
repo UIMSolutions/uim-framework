@@ -43,7 +43,7 @@ class NumericalOptimizer : IFitnessEvaluator {
     void delegate(IIndividual[]) @safe callback) @trusted {
     
     foreach (ind; individuals) {
-      evaluate(ind, (double fit) @safe {
+      evaluate(ind, (double fit) {
         ind.fitness(fit);
       });
     }

@@ -9,15 +9,15 @@ import std.format;
 class ConcreteFlyweight : IFlyweight {
     private string _intrinsicState;
     
-    this(string intrinsicState) @safe {
+    this(string intrinsicState) {
         _intrinsicState = intrinsicState;
     }
     
-    @property string intrinsicState() const @safe {
+    @property string intrinsicState() const {
         return _intrinsicState;
     }
     
-    string operation(string extrinsicState) @safe {
+    string operation(string extrinsicState) {
         return format("ConcreteFlyweight[%s] with extrinsic: %s", _intrinsicState, extrinsicState);
     }
 }
@@ -29,11 +29,11 @@ class ConcreteFlyweight : IFlyweight {
 class UnsharedConcreteFlyweight : IFlyweight {
     private string _allState;
     
-    this(string allState) @safe {
+    this(string allState) {
         _allState = allState;
     }
     
-    string operation(string extrinsicState) @safe {
+    string operation(string extrinsicState) {
         return format("UnsharedFlyweight[%s] with: %s", _allState, extrinsicState);
     }
 }
@@ -45,12 +45,12 @@ class GenericFlyweight(TExtrinsic) : IGenericFlyweight!TExtrinsic {
     private string _key;
     private string _sharedData;
     
-    this(string key, string sharedData) @safe {
+    this(string key, string sharedData) {
         _key = key;
         _sharedData = sharedData;
     }
     
-    string operation(TExtrinsic extrinsicState) @safe {
+    string operation(TExtrinsic extrinsicState) {
         static if (is(TExtrinsic == struct) || is(TExtrinsic == class)) {
             return format("Flyweight[%s](%s) operating on complex state", _key, _sharedData);
         } else {
@@ -58,11 +58,11 @@ class GenericFlyweight(TExtrinsic) : IGenericFlyweight!TExtrinsic {
         }
     }
     
-    string key() const @safe {
+    string key() const {
         return _key;
     }
     
-    @property string sharedData() const @safe {
+    @property string sharedData() const {
         return _sharedData;
     }
 }
@@ -73,7 +73,7 @@ class GenericFlyweight(TExtrinsic) : IGenericFlyweight!TExtrinsic {
 class FlyweightFactory : IFlyweightFactory!ConcreteFlyweight {
     private ConcreteFlyweight[string] _flyweights;
     
-    ConcreteFlyweight getFlyweight(string key) @safe {
+    ConcreteFlyweight getFlyweight(string key) {
         if (auto fw = key in _flyweights) {
             return *fw;
         }
@@ -83,11 +83,11 @@ class FlyweightFactory : IFlyweightFactory!ConcreteFlyweight {
         return newFlyweight;
     }
     
-    size_t flyweightCount() const @safe {
+    size_t flyweightCount() const {
         return _flyweights.length;
     }
     
-    string[] listFlyweights() const @safe {
+    string[] listFlyweights() const {
         return _flyweights.keys.dup;
     }
 }
@@ -98,7 +98,7 @@ class FlyweightFactory : IFlyweightFactory!ConcreteFlyweight {
 class GenericFlyweightFactory(T, TExtrinsic) : IFlyweightFactory!(GenericFlyweight!TExtrinsic) {
     private GenericFlyweight!TExtrinsic[string] _flyweights;
     
-    GenericFlyweight!TExtrinsic getFlyweight(string key) @safe {
+    GenericFlyweight!TExtrinsic getFlyweight(string key) {
         if (auto fw = key in _flyweights) {
             return *fw;
         }
@@ -108,11 +108,11 @@ class GenericFlyweightFactory(T, TExtrinsic) : IFlyweightFactory!(GenericFlyweig
         return newFlyweight;
     }
     
-    size_t flyweightCount() const @safe {
+    size_t flyweightCount() const {
         return _flyweights.length;
     }
     
-    string[] listFlyweights() const @safe {
+    string[] listFlyweights() const {
         return _flyweights.keys.dup;
     }
 }
@@ -128,7 +128,7 @@ class CharacterGlyph : IMemoryReportable {
     private int _fontSize;
     private ubyte[] _glyphBitmap;  // Simulated bitmap data
     
-    this(char character, string fontFamily, int fontSize) @safe {
+    this(char character, string fontFamily, int fontSize) {
         _character = character;
         _fontFamily = fontFamily;
         _fontSize = fontSize;
@@ -136,16 +136,16 @@ class CharacterGlyph : IMemoryReportable {
         _glyphBitmap = new ubyte[fontSize * fontSize];
     }
     
-    @property char character() const @safe { return _character; }
-    @property string fontFamily() const @safe { return _fontFamily; }
-    @property int fontSize() const @safe { return _fontSize; }
+    @property char character() const { return _character; }
+    @property string fontFamily() const { return _fontFamily; }
+    @property int fontSize() const { return _fontSize; }
     
-    string render(int x, int y, string color) @safe {
+    string render(int x, int y, string color) {
         return format("'%s' at (%d,%d) in %s %dpt, color: %s", 
                      _character, x, y, _fontFamily, _fontSize, color);
     }
     
-    size_t memoryUsage() const @safe {
+    size_t memoryUsage() const {
         return _glyphBitmap.length + _fontFamily.length + char.sizeof + int.sizeof;
     }
 }
@@ -165,11 +165,11 @@ struct CharacterContext {
 class GlyphFactory {
     private CharacterGlyph[string] _glyphs;
     
-    private static string makeKey(char c, string fontFamily, int fontSize) @safe {
+    private static string makeKey(char c, string fontFamily, int fontSize) {
         return format("%s-%s-%d", c, fontFamily, fontSize);
     }
     
-    CharacterGlyph getGlyph(char character, string fontFamily, int fontSize) @safe {
+    CharacterGlyph getGlyph(char character, string fontFamily, int fontSize) {
         string key = makeKey(character, fontFamily, fontSize);
         
         if (auto glyph = key in _glyphs) {
@@ -181,11 +181,11 @@ class GlyphFactory {
         return newGlyph;
     }
     
-    size_t glyphCount() const @safe {
+    size_t glyphCount() const {
         return _glyphs.length;
     }
     
-    size_t totalMemoryUsage() const @safe {
+    size_t totalMemoryUsage() const {
         size_t total = 0;
         foreach (glyph; _glyphs) {
             total += glyph.memoryUsage();
@@ -206,16 +206,16 @@ class TextDocument {
     private CharacterInstance[] _characters;
     private GlyphFactory _glyphFactory;
     
-    this() @safe {
+    this() {
         _glyphFactory = new GlyphFactory();
     }
     
-    void addCharacter(char c, int x, int y, string color, string fontFamily = "Arial", int fontSize = 12) @safe {
+    void addCharacter(char c, int x, int y, string color, string fontFamily = "Arial", int fontSize = 12) {
         auto glyph = _glyphFactory.getGlyph(c, fontFamily, fontSize);
         _characters ~= CharacterInstance(glyph, CharacterContext(x, y, color));
     }
     
-    string render() @safe {
+    string render() {
         string result = "Document rendering:\n";
         foreach (charInst; _characters) {
             result ~= charInst.glyph.render(
@@ -227,15 +227,15 @@ class TextDocument {
         return result;
     }
     
-    size_t characterCount() const @safe {
+    size_t characterCount() const {
         return _characters.length;
     }
     
-    size_t uniqueGlyphCount() const @safe {
+    size_t uniqueGlyphCount() const {
         return _glyphFactory.glyphCount();
     }
     
-    size_t memoryUsage() const @safe {
+    size_t memoryUsage() const {
         // Shared glyph memory
         size_t sharedMemory = _glyphFactory.totalMemoryUsage();
         
@@ -256,22 +256,22 @@ class TreeType : IMemoryReportable {
     private string _color;
     private string _texture;
     
-    this(string name, string color, string texture) @safe {
+    this(string name, string color, string texture) {
         _name = name;
         _color = color;
         _texture = texture;
     }
     
-    @property string name() const @safe { return _name; }
-    @property string color() const @safe { return _color; }
-    @property string texture() const @safe { return _texture; }
+    @property string name() const { return _name; }
+    @property string color() const { return _color; }
+    @property string texture() const { return _texture; }
     
-    string draw(int x, int y, int height) @safe {
+    string draw(int x, int y, int height) {
         return format("%s tree at (%d,%d) height=%d, color=%s", 
                      _name, x, y, height, _color);
     }
     
-    size_t memoryUsage() const @safe {
+    size_t memoryUsage() const {
         return _name.length + _color.length + _texture.length;
     }
 }
@@ -282,7 +282,7 @@ class TreeType : IMemoryReportable {
 class TreeFactory {
     private TreeType[string] _treeTypes;
     
-    TreeType getTreeType(string name, string color, string texture) @safe {
+    TreeType getTreeType(string name, string color, string texture) {
         string key = name ~ "-" ~ color;
         
         if (auto treeType = key in _treeTypes) {
@@ -294,7 +294,7 @@ class TreeFactory {
         return newType;
     }
     
-    size_t typeCount() const @safe {
+    size_t typeCount() const {
         return _treeTypes.length;
     }
 }
@@ -308,7 +308,7 @@ struct Tree {
     int height;
     TreeType treeType;
     
-    string draw() @safe {
+    string draw() {
         return treeType.draw(x, y, height);
     }
 }
@@ -320,16 +320,16 @@ class Forest {
     private Tree[] _trees;
     private TreeFactory _treeFactory;
     
-    this() @safe {
+    this() {
         _treeFactory = new TreeFactory();
     }
     
-    void plantTree(int x, int y, int height, string name, string color, string texture) @safe {
+    void plantTree(int x, int y, int height, string name, string color, string texture) {
         auto treeType = _treeFactory.getTreeType(name, color, texture);
         _trees ~= Tree(x, y, height, treeType);
     }
     
-    string draw() @safe {
+    string draw() {
         string result = "Forest rendering:\n";
         foreach (tree; _trees) {
             result ~= tree.draw() ~ "\n";
@@ -337,11 +337,11 @@ class Forest {
         return result;
     }
     
-    size_t treeCount() const @safe {
+    size_t treeCount() const {
         return _trees.length;
     }
     
-    size_t uniqueTreeTypes() const @safe {
+    size_t uniqueTreeTypes() const {
         return _treeFactory.typeCount();
     }
 }

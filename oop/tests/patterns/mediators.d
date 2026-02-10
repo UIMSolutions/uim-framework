@@ -16,7 +16,7 @@ import uim.oop.patterns.mediators;
     string receivedMessage = "";
     string receivedSender = "";
     
-    mediator.register("receiver1", (string sender, string message) @safe {
+    mediator.register("receiver1", (string sender, string message) {
         receivedSender = sender;
         receivedMessage = message;
     });
@@ -34,11 +34,11 @@ import uim.oop.patterns.mediators;
     int count1 = 0;
     int count2 = 0;
     
-    mediator.register("receiver1", (string sender, int value) @safe {
+    mediator.register("receiver1", (string sender, int value) {
         count1 += value;
     });
     
-    mediator.register("receiver2", (string sender, int value) @safe {
+    mediator.register("receiver2", (string sender, int value) {
         count2 += value;
     });
     
@@ -53,8 +53,8 @@ import uim.oop.patterns.mediators;
     // Test generic mediator unregister
     auto mediator = new GenericMediator!string();
     
-    mediator.register("receiver1", (string s, string m) @safe {});
-    mediator.register("receiver2", (string s, string m) @safe {});
+    mediator.register("receiver1", (string s, string m) {});
+    mediator.register("receiver2", (string s, string m) {});
     
     assert(mediator.handlerCount() == 2);
     
@@ -67,7 +67,7 @@ import uim.oop.patterns.mediators;
     auto mediator = new EventMediator();
     
     int callCount = 0;
-    mediator.subscribe("testEvent", (string data) @safe {
+    mediator.subscribe("testEvent", (string data) {
         callCount++;
     });
     
@@ -79,7 +79,7 @@ import uim.oop.patterns.mediators;
     auto mediator = new EventMediator();
     
     string receivedData = "";
-    mediator.subscribe("update", (string data) @safe {
+    mediator.subscribe("update", (string data) {
         receivedData = data;
     });
     
@@ -92,9 +92,9 @@ import uim.oop.patterns.mediators;
     auto mediator = new EventMediator();
     
     int count = 0;
-    mediator.subscribe("event", (string data) @safe { count++; });
-    mediator.subscribe("event", (string data) @safe { count++; });
-    mediator.subscribe("event", (string data) @safe { count++; });
+    mediator.subscribe("event", (string data) { count++; });
+    mediator.subscribe("event", (string data) { count++; });
+    mediator.subscribe("event", (string data) { count++; });
     
     mediator.publish("event", "trigger");
     assert(count == 3);
@@ -104,7 +104,7 @@ import uim.oop.patterns.mediators;
     // Test request-response mediator
     auto mediator = new RequestResponseMediator();
     
-    mediator.registerHandler("uppercase", (string data) @safe {
+    mediator.registerHandler("uppercase", (string data) {
         return data.toUpper();
     });
     
@@ -125,11 +125,11 @@ import uim.oop.patterns.mediators;
     // Test request-response multiple handlers
     auto mediator = new RequestResponseMediator();
     
-    mediator.registerHandler("add", (string data) @safe {
+    mediator.registerHandler("add", (string data) {
         return "Added: " ~ data;
     });
     
-    mediator.registerHandler("remove", (string data) @safe {
+    mediator.registerHandler("remove", (string data) {
         return "Removed: " ~ data;
     });
     

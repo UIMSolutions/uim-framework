@@ -51,7 +51,7 @@ auto logger = loggingMiddleware()
   .useStderr(true);
 
 // With custom handler
-logger.logHandler((IError err) @safe {
+logger.logHandler((IError err) {
   writeln("CUSTOM: ", err.message());
 });
 ```
@@ -72,7 +72,7 @@ auto filter = filteringMiddleware()
   .addBlockedCode(404)
   .addBlockedSeverity("DEBUG")
   .allowedCodes([100, 200, 300])
-  .filterPredicate((IError err) @safe {
+  .filterPredicate((IError err) {
     return err.errorCode() < 1000;
   });
 ```
@@ -90,7 +90,7 @@ Transforms errors by modifying properties or wrapping in different types.
 **Example:**
 ```d
 // Basic transformation
-auto transformer = transformingMiddleware((IError err) @safe {
+auto transformer = transformingMiddleware((IError err) {
   err.message("[APP] " ~ err.message());
   err.severity("CRITICAL");
   return err;
@@ -151,7 +151,7 @@ pipeline
   .add(filteringMiddleware()
     .addBlockedCode(404)
     .priority(50))
-  .add(transformingMiddleware((IError err) @safe {
+  .add(transformingMiddleware((IError err) {
     err.message("Enriched: " ~ err.message());
     return err;
   }).priority(10));
@@ -211,11 +211,11 @@ Default priorities:
 ### Conditional Processing
 
 ```d
-auto transformer = transformingMiddleware((IError err) @safe {
+auto transformer = transformingMiddleware((IError err) {
   return err;
 });
 
-transformer.shouldTransform((IError err) @safe {
+transformer.shouldTransform((IError err) {
   return err.errorCode() >= 500; // Only transform server errors
 });
 ```
@@ -249,7 +249,7 @@ logger.enabled(true);  // Re-enable
 ```d
 auto logger = loggingMiddleware();
 
-logger.logHandler((IError err) @safe {
+logger.logHandler((IError err) {
   // Write to file
   // Send to monitoring service
   // Store in database
@@ -277,7 +277,7 @@ auto productionPipeline = errorPipeline()
     .priority(50))
   
   // Add context
-  .add(transformingMiddleware((IError err) @safe {
+  .add(transformingMiddleware((IError err) {
     err.message("[PROD] " ~ err.message());
     return err;
   }).priority(10));
@@ -294,7 +294,7 @@ auto devPipeline = errorPipeline()
     .priority(100))
   
   // Add detailed context
-  .add(transformingMiddleware((IError err) @safe {
+  .add(transformingMiddleware((IError err) {
     import std.format;
     err.message(format("[DEV:%s] %s", err.fileName(), err.message()));
     return err;
@@ -306,7 +306,7 @@ auto devPipeline = errorPipeline()
 ```d
 int[] errorCounts;
 
-auto counter = transformingMiddleware((IError err) @safe {
+auto counter = transformingMiddleware((IError err) {
   errorCounts[err.errorCode()]++;
   return err;
 });

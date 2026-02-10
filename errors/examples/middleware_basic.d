@@ -31,7 +31,7 @@ void main() {
 
   // Create logging middleware with custom handler
   auto customLogger = loggingMiddleware();
-  customLogger.logHandler((IError err) @safe {
+  customLogger.logHandler((IError err) {
     import std.stdio : writeln;
     writeln("CUSTOM LOG: ", err.message(), " [", err.severity(), "]");
   });
@@ -61,7 +61,7 @@ void main() {
   writeln("\n=== Transforming Middleware ===\n");
 
   // Create a transforming middleware that upgrades severity
-  auto transformer = transformingMiddleware((IError err) @safe {
+  auto transformer = transformingMiddleware((IError err) {
     writeln("Transforming: ", err.severity(), " -> CRITICAL");
     err.severity("CRITICAL");
     return err;

@@ -17,7 +17,7 @@ struct InferenceServerConfig {
 }
 
 /// Starts a simple Json inference endpoint for a neural network.
-void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = InferenceServerConfig.init) @safe {
+void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = InferenceServerConfig.init) {
   auto router = new URLRouter;
 
   router.post(cfg.route, (scope HTTPServerRequest req, scope HTTPServerResponse res) {
@@ -56,7 +56,7 @@ void serveNeuralNetwork(ref NeuralNetwork net, InferenceServerConfig cfg = Infer
   runApplication();
 }
 
-private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
+private double[][] parseInputs(const Json payload, size_t maxBatch) {
   enforce(payload.isObject, "Json body must be an object with an 'inputs' array");
   auto inputsNode = payload["inputs"];
   enforce(inputsNode.isArray, "'inputs' must be an array of number arrays");
@@ -84,7 +84,7 @@ private double[][] parseInputs(const Json payload, size_t maxBatch) @safe {
   return inputs;
 }
 
-private Json encodeOutputs(const double[][] outputs) @safe {
+private Json encodeOutputs(const double[][] outputs) {
   Json[] rows;
   rows.length = outputs.length;
   foreach (i, row; outputs) {

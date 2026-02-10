@@ -13,7 +13,7 @@ class InsertTextCommand : DUndoableCommand {
     private TextEditorReceiver _editor;
     private string _textToInsert;
 
-    this(TextEditorReceiver editor, string text) @safe {
+    this(TextEditorReceiver editor, string text) {
         // super("InsertText");
         super();
         _editor = editor;

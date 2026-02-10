@@ -18,7 +18,7 @@ class VirtualProxy : IVirtualProxy {
   /**
    * Constructor with factory function.
    */
-  this(IProxySubject delegate() @safe factory) @safe {
+  this(IProxySubject delegate() @safe factory) {
     _factory = factory;
     _initialized = false;
   }
@@ -26,14 +26,14 @@ class VirtualProxy : IVirtualProxy {
   /**
    * Check if real subject has been created.
    */
-  bool isInitialized() @safe {
+  bool isInitialized() {
     return _initialized;
   }
 
   /**
    * Get the real subject (lazy initialization).
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     if (!_initialized) {
       _realSubject = _factory();
       _initialized = true;
@@ -44,7 +44,7 @@ class VirtualProxy : IVirtualProxy {
   /**
    * Execute with lazy initialization.
    */
-  string execute() @safe {
+  string execute() {
     return getRealSubject().execute();
   }
 }

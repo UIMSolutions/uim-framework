@@ -16,7 +16,7 @@ import std.stdio;
  * from clients that use it.
  */
 
-void main() @safe {
+void main() {
   writeln("\n=== Strategy Pattern Examples ===\n");
   
   // Example 1: Sorting Strategies
@@ -32,7 +32,7 @@ void main() @safe {
   validationExample();
 }
 
-void sortingExample() @safe {
+void sortingExample() {
   writeln("1. Sorting Strategy Example:");
   writeln("----------------------------");
   
@@ -52,7 +52,7 @@ void sortingExample() @safe {
   writeln();
 }
 
-void paymentExample() @safe {
+void paymentExample() {
   writeln("2. Payment Strategy Example:");
   writeln("----------------------------");
   
@@ -147,7 +147,7 @@ void paymentExample() @safe {
   writeln();
 }
 
-void textFormattingExample() @safe {
+void textFormattingExample() {
   writeln("3. Text Formatting Strategy Example:");
   writeln("------------------------------------");
   
@@ -177,7 +177,7 @@ void textFormattingExample() @safe {
   writeln();
 }
 
-void validationExample() @safe {
+void validationExample() {
   writeln("4. Validation Strategy Example:");
   writeln("--------------------------------");
   

@@ -18,19 +18,19 @@ class Dataset : UIMObject {
   double[][] inputs;
   double[][] targets;
 
-  size_t length() const @safe {
+  size_t length() const {
     return inputs.length;
   }
 
-  size_t inputSize() const @safe {
+  size_t inputSize() const {
     return inputs.length ? inputs[0].length : 0;
   }
 
-  size_t outputSize() const @safe {
+  size_t outputSize() const {
     return targets.length ? targets[0].length : 0;
   }
 
-  void validate() const @safe {
+  void validate() const {
     enforce(inputs.length == targets.length, "Dataset inputs and targets must align");
     if (inputs.length == 0) {
       return;
@@ -46,7 +46,7 @@ class Dataset : UIMObject {
   }
 
   /// Normalizes each feature dimension to zero mean and unit variance.
-  void normalizeInputs(double epsilon = 1e-8) @safe {
+  void normalizeInputs(double epsilon = 1e-8) {
     validate();
     if (inputs.length == 0) {
       return;
@@ -96,7 +96,7 @@ struct TrainLog {
   double loss;
 }
 
-TrainLog[] train(ref NeuralNetwork net, Dataset data, const Loss l, TrainConfig cfg) @safe {
+TrainLog[] train(ref NeuralNetwork net, Dataset data, const Loss l, TrainConfig cfg) {
   data.validate();
   enforce(cfg.batchSize > 0, "Batch size must be positive");
   enforce(net.layers.length > 0, "Network must have at least one layer");
@@ -141,7 +141,7 @@ TrainLog[] train(ref NeuralNetwork net, Dataset data, const Loss l, TrainConfig 
 }
 
 /// Runs forward/backward for a single batch and applies SGD updates.
-double runBatch(ref NeuralNetwork net, double[][] batchInputs, double[][] batchTargets, const Loss l, double learningRate) @safe {
+double runBatch(ref NeuralNetwork net, double[][] batchInputs, double[][] batchTargets, const Loss l, double learningRate) {
   enforce(batchInputs.length == batchTargets.length, "Batch inputs and targets must align");
   if (batchInputs.length == 0) {
     return 0.0;

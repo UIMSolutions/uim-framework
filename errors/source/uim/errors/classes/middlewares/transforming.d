@@ -101,11 +101,11 @@ TransformingMiddleware transformingMiddleware(IError delegate(IError) @safe tran
 TransformingMiddleware severityUpgradeMiddleware(string fromSeverity, string toSeverity) {
   auto middleware = new TransformingMiddleware();
   
-  middleware.shouldTransform((IError error) @safe {
+  middleware.shouldTransform((IError error) {
     return error.severity() == fromSeverity;
   });
   
-  middleware.transformer((IError error) @safe {
+  middleware.transformer((IError error) {
     error.severity(toSeverity);
     return error;
   });

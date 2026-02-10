@@ -284,7 +284,7 @@ class OrderDataProcessor {
         );
     }
 
-    Json[] processOrders(Json[] rawOrders) @safe {
+    Json[] processOrders(Json[] rawOrders) {
         return _transformer.transformRecords(rawOrders);
     }
 }
@@ -346,12 +346,12 @@ class CustomDataSource : BaseDataSource {
 
 ```d
 class CustomTransformer : UIMObject, ITransformer {
-    Json transform(Json value) @safe {
+    Json transform(Json value) {
         // Custom transformation logic
         return value;
     }
 
-    Json[] transformArray(Json[] values) @safe {
+    Json[] transformArray(Json[] values) {
         // Batch transformation
         return values;
     }

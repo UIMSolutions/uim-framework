@@ -32,21 +32,21 @@ abstract class Proxy : IProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject) @safe {
+  this(IProxySubject realSubject) {
     _realSubject = realSubject;
   }
 
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Execute by delegating to real subject.
    */
-  string execute() @safe {
+  string execute() {
     return _realSubject.execute();
   }
 }
@@ -64,7 +64,7 @@ class ProtectionProxy : IProtectionProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject, bool accessAllowed = true) @safe {
+  this(IProxySubject realSubject, bool accessAllowed = true) {
     _realSubject = realSubject;
     _accessAllowed = accessAllowed;
   }
@@ -72,28 +72,28 @@ class ProtectionProxy : IProtectionProxy {
   /**
    * Check if access is allowed.
    */
-  bool isAccessAllowed() @safe {
+  bool isAccessAllowed() {
     return _accessAllowed;
   }
 
   /**
    * Set access permission.
    */
-  void setAccessAllowed(bool allowed) @safe {
+  void setAccessAllowed(bool allowed) {
     _accessAllowed = allowed;
   }
 
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Execute if access is allowed.
    */
-  string execute() @safe {
+  string execute() {
     if (_accessAllowed) {
       return _realSubject.execute();
     }
@@ -113,7 +113,7 @@ class CachingProxy : ICachingProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject) @safe {
+  this(IProxySubject realSubject) {
     _realSubject = realSubject;
     _isCached = false;
   }
@@ -121,21 +121,21 @@ class CachingProxy : ICachingProxy {
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Check if result is cached.
    */
-  bool isCached() @safe {
+  bool isCached() {
     return _isCached;
   }
 
   /**
    * Clear the cache.
    */
-  void clearCache() @safe {
+  void clearCache() {
     _cachedResult = "";
     _isCached = false;
   }
@@ -143,7 +143,7 @@ class CachingProxy : ICachingProxy {
   /**
    * Execute with caching.
    */
-  string execute() @safe {
+  string execute() {
     if (!_isCached) {
       _cachedResult = _realSubject.execute();
       _isCached = true;
@@ -163,7 +163,7 @@ class LoggingProxy : ILoggingProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject) @safe {
+  this(IProxySubject realSubject) {
     _realSubject = realSubject;
     _log = [];
   }
@@ -171,28 +171,28 @@ class LoggingProxy : ILoggingProxy {
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Get the access log.
    */
-  string[] getLog() @safe {
+  string[] getLog() {
     return _log;
   }
 
   /**
    * Clear the log.
    */
-  void clearLog() @safe {
+  void clearLog() {
     _log = [];
   }
 
   /**
    * Execute with logging.
    */
-  string execute() @safe {
+  string execute() {
     import std.datetime : Clock;
     auto timestamp = Clock.currTime().toISOExtString();
     _log ~= "Access at " ~ timestamp;
@@ -214,7 +214,7 @@ class RemoteProxy : IRemoteProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject, string endpoint) @safe {
+  this(IProxySubject realSubject, string endpoint) {
     _realSubject = realSubject;
     _endpoint = endpoint;
     _connected = false;
@@ -223,42 +223,42 @@ class RemoteProxy : IRemoteProxy {
   /**
    * Get the remote endpoint.
    */
-  string getEndpoint() @safe {
+  string getEndpoint() {
     return _endpoint;
   }
 
   /**
    * Check connection status.
    */
-  bool isConnected() @safe {
+  bool isConnected() {
     return _connected;
   }
 
   /**
    * Connect to remote endpoint.
    */
-  void connect() @safe {
+  void connect() {
     _connected = true;
   }
 
   /**
    * Disconnect from remote endpoint.
    */
-  void disconnect() @safe {
+  void disconnect() {
     _connected = false;
   }
 
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Execute with remote access simulation.
    */
-  string execute() @safe {
+  string execute() {
     if (!_connected) {
       connect();
     }
@@ -278,7 +278,7 @@ class SmartReferenceProxy : IProxy {
   /**
    * Constructor.
    */
-  this(IProxySubject realSubject) @safe {
+  this(IProxySubject realSubject) {
     _realSubject = realSubject;
     _accessCount = 0;
   }
@@ -286,28 +286,28 @@ class SmartReferenceProxy : IProxy {
   /**
    * Get the real subject.
    */
-  IProxySubject getRealSubject() @safe {
+  IProxySubject getRealSubject() {
     return _realSubject;
   }
 
   /**
    * Get access count.
    */
-  int getAccessCount() @safe {
+  int getAccessCount() {
     return _accessCount;
   }
 
   /**
    * Reset access count.
    */
-  void resetAccessCount() @safe {
+  void resetAccessCount() {
     _accessCount = 0;
   }
 
   /**
    * Execute with reference counting.
    */
-  string execute() @safe {
+  string execute() {
     _accessCount++;
     return _realSubject.execute();
   }
@@ -381,7 +381,7 @@ class SmartReferenceProxy : IProxy {
       return "Data fetched";
     }
 
-    int getCallCount() @safe {
+    int getCallCount() {
       return _callCount;
     }
   }

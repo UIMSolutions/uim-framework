@@ -16,7 +16,7 @@ abstract class TransferObject : ITransferObject {
    * Validate the transfer object data.
    * Override in derived classes for custom validation.
    */
-  bool validate() @safe {
+  bool validate() {
     return true;
   }
 
@@ -40,7 +40,7 @@ abstract class SerializableTransferObject : TransferObject, ISerializableTransfe
   /**
    * Serialize to Json string.
    */
-  string toJson() @safe {
+  string toJson() {
     import vibe.data.json : Json;
     auto map = toMap();
     Json json = Json.emptyObject;
@@ -82,7 +82,7 @@ abstract class TransferObjectAssembler(TDomain, TTransfer) : ITransferObjectAsse
   /**
    * Convert array of domain objects to transfer objects.
    */
-  TTransfer[] toTransferObjects(TDomain[] domains) @safe {
+  TTransfer[] toTransferObjects(TDomain[] domains) {
     TTransfer[] result;
     foreach (domain; domains) {
       result ~= toTransferObject(domain);
@@ -93,7 +93,7 @@ abstract class TransferObjectAssembler(TDomain, TTransfer) : ITransferObjectAsse
   /**
    * Convert array of transfer objects to domain objects.
    */
-  TDomain[] toDomainObjects(TTransfer[] transfers) @safe {
+  TDomain[] toDomainObjects(TTransfer[] transfers) {
     TDomain[] result;
     foreach (transfer; transfers) {
       result ~= toDomainObject(transfer);
@@ -111,28 +111,28 @@ abstract class CompositeTransferObject : TransferObject, ICompositeTransferObjec
   /**
    * Constructor.
    */
-  this() @safe {
+  this() {
     _children = [];
   }
 
   /**
    * Get nested transfer objects.
    */
-  ITransferObject[] getChildren() @safe {
+  ITransferObject[] getChildren() {
     return _children;
   }
 
   /**
    * Add a child transfer object.
    */
-  void addChild(ITransferObject child) @safe {
+  void addChild(ITransferObject child) {
     _children ~= child;
   }
 
   /**
    * Validate all children.
    */
-  override bool validate() @safe {
+  override bool validate() {
     foreach (child; _children) {
       if (!child.validate()) {
         return false;
@@ -151,7 +151,7 @@ abstract class ImmutableTransferObject : TransferObject {
   /**
    * Populate from associative array (only once).
    */
-  override void fromMap(string[string] data) @safe {
+  override void fromMap(string[string] data) {
     if (!_initialized) {
       fromMapImpl(data);
       _initialized = true;
@@ -167,7 +167,7 @@ abstract class ImmutableTransferObject : TransferObject {
   /**
    * Check if initialized.
    */
-  bool isInitialized() @safe {
+  bool isInitialized() {
     return _initialized;
   }
 }

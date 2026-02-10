@@ -5,7 +5,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test base element creation
     class SimpleElement : BaseElement {
-        this() @safe { super("Simple"); }
+        this() { super("Simple"); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -19,7 +19,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test element name property
     class NamedElement : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -32,7 +32,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test object structure add element
     class Elem : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -47,7 +47,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test object structure multiple elements
     class E : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -64,7 +64,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test object structure remove element
     class El : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -86,7 +86,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test visitor visiting elements
     class TestElement : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -385,7 +385,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test object structure accept visitor
     class E : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -413,7 +413,7 @@ import uim.oop.patterns.visitors;
 @safe unittest {
     // Test visitor visited tracking
     class Elem : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }

@@ -17,11 +17,11 @@ struct Path {
 class Dijkstra {
     private Graph _graph;
 
-    this(Graph graph) @safe {
+    this(Graph graph) {
         _graph = graph;
     }
 
-    Path findShortest(string start, string end) @safe {
+    Path findShortest(string start, string end) {
         auto distances = _initDistances(start);
         auto previous = _initPrevious();
         auto unvisited = _getAllNodeIds();
@@ -49,7 +49,7 @@ class Dijkstra {
         return _reconstructPath(start, end, previous, distances[end]);
     }
 
-    private double[string] _initDistances(string start) @safe {
+    private double[string] _initDistances(string start) {
         double[string] dist;
         foreach (node; _graph.nodes()) {
             dist[node.id()] = double.infinity;
@@ -58,7 +58,7 @@ class Dijkstra {
         return dist;
     }
 
-    private string[string] _initPrevious() @safe {
+    private string[string] _initPrevious() {
         string[string] prev;
         foreach (node; _graph.nodes()) {
             prev[node.id()] = "";
@@ -66,7 +66,7 @@ class Dijkstra {
         return prev;
     }
 
-    private string[] _getAllNodeIds() @safe {
+    private string[] _getAllNodeIds() {
         string[] ids;
         foreach (node; _graph.nodes()) {
             ids ~= node.id();
@@ -74,7 +74,7 @@ class Dijkstra {
         return ids;
     }
 
-    private string _getMinUnvisited(const double[string] distances, const string[] unvisited) @safe {
+    private string _getMinUnvisited(const double[string] distances, const string[] unvisited) {
         string minId;
         double minDist = double.infinity;
         foreach (id; unvisited) {
@@ -86,7 +86,7 @@ class Dijkstra {
         return minId;
     }
 
-    private void _removeFromList(ref string[] list, string item) @safe {
+    private void _removeFromList(ref string[] list, string item) {
         foreach (i, v; list) {
             if (v == item) {
                 list = list[0 .. i] ~ list[i + 1 .. $];
@@ -95,14 +95,14 @@ class Dijkstra {
         }
     }
 
-    private bool _isInList(const string[] list, string item) @safe {
+    private bool _isInList(const string[] list, string item) {
         foreach (v; list) {
             if (v == item) return true;
         }
         return false;
     }
 
-    private Path _reconstructPath(string start, string end, const string[string] previous, double distance) @safe {
+    private Path _reconstructPath(string start, string end, const string[string] previous, double distance) {
         string[] path;
         auto current = end;
         while (current != "") {

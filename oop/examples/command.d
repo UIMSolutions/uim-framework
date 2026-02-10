@@ -28,7 +28,7 @@ void example1_BasicCommand() {
     class PrintCommand : BaseCommand {
         string message;
         
-        this(string msg) @safe {
+        this(string msg) {
             super("Print");
             message = msg;
         }
@@ -195,7 +195,7 @@ void example6_CommandQueue() {
     class TaskCommand : BaseCommand {
         string taskName;
         
-        this(string name) @safe {
+        this(string name) {
             super("Task");
             taskName = name;
         }
@@ -272,7 +272,7 @@ void example8_TransactionLike() {
         int amount;
         string operation;
         
-        this(int* bal, int amt, string op) @safe {
+        this(int* bal, int amt, string op) {
             super(op);
             balance = bal;
             amount = amt;

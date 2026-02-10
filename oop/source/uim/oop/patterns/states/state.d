@@ -15,7 +15,7 @@ import std.algorithm : canFind, remove;
 abstract class BaseState : IState {
     protected string _name;
     
-    this(string stateName) @safe {
+    this(string stateName) {
         _name = stateName;
     }
     
@@ -33,7 +33,7 @@ class Context : IContext {
     private IState _currentState;
     private string[] _history;
     
-    this(IState initialState) @safe {
+    this(IState initialState) {
         _currentState = initialState;
         _history ~= initialState.name;
     }
@@ -66,7 +66,7 @@ class StateMachine : IStateMachine {
     private IState[string] _states;
     private bool[string][string] _transitions; // [from][to] = allowed
     
-    this() @safe {
+    this() {
     }
     
     /**
@@ -150,7 +150,7 @@ class StateMachine : IStateMachine {
  * Abstract lifecycle state with enter/exit callbacks.
  */
 abstract class LifecycleState : BaseState, ILifecycleState {
-    this(string stateName) @safe {
+    this(string stateName) {
         super(stateName);
     }
     
@@ -167,7 +167,7 @@ abstract class LifecycleState : BaseState, ILifecycleState {
  * Context that supports lifecycle states.
  */
 class LifecycleContext : Context {
-    this(ILifecycleState initialState) @safe {
+    this(ILifecycleState initialState) {
         super(initialState);
         initialState.onEnter();
     }
@@ -196,7 +196,7 @@ class TrafficLight {
     private IState _currentState;
     private string _log;
     
-    this() @safe {
+    this() {
         _currentState = new RedLightState(this);
     }
     
@@ -227,7 +227,7 @@ class TrafficLight {
 class RedLightState : BaseState {
     private TrafficLight _light;
     
-    this(TrafficLight light) @safe {
+    this(TrafficLight light) {
         super("Red");
         _light = light;
     }
@@ -244,7 +244,7 @@ class RedLightState : BaseState {
 class GreenLightState : BaseState {
     private TrafficLight _light;
     
-    this(TrafficLight light) @safe {
+    this(TrafficLight light) {
         super("Green");
         _light = light;
     }
@@ -261,7 +261,7 @@ class GreenLightState : BaseState {
 class YellowLightState : BaseState {
     private TrafficLight _light;
     
-    this(TrafficLight light) @safe {
+    this(TrafficLight light) {
         super("Yellow");
         _light = light;
     }
@@ -282,7 +282,7 @@ class Document {
     private string _content;
     private string[] _stateHistory;
     
-    this(string content) @safe {
+    this(string content) {
         _content = content;
         auto draftState = new DraftState(this);
         _currentState = draftState;
@@ -320,7 +320,7 @@ class Document {
 class DraftState : LifecycleState {
     private Document _document;
     
-    this(Document doc) @safe {
+    this(Document doc) {
         super("Draft");
         _document = doc;
     }
@@ -344,7 +344,7 @@ class DraftState : LifecycleState {
 class ReviewState : LifecycleState {
     private Document _document;
     
-    this(Document doc) @safe {
+    this(Document doc) {
         super("Review");
         _document = doc;
     }
@@ -368,7 +368,7 @@ class ReviewState : LifecycleState {
 class PublishedState : LifecycleState {
     private Document _document;
     
-    this(Document doc) @safe {
+    this(Document doc) {
         super("Published");
         _document = doc;
     }
@@ -392,7 +392,7 @@ class PublishedState : LifecycleState {
 class ArchivedState : LifecycleState {
     private Document _document;
     
-    this(Document doc) @safe {
+    this(Document doc) {
         super("Archived");
         _document = doc;
     }
@@ -419,7 +419,7 @@ class TCPConnection {
     private IState _currentState;
     private string[] _events;
     
-    this() @safe {
+    this() {
         _currentState = new ClosedState(this);
     }
     
@@ -454,7 +454,7 @@ class TCPConnection {
         return _events.dup;
     }
     
-    private void adUIMEvent(string event) @safe {
+    private void adUIMEvent(string event) {
         _events ~= event;
     }
 }
@@ -465,7 +465,7 @@ class TCPConnection {
 class ClosedState : BaseState {
     private TCPConnection _connection;
     
-    this(TCPConnection conn) @safe {
+    this(TCPConnection conn) {
         super("Closed");
         _connection = conn;
     }
@@ -481,7 +481,7 @@ class ClosedState : BaseState {
 class ListenState : BaseState {
     private TCPConnection _connection;
     
-    this(TCPConnection conn) @safe {
+    this(TCPConnection conn) {
         super("Listen");
         _connection = conn;
     }
@@ -497,7 +497,7 @@ class ListenState : BaseState {
 class EstablishedState : BaseState {
     private TCPConnection _connection;
     
-    this(TCPConnection conn) @safe {
+    this(TCPConnection conn) {
         super("Established");
         _connection = conn;
     }
@@ -514,7 +514,7 @@ class EstablishedState : BaseState {
     class TestState : BaseState {
         bool _handled = false;
         
-        this() @safe {
+        this() {
             super("TestState");
         }
         
@@ -532,12 +532,12 @@ class EstablishedState : BaseState {
 @safe unittest {
     // Test context
     class StateA : BaseState {
-        this() @safe { super("A"); }
+        this() { super("A"); }
         override void handle() {}
     }
     
     class StateB : BaseState {
-        this() @safe { super("B"); }
+        this() { super("B"); }
         override void handle() {}
     }
     
@@ -556,12 +556,12 @@ class EstablishedState : BaseState {
 @safe unittest {
     // Test state machine
     class State1 : BaseState {
-        this() @safe { super("State1"); }
+        this() { super("State1"); }
         override void handle() {}
     }
     
     class State2 : BaseState {
-        this() @safe { super("State2"); }
+        this() { super("State2"); }
         override void handle() {}
     }
     
@@ -648,17 +648,17 @@ class EstablishedState : BaseState {
     auto machine = new StateMachine();
     
     class SA : BaseState {
-        this() @safe { super("A"); }
+        this() { super("A"); }
         override void handle() {}
     }
     
     class SB : BaseState {
-        this() @safe { super("B"); }
+        this() { super("B"); }
         override void handle() {}
     }
     
     class SC : BaseState {
-        this() @safe { super("C"); }
+        this() { super("C"); }
         override void handle() {}
     }
     

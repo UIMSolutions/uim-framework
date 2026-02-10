@@ -171,12 +171,12 @@ ulong fileSize(string path) @trusted {
 }
 
 /// Get file extension
-string fileExtension(string path) @safe {
+string fileExtension(string path) {
     return extension(path);
 }
 
 /// Get file name without directory
-string fileName(string path) @safe {
+string fileName(string path) {
     return baseName(path);
 }
 

@@ -14,19 +14,19 @@ import uim.oop.patterns.bridges.interfaces;
 class BridgeAbstraction : IBridgeAbstraction {
     protected IImplementor _implementor;
     
-    this(IImplementor implementor) @safe {
+    this(IImplementor implementor) {
         _implementor = implementor;
     }
     
-    string operation() @safe {
+    string operation() {
         return "Abstraction: Base operation with:\n" ~ _implementor.operationImpl();
     }
     
-    IImplementor implementor() @safe {
+    IImplementor implementor() {
         return _implementor;
     }
     
-    void implementor(IImplementor impl) @safe {
+    void implementor(IImplementor impl) {
         _implementor = impl;
     }
 }
@@ -35,15 +35,15 @@ class BridgeAbstraction : IBridgeAbstraction {
  * Extended abstraction provides additional functionality.
  */
 class ExtendedAbstraction : BridgeAbstraction, IExtendedAbstraction {
-    this(IImplementor implementor) @safe {
+    this(IImplementor implementor) {
         super(implementor);
     }
     
-    override string operation() @safe {
+    override string operation() {
         return "ExtendedAbstraction: Extended operation with:\n" ~ _implementor.operationImpl();
     }
     
-    string extendedOperation() @safe {
+    string extendedOperation() {
         return "ExtendedAbstraction: Extended operation with extra features:\n" ~ 
                _implementor.operationImpl() ~ "\n+ Additional processing";
     }
@@ -53,7 +53,7 @@ class ExtendedAbstraction : BridgeAbstraction, IExtendedAbstraction {
  * Concrete implementor A.
  */
 class ConcreteImplementorA : IImplementor {
-    string operationImpl() @safe {
+    string operationImpl() {
         return "ConcreteImplementorA: Implementation A processing";
     }
 }
@@ -62,7 +62,7 @@ class ConcreteImplementorA : IImplementor {
  * Concrete implementor B.
  */
 class ConcreteImplementorB : IImplementor {
-    string operationImpl() @safe {
+    string operationImpl() {
         return "ConcreteImplementorB: Implementation B processing";
     }
 }
@@ -73,19 +73,19 @@ class ConcreteImplementorB : IImplementor {
 class RefinedAbstraction : BridgeAbstraction {
     private string _name;
     
-    this(string name, IImplementor implementor) @safe {
+    this(string name, IImplementor implementor) {
         super(implementor);
         _name = name;
     }
     
-    @property string name() const @safe { return _name; }
+    @property string name() const { return _name; }
     
-    override string operation() @safe {
+    override string operation() {
         return "RefinedAbstraction [" ~ _name ~ "]: Operation with:\n" ~ 
                _implementor.operationImpl();
     }
     
-    string specialOperation() @safe {
+    string specialOperation() {
         return "RefinedAbstraction [" ~ _name ~ "]: Special operation:\n" ~ 
                _implementor.operationImpl() ~ "\n+ Refined processing";
     }
@@ -98,7 +98,7 @@ class StringProcessorImpl : IGenericImplementor!string {
     private string _name;
     private string delegate(string) _processor;
     
-    this(string name, string delegate(string) processor) @safe {
+    this(string name, string delegate(string) processor) {
         _name = name;
         _processor = processor;
     }
@@ -107,7 +107,7 @@ class StringProcessorImpl : IGenericImplementor!string {
         return _processor(data);
     }
     
-    string name() @safe {
+    string name() {
         return _name;
     }
 }
@@ -119,7 +119,7 @@ class IntProcessorImpl : IGenericImplementor!int {
     private string _name;
     private int delegate(int) _processor;
     
-    this(string name, int delegate(int) processor) @safe {
+    this(string name, int delegate(int) processor) {
         _name = name;
         _processor = processor;
     }
@@ -128,7 +128,7 @@ class IntProcessorImpl : IGenericImplementor!int {
         return _processor(data);
     }
     
-    string name() @safe {
+    string name() {
         return _name;
     }
 }
@@ -139,7 +139,7 @@ class IntProcessorImpl : IGenericImplementor!int {
 class GenericAbstraction(T) : IGenericAbstraction!T {
     protected IGenericImplementor!T _implementor;
     
-    this(IGenericImplementor!T implementor) @safe {
+    this(IGenericImplementor!T implementor) {
         _implementor = implementor;
     }
     
@@ -147,11 +147,11 @@ class GenericAbstraction(T) : IGenericAbstraction!T {
         return _implementor.process(data);
     }
     
-    IGenericImplementor!T implementor() @safe {
+    IGenericImplementor!T implementor() {
         return _implementor;
     }
     
-    void implementor(IGenericImplementor!T impl) @safe {
+    void implementor(IGenericImplementor!T impl) {
         _implementor = impl;
     }
 }
@@ -163,7 +163,7 @@ class CachingAbstraction(T) : GenericAbstraction!T {
     private T _cachedResult;
     private bool _hasCached;
     
-    this(IGenericImplementor!T implementor) @safe {
+    this(IGenericImplementor!T implementor) {
         super(implementor);
         _hasCached = false;
     }
@@ -176,11 +176,11 @@ class CachingAbstraction(T) : GenericAbstraction!T {
         return _cachedResult;
     }
     
-    void clearCache() @safe {
+    void clearCache() {
         _hasCached = false;
     }
     
-    bool hasCached() const @safe {
+    bool hasCached() const {
         return _hasCached;
     }
 }
@@ -201,19 +201,19 @@ interface IPlatform {
  * Windows platform implementation.
  */
 class WindowsPlatform : IPlatform {
-    string getName() @safe {
+    string getName() {
         return "Windows";
     }
     
-    string renderButton(string text) @safe {
+    string renderButton(string text) {
         return "[Windows Button: " ~ text ~ "]";
     }
     
-    string renderCheckbox(string label, bool checked) @safe {
+    string renderCheckbox(string label, bool checked) {
         return "[Windows Checkbox: " ~ label ~ " - " ~ (checked ? "☑" : "☐") ~ "]";
     }
     
-    string renderInput(string placeholder) @safe {
+    string renderInput(string placeholder) {
         return "[Windows Input: " ~ placeholder ~ "]";
     }
 }
@@ -222,19 +222,19 @@ class WindowsPlatform : IPlatform {
  * Linux platform implementation.
  */
 class LinuxPlatform : IPlatform {
-    string getName() @safe {
+    string getName() {
         return "Linux";
     }
     
-    string renderButton(string text) @safe {
+    string renderButton(string text) {
         return "[ " ~ text ~ " ]";
     }
     
-    string renderCheckbox(string label, bool checked) @safe {
+    string renderCheckbox(string label, bool checked) {
         return "[" ~ (checked ? "x" : " ") ~ "] " ~ label;
     }
     
-    string renderInput(string placeholder) @safe {
+    string renderInput(string placeholder) {
         return "[ ___" ~ placeholder ~ "___ ]";
     }
 }
@@ -245,15 +245,15 @@ class LinuxPlatform : IPlatform {
 abstract class Device {
     protected IPlatform _platform;
     
-    this(IPlatform platform) @safe {
+    this(IPlatform platform) {
         _platform = platform;
     }
     
-    @property IPlatform platform() @safe {
+    @property IPlatform platform() {
         return _platform;
     }
     
-    @property void platform(IPlatform p) @safe {
+    @property void platform(IPlatform p) {
         _platform = p;
     }
     
@@ -266,12 +266,12 @@ abstract class Device {
 class RemoteControl : Device {
     private string _deviceName;
     
-    this(string deviceName, IPlatform platform) @safe {
+    this(string deviceName, IPlatform platform) {
         super(platform);
         _deviceName = deviceName;
     }
     
-    override string render() @safe {
+    override string render() {
         string result = "Remote Control for " ~ _deviceName ~ " on " ~ _platform.getName() ~ ":\n";
         result ~= _platform.renderButton("Power") ~ "\n";
         result ~= _platform.renderButton("Volume Up") ~ "\n";
@@ -284,18 +284,18 @@ class RemoteControl : Device {
  * Advanced remote control with more features.
  */
 class AdvancedRemote : RemoteControl {
-    this(string deviceName, IPlatform platform) @safe {
+    this(string deviceName, IPlatform platform) {
         super(deviceName, platform);
     }
     
-    override string render() @safe {
+    override string render() {
         string result = super.render();
         result ~= _platform.renderButton("Mute") ~ "\n";
         result ~= _platform.renderCheckbox("Smart Mode", true) ~ "\n";
         return result;
     }
     
-    string renderSettings() @safe {
+    string renderSettings() {
         string result = "Settings Panel on " ~ _platform.getName() ~ ":\n";
         result ~= _platform.renderInput("Device Name") ~ "\n";
         result ~= _platform.renderCheckbox("Auto-connect", false) ~ "\n";

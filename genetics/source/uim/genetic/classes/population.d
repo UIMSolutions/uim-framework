@@ -22,26 +22,26 @@ class Population : IPopulation {
     _individuals = individuals.dup;
   }
 
-  override size_t size() @safe {
+  override size_t size() {
     return _individuals.length;
   }
 
-  override void add(IIndividual individual) @safe {
+  override void add(IIndividual individual) {
     _individuals ~= individual;
   }
 
-  override IIndividual get(size_t index) @safe {
+  override IIndividual get(size_t index) {
     if (index < _individuals.length) {
       return _individuals[index];
     }
     return null;
   }
 
-  override const(IIndividual)[] individuals() @safe {
+  override const(IIndividual)[] individuals() {
     return cast(const) _individuals;
   }
 
-  override IIndividual best() @safe {
+  override IIndividual best() {
     if (_individuals.length == 0) return null;
     IIndividual best = _individuals[0];
     foreach (ind; _individuals[1..$]) {
@@ -52,7 +52,7 @@ class Population : IPopulation {
     return best;
   }
 
-  override IIndividual worst() @safe {
+  override IIndividual worst() {
     if (_individuals.length == 0) return null;
     IIndividual worst = _individuals[0];
     foreach (ind; _individuals[1..$]) {
@@ -63,7 +63,7 @@ class Population : IPopulation {
     return worst;
   }
 
-  override double averageFitness() @safe {
+  override double averageFitness() {
     if (_individuals.length == 0) return 0.0;
     double sum = 0.0;
     foreach (ind; _individuals) {
@@ -72,17 +72,17 @@ class Population : IPopulation {
     return sum / _individuals.length;
   }
 
-  override void sort() @safe {
+  override void sort() {
     // Sort by fitness descending
     import std.algorithm : sort;
     std.algorithm.sort!((a, b) => a.fitness() > b.fitness())(_individuals);
   }
 
-  override void clear() @safe {
+  override void clear() {
     _individuals = [];
   }
 
-  override Json statistics() @safe {
+  override Json statistics() {
     Json stats;
     if (_individuals.length > 0) {
       sort();

@@ -109,7 +109,7 @@ version (Posix) {
         bool otherExecute;
         
         /// Convert to octal mode (e.g., 0o755)
-        uint toMode() const @safe {
+        uint toMode() const {
             uint mode = 0;
             if (ownerRead) mode |= 0x100; // 0o400
             if (ownerWrite) mode |= 0x80; // 0o200
@@ -124,7 +124,7 @@ version (Posix) {
         }
         
         /// Create from octal mode
-        static FilePermissions fromMode(uint mode) @safe {
+        static FilePermissions fromMode(uint mode) {
             FilePermissions perms;
             perms.ownerRead = (mode & 0x100) != 0; // 0o400
             perms.ownerWrite = (mode & 0x80) != 0; // 0o200

@@ -16,7 +16,7 @@ import std.stdio;
  * subsystem easier to use.
  */
 
-void main() @safe {
+void main() {
   writeln("\n=== Facade Pattern Examples ===\n");
   
   // Example 1: Home Theater System
@@ -29,7 +29,7 @@ void main() @safe {
   applicationExample();
 }
 
-void homeTheaterExample() @safe {
+void homeTheaterExample() {
   writeln("1. Home Theater System Example:");
   writeln("--------------------------------");
   
@@ -48,7 +48,7 @@ void homeTheaterExample() @safe {
       _initialized = false;
     }
     
-    void play(string movie) @safe {
+    void play(string movie) {
       writeln("  [DVD] Playing: ", movie);
     }
   }
@@ -67,7 +67,7 @@ void homeTheaterExample() @safe {
       _initialized = false;
     }
     
-    void setVolume(int level) @safe {
+    void setVolume(int level) {
       import std.conv : to;
       writeln("  [AMP] Volume set to: ", level);
     }
@@ -87,7 +87,7 @@ void homeTheaterExample() @safe {
       _initialized = false;
     }
     
-    void setInput(string input) @safe {
+    void setInput(string input) {
       writeln("  [PRJ] Input set to: ", input);
     }
   }
@@ -104,7 +104,7 @@ void homeTheaterExample() @safe {
       _initialized = false;
     }
     
-    void dim(int level) @safe {
+    void dim(int level) {
       import std.conv : to;
       writeln("  [LGT] Lights dimmed to: ", level, "%");
     }
@@ -129,7 +129,7 @@ void homeTheaterExample() @safe {
       addComponent(_lights);
     }
     
-    void watchMovie(string movie) @safe {
+    void watchMovie(string movie) {
       writeln("\nPreparing to watch movie...");
       if (!isReady()) {
         initialize();
@@ -141,7 +141,7 @@ void homeTheaterExample() @safe {
       writeln("Enjoy your movie!\n");
     }
     
-    void endMovie() @safe {
+    void endMovie() {
       writeln("\nShutting down movie...");
       shutdown();
       _lights.dim(100);
@@ -157,7 +157,7 @@ void homeTheaterExample() @safe {
   writeln();
 }
 
-void databaseExample() @safe {
+void databaseExample() {
   writeln("2. Database System Example:");
   writeln("---------------------------");
   
@@ -219,7 +219,7 @@ void databaseExample() @safe {
       configure(config);
     }
     
-    void query(string sql) @safe {
+    void query(string sql) {
       if (!isReady()) {
         writeln("Database not ready. Initializing...");
         initialize();
@@ -244,7 +244,7 @@ void databaseExample() @safe {
   writeln();
 }
 
-void applicationExample() @safe {
+void applicationExample() {
   writeln("3. Application Startup Example:");
   writeln("--------------------------------");
   
@@ -288,14 +288,14 @@ void applicationExample() @safe {
       addComponent(new PluginManager());
     }
     
-    void start() @safe {
+    void start() {
       writeln("\nStarting application...");
       initialize();
       writeln("Application ready!");
       writeln("Status: ", status());
     }
     
-    void stop() @safe {
+    void stop() {
       writeln("\nStopping application...");
       shutdown();
       writeln("Application stopped.");

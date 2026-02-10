@@ -24,7 +24,7 @@ void main() {
     ga.crossoverOperator(new SinglePointCrossover(0.7));
     ga.mutationOperator(new BitFlipMutation(0.02));
 
-    ga.runAsync((bool success, IIndividual best) @safe {
+    ga.runAsync((bool success, IIndividual best) {
         if (success) {
             writeln("Pattern matching complete!");
             writeln("  Best fitness: ", best.fitness());
@@ -45,7 +45,7 @@ void main() {
 void test2() {
     writeln("Test 2: Numerical Optimization");
     
-    auto evaluator = new NumericalOptimizer((double x) @safe {
+    auto evaluator = new NumericalOptimizer((double x) {
         // Optimize: -(x-0.5)^2, peaks at 0.5
         double diff = x - 0.5;
         return -(diff * diff);
@@ -57,7 +57,7 @@ void test2() {
     ga.maxGenerations(100);
     ga.targetFitness(0.99);
 
-    ga.runAsync((bool success, IIndividual best) @safe {
+    ga.runAsync((bool success, IIndividual best) {
         if (success) {
             writeln("Numerical optimization complete!");
             writeln("  Best fitness: ", best.fitness());

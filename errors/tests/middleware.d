@@ -18,7 +18,7 @@ void testBasicMiddleware() {
   error.errorCode(100);
   error.severity("ERROR");
 
-  IError next(IError err) @safe { return err; }
+  IError next(IError err) { return err; }
 
   // Test logging middleware
   auto logger = loggingMiddleware();
@@ -40,7 +40,7 @@ void testFilteringMiddleware() {
   error.errorCode(404);
   error.severity("ERROR");
 
-  IError next(IError err) @safe { return err; }
+  IError next(IError err) { return err; }
 
   // Test code blocking
   auto filter = filteringMiddleware()
@@ -88,10 +88,10 @@ void testTransformingMiddleware() {
   error.message("Original message");
   error.severity("WARNING");
 
-  IError next(IError err) @safe { return err; }
+  IError next(IError err) { return err; }
 
   // Test message transformation
-  auto transformer = transformingMiddleware((IError err) @safe {
+  auto transformer = transformingMiddleware((IError err) {
     err.message("Transformed: " ~ err.message());
     return err;
   });
@@ -119,7 +119,7 @@ void testMiddlewarePipeline() {
   auto filter = new FilteringMiddleware();
   filter.priority(50);
   filter.addBlockedCode(999);
-  auto transformer = transformingMiddleware((IError err) @safe {
+  auto transformer = transformingMiddleware((IError err) {
     err.message("[PROCESSED] " ~ err.message());
     return err;
   }).priority(10);
@@ -167,17 +167,17 @@ void testMiddlewarePriority() {
 
   string[] executionOrder;
 
-  auto mid1 = transformingMiddleware((IError err) @safe {
+  auto mid1 = transformingMiddleware((IError err) {
     executionOrder ~= "mid1";
     return err;
   }).priority(10);
 
-  auto mid2 = transformingMiddleware((IError err) @safe {
+  auto mid2 = transformingMiddleware((IError err) {
     executionOrder ~= "mid2";
     return err;
   }).priority(50);
 
-  auto mid3 = transformingMiddleware((IError err) @safe {
+  auto mid3 = transformingMiddleware((IError err) {
     executionOrder ~= "mid3";
     return err;
   }).priority(100);
@@ -209,9 +209,9 @@ void testMiddlewareEnableDisable() {
   error.message("Test");
   error.severity("ERROR");
 
-  IError next(IError err) @safe { return err; }
+  IError next(IError err) { return err; }
 
-  auto middleware = transformingMiddleware((IError err) @safe {
+  auto middleware = transformingMiddleware((IError err) {
     err.message("TRANSFORMED");
     return err;
   });

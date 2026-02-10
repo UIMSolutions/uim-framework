@@ -40,12 +40,12 @@ struct TemporaryFile {
     }
     
     /// Get file path
-    string path() const @safe {
+    string path() const {
         return _path;
     }
     
     /// Disable auto-deletion
-    void keep() @safe {
+    void keep() {
         _autoDelete = false;
     }
     
@@ -100,12 +100,12 @@ struct TemporaryDirectory {
     }
     
     /// Get directory path
-    string path() const @safe {
+    string path() const {
         return _path;
     }
     
     /// Disable auto-deletion
-    void keep() @safe {
+    void keep() {
         _autoDelete = false;
     }
     

@@ -23,7 +23,7 @@ struct ApiKey {
 }
 
 /// Validates provided API key values against allowed keys.
-bool validateApiKey(ApiKey[] allowed, string providedId, string providedSecret) @safe {
+bool validateApiKey(ApiKey[] allowed, string providedId, string providedSecret) {
   foreach (key; allowed) {
     if (constantTimeEquals(key.id, providedId) && constantTimeEquals(key.secret, providedSecret)) {
       return true;

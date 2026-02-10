@@ -16,7 +16,7 @@ import std.conv : to;
 abstract class BaseElement : IVisitorElement {
     protected string _name;
     
-    this(string elementName) @safe {
+    this(string elementName) {
         _name = elementName;
     }
     
@@ -93,7 +93,7 @@ interface IShape : IVisitorElement {
 class Circle : BaseElement, IShape {
     private double _radius;
     
-    this(string name, double radius) @safe {
+    this(string name, double radius) {
         super(name);
         _radius = radius;
     }
@@ -118,7 +118,7 @@ class Rectangle : BaseElement, IShape {
     private double _width;
     private double _height;
     
-    this(string name, double width, double height) @safe {
+    this(string name, double width, double height) {
         super(name);
         _width = width;
         _height = height;
@@ -148,7 +148,7 @@ class Triangle : BaseElement, IShape {
     private double _base;
     private double _height;
     
-    this(string name, double base, double height) @safe {
+    this(string name, double base, double height) {
         super(name);
         _base = base;
         _height = height;
@@ -177,7 +177,7 @@ class Triangle : BaseElement, IShape {
 class AreaCalculator : BaseVisitor {
     private double _totalArea;
     
-    this() @safe {
+    this() {
         _totalArea = 0.0;
     }
     
@@ -200,7 +200,7 @@ class AreaCalculator : BaseVisitor {
 class PerimeterCalculator : BaseVisitor {
     private double _totalPerimeter;
     
-    this() @safe {
+    this() {
         _totalPerimeter = 0.0;
     }
     
@@ -251,7 +251,7 @@ class DrawingVisitor : BaseVisitor {
  * File system element.
  */
 abstract class FileSystemElement : BaseElement {
-    this(string name) @safe {
+    this(string name) {
         super(name);
     }
 }
@@ -262,7 +262,7 @@ abstract class FileSystemElement : BaseElement {
 class FileElement : FileSystemElement {
     private size_t _size;
     
-    this(string name, size_t size) @safe {
+    this(string name, size_t size) {
         super(name);
         _size = size;
     }
@@ -282,7 +282,7 @@ class FileElement : FileSystemElement {
 class DirectoryElement : FileSystemElement {
     private FileSystemElement[] _children;
     
-    this(string name) @safe {
+    this(string name) {
         super(name);
     }
     
@@ -314,7 +314,7 @@ class DirectoryElement : FileSystemElement {
 class SizeCalculator : BaseVisitor {
     private size_t _totalSize;
     
-    this() @safe {
+    this() {
         _totalSize = 0;
     }
     
@@ -338,7 +338,7 @@ class FileCounter : BaseVisitor {
     private size_t _fileCount;
     private size_t _dirCount;
     
-    this() @safe {
+    this() {
         _fileCount = 0;
         _dirCount = 0;
     }
@@ -369,7 +369,7 @@ class FileLister : BaseVisitor {
     private string[] _listings;
     private int _depth;
     
-    this() @safe {
+    this() {
         _depth = 0;
     }
     
@@ -409,7 +409,7 @@ interface IExpression : IVisitorElement {
 class NumberExpression : BaseElement, IExpression {
     private double _value;
     
-    this(double value) @safe {
+    this(double value) {
         super("Number");
         _value = value;
     }
@@ -430,7 +430,7 @@ class AddExpression : BaseElement, IExpression {
     private IExpression _left;
     private IExpression _right;
     
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super("Add");
         _left = left;
         _right = right;
@@ -458,7 +458,7 @@ class MultiplyExpression : BaseElement, IExpression {
     private IExpression _left;
     private IExpression _right;
     
-    this(IExpression left, IExpression right) @safe {
+    this(IExpression left, IExpression right) {
         super("Multiply");
         _left = left;
         _right = right;
@@ -517,7 +517,7 @@ class ExpressionEvaluator : BaseVisitor {
 @safe unittest {
     // Test basic element
     class TestElement : BaseElement {
-        this() @safe { super("Test"); }
+        this() { super("Test"); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }
@@ -530,7 +530,7 @@ class ExpressionEvaluator : BaseVisitor {
 @safe unittest {
     // Test object structure
     class Elem : BaseElement {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void accept(IVisitor visitor) {
             visitor.visit(this);
         }

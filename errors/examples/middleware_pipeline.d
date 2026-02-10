@@ -27,7 +27,7 @@ void main() {
   pipeline.add(filter);
 
   // Add transforming middleware (low priority, executes last)
-  auto transformer = transformingMiddleware((IError err) @safe {
+  auto transformer = transformingMiddleware((IError err) {
     // Add prefix to error message
     err.message("[TRANSFORMED] " ~ err.message());
     return err;

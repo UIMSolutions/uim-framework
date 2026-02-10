@@ -31,7 +31,7 @@ unittest {
 
   string keys;
   int valuesSum = 0;
-  every(items, (string key, int value) @safe {
+  every(items, (string key, int value) {
     keys ~= key ~ ",";
     valuesSum += value;
   });
@@ -41,7 +41,7 @@ unittest {
   // Test with empty associative array and key-value delegate
   int[string] emptyItems;
   int callCount = 0;
-  every(emptyItems, (string key, int value) @safe { callCount++; });
+  every(emptyItems, (string key, int value) { callCount++; });
   assert(callCount == 0);
 
   // Test with different value type and key-value delegate
@@ -51,7 +51,7 @@ unittest {
   items2[3] = "three";
 
   string kvResult;
-  items2.every((int key, string value) @safe {
+  items2.every((int key, string value) {
     kvResult ~= to!string(key) ~ ":" ~ value ~ ",";
   });
   assert(kvResult.countUntil("one") != -1 && kvResult.countUntil("two") != -1 && kvResult.countUntil(
@@ -61,7 +61,7 @@ unittest {
   int[string] items3 = ["x": 10, "y": 20];
   string[] keysArr;
   int[] valuesArr;
-  every(items3, (string key, int value) @safe {
+  every(items3, (string key, int value) {
     keysArr ~= key;
     valuesArr ~= value;
   });
@@ -89,19 +89,19 @@ unittest {
   items["c"] = 3;
 
   int sum = 0;
-  every(items, (int value) @safe { sum += value; });
+  every(items, (int value) { sum += value; });
   assert(sum == 6);
 
   // Test with empty associative array
   int[string] emptyItems;
   int count = 0;
-  emptyItems.every((int value) @safe { count++; });
+  emptyItems.every((int value) { count++; });
   assert(count == 0);
 
   // Test with custom delegate capturing values
   int[string] items3 = ["x": 10, "y": 20];
   int[] values;
-  items3.every((int value) @safe { values ~= value; });
+  items3.every((int value) { values ~= value; });
   assert(values == [10, 20] || values == [20, 10]); // order not guaranteed
 }
 
@@ -124,13 +124,13 @@ unittest {
   items["c"] = 3;
 
   string keys;
-  everyKey(items, (string key) @safe { keys ~= key ~ ","; });
+  everyKey(items, (string key) { keys ~= key ~ ","; });
   assert(keys == "a,b,c," || keys == "b,a,c," || keys == "c,a,b," || keys == "a,c,b," || keys == "b,c,a," || keys == "c,b,a,");
 
   // Test everyKey with empty associative array
   int[string] emptyItems;
   int callCount = 0;
-  everyKey(emptyItems, (string key) @safe { callCount++; });
+  everyKey(emptyItems, (string key) { callCount++; });
   assert(callCount == 0);
 
   // Test everyKey with string[int] associative array
@@ -140,7 +140,7 @@ unittest {
   items2[3] = "three";
 
   int[] keysArr;
-  everyKey(items2, (int key) @safe { keysArr ~= key; });
+  everyKey(items2, (int key) { keysArr ~= key; });
   assert(keysArr.length == 3);
   assert(keysArr.sort.array == [1, 2, 3]);
 }
@@ -164,13 +164,13 @@ unittest {
   items["c"] = 3;
 
   int sum = 0;
-  items.everyValue((int value) @safe { sum += value; });
+  items.everyValue((int value) { sum += value; });
   assert(sum == 6);
 
   // Test with empty associative array
   int[string] emptyItems;
   int count = 0;
-  everyValue(emptyItems, (int value) @safe { count++; });
+  everyValue(emptyItems, (int value) { count++; });
   assert(count == 0);
 
   // Test with string[int] associative array
@@ -180,14 +180,14 @@ unittest {
   items2[3] = "three";
 
   string result;
-  items2.everyValue((string value) @safe { result ~= value ~ ","; });
+  items2.everyValue((string value) { result ~= value ~ ","; });
   assert(result.countUntil("one") != -1 && result.countUntil("two") != -1 && result.countUntil(
       "three") != -1);
 
   // Test with custom delegate capturing values into array
   int[string] items3 = ["x": 10, "y": 20];
   int[] values;
-  items3.everyValue((int value) @safe { values ~= value; });
+  items3.everyValue((int value) { values ~= value; });
   assert(values.length == 2);
   assert(values.sort.array == [10, 20]);
 }

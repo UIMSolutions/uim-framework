@@ -16,7 +16,7 @@ mixin(ShowModule!());
 class MacroCommand : BaseCommand, IMacroCommand {
     private ICommand[] _commands;
     
-    this(string name) @safe {
+    this(string name) {
         super(name);
     }
     
@@ -34,7 +34,7 @@ class MacroCommand : BaseCommand, IMacroCommand {
         }
     }
 
-    bool execute(Json[string] options = null) @safe {
+    bool execute(Json[string] options = null) {
         foreach (command; _commands) {
             if (auto undoable = cast(IUndoableCommand) command) {
                 undoable.execute(options);
@@ -45,7 +45,7 @@ class MacroCommand : BaseCommand, IMacroCommand {
         return true;
     }
 
-    CommandResult executeWithResult(Json[string] options = null) @safe {
+    CommandResult executeWithResult(Json[string] options = null) {
         int totalCommands = cast(int)_commands.length;
         int successCount = 0;
         bool hadFailure = false;
@@ -78,11 +78,11 @@ class MacroCommand : BaseCommand, IMacroCommand {
         return CommandResult(allSuccess, message, data);
     }
 
-    bool validateParameters(Json[string] options = null) @safe {
+    bool validateParameters(Json[string] options = null) {
         return true;
     }
 
-    bool canExecute(Json[string] options = null) @safe {
+    bool canExecute(Json[string] options = null) {
         return true;
     }
 

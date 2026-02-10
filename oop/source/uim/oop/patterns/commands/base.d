@@ -17,7 +17,7 @@ mixin(ShowModule!());
 abstract class BaseCommand : UIMObject, ICommand {
     protected string _name;
     
-    this(string commandName) @safe {
+    this(string commandName) {
         _name = commandName;
     }
     

@@ -37,7 +37,7 @@ public:
     }
   }
 
-  double[] forward(const double[] input) @safe {
+  double[] forward(const double[] input) {
     enforce(input.length == inputSize, "Input size does not match layer expectation");
     lastInput = input.dup;
 
@@ -46,13 +46,13 @@ public:
     return lastOutput;
   }
 
-  double[] infer(const double[] input) const @safe {
+  double[] infer(const double[] input) const {
     enforce(input.length == inputSize, "Input size does not match layer expectation");
     auto z = computeLinear(input);
     return applyActivation(activation, z);
   }
 
-  double[] backward(const double[] gradOutput, double learningRate) @safe {
+  double[] backward(const double[] gradOutput, double learningRate) {
     enforce(gradOutput.length == outputSize, "Gradient size does not match layer output");
     enforce(lastInput.length == inputSize, "Layer must run forward before backward");
 
@@ -87,7 +87,7 @@ public:
   double[] bias;
 
 private:
-  double[] computeLinear(const double[] input) const @safe {
+  double[] computeLinear(const double[] input) const {
     auto z = new double[outputSize];
     foreach (o; 0 .. outputSize) {
       double sum = bias[o];

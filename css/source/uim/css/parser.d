@@ -17,7 +17,7 @@ import uim.css.types;
  * Exception thrown when CSS parsing fails
  */
 class CSSParseException : Exception {
-    this(string msg, string file = __FILE__, size_t line = __LINE__) pure nothrow @safe {
+    this(string msg, string file = __FILE__, size_t line = __LINE__) pure nothrow {
         super(msg, file, line);
     }
 }
@@ -29,7 +29,7 @@ class CSSParser {
     private string source;
     private size_t pos;
     
-    this(string source) pure nothrow @safe {
+    this(string source) pure nothrow {
         this.source = source;
         this.pos = 0;
     }
@@ -37,7 +37,7 @@ class CSSParser {
     /**
      * Parses the CSS and returns a stylesheet
      */
-    CSSStyleSheet parse() @safe {
+    CSSStyleSheet parse() {
         auto sheet = new CSSStyleSheet();
         skipWhitespace();
         
@@ -67,7 +67,7 @@ class CSSParser {
         return sheet;
     }
     
-    private void parseRootVariables(CSSStyleSheet sheet) @safe {
+    private void parseRootVariables(CSSStyleSheet sheet) {
         // Skip ":root"
         pos += 5;
         skipWhitespace();
@@ -91,7 +91,7 @@ class CSSParser {
         }
     }
     
-    private CSSMediaQuery parseMediaQuery() @safe {
+    private CSSMediaQuery parseMediaQuery() {
         // Skip '@media'
         if (!consumeString("@media")) {
             return null;
@@ -148,7 +148,7 @@ class CSSParser {
         return query;
     }
     
-    private CSSRule parseRule() @safe {
+    private CSSRule parseRule() {
         // Parse selectors
         auto selectors = parseSelectors();
         if (selectors.length == 0) {
@@ -184,7 +184,7 @@ class CSSParser {
         return rule;
     }
     
-    private string[] parseSelectors() @safe {
+    private string[] parseSelectors() {
         string[] selectors;
         size_t start = pos;
         
@@ -211,7 +211,7 @@ class CSSParser {
         return selectors;
     }
     
-    private CSSProperty parseProperty() @safe {
+    private CSSProperty parseProperty() {
         // Parse property name
         size_t start = pos;
         while (!isEof() && peek() != ':' && peek() != ';' && peek() != '}') {
@@ -256,7 +256,7 @@ class CSSParser {
         return CSSProperty(name, value, important);
     }
     
-    private void skipWhitespace() pure nothrow @safe {
+    private void skipWhitespace() pure nothrow {
         while (!isEof()) {
             char c = peek();
             if (c == ' ' || c == '\t' || c == '\n' || c == '\r') {
@@ -279,18 +279,18 @@ class CSSParser {
         }
     }
     
-    private char peek() const pure nothrow @safe {
+    private char peek() const pure nothrow {
         if (isEof()) {
             return '\0';
         }
         return source[pos];
     }
     
-    private bool isEof() const pure nothrow @safe {
+    private bool isEof() const pure nothrow {
         return pos >= source.length;
     }
     
-    private bool consumeString(string str) pure nothrow @safe {
+    private bool consumeString(string str) pure nothrow {
         if (pos + str.length <= source.length && source[pos .. pos + str.length] == str) {
             pos += str.length;
             return true;
@@ -302,7 +302,7 @@ class CSSParser {
 /**
  * Convenience function to parse CSS
  */
-CSSStyleSheet parseCSS(string css) @safe {
+CSSStyleSheet parseCSS(string css) {
     auto parser = new CSSParser(css);
     return parser.parse();
 }

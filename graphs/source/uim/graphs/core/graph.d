@@ -17,22 +17,22 @@ class Graph : IGraph {
     private Node[string] _nodes;
     private Edge[] _edges;
 
-    void addNode(INode node) @safe {
+    void addNode(INode node) {
         auto n = cast(Node) node;
         if (n !is null) {
             _nodes[n.id()] = n;
         }
     }
 
-    INode getNode(string id) @safe {
+    INode getNode(string id) {
         return _nodes.get(id, null);
     }
 
-    bool hasNode(string id) const @safe {
+    bool hasNode(string id) const {
         return (id in _nodes) !is null;
     }
 
-    void removeNode(string id) @safe {
+    void removeNode(string id) {
         if (auto node = _nodes.get(id, null)) {
             // Remove all edges connected to this node
             _edges = _edges.filter!(e => e.source() != id && e.target() != id).array;
@@ -40,7 +40,7 @@ class Graph : IGraph {
         }
     }
 
-    INode[] nodes() @safe {
+    INode[] nodes() {
         INode[] result;
         foreach (node; _nodes.values) {
             result ~= node;
@@ -48,7 +48,7 @@ class Graph : IGraph {
         return result;
     }
 
-    void addEdge(IEdge edge) @safe {
+    void addEdge(IEdge edge) {
         auto e = cast(Edge) edge;
         if (e !is null && hasNode(e.source()) && hasNode(e.target())) {
             _edges ~= e;
@@ -59,7 +59,7 @@ class Graph : IGraph {
         }
     }
 
-    IEdge getEdge(string source, string target) @safe {
+    IEdge getEdge(string source, string target) {
         foreach (e; _edges) {
             if (e.source() == source && e.target() == target) {
                 return e;
@@ -71,7 +71,7 @@ class Graph : IGraph {
         return null;
     }
 
-    bool hasEdge(string source, string target) const @safe {
+    bool hasEdge(string source, string target) const {
         foreach (e; _edges) {
             if (e.source() == source && e.target() == target) {
                 return true;
@@ -83,7 +83,7 @@ class Graph : IGraph {
         return false;
     }
 
-    void removeEdge(string source, string target) @safe {
+    void removeEdge(string source, string target) {
         foreach (i, e; _edges) {
             if ((e.source() == source && e.target() == target) ||
                 (!e.directed() && e.source() == target && e.target() == source)) {
@@ -97,7 +97,7 @@ class Graph : IGraph {
         }
     }
 
-    IEdge[] edgesFrom(string nodeId) @safe {
+    IEdge[] edgesFrom(string nodeId) {
         IEdge[] result;
         foreach (e; _edges) {
             if (e.source() == nodeId || (!e.directed() && e.target() == nodeId)) {
@@ -107,7 +107,7 @@ class Graph : IGraph {
         return result;
     }
 
-    IEdge[] edgesTo(string nodeId) @safe {
+    IEdge[] edgesTo(string nodeId) {
         IEdge[] result;
         foreach (e; _edges) {
             if (e.target() == nodeId || (!e.directed() && e.source() == nodeId)) {
@@ -117,7 +117,7 @@ class Graph : IGraph {
         return result;
     }
 
-    IEdge[] edges() @safe {
+    IEdge[] edges() {
         IEdge[] result;
         foreach (e; _edges) {
             result ~= e;
@@ -125,13 +125,13 @@ class Graph : IGraph {
         return result;
     }
 
-    @property size_t nodeCount() const @safe { return _nodes.length; }
+    @property size_t nodeCount() const { return _nodes.length; }
 
-    @property size_t edgeCount() const @safe { return _edges.length; }
+    @property size_t edgeCount() const { return _edges.length; }
 
-    @property bool empty() const @safe { return _nodes.empty && _edges.empty; }
+    @property bool empty() const { return _nodes.empty && _edges.empty; }
 
-    void clear() @safe {
+    void clear() {
         _nodes.clear();
         _edges.clear();
     }

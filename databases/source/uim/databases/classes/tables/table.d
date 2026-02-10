@@ -21,9 +21,9 @@ class Table : UIMObject {
         }
     }
 
-    @property string name() const @safe { return _name; }
+    @property string name() const { return _name; }
     
-    @property string[] columns() const @safe {
+    @property string[] columns() const {
         string[] result;
         foreach(col; _columns) {
             result ~= col.name;
@@ -31,7 +31,7 @@ class Table : UIMObject {
         return result;
     }
     
-    @property ulong rowCount() const @safe { return _rows.length; }
+    @property ulong rowCount() const { return _rows.length; }
 
     /// Insert a single row.
     void insert(TableRow row) {
@@ -114,7 +114,7 @@ class Table : UIMObject {
     }
 
     /// Count rows matching optional filter
-    ulong count(scope bool delegate(const TableRow) @safe filter = null) const @safe {
+    ulong count(scope bool delegate(const TableRow) @safe filter = null) const {
         if (filter is null) return _rows.length;
         
         // Optimization: Manual count avoids array allocation
@@ -186,7 +186,7 @@ class Table : UIMObject {
     }
 
     /// Check if column has an index
-    bool hasIndex(string column) const @safe {
+    bool hasIndex(string column) const {
         return (column in _indexes) !is null;
     }
 

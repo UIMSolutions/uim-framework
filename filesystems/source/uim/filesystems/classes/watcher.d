@@ -44,7 +44,7 @@ class FileSystemWatcher : IFileSystemWatcher {
     private SysTime[string] _lastModified;
     
     /// Create watcher for path
-    this(string path, bool recursive = false) @safe {
+    this(string path, bool recursive = false) {
         enforce(exists(path), "Path does not exist: " ~ path);
         _path = path;
         _recursive = recursive;
@@ -52,7 +52,7 @@ class FileSystemWatcher : IFileSystemWatcher {
     }
     
     /// Set callback for file system events
-    void onEvent(WatchCallback callback) @safe {
+    void onEvent(WatchCallback callback) {
         _callback = callback;
     }
     
@@ -74,12 +74,12 @@ class FileSystemWatcher : IFileSystemWatcher {
     }
     
     /// Stop watching
-    void stop() @safe {
+    void stop() {
         _running = false;
     }
     
     /// Check if watching is active
-    bool isRunning() const @safe {
+    bool isRunning() const {
         return _running;
     }
     
@@ -154,7 +154,7 @@ class FileSystemWatcher : IFileSystemWatcher {
 }
 
 /// Create file system watcher
-FileSystemWatcher createWatcher(string path, bool recursive = false) @safe {
+FileSystemWatcher createWatcher(string path, bool recursive = false) {
     return new FileSystemWatcher(path, recursive);
 }
 

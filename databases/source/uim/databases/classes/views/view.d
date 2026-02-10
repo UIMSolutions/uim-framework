@@ -20,37 +20,37 @@ class TableView : UIMObject {
     private ulong _limit = 0;
     private ulong _offset = 0;
 
-    this(Table table) @safe {
+    this(Table table) {
         enforce(table !is null, "Table cannot be null");
         _table = table;
     }
 
     /// Configure filtering predicate.
-    TableView where(bool delegate(const TableRow) @safe filter) @safe {
+    TableView where(bool delegate(const TableRow) @safe filter) {
         _filter = filter;
         return this;
     }
 
     /// Configure ordering.
-    TableView orderBy(string column, bool ascending = true) @safe {
+    TableView orderBy(string column, bool ascending = true) {
         _orderBy = column;
         _ascending = ascending;
         return this;
     }
 
     /// Configure pagination.
-    TableView limit(ulong count) @safe {
+    TableView limit(ulong count) {
         _limit = count;
         return this;
     }
 
-    TableView offset(ulong count) @safe {
+    TableView offset(ulong count) {
         _offset = count;
         return this;
     }
 
     /// Reset all view parameters.
-    TableView reset() @safe {
+    TableView reset() {
         _filter = null;
         _orderBy = "";
         _ascending = true;
@@ -65,12 +65,12 @@ class TableView : UIMObject {
     }
 
     /// Count rows after applying filter.
-    ulong count() @safe {
+    ulong count() {
         return _table.count(_filter);
     }
 
     /// Get the underlying table.
-    @property Table table() @safe {
+    @property Table table() {
         return _table;
     }
 }

@@ -38,7 +38,7 @@ class TestRunner : UIMObject {
     foreach (suite; _suites) {
       reportSuiteStart(suite);
 
-      suite.run((bool success, TestResult[] testResults) @safe {
+      suite.run((bool success, TestResult[] testResults) {
         completed++;
 
         TestSuiteResult suiteResult = new TestSuiteResult();
@@ -82,7 +82,7 @@ class TestRunner : UIMObject {
   void runAsync(void delegate(bool success, TestSuiteResult[] results) @safe callback) @trusted {
     // Run with async support using vibe.d
     runInTask({
-      run((bool success, TestSuiteResult[] results) @safe {
+      run((bool success, TestSuiteResult[] results) {
         callback(success, results);
       });
     });
@@ -129,7 +129,7 @@ void runTests(ITestSuite suite, void delegate(bool success, TestSuiteResult resu
   runner.addSuite(suite);
   runner.addReporter(new ConsoleReporter());
 
-  runner.run((bool success, TestSuiteResult[] results) @safe {
+  runner.run((bool success, TestSuiteResult[] results) {
     if (results.length > 0) {
       callback(success, results[0]);
     } else {

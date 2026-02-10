@@ -56,7 +56,7 @@ private:
     SysTime lastUpdated;
   }
 
-  void refill(ref TokenBucket bucket, SysTime now) @safe {
+  void refill(ref TokenBucket bucket, SysTime now) {
     auto elapsed = now - bucket.lastUpdated;
     bucket.lastUpdated = now;
 

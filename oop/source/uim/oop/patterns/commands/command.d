@@ -105,7 +105,7 @@ class TextEditorReceiver : IReceiver {
     private string _text;
     private string[] _actionLog;
 
-    this() @safe {
+    this() {
         _text = "";
     }
 
@@ -144,7 +144,7 @@ class DeleteTextCommand : DUndoableCommand {
     private size_t _length;
     private string _deletedText;
 
-    this(TextEditorReceiver editor, size_t length) @safe {
+    this(TextEditorReceiver editor, size_t length) {
         super(); // super("DeleteText");
         _editor = editor;
         _length = length;
@@ -175,7 +175,7 @@ class Light {
     private bool _isOn;
     private int _brightness;
 
-    this(string name) @safe {
+    this(string name) {
         _name = name;
         _isOn = false;
         _brightness = 0;
@@ -216,7 +216,7 @@ class Light {
 class LightOnCommand : DUndoableCommand {
     private Light _light;
 
-    this(Light light) @safe {
+    this(Light light) {
         super(); // super("LightOn");
         _light = light;
     }
@@ -239,7 +239,7 @@ class LightOnCommand : DUndoableCommand {
 class LightOffCommand : DUndoableCommand {
     private Light _light;
 
-    this(Light light) @safe {
+    this(Light light) {
         super(); // super("LightOff");
         _light = light;
     }
@@ -265,7 +265,7 @@ class SetBrightnessCommand : DUndoableCommand {
     private int _newBrightness;
     private int _oldBrightness;
 
-    this(Light light, int brightness) @safe {
+    this(Light light, int brightness) {
         super(); // super("SetBrightness");
         _light = light;
         _newBrightness = brightness;

@@ -18,15 +18,15 @@ class DataCache : UIMObject {
     _maxSize = maxCacheSize;
   }
 
-  void enable() @safe {
+  void enable() {
     _enabled = true;
   }
 
-  void disable() @safe {
+  void disable() {
     _enabled = false;
   }
 
-  void set(string key, Json value, size_t ttl = 3600) @safe {
+  void set(string key, Json value, size_t ttl = 3600) {
     if (!_enabled) return;
 
     if (_cache.length >= _maxSize) {
@@ -37,7 +37,7 @@ class DataCache : UIMObject {
     _cache[key] = new CacheEntry(key, value, ttl);
   }
 
-  Json get(string key) @safe {
+  Json get(string key) {
     if (!_enabled) return Json(null);
 
     if (auto ptr = key in _cache) {
@@ -51,7 +51,7 @@ class DataCache : UIMObject {
     return Json(null);
   }
 
-  bool has(string key) @safe {
+  bool has(string key) {
     if (!_enabled) return false;
 
     if (auto ptr = key in _cache) {
@@ -64,23 +64,23 @@ class DataCache : UIMObject {
     return false;
   }
 
-  void remove(string key) @safe {
+  void remove(string key) {
     _cache.remove(key);
   }
 
-  void clear() @safe {
+  void clear() {
     _cache = null;
   }
 
-  size_t size() @safe {
+  size_t size() {
     return _cache.length;
   }
 
-  void setMaxSize(size_t maxSize) @safe {
+  void setMaxSize(size_t maxSize) {
     _maxSize = maxSize;
   }
 
-  protected void evictOldest() @safe {
+  protected void evictOldest() {
     string oldestKey = "";
     SysTime oldestTime = Clock.currTime();
 
@@ -96,7 +96,7 @@ class DataCache : UIMObject {
     }
   }
 
-  void cleanExpired() @safe {
+  void cleanExpired() {
     string[] keysToRemove;
 
     foreach (key, entry; _cache) {
@@ -111,7 +111,7 @@ class DataCache : UIMObject {
   }
 
   // Stats
-  long getTotalHits() @safe {
+  long getTotalHits() {
     long total = 0;
     foreach (entry; _cache.byValue()) {
       total += entry.hitCount;
@@ -119,7 +119,7 @@ class DataCache : UIMObject {
     return total;
   }
 
-  double getHitRate() @safe {
+  double getHitRate() {
     if (_cache.length == 0) return 0.0;
     long hits = getTotalHits();
     long total = hits + _cache.length;

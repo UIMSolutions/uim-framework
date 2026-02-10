@@ -85,7 +85,7 @@ class Optimizer : UIMObject, IOptimizer {
     _passes ~= deadCode;
   }
 
-  protected static ASTNode constantFoldingPass(ASTNode node) @safe {
+  protected static ASTNode constantFoldingPass(ASTNode node) {
     // Simplified constant folding
     if (node.type == ASTNodeType.BinaryExpression && 
         node.children.length == 2) {
@@ -108,7 +108,7 @@ class Optimizer : UIMObject, IOptimizer {
     return node;
   }
 
-  protected static ASTNode deadCodePass(ASTNode node) @safe {
+  protected static ASTNode deadCodePass(ASTNode node) {
     // Simplified dead code elimination
     // In a real implementation, this would remove unreachable code
 

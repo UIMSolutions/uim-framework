@@ -23,7 +23,7 @@ class SinglePointCrossover : ICrossoverOperator {
     _rate = rate;
   }
 
-  override IIndividual[] crossover(IIndividual parent1, IIndividual parent2) @safe {
+  override IIndividual[] crossover(IIndividual parent1, IIndividual parent2) {
     IIndividual[] offspring;
 
     if (uniform(0.0, 1.0) > _rate) {
@@ -58,11 +58,11 @@ class SinglePointCrossover : ICrossoverOperator {
     return offspring;
   }
 
-  override double rate() @safe {
+  override double rate() {
     return _rate;
   }
 
-  override void rate(double value) @safe {
+  override void rate(double value) {
     _rate = value;
   }
 }
@@ -80,7 +80,7 @@ class TwoPointCrossover : ICrossoverOperator {
     _rate = rate;
   }
 
-  override IIndividual[] crossover(IIndividual parent1, IIndividual parent2) @safe {
+  override IIndividual[] crossover(IIndividual parent1, IIndividual parent2) {
     IIndividual[] offspring;
 
     if (uniform(0.0, 1.0) > _rate) {
@@ -112,11 +112,11 @@ class TwoPointCrossover : ICrossoverOperator {
     return offspring;
   }
 
-  override double rate() @safe {
+  override double rate() {
     return _rate;
   }
 
-  override void rate(double value) @safe {
+  override void rate(double value) {
     _rate = value;
   }
 }

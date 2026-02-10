@@ -77,22 +77,22 @@ void main() {
     
     // Define states for a vending machine
     class IdleState : BaseState {
-        this() @safe { super("Idle"); }
+        this() { super("Idle"); }
         override void handle() {}
     }
     
     class HasMoneyState : BaseState {
-        this() @safe { super("HasMoney"); }
+        this() { super("HasMoney"); }
         override void handle() {}
     }
     
     class DispensingState : BaseState {
-        this() @safe { super("Dispensing"); }
+        this() { super("Dispensing"); }
         override void handle() {}
     }
     
     class OutOfStockState : BaseState {
-        this() @safe { super("OutOfStock"); }
+        this() { super("OutOfStock"); }
         override void handle() {}
     }
     
@@ -147,27 +147,27 @@ void main() {
     auto orderMachine = new StateMachine();
     
     class NewOrderState : BaseState {
-        this() @safe { super("New"); }
+        this() { super("New"); }
         override void handle() {}
     }
     
     class ProcessingState : BaseState {
-        this() @safe { super("Processing"); }
+        this() { super("Processing"); }
         override void handle() {}
     }
     
     class ShippedState : BaseState {
-        this() @safe { super("Shipped"); }
+        this() { super("Shipped"); }
         override void handle() {}
     }
     
     class DeliveredState : BaseState {
-        this() @safe { super("Delivered"); }
+        this() { super("Delivered"); }
         override void handle() {}
     }
     
     class CancelledState : BaseState {
-        this() @safe { super("Cancelled"); }
+        this() { super("Cancelled"); }
         override void handle() {}
     }
     
@@ -206,21 +206,21 @@ void main() {
     writeln("6. Context-Based State Management:");
     
     class LightOffState : BaseState {
-        this() @safe { super("Off"); }
+        this() { super("Off"); }
         override void handle() {
             writeln("     [State] Lights are OFF");
         }
     }
     
     class LightOnState : BaseState {
-        this() @safe { super("On"); }
+        this() { super("On"); }
         override void handle() {
             writeln("     [State] Lights are ON");
         }
     }
     
     class LightDimState : BaseState {
-        this() @safe { super("Dimmed"); }
+        this() { super("Dimmed"); }
         override void handle() {
             writeln("     [State] Lights are DIMMED");
         }
@@ -277,22 +277,22 @@ void main() {
     auto playerMachine = new StateMachine();
     
     class StandingState : BaseState {
-        this() @safe { super("Standing"); }
+        this() { super("Standing"); }
         override void handle() {}
     }
     
     class RunningState : BaseState {
-        this() @safe { super("Running"); }
+        this() { super("Running"); }
         override void handle() {}
     }
     
     class JumpingState : BaseState {
-        this() @safe { super("Jumping"); }
+        this() { super("Jumping"); }
         override void handle() {}
     }
     
     class CrouchingState : BaseState {
-        this() @safe { super("Crouching"); }
+        this() { super("Crouching"); }
         override void handle() {}
     }
     

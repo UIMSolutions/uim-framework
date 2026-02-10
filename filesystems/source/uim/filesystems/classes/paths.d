@@ -14,12 +14,12 @@ import std.string : strip;
 @safe:
 
 /// Normalize path (resolve . and .., convert separators)
-string normalizePath(string path) @safe {
+string normalizePath(string path) {
     return buildNormalizedPath(path);
 }
 
 /// Join path components
-string joinPaths(string[] components...) @safe {
+string joinPaths(string[] components...) {
     return buildPath(components);
 }
 
@@ -37,42 +37,42 @@ string relativePath(string target, string base = null) @trusted {
 }
 
 /// Get directory name (parent directory)
-string directoryName(string path) @safe {
+string directoryName(string path) {
     return dirName(path);
 }
 
 /// Get base name (file name with extension)
-string baseName(string path) @safe {
+string baseName(string path) {
     return std.path.baseName(path);
 }
 
 /// Get file name without extension
-string fileNameWithoutExtension(string path) @safe {
+string fileNameWithoutExtension(string path) {
     return stripExtension(baseName(path));
 }
 
 /// Get file extension (including dot)
-string fileExtension(string path) @safe {
+string fileExtension(string path) {
     return extension(path);
 }
 
 /// Change file extension
-string changeExtension(string path, string newExt) @safe {
+string changeExtension(string path, string newExt) {
     return setExtension(path, newExt);
 }
 
 /// Remove file extension
-string removeExtension(string path) @safe {
+string removeExtension(string path) {
     return stripExtension(path);
 }
 
 /// Check if path is absolute
-bool isAbsolutePath(string path) @safe {
+bool isAbsolutePath(string path) {
     return std.path.isAbsolute(path);
 }
 
 /// Check if path is relative
-bool isRelativePath(string path) @safe {
+bool isRelativePath(string path) {
     return !isAbsolutePath(path);
 }
 
@@ -95,17 +95,17 @@ bool pathExists(string path) @trusted nothrow {
 }
 
 /// Split path into components
-string[] splitPath(string path) @safe {
+string[] splitPath(string path) {
     return pathSplitter(path).array;
 }
 
 /// Get drive/root from path (Windows: C:, Unix: /)
-string driveName(string path) @safe {
+string driveName(string path) {
     return std.path.driveName(path);
 }
 
 /// Strip drive/root from path
-string stripDrive(string path) @safe {
+string stripDrive(string path) {
     return std.path.stripDrive(path);
 }
 
@@ -115,7 +115,7 @@ string expandTilde(string path) @trusted {
 }
 
 /// Get common prefix of multiple paths
-string commonPrefix(string[] paths) @safe {
+string commonPrefix(string[] paths) {
     if (paths.length == 0) return "";
     if (paths.length == 1) return paths[0];
     
@@ -160,17 +160,17 @@ bool isUnderPath(string child, string parent) @trusted {
 }
 
 /// Clean path (remove redundant separators, etc.)
-string cleanPath(string path) @safe {
+string cleanPath(string path) {
     return buildNormalizedPath(path);
 }
 
 /// Get path depth (number of components)
-size_t pathDepth(string path) @safe {
+size_t pathDepth(string path) {
     return splitPath(path).length;
 }
 
 /// Compare two paths (case-sensitive or insensitive based on OS)
-bool pathsEqual(string path1, string path2) @safe {
+bool pathsEqual(string path1, string path2) {
     version (Windows) {
         import std.uni : toLower;
         return normalizePath(path1).toLower() == normalizePath(path2).toLower();

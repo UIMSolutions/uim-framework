@@ -18,45 +18,45 @@ interface IIndividual {
    * Get the fitness score of this individual.
    * Higher values represent better solutions.
    */
-  double fitness() @safe;
+  double fitness();
 
   /**
    * Set the fitness score.
    */
-  void fitness(double value) @safe;
+  void fitness(double value);
 
   /**
    * Get the genome (genetic material) as bytes.
    */
-  const(ubyte)[] genome() @safe;
+  const(ubyte)[] genome();
 
   /**
    * Set the genome.
    */
-  void genome(ubyte[] genes) @safe;
+  void genome(ubyte[] genes);
 
   /**
    * Get genome length in bits/bytes.
    */
-  size_t genomeLength() @safe;
+  size_t genomeLength();
 
   /**
    * Check if fitness has been evaluated.
    */
-  bool isEvaluated() @safe;
+  bool isEvaluated();
 
   /**
    * Clone this individual.
    */
-  IIndividual clone() @safe;
+  IIndividual clone();
 
   /**
    * Get individual as Json for serialization.
    */
-  Json toJson() @safe;
+  Json toJson();
 
   /**
    * Create individual from Json.
    */
-  static IIndividual fromJson(Json data) @safe;
+  static IIndividual fromJson(Json data);
 }

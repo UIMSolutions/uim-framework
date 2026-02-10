@@ -589,7 +589,7 @@ auto query = new SQLQueryBuilder(db)
     .where("age > ?", ["age": Json(18)])
     .orderBy("name", "ASC");
 
-query.get((bool success, Json[] results) @safe {
+query.get((bool success, Json[] results) {
     if (success) {
         foreach (row; results) {
             writeln("User: ", row["name"]);
@@ -603,11 +603,11 @@ query.get((bool success, Json[] results) @safe {
 auto user = new User();
 user.database(db);
 
-user.find(1, (bool success, IEntity entity) @safe {
+user.find(1, (bool success, IEntity entity) {
     if (success) {
         User u = cast(User) entity;
         u.email = "newemail@example.com";
-        u.save((bool saved) @safe {
+        u.save((bool saved) {
             if (saved) {
                 writeln("User updated");
             }

@@ -44,7 +44,7 @@ class FieldMapper : UIMObject {
   string fromField() { return _from; }
   string toField() { return _to; }
 
-  Json mapValue(Json value) @safe {
+  Json mapValue(Json value) {
     if (_transformer !is null) {
       return _transformer.transform(value);
     }
@@ -70,7 +70,7 @@ class DataTransformer : UIMObject {
     _mappings ~= new FieldMapper(from, to, transformer);
   }
 
-  Json transformRecord(Json record) @safe {
+  Json transformRecord(Json record) {
     Json result = Json.emptyObject();
 
     if (record.type == Json.Type.object) {
@@ -92,7 +92,7 @@ class DataTransformer : UIMObject {
     return result;
   }
 
-  Json[] transformRecords(Json[] records) @safe {
+  Json[] transformRecords(Json[] records) {
     Json[] results;
     foreach (record; records) {
       results ~= transformRecord(record);
@@ -123,7 +123,7 @@ class StringTransformer : UIMObject, ITransformer {
     _type = type;
   }
 
-  Json transform(Json value) @safe {
+  Json transform(Json value) {
     if (value.type != Json.Type.string) {
       return value;
     }
@@ -149,7 +149,7 @@ class StringTransformer : UIMObject, ITransformer {
     }
   }
 
-  Json[] transformArray(Json[] values) @safe {
+  Json[] transformArray(Json[] values) {
     Json[] results;
     foreach (value; values) {
       results ~= transform(value);
@@ -169,7 +169,7 @@ class NumberTransformer : UIMObject, ITransformer {
     _decimalPlaces = decimals;
   }
 
-  Json transform(Json value) @safe {
+  Json transform(Json value) {
     if (value.type == Json.Type.float_ || value.type == Json.Type.int_) {
       double num = value.to!double;
       import std.format : format;
@@ -179,7 +179,7 @@ class NumberTransformer : UIMObject, ITransformer {
     return value;
   }
 
-  Json[] transformArray(Json[] values) @safe {
+  Json[] transformArray(Json[] values) {
     Json[] results;
     foreach (value; values) {
       results ~= transform(value);

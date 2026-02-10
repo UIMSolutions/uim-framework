@@ -206,7 +206,7 @@ void example6_ChainBuilder() {
     class NumberHandler : BaseHandler {
         int number;
         
-        this(int n) @safe {
+        this(int n) {
             number = n;
         }
         

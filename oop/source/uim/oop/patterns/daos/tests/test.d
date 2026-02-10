@@ -18,7 +18,7 @@ class Product {
   double price;
   int stock;
 
-  this(string name, double price, int stock) @safe {
+  this(string name, double price, int stock) {
     this.name = name;
     this.price = price;
     this.stock = stock;
@@ -32,14 +32,14 @@ class Customer {
   string email;
   bool active;
 
-  this(string firstName, string lastName, string email) @safe {
+  this(string firstName, string lastName, string email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.active = true;
   }
 
-  string fullName() const @safe {
+  string fullName() const {
     return firstName ~ " " ~ lastName;
   }
 }

@@ -5,7 +5,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test base state creation
     class SimpleState : BaseState {
-        this() @safe { super("SimpleState"); }
+        this() { super("SimpleState"); }
         override void handle() {}
     }
     
@@ -17,7 +17,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state name property
     class NamedState : BaseState {
-        this(string name) @safe { super(name); }
+        this(string name) { super(name); }
         override void handle() {}
     }
     
@@ -28,7 +28,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test context with initial state
     class InitialState : BaseState {
-        this() @safe { super("Initial"); }
+        this() { super("Initial"); }
         override void handle() {}
     }
     
@@ -42,12 +42,12 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state transition in context
     class StateOne : BaseState {
-        this() @safe { super("One"); }
+        this() { super("One"); }
         override void handle() {}
     }
     
     class StateTwo : BaseState {
-        this() @safe { super("Two"); }
+        this() { super("Two"); }
         override void handle() {}
     }
     
@@ -64,17 +64,17 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test context history tracking
     class SA : BaseState {
-        this() @safe { super("A"); }
+        this() { super("A"); }
         override void handle() {}
     }
     
     class SB : BaseState {
-        this() @safe { super("B"); }
+        this() { super("B"); }
         override void handle() {}
     }
     
     class SC : BaseState {
-        this() @safe { super("C"); }
+        this() { super("C"); }
         override void handle() {}
     }
     
@@ -99,7 +99,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state machine register state
     class State1 : BaseState {
-        this() @safe { super("State1"); }
+        this() { super("State1"); }
         override void handle() {}
     }
     
@@ -116,7 +116,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state machine initial state
     class InitState : BaseState {
-        this() @safe { super("Init"); }
+        this() { super("Init"); }
         override void handle() {}
     }
     
@@ -130,12 +130,12 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state machine transitions
     class Alpha : BaseState {
-        this() @safe { super("Alpha"); }
+        this() { super("Alpha"); }
         override void handle() {}
     }
     
     class Beta : BaseState {
-        this() @safe { super("Beta"); }
+        this() { super("Beta"); }
         override void handle() {}
     }
     
@@ -153,12 +153,12 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test state machine transition execution
     class S1 : BaseState {
-        this() @safe { super("S1"); }
+        this() { super("S1"); }
         override void handle() {}
     }
     
     class S2 : BaseState {
-        this() @safe { super("S2"); }
+        this() { super("S2"); }
         override void handle() {}
     }
     
@@ -177,7 +177,7 @@ import uim.oop.patterns.states;
 @safe unittest {
     // Test invalid transition
     class Valid : BaseState {
-        this() @safe { super("Valid"); }
+        this() { super("Valid"); }
         override void handle() {}
     }
     
@@ -310,7 +310,7 @@ import uim.oop.patterns.states;
         bool entered = false;
         bool exited = false;
         
-        this() @safe { super("Tracked"); }
+        this() { super("Tracked"); }
         
         override void handle() {}
         
@@ -336,17 +336,17 @@ import uim.oop.patterns.states;
     auto machine = new StateMachine();
     
     class S1 : BaseState {
-        this() @safe { super("S1"); }
+        this() { super("S1"); }
         override void handle() {}
     }
     
     class S2 : BaseState {
-        this() @safe { super("S2"); }
+        this() { super("S2"); }
         override void handle() {}
     }
     
     class S3 : BaseState {
-        this() @safe { super("S3"); }
+        this() { super("S3"); }
         override void handle() {}
     }
     
@@ -363,17 +363,17 @@ import uim.oop.patterns.states;
     auto machine = new StateMachine();
     
     class A : BaseState {
-        this() @safe { super("A"); }
+        this() { super("A"); }
         override void handle() {}
     }
     
     class B : BaseState {
-        this() @safe { super("B"); }
+        this() { super("B"); }
         override void handle() {}
     }
     
     class C : BaseState {
-        this() @safe { super("C"); }
+        this() { super("C"); }
         override void handle() {}
     }
     
@@ -402,17 +402,17 @@ import uim.oop.patterns.states;
     auto machine = new StateMachine();
     
     class X : BaseState {
-        this() @safe { super("X"); }
+        this() { super("X"); }
         override void handle() {}
     }
     
     class Y : BaseState {
-        this() @safe { super("Y"); }
+        this() { super("Y"); }
         override void handle() {}
     }
     
     class Z : BaseState {
-        this() @safe { super("Z"); }
+        this() { super("Z"); }
         override void handle() {}
     }
     
@@ -434,7 +434,7 @@ import uim.oop.patterns.states;
     class HandleState : BaseState {
         bool wasHandled = false;
         
-        this() @safe { super("Handle"); }
+        this() { super("Handle"); }
         
         override void handle() {
             wasHandled = true;

@@ -65,7 +65,7 @@ struct POFile {
      * Finds the index of an entry by msgid
      * Returns: The index of the entry, or -1 if not found
      */
-    ptrdiff_t findEntryIndex(string msgid) const pure nothrow @safe {
+    ptrdiff_t findEntryIndex(string msgid) const pure nothrow {
         foreach (i, ref entry; entries) {
             if (entry.msgid == msgid) {
                 return i;
@@ -78,7 +78,7 @@ struct POFile {
      * Finds the index of an entry by msgid and context
      * Returns: The index of the entry, or -1 if not found
      */
-    ptrdiff_t findEntryIndex(string msgid, string context) const pure nothrow @safe {
+    ptrdiff_t findEntryIndex(string msgid, string context) const pure nothrow {
         foreach (i, ref entry; entries) {
             if (entry.msgid == msgid && entry.context == context) {
                 return i;
@@ -116,7 +116,7 @@ struct POFile {
  * Exception thrown when PO file parsing fails
  */
 class POParseException : Exception {
-    this(string msg, string file = __FILE__, size_t line = __LINE__) pure nothrow @nogc @safe {
+    this(string msg, string file = __FILE__, size_t line = __LINE__) pure nothrow @nogc {
         super(msg, file, line);
     }
 }

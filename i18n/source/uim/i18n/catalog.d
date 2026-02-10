@@ -27,14 +27,14 @@ class TranslationCatalog {
      * Params:
      *   localeDir = Base directory containing locale folders
      */
-    this(string localeDir) @safe {
+    this(string localeDir) {
         this.localeDir = localeDir;
     }
     
     /**
      * Sets the default locale
      */
-    void setDefaultLocale(string locale) @safe {
+    void setDefaultLocale(string locale) {
         this.defaultLocale = locale;
     }
     
@@ -48,7 +48,7 @@ class TranslationCatalog {
     /**
      * Sets the default domain
      */
-    void setDefaultDomain(string domain) @safe {
+    void setDefaultDomain(string domain) {
         this.defaultDomain = domain;
     }
     
@@ -136,7 +136,7 @@ class TranslationCatalog {
      *   domain = The domain (null for default)
      * Returns: The translator, or null if not found
      */
-    Translator getTranslator(string locale, string domain = null) @safe {
+    Translator getTranslator(string locale, string domain = null) {
         if (domain is null) {
             domain = defaultDomain;
         }
@@ -156,7 +156,7 @@ class TranslationCatalog {
     /**
      * Gets the default translator
      */
-    Translator getDefaultTranslator() @safe {
+    Translator getDefaultTranslator() {
         return getTranslator(defaultLocale, defaultDomain);
     }
     
@@ -244,14 +244,14 @@ class TranslationCatalog {
     /**
      * Clears all loaded translations
      */
-    void clear() @safe {
+    void clear() {
         translators = null;
     }
     
     /**
      * Clears translations for a specific locale
      */
-    void clearLocale(string locale) @safe {
+    void clearLocale(string locale) {
         translators.remove(locale);
     }
 }
@@ -264,14 +264,14 @@ private TranslationCatalog g_catalog;
  * Params:
  *   localeDir = Base directory containing locale folders
  */
-void initTranslations(string localeDir) @safe {
+void initTranslations(string localeDir) {
     g_catalog = new TranslationCatalog(localeDir);
 }
 
 /**
  * Gets the global translation catalog
  */
-TranslationCatalog getTranslationCatalog() @safe {
+TranslationCatalog getTranslationCatalog() {
     return g_catalog;
 }
 

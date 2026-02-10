@@ -12,7 +12,7 @@ import uim.oop;
     class SimpleCommand : BaseCommand {
         bool wasExecuted = false;
         
-        this() @safe {
+        this() {
             super("SimpleCommand");
         }
         
@@ -34,7 +34,7 @@ import uim.oop;
     class IncrementCommand : BaseCommand {
         int* counter;
         
-        this(int* cnt) @safe {
+        this(int* cnt) {
             super("Increment");
             counter = cnt;
         }
@@ -60,7 +60,7 @@ import uim.oop;
         int* value;
         int amount;
         
-        this(int* val, int amt) @safe {
+        this(int* val, int amt) {
             super("Add");
             value = val;
             amount = amt;
@@ -90,7 +90,7 @@ import uim.oop;
     assert(queue.size() == 0);
     
     class DummyCommand : BaseCommand {
-        this() @safe { super("Dummy"); }
+        this() { super("Dummy"); }
         override void execute() {}
     }
     
@@ -110,7 +110,7 @@ import uim.oop;
     class CountCommand : BaseCommand {
         static int execCount = 0;
         
-        this() @safe {
+        this() {
             super("Count");
         }
         
@@ -138,7 +138,7 @@ import uim.oop;
     class IncrementCommand : UndoableCommand {
         int* counter;
         
-        this(int* cnt) @safe {
+        this(int* cnt) {
             super("Increment");
             counter = cnt;
         }
@@ -174,7 +174,7 @@ import uim.oop;
     assert(!history.canRedo());
     
     class DummyUndoCommand : UndoableCommand {
-        this() @safe { super("Dummy"); }
+        this() { super("Dummy"); }
         protected override void doExecute() {}
         protected override void doUndo() {}
     }
@@ -194,7 +194,7 @@ import uim.oop;
         int newValue;
         int olUIMValue;
         
-        this(int* tgt, int val) @safe {
+        this(int* tgt, int val) {
             super("SetValue");
             target = tgt;
             newValue = val;
@@ -240,7 +240,7 @@ import uim.oop;
 @safe unittest {
     class SimpleUndoCommand : UndoableCommand {
         int id;
-        this(int i) @safe { super("Simple"); id = i; }
+        this(int i) { super("Simple"); id = i; }
         protected override void doExecute() {}
         protected override void doUndo() {}
     }
@@ -425,7 +425,7 @@ import uim.oop;
     assert(macro.commandCount() == 0);
     
     class DummyCommand : BaseCommand {
-        this() @safe { super("Dummy"); }
+        this() { super("Dummy"); }
         override void execute() {}
     }
     
@@ -440,7 +440,7 @@ import uim.oop;
     class CountCommand : BaseCommand {
         static int count = 0;
         
-        this() @safe {
+        this() {
             super("Count");
         }
         
@@ -542,7 +542,7 @@ import uim.oop;
 // Test 28: Command history size tracking
 @safe unittest {
     class SimpleUndoCommand : UndoableCommand {
-        this() @safe { super("Simple"); }
+        this() { super("Simple"); }
         protected override void doExecute() {}
         protected override void doUndo() {}
     }
@@ -568,7 +568,7 @@ import uim.oop;
 // Test 29: Command history clear
 @safe unittest {
     class SimpleUndoCommand : UndoableCommand {
-        this() @safe { super("Simple"); }
+        this() { super("Simple"); }
         protected override void doExecute() {}
         protected override void doUndo() {}
     }
@@ -629,7 +629,7 @@ import uim.oop;
         int* value;
         int delta;
         
-        this(int* val, int d) @safe {
+        this(int* val, int d) {
             super("Value");
             value = val;
             delta = d;
@@ -677,7 +677,7 @@ import uim.oop;
     class CountCommand : BaseCommand {
         static int count = 0;
         
-        this() @safe {
+        this() {
             super("Count");
         }
         
@@ -706,7 +706,7 @@ import uim.oop;
     class TestCommand : UndoableCommand {
         bool undoCalled = false;
         
-        this() @safe {
+        this() {
             super("Test");
         }
         

@@ -28,7 +28,7 @@ class NeuralNetwork : UIMObject {
     return addDenseLayer(inputSize, outputSize, act, initScale);
   }
 
-  double[] forward(const double[] input) @safe {
+  double[] forward(const double[] input) {
     enforce(layers.length > 0, "Network has no layers");
     auto x = input.dup;
     foreach (layer; layers) {
@@ -37,7 +37,7 @@ class NeuralNetwork : UIMObject {
     return x;
   }
 
-  double[] predict(const double[] input) const @safe {
+  double[] predict(const double[] input) const {
     enforce(layers.length > 0, "Network has no layers");
     auto x = input.dup;
     foreach (layer; layers) {
@@ -46,7 +46,7 @@ class NeuralNetwork : UIMObject {
     return x;
   }
 
-  double[] backward(const double[] gradOutput, double learningRate) @safe {
+  double[] backward(const double[] gradOutput, double learningRate) {
     auto grad = gradOutput.dup;
     foreach_reverse (layer; layers) {
       grad = layer.backward(grad, learningRate);
@@ -54,11 +54,11 @@ class NeuralNetwork : UIMObject {
     return grad;
   }
 
-  size_t inputSize() const @safe {
+  size_t inputSize() const {
     return layers.length ? layers[0].inputSize : 0;
   }
 
-  size_t outputSize() const @safe {
+  size_t outputSize() const {
     return layers.length ? layers[$ - 1].outputSize : 0;
   }
 

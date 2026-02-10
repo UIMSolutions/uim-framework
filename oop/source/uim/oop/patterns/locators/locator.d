@@ -18,14 +18,14 @@ abstract class Service : IService {
    * Params:
    *   name = The name of the service
    */
-  this(string name) @safe {
+  this(string name) {
     _name = name;
   }
 
   /**
    * Get the name of this service.
    */
-  string serviceName() @safe {
+  string serviceName() {
     return _name;
   }
 
@@ -46,35 +46,35 @@ class ServiceLocator : IServiceLocator {
   /**
    * Constructor.
    */
-  this() @safe {
+  this() {
     _services = null;
   }
 
   /**
    * Register a service with the locator.
    */
-  void registerService(string name, IService service) @safe {
+  void registerService(string name, IService service) {
     _services[name] = service;
   }
 
   /**
    * Get a service by name.
    */
-  IService getService(string name) @safe {
+  IService getService(string name) {
     return name in _services ? _services[name] : null;
   }
 
   /**
    * Check if a service is registered.
    */
-  bool hasService(string name) @safe {
+  bool hasService(string name) {
     return (name in _services) !is null;
   }
 
   /**
    * Unregister a service.
    */
-  bool unregisterService(string name) @safe {
+  bool unregisterService(string name) {
     if (name in _services) {
       _services.remove(name);
       return true;
@@ -85,7 +85,7 @@ class ServiceLocator : IServiceLocator {
   /**
    * Get all registered service names.
    */
-  string[] getServiceNames() @safe {
+  string[] getServiceNames() {
     import std.array : array;
     return _services.keys.array;
   }
@@ -93,7 +93,7 @@ class ServiceLocator : IServiceLocator {
   /**
    * Clear all registered services.
    */
-  void clear() @safe {
+  void clear() {
     _services.clear();
   }
 }
@@ -109,7 +109,7 @@ class LazyServiceLocator : ILazyServiceLocator {
   /**
    * Constructor.
    */
-  this() @safe {
+  this() {
     _services = null;
     _factories = null;
   }
@@ -117,14 +117,14 @@ class LazyServiceLocator : ILazyServiceLocator {
   /**
    * Register a service with the locator.
    */
-  void registerService(string name, IService service) @safe {
+  void registerService(string name, IService service) {
     _services[name] = service;
   }
 
   /**
    * Register a service factory for lazy instantiation.
    */
-  void registerFactory(string name, IService delegate() @safe factory) @safe {
+  void registerFactory(string name, IService delegate() @safe factory) {
     _factories[name] = factory;
   }
 
@@ -132,7 +132,7 @@ class LazyServiceLocator : ILazyServiceLocator {
    * Get a service by name.
    * If service not instantiated, creates it using factory.
    */
-  IService getService(string name) @safe {
+  IService getService(string name) {
     // Check if already instantiated
     if (name in _services) {
       return _services[name];
@@ -151,14 +151,14 @@ class LazyServiceLocator : ILazyServiceLocator {
   /**
    * Check if a service is registered.
    */
-  bool hasService(string name) @safe {
+  bool hasService(string name) {
     return (name in _services) !is null || (name in _factories) !is null;
   }
 
   /**
    * Unregister a service.
    */
-  bool unregisterService(string name) @safe {
+  bool unregisterService(string name) {
     bool removed = false;
     if (name in _services) {
       _services.remove(name);
@@ -174,7 +174,7 @@ class LazyServiceLocator : ILazyServiceLocator {
   /**
    * Get all registered service names.
    */
-  string[] getServiceNames() @safe {
+  string[] getServiceNames() {
     import std.array : array;
     import std.algorithm : uniq, sort;
     
@@ -185,7 +185,7 @@ class LazyServiceLocator : ILazyServiceLocator {
   /**
    * Clear all registered services and factories.
    */
-  void clear() @safe {
+  void clear() {
     _services.clear();
     _factories.clear();
   }
@@ -203,7 +203,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Constructor.
    */
-  this() @safe {
+  this() {
     _services = null;
     _cache = null;
     _cacheEnabled = true;
@@ -212,7 +212,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Register a service with the locator.
    */
-  void registerService(string name, IService service) @safe {
+  void registerService(string name, IService service) {
     _services[name] = service;
     if (_cacheEnabled) {
       _cache[name] = service;
@@ -222,7 +222,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Get a service by name.
    */
-  IService getService(string name) @safe {
+  IService getService(string name) {
     // Check cache first if enabled
     if (_cacheEnabled && name in _cache) {
       return _cache[name];
@@ -242,14 +242,14 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Check if a service is registered.
    */
-  bool hasService(string name) @safe {
+  bool hasService(string name) {
     return (name in _services) !is null;
   }
 
   /**
    * Unregister a service.
    */
-  bool unregisterService(string name) @safe {
+  bool unregisterService(string name) {
     bool removed = false;
     if (name in _services) {
       _services.remove(name);
@@ -264,7 +264,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Get all registered service names.
    */
-  string[] getServiceNames() @safe {
+  string[] getServiceNames() {
     import std.array : array;
     return _services.keys.array;
   }
@@ -272,7 +272,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Clear all registered services.
    */
-  void clear() @safe {
+  void clear() {
     _services.clear();
     _cache.clear();
   }
@@ -280,7 +280,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Enable or disable caching.
    */
-  void setCacheEnabled(bool enabled) @safe {
+  void setCacheEnabled(bool enabled) {
     _cacheEnabled = enabled;
     if (!enabled) {
       _cache.clear();
@@ -290,14 +290,14 @@ class CachedServiceLocator : ICachedServiceLocator {
   /**
    * Check if caching is enabled.
    */
-  bool isCacheEnabled() @safe {
+  bool isCacheEnabled() {
     return _cacheEnabled;
   }
 
   /**
    * Clear the service cache.
    */
-  void clearCache() @safe {
+  void clearCache() {
     _cache.clear();
   }
 }
@@ -313,7 +313,7 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Constructor.
    */
-  this(HierarchicalServiceLocator parent = null) @safe {
+  this(HierarchicalServiceLocator parent = null) {
     _services = null;
     _parent = parent;
   }
@@ -321,21 +321,21 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Set the parent locator.
    */
-  void setParent(HierarchicalServiceLocator parent) @safe {
+  void setParent(HierarchicalServiceLocator parent) {
     _parent = parent;
   }
 
   /**
    * Get the parent locator.
    */
-  HierarchicalServiceLocator getParent() @safe {
+  HierarchicalServiceLocator getParent() {
     return _parent;
   }
 
   /**
    * Register a service with the locator.
    */
-  void registerService(string name, IService service) @safe {
+  void registerService(string name, IService service) {
     _services[name] = service;
   }
 
@@ -343,7 +343,7 @@ class HierarchicalServiceLocator : IServiceLocator {
    * Get a service by name.
    * Searches parent locators if not found locally.
    */
-  IService getService(string name) @safe {
+  IService getService(string name) {
     // Check local services first
     if (name in _services) {
       return _services[name];
@@ -360,7 +360,7 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Check if a service is registered locally or in parent.
    */
-  bool hasService(string name) @safe {
+  bool hasService(string name) {
     if (name in _services) {
       return true;
     }
@@ -373,7 +373,7 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Unregister a service (only from local registry).
    */
-  bool unregisterService(string name) @safe {
+  bool unregisterService(string name) {
     if (name in _services) {
       _services.remove(name);
       return true;
@@ -384,7 +384,7 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Get all registered service names (local only).
    */
-  string[] getServiceNames() @safe {
+  string[] getServiceNames() {
     import std.array : array;
     return _services.keys.array;
   }
@@ -392,7 +392,7 @@ class HierarchicalServiceLocator : IServiceLocator {
   /**
    * Clear all registered services (local only).
    */
-  void clear() @safe {
+  void clear() {
     _services.clear();
   }
 }

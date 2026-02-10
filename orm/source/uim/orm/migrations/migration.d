@@ -77,7 +77,7 @@ class MigrationRunner : UIMObject {
     size_t completed = 0;
 
     foreach (migration; _migrations) {
-      migration.up(_database, (bool success) @safe {
+      migration.up(_database, (bool success) {
         completed++;
         if (success) {
           executedMigrations ~= migration.name();
@@ -102,7 +102,7 @@ class MigrationRunner : UIMObject {
     foreach_reverse (migrationName; _executed) {
       foreach (migration; _migrations) {
         if (migration.name() == migrationName) {
-          migration.down(_database, (bool success) @safe {
+          migration.down(_database, (bool success) {
             completed++;
             if (completed == totalToRollback) {
               callback(true);

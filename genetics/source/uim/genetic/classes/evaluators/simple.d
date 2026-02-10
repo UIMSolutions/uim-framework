@@ -45,7 +45,7 @@ class SimplePatternMatcher : IFitnessEvaluator {
     
     // For demonstration, evaluate sequentially
     foreach (ind; individuals) {
-      evaluate(ind, (double fit) @safe {
+      evaluate(ind, (double fit) {
         ind.fitness(fit);
       });
     }

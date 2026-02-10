@@ -63,7 +63,7 @@ struct activation {
 }
 
 /// Applies the activation element-wise or vector-wise (softmax).
-double[] applyActivation(const Activation act, const double[] values) @safe {
+double[] applyActivation(const Activation act, const double[] values) {
   if (values.length == 0) {
     return [];
   }
@@ -80,7 +80,7 @@ double[] applyActivation(const Activation act, const double[] values) @safe {
 }
 
 /// Computes activation derivatives from activation outputs for chain rule.
-double[] activationDerivative(const Activation act, const double[] outputs) @safe {
+double[] activationDerivative(const Activation act, const double[] outputs) {
   auto grad = new double[outputs.length];
 
   if (!act.applyChainRule) {
@@ -97,7 +97,7 @@ double[] activationDerivative(const Activation act, const double[] outputs) @saf
 }
 
 /// Numerically stable softmax.
-double[] softmax(const double[] logits) @safe {
+double[] softmax(const double[] logits) {
   if (logits.length == 0) {
     return [];
   }

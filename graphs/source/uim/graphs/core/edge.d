@@ -16,7 +16,7 @@ class Edge : IEdge {
     private Variant[string] _data;
     private bool _directed;
 
-    this(string source, string target, string label = "", double weight = 1.0, bool directed = false) @safe {
+    this(string source, string target, string label = "", double weight = 1.0, bool directed = false) {
         _source = source;
         _target = target;
         _label = label;
@@ -24,21 +24,21 @@ class Edge : IEdge {
         _directed = directed;
     }
 
-    @property string source() const @safe { return _source; }
+    @property string source() const { return _source; }
     
-    @property string target() const @safe { return _target; }
+    @property string target() const { return _target; }
     
-    @property double weight() const @safe { return _weight; }
+    @property double weight() const { return _weight; }
     
-    void weight(double w) @safe { _weight = w; }
+    void weight(double w) { _weight = w; }
     
-    @property string label() const @safe { return _label; }
+    @property string label() const { return _label; }
     
-    void label(string newLabel) @safe { _label = newLabel; }
+    void label(string newLabel) { _label = newLabel; }
     
-    @property Variant[string] data() const @safe { return _data; }
+    @property Variant[string] data() const { return _data; }
     
-    void setData(string key, Variant value) @safe { _data[key] = value; }
+    void setData(string key, Variant value) { _data[key] = value; }
     
-    @property bool directed() const @safe { return _directed; }
+    @property bool directed() const { return _directed; }
 }

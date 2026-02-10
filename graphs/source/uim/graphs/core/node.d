@@ -15,25 +15,25 @@ class Node : INode {
     private Variant[string] _data;
     private size_t _degree;
 
-    this(string id, string label = "") @safe {
+    this(string id, string label = "") {
         _id = id;
         _label = label.empty ? id : label;
         _degree = 0;
     }
 
-    @property string id() const @safe { return _id; }
+    @property string id() const { return _id; }
     
-    @property string label() const @safe { return _label; }
+    @property string label() const { return _label; }
     
-    void label(string newLabel) @safe { _label = newLabel; }
+    void label(string newLabel) { _label = newLabel; }
     
-    @property Variant[string] data() const @safe { return _data; }
+    @property Variant[string] data() const { return _data; }
     
-    void setData(string key, Variant value) @safe { _data[key] = value; }
+    void setData(string key, Variant value) { _data[key] = value; }
     
-    @property size_t degree() const @safe { return _degree; }
+    @property size_t degree() const { return _degree; }
     
-    package void incDegree() @safe { _degree++; }
+    package void incDegree() { _degree++; }
     
-    package void decDegree() @safe { if (_degree > 0) _degree--; }
+    package void decDegree() { if (_degree > 0) _degree--; }
 }
