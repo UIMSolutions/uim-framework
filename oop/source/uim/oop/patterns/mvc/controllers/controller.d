@@ -184,9 +184,6 @@ class Controller : IController {
     }
 }
 
-
-
-
 // Unit tests
 unittest {
     import std.stdio : writeln;
