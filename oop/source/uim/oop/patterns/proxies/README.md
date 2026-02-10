@@ -186,7 +186,7 @@ assert(proxy.getAccessCount() == 3);
 ### Proxy Chaining
 
 ```d
-auto realService = new DatabaseService("prod-db");
+auto realService = new DatabaseServiceProxySubject("prod-db");
 
 // Chain multiple proxies
 auto protectedService = new ProtectionProxy(realService, true);

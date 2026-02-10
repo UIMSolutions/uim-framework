@@ -6,7 +6,7 @@
 module uim.oop.patterns.bridges.bridge;
 
 import uim.oop.patterns.bridges.interfaces;
-
+@safe:
 /**
  * Base class for the Abstraction side of the bridge.
  * Maintains a reference to an IImplementor object.
@@ -98,7 +98,7 @@ class StringProcessorImpl : IGenericImplementor!string {
     private string _name;
     private string delegate(string) _processor;
     
-    this(string name, string delegate(string) processor) {
+    this(string name, string delegate(string) @safe processor ) {
         _name = name;
         _processor = processor;
     }
@@ -119,7 +119,7 @@ class IntProcessorImpl : IGenericImplementor!int {
     private string _name;
     private int delegate(int) _processor;
     
-    this(string name, int delegate(int) processor) {
+    this(string name, int delegate(int) @safe processor ) {
         _name = name;
         _processor = processor;
     }
@@ -303,7 +303,7 @@ class AdvancedRemote : RemoteControl {
     }
 }
 
-@safe unittest {
+unittest {
     // Test basic bridge pattern
     auto implA = new ConcreteImplementorA();
     auto abstraction = new BridgeAbstraction(implA);
@@ -312,7 +312,7 @@ class AdvancedRemote : RemoteControl {
     assert(result.length > 0);
 }
 
-@safe unittest {
+unittest {
     // Test switching implementors
     auto implA = new ConcreteImplementorA();
     auto implB = new ConcreteImplementorB();
@@ -326,7 +326,7 @@ class AdvancedRemote : RemoteControl {
     assert(result1 != result2);
 }
 
-@safe unittest {
+unittest {
     // Test extended abstraction
     auto impl = new ConcreteImplementorA();
     auto extended = new ExtendedAbstraction(impl);
@@ -338,7 +338,7 @@ class AdvancedRemote : RemoteControl {
     assert(extendedResult.length > basicResult.length);
 }
 
-@safe unittest {
+unittest {
     // Test refined abstraction
     auto impl = new ConcreteImplementorB();
     auto refined = new RefinedAbstraction("TestDevice", impl);
@@ -352,7 +352,7 @@ class AdvancedRemote : RemoteControl {
     assert(specialResult.length > result.length);
 }
 
-@safe unittest {
+unittest {
     // Test generic string processor
     auto upperImpl = new StringProcessorImpl("Upper", (string s) => s.toUpper());
     auto abstraction = new GenericAbstraction!string(upperImpl);
@@ -361,7 +361,7 @@ class AdvancedRemote : RemoteControl {
     assert(result == "HELLO");
 }
 
-@safe unittest {
+unittest {
     // Test generic int processor
     auto doubleImpl = new IntProcessorImpl("Double", (int x) => x * 2);
     auto abstraction = new GenericAbstraction!int(doubleImpl);
@@ -370,7 +370,7 @@ class AdvancedRemote : RemoteControl {
     assert(result == 10);
 }
 
-@safe unittest {
+unittest {
     // Test caching abstraction
     int callCount = 0;
     auto impl = new IntProcessorImpl("Counter", (int x) {
@@ -395,7 +395,7 @@ class AdvancedRemote : RemoteControl {
     assert(!caching.hasCached);
 }
 
-@safe unittest {
+unittest {
     // Test switching implementors on generic abstraction
     auto upper = new StringProcessorImpl("Upper", (string s) => s.toUpper());
     auto lower = new StringProcessorImpl("Lower", (string s) => s.toLower());

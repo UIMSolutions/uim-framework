@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
 /**
  * Base proxy class.
  * Forwards requests to the real subject.
@@ -142,55 +141,7 @@ class CachingProxy : ICachingProxy {
   }
 }
 
-/**
- * Logging Proxy for monitoring.
- * Logs all accesses to the real subject.
- */
-class LoggingProxy : ILoggingProxy {
-  private IProxySubject _realSubject;
-  private string[] _log;
 
-  /**
-   * Constructor.
-   */
-  this(IProxySubject realSubject) {
-    _realSubject = realSubject;
-    _log = [];
-  }
-
-  /**
-   * Get the real subject.
-   */
-  IProxySubject getRealSubject() {
-    return _realSubject;
-  }
-
-  /**
-   * Get the access log.
-   */
-  string[] getLog() {
-    return _log;
-  }
-
-  /**
-   * Clear the log.
-   */
-  void clearLog() {
-    _log = [];
-  }
-
-  /**
-   * Execute with logging.
-   */
-  string execute() {
-    import std.datetime : Clock;
-    auto timestamp = Clock.currTime().toISOExtString();
-    _log ~= "Access at " ~ timestamp;
-    auto result = _realSubject.execute();
-    _log ~= "Result: " ~ result;
-    return result;
-  }
-}
 
 /**
  * Remote Proxy for network operations.
@@ -305,7 +256,7 @@ class SmartReferenceProxy : IProxy {
 
 // Unit Tests
 
-@safe unittest {
+unittest {
   // Test basic proxy
   class RealSubject : ProxySubject {
     override string execute() {
@@ -326,7 +277,7 @@ class SmartReferenceProxy : IProxy {
   assert(proxy.getRealSubject() is realSubject);
 }
 
-@safe unittest {
+unittest {
   // Test virtual proxy (lazy initialization)
   class ExpensiveSubject : ProxySubject {
     override string execute() {
@@ -342,7 +293,7 @@ class SmartReferenceProxy : IProxy {
   assert(proxy.isInitialized(), "Should be initialized after first use");
 }
 
-@safe unittest {
+unittest {
   // Test protection proxy
   class SecureSubject : ProxySubject {
     override string execute() {
@@ -361,9 +312,9 @@ class SmartReferenceProxy : IProxy {
   assert(proxy.execute() == "Access denied");
 }
 
-@safe unittest {
+unittest {
   // Test caching proxy
-  class DataSubject : ProxySubject {
+  @safe class DataSubject : ProxySubject {
     private int _callCount = 0;
 
     override string execute() {
@@ -395,7 +346,7 @@ class SmartReferenceProxy : IProxy {
   assert(!proxy.isCached());
 }
 
-@safe unittest {
+unittest {
   // Test logging proxy
   class SimpleSubject : ProxySubject {
     override string execute() {
@@ -416,7 +367,7 @@ class SmartReferenceProxy : IProxy {
   assert(proxy.getLog().length == 0);
 }
 
-@safe unittest {
+unittest {
   // Test remote proxy
   class ServiceSubject : ProxySubject {
     override string execute() {
@@ -435,7 +386,7 @@ class SmartReferenceProxy : IProxy {
   assert(proxy.isConnected());
 }
 
-@safe unittest {
+unittest {
   // Test smart reference proxy
   class ResourceSubject : ProxySubject {
     override string execute() {

@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 // Test Subjects
 
-class DatabaseService : ProxySubject {
+class DatabaseServiceProxySubject : ProxySubject {
   private string _connectionString;
 
   this(string connectionString) {
@@ -85,7 +85,7 @@ class SecureDocument : ProxySubject {
 
   auto proxy = new VirtualProxy(() {
     creationCount++;
-    return cast(IProxySubject) new DatabaseService("localhost:5432");
+    return cast(IProxySubject) new DatabaseServiceProxySubject("localhost:5432");
   });
 
   assert(!proxy.isInitialized(), "Proxy should not be initialized");
@@ -136,7 +136,7 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Protection Proxy - Role-based access"));
 
-  auto service = new DatabaseService("prod-db:5432");
+  auto service = new DatabaseServiceProxySubject("prod-db:5432");
   
   // Admin has access
   auto adminProxy = new ProtectionProxy(service, true);
@@ -188,7 +188,7 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Logging Proxy - Access tracking"));
 
-  auto service = new DatabaseService("localhost:5432");
+  auto service = new DatabaseServiceProxySubject("localhost:5432");
   auto proxy = new LoggingProxy(service);
 
   assert(proxy.getLog().length == 0, "Log should be empty initially");
@@ -237,10 +237,10 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Remote Proxy - Multiple endpoints"));
 
-  auto service1 = new DatabaseService("db1");
+  auto service1 = new DatabaseServiceProxySubject("db1");
   auto proxy1 = new RemoteProxy(service1, "server1.example.com");
 
-  auto service2 = new DatabaseService("db2");
+  auto service2 = new DatabaseServiceProxySubject("db2");
   auto proxy2 = new RemoteProxy(service2, "server2.example.com");
 
   assert(proxy1.getEndpoint() != proxy2.getEndpoint());
@@ -255,7 +255,7 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Smart Reference Proxy - Reference counting"));
 
-  auto service = new DatabaseService("localhost:5432");
+  auto service = new DatabaseServiceProxySubject("localhost:5432");
   auto proxy = new SmartReferenceProxy(service);
 
   assert(proxy.getAccessCount() == 0, "Count should be zero initially");
@@ -286,7 +286,7 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Proxy chaining - Multiple proxies"));
 
-  auto realService = new DatabaseService("prod-db:5432");
+  auto realService = new DatabaseServiceProxySubject("prod-db:5432");
 
   // Chain: Protection -> Caching -> Logging
   auto protectionProxy = new ProtectionProxy(realService, true);
@@ -368,9 +368,9 @@ class SecureDocument : ProxySubject {
 @safe unittest {
   mixin(ShowTest!("Real-world scenario - Database connection pool simulation"));
 
-  auto db1 = new DatabaseService("connection-1");
-  auto db2 = new DatabaseService("connection-2");
-  auto db3 = new DatabaseService("connection-3");
+  auto db1 = new DatabaseServiceProxySubject("connection-1");
+  auto db2 = new DatabaseServiceProxySubject("connection-2");
+  auto db3 = new DatabaseServiceProxySubject("connection-3");
 
   auto proxy1 = new SmartReferenceProxy(db1);
   auto proxy2 = new SmartReferenceProxy(db2);

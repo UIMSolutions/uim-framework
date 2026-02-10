@@ -9,7 +9,7 @@ import uim.oop.patterns.visitors.interfaces;
 import std.format;
 import std.algorithm : remove;
 import std.conv : to;
-
+@safe:
 /**
  * Abstract base element that implements common functionality.
  */
@@ -20,7 +20,7 @@ abstract class BaseElement : IVisitorElement {
         _name = elementName;
     }
     
-    @safe string name() const {
+    string name() const {
         return _name;
     }
     
@@ -33,11 +33,11 @@ abstract class BaseElement : IVisitorElement {
 class ObjectStructure : IObjectStructure {
     private IVisitorElement[] _elements;
     
-    @safe void addElement(IVisitorElement element) {
+    void addElement(IVisitorElement element) {
         _elements ~= element;
     }
     
-    @safe void removeElement(IVisitorElement element) {
+    void removeElement(IVisitorElement element) {
         foreach (i, elem; _elements) {
             if (elem is element) {
                 _elements = _elements.remove(i);
@@ -46,13 +46,13 @@ class ObjectStructure : IObjectStructure {
         }
     }
     
-    @safe void accept(IVisitor visitor) {
+    void accept(IVisitor visitor) {
         foreach (element; _elements) {
             element.accept(visitor);
         }
     }
     
-    @safe size_t elementCount() const {
+    size_t elementCount() const {
         return _elements.length;
     }
     
@@ -71,7 +71,7 @@ class ObjectStructure : IObjectStructure {
 abstract class BaseVisitor : IVisitor {
     protected string[] _visited;
     
-    @safe string[] visited() const {
+    string[] visited() const {
         return _visited.dup;
     }
     
@@ -84,7 +84,7 @@ abstract class BaseVisitor : IVisitor {
  * Shape element interface.
  */
 interface IShape : IVisitorElement {
-    @safe double area() const;
+    double area() const;
 }
 
 /**
@@ -98,15 +98,15 @@ class Circle : BaseElement, IShape {
         _radius = radius;
     }
     
-    @safe double radius() const {
+    double radius() const {
         return _radius;
     }
     
-    @safe double area() const {
+    double area() const {
         return 3.14159 * _radius * _radius;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 }
@@ -124,19 +124,19 @@ class Rectangle : BaseElement, IShape {
         _height = height;
     }
     
-    @safe double width() const {
+    double width() const {
         return _width;
     }
     
-    @safe double height() const {
+    double height() const {
         return _height;
     }
     
-    @safe double area() const {
+    double area() const {
         return _width * _height;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 }
@@ -154,19 +154,19 @@ class Triangle : BaseElement, IShape {
         _height = height;
     }
     
-    @safe double baseLength() const {
+    double baseLength() const {
         return _base;
     }
     
-    @safe double height() const {
+    double height() const {
         return _height;
     }
     
-    @safe double area() const {
+    double area() const {
         return 0.5 * _base * _height;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 }
@@ -181,7 +181,7 @@ class AreaCalculator : BaseVisitor {
         _totalArea = 0.0;
     }
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto shape = cast(IShape)element) {
@@ -189,7 +189,7 @@ class AreaCalculator : BaseVisitor {
         }
     }
     
-    @safe double totalArea() const {
+    double totalArea() const {
         return _totalArea;
     }
 }
@@ -204,7 +204,7 @@ class PerimeterCalculator : BaseVisitor {
         _totalPerimeter = 0.0;
     }
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto circle = cast(Circle)element) {
@@ -217,7 +217,7 @@ class PerimeterCalculator : BaseVisitor {
         }
     }
     
-    @safe double totalPerimeter() const {
+    double totalPerimeter() const {
         return _totalPerimeter;
     }
 }
@@ -228,7 +228,7 @@ class PerimeterCalculator : BaseVisitor {
 class DrawingVisitor : BaseVisitor {
     private string[] _commands;
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto circle = cast(Circle)element) {
@@ -240,7 +240,7 @@ class DrawingVisitor : BaseVisitor {
         }
     }
     
-    @safe string[] commands() const {
+    string[] commands() const {
         return _commands.dup;
     }
 }
@@ -267,11 +267,11 @@ class FileElement : FileSystemElement {
         _size = size;
     }
     
-    @safe size_t size() const {
+    size_t size() const {
         return _size;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 }
@@ -286,7 +286,7 @@ class DirectoryElement : FileSystemElement {
         super(name);
     }
     
-    @safe void addChild(FileSystemElement child) {
+    void addChild(FileSystemElement child) {
         _children ~= child;
     }
     
@@ -298,7 +298,7 @@ class DirectoryElement : FileSystemElement {
         return result;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
         
         // Visit children
@@ -318,7 +318,7 @@ class SizeCalculator : BaseVisitor {
         _totalSize = 0;
     }
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto file = cast(FileElement)element) {
@@ -326,7 +326,7 @@ class SizeCalculator : BaseVisitor {
         }
     }
     
-    @safe size_t totalSize() const {
+    size_t totalSize() const {
         return _totalSize;
     }
 }
@@ -343,7 +343,7 @@ class FileCounter : BaseVisitor {
         _dirCount = 0;
     }
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (cast(FileElement)element) {
@@ -353,11 +353,11 @@ class FileCounter : BaseVisitor {
         }
     }
     
-    @safe size_t fileCount() const {
+    size_t fileCount() const {
         return _fileCount;
     }
     
-    @safe size_t dirCount() const {
+    size_t dirCount() const {
         return _dirCount;
     }
 }
@@ -373,7 +373,7 @@ class FileLister : BaseVisitor {
         _depth = 0;
     }
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         string indent = "";
         for (int i = 0; i < _depth; i++) {
             indent ~= "  ";
@@ -390,7 +390,7 @@ class FileLister : BaseVisitor {
         _visited ~= element.name;
     }
     
-    @safe string[] listings() const {
+    string[] listings() const {
         return _listings.dup;
     }
 }
@@ -414,11 +414,11 @@ class NumberExpression : BaseElement, IExpression {
         _value = value;
     }
     
-    @safe double value() const {
+    double value() const {
         return _value;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         visitor.visit(this);
     }
 }
@@ -444,7 +444,7 @@ class AddExpression : BaseElement, IExpression {
         return cast(IExpression)_right;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         _left.accept(visitor);
         _right.accept(visitor);
         visitor.visit(this);
@@ -472,7 +472,7 @@ class MultiplyExpression : BaseElement, IExpression {
         return cast(IExpression)_right;
     }
     
-    override @safe void accept(IVisitor visitor) {
+    override void accept(IVisitor visitor) {
         _left.accept(visitor);
         _right.accept(visitor);
         visitor.visit(this);
@@ -485,7 +485,7 @@ class MultiplyExpression : BaseElement, IExpression {
 class ExpressionEvaluator : BaseVisitor {
     private double[] _stack;
     
-    override @safe void visit(IVisitorElement element) {
+    override void visit(IVisitorElement element) {
         _visited ~= element.name;
         
         if (auto num = cast(NumberExpression)element) {
@@ -507,14 +507,14 @@ class ExpressionEvaluator : BaseVisitor {
         }
     }
     
-    @safe double result() const {
+    double result() const {
         return _stack.length > 0 ? _stack[$-1] : 0.0;
     }
 }
 
 // Unit tests
 
-@safe unittest {
+unittest {
     // Test basic element
     class TestElement : BaseElement {
         this() { super("Test"); }
@@ -527,7 +527,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(element.name == "Test");
 }
 
-@safe unittest {
+unittest {
     // Test object structure
     class Elem : BaseElement {
         this(string name) { super(name); }
@@ -543,7 +543,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(structure.elementCount() == 2);
 }
 
-@safe unittest {
+unittest {
     // Test shape area calculation
     auto circle = new Circle("Circle1", 5.0);
     auto rect = new Rectangle("Rect1", 4.0, 3.0);
@@ -556,7 +556,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(calculator.visited().length == 2);
 }
 
-@safe unittest {
+unittest {
     // Test shape perimeter calculation
     auto circle = new Circle("C", 3.0);
     auto calculator = new PerimeterCalculator();
@@ -566,7 +566,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(calculator.totalPerimeter() > 0);
 }
 
-@safe unittest {
+unittest {
     // Test drawing visitor
     auto circle = new Circle("MyCircle", 10.0);
     auto drawer = new DrawingVisitor();
@@ -577,7 +577,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(commands.length == 1);
 }
 
-@safe unittest {
+unittest {
     // Test file system size calculation
     auto root = new DirectoryElement("root");
     auto file1 = new FileElement("file1.txt", 100);
@@ -592,7 +592,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(sizeCalc.totalSize() == 300);
 }
 
-@safe unittest {
+unittest {
     // Test file counter
     auto root = new DirectoryElement("root");
     auto subdir = new DirectoryElement("subdir");
@@ -608,7 +608,7 @@ class ExpressionEvaluator : BaseVisitor {
     assert(counter.dirCount() == 2);
 }
 
-@safe unittest {
+unittest {
     // Test expression evaluation
     auto expr = new AddExpression(
         new NumberExpression(5.0),
