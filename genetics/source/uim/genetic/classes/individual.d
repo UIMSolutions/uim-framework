@@ -55,31 +55,31 @@ class Individual : IIndividual {
   }
 
   override IIndividual clone() {
-    auto copy = new Individual(_genome.dup);
-    copy._fitness = _fitness;
-    copy._evaluated = _evaluated;
-    return copy;
+    auto result = new Individual(_genome.dup);
+    result._fitness = _fitness;
+    result._evaluated = _evaluated;
+    return result;
   }
 
   override Json toJson() {
     Json result;
     result["genome"] = _genome.toJson;
-    result["fitness"] = Json(_fitness);
-    result["evaluated"] = Json(_evaluated);
+    result["fitness"] = _fitness.toJson;
+    result["evaluated"] = _evaluated.toJson;
     return result;
   }
 
   static IIndividual fromJson(Json data) {
     auto ind = new Individual();
-    if (auto genome = "genome" in data) {
+    if (data.hasKey("genome")) {
       ubyte[] genes;
-      foreach (val; genome.get!(Json[])) {
+      foreach (val; data["genome"].get!(Json[])) {
         genes ~= cast(ubyte) val.get!long;
       }
       ind.genome(genes);
     }
-    if (auto fit = "fitness" in data) {
-      ind.fitness(fit.get!double);
+    if (data.hasKey("fitness")) {
+      ind.fitness(data["fitness"].get!double);
     }
     return ind;
   }
