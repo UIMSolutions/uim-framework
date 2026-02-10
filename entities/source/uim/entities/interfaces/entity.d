@@ -34,8 +34,8 @@ interface IEntity : IElement {
     IEntity updatedAt(SysTime value);
 
     // State management
-    EntityState state();
-    IEntity state(EntityState value);
+    IEntityState state();
+    IEntity state(IEntityState value);
 
     bool isNew();
     bool isClean();

@@ -21,7 +21,7 @@ interface IEntityRepository {
     // Query operations
     IEntity findByName(string name);
     IEntity[] findByAttribute(string key, string value);
-    IEntity[] findByState(EntityState state);
+    IEntity[] findByState(IEntityState state);
     
     // Batch operations
     IEntity[] saveAll(IEntity[] entities);
@@ -29,5 +29,5 @@ interface IEntityRepository {
     
     // Count
     size_t count();
-    size_t countByState(EntityState state);
+    size_t countByState(IEntityState state);
 }

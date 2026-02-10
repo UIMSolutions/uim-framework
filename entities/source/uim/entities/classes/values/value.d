@@ -40,6 +40,7 @@ class UIMValue : UIMObject, IValue {
   }
 
   // --- Explicit property getters and setters for marked fields ---
+  protected IAttribute _attribute;
   @property IAttribute attribute() const {
     return _attribute;
   }
@@ -48,6 +49,7 @@ class UIMValue : UIMObject, IValue {
     _attribute = attribute;
   }
 
+  protected bool _isBoolean;
   @property bool isBoolean() const {
     return _isBoolean;
   }
@@ -56,6 +58,7 @@ class UIMValue : UIMObject, IValue {
     _isBoolean = v;
   }
 
+  protected bool _isInteger;
   @property bool isInteger() const {
     return _isInteger;
   }
@@ -64,6 +67,7 @@ class UIMValue : UIMObject, IValue {
     _isInteger = v;
   }
 
+  protected bool _isDouble;
   @property bool isDouble() const {
     return _isDouble;
   }
@@ -72,6 +76,7 @@ class UIMValue : UIMObject, IValue {
     _isDouble = v;
   }
 
+  protected bool _isLong;
   @property bool isLong() const {
     return _isLong;
   }
@@ -80,6 +85,7 @@ class UIMValue : UIMObject, IValue {
     _isLong = v;
   }
 
+  protected bool _isTime;
   @property bool isTime() const {
     return _isTime;
   }
@@ -88,6 +94,7 @@ class UIMValue : UIMObject, IValue {
     _isTime = v;
   }
 
+  protected bool _isDate;
   @property bool isDate() const {
     return _isDate;
   }
@@ -96,6 +103,7 @@ class UIMValue : UIMObject, IValue {
     _isDate = v;
   }
 
+  protected bool _isDatetime;
   @property bool isDatetime() const {
     return _isDatetime;
   }
@@ -104,6 +112,7 @@ class UIMValue : UIMObject, IValue {
     _isDatetime = v;
   }
 
+  protected bool _isTimestamp;
   @property bool isTimestamp() const {
     return _isTimestamp;
   }
@@ -112,6 +121,7 @@ class UIMValue : UIMObject, IValue {
     _isTimestamp = v;
   }
 
+  protected bool _isString;
   @property bool isString() const {
     return _isString;
   }
@@ -120,6 +130,7 @@ class UIMValue : UIMObject, IValue {
     _isString = v;
   }
 
+  protected bool _isScalar;
   @property bool isScalar() const {
     return _isScalar;
   }
@@ -128,6 +139,7 @@ class UIMValue : UIMObject, IValue {
     _isScalar = v;
   }
 
+  protected bool _isArray;
   @property bool isArray() const {
     return _isArray;
   }
@@ -136,6 +148,7 @@ class UIMValue : UIMObject, IValue {
     _isArray = v;
   }
 
+  protected bool _isObject;
   @property bool isObject() const {
     return _isObject;
   }
@@ -144,6 +157,7 @@ class UIMValue : UIMObject, IValue {
     _isObject = v;
   }
 
+  protected bool _isEntity;
   @property bool isEntity() const {
     return _isEntity;
   }
@@ -152,6 +166,7 @@ class UIMValue : UIMObject, IValue {
     _isEntity = v;
   }
 
+  protected bool _isUUID;
   @property bool isUUID() const {
     return _isUUID;
   }
@@ -160,6 +175,7 @@ class UIMValue : UIMObject, IValue {
     _isUUID = v;
   }
 
+  protected bool _isReadOnly;
   @property bool isReadOnly() const {
     return _isReadOnly;
   }
@@ -168,6 +184,7 @@ class UIMValue : UIMObject, IValue {
     _isReadOnly = v;
   }
 
+  protected bool _isNullable;
   @property bool isNullable() const {
     return _isNullable;
   }

@@ -13,12 +13,12 @@ interface IEntityManager {
   /**
    * Set validator for entities
    */
-  IEntityManager validator(UIMEntityValidator val);
+  IEntityManager validator(IEntityValidator val);
 
   /**
    * Get event dispatcher
    */
-  UIMEventDispatcher eventDispatcher();
+  IEventDispatcher eventDispatcher();
 
   /**
    * Create a new entity with lifecycle events
@@ -58,5 +58,5 @@ interface IEntityManager {
   /**
    * Get repository
    */
-  UIMEntityRepository repository();
+  IEntityRepository repository();
 }

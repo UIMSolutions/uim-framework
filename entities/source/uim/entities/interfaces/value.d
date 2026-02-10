@@ -14,8 +14,11 @@ mixin(ShowModule!());
 
 interface IValue {
   IAttribute attribute();
+  IValue attribute(IAttribute attribute);
   
   bool isBoolean();
+  IValue isBoolean(bool mode);
+  
   bool isInteger();
   bool isDouble();
   bool isLong();
