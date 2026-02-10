@@ -5,5 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.flyweights;
 
+public import uim.oop.patterns.flyweights.classes;
+public import uim.oop.patterns.flyweights.examples;
+public import uim.oop.patterns.flyweights.helpers;
 public import uim.oop.patterns.flyweights.interfaces;
 public import uim.oop.patterns.flyweights.flyweight;
+public import uim.oop.patterns.flyweights.tests;
