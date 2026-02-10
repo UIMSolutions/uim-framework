@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.genetic.operators.selection;
+module uim.genetic.classes.operators.selection;
 
-import uim.genetic.interfaces;
+import uim.genetic;
 import std.random : uniform;
 
 @safe:
@@ -14,13 +14,13 @@ import std.random : uniform;
  * Roulette wheel selection strategy.
  */
 class RouletteWheelSelection : ISelectionStrategy {
-  override IIndividual select(IPopulation population) @safe {
+  override IIndividual select(IPopulation population) {
     if (population.size() == 0) return null;
 
     double totalFitness = 0.0;
-    foreach (ind; population.individuals()) {
-      if (ind.fitness() >= 0) {
-        totalFitness += ind.fitness();
+    foreach (individual; population.individuals()) {
+      if (individual.fitness() >= 0) {
+        totalFitness += individual.fitness();
       }
     }
 
@@ -32,17 +32,17 @@ class RouletteWheelSelection : ISelectionStrategy {
     double spin = uniform(0.0, totalFitness);
     double accumulated = 0.0;
 
-    foreach (ind; population.individuals()) {
-      accumulated += ind.fitness();
+    foreach (individual; population.individuals()) {
+      accumulated += individual.fitness();
       if (accumulated >= spin) {
-        return ind;
+        return individual;
       }
     }
 
     return population.individuals()[$ - 1];
   }
 
-  override IIndividual[] selectMultiple(IPopulation population, size_t count) @safe {
+  override IIndividual[] selectMultiple(IPopulation population, size_t count) {
     IIndividual[] selected;
     for (size_t i = 0; i < count; i++) {
       selected ~= select(population);
@@ -64,7 +64,7 @@ class TournamentSelection : ISelectionStrategy {
     _tournamentSize = size;
   }
 
-  override IIndividual select(IPopulation population) @safe {
+  override IIndividual select(IPopulation population) {
     if (population.size() == 0) return null;
 
     IIndividual best = null;
@@ -77,7 +77,7 @@ class TournamentSelection : ISelectionStrategy {
     return best;
   }
 
-  override IIndividual[] selectMultiple(IPopulation population, size_t count) @safe {
+  override IIndividual[] selectMultiple(IPopulation population, size_t count) {
     IIndividual[] selected;
     for (size_t i = 0; i < count; i++) {
       selected ~= select(population);
@@ -90,7 +90,7 @@ class TournamentSelection : ISelectionStrategy {
  * Rank-based selection strategy.
  */
 class RankSelection : ISelectionStrategy {
-  override IIndividual select(IPopulation population) @safe {
+  override IIndividual select(IPopulation population) {
     if (population.size() == 0) return null;
 
     auto individuals = population.individuals().dup;
@@ -116,7 +116,7 @@ class RankSelection : ISelectionStrategy {
     return individuals[$ - 1];
   }
 
-  override IIndividual[] selectMultiple(IPopulation population, size_t count) @safe {
+  override IIndividual[] selectMultiple(IPopulation population, size_t count) {
     IIndividual[] selected;
     for (size_t i = 0; i < count; i++) {
       selected ~= select(population);

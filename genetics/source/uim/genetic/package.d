@@ -8,9 +8,9 @@ module uim.genetic;
 public {
   import uim.oop;
   
-  import uim.genetic.base;
-  import uim.genetic.interfaces;
-  import uim.genetic.operators;
-  import uim.genetic.algorithms;
+  import uim.genetic.classes;
+  import uim.genetic.errors;
+  import uim.genetic.exceptions;
   import uim.genetic.helpers;
+  import uim.genetic.interfaces;
 }

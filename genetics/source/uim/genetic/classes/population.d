@@ -5,10 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.classes.population;
 
-import uim.genetic.interfaces.individual;
-import uim.genetic.interfaces.population;
-import vibe.d;
-import std.algorithm : sort;
+import uim.genetic;
 
 @safe:
 

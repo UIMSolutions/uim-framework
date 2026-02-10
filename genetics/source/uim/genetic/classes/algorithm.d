@@ -151,7 +151,7 @@ class GeneticAlgorithm {
               // Update fitness in population
             }
             step();
-            runNextGeneration();
+            this.runNextGeneration();
           }
         );
       } else {

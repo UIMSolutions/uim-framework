@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.interfaces.operators;
 
-import uim.genetic.interfaces.individual;
+import uim.genetic;
 
 @safe:
 

@@ -5,9 +5,7 @@
 *****************************************************************************************************************/
 module uim.genetic.classes.individual;
 
-import uim.genetic.interfaces.individual;
-import vibe.d;
-import std.algorithm : copy;
+import uim.genetic;
 
 @safe:
 
@@ -65,7 +63,7 @@ class Individual : IIndividual {
 
   override Json toJson() @safe {
     Json result;
-    result["genome"] = Json(_genome);
+    result["genome"] = _genome.toJson;
     result["fitness"] = Json(_fitness);
     result["evaluated"] = Json(_evaluated);
     return result;
