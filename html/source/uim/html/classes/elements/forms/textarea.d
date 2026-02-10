@@ -56,16 +56,6 @@ class Textarea : FormElement {
     return this;
   }
 
-  protected string _content;
-  override string content() {
-    return _content;
-  }
-
-  override IHtmlElement content(string value) {
-    _content = value;
-    return this;
-  }
-
   static Textarea opCall() {
   return new Textarea();
 }

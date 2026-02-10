@@ -12,13 +12,22 @@ mixin(ShowModule!());
 @safe:
 
 interface IHtmlElement {
-  // Getter / Setter for content
-  string content();
-  IHtmlElement content(string value);
-
   // Getter / Setter for tagName
   string tagName();
   IHtmlElement tagName(string value);
+
+  // Getter / Setter for content
+  string content();
+
+  IHtmlElement content(string[] values...);
+  IHtmlElement content(string[] values);
+  IHtmlElement content(IHtmlElement[] elements...);
+  IHtmlElement content(IHtmlElement[] elements);
+
+  IHtmlElement addContent(string[] values...);
+  IHtmlElement addContent(string[] values);
+  IHtmlElement addContent(IHtmlElement[] elements...);
+  IHtmlElement addContent(IHtmlElement[] elements);
 
   // Getter / Setter for selfClosing
   bool selfClosing();
@@ -41,14 +50,14 @@ interface IHtmlElement {
   /// Set style attribute
   IHtmlElement style(string styleValue);
 
-  /// Add a child element
-  IHtmlElement addChild(HtmlElement child);
-  /// Add multiple children
-  IHtmlElement addChildren(HtmlElement[] children...);
-  /// Get children array
-  IHtmlElement[] children();
-  /// Remove all children
-  IHtmlElement clearChildren();
+  // /// Add a child element
+  // IHtmlElement addChild(HtmlElement child);
+  // /// Add multiple children
+  // IHtmlElement addChildren(HtmlElement[] children...);
+  // /// Get children array
+  // IHtmlElement[] children();
+  // /// Remove all children
+  // IHtmlElement clearChildren();
 
   /// Set text content
   IHtmlElement text(string textContent);

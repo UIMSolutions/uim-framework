@@ -5,12 +5,12 @@
 *****************************************************************************************************************/
 module uim.security.jwt;
 
+import uim.security;
 import std.base64 : Base64URLNoPadding;
 import std.datetime : Clock, Duration, SysTime, seconds;
 import std.digest.hmac : hmac;
 import std.digest.sha : SHA256;
 import std.exception : enforce;
-import std.json : Json, JsonType, parseJson;
 import std.string : split;
 
 import uim.security.crypto : constantTimeEquals;
@@ -27,9 +27,9 @@ string signJWT(Json claims, string secret, Duration ttl) @trusted {
   ]);
 
   auto payload = claims;
-  if (!("exp" in payload.object)) {
+  if (!(payload.hasKey("exp"))) {
     auto expires = Clock.currTime() + ttl;
-    payload.object["exp"] = Json(expires.toUnixTime());
+    payload["exp"] = Json(expires.toUnixTime());
   }
 
   auto headerPart = base64Json(header);
@@ -53,13 +53,13 @@ Json verifyJWT(string token, string secret) @trusted {
 
   auto payloadBytes = Base64URLNoPadding.decode(parts[1]);
   // Safe to cast: we know these bytes are UTF-8 encoded Json from what we created
-  auto payload = parseJson(cast(string) payloadBytes);
+  auto payload = parseJsonString(cast(string) payloadBytes);
   enforce(payload.isObject, "JWT payload must be an object");
 
-  if (auto expNode = "exp" in payload.object) {
+  if (auto expNode = payload["exp"]) {
     auto now = Clock.currTime().toUnixTime();
-    enforce(expNode.type == JsonType.integer || expNode.type == JsonType.uinteger, "exp must be numeric");
-    long expVal = expNode.type == JsonType.integer ? expNode.integer : cast(long) expNode.uinteger;
+    enforce(expNode.isInteger || expNode.isDouble, "exp must be numeric");
+    long expVal = expNode.isInteger ? expNode.get!long : to!long(expNode.get!double);
     enforce(now <= expVal, "JWT expired");
   }
 

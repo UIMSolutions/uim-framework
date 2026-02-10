@@ -82,18 +82,24 @@ void testTableElements() {
 void testListElements() {
     // Test unordered list
     auto ul = Ul();
-    ul.addChild(Li("Item 1"));
-    ul.addChild(Li("Item 2"));
+        // ul.addChild(Li("Item 1"));
+        ul.addContent(Li("Item 1"));
+        // ul.addChild(Li("Item 2"));
+        ul.addContent(Li("Item 2"));
 
     // Test ordered list
     auto ol = new Ol();
-    ol.addChild(Li("First"));
-    ol.addChild(Li("Second"));
+    // ol.addChild(Li("First"));
+    // ol.addChild(Li("Second"));
+    ol.addContent(Li("First"));
+    ol.addContent(Li("Second"));
 
     // Test definition list
     auto dl = new Dl();
-    dl.addChild(Dt("Term"));
-    dl.addChild(Dd("Definition"));
+    // dl.addChild(Dt("Term"));
+    dl.addContent(Dt("Term"));
+    // dl.addChild(Dd("Definition"));
+    dl.addContent(Dd("Definition"));
 }
 
 void testDocument() {
@@ -102,8 +108,8 @@ void testDocument() {
     doc.addStylesheet("style.css");
     doc.addScript("script.js");
 
-    doc.body().addChild(H1("Welcome"));
-    doc.body().addChild(P("This is a test page"));
+    doc.body().addContent(H1("Welcome"));
+    doc.body().addContent(P("This is a test page"));
 
     string html = doc.toString();
     assert(html.indexOf("<!DOCTYPE html>") == 0);

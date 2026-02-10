@@ -11,9 +11,8 @@ targetName "uim-security"
 targetType "library"
 
 // Dependencies
-dependency "uim-framework:core" version="*"
+dependency "uim-framework:oop" version="*"
 dependency "uim-framework:logging" version="*"
-dependency "vibe-d" version="~>0.10.3"
 
 // Configurations
 configuration "default" {

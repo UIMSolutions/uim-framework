@@ -125,22 +125,23 @@ class HtmlDocument : UIMObject {
             html ~= stylesheet ~ "\n";
         }
 
-        // Add additional head elements
-        foreach (child; _head.children()) {
-            html ~= child.toString() ~ "\n";
-        }
+        html ~= _head.content() ~ "\n";
+        // // Add additional head elements
+        // foreach (child; _head.children()) {
+        //     html ~= child.toString() ~ "\n";
+        // }
 
         html ~= "</head>\n";
         html ~= "<body>\n";
 
         // Add body content
-        if (_body.content().length > 0) {
-            html ~= _body.content() ~ "\n";
-        }
+//        if (_body.content().length > 0) {
+            html ~= _body.content().length > 0 ? _body.content() ~ "\n" : "";
+//         }
 
-        foreach (child; _body.children()) {
-            html ~= child.toString() ~ "\n";
-        }
+        // foreach (child; _body.children()) {
+            // html ~= child.toString() ~ "\n";
+        // }
 
         foreach (script; _scripts) {
             html ~= script ~ "\n";

@@ -34,9 +34,9 @@ unittest {
   mixin(ShowTest!"Testing getArray with index");
 
   Json json = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson].toJson;
-  assert(json.getArray(0) == [1, 2].toJson, "Expected array at index 0");
+  assert(json.getArray(0) == [Json(1), Json(2)], "Expected array at index 0");
   assert(json.getArray(1, null) == null, "Expected null for non-array at index 1");
-  assert(json.getArray(2) == [3, 4].toJson, "Expected array at index 2");
+  assert(json.getArray(2) == [Json(3), Json(4)], "Expected array at index 2");
 }
 // #endregion index
 
@@ -84,8 +84,8 @@ Json[] getArray(Json json, string key, Json[] defaultValue = null) {
 unittest {
   Json json = parseJsonString(`{"data": [ [1, 2], {"a": 1}, [3, 4] ]}`);
   assert(json.getArray("data") == [
-      [1, 2].toJson, ["a": 1].toJson, [3, 4].toJson
-    ].toJson);
+      [Json(1), Json(2)].toJson, ["a": Json(1)].toJson, [Json(3), Json(4)].toJson
+    ], "Expected array at key 'data'");
   assert(json.getArray("nonexistent", Json("default")) == Json("default"), "Expected default value for non-array at key 'nonexistent'");
 }
 // #endregion key
@@ -157,7 +157,7 @@ unittest {
   mixin(ShowTest!"Testing getArray for Json[] with index");
 
   Json[] jsons = [[1, 2].toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(jsons.getArray(0) == [1, 2].toJson, "Expected array at index 0");
+  assert(jsons.getArray(0) == [Json(1), Json(2)].toJson, "Expected array at index 0");
   assert(jsons.getArray(1, Json("default")) == Json("default"), "Expected default value for non-array at index 1");
   assert(jsons.getArray(2) == [3, 4].toJson, "Expected array at index 2");
 }
@@ -211,9 +211,9 @@ unittest {
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getArray("first") == [1, 2].toJson, "Expected array at path 'first'");
+  assert(map.getArray("first") == [1, 2], "Expected array at path 'first'");
   assert(map.getArray("second", ["default"].map!(x => x.toJson)) == ["default"].map!(x => x.toJson), "Expected default value for non-array at path 'second'");
-  assert(map.getArray("third") == [3, 4].toJson, "Expected array at path 'third'");
+  assert(map.getArray("third") == [3, 4], "Expected array at path 'third'");
 }
 // #endregion path
 
@@ -246,9 +246,9 @@ unittest {
   Json[string] map = [
     "first": [1, 2].toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getArray("first") == [1, 2].toJson, "Expected array at key 'first'");
+  assert(map.getArray("first") == [1, 2], "Expected array at key 'first'");
   assert(map.getArray("second", ["default"].map!(x => x.toJson)) == ["default"].map!(x => x.toJson), "Expected default value for non-array at key 'second'");
-  assert(map.getArray("third") == [3, 4].toJson, "Expected array at key 'third'");
+  assert(map.getArray("third") == [3, 4], "Expected array at key 'third'");
 }
 // #endregion key
 

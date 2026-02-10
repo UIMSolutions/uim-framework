@@ -48,7 +48,8 @@ class Select : FormElement {
 
   /// Adds an option to the select element with the specified value and display text.
   IHtmlElement addOption(string value, string text) {
-    addChild(SelectOption(value, text));
+    // addChild(SelectOption(value, text));
+    addContent(SelectOption(value, text));
     return this;
   }
 

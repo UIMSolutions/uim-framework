@@ -46,23 +46,37 @@ class HtmlElement : IHtmlElement {
 
   // Setter for content
   protected string _content;
-  IHtmlElement content(string value) {
-    _content = value;
+  IHtmlElement content(string[] values...) {
+    return content(values.dup);
+  }
+
+  IHtmlElement content(string[] values) {
+    _content = values.join("");
     return this;
+  }
+
+  IHtmlElement content(IHtmlElement[] elements...) {
+    return content(elements.dup);
   }
 
   IHtmlElement content(IHtmlElement[] elements) {
-    _content = elements.map!(e => e.toString()).join("");
+    _content = elements.map!(element => element.toString()).join("");
     return this;
   }
 
-  IHtmlElement content(IHtmlElement element) {
-    _content = element.toString();
+  IHtmlElement addContent(string[] values...) {
+    return addContent(values.dup);
+  }
+  IHtmlElement addContent(string[] values) {
+    _content ~= values.join("");
     return this;
   }
 
-  IHtmlElement addContent(IHtmlElement element) {
-    _content ~= element.toString();
+  IHtmlElement addContent(IHtmlElement[] elements...) {
+    return addContent(elements.dup);
+  }
+  IHtmlElement addContent(IHtmlElement[] elements) {
+    _content ~= elements.map!(element => element.toString()).join("");
     return this;
   }
   // #endregion content
@@ -125,30 +139,30 @@ class HtmlElement : IHtmlElement {
     return this;
   }
 
-  /// Add a child element
-  IHtmlElement addChild(IHtmlElement child) {
-    _children ~= child;
-    return this;
-  }
+  // /// Add a child element
+  // IHtmlElement addChild(IHtmlElement child) {
+  //   _children ~= child;
+  //   return this;
+  // }
 
-  /// Add multiple children
-  IHtmlElement addChildren(IHtmlElement[] children...) {
-    foreach (child; children) {
-      addChild(child);
-    }
-    return this;
-  }
+  // /// Add multiple children
+  // IHtmlElement addChildren(IHtmlElement[] children...) {
+  //   foreach (child; children) {
+  //     addChild(child);
+  //   }
+  //   return this;
+  // }
 
-  /// Get children array
-  IHtmlElement[] children() {
-    return _children;
-  }
+  // /// Get children array
+  // IHtmlElement[] children() {
+  //   return _children;
+  // }
 
-  /// Remove all children
-  IHtmlElement clearChildren() {
-    _children = [];
-    return this;
-  }
+  // /// Remove all children
+  // IHtmlElement clearChildren() {
+  //   _children = [];
+  //   return this;
+  // }
 
   /// Set text content
   IHtmlElement text(string textContent) {

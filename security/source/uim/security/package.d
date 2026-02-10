@@ -6,7 +6,7 @@
 module uim.security;
 
 public {
-  import uim.core;
+  import uim.oop;
 
   import uim.security.crypto;
   import uim.security.jwt;
