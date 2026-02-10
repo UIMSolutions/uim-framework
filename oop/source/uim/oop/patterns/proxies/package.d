@@ -6,7 +6,13 @@
 module uim.oop.patterns.proxies;
 
 public {
+  import uim.oop.patterns.proxies.classes;
+  import uim.oop.patterns.proxies.helpers;
   import uim.oop.patterns.proxies.interfaces;
+  import uim.oop.patterns.proxies.tests;
+}
+
+public {
   import uim.oop.patterns.proxies.proxy;
   import uim.oop.patterns.proxies.virtual;
 }

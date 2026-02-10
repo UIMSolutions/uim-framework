@@ -6,6 +6,7 @@
 module uim.oop.patterns.transferobjects.transferobject;
 
 import uim.oop.patterns.transferobjects.interfaces;
+@safe: 
 
 /**
  * Base class for Transfer Objects.

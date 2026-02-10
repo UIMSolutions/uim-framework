@@ -6,7 +6,7 @@
 module uim.oop.patterns.locators.locator;
 
 import uim.oop.patterns.locators.interfaces;
-
+@safe:
 /**
  * Base abstract service that can be registered with Service Locator.
  */

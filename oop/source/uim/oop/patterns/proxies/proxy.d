@@ -13,16 +13,6 @@ mixin(ShowModule!());
 
 
 /**
- * Base abstract class for subjects.
- */
-abstract class ProxySubject : IProxySubject {
-  /**
-   * Execute the subject's main operation.
-   */
-  abstract string execute() @safe;
-}
-
-/**
  * Base proxy class.
  * Forwards requests to the real subject.
  */

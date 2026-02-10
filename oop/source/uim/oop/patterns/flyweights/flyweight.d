@@ -3,6 +3,7 @@ module uim.oop.patterns.flyweights.flyweight;
 import uim.oop.patterns.flyweights.interfaces;
 import std.format;
 
+@safe:
 /**
  * Concrete flyweight storing intrinsic (shared) state.
  */
