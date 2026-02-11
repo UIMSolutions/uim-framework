@@ -3,12 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.interfaces;
+module uim.html.interfaces.formelement;
 
-public {
-  import uim.html.interfaces.attribute;
-  import uim.html.interfaces.element;
-  import uim.html.interfaces.form;
-  import uim.html.interfaces.formelement;
-  import uim.html.interfaces.input;
+import uim.html;
+
+mixin(ShowModule!());
+
+@safe:
+
+interface IFormElement : IHtmlElement {
+    IHtmlAttribute form();
+    IFormElement form(string formId);
 }

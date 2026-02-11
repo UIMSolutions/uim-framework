@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.oop.datatypes.objects.interfaces;
+module uim.oop.patterns.daos.interfaces.cacheable;
 
 import uim.oop;
 
@@ -11,20 +11,28 @@ mixin(ShowModule!());
 
 @safe:
 
-/// Interface for all UIM objects.
-interface IObject {
-  /// Get the name of the object.
-  string objName(); 
+/**
+ * Cacheable DAO interface.
+ */
+interface ICacheableDAO(T, ID) : IDAO!(T, ID) {
+  /**
+   * Enable caching.
+   */
+  void enableCache();
 
-  /// Get or set the name of the object.
-  void objName(string newName); 
+  /**
+   * Disable caching.
+   */
+  void disableCache();
 
-  /// Compares two IObject instances for equality based on their names.
-  bool isEqual(IObject other); 
+  /**
+   * Clear the cache.
+   */
+  void clearCache();
 
-  /// Returns a string representation comparing two IObject instances.
-  string toString(); 
-
-  /// Creates a clone of the current object.
-  IObject clone(); 
+  /**
+   * Check if caching is enabled.
+   * Returns: true if caching is enabled
+   */
+  bool isCacheEnabled();
 }

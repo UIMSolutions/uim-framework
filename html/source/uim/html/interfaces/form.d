@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.forms.interfaces;
+module uim.html.interfaces.form;
 
 import uim.html;
 
@@ -19,21 +19,11 @@ interface IHtmlForm : IHtmlElement {
 
   IHtmlForm action(string url);
 
-  IHtmlForm method(string methoUIMValue);
+  IHtmlForm method(string methodValue);
 
   IHtmlForm post();
 
   IHtmlForm get();
 
   IHtmlForm enctype(string value);
-}
-
-interface IInput : IFormElement {
-    IHtmlAttribute type();
-    IInput type(string typeValue);
-}
-
-interface IFormElement : IHtmlElement {
-    IHtmlAttribute form();
-    IFormElement form(string formId);
 }
