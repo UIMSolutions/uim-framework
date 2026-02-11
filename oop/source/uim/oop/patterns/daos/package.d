@@ -9,5 +9,4 @@ public {
   import uim.oop.patterns.daos.classes;
   import uim.oop.patterns.daos.helpers;
   import uim.oop.patterns.daos.interfaces;
-  import uim.oop.patterns.daos.dao;
 }

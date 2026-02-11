@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.binary;
+module uim.oop.patterns.interpreters.interfaces.expressions.binary;
 
 import uim.oop;
 
