@@ -9,8 +9,23 @@ import uim.compilers;
 
 @safe:
 
+/**
+  * Factory for creating instances of parsers.
+  * This factory allows for the registration of different types of parsers
+  * and provides a way to create them by name.
+  */
 class ParserFactory : UIMFactory!(string, ICompilerParser) {
-    this() {
-        super();
-    }
+  this() {
+    super();
+  }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing ParserFactory");
+
+  auto factory = new ParserFactory();
+  assert(factory !is null);
+  factory.register("test", () => new CompilerParser());
+  auto parser = factory.create("test");
+  assert(parser !is null);
 }

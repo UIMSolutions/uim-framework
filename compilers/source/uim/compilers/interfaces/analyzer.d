@@ -42,40 +42,7 @@ interface ISemanticAnalyzer {
   Diagnostic[] warnings();
 }
 
-/**
- * Symbol table interface for tracking identifiers and their types.
- */
-interface ISymbolTable {
-  /**
-   * Enter a new scope.
-   */
-  void enterScope();
 
-  /**
-   * Exit the current scope.
-   */
-  void exitScope();
-
-  /**
-   * Define a symbol in the current scope.
-   */
-  void define(string name, Symbol symbol);
-
-  /**
-   * Resolve a symbol (search current and parent scopes).
-   */
-  Symbol resolve(string name);
-
-  /**
-   * Check if a symbol exists in the current scope.
-   */
-  bool exists(string name);
-
-  /**
-   * Get all symbols in the current scope.
-   */
-  Symbol[string] symbols();
-}
 
 /**
  * Symbol representing an identifier in the program.

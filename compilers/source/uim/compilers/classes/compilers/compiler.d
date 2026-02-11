@@ -229,6 +229,18 @@ class Compiler : UIMObject, ICompiler {
     return result;
   }
 }
+///
+unittest {
+  mixin(ShowTest!" Testing Compiler");
+
+  auto compiler = new Compiler();
+  assert(compiler !is null);
+  assert(compiler.lexer() !is null);
+  assert(compiler.parser() !is null);
+  assert(compiler.analyzer() !is null);
+  assert(compiler.optimizer() !is null);
+  assert(compiler.codeGenerator() !is null);
+}
 
 /**
  * Create a new compiler instance.

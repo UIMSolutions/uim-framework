@@ -7,10 +7,23 @@ module uim.compilers.classes.generators.helpers.factory;
 
 import uim.compilers;
 
+mixin(ShowModule!());
+
 @safe:
 
 class CodeGeneratorFactory : UIMFactory!(string, ICodeGenerator) {
-    this() {
-        super();
-    }
+  this() {
+    super();
+  }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing CodeGeneratorFactory");
+
+  auto factory = new CodeGeneratorFactory();
+
+  assert(factory !is null);
+  factory.register("test", () => new CodeGenerator());
+  auto generator = factory.create("test");
+  assert(generator !is null);
 }

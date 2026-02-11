@@ -9,8 +9,23 @@ import uim.compilers;
 
 @safe:
 
+/**
+  * Factory for creating instances of semantic analyzers.
+  * This factory allows for the registration of different types of semantic analyzers
+  * and provides a way to create them by name.
+  */
 class SemanticAnalyzerFactory : UIMFactory!(string, ISemanticAnalyzer) {
-    this() {
-        super();
-    }
+  this() {
+    super();
+  }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing SemanticAnalyzerFactory");  
+
+  auto factory = new SemanticAnalyzerFactory();
+  assert(factory !is null);
+  factory.register("test", () => new SemanticAnalyzer());
+  auto analyzer = factory.create("test");
+  assert(analyzer !is null);
 }

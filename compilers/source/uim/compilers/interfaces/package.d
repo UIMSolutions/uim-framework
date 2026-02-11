@@ -12,4 +12,5 @@ public {
   import uim.compilers.interfaces.analyzer;
   import uim.compilers.interfaces.optimizer;
   import uim.compilers.interfaces.codegen;
+  import uim.compilers.interfaces.symboltable;
 }

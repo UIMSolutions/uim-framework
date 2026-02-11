@@ -11,7 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-/* 
 // #region filterKeys
 /**
   * Filters the map by the specified keys and an optional filter function.

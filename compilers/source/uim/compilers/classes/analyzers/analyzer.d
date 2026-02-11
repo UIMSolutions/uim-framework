@@ -32,11 +32,19 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     }
 
     _symbolTable = new SymbolTable();
-
     return true;
   }
 
-
+  /**
+  * Analyzes the given AST and returns the analyzed AST.
+  * During analysis, it collects semantic errors and warnings.
+  * The symbol table is updated with information about variables, functions, and other symbols.
+  *
+  * Params:
+  *   ast = The abstract syntax tree to analyze.
+  * Returns: 
+  *   The analyzed abstract syntax tree.
+  */
   ASTNode analyze(ASTNode ast) {
     _errors = [];
     _warnings = [];
@@ -46,20 +54,26 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     return ast;
   }
 
+  // #region symbolTable
   protected ISymbolTable _symbolTable;
   ISymbolTable symbolTable() {
     return _symbolTable;
   }
+  // #endregion symbolTable
 
+  // #region errors
   protected Diagnostic[] _errors;
   Diagnostic[] errors() {
     return _errors;
   }
+  // #endregion errors
 
+  // #region warnings
   protected Diagnostic[] _warnings;
   Diagnostic[] warnings() {
     return _warnings;
   }
+  // #endregion warnings
 
   // Core analysis method
   protected void analyzeNode(ASTNode node) {
@@ -123,7 +137,9 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
   }
 }
 ///
-unittest {  // Basic test to ensure analyzer can be instantiated
+unittest {
+  mixin(ShowTest!"Testing SemanticAnalyzer");
+  
   auto analyzer = new SemanticAnalyzer();
   assert(analyzer !is null);
 }

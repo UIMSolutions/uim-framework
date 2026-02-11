@@ -16,22 +16,60 @@ class SymbolTable : ISymbolTable {
     _scopes[0] = (Symbol[string]).init;
   }
 
-  void enterScope() {
+  /**
+    * Enters a new scope level. Symbols defined after this call will be in the new scope.
+    */
+  ISymbolTable enterScope() {
     _scopes ~= (Symbol[string]).init;
     _currentScope++;
+    return this;
   }
 
-  void exitScope() {
+  /**
+    * Exits the current scope and returns to the previous one.
+    * Symbols defined in the exited scope will no longer be accessible.
+    */
+  ISymbolTable exitScope() {
     if (_currentScope > 0) {
-      _scopes = _scopes[0..$-1];
+      _scopes = _scopes[0 .. $ - 1];
       _currentScope--;
     }
+    return this;
   }
 
-  void define(string name, Symbol symbol) {
+  /**
+    * Defines a symbol in the current scope.
+    * 
+    * Params:
+    *   name The name of the symbol     
+    *   symbol The symbol information to store.
+    */
+  ISymbolTable define(string name, Symbol symbol) {
     _scopes[_currentScope][name] = symbol;
+    return this;
+  }
+  ///
+  unittest {
+    auto table = new SymbolTable();
+    table.define("x", Symbol("int"));
+    assert(table.resolve("x").type == "int");
+    table.enterScope();
+    assert(table.resolve("x").type == "int");
+    table.define("y", Symbol("float"));
+    assert(table.resolve("y").type == "float");
+    table.exitScope();
+    assert(table.resolve("y").type == null);
   }
 
+  /** 
+   * Resolves a symbol by name, searching from the current scope up to the global scope.
+   *
+   * Params:
+   *   name = The name of the symbol to resolve.
+   *
+   * Returns:
+   *   The resolved symbol if found, or a null symbol if not found. 
+   */
   Symbol resolve(string name) {
     // Search from current scope to global scope
     for (long i = _currentScope; i >= 0; i--) {
@@ -44,6 +82,10 @@ class SymbolTable : ISymbolTable {
     return notFound;
   }
 
+  /**
+    * Checks if a symbol with the given name exists in the current scope.
+    * Returns true if it exists, false otherwise.
+    */
   bool exists(string name) {
     return (name in _scopes[_currentScope]) !is null;
   }
