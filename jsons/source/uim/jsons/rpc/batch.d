@@ -53,7 +53,7 @@ class JsonRpcBatchRequest : UIMObject {
   /**
    * Convert to Json array.
    */
-  Json toJson() {
+  override Json toJson() {
     Json[] jsonArray;
     foreach (request; _requests) {
       jsonArray ~= request.toJson();
@@ -123,7 +123,7 @@ class JsonRpcBatchResponse : UIMObject {
   /**
    * Convert to Json array.
    */
-  Json toJson() {
+  override Json toJson() {
     Json[] jsonArray;
     foreach (response; _responses) {
       jsonArray ~= response.toJson();

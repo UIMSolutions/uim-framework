@@ -43,7 +43,7 @@ class GeoJsonFeatureCollection : UIMObject {
     /**
      * Convert to Json
      */
-    Json toJson() @trusted {
+    override Json toJson() @trusted {
         auto result = Json.emptyObject;
         result["type"] = GeoJsonType.FeatureCollection.to!string;
         

@@ -99,7 +99,7 @@ class JsonLDNode : UIMObject {
   /**
    * Convert to Json-LD format.
    */
-  Json toJson() {
+  override Json toJson() {
     auto result = Json.emptyObject;
     
     if (_id.length > 0) {

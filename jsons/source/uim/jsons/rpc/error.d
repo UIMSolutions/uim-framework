@@ -58,7 +58,7 @@ class JsonRpcError : UIMObject {
   /**
    * Convert to Json object.
    */
-  Json toJson() {
+  override Json toJson() {
     auto result = Json.emptyObject;
     result["code"] = _code;
     result["message"] = _message;

@@ -23,6 +23,6 @@ abstract class GeoJsonGeometry : UIMObject {
     @property GeometryType geometryType() { return _geometryType; }
     @property void geometryType(GeometryType value) { _geometryType = value; }
     
-    abstract Json toJson();
+    override abstract Json toJson();
     abstract void fromJson(Json json);
 }

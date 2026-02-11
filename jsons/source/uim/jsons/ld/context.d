@@ -176,11 +176,11 @@ class JsonLDContext : UIMObject {
   /**
    * Convert to Json.
    */
-  Json toJson() {
+  override Json toJson() {
     return _context;
   }
 }
-
+///
 unittest {
   auto ctx = new JsonLDContext();
   ctx.vocab("http://schema.org/");

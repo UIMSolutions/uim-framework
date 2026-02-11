@@ -117,7 +117,7 @@ class JsonLDBuilder : UIMObject {
   /**
    * Get Json representation.
    */
-  Json toJson() {
+  override Json toJson() {
     return _document.toJson();
   }
 

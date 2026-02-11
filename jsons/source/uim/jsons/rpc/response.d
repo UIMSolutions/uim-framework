@@ -75,7 +75,7 @@ class JsonRpcResponse : UIMObject {
   /**
    * Convert to Json object.
    */
-  Json toJson() {
+  override Json toJson() {
     auto response = Json.emptyObject;
     response["jsonRpc"] = _jsonRpc;
     

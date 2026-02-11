@@ -39,7 +39,7 @@ class JsonSchema : UIMObject {
   /**
    * Get the schema as Json.
    */
-  Json toJson() {
+  override Json toJson() {
     return _schema;
   }
 

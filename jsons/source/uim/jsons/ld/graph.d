@@ -123,7 +123,7 @@ class JsonLDGraph : UIMObject {
   /**
    * Convert to Json-LD format.
    */
-  Json toJson() {
+  override Json toJson() {
     Json[] graphArray;
     
     foreach (node; _nodes.values) {

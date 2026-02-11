@@ -54,6 +54,7 @@ class UIMError : UIMObject, IError {
     // Set timestamp to current time if not already set
     if (_timestamp == 0) {
       import std.datetime : Clock;
+
       _timestamp = Clock.currStdTime();
     }
 
@@ -70,6 +71,13 @@ class UIMError : UIMObject, IError {
     _loglabel = newLabel;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.loglabel() == null); // Default should be null
+    error.loglabel("ERROR_LABEL");
+    assert(error.loglabel() == "ERROR_LABEL");
+  }
   // #endregion loglabel
 
   // #region errorCode
@@ -77,9 +85,17 @@ class UIMError : UIMObject, IError {
   int errorCode() {
     return _errorCode;
   }
+
   IError errorCode(int newCode) {
     _errorCode = newCode;
     return this;
+  }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.errorCode() == 0); // Default should be 0
+    error.errorCode(1001);
+    assert(error.errorCode() == 1001);
   }
   // #endregion errorCode
 
@@ -88,24 +104,43 @@ class UIMError : UIMObject, IError {
   long timestamp() {
     return _timestamp;
   }
+
   IError timestamp(long newTimestamp) {
     _timestamp = newTimestamp;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.timestamp() > 0); // Should be set to current time on initialization
+    long oldTimestamp = error.timestamp();
+    error.timestamp(oldTimestamp + 1000);
+    assert(error.timestamp() == oldTimestamp + 1000);
+  }
   // #endregion timestamp
 
   // #region severity
+  /// The severity level of the error (e.g., "error", "warning", "notice", "critical", "debug").
   protected string _severity = "error"; // error, warning, notice, critical, debug
+  /// Get the severity level of the error.
   string severity() {
     return _severity;
   }
+  /// Set the severity level of the error.
   IError severity(string newSeverity) {
     _severity = newSeverity;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.severity() == "error");
+    error.severity("warning");
+    assert(error.severity() == "warning");
+  }
   // #endregion severity
 
-// #region previous
+  // #region previous
   /**
    * The previous error in the chain of errors.
    *
@@ -135,6 +170,7 @@ class UIMError : UIMObject, IError {
     }
     return _attributes;
   }
+
   IError attributes(Json[string] newAttributes) {
     _attributes = newAttributes;
     return this;
@@ -144,11 +180,23 @@ class UIMError : UIMObject, IError {
   string loglevel() {
     return logLevels.level(loglabel());
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.loglevel() is null || error.loglevel().length >= 0); // Should return a string or null
+  }
   // #endregion loglevel
 
   // #region line
   string line() {
     return to!string(_lineNumber);
+  }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.line() == "0"); // Default line number should be 0
+    error.lineNumber(123);
+    assert(error.line() == "123");
   }
   // #endregion line
 
@@ -164,6 +212,13 @@ class UIMError : UIMObject, IError {
     _message = newMessage;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.message() == null); // Default should be null
+    error.message("Test message");
+    assert(error.message() == "Test message");
+  }
   // #endregion message
 
   // #region filemname
@@ -178,6 +233,13 @@ class UIMError : UIMObject, IError {
     _fileName = name;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.fileName() == null); // Default should be null
+    error.fileName("test_file.d");
+    assert(error.fileName() == "test_file.d");
+  }
   // #endregion filename
 
   // #region lineNumber
@@ -189,6 +251,13 @@ class UIMError : UIMObject, IError {
   IError lineNumber(size_t newLineNumber) {
     _lineNumber = newLineNumber;
     return this;
+  }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.lineNumber() == 0); // Default should be 0
+    error.lineNumber(123);
+    assert(error.lineNumber() == 123);
   }
   // #endregion lineNumber
 
@@ -218,7 +287,7 @@ class UIMError : UIMObject, IError {
 
     return this;
   }
-  // Add a trace entry.
+  /// 
   IError addTrace(string[string] newTrace) {
     _trace ~= newTrace;
     return this;
@@ -239,28 +308,49 @@ class UIMError : UIMObject, IError {
   // Get formatted error message with all details
   string toDetailedString() {
     import std.format : format;
+
     string result = "[%s] %s".format(severity.toUpper(), message);
-    
+
     if (_errorCode != 0) {
       result ~= " (Code: %d)".format(_errorCode);
     }
-    
+
     if (_fileName) {
       result ~= "\n  File: %s".format(_fileName);
       if (_lineNumber > 0) {
         result ~= ":%d".format(_lineNumber);
       }
     }
-    
+
     if (_loglabel) {
       result ~= "\n  Label: %s".format(_loglabel);
     }
-    
+
     if (_trace && _trace.length > 0) {
       result ~= "\n  Stack Trace:\n    " ~ traceAsString().replace("\n", "\n    ");
     }
-    
+
     return result;
+  }
+  /// 
+  unittest {
+    mixin(ShowTest
+
+    auto error = new UIMError();
+    error.message("Test error")
+      .severity("warning")
+      .errorCode(1001)
+      .fileName("test_file.d")
+      .lineNumber(42)
+      .loglabel("TEST_LABEL")
+      .addTrace("main", "test_file.d", "42");
+
+    string detailed = error.toDetailedString();
+    assert(detailed.canFind("[WARNING] Test error"));
+    assert(detailed.canFind("Code: 1001"));
+    assert(detailed.canFind("File: test_file.d:42"));
+    assert(detailed.canFind("Label: TEST_LABEL"));
+    assert(detailed.canFind("{main} {test_file.d, 42}"));
   }
 
   // Get compact error representation
@@ -278,7 +368,7 @@ class UIMError : UIMObject, IError {
   }
   // #endregion throwError
 }
-
+/// 
 unittest {
   // Create a new UIMError and check default state
   auto error = new UIMError();

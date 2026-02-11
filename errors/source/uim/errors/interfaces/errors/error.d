@@ -6,6 +6,7 @@
 module uim.errors.interfaces.errors.error;
 
 import uim.errors;
+
 mixin(ShowModule!());
 @safe:
 
@@ -48,6 +49,9 @@ interface IError : IObject {
 
   Json[string] attributes();
   IError attributes(Json[string] newAttributes);
+
+  IError addTrace(string reference, string file, string line);
+  IError addTrace(string[string] newTrace);
 }
 
 /* Old Code 
@@ -73,4 +77,4 @@ interface IError : IObject {
   string[string] messageTemplates();
   void messageTemplates(string[string] templates);
 
-*/ 
+*/

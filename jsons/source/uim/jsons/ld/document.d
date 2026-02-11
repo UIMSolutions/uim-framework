@@ -50,7 +50,7 @@ class JsonLDDocument : UIMObject {
   /**
    * Convert to Json-LD format.
    */
-  Json toJson() {
+  override Json toJson() {
     auto result = Json.emptyObject;
     
     // Add context

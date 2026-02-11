@@ -44,7 +44,7 @@ class JsonRpcNotification : UIMObject {
   /**
    * Convert to Json object.
    */
-  Json toJson() {
+  override Json toJson() {
     auto result = Json.emptyObject;
     result["jsonRpc"] = _jsonRpc;
     result["method"] = _method;
