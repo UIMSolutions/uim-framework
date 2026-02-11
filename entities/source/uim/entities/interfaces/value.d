@@ -13,8 +13,8 @@ mixin(ShowModule!());
 
 interface IValue {
   // Attribute reference
-  IAttribute attribute();
-  IValue attribute(IAttribute attribute);
+  // uim.entities.interfaces.attribute.IAttribute attribute() const;
+  // IValue attribute(uim.entities.interfaces.attribute.IAttribute attribute);
   
   // Type checks
   bool isBoolean();

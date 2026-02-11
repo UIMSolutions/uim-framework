@@ -204,23 +204,100 @@ class UIMObject : IObject {
     }
   } */
 
-  Json toJson(string[] showKeys = null, string[] hideKeys = null) {
+  // #region toJson
+  /** 
+    * Converts the object to a JSON representation, including its name and class information
+    * Returns:
+    *   A JSON object representing the current object, including its name and class information.
+  */
+  Json toJson() {
     Json json = Json.emptyObject;
     json["objName"] = objName;
     json["objClass"] = this.classname;
 
     return json;
   }
+  /// 
+  unittest {
+    auto obj = new UIMObject;
+    obj.objName("TestObject");
+    Json json = obj.toJson();
+    assert(json["objName"] == "TestObject");
+    assert(json["objClass"] == "UIMObject");
+  }
 
-  // #region debugInfom
-  // Provides debug information about the object.
+  /** 
+    * Converts the object to a JSON representation, allowing for selective inclusion of keys.
+    *
+    * Params:
+    *   showKeys = An array of keys to include in the JSON output. If null, all keys are included.
+    * 
+    * Returns:
+    *   A JSON object representing the current object, filtered according to the specified keys.
+
+    * Behavior:
+    *   - If showKeys is null, all keys from the default toJson() output are included.
+    *   - If showKeys is provided, only the keys specified in showKeys are included in the output.
+  */
+  Json toJson(string[] showKeys) {
+    return showKeys is null ? toJson() : toJson().filterKeys(showKeys);
+  }
+  /// 
+  unittest {
+    auto obj = new UIMObject;
+    obj.objName("TestObject");
+    Json json = obj.toJson(["objName"]);
+    assert(json["objName"] == "TestObject");
+    assert(!json.hasKey("objClass"));
+  }
+
+  /** 
+    * Converts the object to a JSON representation, allowing for selective inclusion or exclusion of keys.
+    *
+    * Params:
+    *   showKeys = An array of keys to include in the JSON output. If null, all keys are included.
+    *   hideKeys = An array of keys to exclude from the JSON output. If null, no keys are excluded.
+    * 
+    * Returns:
+    *   A JSON object representing the current object, filtered according to the specified keys.
+
+    * Behavior:
+    *   - If showKeys is null, all keys from the default toJson() output are included.
+    *   - If showKeys is provided, only the keys specified in showKeys are included in the output.
+    *   - If hideKeys is provided, the keys specified in hideKeys are removed from the output after applying the showKeys filter (if any).
+    *   - If both showKeys and hideKeys are provided, the method first applies the showKeys filter and then removes any keys specified in hideKeys from the resulting JSON object.
+  */  
+  Json toJson(string[] showKeys, string[] hideKeys) {
+    return hideKeys is null ? toJson(showKeys) : toJson(showKeys).removeKeys(hideKeys);
+  }
+  ///
+  unittest {
+    auto obj = new UIMObject;
+    obj.objName("TestObject");
+    Json json = obj.toJson(null, ["objClass"]);
+    assert(json["objName"] == "TestObject");
+    assert(!json.hasKey("objClass"));
+  }
+  // #endregion toJson
+
+  // #region debugInfo
+  /// Returns a JSON object containing debug information about the object, including its class name and optionally filtered properties
   Json[string] debugInfo(string[] showKeys = null, string[] hideKeys = null) {
-    Json[string] info = toJson().toMap;
+    Json[string] info = toJson(showKeys, hideKeys).toMap;
     info["classFullname"] = this.classFullname;
 
     return info;
   }
-  // #region debugInfo
+  ///
+  unittest {
+    auto obj = new UIMObject;
+    obj.objName("TestObject");
+    Json[string] debugInfo = obj.debugInfo();
+    assert(debugInfo["objName"] == "TestObject");
+    writeln(debugInfo);
+    assert(debugInfo["classFullname"] == "uim.oop.datatypes.objects.obj.UIMObject");
+  }
+  // #endregion debugInfo
 
   // #region IObject
 
@@ -251,12 +328,29 @@ class UIMObject : IObject {
     return "Object: " ~ this.objName;
   }
 
-  // Creates a clone of the current object.
+  // #region clone
+  /** 
+    * Creates a clone of the current object.
+    *
+    * Returns:
+    *   A new instance of IObject that is a clone of the current object.
+    *
+    * Note:
+    *   This implementation performs a shallow clone. If the object contains reference types (e.g., arrays, other objects), they will be shared between the original and the clone. For a deep clone, you would need to implement copying of all relevant properties to ensure that changes to the clone do not affect the original object.
+  */
   IObject clone() {
     return new UIMObject(toJson().toMap);
   }
+  ///
+  unittest {
+    auto obj1 = new UIMObject;
+    obj1.objName("TestObject");
+    auto obj2 = cast(UIMObject)obj1.clone();
+    assert(obj2.objName == "TestObject");
+    assert(obj2 !is obj1); // Ensure it's a different instance
+  }
+  // #endregion clone
   // #endregion IObject
-
 }
 
 class Test : UIMObject {
@@ -274,6 +368,10 @@ class Test : UIMObject {
 }
 
 unittest {
-  //   auto obj = new IMObject;
-
+  auto testObj = new Test;
+  auto members = testObj.objMemberNames();
+  assert(members.canFind("newMethod"), "Expected objMemberNames to include 'newMethod'");
+  assert(members.canFind("objName"), "Expected objMemberNames to include 'objName' from UIMObject");
+  assert(members.canFind("objId"), "Expected objMemberNames to include 'objId' from UIMObject");
+  assert(members.canFind("initialize"), "Expected objMemberNames to include 'initialize' from UIMObject");
 }

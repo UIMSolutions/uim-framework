@@ -17,17 +17,17 @@ class UIMValue : UIMObject, IValue {
 
   this(IAttribute attribute) {
     super();
-    this.attribute(attribute);
+    _attribute = attribute;
   }
 
   this(IAttribute attribute, Json initData) {
     super(initData);
-    this.attribute(attribute);
+    _attribute = attribute;
   }
 
   this(IAttribute attribute, Json[string] initData) {
     super(initData);
-    this.attribute(attribute);
+    _attribute = attribute;
   }
 
   // Hook
@@ -41,156 +41,173 @@ class UIMValue : UIMObject, IValue {
 
   // --- Explicit property getters and setters for marked fields ---
   protected IAttribute _attribute;
-  @property IAttribute attribute() const {
-    return _attribute;
-  }
+  // TODO: 
+  // uim.entities.interfaces.attribute.IAttribute attribute() const {
+  //   return _attribute;
+  // }
 
-  @property void attribute(IAttribute attribute) {
-    _attribute = attribute;
-  }
+  // void attribute(uim.entities.interfaces.attribute.IAttribute attribute) {
+  //   _attribute = attribute;
+  // }
 
   protected bool _isBoolean;
-  @property bool isBoolean() const {
+  bool isBoolean() const {
     return _isBoolean;
   }
 
-  @property void isBoolean(bool v) {
+  IValue isBoolean(bool v) {
     _isBoolean = v;
+    return this;
   }
 
   protected bool _isInteger;
-  @property bool isInteger() const {
+  bool isInteger() const {
     return _isInteger;
   }
 
-  @property void isInteger(bool v) {
+  IValue isInteger(bool v) {
     _isInteger = v;
+    return this;
   }
 
   protected bool _isDouble;
-  @property bool isDouble() const {
+  bool isDouble() const {
     return _isDouble;
   }
 
-  @property void isDouble(bool v) {
+  IValue isDouble(bool v) {
     _isDouble = v;
+    return this;
   }
 
   protected bool _isLong;
-  @property bool isLong() const {
+  bool isLong() const {
     return _isLong;
   }
 
-  @property void isLong(bool v) {
+  IValue isLong(bool v) {
     _isLong = v;
+    return this;
   }
 
   protected bool _isTime;
-  @property bool isTime() const {
+  bool isTime() const {
     return _isTime;
   }
 
-  @property void isTime(bool v) {
+  IValue isTime(bool v) {
     _isTime = v;
+    return this;
   }
 
   protected bool _isDate;
-  @property bool isDate() const {
+  bool isDate() const {
     return _isDate;
   }
 
-  @property void isDate(bool v) {
+  IValue isDate(bool v) {
     _isDate = v;
+    return this;
   }
 
   protected bool _isDatetime;
-  @property bool isDatetime() const {
+  bool isDatetime() const {
     return _isDatetime;
   }
 
-  @property void isDatetime(bool v) {
+  IValue isDatetime(bool v) {
     _isDatetime = v;
+    return this;
   }
 
   protected bool _isTimestamp;
-  @property bool isTimestamp() const {
+  bool isTimestamp() const {
     return _isTimestamp;
   }
 
-  @property void isTimestamp(bool v) {
+  IValue isTimestamp(bool v) {
     _isTimestamp = v;
+    return this;
   }
 
   protected bool _isString;
-  @property bool isString() const {
+  bool isString() const {
     return _isString;
   }
 
-  @property void isString(bool v) {
+  IValue isString(bool v) {
     _isString = v;
+    return this;
   }
 
   protected bool _isScalar;
-  @property bool isScalar() const {
+  bool isScalar() const {
     return _isScalar;
   }
 
-  @property void isScalar(bool v) {
+  IValue isScalar(bool v) {
     _isScalar = v;
+    return this;
   }
 
   protected bool _isArray;
-  @property bool isArray() const {
+  bool isArray() const {
     return _isArray;
   }
 
-  @property void isArray(bool v) {
+  IValue isArray(bool v) {
     _isArray = v;
+    return this;
   }
 
   protected bool _isObject;
-  @property bool isObject() const {
+  bool isObject() const {
     return _isObject;
   }
 
-  @property void isObject(bool v) {
+  IValue isObject(bool v) {
     _isObject = v;
+    return this;
   }
 
   protected bool _isEntity;
-  @property bool isEntity() const {
+  bool isEntity() const {
     return _isEntity;
   }
 
-  @property void isEntity(bool v) {
+  IValue isEntity(bool v) {
     _isEntity = v;
+    return this;
   }
 
   protected bool _isUUID;
-  @property bool isUUID() const {
+  bool isUUID() const {
     return _isUUID;
   }
 
-  @property void isUUID(bool v) {
+  IValue isUUID(bool v) {
     _isUUID = v;
+    return this;
   }
 
   protected bool _isReadOnly;
-  @property bool isReadOnly() const {
+  bool isReadOnly() const {
     return _isReadOnly;
   }
 
-  @property void isReadOnly(bool v) {
+  IValue isReadOnly(bool v) {
     _isReadOnly = v;
+    return this;
   }
 
   protected bool _isNullable;
-  @property bool isNullable() const {
+  bool isNullable() const {
     return _isNullable;
   }
 
-  @property void isNullable(bool v) {
+  IValue isNullable(bool v) {
     _isNullable = v;
+    return this;
   }
 
   // #region isNull
@@ -201,10 +218,10 @@ class UIMValue : UIMObject, IValue {
     return false;
   }
 
-  O isNull(this O)(bool newNull) {
+  IValue isNull(bool newNull) {
     if (isNullable)
       _isNull = newNull;
-    return cast(O)this;
+    return this;
   }
   // #endregion isNull
   // #endregion properties 
@@ -255,9 +272,38 @@ class UIMValue : UIMObject, IValue {
     return cast(O)this;
   }
 
-  abstract UIMValue copy();
+  UIMValue copy() {
+    UIMValue copy = new UIMValue();
+    copy._attribute = this._attribute;
+    copy._isBoolean = this._isBoolean;
+    copy._isInteger = this._isInteger;
+    copy._isDouble = this._isDouble;
+    copy._isLong = this._isLong;
+    copy._isTime = this._isTime;
+    copy._isDate = this._isDate;
+    copy._isDatetime = this._isDatetime;
+    copy._isTimestamp = this._isTimestamp;
+    copy._isString = this._isString;
+    copy._isScalar = this._isScalar;
+    copy._isArray = this._isArray;
+    copy._isObject = this._isObject;
+    copy._isEntity = this._isEntity;
+    copy._isUUID = this._isUUID;
+    copy._isReadOnly = this._isReadOnly;
+    copy._isNullable = this._isNullable;
+    copy._isNull = this._isNull;
+    return copy;
+  }
 
-  Json toJson() {
+  override Json toJson() {
+    return Json(null);
+  }
+
+  override Json toJson(string[] showKeys) {
+    return Json(null);
+  }
+
+  override Json toJson(string[] showKeys, string[] hideKeys) {
     return Json(null);
   }
 
@@ -270,13 +316,85 @@ class UIMValue : UIMObject, IValue {
 }
 ///
 unittest {
-  auto value = new UIMValue;
-  assert(!value.isNull);
-  assert(!value.isString);
-  assert(!value.isInteger);
-  assert(!value.isBoolean);
-  assert(!value.isDouble);
-  assert(!value.isNullable);
-  assert(!value.isObject);
-  assert(!value.isArray);
+  import uim.entities.classes.values.value; 
+
+  UIMValue v = new UIMValue();
+  assert(v.isBoolean == false);
+  v.isBoolean = true;
+  assert(v.isBoolean == true);  
+
+  assert(v.isInteger == false);
+  v.isInteger = true;
+  assert(v.isInteger == true);  
+
+  assert(v.isDouble == false);
+  v.isDouble = true;
+  assert(v.isDouble == true); 
+
+  assert(v.isLong == false);
+  v.isLong = true;
+  assert(v.isLong == true);
+
+  assert(v.isTime == false);
+  v.isTime = true;
+  assert(v.isTime == true); 
+
+  assert(v.isDate == false);
+  v.isDate = true;
+  assert(v.isDate == true); 
+
+  assert(v.isDatetime == false);
+  v.isDatetime = true;
+  assert(v.isDatetime == true);
+
+  assert(v.isTimestamp == false);
+  v.isTimestamp = true;
+  assert(v.isTimestamp == true);  
+
+  assert(v.isString == false);
+  v.isString = true;
+  assert(v.isString == true);
+
+  assert(v.isScalar == false);
+  v.isScalar = true;
+  assert(v.isScalar == true);
+
+  assert(v.isArray == false);
+  v.isArray = true;
+  assert(v.isArray == true);
+
+  assert(v.isObject == false);
+  v.isObject = true;
+  assert(v.isObject == true);
+
+  assert(v.isEntity == false);
+  v.isEntity = true;
+  assert(v.isEntity == true);
+
+  assert(v.isUUID == false);
+  v.isUUID = true;
+  assert(v.isUUID == true);
+
+  assert(v.isReadOnly == false);
+  v.isReadOnly = true;
+  assert(v.isReadOnly == true);
+
+  assert(v.isNullable == false);
+  v.isNullable = true;
+  assert(v.isNullable == true);
+
+  assert(v.isNull == false);
+  v.isNull = true;
+  assert(v.isNull == true);
+
+  assert(v.isNull == false);
+  v.isNull = true;
+  assert(v.isNull == true);
+
+  assert(v.toString == null);
+  v.fromString("test");
+  assert(v.toString == "test");
+
+  UIMValue v2 = v.copy();
+  assert(v2.toString == "test");
 }
