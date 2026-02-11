@@ -52,3 +52,15 @@ class SymbolTable : ISymbolTable {
     return _scopes[_currentScope];
   }
 }
+///
+unittest {
+  auto table = new SymbolTable();
+  table.define("x", Symbol("int"));
+  assert(table.resolve("x").type == "int");
+  table.enterScope();
+  assert(table.resolve("x").type == "int");
+  table.define("y", Symbol("float"));
+  assert(table.resolve("y").type == "float");
+  table.exitScope();
+  assert(table.resolve("y").type == null);
+}

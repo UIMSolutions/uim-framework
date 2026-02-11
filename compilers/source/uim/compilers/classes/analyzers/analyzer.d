@@ -122,4 +122,8 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
     // Type checking would go here
   }
 }
-
+///
+unittest {  // Basic test to ensure analyzer can be instantiated
+  auto analyzer = new SemanticAnalyzer();
+  assert(analyzer !is null);
+}

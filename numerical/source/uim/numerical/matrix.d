@@ -277,3 +277,15 @@ Matrix diag(const Vector v) pure {
     }
     return result;
 }
+///
+unittest {
+    auto m1 = Matrix([[1.0, 2.0], [3.0, 4.0]]);
+    auto m2 = Matrix([[5.0, 6.0], [7.0, 8.0]]);
+    
+    assert(m1 + m2 == Matrix([[6.0, 8.0], [10.0, 12.0]]));
+    assert(m1 - m2 == Matrix([[-4.0, -4.0], [-4.0, -4.0]]));
+    assert(m1 * m2 == Matrix([[19.0, 22.0], [43.0, 50.0]]));
+    assert(m1.transpose() == Matrix([[1.0, 3.0], [2.0, 4.0]]));
+    assert(m1.determinant() == -2.0);
+    assert(m1.trace() == 5.0);
+}

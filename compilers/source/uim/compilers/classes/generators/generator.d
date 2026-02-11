@@ -194,3 +194,11 @@ class CodeGenerator : UIMObject, ICodeGenerator {
     return code;
   }
 }
+///
+unittest {  
+  auto generator = new CodeGenerator();
+  assert(generator !is null);
+  assert(generator.supportedTargets().canFind("asm"));
+  assert(generator.supportedTargets().canFind("llvm-ir"));
+  assert(generator.supportedTargets().canFind("c"));
+}

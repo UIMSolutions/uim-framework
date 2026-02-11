@@ -337,3 +337,19 @@ class Lexer : UIMObject, ILexer {
     return _position >= _source.length;
   }
 }
+///
+unittest {
+  auto lexer = new Lexer();
+  string code = "function foo() { return 42; }";
+  auto tokens = lexer.tokenize(code);
+  assert(tokens.length > 0);
+  assert(tokens[0].type == TokenType.Function);
+  assert(tokens[1].type == TokenType.Identifier);
+  assert(tokens[2].type == TokenType.LeftParen);
+  assert(tokens[3].type == TokenType.RightParen);
+  assert(tokens[4].type == TokenType.LeftBrace);
+  assert(tokens[5].type == TokenType.Return);
+  assert(tokens[6].type == TokenType.IntegerLiteral);
+  assert(tokens[7].type == TokenType.Semicolon);
+  assert(tokens[8].type == TokenType.RightBrace);
+}
