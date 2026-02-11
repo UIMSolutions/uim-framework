@@ -135,7 +135,7 @@ class Lexer {
   # scanString(): Token
 }
 
-class Parser {
+class CompilerParser {
   - _tokens: Token[]
   - _currentIndex: size_t
   - _errors: Diagnostic[]
@@ -194,13 +194,13 @@ class CodeGenerator {
 
 Compiler ..|> ICompiler
 Lexer ..|> ILexer
-Parser ..|> ICompilerParser
+CompilerParser ..|> ICompilerParser
 SemanticAnalyzer ..|> ISemanticAnalyzer
 Optimizer ..|> IOptimizer
 CodeGenerator ..|> ICodeGenerator
 
 Compiler o-- Lexer
-Compiler o-- Parser
+Compiler o-- CompilerParser
 Compiler o-- SemanticAnalyzer
 Compiler o-- Optimizer
 Compiler o-- CodeGenerator
@@ -383,7 +383,7 @@ Diagnostic --> DiagnosticSeverity
 actor User
 participant Compiler
 participant Lexer
-participant Parser
+participant CompilerParser
 participant SemanticAnalyzer
 participant Optimizer
 participant CodeGenerator
@@ -399,13 +399,13 @@ Lexer --> Lexer: advance()
 Lexer --> Compiler: Token[]
 deactivate Lexer
 
-Compiler -> Parser: parse(tokens)
-activate Parser
-Parser --> Parser: parseExpression()
-Parser --> Parser: parseStatement()
-Parser --> Parser: parseDeclaration()
-Parser --> Compiler: ASTNode (root)
-deactivate Parser
+Compiler -> CompilerParser: parse(tokens)
+activate CompilerParser
+CompilerParser --> CompilerParser: parseExpression()
+CompilerParser --> CompilerParser: parseStatement()
+CompilerParser --> CompilerParser: parseDeclaration()
+CompilerParser --> Compiler: ASTNode (root)
+deactivate CompilerParser
 
 Compiler -> SemanticAnalyzer: analyze(ast)
 activate SemanticAnalyzer
@@ -647,7 +647,7 @@ CompilerException <|-- SemanticException
 
 Compiler --> DiagnosticManager
 Lexer --> DiagnosticManager
-Parser --> DiagnosticManager
+CompilerParser --> DiagnosticManager
 SemanticAnalyzer --> DiagnosticManager
 
 @enduml
@@ -683,7 +683,7 @@ package "uim.compilers.classes" {
   }
   
   package "parsers" {
-    class Parser
+    class CompilerParser
     class ParserFactory
     class ParserRegistry
   }
@@ -725,14 +725,14 @@ package "uim.compilers.errors" {
 
 Compiler ..|> ICompiler
 Lexer ..|> ILexer
-Parser ..|> ICompilerParser
+CompilerParser ..|> ICompilerParser
 SemanticAnalyzer ..|> ISemanticAnalyzer
 Optimizer ..|> IOptimizer
 CodeGenerator ..|> ICodeGenerator
 SymbolTable ..|> ISymbolTable
 
 Compiler --> Lexer
-Compiler --> Parser
+Compiler --> CompilerParser
 Compiler --> SemanticAnalyzer
 Compiler --> Optimizer
 Compiler --> CodeGenerator
@@ -744,7 +744,7 @@ CodeGenerator --> CodeGenVisitor
 
 Compiler --> DiagnosticManager
 Lexer --> DiagnosticManager
-Parser --> DiagnosticManager
+CompilerParser --> DiagnosticManager
 
 @enduml
 ```
@@ -767,7 +767,7 @@ Parser --> DiagnosticManager
 - Handle whitespace and comments
 - Report lexical errors
 
-### ICompilerParser / Parser
+### ICompilerParser / CompilerParser
 **Purpose**: Perform syntax analysis
 **Responsibilities**:
 - Build Abstract Syntax Tree (AST) from tokens

@@ -35,7 +35,7 @@ class Compiler : UIMObject, ICompiler {
 
     // Initialize default components
     _lexer = new Lexer();
-    _parser = new Parser();
+    _parser = new CompilerParser();
     _analyzer = new SemanticAnalyzer();
     _optimizer = new Optimizer();
     _codeGenerator = new CodeGenerator();

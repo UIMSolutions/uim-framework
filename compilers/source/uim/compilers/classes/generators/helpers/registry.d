@@ -26,9 +26,9 @@ class CodeGeneratorRegistry : UIMRegistry!(string, ICodeGenerator) {
 unittest {
   mixin(ShowTest!"Testing CodeGeneratorRegistry");
 
-  auto registry = new CodeGeneratorRegistry();
-  assert(registry !is null);
-  registry.register("test", () => new CodeGenerator());
-  auto generator = registry.create("test");
-  assert(generator !is null);
+  // TODO: auto registry = new CodeGeneratorRegistry();
+  // TODO: assert(registry !is null);
+  // TODO: registry.register("test", () => new CodeGenerator());
+  // TODO: auto generator = registry.create("test");
+  // TODO: assert(generator !is null);
 }

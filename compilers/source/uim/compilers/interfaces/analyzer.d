@@ -44,87 +44,9 @@ interface ISemanticAnalyzer {
 
 
 
-/**
- * Symbol representing an identifier in the program.
- */
-struct Symbol {
-  /// Symbol name
-  string name;
 
-  /// Symbol kind
-  SymbolKind kind;
 
-  /// Symbol type
-  TypeInfo type;
 
-  /// Is the symbol constant?
-  bool isConst;
 
-  /// Is the symbol public?
-  bool isPublic;
 
-  /// Defining location
-  Token location;
 
-  /// Additional attributes
-  string[string] attributes;
-}
-
-/**
- * Symbol kinds.
- */
-enum SymbolKind {
-  Variable,
-  Parameter,
-  Function,
-  Class,
-  Struct,
-  Interface,
-  Enum,
-  Module,
-  Type
-}
-
-/**
- * Type information for semantic analysis.
- */
-struct TypeInfo {
-  /// Type name
-  string name;
-
-  /// Type kind
-  TypeKind kind;
-
-  /// For array types: element type
-  TypeInfo* elementType;
-
-  /// For function types: parameter types
-  TypeInfo[] parameterTypes;
-
-  /// For function types: return type
-  TypeInfo* returnType;
-
-  /// Size in bytes (0 if unknown)
-  size_t size;
-
-  /// Is nullable?
-  bool nullable;
-}
-
-/**
- * Type kinds.
- */
-enum TypeKind {
-  Void,
-  Bool,
-  Int,
-  Float,
-  String,
-  Array,
-  Function,
-  Class,
-  Struct,
-  Interface,
-  Enum,
-  Unknown
-}

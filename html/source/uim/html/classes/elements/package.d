@@ -19,7 +19,6 @@ public {
   import uim.html.classes.elements.search;
   import uim.html.classes.elements.h;
   import uim.html.classes.elements.link;
-  import uim.html.classes.elements.interfaces;
 
   // inlinetext
 }

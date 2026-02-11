@@ -2,6 +2,8 @@ module uim.compilers.interfaces.symboltable;
 
 import uim.compilers;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

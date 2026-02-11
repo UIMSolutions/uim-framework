@@ -12,7 +12,7 @@ import uim.compilers;
 /**
  * Base implementation of a parser.
  */
-class Parser : UIMObject, ICompilerParser {
+class CompilerParser : UIMObject, ICompilerParser {
   this() {
     super();
   }

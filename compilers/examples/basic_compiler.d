@@ -69,7 +69,7 @@ void main() {
 
   writeln("\n--- Compiler Components ---\n");
   writeln("Lexer: ", typeid(compiler.lexer()));
-  writeln("Parser: ", typeid(compiler.parser()));
+  writeln("CompilerParser: ", typeid(compiler.parser()));
   writeln("Analyzer: ", typeid(compiler.analyzer()));
   writeln("Optimizer: ", typeid(compiler.optimizer()));
   writeln("Code Generator: ", typeid(compiler.codeGenerator()));

@@ -151,7 +151,7 @@ class CustomCompiler : Compiler {
       
         // Register implementations
         lexerRegistry.register("default", new Lexer());
-        parserRegistry.register("default", new Parser());
+        parserRegistry.register("default", new CompilerParser());
         analyzerRegistry.register("default", new SemanticAnalyzer());
         optimizerRegistry.register("default", new Optimizer());
         codegenRegistry.register("default", new CodeGenerator());

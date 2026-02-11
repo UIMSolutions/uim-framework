@@ -13,7 +13,6 @@ public {
     import uim.html.classes.forms.textarea;
     import uim.html.classes.forms.select;
     import uim.html.classes.forms.label;
-    import uim.html.classes.forms.interfaces;
     import uim.html.classes.forms.element;
     import uim.html.classes.forms.fieldset;
     import uim.html.classes.forms.legend;
