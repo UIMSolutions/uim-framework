@@ -9,7 +9,7 @@ mixin(ShowModule!());
 /**
  * Expression optimizer transforms expressions into more efficient forms.
  */
-interface IExpressionOptimizer {
+interface IInterpreterExpressionOptimizer {
   /**
     * Optimize an expression tree.
     * This method takes an expression and returns an optimized version of it.
@@ -21,10 +21,10 @@ interface IExpressionOptimizer {
     * Returns:
     *   An optimized expression.
     */
-  Expression optimize(IExpression expression);
+  Expression optimize(IInterpreterExpression expression);
 
   /**
     * Check if optimization is possible.
     */
-  bool canOptimize(IExpression expression) const;
+  bool canOptimize(IInterpreterExpression expression) const;
 }

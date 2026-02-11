@@ -1,5 +1,11 @@
 module uim.oop.patterns.delegates.interfaces.delegate_;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Business Delegate interface.
  * Provides an abstraction layer between client and business service.

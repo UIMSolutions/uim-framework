@@ -8,7 +8,7 @@ mixin(ShowModule!());
 /**
  * Expression factory creates specific types of expressions.
  */
-interface IExpressionFactory {
+interface IInterpreterExpressionFactory {
   /**
     * Create a literal expression.
     */
@@ -22,10 +22,10 @@ interface IExpressionFactory {
   /**
      * Create a binary expression.
      */
-  @safe IBinaryExpression createBinary(string operator, IExpression left, IExpression right);
+  @safe IBinaryExpression createBinary(string operator, IInterpreterExpression left, IInterpreterExpression right);
 
   /**
      * Create a unary expression.
      */
-  @safe IUnaryExpression createUnary(string operator, IExpression operand);
+  @safe IUnaryExpression createUnary(string operator, IInterpreterExpression operand);
 }

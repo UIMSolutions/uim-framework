@@ -9,9 +9,9 @@ mixin(ShowModule!());
  * Nonterminal expression represents composite nodes that combine
  * other expressions using operators or rules.
  */
-interface INonterminalExpression : IExpression {
+interface INonterminalExpression : IInterpreterExpression {
     /**
      * Get the child expressions.
      */
-    @safe IExpression[] getChildren() const;
+    @safe IInterpreterExpression[] getChildren() const;
 }

@@ -9,7 +9,7 @@ mixin(ShowModule!());
  * AbstractExpression declares an interpret operation that all nodes
  * in the abstract syntax tree must implement.
  */
-interface IExpression {
+interface IInterpreterExpression {
     /**
      * Interpret the expression in the given context.
      */

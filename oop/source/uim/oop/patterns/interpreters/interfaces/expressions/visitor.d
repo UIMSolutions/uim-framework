@@ -8,7 +8,7 @@ mixin(ShowModule!());
 /**
  * Visitor for expression trees (for operations like optimization, printing).
  */
-interface IExpressionVisitor {
+interface IInterpreterExpressionVisitor {
     /**
      * Visit a literal expression.
      */

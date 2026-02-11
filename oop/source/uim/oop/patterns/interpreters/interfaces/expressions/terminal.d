@@ -9,7 +9,7 @@ mixin(ShowModule!());
  * Terminal expression represents leaf nodes in the abstract syntax tree.
  * These are the basic building blocks that cannot be broken down further.
  */
-interface ITerminalExpression : IExpression {
+interface ITerminalExpression : IInterpreterExpression {
     /**
      * Get the value of this terminal expression.
      */

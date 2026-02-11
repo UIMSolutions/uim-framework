@@ -13,7 +13,7 @@ interface IParser {
     /**
      * Parse input string into an expression tree.
      */
-    IExpression parse(string input);
+    IInterpreterExpression parse(string input);
     
     /**
      * Check if the input is valid without parsing.

@@ -12,12 +12,12 @@ interface IBinaryExpression : INonterminalExpression {
   /**
     * Get the left operand.
     */
-  IExpression getLeft() const;
+  IInterpreterExpression getLeft() const;
 
   /**
     * Get the right operand.
     */
-  IExpression getRight() const;
+  IInterpreterExpression getRight() const;
 
   /**
     * Get the operator symbol.

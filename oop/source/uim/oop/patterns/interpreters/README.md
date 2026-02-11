@@ -13,7 +13,7 @@ The Interpreter Pattern is a behavioral design pattern that defines a grammatica
 ## UML Class Diagram
 ```
 ┌─────────────────┐
-│   IExpression   │
+│   IInterpreterExpression   │
 ├─────────────────┤
 │ + interpret()   │
 │ + toString()    │
@@ -39,7 +39,7 @@ The Interpreter Pattern is a behavioral design pattern that defines a grammatica
         └─────────────────┘
 
 ┌─────────────┐         ┌─────────────┐
-│  IInterpreterContext   │◄────────│ IExpression │
+│  IInterpreterContext   │◄────────│ IInterpreterExpression │
 ├─────────────┤         └─────────────┘
 │ - variables │
 │ + get()     │
@@ -61,10 +61,10 @@ interface IInterpreterContext {
 }
 ```
 
-### 2. IExpression
+### 2. IInterpreterExpression
 The abstract expression interface.
 ```d
-interface IExpression {
+interface IInterpreterExpression {
     Variant interpret(IInterpreterContext context);
     string toString() const;
 }
@@ -73,7 +73,7 @@ interface IExpression {
 ### 3. Terminal Expression
 Leaf nodes that represent basic elements (literals, variables).
 ```d
-class LiteralExpression : IExpression {
+class LiteralExpression : IInterpreterExpression {
     private Variant _value;
     
     Variant interpret(IInterpreterContext context) {
@@ -81,7 +81,7 @@ class LiteralExpression : IExpression {
     }
 }
 
-class VariableExpression : IExpression {
+class VariableExpression : IInterpreterExpression {
     private string _name;
     
     Variant interpret(IInterpreterContext context) {
@@ -293,7 +293,7 @@ Variant interpret(IInterpreterContext context) {
 Optimize constant expressions:
 ```d
 class ExpressionOptimizer {
-    IExpression optimize(IExpression expr) {
+    IInterpreterExpression optimize(IInterpreterExpression expr) {
         // Fold constant expressions
         if (auto binExpr = cast(BinaryExpression)expr) {
             if (isConstant(binExpr.getLeft()) && isConstant(binExpr.getRight())) {
@@ -309,13 +309,13 @@ class ExpressionOptimizer {
 ### 2. Expression Visitors
 Traverse expression trees:
 ```d
-interface IExpressionVisitor {
+interface IInterpreterExpressionVisitor {
     void visitLiteral(ILiteralExpression expr);
     void visitVariable(IVariableExpression expr);
     void visitBinary(IBinaryExpression expr);
 }
 
-class PrintVisitor : IExpressionVisitor {
+class PrintVisitor : IInterpreterExpressionVisitor {
     void visitBinary(IBinaryExpression expr) {
         writeln("Binary: ", expr.getOperator());
         expr.getLeft().accept(this);
@@ -328,11 +328,11 @@ class PrintVisitor : IExpressionVisitor {
 Parse text into expression trees:
 ```d
 interface IParser {
-    IExpression parse(string input);
+    IInterpreterExpression parse(string input);
 }
 
 class ArithmeticParser : IParser {
-    IExpression parse(string input) {
+    IInterpreterExpression parse(string input) {
         // Tokenize and parse input
         auto tokens = tokenize(input);
         return buildTree(tokens);

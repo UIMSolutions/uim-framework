@@ -46,7 +46,7 @@ class Context : IInterpreterContext {
 /**
  * Abstract base expression.
  */
-abstract class Expression : IExpression {
+abstract class Expression : IInterpreterExpression {
     abstract Variant interpret(IInterpreterContext context);
     abstract override @safe string toString() const;
 }
@@ -114,30 +114,30 @@ class VariableExpression : Expression, IVariableExpression {
  * Abstract binary expression.
  */
 abstract class BinaryExpression : Expression, IBinaryExpression {
-    protected IExpression _left;
-    protected IExpression _right;
+    protected IInterpreterExpression _left;
+    protected IInterpreterExpression _right;
     protected string _operator;
     
-    this(IExpression left, IExpression right, string operator) {
+    this(IInterpreterExpression left, IInterpreterExpression right, string operator) {
         _left = left;
         _right = right;
         _operator = operator;
     }
     
-    @trusted IExpression getLeft() const {
-        return cast(IExpression)_left;
+    @trusted IInterpreterExpression getLeft() const {
+        return cast(IInterpreterExpression)_left;
     }
     
-    @trusted IExpression getRight() const {
-        return cast(IExpression)_right;
+    @trusted IInterpreterExpression getRight() const {
+        return cast(IInterpreterExpression)_right;
     }
     
     @safe string getOperator() const {
         return _operator;
     }
     
-    @trusted IExpression[] getChildren() const {
-        return [cast(IExpression)_left, cast(IExpression)_right];
+    @trusted IInterpreterExpression[] getChildren() const {
+        return [cast(IInterpreterExpression)_left, cast(IInterpreterExpression)_right];
     }
     
     override @safe string toString() const {
@@ -151,7 +151,7 @@ abstract class BinaryExpression : Expression, IBinaryExpression {
  * Addition expression.
  */
 class AddExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "+");
     }
     
@@ -174,7 +174,7 @@ class AddExpression : BinaryExpression {
  * Subtraction expression.
  */
 class SubtractExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "-");
     }
     
@@ -197,7 +197,7 @@ class SubtractExpression : BinaryExpression {
  * Multiplication expression.
  */
 class MultiplyExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "*");
     }
     
@@ -220,7 +220,7 @@ class MultiplyExpression : BinaryExpression {
  * Division expression.
  */
 class DivideExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "/");
     }
     
@@ -248,7 +248,7 @@ class DivideExpression : BinaryExpression {
  * AND expression.
  */
 class AndExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "AND");
     }
     
@@ -267,7 +267,7 @@ class AndExpression : BinaryExpression {
  * OR expression.
  */
 class OrExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "OR");
     }
     
@@ -286,24 +286,24 @@ class OrExpression : BinaryExpression {
  * Abstract unary expression.
  */
 abstract class UnaryExpression : Expression, IUnaryExpression {
-    protected IExpression _operand;
+    protected IInterpreterExpression _operand;
     protected string _operator;
     
-    this(IExpression operand, string operator) {
+    this(IInterpreterExpression operand, string operator) {
         _operand = operand;
         _operator = operator;
     }
     
-    @trusted IExpression getOperand() const {
-        return cast(IExpression)_operand;
+    @trusted IInterpreterExpression getOperand() const {
+        return cast(IInterpreterExpression)_operand;
     }
     
     @safe string getOperator() const {
         return _operator;
     }
     
-    @trusted IExpression[] getChildren() const {
-        return [cast(IExpression)_operand];
+    @trusted IInterpreterExpression[] getChildren() const {
+        return [cast(IInterpreterExpression)_operand];
     }
     
     override @safe string toString() const {
@@ -315,7 +315,7 @@ abstract class UnaryExpression : Expression, IUnaryExpression {
  * NOT expression.
  */
 class NotExpression : UnaryExpression {
-    this(IExpression operand) {
+    this(IInterpreterExpression operand) {
         super(operand, "NOT");
     }
     
@@ -333,7 +333,7 @@ class NotExpression : UnaryExpression {
  * Negation expression.
  */
 class NegateExpression : UnaryExpression {
-    this(IExpression operand) {
+    this(IInterpreterExpression operand) {
         super(operand, "-");
     }
     
@@ -355,7 +355,7 @@ class NegateExpression : UnaryExpression {
  * Equals expression.
  */
 class EqualsExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "==");
     }
     
@@ -382,7 +382,7 @@ class EqualsExpression : BinaryExpression {
  * Greater than expression.
  */
 class GreaterThanExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, ">");
     }
     
@@ -405,7 +405,7 @@ class GreaterThanExpression : BinaryExpression {
  * Less than expression.
  */
 class LessThanExpression : BinaryExpression {
-    this(IExpression left, IExpression right) {
+    this(IInterpreterExpression left, IInterpreterExpression right) {
         super(left, right, "<");
     }
     

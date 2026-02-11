@@ -12,7 +12,7 @@ interface IUnaryExpression : INonterminalExpression {
   /**
     * Get the operand.
     */
-  IExpression getOperand() const;
+  IInterpreterExpression getOperand() const;
 
   /**
     * Get the operator symbol.
