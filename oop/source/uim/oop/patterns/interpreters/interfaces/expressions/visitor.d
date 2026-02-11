@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.visitor;
+module uim.oop.patterns.interpreters.interfaces.expressions.visitor;
 
 import uim.oop;
 

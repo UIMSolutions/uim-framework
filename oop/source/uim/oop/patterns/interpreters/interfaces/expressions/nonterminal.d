@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.nonterminal;
+module uim.oop.patterns.interpreters.interfaces.expressions.nonterminal;
 
 import uim.oop;
 

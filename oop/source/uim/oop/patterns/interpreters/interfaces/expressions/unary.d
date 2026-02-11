@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.unary;
+module uim.oop.patterns.interpreters.interfaces.expressions.unary;
 
 import uim.oop;
 

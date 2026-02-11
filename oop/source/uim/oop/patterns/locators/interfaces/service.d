@@ -1,5 +1,11 @@
 module uim.oop.patterns.locators.interfaces.service;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Base interface for all services that can be registered with a Service Locator.
  */

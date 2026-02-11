@@ -1,5 +1,11 @@
 module uim.oop.patterns.delegates.interfaces.cachable;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Cacheable Business Delegate interface.
  * Adds caching capabilities to business delegate operations.

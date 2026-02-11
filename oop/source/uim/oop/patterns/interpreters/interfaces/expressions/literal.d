@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.literal;
+module uim.oop.patterns.interpreters.interfaces.expressions.literal;
 
 import uim.oop;
 

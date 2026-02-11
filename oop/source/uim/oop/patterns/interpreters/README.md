@@ -39,7 +39,7 @@ The Interpreter Pattern is a behavioral design pattern that defines a grammatica
         └─────────────────┘
 
 ┌─────────────┐         ┌─────────────┐
-│  IContext   │◄────────│ IExpression │
+│  IInterpreterContext   │◄────────│ IExpression │
 ├─────────────┤         └─────────────┘
 │ - variables │
 │ + get()     │
@@ -51,10 +51,10 @@ Client ──► builds ──► Abstract Syntax Tree ──► interprets ─�
 
 ## Components
 
-### 1. IContext
+### 1. IInterpreterContext
 Stores global information needed during interpretation.
 ```d
-interface IContext {
+interface IInterpreterContext {
     void setVariable(string name, Variant value);
     Variant getVariable(string name) const;
     bool hasVariable(string name) const;
@@ -65,7 +65,7 @@ interface IContext {
 The abstract expression interface.
 ```d
 interface IExpression {
-    Variant interpret(IContext context);
+    Variant interpret(IInterpreterContext context);
     string toString() const;
 }
 ```
@@ -76,7 +76,7 @@ Leaf nodes that represent basic elements (literals, variables).
 class LiteralExpression : IExpression {
     private Variant _value;
     
-    Variant interpret(IContext context) {
+    Variant interpret(IInterpreterContext context) {
         return _value;
     }
 }
@@ -84,7 +84,7 @@ class LiteralExpression : IExpression {
 class VariableExpression : IExpression {
     private string _name;
     
-    Variant interpret(IContext context) {
+    Variant interpret(IInterpreterContext context) {
         return context.getVariable(_name);
     }
 }
@@ -94,7 +94,7 @@ class VariableExpression : IExpression {
 Composite nodes that combine other expressions.
 ```d
 class AddExpression : BinaryExpression {
-    Variant interpret(IContext context) {
+    Variant interpret(IInterpreterContext context) {
         auto left = _left.interpret(context);
         auto right = _right.interpret(context);
         return Variant(left.get!int + right.get!int);
@@ -245,7 +245,7 @@ auto expr = parser.parse("10 + 20");
 ### 2. Context Management
 Store and retrieve variables:
 ```d
-class Context : IContext {
+class Context : IInterpreterContext {
     private Variant[string] _variables;
     
     void setVariable(string name, Variant value) {
@@ -261,7 +261,7 @@ class Context : IContext {
 ### 3. Type Handling
 Handle different value types:
 ```d
-Variant interpret(IContext context) {
+Variant interpret(IInterpreterContext context) {
     auto left = _left.interpret(context);
     auto right = _right.interpret(context);
     
@@ -279,7 +279,7 @@ Variant interpret(IContext context) {
 ### 4. Error Handling
 Provide meaningful error messages:
 ```d
-Variant interpret(IContext context) {
+Variant interpret(IInterpreterContext context) {
     if (!context.hasVariable(_name)) {
         throw new Exception("Variable not found: " ~ _name);
     }

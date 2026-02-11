@@ -5,11 +5,11 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.locators.interfaces.cached;
 
+import uim.oop;
 
+mixin(ShowModule!());
 
-
-
-
+@safe:
 
 /**
  * Interface for cached service locator.

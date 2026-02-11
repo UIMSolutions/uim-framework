@@ -1,5 +1,11 @@
 module uim.oop.patterns.locators.interfaces.locator;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Interface for Service Locator pattern.
  * Provides centralized registry for obtaining services.

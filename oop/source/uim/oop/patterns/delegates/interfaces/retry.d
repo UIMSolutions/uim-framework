@@ -1,5 +1,11 @@
 module uim.oop.patterns.delegates.interfaces.retry;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Business Delegate with retry capabilities.
  */

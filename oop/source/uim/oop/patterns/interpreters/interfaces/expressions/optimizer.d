@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.optimizer;
+module uim.oop.patterns.interpreters.interfaces.expressions.optimizer;
 
 import uim.oop;
 

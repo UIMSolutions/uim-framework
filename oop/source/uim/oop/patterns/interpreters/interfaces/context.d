@@ -16,7 +16,7 @@ mixin(ShowModule!());
  * Context holds information that is global to the interpreter.
  * It typically stores variables and their values.
  */
-interface IContext {
+interface IInterpreterContext {
     /**
      * Set a variable value in the context.
      */

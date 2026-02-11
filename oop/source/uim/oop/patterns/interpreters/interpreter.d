@@ -16,7 +16,7 @@ import std.exception;
 /**
  * Context implementation that stores variables.
  */
-class Context : IContext {
+class Context : IInterpreterContext {
     private Variant[string] _variables;
     
     @trusted void setVariable(string name, Variant value) {
@@ -47,7 +47,7 @@ class Context : IContext {
  * Abstract base expression.
  */
 abstract class Expression : IExpression {
-    abstract Variant interpret(IContext context);
+    abstract Variant interpret(IInterpreterContext context);
     abstract override @safe string toString() const;
 }
 
@@ -61,7 +61,7 @@ class LiteralExpression : Expression, ILiteralExpression {
         _value = value;
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         return _value;
     }
     
@@ -93,7 +93,7 @@ class VariableExpression : Expression, IVariableExpression {
         _name = name;
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         return context.getVariable(_name);
     }
     
@@ -155,7 +155,7 @@ class AddExpression : BinaryExpression {
         super(left, right, "+");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -178,7 +178,7 @@ class SubtractExpression : BinaryExpression {
         super(left, right, "-");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -201,7 +201,7 @@ class MultiplyExpression : BinaryExpression {
         super(left, right, "*");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -224,7 +224,7 @@ class DivideExpression : BinaryExpression {
         super(left, right, "/");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -252,7 +252,7 @@ class AndExpression : BinaryExpression {
         super(left, right, "AND");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -271,7 +271,7 @@ class OrExpression : BinaryExpression {
         super(left, right, "OR");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -319,7 +319,7 @@ class NotExpression : UnaryExpression {
         super(operand, "NOT");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto value = _operand.interpret(context);
         
         if (value.type == typeid(bool)) {
@@ -337,7 +337,7 @@ class NegateExpression : UnaryExpression {
         super(operand, "-");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto value = _operand.interpret(context);
         
         if (value.type == typeid(int)) {
@@ -359,7 +359,7 @@ class EqualsExpression : BinaryExpression {
         super(left, right, "==");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -386,7 +386,7 @@ class GreaterThanExpression : BinaryExpression {
         super(left, right, ">");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         
@@ -409,7 +409,7 @@ class LessThanExpression : BinaryExpression {
         super(left, right, "<");
     }
     
-    override @trusted Variant interpret(IContext context) {
+    override @trusted Variant interpret(IInterpreterContext context) {
         auto leftVal = _left.interpret(context);
         auto rightVal = _right.interpret(context);
         

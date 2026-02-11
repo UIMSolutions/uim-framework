@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.expression;
+module uim.oop.patterns.interpreters.interfaces.expressions.expression;
 
 import uim.oop;
 
@@ -13,7 +13,7 @@ interface IExpression {
     /**
      * Interpret the expression in the given context.
      */
-    Variant interpret(IContext context);
+    Variant interpret(IInterpreterContext context);
     
     /**
      * Get a string representation of the expression.

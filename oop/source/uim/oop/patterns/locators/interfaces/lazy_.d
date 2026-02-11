@@ -1,5 +1,11 @@
 module uim.oop.patterns.locators.interfaces.lazy_;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Interface for lazy-loading service locator.
  */

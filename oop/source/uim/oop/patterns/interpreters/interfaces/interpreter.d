@@ -18,12 +18,12 @@ interface IInterpreter {
     /**
      * Evaluate an expression with the given context.
      */
-    @safe Variant evaluate(IExpression expression, IContext context);
+    @safe Variant evaluate(IExpression expression, IInterpreterContext context);
     
     /**
      * Parse and evaluate input string.
      */
-    @safe Variant evaluate(string input, IContext context);
+    @safe Variant evaluate(string input, IInterpreterContext context);
     
     /**
      * Get the parser used by this interpreter.

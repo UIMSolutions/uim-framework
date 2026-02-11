@@ -1,5 +1,11 @@
 module uim.oop.patterns.delegates.interfaces.async;
 
+import uim.oop;
+
+mixin(ShowModule!());
+
+@safe:
+
 /**
  * Async Business Delegate interface.
  * Supports asynchronous business operations.

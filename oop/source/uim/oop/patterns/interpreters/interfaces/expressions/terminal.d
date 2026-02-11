@@ -1,4 +1,4 @@
-module uim.oop.patterns.interpreters.expressions.terminal;
+module uim.oop.patterns.interpreters.interfaces.expressions.terminal;
 
 import uim.oop;
 
