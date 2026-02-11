@@ -42,10 +42,10 @@ class LoggingMiddleware : ErrorMiddleware {
 
   // Minimum severity level to log (DEBUG, INFO, WARNING, ERROR, CRITICAL)
   protected string _minSeverity = "DEBUG";
-  
+
   // Whether to log to stderr instead of stdout
   protected bool _useStderr = false;
-  
+
   // Custom log handler
   protected void delegate(IError) @safe _logHandler;
 
@@ -98,18 +98,22 @@ class LoggingMiddleware : ErrorMiddleware {
 
   protected bool isSeverityHighEnough(string severity) {
     string[] levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"];
-    
+
     int errorLevel = -1;
     int minLevel = -1;
-    
+
     foreach (i, level; levels) {
-      if (level == severity) errorLevel = cast(int)i;
-      if (level == _minSeverity) minLevel = cast(int)i;
+      if (level == severity)
+        errorLevel = cast(int)i;
+      if (level == _minSeverity)
+        minLevel = cast(int)i;
     }
-    
-    if (errorLevel == -1) errorLevel = 0; // Default to DEBUG
-    if (minLevel == -1) minLevel = 0;
-    
+
+    if (errorLevel == -1)
+      errorLevel = 0; // Default to DEBUG
+    if (minLevel == -1)
+      minLevel = 0;
+
     return errorLevel >= minLevel;
   }
 
@@ -121,7 +125,7 @@ class LoggingMiddleware : ErrorMiddleware {
 
     // Default console logging
     string logMessage = formatLogMessage(error);
-    
+
     if (_useStderr) {
       stderr.writeln(logMessage);
     } else {
@@ -148,11 +152,11 @@ class LoggingMiddleware : ErrorMiddleware {
       error.lineNumber()
     );
   }
-}
 
-/**
- * Create a logging middleware with default settings.
- */
-LoggingMiddleware loggingMiddleware() {
-  return new LoggingMiddleware();
+  /**
+  * Create a logging middleware with default settings.
+  */
+  static LoggingMiddleware opCall() {
+    return new LoggingMiddleware();
+  }
 }

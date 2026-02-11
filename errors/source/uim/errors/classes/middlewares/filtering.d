@@ -44,19 +44,15 @@ class FilteringMiddleware : ErrorMiddleware {
     return true;
   }
 
-  // Codes to filter out (block)
-  protected int[] _blockedCodes;
-  
-  // Codes to allow (whitelist)
-  protected int[] _allowedCodes;
-  
   // Severities to filter out
   protected string[] _blockedSeverities;
-  
+
   // Custom filter predicate
   protected bool delegate(IError) @safe _filterPredicate;
 
   // #region blockedCodes
+  // Codes to filter out (block)
+  protected int[] _blockedCodes;
   int[] blockedCodes() {
     return _blockedCodes;
   }
@@ -73,6 +69,18 @@ class FilteringMiddleware : ErrorMiddleware {
   // #endregion blockedCodes
 
   // #region allowedCodes
+  // Codes to allow (whitelist)
+  protected int[] _allowedCodes;
+  /** 
+    * Set allowed codes whitelist. If set, only these codes will pass through.
+    *
+    * If empty, all codes are allowed (subject to blocked codes and other criteria).
+    * If non-empty, only codes in this list will be allowed (subject to blocked codes and other criteria).
+    *
+    * This allows for a "whitelist" approach where only specific codes are allowed, and all others are blocked.
+    * If both allowedCodes and blockedCodes are set, allowedCodes is checked first (only those can pass), then blockedCodes is checked (those are blocked even if in allowedCodes).
+    * This provides flexible filtering options based on error codes.
+    */
   int[] allowedCodes() {
     return _allowedCodes;
   }
@@ -105,6 +113,13 @@ class FilteringMiddleware : ErrorMiddleware {
   // #endregion blockedSeverities
 
   // #region filterPredicate
+  /** 
+    * Set a custom filter predicate. This is a delegate that takes an IError and returns true if the error should be allowed (not filtered) or false if it should be blocked (filtered out).
+    *
+    * This allows for complex filtering logic that can't be easily expressed with just codes or severities. For example, you could filter based on message content, file name, or any other property of the error.
+    *
+    * If this predicate is set, it will be called for each error. If it returns false, the error will be filtered out (return null). If it returns true, the error will continue through the middleware chain (subject to other filters).
+    */
   FilteringMiddleware filterPredicate(bool delegate(IError) @safe predicate) {
     _filterPredicate = predicate;
     return this;
@@ -154,11 +169,11 @@ class FilteringMiddleware : ErrorMiddleware {
 
     return false;
   }
-}
 
-/**
- * Create a filtering middleware with default settings.
- */
-FilteringMiddleware filteringMiddleware() {
-  return new FilteringMiddleware();
+  /**
+    * Create a filtering middleware with default settings.
+    */
+  static FilteringMiddleware opCall() {
+    return new FilteringMiddleware();
+  }
 }

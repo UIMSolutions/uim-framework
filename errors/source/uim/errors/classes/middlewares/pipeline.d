@@ -156,17 +156,17 @@ class ErrorMiddlewarePipeline : UIMObject {
     auto pipeline = new ErrorMiddlewarePipeline();
     
     // Add logging middleware (high priority)
-    pipeline.add(loggingMiddleware());
+    pipeline.add(LoggingMiddleware());
     
     return pipeline;
   }
-}
 
-/**
- * Create a new empty middleware pipeline.
- */
-ErrorMiddlewarePipeline errorPipeline() {
-  return new ErrorMiddlewarePipeline();
+  /**
+    * Create a new empty middleware pipeline.
+    */
+  static ErrorMiddlewarePipeline opCall() {
+    return new ErrorMiddlewarePipeline();
+  }
 }
 
 /**

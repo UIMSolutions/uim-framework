@@ -175,6 +175,15 @@ class UIMError : UIMObject, IError {
     _attributes = newAttributes;
     return this;
   }
+  /// 
+  unittest {
+    auto error = new UIMError();
+    assert(error.attributes() == null); // Default should be null
+    Json[string] attrs = ["key": Json("value")];
+    error.attributes(attrs);
+    assert(error.attributes().length == 1);
+    assert(error.attributes()["key"] == "value");
+  }
 
   // #region loglevel
   string loglevel() {
@@ -248,6 +257,12 @@ class UIMError : UIMObject, IError {
     return _lineNumber;
   }
 
+  /** 
+    * Set the line number where the error occurred.
+    * 
+    * @param newLineNumber The line number to set.
+    * @return The current instance of IError for method chaining.
+    */
   IError lineNumber(size_t newLineNumber) {
     _lineNumber = newLineNumber;
     return this;
@@ -334,8 +349,6 @@ class UIMError : UIMObject, IError {
   }
   /// 
   unittest {
-    mixin(ShowTest
-
     auto error = new UIMError();
     error.message("Test error")
       .severity("warning")
@@ -355,18 +368,23 @@ class UIMError : UIMObject, IError {
 
   // Get compact error representation
   override string toString() const {
-    if (_fileName && _lineNumber > 0) {
-      return "%s in %s:%d".format(_message, _fileName, _lineNumber);
+    return _fileName && _lineNumber > 0 ? "%s in %s:%d".format(_message, _fileName, _lineNumber)
+      : _message;
+    {
     }
-    return _message;
-  }
-  // #endregion Formatting and Output
+    // #endregion Formatting and Output
 
-  // #region throwError
-  void throwError() {
-    throw new Error(message);
+    // #region throwError
+    /** 
+    * Throw the error as a D `Error` with the current message.
+    * This can be used to integrate with D's exception handling system.
+    */
+    void throwError() {
+      string m = _message.dup;
+      throw new Error(m);
+    }
+    // #endregion throwError
   }
-  // #endregion throwError
 }
 /// 
 unittest {

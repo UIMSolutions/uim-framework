@@ -10,7 +10,7 @@ mixin(ShowModule!());
 import uim.errors;
 @safe:
 
-class ErrorRendererFactory : UIMFactory!(string, ErrorRenderer) {
+class ErrorRendererFactory : UIMFactory!(string, IErrorRenderer) {
   this() {
     super(() => new ErrorRenderer());
   }
@@ -22,35 +22,64 @@ class ErrorRendererFactory : UIMFactory!(string, ErrorRenderer) {
     }
     return _instance;
   }
+  static ErrorRendererFactory opCall() { return ErrorRendererFactory.instance; }
+  static IErrorRenderer opCall(string name) { return ErrorRendererFactory().create(name); }
+
 }
-auto errorRendererFactory() { return ErrorRendererFactory.instance; }
 
 static this() {
-  errorRendererFactory.register("console", () {
+  ErrorRendererFactory().register("console", () {
     return new ConsoleErrorRenderer();
   });
 
-  errorRendererFactory.register("html", () {
+  ErrorRendererFactory().register("html", () {
     return new HtmlErrorRenderer();
   });
 
-  errorRendererFactory.register("json", () {
+  ErrorRendererFactory().register("json", () {
     return new JsonErrorRenderer();
   });
 
-  errorRendererFactory.register("text", () {
+  ErrorRendererFactory().register("text", () {
     return new TextErrorRenderer();
   });
 
-  errorRendererFactory.register("xml", () {
+  ErrorRendererFactory().register("xml", () {
     return new XmlErrorRenderer();
   });
 
-  errorRendererFactory.register("web", () {
+  ErrorRendererFactory().register("web", () {
     return new WebErrorRenderer();
   });
 
-  errorRendererFactory.register("yaml", () {
+  ErrorRendererFactory().register("yaml", () {
     return new YamlErrorRenderer();
   });
+}
+///
+unittest {
+  import uim.errors.classes.errors.renderers.console;
+  import uim.errors.classes.errors.renderers.html;
+  import uim.errors.classes.errors.renderers.json;
+  import uim.errors.classes.errors.renderers.text;
+  import uim.errors.classes.errors.renderers.web;
+  import uim.errors.classes.errors.renderers.yaml;
+  
+  auto consoleRenderer = ErrorRendererFactory("console");
+  assert(cast(ConsoleErrorRenderer)consoleRenderer);
+  
+  auto htmlRenderer = ErrorRendererFactory("html");
+  assert(cast(HtmlErrorRenderer)htmlRenderer);
+  
+  auto jsonRenderer = ErrorRendererFactory("json");
+  assert(cast(JsonErrorRenderer)jsonRenderer);
+  
+  auto textRenderer = ErrorRendererFactory("text");
+  assert(cast(TextErrorRenderer)textRenderer);
+  
+  auto webRenderer = ErrorRendererFactory("web");
+  assert(cast(WebErrorRenderer)webRenderer);
+  
+  auto yamlRenderer = ErrorRendererFactory("yaml");
+  assert(cast(YamlErrorRenderer)yamlRenderer);
 }

@@ -6,11 +6,30 @@
 module uim.errors.classes.errors.renderers.web;
 
 import uim.errors;
+
 mixin(ShowModule!());
+
 @safe:
 
 class WebErrorRenderer : ErrorRenderer { 
   mixin(ErrorRendererThis!("Web"));
+
+  override string render(IError error, bool shouldDebug) {
+    // In a real implementation, this would render an HTML page with the error details.
+    // For simplicity, we return a plain text representation here.
+    if (shouldDebug) {
+      // Render detailed error information for debugging.
+      return "%s : %s on line %s of %s\nTrace:\n%s".format(
+        error.message(),
+        error.fileName(),
+        error.lineNumber(),
+        error.traceAsString()
+      );
+    } else {
+      // Render a generic error message for production.
+      return "An error occurred. Please try again later.";
+    }
+  }
 
   /**
  * Web Error Renderer.

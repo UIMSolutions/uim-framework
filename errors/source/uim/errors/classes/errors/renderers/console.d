@@ -59,6 +59,24 @@ class ConsoleErrorRenderer : ErrorRenderer {
 
     return errors.map!(e => renderError(e)).join("\n");
   }
+  /** 
+  override string render(IError error, bool shouldDebug) {
+    // In a real implementation, this would render an HTML page with the error details.
+    // For simplicity, we return a plain text representation here.
+    if (shouldDebug) {
+      // Render detailed error information for debugging.
+      return "%s : %s on line %s of %s\nTrace:\n%s".format(
+        error.message(),
+        error.fileName(),
+        error.lineNumber(),
+        error.getTraceAsString()
+      );
+    } else {
+      // Render a generic error message for production.
+      return "An error occurred. Please try again later.";
+    }
+  }
+   */
 
   string renderError(IError error, IError parantError = null) {
     if (!error) {

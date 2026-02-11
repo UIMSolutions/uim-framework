@@ -6,11 +6,13 @@
 module uim.errors.interfaces.errors.renderer;
 
 import uim.errors;
+
 mixin(ShowModule!());
+
 @safe:
 
 /**
- * Interface for UIM error rendering implementations
+ * Interface for error rendering implementations
  *
  * The core provided implementations of this interface are used
  * by Debugger and ErrorTrap to render UIM errors.

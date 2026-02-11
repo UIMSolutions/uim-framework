@@ -23,17 +23,27 @@ class TextErrorRenderer : ErrorRenderer {
   }
 
   // Render an error into a plain text message.
-  string render() {
-    return "%s : %s on line %s of %s\nTrace:\n%s".format(
-      _error.message(),
-      _error.fileName(),
-      _error.lineNumber()
-    );
+  override string render(IError error, bool shouldDebug) {
+    // In a real implementation, this would render an HTML page with the error details.
+    // For simplicity, we return a plain text representation here.
+    if (shouldDebug) {
+      // Render detailed error information for debugging.
+      return "%s : %s on line %s of %s\nTrace:\n%s".format(
+        error.message(),
+        error.fileName(),
+        error.lineNumber(),
+        error.traceAsString()
+      );
+    } else {
+      // Render a generic error message for production.
+      return "An error occurred. Please try again later.";
+    }
   }
 
   // Write output to stdout.
-  override IErrorRenderer write(string outputText) {
-    writeln(outputText);
+  override IErrorRenderer write(string output) {
+    import std.stdio : writeln;
+    writeln(output);
     return this;
   }
 }

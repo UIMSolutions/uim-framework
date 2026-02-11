@@ -62,6 +62,21 @@ class TransformingMiddleware : ErrorMiddleware {
   }
   // #endregion shouldTransform
 
+  /** 
+   * 
+    * Determine if this middleware should process the given error. If a _shouldTransform predicate is set, it will be used to decide. Otherwise, all errors will be processed.
+    
+    * This allows for conditional transformation, where only certain errors are modified by the transformer function.
+    * For example, you could set a predicate that only transforms errors of a certain severity or with certain codes, while leaving others unchanged.
+    * If no predicate is set, the default behavior is to transform all errors that reach this middleware.
+    * This method is called by the pipeline to check if the transformer should be applied to a given error.
+    * If this returns false, the error will be passed through unchanged. If it returns true, the transformer function will be applied to the error.
+    * This allows for flexible error transformation based on custom criteria defined in the predicate.
+    * If you want to <b>transform all errors</b>, simply do not set a predicate or set it to a function that always returns true.
+    * If you want to only transform specific errors, set a predicate that checks the error properties and returns true for those that should be transformed.
+    * This method is part of the IErrorMiddleware interface and is used by the pipeline to determine which middleware should process each error.
+    * The actual transformation logic is implemented in the process method, which will call this shouldProcess method to decide whether to apply the transformer function to each error.
+    */
   override bool shouldProcess(IError error) {
     if (!_enabled || _transformer is null) {
       return false;

@@ -38,9 +38,6 @@ class ErrorRenderer : UIMObject, IErrorRenderer {
   // The method corresponding to the Error this object is for.
   protected string method = "";
 
-  // The error being handled.
-  protected IError _error;
-
   // Controller instance.
   /*  protected IController controller; */
 
