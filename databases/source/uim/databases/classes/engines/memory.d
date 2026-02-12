@@ -14,6 +14,7 @@ mixin(ShowModule!());
 class MemoryEngine : DatabaseEngine {
   private Table[string] _tables;
 
+  // #region tables
   override Table createTable(string name, string[] columns) {
     enforce(name.length > 0, "Table name cannot be empty");
     enforce(!(name in _tables), "Table already exists: " ~ name);
@@ -39,7 +40,9 @@ class MemoryEngine : DatabaseEngine {
   override string[] tableNames() const {
     return _tables.keys.dup;
   }
+  // #endregion tables
 
+  // #region rows
   override ulong rowCount() const {
     ulong total = 0;
     foreach (table; _tables.byValue()) {
@@ -47,6 +50,7 @@ class MemoryEngine : DatabaseEngine {
     }
     return total;
   }
+  // #endregion rows
 
   override void clear() {
     foreach (table; _tables.byValue()) {
