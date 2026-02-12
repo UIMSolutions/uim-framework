@@ -18,4 +18,4 @@ public {
     import uim.html.classes.forms.legend;
     import uim.html.classes.forms.checkbox;
     import uim.html.classes.forms.radio;
-    }
+}

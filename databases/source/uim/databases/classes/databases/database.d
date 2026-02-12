@@ -31,6 +31,11 @@ class Database : UIMObject, IValuebase {
         return table;
     }
 
+    /// Check if a table exists.
+    bool hasTable(string name) const {
+        return _engine.hasTable(name);
+    }
+
     /// Get existing table as a wrapper; null if not found.
     Table getTable(string name) {
         // Check cache first
@@ -43,11 +48,6 @@ class Database : UIMObject, IValuebase {
             _tableCache[name] = table;
         }
         return table;
-    }
-
-    /// Check if a table exists.
-    bool hasTable(string name) const {
-        return _engine.hasTable(name);
     }
 
     /// Drop/delete a table by name.

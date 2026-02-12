@@ -2,7 +2,7 @@
 
 Updated on 1. February 2026
 
-[![uim-core](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-core.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-core.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[ ![uim-core](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-core.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-core.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Overview
 
@@ -11,12 +11,15 @@ Updated on 1. February 2026
 ## Features
 
 ### 🗂️ Containers
+
 - **Sequential Containers**: Arrays and lists with extended functionality
 - **Associative Containers**: Enhanced associative array operations
 - **Unordered Containers**: Efficient unordered data structures
 
 ### 📊 Data Types
+
 Comprehensive utilities for working with various data types:
+
 - **Strings**: Manipulation (camelize, pluralize, singularize, humanize, underscore, etc.)
 - **Booleans**: Boolean operations and conversions
 - **JSON/BSON**: JSON and BSON data handling
@@ -26,6 +29,7 @@ Comprehensive utilities for working with various data types:
 - **Numbers**: Long, double, and other numeric types
 
 ### 🔧 Core Utilities
+
 - **Constants**: Framework-wide constants for filesystem operations, sorting, etc.
 - **Enumerations**: Type-safe enumeration support
 - **Mixins**: Reusable code patterns (properties, versioning)
@@ -34,7 +38,9 @@ Comprehensive utilities for working with various data types:
 - **Tests**: Testing utilities and helpers
 
 ### 📦 Standard Library Integration
+
 Re-exports commonly used D standard library modules including:
+
 - Algorithm, array, and range operations
 - String and regex processing
 - File I/O and path handling
@@ -43,6 +49,7 @@ Re-exports commonly used D standard library modules including:
 - And many more...
 
 ### 🌐 External Dependencies
+
 - **vibe-d**: High-performance asynchronous I/O
 - **colored**: Terminal color output support
 - **console-colors**: Enhanced console coloring
@@ -52,6 +59,7 @@ Re-exports commonly used D standard library modules including:
 Add `uim-core` as a dependency to your `dub.json` or `dub.sdl`:
 
 ### dub.json
+
 ```json
 {
   "dependencies": {
@@ -61,6 +69,7 @@ Add `uim-core` as a dependency to your `dub.json` or `dub.sdl`:
 ```
 
 ### dub.sdl
+
 ```sdl
 dependency "uim-core" version="*"
 ```
