@@ -6,7 +6,6 @@
 module uim.genetic.operators;
 
 public {
-  import uim.genetic.classes.operators.selection;
-  import uim.genetic.classes.operators.crossovers.crossover;
+  import uim.genetic.classes.operators.crossovers;
   import uim.genetic.classes.operators.mutation;
 }

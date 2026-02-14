@@ -5,3 +5,6 @@
 *****************************************************************************************************************/
 module uim.genetic.helpers;
 
+public {
+  import uim.genetic.helpers.functions;
+}

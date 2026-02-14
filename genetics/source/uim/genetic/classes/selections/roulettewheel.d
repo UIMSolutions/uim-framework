@@ -3,9 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.genetic.classes.operators.selection;
+module uim.genetic.classes.selections.roulettewheel;
 
 import uim.genetic;
+import std.random : uniform;
 
 mixin(ShowModule!());
 
@@ -52,45 +53,4 @@ class RouletteWheelSelection : ISelectionStrategy {
   }
 }
 
-/**
- * Tournament selection strategy.
- */
 
-/**
- * Rank-based selection strategy.
- */
-class RankSelection : ISelectionStrategy {
-  override IIndividual select(IPopulation population) {
-    if (population.size() == 0) return null;
-
-    auto individuals = population.individuals().dup;
-    import std.algorithm : sort;
-    std.algorithm.sort!((a, b) => a.fitness() > b.fitness())(individuals);
-
-    // Rank-based weights: higher rank = higher probability
-    double totalWeight = 0.0;
-    for (size_t i = 0; i < individuals.length; i++) {
-      totalWeight += (cast(double)(i + 1));
-    }
-
-    double spin = uniform(0.0, totalWeight);
-    double accumulated = 0.0;
-
-    for (size_t i = 0; i < individuals.length; i++) {
-      accumulated += (cast(double)(i + 1));
-      if (accumulated >= spin) {
-        return individuals[i];
-      }
-    }
-
-    return individuals[$ - 1];
-  }
-
-  override IIndividual[] selectMultiple(IPopulation population, size_t count) {
-    IIndividual[] selected;
-    for (size_t i = 0; i < count; i++) {
-      selected ~= select(population);
-    }
-    return selected;
-  }
-}

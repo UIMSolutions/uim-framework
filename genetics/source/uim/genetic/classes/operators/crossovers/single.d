@@ -6,6 +6,7 @@
 module uim.genetic.classes.operators.crossovers.single;
 
 import uim.genetic;
+import std.random : uniform;
 
 mixin(ShowModule!());
 

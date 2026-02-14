@@ -1,11 +1,15 @@
-module uim.genetic.classes.tourment;
+module uim.genetic.classes.selections.tourment;
 
 import uim.genetic;
+import std.random : uniform;
 
 mixin(ShowModule!());
 
 @safe:
 
+/**
+ * Tournament selection strategy.
+ */
 class TournamentSelection : ISelectionStrategy {
   protected size_t _tournamentSize = 3;
 
