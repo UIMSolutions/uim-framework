@@ -6,7 +6,8 @@
 module uim.genetic.classes.operators.selection;
 
 import uim.genetic;
-import std.random : uniform;
+
+mixin(ShowModule!());
 
 @safe:
 
