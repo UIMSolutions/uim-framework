@@ -66,7 +66,7 @@ FileMetadata getMetadata(string path) @trusted {
 }
 
 /// Get file size
-ulong getFileSize(string path) @trusted {
+size_t getFileSize(string path) @trusted {
     enforce(exists(path), "Path does not exist: " ~ path);
     return getSize(path);
 }

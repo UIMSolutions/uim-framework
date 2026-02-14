@@ -2,6 +2,8 @@ module uim.genetic.classes.tourment;
 
 import uim.genetic;
 
+mixin(ShowModule!());
+
 @safe:
 
 class TournamentSelection : ISelectionStrategy {

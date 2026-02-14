@@ -6,6 +6,9 @@
 module uim.databases.interfaces.database;
 
 import uim.databases;
+
+mixin(ShowModule!());
+
 @safe:
 
 interface IValuebase {

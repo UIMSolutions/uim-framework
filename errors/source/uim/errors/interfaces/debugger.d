@@ -6,9 +6,10 @@
 module uim.errors.interfaces.debugger;
 
 import uim.errors;
-mixin(ShowModule!());
-@safe:
 
+mixin(ShowModule!());
+
+@safe:
 
 interface IErrorDebugger {
 

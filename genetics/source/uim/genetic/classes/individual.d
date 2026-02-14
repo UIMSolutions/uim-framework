@@ -7,6 +7,8 @@ module uim.genetic.classes.individual;
 
 import uim.genetic;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

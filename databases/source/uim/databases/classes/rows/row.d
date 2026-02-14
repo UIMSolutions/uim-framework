@@ -2,6 +2,8 @@ module uim.databases.classes.rows.row;
 
 import uim.databases;
 
+mixin(ShowModule!());
+
 @safe:
 
 class TableRow : UIMObject, ITableRow {

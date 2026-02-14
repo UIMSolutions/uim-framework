@@ -7,8 +7,11 @@ module uim.databases.interfaces.table;
 
 import uim.databases;
 
+mixin(ShowModule!());
+
 @safe:
 
+/// Interface for table objects
 interface ITable {
   /// Get table name
   @property string name() const;

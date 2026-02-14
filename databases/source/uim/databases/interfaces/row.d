@@ -7,6 +7,8 @@ module uim.databases.interfaces.row;
 
 import uim.databases;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Interface for table row objects
