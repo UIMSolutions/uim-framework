@@ -18,23 +18,17 @@ mixin(ShowModule!());
  * When no other semantic element is appropriate, the <div> element can be used as a last resort.
  */
 class H5Div : HtmlElement {
-  this() {
-    super("div");
-  }
+  mixin H5This!("div", false);
 
-
-  static H5Div opCall() {
-    return new H5Div();
-  }
-
-  static H5Div opCall(string content) {
-    auto element = new H5Div();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Div"));
 }
 ///
 unittest {
+  mixin(ShowTest!"Testing H5Div");
+
   assert(H5Div() == "<div></div>");
   assert(H5Div("Hello") == "<div>Hello</div>");
+  assert(H5Div(["test"], "Hello") == `<div class="test">Hello</div>`);
+  assert(H5Div(["a":"b"], "Hello") == `<div a="b">Hello</div>`);
+  assert(H5Div(["test"], ["a":"b"], "Hello") == `<div class="test" a="b">Hello</div>`);
 }

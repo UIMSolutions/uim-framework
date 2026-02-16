@@ -12,10 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class Audio : HtmlElement {
-  this() {
-    super("audio");
-    this.selfClosing(false);
-  }
+  mixin H5This!("audio", false);
 
   static Audio opCall() {
     return new Audio();

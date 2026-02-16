@@ -16,23 +16,16 @@ mixin(ShowModule!());
  * The <dt> element can contain any inline content, such as text, images, and other HTML elements, but it cannot contain block-level elements. 
  * The <dt> element is usually displayed in bold font by default, and it is often indented from the left margin to visually distinguish it from the <dd> elements that follow it. 
  */
-class Dt : HtmlElement {
-  this() {
-    super("dt");
-  }
+class H5Dt : HtmlElement {
+  mixin H5This!("dt", false);
 
-  static Dt opCall() {
-    return new Dt();
-  }
-
-  static Dt opCall(string content) {
-    auto dt = new Dt();
-    dt.text(content);
-    return dt;
-  }
+  mixin(H5Calls!("Dt"));
 }
 ///
 unittest {
-  assert(Dt() == "<dt></dt>");
-  assert(Dt("Term") == "<dt>Term</dt>");
+  assert(H5Dt() == "<dt></dt>");
+  assert(H5Dt("Term") == "<dt>Term</dt>");
+  assert(H5Dt(["test"], "Term") == `<dt class="test">Term</dt>`);
+  assert(H5Dt(["a":"b"], "Term") == `<dt a="b">Term</dt>`);
+  assert(H5Dt(["test"], ["a":"b"], "Term") == `<dt class="test" a="b">Term</dt>`);
 }

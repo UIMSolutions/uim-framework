@@ -17,20 +17,16 @@ mixin(ShowModule!());
  * The <dl> element contains one or more pairs of <dt> (definition term) and <dd> (definition description) elements, where each <dt> element represents a term and each <dd> element provides the corresponding description for that term. 
  * The <dl> element can also contain other flow content, such as headings, paragraphs, and images, to provide additional context or information about the terms and their descriptions.
  */
-class Dl : HtmlElement {
-  this() {
-    super("dl");
-  }
+class H5Dl : HtmlElement {
+  mixin H5This!("dl", false);
 
-  static Dl opCall() {
-    return new Dl();
-  }
-}
-
-auto dl() {
-  return new Dl();
+  mixin(H5Calls!("Dl"));
 }
 ///
 unittest {
-  assert(Dl() == "<dl></dl>");
+  assert(H5Dl() == "<dl></dl>");
+  assert(H5Dl("Hello") == "<dl>Hello</dl>");
+  assert(H5Dl(["test"], "Hello") == `<dl class="test">Hello</dl>`);
+  assert(H5Dl(["a":"b"], "Hello") == `<dl a="b">Hello</dl>`);
+  assert(H5Dl(["test"], ["a":"b"], "Hello") == `<dl class="test" a="b">Hello</dl>`);
 }

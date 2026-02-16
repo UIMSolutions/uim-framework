@@ -12,10 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class Map : HtmlElement {
-  this() {
-    super("map");
-    this.selfClosing(false);
-  }
+  mixin H5This!("map", false);
 
   static Map opCall() {
     return new Map();

@@ -97,7 +97,7 @@ void testListElements() {
     // Test definition list
     auto dl = new Dl();
     // dl.addChild(Dt("Term"));
-    dl.addContent(Dt("Term"));
+    dl.addContent(H5Dt("Term"));
     // dl.addChild(Dd("Definition"));
     dl.addContent(Dd("Definition"));
 }

@@ -12,6 +12,12 @@ template H5This(string tag, bool selfClosing = false) {
     _selfClosing = selfClosing;
   }
 
+  this(string content) {
+    super(tag);
+    this.content(content);  
+    _selfClosing = selfClosing;
+  }
+
   this(string[] classes, string content = "") {
     super(tag, classes, content);
     _selfClosing = selfClosing;
@@ -49,14 +55,16 @@ string h5Calls(string name) {
       return new H5{name}();
     }
     static H5{name} opCall(string content) {
-      auto element = new H5{name}();
-      element.content(content);
-      return element;
+      return new H5{name}(content);
     }
-    static H5{name} opCall(string[string] attributes) {
-      auto element = new H5{name}();
-      element.attributes(attributes);
-      return element;
+    static H5{name} opCall(string[] classes, string content = "") {
+      return new H5{name}(classes, content);
+    }
+    static H5{name} opCall(string[string] attributes, string content = "") {
+      return new H5{name}(attributes, content);
+    }
+    static H5{name} opCall(string[] classes, string[string] attributes, string content = "") {
+      return new H5{name}(classes, attributes, content);
     }
     `.mustache("name", name);
 }

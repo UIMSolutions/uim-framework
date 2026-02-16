@@ -13,10 +13,7 @@ mixin(ShowModule!());
 
 /// HTML image element
 class Img : HtmlElement {
-    this() {
-        super("img");
-        this.selfClosing(true);
-    }
+    mixin H5This!("img", true);
 
     IHtmlElement src(string source) {
         attribute("src", source);

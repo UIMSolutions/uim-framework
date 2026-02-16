@@ -11,17 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 
-class Del : HtmlElement {
+class H5Del : HtmlElement {
  mixin H5This!("del", false);
 
   // Factory methods
-  static Del opCall() {
-    return new Del();
+  static H5Del opCall() {
+    return new H5Del();
   }
 
   // Factory methods
-  static Del opCall(string content) {
-    auto element = new Del();
+  static H5Del opCall(string content) {
+    auto element = new H5Del();
     element.content(content);
     return element;
   }
@@ -29,6 +29,6 @@ class Del : HtmlElement {
 }
 ///
 unittest {
-  assert(Del() == "<del></del>");
-  assert(Del("Hello") == "<del>Hello</del>");
+  assert(H5Del() == "<del></del>");
+  assert(H5Del("Hello") == "<del>Hello</del>");
 }
