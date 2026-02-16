@@ -24,6 +24,8 @@ class H5Dl : HtmlElement {
 }
 ///
 unittest {
+  mixin(ShowTest!"Testing H5Dl");
+
   assert(H5Dl() == "<dl></dl>");
   assert(H5Dl("Hello") == "<dl>Hello</dl>");
   assert(H5Dl(["test"], "Hello") == `<dl class="test">Hello</dl>`);

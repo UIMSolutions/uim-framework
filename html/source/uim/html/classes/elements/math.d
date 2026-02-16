@@ -11,20 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
-class Math : HtmlElement {
+class H5Math : HtmlElement {
   this() {
     super("math");
     this.selfClosing(false);
   }
 
   // Factory methods
-  static Math opCall() {
-    return new Math();
+  static H5Math opCall() {
+    return new H5Math();
   }
 
   // Factory methods
-  static Math opCall(string content) {
-    auto element = new Math();
+  static H5Math opCall(string content) {
+    auto element = new H5Math();
     element.content(content);
     return element;
   }
@@ -32,6 +32,6 @@ class Math : HtmlElement {
 }
 ///
 unittest {
-  assert(Math() == "<math></math>");
-  assert(Math("Hello") == "<math>Hello</math>");
+  assert(H5Math() == "<math></math>");
+  assert(H5Math("Hello") == "<math>Hello</math>");
 }

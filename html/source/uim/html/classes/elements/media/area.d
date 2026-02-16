@@ -11,24 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 
-class Area : HtmlElement {
-  this() {
-    super("area");
-    this.selfClosing(false);
-  }
+class H5Area : HtmlElement {
+  mixin H5This!("area", false);
 
-  static Area opCall() {
-    return new Area();
-  }
-
-  static Area opCall(string content) {
-    auto element = new Area();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Area"));
 }
 ///
 unittest {
-  assert(Area() == "<area></area>");
-  assert(Area("Hello") == "<area>Hello</area>");
+  mixin(ShowTest!"Testing H5Area");
+
+  assert(H5Area() == "<area></area>");
+  assert(H5Area("Hello") == "<area>Hello</area>");
+  assert(H5Area(["test"], "Hello") == `<area class="test">Hello</area>`);
+  assert(H5Area(["a":"b"], "Hello") == `<area a="b">Hello</area>`);
+  assert(H5Area(["test"], ["a":"b"], "Hello") == `<area class="test" a="b">Hello</area>`);
 }

@@ -17,23 +17,23 @@ mixin(ShowModule!());
  * The <p> element can contain any flow content, such as text, images, and other HTML elements, and it is usually displayed with some vertical spacing before and after it by default. 
  * When rendered in a web browser, the <p> element typically displays the text within it as a block-level element, meaning that it takes up the full width of its container and starts on a new line.
  */
-class P : HtmlElement {
+class H5P : HtmlElement {
   this() {
     super("p");
   }
 
-  static P opCall() {
-    return new P();
+  static H5P opCall() {
+    return new H5P();
   }
 
-  static P opCall(string content) {
-    auto element = new P();
+  static H5P opCall(string content) {
+    auto element = new H5P();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(P() == "<p></p>");
-  assert(P("Paragraph text") == "<p>Paragraph text</p>");
+  assert(H5P() == "<p></p>");
+  assert(H5P("Paragraph text") == "<p>Paragraph text</p>");
 }

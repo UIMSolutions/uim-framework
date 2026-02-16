@@ -11,24 +11,36 @@ mixin(ShowModule!());
 
 @safe:
 
-class Video : HtmlElement {
+/** 
+  * The <video> element is used to embed video content in a web page. It provides a standard way to include video files and allows for various attributes and controls to customize the playback experience. 
+  * The <video> element can contain one or more <source> elements, which specify the video file(s) to be played, along with their respective formats. 
+  * Additionally, the <video> element supports attributes such as controls, autoplay, loop, muted, and more, which allow developers to control the behavior of the video player and enhance user interaction.
+  *
+  * Example usage:
+  * <video controls>
+  *   <source src="video.mp4" type="video/mp4">
+  *   <source src="video.webm" type="video/webm">
+  *   Your browser does not support the video tag.
+  * </video>
+  */
+class H5Video : HtmlElement {
   this() {
     super("video");
     this.selfClosing(false);
   }
 
-  static Video opCall() {
-    return new Video();
+  static H5Video opCall() {
+    return new H5Video();
   }
 
-  static Video opCall(string content) {
-    auto element = new Video();
+  static H5Video opCall(string content) {
+    auto element = new H5Video();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Video() == "<video></video>");
-  assert(Video("Hello") == "<video>Hello</video>");
+  assert(H5Video() == "<video></video>");
+  assert(H5Video("Hello") == "<video>Hello</video>");
 }

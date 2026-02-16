@@ -11,21 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Article : HtmlElement {
+class H5Article : HtmlElement {
   mixin H5This!("article", false);
 
-  static Article opCall() {
-    return new Article();
+  static H5Article opCall() {
+    return new H5Article();
   }
 
-  static Article opCall(string content) {
-    auto element = new Article();
+  static H5Article opCall(string content) {
+    auto element = new H5Article();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Article() == "<article></article>");
-  assert(Article("Hello") == "<article>Hello</article>");
+  assert(H5Article() == "<article></article>");
+  assert(H5Article("Hello") == "<article>Hello</article>");
 }

@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML image element
-class Img : HtmlElement {
+class H5Img : HtmlElement {
     mixin H5This!("img", true);
 
     IHtmlElement src(string source) {
@@ -54,12 +54,12 @@ class Img : HtmlElement {
     }
     // #endregion width
 
-    static Img opCall() {
-        return new Img();
+    static H5Img opCall() {
+        return new H5Img();
     }
 
-    static Img opCall(string src, string alt = null) {
-        auto element = new Img();
+    static H5Img opCall(string src, string alt = null) {
+        auto element = new H5Img();
         element.src(src);
         if (alt)
             element.alt(alt);
@@ -68,6 +68,6 @@ class Img : HtmlElement {
 }
 ///
 unittest {
-    assert(Img() == `<img />`);
-    assert(Img("image.png", "An image") == `<img alt="An image" src="image.png" />`);
+    assert(H5Img() == `<img />`);
+    assert(H5Img("image.png", "An image") == `<img alt="An image" src="image.png" />`);
 }

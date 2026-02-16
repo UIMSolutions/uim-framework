@@ -17,23 +17,23 @@ mixin(ShowModule!());
  * The <pre> element is often used to display code snippets, poetry, or other types of content where the formatting is important. 
  * When rendered in a web browser, the <pre> element typically displays the text within it as a block-level element, meaning that it takes up the full width of its container and starts on a new line.
  */
-class Pre : HtmlElement {
+class H5Pre : HtmlElement {
   this() {
     super("pre");
   }
 
-  static Pre opCall() {
-    return new Pre();
+  static H5Pre opCall() {
+    return new H5Pre();
   }
 
-  static Pre opCall(string content) {
-    auto pre = new Pre();
+  static H5Pre opCall(string content) {
+    auto pre = new H5Pre();
     pre.text(content);
     return pre;
   }
 }
 ///
 unittest {
-  assert(Pre() == "<pre></pre>");
-  assert(Pre("Description") == "<pre>Description</pre>");
+  assert(H5Pre() == "<pre></pre>");
+  assert(H5Pre("Description") == "<pre>Description</pre>");
 }

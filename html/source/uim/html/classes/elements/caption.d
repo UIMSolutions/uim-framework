@@ -11,24 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-class Caption : HtmlElement {
+class H5Caption : HtmlElement {
   this() {
     super("caption");
     this.selfClosing(false);
   }
 
-  static Caption opCall() {
-    return new Caption();
+  static H5Caption opCall() {
+    return new H5Caption();
   }
 
-  static Caption opCall(string content) {
-    auto element = new Caption();
+  static H5Caption opCall(string content) {
+    auto element = new H5Caption();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Caption() == "<caption></caption>");
-  assert(Caption("Hello") == "<caption>Hello</caption>");
+  assert(H5Caption() == "<caption></caption>");
+  assert(H5Caption("Hello") == "<caption>Hello</caption>");
 }

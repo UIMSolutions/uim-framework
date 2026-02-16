@@ -11,21 +11,23 @@ mixin(ShowModule!());
 
 @safe:
 
-class Map : HtmlElement {
+/** 
+  * The <map> element is used to define an image map, which is a graphical representation of a web page that allows users to interact with different areas of the image. 
+  * An image map consists of one or more <area> elements, which define the clickable areas on the image and specify the actions that should be taken when those areas are clicked. 
+  * The <map> element is typically used in conjunction with the <img> element, where the <img> element references the image and the <map> element defines the interactive areas on that image.
+  */
+class H5Map : HtmlElement {
   mixin H5This!("map", false);
 
-  static Map opCall() {
-    return new Map();
-  }
-
-  static Map opCall(string content) {
-    auto element = new Map();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Map"));
 }
 ///
 unittest {
-  assert(Map() == "<map></map>");
-  assert(Map("Hello") == "<map>Hello</map>");
+  mixin(ShowTest!"Testing H5Map");
+
+  assert(H5Map() == "<map></map>");
+  assert(H5Map("Hello") == "<map>Hello</map>");
+  assert(H5Map(["test"], "Hello") == `<map class="test">Hello</map>`);
+  assert(H5Map(["a":"b"], "Hello") == `<map a="b">Hello</map>`);
+  assert(H5Map(["test"], ["a":"b"], "Hello") == `<map class="test" a="b">Hello</map>`);
 }
