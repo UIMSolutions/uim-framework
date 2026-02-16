@@ -22,7 +22,7 @@ void runTests() {
 
 void testBasicElements() {
     // Test div
-    auto div = Div("Content");
+    auto div = H5Div("Content");
     assert(div.toString() == "<div>Content</div>");
 
     // Test with attributes

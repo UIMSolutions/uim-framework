@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Aside : HtmlElement {
-  this() {
-    super("aside");
-    this.selfClosing(false);
+class H5Aside : HtmlElement {
+  mixin H5This!("aside", false);
+
+  static H5Aside opCall() {
+    return new H5Aside();
   }
 
-  static Aside opCall() {
-    return new Aside();
-  }
-
-  static Aside opCall(string content) {
-    auto element = new Aside();
+  static H5Aside opCall(string content) {
+    auto element = new H5Aside();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Aside() == "<aside></aside>");
-  assert(Aside("Hello") == "<aside>Hello</aside>");
+  assert(H5Aside() == "<aside></aside>");
+  assert(H5Aside("Hello") == "<aside>Hello</aside>");
 }

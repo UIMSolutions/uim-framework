@@ -17,24 +17,24 @@ mixin(ShowModule!());
  * It is also commonly used as a container for JavaScript to manipulate groups of elements. 
  * When no other semantic element is appropriate, the <div> element can be used as a last resort.
  */
-class Div : HtmlElement {
+class H5Div : HtmlElement {
   this() {
     super("div");
   }
 
 
-  static Div opCall() {
-    return new Div();
+  static H5Div opCall() {
+    return new H5Div();
   }
 
-  static Div opCall(string content) {
-    auto element = new Div();
+  static H5Div opCall(string content) {
+    auto element = new H5Div();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Div() == "<div></div>");
-  assert(Div("Hello") == "<div>Hello</div>");
+  assert(H5Div() == "<div></div>");
+  assert(H5Div("Hello") == "<div>Hello</div>");
 }

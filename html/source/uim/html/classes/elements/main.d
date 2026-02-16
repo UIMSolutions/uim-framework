@@ -12,10 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class Main : HtmlElement {
-  this() {
-    super("main");
-    this.selfClosing(false);
-  }
+  mixin H5This!("main", false);
 
   static Main opCall() {
     return new Main();

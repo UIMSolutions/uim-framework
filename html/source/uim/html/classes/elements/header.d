@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Header : HtmlElement {
-  this() {
-    super("header");
-    this.selfClosing(false);
+class H5Header : HtmlElement {
+  mixin H5This!("header", false);
+
+  static H5Header opCall() {
+    return new H5Header();
   }
 
-  static Header opCall() {
-    return new Header();
-  }
-
-  static Header opCall(string content) {
-    auto element = new Header();
+  static H5Header opCall(string content) {
+    auto element = new H5Header();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Header() == "<header></header>");
-  assert(Header("Hello") == "<header>Hello</header>");
+  assert(H5Header() == "<header></header>");
+  assert(H5Header("Hello") == "<header>Hello</header>");
 }

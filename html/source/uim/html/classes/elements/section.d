@@ -12,10 +12,8 @@ mixin(ShowModule!());
 @safe:
 
 class Section : HtmlElement {
-  this() {
-    super("section");
-    this.selfClosing(false);
-  }
+  mixin H5This!("section", false);
+
 
   static Section opCall() {
     return new Section();

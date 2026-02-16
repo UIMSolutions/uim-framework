@@ -1,10 +1,9 @@
-module uim.html.classes.elements.element;
-
 /****************************************************************************************************************
-* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
-* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
-* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
-*****************************************************************************************************************/
+  * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+  * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+  * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+  *****************************************************************************************************************/
+module uim.html.classes.elements.element;
 
 import uim.html;
 
@@ -22,6 +21,75 @@ class HtmlElement : IHtmlElement {
   this(string tag) {
     this();
     this.tagName(tag);
+  }
+
+  this(string tag, string[] classes, string content = "") {
+    this();
+    this.tagName(tag);
+    foreach (className; classes) {
+      addClass(className);
+    }
+    if (content.length > 0) {
+      addContent(content);
+    }
+  }
+
+  this(string tag, string[] classes, IHtmlElement[] elements) {
+    this();
+    this.tagName(tag);
+    foreach (className; classes) {
+      addClass(className);
+    }
+    elements.each!(element => addContent(element)); 
+  }
+
+  this(string tag, string[string] attributes, string content = "") {
+    this();
+    this.tagName(tag);
+
+    foreach (name, value; attributes) {
+      attribute(name, value);
+    }
+
+    if (content.length > 0) {
+      addContent(content);
+    }
+  }
+
+  this(string tag, string[string] attributes, IHtmlElement[] elements) {
+    this();
+    this.tagName(tag);
+
+    foreach (name, value; attributes) {
+      attribute(name, value);
+    }
+    elements.each!(element => addContent(element)); 
+  }
+
+  this(string tag, string[] classes, string[string] attributes, string content = "") {
+    this();
+    this.tagName(tag);
+    foreach (className; classes) {
+      addClass(className);
+    }
+    foreach (name, value; attributes) {
+      attribute(name, value);
+    }
+    if (content.length > 0) {
+      addContent(content);
+    }
+  }
+
+  this(string tag, string[] classes, string[string] attributes, IHtmlElement[] elements) {
+    this();
+    this.tagName(tag);
+    foreach (className; classes) {
+      addClass(className);
+    }
+    foreach (name, value; attributes) {
+      attribute(name, value);
+    }
+    elements.each!(element => addContent(element)); 
   }
 
   protected string _tagName;
@@ -67,6 +135,7 @@ class HtmlElement : IHtmlElement {
   IHtmlElement addContent(string[] values...) {
     return addContent(values.dup);
   }
+
   IHtmlElement addContent(string[] values) {
     _content ~= values.join("");
     return this;
@@ -75,6 +144,7 @@ class HtmlElement : IHtmlElement {
   IHtmlElement addContent(IHtmlElement[] elements...) {
     return addContent(elements.dup);
   }
+
   IHtmlElement addContent(IHtmlElement[] elements) {
     _content ~= elements.map!(element => element.toString()).join("");
     return this;
@@ -92,13 +162,20 @@ class HtmlElement : IHtmlElement {
     return this;
   }
 
-  protected IHtmlAttribute[string] _attributes;
   protected IHtmlElement[] _children;
 
   bool opEquals(const string html) {
     return toString() == html;
   }
+
+  // #region attributes
+  protected IHtmlAttribute[string] _attributes;
   /// Add an attribute to the element
+  IHtmlElement attributes(string[string] map) {
+    map.byKeyValue.each!((kv) => attribute(kv.key, kv.value));
+    return this;
+  }
+
   IHtmlElement attribute(string name, string value) {
     _attributes[name] = new HtmlAttribute(name, value);
     return this;
@@ -108,6 +185,7 @@ class HtmlElement : IHtmlElement {
   IHtmlAttribute attribute(string name) {
     return _attributes.get(name, null);
   }
+  // #endregion attributes
 
   // #region ID
   /// Set or get ID attribute

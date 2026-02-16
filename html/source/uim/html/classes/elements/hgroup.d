@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Hgroup : HtmlElement {
-  this() {
-    super("hgroup");
-    this.selfClosing(false);
+class H5Hgroup : HtmlElement {
+  mixin H5This!("hgroup", false);
+
+  static H5Hgroup opCall() {
+    return new H5Hgroup();
   }
 
-  static Hgroup opCall() {
-    return new Hgroup();
-  }
-
-  static Hgroup opCall(string content) {
-    auto element = new Hgroup();
+  static H5Hgroup opCall(string content) {
+    auto element = new H5Hgroup();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Hgroup() == "<hgroup></hgroup>");
-  assert(Hgroup("Hello") == "<hgroup>Hello</hgroup>");
+  assert(H5Hgroup() == "<hgroup></hgroup>");
+  assert(H5Hgroup("Hello") == "<hgroup>Hello</hgroup>");
 }

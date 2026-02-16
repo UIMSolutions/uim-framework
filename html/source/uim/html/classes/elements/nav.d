@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Nav : HtmlElement {
-  this() {
-    super("nav");
-    this.selfClosing(false);
+class H5Nav : HtmlElement {
+  mixin H5This!("nav", false);
+
+  static H5Nav opCall() {
+    return new H5Nav();
   }
 
-  static Nav opCall() {
-    return new Nav();
-  }
-
-  static Nav opCall(string content) {
-    auto element = new Nav();
+  static H5Nav opCall(string content) {
+    auto element = new H5Nav();
     element.content(content);
     return element;
   }
 }
 
 unittest {
-  assert(Nav() == "<nav></nav>");
-  assert(Nav("Hello") == "<nav>Hello</nav>");
+  assert(H5Nav() == "<nav></nav>");
+  assert(H5Nav("Hello") == "<nav>Hello</nav>");
 }
