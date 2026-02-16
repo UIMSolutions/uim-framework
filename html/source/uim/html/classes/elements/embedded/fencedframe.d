@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Fencedframe : HtmlElement {
-  this() {
-    super("fencedframe");
-    this.selfClosing(false);
+class H5Fencedframe : HtmlElement {
+  mixin H5This!("fencedframe", false);
+
+  static H5Fencedframe opCall() {
+    return new H5Fencedframe();
   }
 
-  static Fencedframe opCall() {
-    return new Fencedframe();
-  }
-
-  static Fencedframe opCall(string content) {
-    auto element = new Fencedframe();
+  static H5Fencedframe opCall(string content) {
+    auto element = new H5Fencedframe();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Fencedframe() == "<fencedframe></fencedframe>");
-  assert(Fencedframe("Hello") == "<fencedframe>Hello</fencedframe>");
+  assert(H5Fencedframe() == "<fencedframe></fencedframe>");
+  assert(H5Fencedframe("Hello") == "<fencedframe>Hello</fencedframe>");
 }

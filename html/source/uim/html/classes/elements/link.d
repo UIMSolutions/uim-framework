@@ -12,11 +12,8 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML link element (for stylesheets, etc.)
-class Link : HtmlElement {
-    this() {
-        super("link");
-        this.selfClosing(true);
-    }
+class H5Link : HtmlElement {
+    mixin H5This!("link", true);
 
     IHtmlElement rel(string relValue) {
         attribute("rel", relValue);
@@ -45,14 +42,18 @@ class Link : HtmlElement {
         return attribute("type");
     }
 
-    static Link opCall() {
-        return new Link();
+    static H5Link opCall() {
+        return new H5Link();
     }
 
-    static Link opCall(string href, string rel = "stylesheet") {
-        auto element = new Link();
+    static H5Link opCall(string href, string rel = "stylesheet") {
+        auto element = new H5Link();
         element.href(href);
         element.rel(rel);
         return element;
     }
+}
+///
+unittest {
+    assert(H5Link() == "<link />");  
 }

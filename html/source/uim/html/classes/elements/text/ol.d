@@ -17,7 +17,7 @@ mixin(ShowModule!());
  * The <ol> element can also include attributes such as "type" to specify the type of numbering for the list items, and "start" to specify the starting value for the first list item. 
  * When rendered in a web browser, the <ol> element typically displays the list items with numbers or letters to indicate their order.
  */
-class Ol : HtmlElement {
+class H5Ol : HtmlElement {
   this() {
     super("ol");
   }
@@ -45,11 +45,11 @@ class Ol : HtmlElement {
     return attribute("start");
   }
 
-  static Ol opCall() {
-    return new Ol();
+  static H5Ol opCall() {
+    return new H5Ol();
   }
 }
 /// Creates an ordered list with the specified content. The content can be a string or any object that can be converted to a string.
 unittest {
-  assert(Ol() == "<ol></ol>");
+  assert(H5Ol() == "<ol></ol>");
 }

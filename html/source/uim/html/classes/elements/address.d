@@ -11,20 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 
-class Address : HtmlElement {
-  this() {
-    super("address");
-    this.selfClosing(false);
+class H5Address : HtmlElement {
+  mixin H5This!("address", false);
+
+  // Factory methods
+  static H5Address opCall() {
+    return new H5Address();
   }
 
   // Factory methods
-  static Address opCall() {
-    return new Address();
-  }
-
-  // Factory methods
-  static Address opCall(string content) {
-    auto element = new Address();
+  static H5Address opCall(string content) {
+    auto element = new H5Address();
     element.content(content);
     return element;
   }
@@ -32,6 +29,6 @@ class Address : HtmlElement {
 }
 ///
 unittest {
-  assert(Address() == "<address></address>");
-  assert(Address("Hello") == "<address>Hello</address>");
+  assert(H5Address() == "<address></address>");
+  assert(H5Address("Hello") == "<address>Hello</address>");
 }

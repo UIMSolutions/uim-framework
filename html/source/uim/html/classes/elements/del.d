@@ -12,10 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class Del : HtmlElement {
-  this() {
-    super("del");
-    this.selfClosing(false);
-  }
+ mixin H5This!("del", false);
 
   // Factory methods
   static Del opCall() {

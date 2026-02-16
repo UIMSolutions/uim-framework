@@ -81,14 +81,14 @@ void testTableElements() {
 
 void testListElements() {
     // Test unordered list
-    auto ul = Ul();
+    auto ul = H5Ul();
         // ul.addChild(Li("Item 1"));
         ul.addContent(Li("Item 1"));
         // ul.addChild(Li("Item 2"));
         ul.addContent(Li("Item 2"));
 
     // Test ordered list
-    auto ol = new Ol();
+    auto ol = H5Ol();
     // ol.addChild(Li("First"));
     // ol.addChild(Li("Second"));
     ol.addContent(Li("First"));

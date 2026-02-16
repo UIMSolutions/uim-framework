@@ -11,23 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Meter : HtmlElement {
-  this() {
-    super("meter");
+class H5Meter : HtmlElement {
+  mixin H5This!("meter", false);
+
+  static H5Meter opCall() {
+    return new H5Meter();
   }
 
-  static Meter opCall() {
-    return new Meter();
-  }
-
-  static Meter opCall(string content) {
-    auto html = new Meter();
+  static H5Meter opCall(string content) {
+    auto html = new H5Meter();
     html.text(content);
     return html;
   }
 }
 ///
 unittest {
-  assert(Meter() == "<meter></meter>");
-  assert(Meter("Some content") == "<meter>Some content</meter>");
+  assert(H5Meter() == "<meter></meter>");
+  assert(H5Meter("Some content") == "<meter>Some content</meter>");
 }

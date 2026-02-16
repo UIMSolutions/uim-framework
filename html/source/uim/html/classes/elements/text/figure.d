@@ -17,23 +17,23 @@ mixin(ShowModule!());
  * The <figure> element can be used to provide context and meaning to the media content, making it more accessible and understandable to users. 
  * When used in conjunction with the <figcaption> element, the <figure> element helps to create a clear association between the media content and its caption or description.
  */
-class Figure : HtmlElement {
+class H5Figure : HtmlElement {
   this() {
     super("figure");
   }
 
-  static Figure opCall() {
-    return new Figure();
+  static H5Figure opCall() {
+    return new H5Figure();
   }
 
-  static Figure opCall(string content) {
-    auto figure = new Figure();
+  static H5Figure opCall(string content) {
+    auto figure = new H5Figure();
     figure.text(content);
     return figure;
   }
 }
 ///
 unittest {
-  assert(Figure() == "<figure></figure>");
-  assert(Figure("Description") == "<figure>Description</figure>");
+  assert(H5Figure() == "<figure></figure>");
+  assert(H5Figure("Description") == "<figure>Description</figure>");
 }

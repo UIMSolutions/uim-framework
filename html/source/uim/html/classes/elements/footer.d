@@ -12,10 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class Footer : HtmlElement {
-  this() {
-    super("footer");
-    this.selfClosing(false);
-  }
+  mixin H5This!("footer", false);
 
   static Footer opCall() {
     return new Footer();
