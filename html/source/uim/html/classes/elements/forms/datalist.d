@@ -28,23 +28,23 @@ mixin(ShowModule!());
   *   <option value="Safari">
   * </datalist>
   */
-class Datalist : FormElement {
+class H5Datalist : FormElement {
   this() {
     super("datalist");
   }
 
-  static Datalist opCall() {
-    return new Datalist();
+  static H5Datalist opCall() {
+    return new H5Datalist();
   }
 
-  static Datalist opCall(string text) {
-    auto html = new Datalist();
+  static H5Datalist opCall(string text) {
+    auto html = new H5Datalist();
     html.text(text);
     return html;
   }
 }
 /// 
 unittest {
-  assert(Datalist() == "<datalist></datalist>");
-  assert(Datalist("Some content") == "<datalist>Some content</datalist>");
+  assert(H5Datalist() == "<datalist></datalist>");
+  assert(H5Datalist("Some content") == "<datalist>Some content</datalist>");
 }

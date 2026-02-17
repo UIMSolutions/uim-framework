@@ -6,7 +6,20 @@ mixin(ShowModule!());
 
 @safe:
 
-class Fieldset : HtmlElement {
+/**
+ * The <fieldset> HTML element is used to group several controls as well as labels (<label>) within a web form.
+ * It draws a box around the related elements, and can also include a <legend> element to provide a caption for the group.
+ * 
+ * Example:
+ * <fieldset>
+ *   <legend>Personal Information</legend>
+ *   <label for="name">Name:</label>
+ *   <input type="text" id="name" name="name">
+ *   <label for="email">Email:</label>
+ *   <input type="email" id="email" name="email">
+ * </fieldset>
+ */
+class H5Fieldset : HtmlElement {
   this() {
     super("fieldset");
   }
@@ -29,13 +42,13 @@ class Fieldset : HtmlElement {
     return this;
   }
 
-  static Fieldset opCall() {
-    return new Fieldset();
+  static H5Fieldset opCall() {
+    return new H5Fieldset();
   }
 }
 ///
 unittest {
   mixin(ShowTest!"Testing Fieldset Class");
 
-  assert(Fieldset() == "<fieldset></fieldset>");
+  assert(H5Fieldset() == "<fieldset></fieldset>");
 }

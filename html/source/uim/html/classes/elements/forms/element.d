@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class FormElement : HtmlElement, IFormElement {
+class H5FormElement : HtmlElement, IFormElement {
   this(string tagName) {
     super(tagName);
   }
@@ -20,11 +20,11 @@ class FormElement : HtmlElement, IFormElement {
     return this;
   }
 
-  static FormElement opCall(string tagName) {
-    return new FormElement(tagName);
+  static H5FormElement opCall(string tagName) {
+    return new H5FormElement(tagName);
   } 
 }
 ///
 unittest {
-  assert(FormElement("input") == "<input></input>");
+  assert(H5FormElement("input") == "<input></input>");
 }

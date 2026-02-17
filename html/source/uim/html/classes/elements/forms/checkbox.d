@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Checkbox : Input {
+class H5Checkbox : Input {
   this() {
     super("input");
     type("checkbox");
@@ -22,11 +22,11 @@ class Checkbox : Input {
     type("checkbox");
   }
 
-  static Checkbox opCall() {
-    return new Checkbox();
+  static H5Checkbox opCall() {
+    return new H5Checkbox();
   }
 }
 /// 
 unittest {
-  assert(Checkbox() == `<input type="checkbox" />`);
+  assert(H5Checkbox() == `<input type="checkbox" />`);
 } 

@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * The content of the <button> element can include text and other inline elements, making it more flexible
   * than the <input type="button"> element, which cannot contain content.
   */
-class Button : FormElement {
+class H5Button : FormElement {
   this() {
     super("button");
   }
@@ -54,21 +54,21 @@ class Button : FormElement {
     return this;
   }
 
-  static Button opCall() {
-    return new Button();
+  static H5Button opCall() {
+    return new H5Button();
   }
 
-  static Button opCall(string text) {
-    auto btn = new Button();
+  static H5Button opCall(string text) {
+    auto btn = new H5Button();
     btn.text(text);
     return btn;
   }
 }
 /// 
 unittest {
-  assert(Button() == "<button></button>");
-  assert(Button("Click me") == "<button>Click me</button>");
-// TODO:  assert(Button().submit() == "<button type=\"submit\"></button>");
-// TODO:  assert(Button().reset() == "<button type=\"reset\"></button>");
-// TODO:  assert(Button().disabled() == "<button disabled></button>");
+  assert(H5Button() == "<button></button>");
+  assert(H5Button("Click me") == "<button>Click me</button>");
+// TODO:  assert(H5Button().submit() == "<button type=\"submit\"></button>");
+// TODO:  assert(H5Button().reset() == "<button type=\"reset\"></button>");
+// TODO:  assert(H5Button().disabled() == "<button disabled></button>");
 }

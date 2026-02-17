@@ -11,21 +11,60 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * Represents an HTML <meter> element.
+  * Provides methods to set meter attributes like value, min, max, low, high, and optimum.
+  * Example usage:
+  * auto meter = H5Meter().value(0.5).min(0).max(1);
+  */
+
 class H5Meter : HtmlElement {
   mixin H5This!("meter", false);
 
-  static H5Meter opCall() {
-    return new H5Meter();
+  /// Sets the value attribute of the meter.
+  H5Meter value(double val) {
+    attribute("value", val.to!string);
+    return this;
   }
 
-  static H5Meter opCall(string content) {
-    auto html = new H5Meter();
-    html.text(content);
-    return html;
+  /// Sets the min attribute of the meter.
+  H5Meter min(double val) {
+    attribute("min", val.to!string);
+    return this;
   }
+
+  /// Sets the max attribute of the meter.
+  H5Meter max(double val) {
+    attribute("max", val.to!string);
+    return this;
+  }
+
+  /// Sets the low attribute of the meter.
+  H5Meter low(double val) {
+    attribute("low", val.to!string);
+    return this;
+  }
+
+  /// Sets the high attribute of the meter.
+  H5Meter high(double val) {
+    attribute("high", val.to!string);
+    return this;
+  }
+
+  /// Sets the optimum attribute of the meter.
+  H5Meter optimum(double val) {
+    attribute("optimum", val.to!string);
+    return this;
+  }
+
+  mixin(H5Calls!("Meter"));
 }
 ///
 unittest {
   assert(H5Meter() == "<meter></meter>");
-  assert(H5Meter("Some content") == "<meter>Some content</meter>");
+
+  auto meter = H5Meter().value(0.5).min(0).max(1);
+  assert(meter.toString().indexOf(`value="0.5"`) > 0);
+  assert(meter.toString().indexOf(`min="0"`) > 0);
+  assert(meter.toString().indexOf(`max="1"`) > 0);
 }

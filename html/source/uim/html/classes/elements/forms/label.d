@@ -11,31 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML label element
-class Label : FormElement {
-  this() {
-    super("label");
-  }
+/**
+  * Represents an HTML <label> element, which is used to define a label for an <input> element.
+  * The 'for' attribute of the <label> element should match the 'id' of the corresponding <input> element.
+  * This allows users to click on the label to focus the associated input field, improving accessibility and usability.
+* 
+* Example usage:
+* auto usernameLabel = H5Label("username", "Username:");
+* auto usernameInput = H5Input.TextInput("username");
+* The above code creates a label for an input field with the id "username" and the text "Username:". When rendered, clicking on the "Username:" label will focus the input field with the id "username".
+* Note: The <label> element can also be used without the 'for' attribute by nesting the <input> element inside the <label>. However, using the 'for' attribute is generally recommended for better accessibility and separation of concerns.
+  */
+class H5Label : FormElement {
+  mixin H5This!("label", false);
 
   auto forElement(string elementId) {
     return attribute("for", elementId);
   }
 
-  static Label opCall() {
-    return new Label();
-  }
-
-  static Label opCall(string text) {
-    auto lbl = new Label();
-    lbl.text(text);
-    return lbl;
-  }
-
-  static Label opCall(string forId, string text) {
-    auto lbl = new Label();
-    lbl.forElement(forId).text(text);
-    return lbl;
-  }
+  mixin(H5Calls!("Label"));
 }
 ///
 unittest {

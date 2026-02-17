@@ -11,7 +11,10 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML form element
+/**
+  * Represents an HTML <form> element.
+  * Provides methods to set form attributes like action, method, and enctype.
+  */
 class Form : HtmlElement, IHtmlForm {
   this() {
     super("form");

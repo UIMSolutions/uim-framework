@@ -11,23 +11,41 @@ mixin(ShowModule!());
 
 @safe:
 
-class Optgroup : HtmlElement {
-  this() {
-    super("optgroup");
+/**
+  * Represents an HTML <optgroup> element.
+  * Provides methods to set optgroup attributes and content.
+  * Example usage:
+  * auto group = Optgroup("Group 1");
+  *
+  * Note: The <optgroup> element is used to group related options in a dropdown list.
+  */
+class H5Optgroup : HtmlElement {
+  mixin H5This!("optgroup", false);
+
+  /// Sets the label attribute of the optgroup.
+  H5Optgroup label(string val) {
+    attribute("label", val);
+    return this;
   }
 
-  static Optgroup opCall() {
-    return new Optgroup();
+  /// Sets the disabled attribute of the optgroup.
+  H5Optgroup disabled(bool val = true) {
+    if (val) {
+      attribute("disabled", "disabled");
+    } else {
+      removeAttribute("disabled");
+    } 
+    return this;
   }
 
-  static Optgroup opCall(string content) {
-    auto html = new Optgroup();
-    html.text(content);
-    return html;
-  }
+  mixin(H5Calls!("Optgroup"));
 }
-///
+
 unittest {
-  assert(Optgroup() == "<optgroup></optgroup>");
-  assert(Optgroup("Some content") == "<optgroup>Some content</optgroup>");
+  assert(H5Optgroup() == "<optgroup></optgroup>");
+  assert(H5Optgroup("Hello") == "<optgroup>Hello</optgroup>");
+  assert(H5Optgroup().label("Group 1") == "<optgroup label=\"Group 1\"></optgroup>");
+  assert(H5Optgroup().disabled() == "<optgroup disabled=\"disabled\"></optgroup>");
+  assert(H5Optgroup().disabled(false) == "<optgroup></optgroup>");
+
 }

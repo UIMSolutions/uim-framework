@@ -11,8 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML input element
-class Input : FormElement, IInput {
+/**
+  * Represents an HTML <input> element.
+  * Provides methods to set input attributes like type, name, value, placeholder, and various boolean attributes.
+  *
+  * The Input class is a versatile representation of the HTML <input> element, allowing you to create various types of input fields by setting the appropriate attributes.
+  * It supports common input types such as text, password, email, number, checkbox, radio, file, hidden, and submit, among others.
+  * Example usage:
+  * auto textInput = H5Input().TextInput("username").placeholder("Enter your username");
+  * auto passwordInput = H5Input().PasswordInput("password").placeholder("Enter your password");
+  * auto submitButton = H5Input().SubmitInput("Login");
+  */
+class H5Input : FormElement, IInput {
   this() {
     super("input");
     this.selfClosing(true);
@@ -41,42 +51,42 @@ class Input : FormElement, IInput {
     return this;
   }
 
-  IHtmlElement value(string valueValue) {
+  H5Input value(string valueValue) {
     attribute("value", valueValue);
     return this;
   }
 
-  IHtmlElement placeholder(string text) {
+  H5Input placeholder(string text) {
     attribute("placeholder", text);
     return this;
   }
 
-  IHtmlElement required() {
+  H5Input required() {
     attribute("required", "");
     return this;
   }
 
-  IHtmlElement disabled() {
+  H5Input disabled() {
     attribute("disabled", "");
     return this;
   }
 
-  IHtmlElement readonly() {
+  H5Input readonly() {
     attribute("readonly", "");
     return this;
   }
 
-  IHtmlElement checked() {
+  H5Input checked() {
     attribute("checked", "");
     return this;
   }
 
-  static Input opCall() {
-    return new Input();
+  static H5Input opCall() {
+    return new H5Input();
   }
 
-  static Input opCall(string tag) {
-    return new Input(tag);
+  static H5Input opCall(string tag) {
+    return new H5Input(tag);
   }
 
 }
@@ -86,72 +96,72 @@ unittest {
   assert(input.toString().indexOf("type=\"text\"") > 0);
 }
 
-static Input TextInput(string name = null) {
-  auto input = new Input();
+static H5Input TextInput(string name = null) {
+  auto input = new H5Input();
   input.type("text");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input PasswordInput(string name = null) {
-  auto input = new Input();
+static H5Input PasswordInput(string name = null) {
+  auto input = new H5Input();
   input.type("password");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input EmailInput(string name = null) {
-  auto input = new Input();
+static H5Input EmailInput(string name = null) {
+  auto input = new H5Input();
   input.type("email");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input NumberInput(string name = null) {
-  auto input = new Input();
+static H5Input NumberInput(string name = null) {
+  auto input = new H5Input();
   input.type("number");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input CheckboxInput(string name = null) {
-  auto input = new Input();
+static H5Input CheckboxInput(string name = null) {
+  auto input = new H5Input();
   input.type("checkbox");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input RadioInput(string name = null) {
-  auto input = new Input();
+static H5Input RadioInput(string name = null) {
+  auto input = new H5Input();
   input.type("radio");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input FileInput(string name = null) {
-  auto input = new Input();
+static H5Input FileInput(string name = null) {
+  auto input = new H5Input();
   input.type("file");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input HiddenInput(string name = null) {
-  auto input = new Input();
+static H5Input HiddenInput(string name = null) {
+  auto input = new H5Input();
   input.type("hidden");
   if (name)
     input.name(name);
   return input;
 }
 
-static Input SubmitInput(string value = "Submit") {
-  auto input = new Input();
+static H5Input SubmitInput(string value = "Submit") {
+  auto input = new H5Input();
   input.type("submit");
   input.value(value);
   return input;
