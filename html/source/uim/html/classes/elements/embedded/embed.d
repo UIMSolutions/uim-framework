@@ -11,24 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-class Embed : HtmlElement {
-  this() {
-    super("embed");
-    this.selfClosing(false);
-  }
+class H5Embed : HtmlElement {
+  mixin H5This!("embed", false);
 
-  static Embed opCall() {
-    return new Embed();
-  }
-
-  static Embed opCall(string content) {
-    auto element = new Embed();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("embed"));
 }
 ///
 unittest {
-  assert(Embed() == "<embed></embed>");
-  assert(Embed("Hello") == "<embed>Hello</embed>");
+  assert(H5Embed() == "<embed></embed>");
+  assert(H5Embed("Hello") == "<embed>Hello</embed>");
 }

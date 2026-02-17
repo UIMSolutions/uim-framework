@@ -11,24 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-class Source : HtmlElement {
-  this() {
-    super("source");
-    this.selfClosing(false);
-  }
+/**
+  * The <source> HTML element is used to specify multiple media resources for media elements like <audio> and <video>. 
+  * It allows you to provide different formats of the same media content, enabling the browser to choose the most suitable one based on its capabilities. 
+  * The <source> element is typically nested inside a <audio> or <video> element and includes attributes such as src (the URL of the media resource) and type (the MIME type of the media).
+  *
+  * Example usage:
+  * <video controls>
+  *   <source src="movie.mp4" type="video/mp4">
+  *   <source src="movie.ogg" type="video/ogg">
+  *   Your browser does not support the video tag.
+  * </video>
+  */
+class H5Source : HtmlElement {
+  mixin H5This!("source", false);
 
-  static Source opCall() {
-    return new Source();
-  }
-
-  static Source opCall(string content) {
-    auto element = new Source();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("source"));
 }
 ///
 unittest {
-  assert(Source() == "<source></source>");
-  assert(Source("Hello") == "<source>Hello</source>");
+  assert(H5Source() == "<source></source>");
+  assert(H5Source("Hello") == "<source>Hello</source>");
 }

@@ -11,27 +11,19 @@ mixin(ShowModule!());
 
 @safe:
 
-class Noscript : HtmlElement {
-  this() {
-    super("noscript");
-    this.selfClosing(false);
-  }
+/**
+  * Represents an HTML <noscript> element.
+  * Provides methods to set the content of the noscript element.
+  * Example usage:
+  * auto noscript = Noscript("JavaScript is disabled in your browser.");
+  */
+class H5Noscript : HtmlElement {
+  mixin H5This!("noscript", false);
 
-  // Factory methods
-  static Noscript opCall() {
-    return new Noscript();
-  }
-
-  // Factory methods
-  static Noscript opCall(string content) {
-    auto element = new Noscript();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Calls!("noscript"));
 }
 ///
 unittest {
-  assert(Noscript() == "<noscript></noscript>");
-  assert(Noscript("Hello") == "<noscript>Hello</noscript>");
+  assert(H5Noscript() == "<noscript></noscript>");
+  assert(H5Noscript("Hello") == "<noscript>Hello</noscript>");
 }

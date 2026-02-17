@@ -11,46 +11,42 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML canvas element
-class Canvas : HtmlElement {
-  this() {
-    super("canvas");
-  }
+/**
+  * Represents an HTML <canvas> element.
+  * Provides methods to set canvas attributes like height and width.
+  * Example usage:
+  * auto canvas = Canvas("400", "600");
+  */
+class H5Canvas : HtmlElement {
+  mixin H5This!("canvas", false);
 
   /// Set height attribute
-  IHtmlElement height(string heightValue) {
+  H5Canvas height(string heightValue) {
     attribute("height", heightValue);
     return this;
   }
 
   /// Get height attribute
-  IHtmlAttribute height() {
-    return attribute("height");
+  H5Canvas height() {
+    attribute("height");
+    return this;
   }
 
   // #region width
   /// Set width attribute
-  IHtmlElement width(string widthValue) {
+  H5Canvas width(string widthValue) {
     attribute("width", widthValue);
     return this;
   }
 
   /// Get width attribute
-  IHtmlAttribute width() {
-    return attribute("width");
+  H5Canvas width() {
+    attribute("width");
+    return this;
   }
   // #endregion width
 
-  static Canvas opCall() {
-    return new Canvas();
-  }
-
-  static Canvas opCall(string height, string width) {
-    auto element = new Canvas();
-    element.height(height);
-    element.width(width);
-    return element;
-  }
+  mixin(H5Calls!("canvas"));
 }
 ///
 unittest {

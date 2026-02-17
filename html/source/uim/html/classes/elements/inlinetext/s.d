@@ -11,18 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <s> HTML element renders text with a strikethrough, indicating that the text is no longer accurate or relevant. 
+  * It is often used to show deleted or outdated content, such as in a document revision history or to indicate a price reduction in an online store. 
+  * The <s> element does not carry any semantic meaning and is purely presentational, so it should not be used to indicate that text is incorrect or should be ignored.
+  *
+  * Example usage:
+  * <p>This is <s>old</s> text.</p>
+  */
 class H5S : HtmlElement {
-  this() {
-    super("s");
-    this.selfClosing(false);
-  }
+  mixin H5This!("s", false);
 
-  static H5S opCall() {
-    return new H5S();
-  }
+  mixin(H5Calls!("s"));
+}
+///
+unittest {
+  assert(H5S() == "<s></s>");
+  assert(H5S("Hello") == "<s>Hello</s>");
+}
 
-  static H5S opCall(string content) {
-    auto element = new H5S();
     element.content(content);
     return element;
   }

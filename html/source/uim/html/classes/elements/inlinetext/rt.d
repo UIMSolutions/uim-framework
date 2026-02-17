@@ -11,21 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <rt> HTML element specifies the ruby text component of a ruby annotation, which is used to provide pronunciation or other annotations for East Asian characters. 
+  * The <rt> element is typically used in conjunction with the <ruby> and <rp> elements to create ruby annotations, which are commonly used in Japanese and Chinese writing systems. 
+  * The <rt> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed as a small annotation above or beside the base text.
+  *
+  * Example usage:
+  * <ruby>漢 <rp>kan</rp><rt>かん</rt><rp>kan</rp> 字 <rp>ji</rp><rt>じ</rt><rp>ji</rp></ruby>
+  */  
 class H5Rt : HtmlElement {
-  this() {
-    super("rt");
-    this.selfClosing(false);
-  }
+  mixin H5This!("rt", false);
 
-  static H5Rt opCall() {
-    return new H5Rt();
-  }
-
-  static H5Rt opCall(string content) {
-    auto element = new H5Rt();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("rt"));
 }
 ///
 unittest {

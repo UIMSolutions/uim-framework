@@ -27,43 +27,37 @@ mixin(ShowModule!());
 class H5Link : HtmlElement {
     mixin H5This!("link", true);
 
-    IHtmlElement rel(string relValue) {
+    H5Link rel(string relValue) {
         attribute("rel", relValue);
         return this;
     }
 
-    IHtmlAttribute rel() {
-        return attribute("rel");
+    H5Link rel() {
+        attribute("rel");
+        return this;
     }
 
-    IHtmlElement href(string url) {
+    H5Link href(string url) {
         attribute("href", url);
         return this;
     }
 
-    IHtmlAttribute href() {
-        return attribute("href");
+    H5Link href() {
+        attribute("href");
+        return this;
     }
 
-    IHtmlElement type(string typeValue) {
+    H5Link type(string typeValue) {
         attribute("type", typeValue);
         return this;
     }
 
-    IHtmlAttribute type() {
-        return attribute("type");
+    H5Link type() {
+        attribute("type");
+        return this;
     }
 
-    static H5Link opCall() {
-        return new H5Link();
-    }
-
-    static H5Link opCall(string href, string rel = "stylesheet") {
-        auto element = new H5Link();
-        element.href(href);
-        element.rel(rel);
-        return element;
-    }
+    mixin(H5Calls!("link"));
 }
 ///
 unittest {

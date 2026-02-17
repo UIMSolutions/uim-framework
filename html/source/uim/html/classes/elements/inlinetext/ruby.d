@@ -11,21 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <ruby> HTML element represents a ruby annotation, which is a small piece of text that is displayed above or below a base text to provide pronunciation or other information. 
+  * It is commonly used in East Asian typography to indicate the pronunciation of Chinese characters (hanzi) or Japanese kanji. 
+  * The <ruby> element typically contains one or more <rt> (ruby text) elements that specify the annotation text, and one or more <rp> (ruby parenthesis) elements that provide fallback content for browsers that do not support ruby annotations.
+  *
+  * Example usage:
+  * <ruby>
+  *   漢 <rp>(</rp><rt>kan</rt><rp>)</rp>
+  *   字 <rp>(</rp><rt>ji</rt><rp>)</rp>
+  * </ruby>
+  */
 class H5Ruby : HtmlElement {
-  this() {
-    super("ruby");
-    this.selfClosing(false);
-  }
+  mixin H5This!("ruby", false);
 
-  static H5Ruby opCall() {
-    return new H5Ruby();
-  }
-
-  static H5Ruby opCall(string content) {
-    auto element = new H5Ruby();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("ruby"));
 }
 ///
 unittest {

@@ -31,38 +31,33 @@ class H5Button : H5FormElement {
   }
 
   // #region type
-  IHtmlElement type(string typeValue) {
+  H5Button type(string typeValue) {
     attribute("type", typeValue);
     return this;
   }
 
-  IHtmlAttribute type() {
-    return attribute("type");
+  H5Button type() {
+    attribute("type");
+    return this;
   }
   // #endregion type
 
-  IHtmlElement submit() {
-    return type("submit");
+  H5Button submit() {
+    type("submit");
+    return this;
   }
 
-  IHtmlElement reset() {
-    return type("reset");
+  H5Button reset() {
+    type("reset");
+    return this;
   }
 
-  IHtmlElement disabled() {
+  H5Button disabled() {
     attribute("disabled", "");
     return this;
   }
 
-  static H5Button opCall() {
-    return new H5Button();
-  }
-
-  static H5Button opCall(string text) {
-    auto btn = new H5Button();
-    btn.text(text);
-    return btn;
-  }
+  mixin(H5Calls!("button"));
 }
 /// 
 unittest {

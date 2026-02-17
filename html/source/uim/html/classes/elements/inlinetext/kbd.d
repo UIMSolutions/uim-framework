@@ -27,5 +27,5 @@ class H5Kbd : HtmlElement {
 ///
 unittest {
   assert(H5Kbd() == "<kbd></kbd>");
-  assert(Kbd("Hello") == "<kbd>Hello</kbd>");
+  assert(H5Kbd("Hello") == "<kbd>Hello</kbd>");
 }

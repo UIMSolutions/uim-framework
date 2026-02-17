@@ -11,24 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-class Picture : HtmlElement {
-  this() {
-    super("picture");
-    this.selfClosing(false);
-  }
+class H5Picture : HtmlElement {
+  mixin H5This!("picture", false);
 
-  static Picture opCall() {
-    return new Picture();
-  }
-
-  static Picture opCall(string content) {
-    auto element = new Picture();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("picture"));
 }
 ///
 unittest {
-  assert(Picture() == "<picture></picture>");
-  assert(Picture("Hello") == "<picture>Hello</picture>");
+  assert(H5Picture() == "<picture></picture>");
+  assert(H5Picture("Hello") == "<picture>Hello</picture>");
 }

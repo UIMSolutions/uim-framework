@@ -11,27 +11,19 @@ mixin(ShowModule!());
 
 @safe:
 
-class Script : HtmlElement {
-  this() {
-    super("script");
-    this.selfClosing(false);
-  }
+/**
+  * Represents an HTML <script> element.
+  * Provides methods to set the content of the script element.
+  * Example usage:
+  * auto script = Script("console.log('Hello, World!');");
+  */
+class H5Script : HtmlElement {
+  mixin H5This!("script", false);
 
-  // Factory methods
-  static Script opCall() {
-    return new Script();
-  }
-
-  // Factory methods
-  static Script opCall(string content) {
-    auto element = new Script();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Calls!("script"));
 }
 ///
 unittest {
-  assert(Script() == "<script></script>");
-  assert(Script("Hello") == "<script>Hello</script>");
+  assert(H5Script() == "<script></script>");
+  assert(H5Script("Hello") == "<script>Hello</script>");
 }
