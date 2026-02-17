@@ -11,24 +11,26 @@ mixin(ShowModule!());
 
 @safe:
 
-class Dfn : HtmlElement {
-  this() {
-    super("dfn");
-    this.selfClosing(false);
+/** 
+  * The <dfn> element represents the defining instance of a term. 
+  * It is used to indicate that the content is a definition of a term, and it can be used in conjunction with the <abbr> element to provide an abbreviation for the term.
+  * Example usage:
+  * auto dfn = Dfn("HTML").title("HyperText Markup Language");
+  * Note: The <dfn> element is typically used in conjunction with JavaScript to provide additional functionality, such as displaying a tooltip with the definition when the user hovers over the term.
+  */
+class H5Dfn : HtmlElement {
+  mixin H5This!("dfn", false);
+
+   /// Sets the title attribute of the definition.
+  H5Dfn title(string val) {
+    attribute("title", val);
+    return this;
   }
 
-  static Dfn opCall() {
-    return new Dfn ();
-  }
-
-  static Dfn opCall(string content) {
-    auto element = new Dfn();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Dfn"));
 }
 ///
 unittest {
-  assert(Dfn() == "<dfn></dfn>");
-  assert(Dfn("Hello") == "<dfn>Hello</dfn>");
+  assert(H5Dfn() == "<dfn></dfn>");
+  assert(H5Dfn("Hello") == "<dfn>Hello</dfn>");
 }

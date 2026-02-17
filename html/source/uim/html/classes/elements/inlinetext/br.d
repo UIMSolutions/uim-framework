@@ -13,18 +13,20 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML line break element
-class Br : HtmlElement {
+class H5Br : HtmlElement {
   this() {
     super("br");
     this.selfClosing(true);
   }
-  
+   /// Creates a new <br> element.
+
+
   // Factory methods
-  static Br opCall() {
-    return new Br();
+  static H5Br opCall() {
+    return new H5Br();
   }
 }
 ///
 unittest {
-  assert(Br() == "<br />");
+  assert(H5Br() == "<br />");
 }

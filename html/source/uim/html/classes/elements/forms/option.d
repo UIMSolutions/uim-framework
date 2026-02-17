@@ -17,7 +17,7 @@ mixin(ShowModule!());
   * Example usage:
   * auto option = H5SelectOption("Option 1").value("1").selected();
   */
-class H5SelectOption : FormElement {
+class H5SelectOption : H5FormElement {
     mixin H5This!("option", false);
 
     H5SelectOption value(string valueValue) {

@@ -16,24 +16,20 @@ mixin(ShowModule!());
  * If the content is time- or date-related, the datetime attribute must be present and contain a valid date string. 
  * If the content is a number, the value attribute must be present and contain a valid floating point number.
  */
-class Data : HtmlElement {
-  this() {
-    super("data");
-    this.selfClosing(false);
+class H5Data : HtmlElement {
+  mixin H5This!("data", false);
+
+  /// Sets the value attribute of the data element.
+  H5Data value(double val) {
+    attribute("value", val.to!string);
+    return this;
   }
 
-  static Data opCall() {
-    return new Data();
-  }
-
-  static Data opCall(string content) {
-    auto element = new Data();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Data"));
 }
 ///
 unittest {
-  assert(Data() == "<data></data>");
-  assert(Data("Hello") == "<data>Hello</data>");
+  assert(H5Data() == "<data></data>");
+  assert(H5Data("Hello") == "<data>Hello</data>");
+  assert(H5Data().value(42) == `<data value="42"></data>`);
 }

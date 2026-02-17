@@ -16,24 +16,13 @@ mixin(ShowModule!());
   * This may be a work that is quoted, but it may also be a work that is referenced in a bibliography, a patent specification, an etymology, or a legal citation. 
   * The <cite> element must not be used to reference the name of an author of a cited work; the <cite> element is for referencing the title of the work itself.
   */
-class Cite : HtmlElement {
-  this() {
-    super("cite");
-    this.selfClosing(false);
-  }
+class H5Cite : HtmlElement {
+  mixin H5This!("cite", false);
 
-  static Cite opCall() {
-    return new Cite();
-  }
-
-  static Cite opCall(string content) {
-    auto element = new Cite();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Cite"));
 }
 ///
 unittest {
-  assert(Cite() == "<cite></cite>");
-  assert(Cite("Hello") == "<cite>Hello</cite>");
+  assert(H5Cite() == "<cite></cite>");
+  assert(H5Cite("Hello") == "<cite>Hello</cite>");
 }

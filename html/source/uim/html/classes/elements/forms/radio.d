@@ -17,4 +17,5 @@ class H5Radio : Input  {
 ///
 unittest {
   assert(Radio() == `<input type="radio" />`);
-  //TODO: assert(Radio("Option 1") == `<input type="radio" />Option 1`);}
+  //TODO: assert(Radio("Option 1") == `<input type="radio" />Option 1`);
+  }
