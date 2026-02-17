@@ -50,23 +50,27 @@ template H5This(string tag, bool selfClosing = false) {
 }
 
 string h5Calls(string name) {
+  if (name.length > 0) {
+    name = "H5" ~ name[0..1].capitalize ~ name[1 .. $];
+  }  
+
   return `
-    static H5{name} opCall() {
-      return new H5{name}();
+    static {name} opCall() {
+      return new {name}();
     }
-    static H5{name} opCall(string content) {
-      return new H5{name}(content);
+    static {name} opCall(string content) {
+      return new {name}(content);
     }
-    static H5{name} opCall(string[] classes, string content = "") {
-      return new H5{name}(classes, content);
+    static {name} opCall(string[] classes, string content = "") {
+      return new {name}(classes, content);
     }
-    static H5{name} opCall(string[string] attributes, string content = "") {
-      return new H5{name}(attributes, content);
+    static {name} opCall(string[string] attributes, string content = "") {
+      return new {name}(attributes, content);
     }
-    static H5{name} opCall(string[] classes, string[string] attributes, string content = "") {
-      return new H5{name}(classes, attributes, content);
+    static {name} opCall(string[] classes, string[string] attributes, string content = "") {
+      return new {name}(classes, attributes, content);
     }
-    `.mustache("name", name.capitalize());
+    `.mustache("name", name);
 }
 
 template H5Calls(string name) {

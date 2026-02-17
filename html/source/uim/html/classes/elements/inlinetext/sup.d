@@ -16,24 +16,14 @@ mixin(ShowModule!());
   * It is typically used for footnotes, mathematical expressions, and other notations that require superscript formatting. 
   * The <sup> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned higher than the surrounding text.
   */
-class Sup : HtmlElement {
-  this() {
-    super("sup");
-    this.selfClosing(false);
-  }
+class H5Sup : HtmlElement {
+  mixin H5This!("sup", false);
 
-  static Sup opCall() {
-    return new Sup();
-  }
-
-  static Sup opCall(string content) {
-    auto element = new Sup();
-    element.content(content);
-    return element;
-  }
+ mixin(H5Calls!("sup"));
 }
 ///
 unittest {
-  assert(Sup() == "<sup></sup>");
-  assert(Sup("Hello") == "<sup>Hello</sup>");
+  assert(H5Sup() == "<sup></sup>");
+  assert(H5Sup("Hello") == "<sup>Hello</sup>");
+  assert(H5Sup(["test"], "Hello") == "<sup>Hello</sup>");
 }

@@ -16,9 +16,9 @@ mixin(ShowModule!());
  * Browsers typically render the contents in bold type.
  */
 class H5Strong : HtmlElement {
-  mixin H5this!("strong", false);
+  mixin H5This!("strong", false);
 
-  mixin(H5Calls!("strong"));
+  mixin(H5Calls!("Strong"));
 }
 ///
 unittest {

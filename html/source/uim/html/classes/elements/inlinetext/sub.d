@@ -17,7 +17,7 @@ mixin(ShowModule!());
   * The <sub> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned lower than the surrounding text.
   */
 class H5Sub : HtmlElement {
-  mixin H5this!("sub", false);
+  mixin H5This!("sub", false);
 
   mixin(H5Calls!("sub"));
 }
@@ -25,4 +25,5 @@ class H5Sub : HtmlElement {
 unittest {
   assert(H5Sub() == "<sub></sub>");
   assert(H5Sub("Hello") == "<sub>Hello</sub>");
+  assert(H5Sub(["test"], "Hello") == "<sub>Hello</sub>");
 }

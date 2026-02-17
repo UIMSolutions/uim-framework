@@ -11,24 +11,22 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <small> HTML element represents side comments and small print, including legal text, independent of its styled presentation. 
+  * It is typically used to indicate fine print, disclaimers, or other secondary information that is not essential to the main content. 
+  * The <small> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size than the surrounding text.
+  *
+  * Example usage:
+  * <p>This is some text. <small>This is small print.</small></p>
+  */
 class H5Small : HtmlElement {
-  this() {
-    super("small");
-    this.selfClosing(false);
-  }
+  mixin H5This!("small", false);
 
-  static H5Small opCall() {
-    return new H5Small();
-  }
-
-  static H5Small opCall(string content) {
-    auto element = new H5Small();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("small"));
 }
 ///
 unittest {
   assert(H5Small() == "<small></small>");
   assert(H5Small("Hello") == "<small>Hello</small>");
+  assert(H5Small(["test"], "Hello") == "<small>Hello</small>");
 }

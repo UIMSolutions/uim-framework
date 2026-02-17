@@ -17,11 +17,8 @@ mixin(ShowModule!());
   * The <dialog> element is not displayed by default. You can use the open attribute to show the dialog.
   * The <dialog> element also has a method called showModal() that can be used to display the dialog as a modal.
   */
-class Dialog : HtmlElement {
-  this() {
-    super("dialog");
-    this.selfClosing(false);
-  }
+class H5Dialog : HtmlElement {
+  mixin H5This!("dialog", false);
 
   /** Specifies the conditions under which the dialog is to be closed.
    * The value must be one of the following:
@@ -29,32 +26,30 @@ class Dialog : HtmlElement {
    * - "outside": The dialog can be closed by clicking outside the dialog.
    * - "none": The dialog cannot be closed by user interaction.
    */
-  IHtmlElement closedBy(string mode) {
+  H5Dialog closedBy(string mode) {
     attribute("closedby", mode);
     return this;
   }
 
-  IHtmlAttribute closedBy() {
-    return attribute("closedby");
+  H5Dialog closedBy(bool val = true) {
+    attribute("closedby");
+    return this;
   }
 
-  IHtmlElement open() {
+  H5Dialog open(bool val = true) {
     attribute("open", "");
     return this;
   }
 
-  static Dialog opCall() {
-    return new Dialog();
-  }
-
-  static Dialog opCall(string content) {
-    auto element = new Dialog();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("dialog"));
 }
 ///
 unittest {
-  assert(Dialog() == "<dialog></dialog>");
-  assert(Dialog("Hello") == "<dialog>Hello</dialog>");
+  assert(H5Dialog() == "<dialog></dialog>");
+  assert(H5Dialog("Hello") == "<dialog>Hello</dialog>");
+  assert(H5Dialog().closedBy("escape") == `<dialog closedby="escape"></dialog>`);
+  assert(H5Dialog().closedBy("outside") == `<dialog closedby="outside"></dialog>`);
+  assert(H5Dialog().closedBy("none") == `<dialog closedby="none"></dialog>`);
+  assert(H5Dialog().closedBy(true) == `<dialog closedby></dialog>`);
+  assert(H5Dialog().open() == `<dialog open=""></dialog>`);
 }

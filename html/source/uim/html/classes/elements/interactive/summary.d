@@ -11,27 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
-class Summary : HtmlElement {
-  this() {
-    super("summary");
-    this.selfClosing(false);
-  }
+/**
+  * The <summary> HTML element is used as a summary, caption, or legend for the content of a <details> element. 
+  * It is typically used to provide a brief description or title for the content that is hidden within the <details> element. 
+  * When the <details> element is closed, only the content of the <summary> element is visible, and when it is opened, the full content of the <details> element is displayed. 
+  * The <summary> element can be styled using CSS to customize its appearance and behavior.
+  *
+  * Example usage:
+  * <details>
+  *   <summary>More information</summary>
+  *   <p>This is additional information that can be toggled open or closed.</p>
+  * </details>
+  */
+class H5Summary : HtmlElement {
+  mixin H5This!("summary", false);
 
-  // Factory methods
-  static Summary opCall() {
-    return new Summary();
-  }
-
-  // Factory methods
-  static Summary opCall(string content) {
-    auto html = new Summary();
-    html.content(content);
-    return html;
-  }
-
+  mixin(H5Calls!("summary"));
 }
 ///
 unittest {
-  assert(Summary() == "<summary></summary>");
-  assert(Summary("Some content") == "<summary>Some content</summary>");
+  assert(H5Summary() == "<summary></summary>");
+  assert(H5Summary("Some content") == "<summary>Some content</summary>");
 }

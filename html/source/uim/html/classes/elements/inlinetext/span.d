@@ -11,23 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML span element
+/**
+  * The <span> HTML element is a generic inline container for phrasing content, which does not inherently represent anything. 
+  * It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. 
+  * The <span> element itself does not provide any visual change by default, but it can be styled with CSS to create various effects.
+  *
+  * Example usage:
+  * <p>This is a <span class="highlight">highlighted</span> word.</p>
+  */
 class H5Span : HtmlElement {
-  this() {
-    super("span");
-  }
-}
+  mixin H5This!("span", false);
 
-static H5Span opCall() {
-  return new H5Span();
+  mixin(H5Calls!("span"));
 }
-
-static H5Span opCall(string content) {
-  auto element = new H5Span();
-  element.content(content);
-  return element;
-}
-
+///
 unittest {
   // TODO: // TODO: assert(H5Span() == "<span></span>");
   // TODO: writeln(H5Span("Text"));

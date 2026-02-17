@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class U : HtmlElement {
-  this() {
-    super("u");
-    this.selfClosing(false);
-  }
+/**
+  * The <u> HTML element represents a span of inline text which should be rendered in a way that indicates that it has a non-textual annotation, such as a misspelling, a proper name, or an idiomatic expression. 
+  * The <u> element is typically used to underline text for stylistic purposes, but it does not carry any semantic meaning on its own. 
+  * It is important to note that the <u> element should not be used solely for visual styling, as it may not be accessible to all users and can be confused with other types of underlining, such as links.
+  * If you want to indicate that text is misspelled or has some other type of annotation, it is recommended to use the <span> element with appropriate CSS styling instead of the <u> element.
+  */
+class H5U : HtmlElement {
+  mixin H5This!("u", false);
 
-  static U opCall() {
-    return new U();
-  }
-
-  static U opCall(string content) {
-    auto element = new U();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("U"));
 }
 ///
 unittest {
-  assert(U() == "<u></u>");
-  assert(U("Hello") == "<u>Hello</u>");
+  assert(H5U() == "<u></u>");
+  assert(H5U("Hello") == "<u>Hello</u>");
+  assert(H5U(["test"], "Hello") ==  `<u class="test">Hello</u>`);
+  assert(H5U(["a":"b"], "Hello") == `<u a="b">Hello</u>`);
 }

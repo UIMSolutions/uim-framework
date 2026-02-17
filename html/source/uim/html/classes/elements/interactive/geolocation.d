@@ -11,27 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-class Geolocation : HtmlElement {
-  this() {
-    super("geolocation");
-    this.selfClosing(false);
-  }
+class H5Geolocation : HtmlElement {
+  mixin H5This!("geolocation", false);
 
-  // Factory methods
-  static Geolocation opCall() {
-    return new Geolocation();
-  }
-
-  // Factory methods
-  static Geolocation opCall(string content) {
-    auto html = new Geolocation();
-    html.content(content);
-    return html;
-  }
-
+  mixin(H5Calls!("geolocation"));
 }
 ///
 unittest {
-  assert(Geolocation() == "<geolocation></geolocation>");
-  assert(Geolocation("Some content") == "<geolocation>Some content</geolocation>");
+  assert(H5Geolocation() == "<geolocation></geolocation>");
+  assert(H5Geolocation("Some content") == "<geolocation>Some content</geolocation>");
 }

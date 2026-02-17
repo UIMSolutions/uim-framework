@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class Kbd : HtmlElement {
-  this() {
-    super("kbd");
-    this.selfClosing(false);
-  }
+/**
+  * The <kbd> HTML element represents user input and is typically displayed in a monospace font. 
+  * It is used to indicate text that the user is expected to enter or has entered, such as keyboard input, voice commands, or other forms of user interaction. 
+  * The <kbd> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a way that distinguishes it from regular content.
+  *
+  * Example usage:
+  * <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
+  */
+class H5Kbd : HtmlElement {
+  mixin H5This!("kbd", false);
 
-  static Kbd opCall() {
-    return new Kbd();
-  }
-
-  static Kbd opCall(string content) {
-    auto element = new Kbd();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("kbd"));
 }
 ///
 unittest {
-  assert(Kbd() == "<kbd></kbd>");
+  assert(H5Kbd() == "<kbd></kbd>");
   assert(Kbd("Hello") == "<kbd>Hello</kbd>");
 }

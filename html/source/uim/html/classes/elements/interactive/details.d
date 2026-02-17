@@ -11,27 +11,26 @@ mixin(ShowModule!());
 
 @safe:
 
-class Details : HtmlElement {
-  this() {
-    super("details");
-    this.selfClosing(false);
-  }
+/**
+  * The <details> HTML element is used to create a disclosure widget that can be toggled open or closed by the user. 
+  * It is typically used to hide additional information or content that is not immediately necessary for the user to see, allowing for a cleaner and more organized presentation of information on a webpage. 
+  * The <details> element can contain any type of content, including text, images, and other HTML elements. 
+  * When the <details> element is closed, only the summary content (if provided) is visible, and when it is opened, the full content is displayed. 
+  * The <details> element can be styled using CSS to customize its appearance and behavior.
+  *
+  * Example usage:
+  * <details>
+  *   <summary>More information</summary>
+  *   <p>This is additional information that can be toggled open or closed.</p>
+  * </details>
+  */
+class H5Details : HtmlElement {
+  mixin H5This!("details", false);
 
-  // Factory methods
-  static Details opCall() {
-    return new Details();
-  }
-
-  // Factory methods
-  static Details opCall(string content) {
-    auto html = new Details();
-    html.content(content);
-    return html;
-  }
-
+  mixin(H5Calls!("details"));
 }
 ///
 unittest {
-  assert(Details() == "<details></details>");
-  assert(Details("Some content") == "<details>Some content</details>");
+  assert(H5Details() == "<details></details>");
+  assert(H5Details("Some content") == "<details>Some content</details>");
 }
