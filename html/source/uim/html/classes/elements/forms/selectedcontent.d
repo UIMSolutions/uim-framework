@@ -11,23 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-class Selectedcontent : HtmlElement {
-  this() {
-    super("selectedcontent");
-  }
+/**
+  * Represents an HTML <selectedcontent> element.
+  * The <selectedcontent> element is used to define the content that is displayed when an option is selected in a <select> element.
+  * It can contain any HTML content, such as text, images, or other elements.
+  * Example usage:
+  * auto selectedContent = H5SelectedContent("Selected option details");
+  * selectedContent can be dynamically updated based on user selection in a <select> element.
+  *
+  * Note: The <selectedcontent> element is typically used in conjunction with JavaScript to dynamically update the displayed content based on user selection.
+  */
 
-  static Selectedcontent opCall() {
-    return new Selectedcontent();
-  }
+class H5SelectedContent : HtmlElement {
+  mixin H5This!("selectedcontent", false);
 
-  static Selectedcontent opCall(string content) {
-    auto html = new Selectedcontent();
-    html.text(content);
-    return html;
-  }
+   /// Sets the content of the selectedcontent element.
+
+  mixin(H5Calls!("SelectedContent"));
 }
 ///
 unittest {
-  assert(Selectedcontent() == "<selectedcontent></selectedcontent>");
-  assert(Selectedcontent("Some content") == "<selectedcontent>Some content</selectedcontent>");
+  assert(H5SelectedContent() == "<selectedcontent></selectedcontent>");
+  assert(H5SelectedContent("Some content") == "<selectedcontent>Some content</selectedcontent>");
+  
 }

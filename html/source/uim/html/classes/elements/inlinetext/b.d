@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class B : HtmlElement {
-  this() {
-    super("b");
-    this.selfClosing(false);
+class H5B : HtmlElement {
+  mixin H5This!("b", false);
+
+  static H5B opCall() {
+    return new H5B();
   }
 
-  static B opCall() {
-    return new B();
-  }
-
-  static B opCall(string content) {
-    auto element = new B();
+  static H5B opCall(string content) {
+    auto element = new H5B();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(B() == "<b></b>");
-  assert(B("Hello") == "<b>Hello</b>");
+  assert(H5B() == "<b></b>");
+  assert(H5B("Hello") == "<b>Hello</b>");
 }

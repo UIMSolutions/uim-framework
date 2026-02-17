@@ -11,42 +11,41 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML anchor (link) element
-class A : HtmlElement {
-  this() {
-    super("a");
-  }
+/** 
+  * HTML anchor element
+  * The anchor element is used to create hyperlinks, which allow users to navigate from one page to another or to a specific section within a page.
+  * It can also be used to create links to external resources, such as email addresses or phone numbers.
+  * Example usage:
+  * auto link = H5A("Click here").href("https://example.com").targetBlank();
+  * This creates a hyperlink with the text "Click here" that points to "https://example.com" and opens in a new tab.
+*/
+class H5A : HtmlElement {
+  mixin H5This!("a", false);
 
   // Setting the href attribute
-  IHtmlElement href(string url) {
+  H5A href(string url) {
     attribute("href", url);
     return this;
   }
 
   // Setting the target attribute
-  IHtmlElement target(string targetValue) {
+  H5A target(string targetValue) {
     attribute("target", targetValue);
     return this;
   }
 
   // Setting target="_blank"
-  IHtmlElement targetBlank() {
+  H5A targetBlank() {
     return target("_blank");
   }
 
-  static IHtmlElement opCall() {
-    return new A();
-  }
-
-  static IHtmlElement opCall(string url, string text) {
-    auto link = new A();
-    link.href(url);
-    link.text(text);
-    return link;
-  }
+  mixin(H5Calls!("A"));
 }
 ///
 unittest {
-  auto link = A("https://example.com", "Example");
-  assert(link.toString() == `<a href="https://example.com">Example</a>`);
+  assert(H5A() == "<a></a>");
+  assert(H5A("Click here") == "<a>Click here</a>");
+  assert(H5A().href("https://example.com") == `<a href="https://example.com"></a>`);
+  assert(H5A().target("_self") == `<a target="_self"></a>`);
+  assert(H5A().targetBlank() == `<a target="_blank"></a>`);
 }

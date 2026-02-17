@@ -17,38 +17,20 @@ mixin(ShowModule!());
   The output element represents the result of a calculation or user action. 
   It is typically used in forms to display results that are computed based on user input.
 */
-class Output : FormElement {
-  this() {
-    super("output");
-  }
+class H5Output : FormElement {
+  mixin H5This!("output", false);
 
   /// Associates the output element with other elements
-  auto forElement(string elementId) {
-    return attribute("for", elementId);
+  H5Output forElement(string elementId) {
+    attribute("for", elementId);
+    return this;
   }
 
-  static Output opCall() {
-    return new Output();
-  }
-
-  static Output opCall(string text) {
-    auto lbl = new Output();
-    lbl.text(text);
-    return lbl;
-  }
-
-  static Output opCall(string forId, string text) {
-    auto lbl = new Output();
-    lbl.forElement(forId).text(text);
-    return lbl;
-  }
+  mixin(H5Calls!("Output"));
 }
 ///
 unittest {
-  assert(Output() == "<output></output>");
-  assert(Output("Username:") == "<output>Username:</output>");
-
-  auto output = Output("username", "Username:");
-  assert(output == "<output for=\"username\">Username:</output>");
-
+  assert(H5Output() == `<output></output>`);
+  assert(H5Output("Username:") == `<output>Username:</output>`);
+  assert(H5Output().forElement("input1") == `<output for="input1"></output>`);
 }

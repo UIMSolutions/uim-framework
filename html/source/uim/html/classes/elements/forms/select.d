@@ -12,10 +12,8 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML select element
-class Select : FormElement {
-  this() {
-    super("select");
-  }
+class H5Select : FormElement {
+  mixin H5This!("select", false);
 
   /// Gets the name attribute of the select element.
   IHtmlAttribute name() {
@@ -23,52 +21,56 @@ class Select : FormElement {
   }
 
   /// Sets the name attribute of the select element, which is used to identify the form data after submission.
-  IHtmlElement name(string nameValue) {
+  H5Select name(string nameValue) {
     attribute("name", nameValue);
     return this;
   }
 
   /// Sets the multiple attribute of the select element, allowing multiple selections.
-  IHtmlElement multiple() {
-    attribute("multiple", "");
+  H5Select multiple(bool val = true) {
+    if (val) {
+      attribute("multiple", "");
+    } else {
+      removeAttribute("multiple");
+    }
     return this;
   }
 
   /// Sets the required attribute of the select element, making it a required field in a form.
-  IHtmlElement required() {
-    attribute("required", "");
+  H5Select required(bool val = true) {
+    if (val) {
+      attribute("required", "");
+    } else {
+      removeAttribute("required");
+    }
     return this;
   }
 
   /// Sets the disabled attribute of the select element, disabling it and preventing user interaction.
-  IHtmlElement disabled() {
-    attribute("disabled", "");
+  H5Select disabled(bool val = true) {
+    if (val) {
+      attribute("disabled", "");
+    } else {
+      removeAttribute("disabled");
+    }
     return this;
   }
 
   /// Adds an option to the select element with the specified value and display text.
-  IHtmlElement addOption(string value, string text) {
+  H5Select addOption(string value, string text) {
     // addChild(SelectOption(value, text));
     addContent(SelectOption(value, text));
     return this;
   }
 
-  static Select opCall() {
-    return new Select();
-  }
-
-  static Select opCall(string name) {
-    auto html = new Select();
-    html.name(name);
-    return html;
-  }
+  mixin(H5Calls!("Select"));
 }
 
 unittest {
-  assert(Select() == "<select></select>");
-  assert(Select("country") == "<select name=\"country\"></select>");
-  // assert(Select().multiple() == "<select multiple></select>");
-  // assert(Select().required() == "<select required></select>");
-  // assert(Select().disabled() == "<select disabled></select>");
-  // assert(Select().addOption("1", "Option 1") == "<select><option value=\"1\">Option 1</option></select>");
+  assert(H5Select() == "<select></select>");
+  assert(H5Select("country") == "<select name=\"country\"></select>");
+  // assert(H5Select().multiple() == "<select multiple></select>");
+  // assert(H5Select().required() == "<select required></select>");
+  // assert(H5Select().disabled() == "<select disabled></select>");
+  // assert(H5Select().addOption("1", "Option 1") == "<select><option value=\"1\">Option 1</option></select>");
 }

@@ -6,17 +6,15 @@ mixin(ShowModule!());
 
 @safe:
 
-class Radio : Input  {
+class H5Radio : Input  {
   this() {
     super("input");
     attribute("type", "radio");
   }
 
-  static Radio opCall() {
-    return new Radio();
-  }
+  mixin(H5Calls!("Radio"));
 }
 ///
 unittest {
   assert(Radio() == `<input type="radio" />`);
-}
+  //TODO: assert(Radio("Option 1") == `<input type="radio" />Option 1`);}

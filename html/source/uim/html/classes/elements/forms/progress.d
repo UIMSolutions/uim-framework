@@ -26,18 +26,24 @@ mixin(ShowModule!());
 class H5Progress : HtmlElement {
   mixin H5This!("progress", false);
 
-  static H5Progress opCall() {
-    return new H5Progress();
+  /// Sets the value attribute of the progress element, indicating the current progress.
+  H5Progress value(double val) {
+    attribute("value", val.to!string);
+    return this;
   }
 
-  static H5Progress opCall(string content) {
-    auto html = new H5Progress();
-    html.text(content);
-    return html;
+  /// Sets the max attribute of the progress element, indicating the total amount of work.
+  H5Progress max(double val) {
+    attribute("max", val.to!string);
+    return this;
   }
+
+  mixin(H5Calls!("Progress"));
 }
 ///
 unittest {
-  assert(H5Progress() == "<progress></progress>");
-  assert(H5Progress("Some content") == "<progress>Some content</progress>");
+  assert(H5Progress() == `<progress></progress>`);
+  assert(H5Progress().value(50) == `<progress value="50"></progress>`);
+  assert(H5Progress().max(100) == `<progress max="100"></progress>`);
+  assert(H5Progress().value(70).max(100) == `<progress value="70" max="100"></progress>`);
 }

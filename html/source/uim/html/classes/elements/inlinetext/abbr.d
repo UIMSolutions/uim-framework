@@ -11,24 +11,27 @@ mixin(ShowModule!());
 
 @safe:
 
-class Abbr : HtmlElement {
-  this() {
-    super("abbr");
-    this.selfClosing(false);
+/**
+  * Represents an HTML <abbr> element.
+  * Provides methods to set the title attribute and content of the abbreviation.
+  * Example usage:
+  * auto abbr = Abbr("HTML").title("HyperText Markup Language");
+  *
+  * Note: The <abbr> element is used to represent an abbreviation or acronym, providing a full description in the title attribute.
+*/
+class H5Abbr : HtmlElement {
+  mixin H5This!("abbr", false);
+
+  /// Sets the title attribute of the abbreviation.
+  H5Abbr title(string val) {
+    attribute("title", val);
+    return this;
   }
 
-  static Abbr opCall() {
-    return new Abbr();
-  }
-
-  static Abbr opCall(string content) {
-    auto element = new Abbr();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("Abbr"));
 }
 ///
 unittest {
-  assert(Abbr() == "<abbr></abbr>");
-  assert(Abbr("Hello") == "<abbr>Hello</abbr>");
+  assert(H5Abbr() == "<abbr></abbr>");
+  assert(H5Abbr("Hello") == "<abbr>Hello</abbr>");
 }
