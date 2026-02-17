@@ -33,10 +33,8 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-class Table : HtmlElement {
-  this() {
-    super("table");
-  }
+class H5Table : HtmlElement {
+  mixin H5This!("table", false);
 
   ///  Gets or sets the border width of a table. This attribute is only applicable to "table" elements.
   IHtmlElement border(string borderValue) {
@@ -56,13 +54,11 @@ class Table : HtmlElement {
     return this;
   }
 
-  static Table opCall() {
-    return new Table();
-  }
+  mixin(H5Calls!("table"));
 }
 ///
 unittest {
   mixin(ShowTest!"Testing Table Class");
 
-  assert(Table() == "<table></table>");
+  assert(H5Table() == "<table></table>");
 }

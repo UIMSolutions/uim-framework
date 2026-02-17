@@ -24,23 +24,15 @@ mixin(ShowModule!());
   * </video>
   */
 class H5Video : HtmlElement {
-  this() {
-    super("video");
-    this.selfClosing(false);
-  }
+  mixin H5This!("video", false);
 
-  static H5Video opCall() {
-    return new H5Video();
-  }
-
-  static H5Video opCall(string content) {
-    auto element = new H5Video();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("video"));
 }
 ///
 unittest {
   assert(H5Video() == "<video></video>");
   assert(H5Video("Hello") == "<video>Hello</video>");
+  assert(H5Video(["test"], "Hello") == `<video class="test">Hello</video>`);
+  assert(H5Video(["a": "b"], "Hello") == `<video a="b">Hello</video>`);
+  assert(H5Video(["test"], ["a": "b"], "Hello") == `<video class="test" a="b">Hello</video>`);
 }

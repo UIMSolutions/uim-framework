@@ -29,34 +29,26 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-class Col : HtmlElement {
-  this() {
-    super("col");
-  }
+class H5Col : HtmlElement {
+  mixin H5This!("col", true);
 
   /// Sets the number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
-  IHtmlElement colspan(string value) {
+  H5Col colspan(string value) {
     attribute("colspan", value);
     return this;
   }
 
-  IHtmlElement rowspan(string value) {
+  H5Col rowspan(string value) {
     attribute("rowspan", value);
     return this;
   }
 
-  static Col opCall() {
-    return new Col();
-  }
-
-  static Col opCall(string content) {
-    auto col = new Col();
-    col.text(content);
-    return col;
-  }
+  mixin(H5Calls!("col"));
 }
 
 unittest {
-  assert(Col("Cell content") == "<col>Cell content</col>");
-  assert(Col() == "<col></col>");
+  assert(H5Col() == "<col />");
+  assert(H5Col().colspan("2") == `<col colspan="2" />`);
+  assert(H5Col().rowspan("3") == `<col rowspan="3" />`);
+  assert(H5Col().colspan("2").rowspan("3") == `<col colspan="2" rowspan="3" />`);
 }

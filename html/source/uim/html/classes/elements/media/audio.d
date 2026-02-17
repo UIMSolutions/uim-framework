@@ -27,21 +27,16 @@ mixin(ShowModule!());
   * </audio>
   * ```
   */
-class Audio : HtmlElement {
+class H5Audio : HtmlElement {
   mixin H5This!("audio", false);
 
-  static Audio opCall() {
-    return new Audio();
-  }
-
-  static Audio opCall(string content) {
-    auto element = new Audio();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("audio"));
 }
 ///
 unittest {
-  assert(Audio() == "<audio></audio>");
-  assert(Audio("Hello") == "<audio>Hello</audio>");
+  assert(H5Audio() == "<audio></audio>");
+  assert(H5Audio("Hello") == "<audio>Hello</audio>");
+  assert(H5Audio(["test"], "Hello") == `<audio class="test">Hello</audio>`);
+  assert(H5Audio(["a": "b"], "Hello") == `<audio a="b">Hello</audio>`);
+  assert(H5Audio(["test"], ["a": "b"], "Hello") == `<audio class="test" a="b">Hello</audio>`);
 }

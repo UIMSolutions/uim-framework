@@ -32,23 +32,16 @@ mixin(ShowModule!());
   * In this example, the first column will have a light gray background, and the second column will have a light blue background, as defined by the styles applied to the <col> elements within the <colgroup>. 
   * Note: The <colgroup> element must be placed within the <table> element, and it should be defined before any <tr> elements that contain the table's data.
   */
-class Colgroup : HtmlElement {
-  this() {
-    super("colgroup");
-  }
+class H5Colgroup : HtmlElement {
+  mixin H5This!("colgroup", false);
 
-  static Colgroup opCall() {
-    return new Colgroup();
-  }
-
-  static Colgroup opCall(string content) {
-    auto html = new Colgroup();
-    html.text(content);
-    return html;
-  }
+  mixin(H5Calls!("colgroup"));
 }
 ///
 unittest {
-  assert(Colgroup() == "<colgroup></colgroup>");
-  assert(Colgroup("Something") == "<colgroup>Something</colgroup>");
+  assert(H5Colgroup() == "<colgroup></colgroup>");
+  assert(H5Colgroup("Hello") == "<colgroup>Hello</colgroup>");
+  assert(H5Colgroup(["test"], "Hello") == `<colgroup class="test">Hello</colgroup>`);
+  assert(H5Colgroup(["a": "b"], "Hello") == `<colgroup a="b">Hello</colgroup>`);
+  assert(H5Colgroup(["test"], ["a": "b"], "Hello") == `<colgroup class="test" a="b">Hello</colgroup>`);
 }

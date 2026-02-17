@@ -31,15 +31,15 @@ mixin(ShowModule!());
   * ```
   */
 class H5Thead : HtmlElement {
-    this() {
-        super("thead");
-    }
+    mixin H5This!("thead", false);
 
-    static H5Thead opCall() {
-        return new H5Thead();
-    }
+    mixin(H5Calls!("thead"));
 }
 ///
 unittest {
     assert(H5Thead() == "<thead></thead>");
+    assert(H5Thead("Hello") == "<thead>Hello</thead>");
+    assert(H5Thead(["test"], "Hello") == `<thead class="test">Hello</thead>`);
+    assert(H5Thead(["a": "b"], "Hello") == `<thead a="b">Hello</thead>`);
+    assert(H5Thead(["test"], ["a": "b"], "Hello") == `<thead class="test" a="b">Hello</thead>`);
 }

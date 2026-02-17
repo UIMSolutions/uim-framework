@@ -22,30 +22,26 @@ mixin(ShowModule!());
   * When using the <track> element, it's important to ensure that the text tracks are properly synchronized with the media content and that they are accurate and well-written to provide a good user experience for all viewers.
   * 
   * Example usage:
-  *
+  * ```html
   * <video controls>
   *   <source src="movie.mp4" type="video/mp4">
   *   <track src="subtitles_en.vtt" kind="subtitles" srclang="en" label="English">
   *   <track src="subtitles_es.vtt" kind="subtitles" srclang="es" label="Spanish">
   * </video>
+  * ```
   *
   * The <track> element is a powerful tool for enhancing the accessibility and usability of multimedia content on the web, and it is an essential part of creating inclusive and engaging user experiences.
   */
-class Track : HtmlElement {
+class H5Track : HtmlElement {
   mixin H5This!("track", false);
 
-  static Track opCall() {
-    return new Track();
-  }
-
-  static Track opCall(string content) {
-    auto element = new Track();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("track"));
 }
 ///
 unittest {
-  assert(Track() == "<track></track>");
-  assert(Track("Hello") == "<track>Hello</track>");
+  assert(H5Track() == "<track></track>");
+  assert(H5Track("Hello") == "<track>Hello</track>");
+  assert(H5Track(["test"], "Hello") == `<track class="test">Hello</track>`);
+  assert(H5Track(["a": "b"], "Hello") == `<track a="b">Hello</track>`);
+  assert(H5Track(["test"], ["a": "b"], "Hello") == `<track class="test" a="b">Hello</track>`);
 }

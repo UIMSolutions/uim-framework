@@ -12,64 +12,55 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML textarea element
-class Textarea : FormElement {
-  this() {
-    super("textarea");
-  }
+class H5Textarea : FormElement {
+  mixin H5This!("textarea", false);
 
   IHtmlAttribute name() {
     return attribute("name");
   }
 
-  IHtmlElement name(string nameValue) {
+  H5Textarea name(string nameValue) {
     attribute("name", nameValue);
     return this;
   }
 
-  IHtmlElement rows(string rowCount) {
+  H5Textarea rows(string rowCount) {
     attribute("rows", rowCount);
     return this;
   }
 
-  IHtmlElement cols(string colCount) {
+  H5Textarea cols(string colCount) {
     attribute("cols", colCount);
     return this;
   }
 
-  IHtmlElement placeholder(string text) {
+  H5Textarea placeholder(string text) {
     attribute("placeholder", text);
     return this;
   }
 
-  IHtmlElement required() {
+  H5Textarea required() {
     attribute("required", "");
     return this;
   }
 
-  IHtmlElement disabled() {
+  H5Textarea disabled() {
     attribute("disabled", "");
     return this;
   }
 
-  IHtmlElement readonly() {
+  H5Textarea readonly() {
     attribute("readonly", "");
     return this;
   }
 
-  static Textarea opCall() {
-  return new Textarea();
-}
-
-static Textarea opCall(string name) {
-  auto ta = new Textarea();
-  ta.name(name);
-  return ta;
-}
-
+  mixin(H5Calls!("textarea"));
 }
 ///
 unittest {
-  assert(Textarea() == "<textarea></textarea>");
-  auto ta = Textarea("comment");
-  assert(ta.toString().indexOf("textarea") > 0);
+  assert(H5Textarea() == "<textarea></textarea>");
+  assert(H5Textarea("Hello") == "<textarea>Hello</textarea>");
+  assert(H5Textarea(["test"], "Hello") == `<textarea class="test">Hello</textarea>`);
+  assert(H5Textarea(["a": "b"], "Hello") == `<textarea a="b">Hello</textarea>`);
+  assert(H5Textarea(["test"], ["a": "b"], "Hello") == `<textarea class="test" a="b">Hello</textarea>`);
 }

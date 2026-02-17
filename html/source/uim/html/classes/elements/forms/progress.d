@@ -11,23 +11,33 @@ mixin(ShowModule!());
 
 @safe:
 
-class Progress : HtmlElement {
-  this() {
-    super("progress");
+/**  
+  * Represents the HTML `<progress>` element, which is used to display the progress of a task or operation. It typically shows a progress bar that fills up as the task progresses.
+  * 
+  * The `<progress>` element can be used to indicate the completion status of a task, such as file uploads, downloads, or any other process that takes time to complete. It can also be used to show the progress of a multi-step process.
+  * 
+  * Browser support: All major browsers support the `<progress>` element.
+  *
+  * Examples:
+  * ```html
+  * <progress value="70" max="100">70%</progress>
+  * ```
+  */
+class H5Progress : HtmlElement {
+  mixin H5This!("progress", false);
+
+  static H5Progress opCall() {
+    return new H5Progress();
   }
 
-  static Progress opCall() {
-    return new Progress();
-  }
-
-  static Progress opCall(string content) {
-    auto html = new Progress();
+  static H5Progress opCall(string content) {
+    auto html = new H5Progress();
     html.text(content);
     return html;
   }
 }
 ///
 unittest {
-  assert(Progress() == "<progress></progress>");
-  assert(Progress("Some content") == "<progress>Some content</progress>");
+  assert(H5Progress() == "<progress></progress>");
+  assert(H5Progress("Some content") == "<progress>Some content</progress>");
 }

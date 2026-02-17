@@ -32,9 +32,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Th : HtmlElement {
-  this() {
-    super("th");
-  }
+  mixin H5This!("th", false);
 
   H5Th colspan(string value) {
     attribute("colspan", value);
@@ -51,15 +49,7 @@ class H5Th : HtmlElement {
     return this;
   }
 
-  static H5Th opCall() {
-    return new H5Th();
-  }
-
-  static H5Th opCall(string content) {
-    auto th = new H5Th();
-    th.text(content);
-    return th;
-  }
+  mixin(H5Calls!("th"));
 }
 
 unittest {

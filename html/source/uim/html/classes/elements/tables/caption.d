@@ -33,23 +33,16 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-class Caption : HtmlElement {
-  this() {
-    super("caption");
-  }
+class H5Caption : HtmlElement {
+  mixin H5This!("caption", false);
 
-  static Caption opCall() {
-    return new Caption();
-  }
-
-  static Caption opCall(string content) {
-    auto html = new Caption();
-    html.text(content);
-    return html;
-  }
+  mixin(H5Calls!("caption"));
 }
 ///
 unittest {
-  assert(Caption() == "<caption></caption>");
-  assert(Caption("Row content") == "<caption>Row content</caption>");
+  assert(H5Caption() == "<caption></caption>");
+  assert(H5Caption("Hello") == "<caption>Hello</caption>");
+  assert(H5Caption(["test"], "Hello") == `<caption class="test">Hello</caption>`);
+  assert(H5Caption(["a": "b"], "Hello") == `<caption a="b">Hello</caption>`);
+  assert(H5Caption(["test"], ["a": "b"], "Hello") == `<caption class="test" a="b">Hello</caption>`);
 }

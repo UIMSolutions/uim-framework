@@ -34,9 +34,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tfoot : HtmlElement {
-  mixin H5TThis!("tfoot", false);
+  mixin H5This!("tfoot", false);
 
-  mixin(H5TCalls!("tfoot"));
+  mixin(H5Calls!("tfoot"));
 }
 ///
 unittest {
