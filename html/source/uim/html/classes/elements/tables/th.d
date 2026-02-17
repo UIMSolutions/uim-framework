@@ -31,35 +31,38 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Th : HtmlElement {
-    this() {
-        super("th");
-    }
+class H5Th : HtmlElement {
+  this() {
+    super("th");
+  }
 
-    auto colspan(string value) {
-        return attribute("colspan", value);
-    }
+  H5Th colspan(string value) {
+    attribute("colspan", value);
+    return this;
+  }
 
-    auto rowspan(string value) {
-        return attribute("rowspan", value);
-    }
+  H5Th rowspan(string value) {
+    attribute("rowspan", value);
+    return this;
+  }
 
-    auto scope_(string value) {
-        return attribute("scope", value);
-    }
+  H5Th scope_(string value) {
+    attribute("scope", value);
+    return this;
+  }
 
-    static Th opCall() {
-        return new Th();
-    }
+  static H5Th opCall() {
+    return new H5Th();
+  }
 
-    static Th opCall(string content) {
-        auto th = new Th();
-        th.text(content);
-        return th;
-    }
+  static H5Th opCall(string content) {
+    auto th = new H5Th();
+    th.text(content);
+    return th;
+  }
 }
 
 unittest {
-    assert(Th() == "<th></th>");
-    assert(Th("Header") == "<th>Header</th>");
+  assert(H5Th() == "<th></th>");
+  assert(H5Th("Header") == "<th>Header</th>");
 }

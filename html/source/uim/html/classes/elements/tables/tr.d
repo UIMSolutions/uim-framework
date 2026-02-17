@@ -30,23 +30,23 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Tr : HtmlElement {
+class H5Tr : HtmlElement {
   this() {
     super("tr");
   }
 
-  static Tr opCall() {
-    return new Tr();
+  static H5Tr opCall() {
+    return new H5Tr();
   }
 
-  static Tr opCall(string content) {
-    auto html = new Tr();
+  static H5Tr opCall(string content) {
+    auto html = new H5Tr();
     html.text(content);
     return html;
   }
 }
 ///
 unittest {
-  assert(Tr() == "<tr></tr>");
-  assert(Tr("Row content") == "<tr>Row content</tr>");
+  assert(H5Tr() == "<tr></tr>");
+  assert(H5Tr("Row content") == "<tr>Row content</tr>");
 }

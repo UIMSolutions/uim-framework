@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * </blockquote>
   * ```
   */
-class Blockquote : HtmlElement {
+class H5Blockquote : HtmlElement {
   this() {
     super("blockquote");
   }
@@ -39,18 +39,18 @@ class Blockquote : HtmlElement {
     return attribute("cite");
   }
 
-  static Blockquote opCall() {
-    return new Blockquote();
+  static H5Blockquote opCall() {
+    return new H5Blockquote();
   }
 
-  static Blockquote opCall(string url, string text = null) {
-    auto element = new Blockquote();
+  static H5Blockquote opCall(string url, string text = null) {
+    auto element = new H5Blockquote();
     element.cite(url);
     return element;
   }
 }
 ///
 unittest {
-  assert(Blockquote() == `<blockquote></blockquote>`);
-  assert(Blockquote("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
+  assert(H5Blockquote() == `<blockquote></blockquote>`);
+  assert(H5Blockquote("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
 }

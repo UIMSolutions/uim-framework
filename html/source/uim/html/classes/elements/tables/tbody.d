@@ -31,16 +31,16 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Tbody : HtmlElement {
+class H5Tbody : HtmlElement {
     this() {
         super("tbody");
     }
 
-    static Tbody opCall() {
-        return new Tbody();
+    static H5Tbody opCall() {
+        return new H5Tbody();
     }
 }
 ///
 unittest {
-    assert(Tbody() == "<tbody></tbody>");
+    assert(H5Tbody() == "<tbody></tbody>");
 }

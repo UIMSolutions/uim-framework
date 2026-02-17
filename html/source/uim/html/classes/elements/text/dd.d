@@ -24,23 +24,23 @@ mixin(ShowModule!());
   * </dl>
   * ```
   */
-class Dd : HtmlElement {
+class H5Dd : HtmlElement {
   this() {
     super("dd");
   }
 
-  static Dd opCall() {
-    return new Dd();
+  static H5Dd opCall() {
+    return new H5Dd();
   }
 
-  static Dd opCall(string content) {
-    auto dd = new Dd();
+  static H5Dd opCall(string content) {
+    auto dd = new H5Dd();
     dd.text(content);
     return dd;
   }
 }
 ///
 unittest {
-  assert(Dd() == "<dd></dd>");
-  assert(Dd("Description") == "<dd>Description</dd>");
+  assert(H5Dd() == "<dd></dd>");
+  assert(H5Dd("Description") == "<dd>Description</dd>");
 }

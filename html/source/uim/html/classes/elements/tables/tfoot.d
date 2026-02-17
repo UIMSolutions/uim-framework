@@ -1,4 +1,3 @@
-
 /****************************************************************************************************************
 * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
@@ -34,15 +33,16 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Tfoot : HtmlElement {
-    this() {
-        super("tfoot");
-    }
-    static Tfoot opCall() {
-        return new Tfoot();
-    }
+class H5Tfoot : HtmlElement {
+  mixin H5TThis!("tfoot", false);
+
+  mixin(H5TCalls!("tfoot"));
 }
 ///
 unittest {
-    assert(Tfoot() == "<tfoot></tfoot>");
+  assert(H5Tfoot() == "<tfoot></tfoot>");
+  assert(H5Tfoot("Hello") == "<tfoot>Hello</tfoot>");
+  assert(H5Tfoot(["test"], "Hello") == `<tfoot class="test">Hello</tfoot>`);
+  assert(H5Tfoot(["a": "b"], "Hello") == `<tfoot a="b">Hello</tfoot>`);
+  assert(H5Tfoot(["test"], ["a": "b"], "Hello") == `<tfoot class="test" a="b">Hello</tfoot>`);
 }

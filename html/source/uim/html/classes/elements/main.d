@@ -26,24 +26,24 @@ mixin(ShowModule!());
   * </main>
   * ```
   */
-class Main : HtmlElement {
+class H5Main : HtmlElement {
   mixin H5This!("main", false);
 
-  static Main opCall() {
-    return new Main();
+  static H5Main opCall() {
+    return new H5Main();
   }
 
-  static Main opCall(string content) {
-    auto element = new Main();
+  static H5Main opCall(string content) {
+    auto element = new H5Main();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  auto main = Main();
+  auto main = H5Main();
   assert(main.toString() == "<main></main>");
 
-  auto mainWithContent = Main("Hello");
+  auto mainWithContent = H5Main("Hello");
   assert(mainWithContent.toString() == "<main>Hello</main>");
 }

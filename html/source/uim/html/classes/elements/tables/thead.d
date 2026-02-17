@@ -30,16 +30,16 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Thead : HtmlElement {
+class H5Thead : HtmlElement {
     this() {
         super("thead");
     }
 
-    static Thead opCall() {
-        return new Thead();
+    static H5Thead opCall() {
+        return new H5Thead();
     }
 }
 ///
 unittest {
-    assert(Thead() == "<thead></thead>");
+    assert(H5Thead() == "<thead></thead>");
 }

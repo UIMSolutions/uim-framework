@@ -23,20 +23,20 @@ mixin(ShowModule!());
   * <p>This is an <ins>new</ins> sentence.</p>
   * ```
   */
-class Ins : HtmlElement {
+class H5Ins : HtmlElement {
   this() {
     super("ins");
     this.selfClosing(false);
   }
 
   // Factory methods
-  static Ins opCall() {
-    return new Ins();
+  static H5Ins opCall() {
+    return new H5Ins();
   }
 
   // Factory methods
-  static Ins opCall(string content) {
-    auto element = new Ins();
+  static H5Ins opCall(string content) {
+    auto element = new H5Ins();
     element.content(content);
     return element;
   }
@@ -44,6 +44,6 @@ class Ins : HtmlElement {
 }
 ///
 unittest {
-  assert(Ins() == "<ins></ins>");
-  assert(Ins("Hello") == "<ins>Hello</ins>");
+  assert(H5Ins() == "<ins></ins>");
+  assert(H5Ins("Hello") == "<ins>Hello</ins>");
 }

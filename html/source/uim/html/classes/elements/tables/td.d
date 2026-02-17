@@ -29,33 +29,26 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-class Td : HtmlElement {
-  this() {
-    super("td");
-  }
+class H5Td : HtmlElement {
+ mixin H5This!("td", false);
 
-  IHtmlElement colspan(string value) {
+  H5Td colspan(string value) {
     attribute("colspan", value);
     return this;
   }
 
-  IHtmlElement rowspan(string value) {
+  H5Td rowspan(string value) {
     attribute("rowspan", value);
     return this;
   }
 
-  static Td opCall() {
-    return new Td();
-  }
-
-  static Td opCall(string content) {
-    auto td = new Td();
-    td.text(content);
-    return td;
-  }
+  mixin(H5Calls!("td"));
 }
 ///
 unittest {
-  assert(Td() == "<td></td>");
-  assert(Td("Cell content") == "<td>Cell content</td>");
+  assert(H5Td() == "<td></td>");
+  assert(H5Td("Hello") == "<td>Hello</td>");
+  assert(H5Td(["test"], "Hello") == `<td class="test">Hello</td>`);
+  assert(H5Td(["a": "b"], "Hello") == `<td a="b">Hello</td>`);
+  assert(H5Td(["test"], ["a": "b"], "Hello") == `<td class="test" a="b">Hello</td>`);
 }
