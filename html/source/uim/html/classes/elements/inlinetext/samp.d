@@ -16,24 +16,24 @@ mixin(ShowModule!());
  * By default, it is displayed in the browser's default monospace font, and it preserves whitespace and line breaks. 
  * The <samp> element can be used to display sample output from a command-line interface, a programming language, or any other type of computer-generated output.
  */
-class Samp : HtmlElement {
+class H5Samp : HtmlElement {
   this() {
     super("samp");
     this.selfClosing(false);
   }
 
-  static Samp opCall() {
-    return new Samp();
+  static H5Samp opCall() {
+    return new H5Samp();
   }
 
-  static Samp opCall(string content) {
-    auto element = new Samp();
+  static H5Samp opCall(string content) {
+    auto element = new H5Samp();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Samp() == "<samp></samp>");
-  assert(Samp("Hello") == "<samp>Hello</samp>");
+  assert(H5Samp() == "<samp></samp>");
+  assert(H5Samp("Hello") == "<samp>Hello</samp>");
 }

@@ -17,24 +17,24 @@ mixin(ShowModule!());
  * This element is intended for short quotations that do not require paragraph breaks. 
  * For longer quotations, the <blockquote> element should be used instead.
  */
-class Q : HtmlElement {
+class H5Q : HtmlElement {
   this() {
     super("q");
     this.selfClosing(false);
   }
 
-  static Q opCall() {
-    return new Q();
+  static H5Q opCall() {
+    return new H5Q();
   }
 
-  static Q opCall(string content) {
-    auto element = new Q();
+  static H5Q opCall(string content) {
+    auto element = new H5Q();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Q() == "<q></q>");
-  assert(Q("Hello") == "<q>Hello</q>");
+  assert(H5Q() == "<q></q>");
+  assert(H5Q("Hello") == "<q>Hello</q>");
 }

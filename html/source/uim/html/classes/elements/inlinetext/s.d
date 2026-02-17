@@ -11,24 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-class S : HtmlElement {
+class H5S : HtmlElement {
   this() {
     super("s");
     this.selfClosing(false);
   }
 
-  static S opCall() {
-    return new S();
+  static H5S opCall() {
+    return new H5S();
   }
 
-  static S opCall(string content) {
-    auto element = new S();
+  static H5S opCall(string content) {
+    auto element = new H5S();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(S() == "<s></s>");
-  assert(S("Hello") == "<s>Hello</s>");
+  assert(H5S() == "<s></s>");
+  assert(H5S("Hello") == "<s>Hello</s>");
 }

@@ -16,24 +16,13 @@ mixin(ShowModule!());
   * It is typically used for chemical formulas, mathematical expressions, and other notations that require subscript formatting. 
   * The <sub> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned lower than the surrounding text.
   */
-class Sub : HtmlElement {
-  this() {
-    super("sub");
-    this.selfClosing(false);
-  }
+class H5Sub : HtmlElement {
+  mixin H5this!("sub", false);
 
-  static Sub opCall() {
-    return new Sub();
-  }
-
-  static Sub opCall(string content) {
-    auto element = new Sub();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("sub"));
 }
 ///
 unittest {
-  assert(Sub() == "<sub></sub>");
-  assert(Sub("Hello") == "<sub>Hello</sub>");
+  assert(H5Sub() == "<sub></sub>");
+  assert(H5Sub("Hello") == "<sub>Hello</sub>");
 }

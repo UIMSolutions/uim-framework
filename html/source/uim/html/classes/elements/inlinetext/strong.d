@@ -15,24 +15,13 @@ mixin(ShowModule!());
  * The <strong> HTML element indicates that its contents have strong importance, seriousness, or urgency. 
  * Browsers typically render the contents in bold type.
  */
-class Strong : HtmlElement {
-  this() {
-    super("strong");
-    this.selfClosing(false);
-  }
+class H5Strong : HtmlElement {
+  mixin H5this!("strong", false);
 
-  static Strong opCall() {
-    return new Strong();
-  }
-
-  static Strong opCall(string content) {
-    auto element = new Strong();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("strong"));
 }
 ///
 unittest {
-  assert(Strong() == "<strong></strong>");
-  assert(Strong("Hello") == "<strong>Hello</strong>");
+  assert(H5Strong() == "<strong></strong>");
+  assert(H5Strong("Hello") == "<strong>Hello</strong>");
 }

@@ -16,24 +16,24 @@ mixin(ShowModule!());
  * It is typically used in conjunction with the <rt> element, which specifies the ruby text (the annotation) that should be displayed above or below the base text (the content of the <ruby> element). 
  * The <rp> element allows authors to specify what should be displayed in place of the ruby text for browsers that do not support it, ensuring that the content remains readable and understandable even without ruby annotation support.
  */
-class Rp : HtmlElement {
+class H5Rp : HtmlElement {
   this() {
     super("rp");
     this.selfClosing(false);
   }
 
-  static Rp opCall() {
-    return new Rp();
+  static H5Rp opCall() {
+    return new H5Rp();
   }
 
-  static Rp opCall(string content) {
-    auto element = new Rp();
+  static H5Rp opCall(string content) {
+    auto element = new H5Rp();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Rp() == "<rp></rp>");
-  assert(Rp("Hello") == "<rp>Hello</rp>");
+  assert(H5Rp() == "<rp></rp>");
+  assert(H5Rp("Hello") == "<rp>Hello</rp>");
 }

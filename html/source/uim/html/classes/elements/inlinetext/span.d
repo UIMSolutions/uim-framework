@@ -12,24 +12,24 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML span element
-class Span : HtmlElement {
+class H5Span : HtmlElement {
   this() {
     super("span");
   }
 }
 
-static Span opCall() {
-  return new Span();
+static H5Span opCall() {
+  return new H5Span();
 }
 
-static Span opCall(string content) {
-  auto element = new Span();
+static H5Span opCall(string content) {
+  auto element = new H5Span();
   element.content(content);
   return element;
 }
 
 unittest {
-  // TODO: // TODO: assert(Span() == "<span></span>");
-  // TODO: writeln(Span("Text"));
-  // TODO: assert(Span("Text") == "<span>Text</span>");
+  // TODO: // TODO: assert(H5Span() == "<span></span>");
+  // TODO: writeln(H5Span("Text"));
+  // TODO: assert(H5Span("Text") == "<span>Text</span>");
 }

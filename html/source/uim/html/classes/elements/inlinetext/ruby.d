@@ -11,24 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-class Ruby : HtmlElement {
+class H5Ruby : HtmlElement {
   this() {
     super("ruby");
     this.selfClosing(false);
   }
 
-  static Ruby opCall() {
-    return new Ruby();
+  static H5Ruby opCall() {
+    return new H5Ruby();
   }
 
-  static Ruby opCall(string content) {
-    auto element = new Ruby();
+  static H5Ruby opCall(string content) {
+    auto element = new H5Ruby();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Ruby() == "<ruby></ruby>");
-  assert(Ruby("Hello") == "<ruby>Hello</ruby>");
+  assert(H5Ruby() == "<ruby></ruby>");
+  assert(H5Ruby("Hello") == "<ruby>Hello</ruby>");
 }

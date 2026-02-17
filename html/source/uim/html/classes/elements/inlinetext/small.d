@@ -11,24 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-class Small : HtmlElement {
+class H5Small : HtmlElement {
   this() {
     super("small");
     this.selfClosing(false);
   }
 
-  static Small opCall() {
-    return new Small();
+  static H5Small opCall() {
+    return new H5Small();
   }
 
-  static Small opCall(string content) {
-    auto element = new Small();
+  static H5Small opCall(string content) {
+    auto element = new H5Small();
     element.content(content);
     return element;
   }
 }
 ///
 unittest {
-  assert(Small() == "<small></small>");
-  assert(Small("Hello") == "<small>Hello</small>");
+  assert(H5Small() == "<small></small>");
+  assert(H5Small("Hello") == "<small>Hello</small>");
 }
