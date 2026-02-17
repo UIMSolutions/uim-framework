@@ -13,38 +13,38 @@ template H5This(string tag, bool selfClosing = false) {
   }
 
   this(string content) {
-    super(tag);
+    super(tag.toLower());
     this.content(content);  
     _selfClosing = selfClosing;
   }
 
   this(string[] classes, string content = "") {
-    super(tag, classes, content);
+    super(tag.toLower(), classes, content);
     _selfClosing = selfClosing;
   }
 
   this(string[] classes, IHtmlElement[] elements) {
-    super(tag, classes, elements);
+    super(tag.toLower(), classes, elements);
     _selfClosing = selfClosing;
   }
 
   this(string[string] attributes, string content = "") {
-    super(tag, attributes, content);
+    super(tag.toLower(), attributes, content);
     _selfClosing = selfClosing;
   }
 
   this(string[string] attributes, IHtmlElement[] elements) {
-    super(tag, attributes, elements);
+    super(tag.toLower(), attributes, elements);
     _selfClosing = selfClosing;
   }
 
   this(string[] classes, string[string] attributes, string content = "") {
-    super(tag, classes, attributes, content);
+    super(tag.toLower(), classes, attributes, content);
     _selfClosing = selfClosing;
   }
 
   this(string[] classes, string[string] attributes, IHtmlElement[] elements) {
-    super(tag, classes, attributes, elements);
+    super(tag.toLower(), classes, attributes, elements);
     _selfClosing = selfClosing;
   }
 }
@@ -66,7 +66,7 @@ string h5Calls(string name) {
     static H5{name} opCall(string[] classes, string[string] attributes, string content = "") {
       return new H5{name}(classes, attributes, content);
     }
-    `.mustache("name", name);
+    `.mustache("name", name.capitalize());
 }
 
 template H5Calls(string name) {

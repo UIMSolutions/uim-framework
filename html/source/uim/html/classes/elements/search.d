@@ -11,24 +11,31 @@ mixin(ShowModule!());
 
 @safe:
 
-class Search : HtmlElement {
-  this() {
-    super("search");
-    this.selfClosing(false);
-  }
+/**
+  * Represents the HTML `<search>` element, which defines a section of a page that is intended for searching or filtering content.
+  * 
+  * The `<search>` element is used to group together search-related elements, such as a search input field and a submit button. It provides semantic meaning to the content within it, indicating that it is related to searching or filtering.
+  * 
+  * Browser support: As of now, the `<search>` element is not widely supported in all browsers. It is recommended to use it with caution and provide fallback options for browsers that do not support it.
+  *
+  * Examples:
+  * ```html
+  * <search>
+  *   <input type="text" placeholder="Search...">
+  *   <button type="submit">Search</button>
+  * </search>
+  * ```
+  */
+class H5Search : HtmlElement {
+  mixin H5This!("search", false);
 
-  static Search opCall() {
-    return new Search();
-  }
-
-  static Search opCall(string content) {
-    auto element = new Search();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("search"));
 }
 ///
 unittest {
-  assert(Search() == "<search></search>");
-  assert(Search("Hello") == "<search>Hello</search>");
+  assert(H5Search() == "<search></search>");
+  assert(H5Search("Hello") == "<search>Hello</search>");
+  assert(H5Search(["test"], "Hello") == `<search class="test">Hello</search>`);
+  assert(H5Search(["a": "b"], "Hello") == `<search a="b">Hello</search>`);
+  assert(H5Search(["test"], ["a": "b"], "Hello") == `<search class="test" a="b">Hello</search>`);
 }

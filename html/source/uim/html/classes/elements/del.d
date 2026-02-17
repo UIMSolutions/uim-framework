@@ -11,6 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 
+/**   
+  * Represents the HTML `<del>` element, which represents a range of text that has been deleted from a document. The content inside a `<del>` element is typically displayed with a strikethrough to indicate that it has been removed.
+  * 
+  * The `<del>` element is often used in conjunction with the `<ins>` element, which represents inserted text. Together, they can be used to show changes in a document, such as revisions or edits.
+  * 
+  * Browser support: All major browsers support the `<del>` element.
+  *
+  * Examples:
+  * ```html
+  * <p>This is an <del>old</del> sentence.</p>
+  * ```
+  */
 class H5Del : HtmlElement {
  mixin H5This!("del", false);
 

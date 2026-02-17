@@ -14,18 +14,6 @@ mixin(ShowModule!());
 class H5Svg : HtmlElement {
   mixin H5This!("svg", false);
 
-  // Factory methods
-  // static H5Svg opCall() {
-  //   return new H5Svg();
-  // }
-
-  // // Factory methods
-  // static H5Svg opCall(string content) {
-  //   auto element = new H5Svg();
-  //   element.content(content);
-  //   return element;
-  // }
-
   mixin(H5Calls!("Svg"));
 }
 ///
@@ -33,4 +21,5 @@ unittest {
   assert(H5Svg() == "<svg></svg>");
   assert(H5Svg("Hello") == "<svg>Hello</svg>");
   assert(H5Svg(["id": "my-svg"]) == "<svg id=\"my-svg\"></svg>");
+  assert(H5Svg(["id": "my-svg"], "Hello") == "<svg id=\"my-svg\">Hello</svg>");
 }

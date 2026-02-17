@@ -11,6 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * Represents the HTML `<footer>` element, which defines a footer for a document or a section. A footer typically contains information about the author, copyright information, links to related documents, or other relevant information.
+  * 
+  * The `<footer>` element is used to group together related content at the end of a document or a section. It can be used within the `<body>` element to define a footer for the entire page, or within a `<section>`, `<article>`, or other container elements to define a footer for that specific section.
+  * 
+  * Browser support: All major browsers support the `<footer>` element.
+  *
+  * Examples:
+  * ```html
+  * <footer>
+  *   <p>&copy; 2024 My Website</p>
+  * </footer>
+  * ```
+  */
 class Footer : HtmlElement {
   mixin H5This!("footer", false);
 
