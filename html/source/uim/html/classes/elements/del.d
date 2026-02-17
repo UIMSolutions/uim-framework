@@ -24,20 +24,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Del : HtmlElement {
- mixin H5This!("del", false);
+  mixin H5This!("del", false);
 
-  // Factory methods
-  static H5Del opCall() {
-    return new H5Del();
-  }
-
-  // Factory methods
-  static H5Del opCall(string content) {
-    auto element = new H5Del();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Calls!("del"));
 }
 ///
 unittest {

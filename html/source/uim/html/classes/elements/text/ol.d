@@ -31,38 +31,38 @@ mixin(ShowModule!());
   * E. Item 3
  */
 class H5Ol : HtmlElement {
-  this() {
-    super("ol");
-  }
+  mixin H5This!("ol", false);
 
   /// Sets the type of numbering for the list items in an ordered list. 
   /// Valid values are "1" for numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
-  IHtmlElement type(string listType) {
+  H5Ol type(string listType) {
     attribute("type", listType);
     return this;
   }
 
   /// Gets the value of the "type" attribute, which specifies the type of numbering for the list items in an ordered list.
-  IHtmlAttribute type() {
-    return attribute("type");
+  H5Ol type() {
+    attribute("type");
+    return this;
   }
 
   /// Sets the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
-  IHtmlElement start(string startValue) {
+  H5Ol start(string startValue) {
     attribute("start", startValue);
     return this;
   }
 
   /// Gets the value of the "start" attribute, which specifies the starting value for the first list item in an ordered list.
-  IHtmlAttribute start() {
-    return attribute("start");
+  H5Ol start() {
+    attribute("start");
+    return this;
   }
 
-  static H5Ol opCall() {
-    return new H5Ol();
-  }
+  mixin(H5Calls!("ol"));
 }
 /// Creates an ordered list with the specified content. The content can be a string or any object that can be converted to a string.
 unittest {
   assert(H5Ol() == "<ol></ol>");
+  assert(H5Ol("Item 1") == "<ol>Item 1</ol>");
+  assert(H5Ol().type("A").start("3") == "<ol type=\"A\" start=\"3\"></ol>");
 }

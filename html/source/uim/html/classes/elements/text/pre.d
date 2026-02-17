@@ -18,19 +18,9 @@ mixin(ShowModule!());
  * When rendered in a web browser, the <pre> element typically displays the text within it as a block-level element, meaning that it takes up the full width of its container and starts on a new line.
  */
 class H5Pre : HtmlElement {
-  this() {
-    super("pre");
-  }
+  mixin H5This!("pre", false);
 
-  static H5Pre opCall() {
-    return new H5Pre();
-  }
-
-  static H5Pre opCall(string content) {
-    auto pre = new H5Pre();
-    pre.text(content);
-    return pre;
-  }
+  mixin(H5Calls!("pre"));
 }
 ///
 unittest {

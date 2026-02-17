@@ -17,33 +17,24 @@ mixin(ShowModule!());
  * When used within an ordered list, the <li> element represents a numbered item, while when used within an unordered list, it represents a bulleted item. 
  * The <li> element can also be used outside of lists to represent items in a menu or other types of content that require a list-like structure.
  */
-class Li : HtmlElement {
-  this() {
-    super("li");
-  }
+class H5Li : HtmlElement {
+  mixin H5This!("li", false);
 
   /// Gets the value of the "value" attribute, which specifies the ordinal value of the list item in an ordered list.
-  IHtmlAttribute value() {
-    return attribute("value");
+  H5Li value() {
+    attribute("value");
+    return this;
   }
 
-  IHtmlElement value(string itemValue) {
+  H5Li value(string itemValue) {
     attribute("value", itemValue);
     return this;
   }
 
-  static Li opCall() {
-    return new Li();
-  }
-
-  static Li opCall(string content) {
-    auto html = new Li();
-    html.text(content);
-    return html;
-  }
+  mixin(H5Calls!("li"));
 }
 ///
 unittest {
-  assert(Li() == "<li></li>");
-  assert(Li("Item") == "<li>Item</li>");
+  assert(H5Li() == "<li></li>");
+  assert(H5Li("Item") == "<li>Item</li>");
 }

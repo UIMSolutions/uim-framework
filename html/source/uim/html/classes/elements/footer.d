@@ -25,21 +25,13 @@ mixin(ShowModule!());
   * </footer>
   * ```
   */
-class Footer : HtmlElement {
+class H5Footer : HtmlElement {
   mixin H5This!("footer", false);
 
-  static Footer opCall() {
-    return new Footer();
-  }
-
-  static Footer opCall(string content) {
-    auto element = new Footer();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("footer"));
 }
 ///
 unittest {
-  assert(Footer() == "<footer></footer>");
-  assert(Footer("Hello") == "<footer>Hello</footer>");
+  assert(H5Footer() == "<footer></footer>");
+  assert(H5Footer("Hello") == "<footer>Hello</footer>");
 }

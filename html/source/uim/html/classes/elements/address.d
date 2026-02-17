@@ -11,21 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * Represents an HTML <address> element.
+  * Provides methods to set the content of the address element.
+  * Example usage:
+  * auto address = Address("123 Main St, Anytown, USA");
+  */
 class H5Address : HtmlElement {
   mixin H5This!("address", false);
 
-  // Factory methods
-  static H5Address opCall() {
-    return new H5Address();
-  }
-
-  // Factory methods
-  static H5Address opCall(string content) {
-    auto element = new H5Address();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Calls!("address"));
 }
 ///
 unittest {

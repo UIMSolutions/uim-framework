@@ -17,17 +17,12 @@ mixin(ShowModule!());
  * The <hr> element can be used to indicate a change in topic, a shift in tone, or to create a visual break between sections of content. 
  * It is a self-closing element, meaning that it does not require a closing tag, and it can be styled using CSS to customize its appearance.
  */
-class Hr : HtmlElement {
-    this() {
-        super("hr");
-        this.selfClosing(true);
-    }
+class H5Hr : HtmlElement {
+  mixin H5This!("hr", true);
 
-    static Hr opCall() {
-        return new Hr();
-    }
+  mixin(H5Calls!("hr"));
 }
 ///
 unittest {
-    assert(Hr() == "<hr />");
+  assert(H5Hr() == "<hr />");
 }

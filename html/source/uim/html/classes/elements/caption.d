@@ -11,21 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+  * Represents an HTML <caption> element.
+  * Provides methods to set the content of the caption element.
+  * Example usage:
+  * auto caption = Caption("Table Caption");
+  */
 class H5Caption : HtmlElement {
-  this() {
-    super("caption");
-    this.selfClosing(false);
-  }
+  mixin H5This!("caption", false);
 
-  static H5Caption opCall() {
-    return new H5Caption();
-  }
-
-  static H5Caption opCall(string content) {
-    auto element = new H5Caption();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("caption"));
 }
 ///
 unittest {

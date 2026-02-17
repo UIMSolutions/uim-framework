@@ -29,10 +29,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Math : HtmlElement {
-  this() {
-    super("math");
-    this.selfClosing(false);
-  }
+  mixin H5This!("math", false);
 
   // Factory methods
   static H5Math opCall() {
