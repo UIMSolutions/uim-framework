@@ -12,11 +12,19 @@ mixin(ShowModule!());
 @safe:
 
 /** 
-  * The <figcaption> HTML element represents a caption or legend for the content of its parent <figure> element. 
-  * It is typically used to provide a description or explanation for an image, diagram, or other media content that is contained within the <figure> element. 
-  * The <figcaption> element can contain any flow content, such as text, images, and other HTML elements, and it is usually displayed below the media content by default. 
-  * When used in conjunction with the <figure> element, the <figcaption> element helps to provide context and meaning to the media content, making it more accessible and understandable to users.
-  */
+ * The <figcaption> HTML element represents a caption or legend for a <figure> element. 
+ * It is used to provide a description or explanation for the content of the <figure>, such as an image, diagram, or code snippet. 
+ * The <figcaption> element is typically placed as the first or last child of the <figure> element, and it can contain text, images, or other HTML elements to provide context and information about the content of the figure. 
+ * It is an optional element, but it can enhance the accessibility and usability of the content by providing additional information to users.
+ *
+ * Examples:
+ * ```html
+ * <figure>  
+ *   <img src="image.jpg" alt="A description of the image">
+ *   <figcaption>This is a caption for the image.</figcaption>
+ * </figure>
+ * ```
+ */
 class Figcaption : HtmlElement {
   this() {
     super("figcaption");

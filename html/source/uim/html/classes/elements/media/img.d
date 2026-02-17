@@ -11,7 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML image element
+/**
+    * The <img> HTML element embeds an image into the document. 
+    * It is a self-closing tag and does not require a closing tag. 
+    * The <img> element has several attributes, including:
+    * - src: Specifies the URL of the image to be displayed.
+    * - alt: Provides alternative text for the image, which is displayed if the image cannot be loaded or for screen readers.
+    * - width: Specifies the width of the image in pixels or as a percentage of the containing element.
+    * - height: Specifies the height of the image in pixels or as a percentage of the containing element.
+    *
+    * Example usage:
+    * ```html
+    * <img src="image.jpg" alt="A description of the image" width="500" height="300">
+    * ```
+    */
 class H5Img : HtmlElement {
     mixin H5This!("img", true);
 

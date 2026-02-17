@@ -11,6 +11,22 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * Represents the HTML `<area>` element, which defines an area inside an image map that has predefined clickable areas.
+  * 
+  * The `<area>` element is used within a `<map>` element to define specific areas of an image that can be clicked on. Each `<area>` element specifies the shape and coordinates of the clickable area, as well as the link or action associated with it.
+  * 
+  * Browser support: All major browsers support the `<area>` element.
+  *
+  * Examples:
+  * ```html
+  * <img src="image.jpg" usemap="#image-map">
+  * <map name="image-map">
+  *   <area shape="rect" coords="34,44,270,350" href="link1.html" alt="Link 1">
+  *   <area shape="circle" coords="337,300,44" href="link2.html" alt="Link 2">
+  * </map>
+  * ```
+  */
 class H5Area : HtmlElement {
   mixin H5This!("area", false);
 

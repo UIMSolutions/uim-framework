@@ -12,7 +12,28 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table foot element
+/**   
+  * Represents the HTML `<tfoot>` element, which is used to group the footer content in an HTML table. The `<tfoot>` element is typically used in conjunction with the `<thead>` and `<tbody>` elements to structure a table into distinct sections: the header, body, and footer.
+  * 
+  * The content inside a `<tfoot>` element consists of one or more `<tr>` (table row) elements, which in turn contain `<td>` (table data) or `<th>` (table header) elements that define the individual cells of the table.
+  * 
+  * Browser support: All major browsers support the `<tfoot>` element.
+  *
+  * Examples:
+  * ```html
+  * <table>
+  *   <thead>
+  *     <tr><th>Header</th></tr>
+  *   </thead>
+  *   <tbody>
+  *     <tr><td>Data</td></tr>
+  *   </tbody>
+  *   <tfoot>
+  *     <tr><td>Footer</td></tr>
+  *   </tfoot>
+  * </table>
+  * ```
+  */
 class Tfoot : HtmlElement {
     this() {
         super("tfoot");

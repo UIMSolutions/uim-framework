@@ -11,6 +11,18 @@ mixin(ShowModule!());
 
 @safe:
 
+/**   
+  * Represents the HTML `<ins>` element, which represents a range of text that has been inserted into a document. The content inside an `<ins>` element is typically displayed with an underline to indicate that it has been added.
+  * 
+  * The `<ins>` element is often used in conjunction with the `<del>` element, which represents deleted text. Together, they can be used to show changes in a document, such as revisions or edits.
+  * 
+  * Browser support: All major browsers support the `<ins>` element.
+  *
+  * Examples:
+  * ```html
+  * <p>This is an <ins>new</ins> sentence.</p>
+  * ```
+  */
 class Ins : HtmlElement {
   this() {
     super("ins");

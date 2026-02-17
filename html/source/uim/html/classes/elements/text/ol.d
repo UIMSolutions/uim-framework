@@ -16,6 +16,19 @@ mixin(ShowModule!());
  * Each item in the list is typically represented by a <li> element, and the list can be styled using CSS to customize its appearance. 
  * The <ol> element can also include attributes such as "type" to specify the type of numbering for the list items, and "start" to specify the starting value for the first list item. 
  * When rendered in a web browser, the <ol> element typically displays the list items with numbers or letters to indicate their order.
+ *
+  * Example usage:
+  * ```html
+  * <ol type="A" start="3">
+  *   <li>Item 1</li>
+  *   <li>Item 2</li>
+  *   <li>Item 3</li>
+  * </ol>
+  * ```
+  * This would create an ordered list with uppercase letters starting from "C" for the first item, resulting in the following output:
+  * C. Item 1
+  * D. Item 2
+  * E. Item 3
  */
 class H5Ol : HtmlElement {
   this() {

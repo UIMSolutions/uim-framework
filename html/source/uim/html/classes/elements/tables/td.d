@@ -12,7 +12,23 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table cell element
+/**   
+  * Represents the HTML `<td>` element, which defines a standard data cell in an HTML table. The `<td>` element is used within a `<tr>` (table row) element to specify the content of a cell in the body of a table.
+  * 
+  * The content inside a `<td>` element can include text, images, links, or other HTML elements. The appearance of the cell can be customized using CSS properties such as `border`, `padding`, and `background-color`.
+  * 
+  * Browser support: All major browsers support the `<td>` element.
+  *
+  * Examples:
+  * ```html
+  * <table>
+  *   <tr>
+  *     <td>Cell 1</td>
+  *     <td>Cell 2</td>
+  *   </tr>
+  * </table>
+  * ```
+  */
 class Td : HtmlElement {
   this() {
     super("td");

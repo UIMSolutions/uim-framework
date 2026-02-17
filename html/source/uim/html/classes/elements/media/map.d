@@ -12,9 +12,20 @@ mixin(ShowModule!());
 @safe:
 
 /** 
-  * The <map> element is used to define an image map, which is a graphical representation of a web page that allows users to interact with different areas of the image. 
-  * An image map consists of one or more <area> elements, which define the clickable areas on the image and specify the actions that should be taken when those areas are clicked. 
-  * The <map> element is typically used in conjunction with the <img> element, where the <img> element references the image and the <map> element defines the interactive areas on that image.
+  * Represents the HTML `<map>` element, which is used to define an image map. An image map is a graphical element that allows you to define clickable areas on an image, which can link to different destinations or trigger specific actions when clicked.
+  * 
+  * The `<map>` element is typically used in conjunction with the `<area>` element, which defines the individual clickable areas within the image map. Each `<area>` element specifies the shape and coordinates of the clickable area, as well as the destination URL or action associated with it.
+  * 
+  * Browser support: All major browsers support the `<map>` element.
+  *
+  * Examples:
+  * ```html
+  * <img src="image.jpg" usemap="#image-map">
+  * <map name="image-map">
+  *   <area shape="rect" coords="34,44,270,350" href="link1.html" alt="Link 1">
+  *   <area shape="circle" coords="337,300,44" href="link2.html" alt="Link 2">
+  * </map>
+  * ```
   */
 class H5Map : HtmlElement {
   mixin H5This!("map", false);

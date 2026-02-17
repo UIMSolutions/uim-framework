@@ -11,6 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+  * Represents the HTML `<tr>` element, which defines a row in an HTML table. The `<tr>` element is used within the `<thead>`, `<tbody>`, and `<tfoot>` elements to group rows of a table's header, body, and footer sections, respectively.
+  * 
+  * The content inside a `<tr>` element consists of one or more `<td>` (table data) or `<th>` (table header) elements that define the individual cells of the table row.
+  * 
+  * Browser support: All major browsers support the `<tr>` element.
+  *
+  * Examples:
+  * ```html
+  * <table>
+  *   <thead>
+  *     <tr><th>Header</th></tr>
+  *   </thead>
+  *   <tbody>
+  *     <tr><td>Data</td></tr>
+  *   </tbody>
+  * </table>
+  * ```
+  */
 class Tr : HtmlElement {
   this() {
     super("tr");

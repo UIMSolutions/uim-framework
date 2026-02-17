@@ -11,7 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table cell element
+/**
+  * The <col> HTML element defines a column within a table and is used for styling purposes. 
+  * It is typically used within a <colgroup> element to group columns together and apply styles to them. 
+  * The <col> element does not contain any content and is self-closing, meaning it does not require a closing tag. 
+  * It can be styled using CSS to specify the width, background color, or other visual properties of the column it represents.
+  *
+  * Example usage:
+  * <table>
+  *   <colgroup>
+  *     <col style="background-color: lightgray;">
+  *     <col style="background-color: lightblue;">
+  *   </colgroup>
+  *   <tr>
+  *     <td>Column 1</td>
+  *     <td>Column 2</td>
+  *   </tr>
+  * </table>
+  */
 class Col : HtmlElement {
   this() {
     super("col");

@@ -11,7 +11,28 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML table element
+/**
+  * The <table> HTML element represents tabular data, which is data presented in a grid of rows and columns. 
+  * It is used to organize and display information in a structured format. 
+  * The <table> element can contain various child elements such as <caption>, <colgroup>, <thead>, <tbody>, <tfoot>, <tr>, <th>, and <td> to define the table's structure and content.
+  *
+  * Example usage:
+  * <table border="1" cellspacing="0" cellpadding="5">
+  *   <caption>Monthly Sales Report</caption>
+  *   <tr>
+  *     <th>Month</th>
+  *     <th>Sales</th>
+  *   </tr>
+  *   <tr>
+  *     <td>January</td>
+  *     <td>$10,000</td>
+  *   </tr>
+  *   <tr>
+  *     <td>February</td>
+  *     <td>$12,000</td>
+  *   </tr>
+  * </table>
+  */
 class Table : HtmlElement {
   this() {
     super("table");

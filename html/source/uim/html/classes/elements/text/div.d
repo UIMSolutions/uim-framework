@@ -12,11 +12,17 @@ mixin(ShowModule!());
 @safe:
 
 /** 
- * The <div> HTML element is a generic container for flow content that by itself does not represent anything. 
- * It can be used to group elements for styling purposes (using the class or id attributes), or because they share attribute values, such as lang. 
- * It is also commonly used as a container for JavaScript to manipulate groups of elements. 
- * When no other semantic element is appropriate, the <div> element can be used as a last resort.
- */
+  * Represents the HTML `<div>` element, which is a generic container used to group and organize content on a web page. The `<div>` element does not have any specific semantic meaning and is often used for styling purposes or as a wrapper for other elements. It can contain various types of content, including text, images, and other HTML elements.
+  * 
+  * Browser support: All major browsers support the `<div>` element.
+  *
+  * Examples:
+  * ```html
+  * <div>
+  *   <p>This is a paragraph inside a div.</p>
+  * </div>
+  * ```
+  */
 class H5Div : HtmlElement {
   mixin H5This!("div", false);
 
