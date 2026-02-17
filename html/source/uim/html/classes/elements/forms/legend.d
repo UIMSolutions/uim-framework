@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class Legend : FormElement {
+class Legend : H5FormElement {
   this() {
     super("legend");
   }

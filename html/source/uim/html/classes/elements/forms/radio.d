@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class H5Radio : Input  {
+class H5Radio : H5Input {
   this() {
     super("input");
     attribute("type", "radio");

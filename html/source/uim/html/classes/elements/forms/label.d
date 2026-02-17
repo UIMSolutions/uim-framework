@@ -22,7 +22,7 @@ mixin(ShowModule!());
 * The above code creates a label for an input field with the id "username" and the text "Username:". When rendered, clicking on the "Username:" label will focus the input field with the id "username".
 * Note: The <label> element can also be used without the 'for' attribute by nesting the <input> element inside the <label>. However, using the 'for' attribute is generally recommended for better accessibility and separation of concerns.
   */
-class H5Label : FormElement {
+class H5Label : H5FormElement {
   mixin H5This!("label", false);
 
   auto forElement(string elementId) {
@@ -33,9 +33,8 @@ class H5Label : FormElement {
 }
 ///
 unittest {
-  assert(Label() == "<label></label>");
-  assert(Label("Username:") == "<label>Username:</label>");
-
-  auto label = Label("username", "Username:");
-  assert(label.toString().indexOf("label") > 0);
+  assert(H5Label() == "<label></label>");
+  assert(H5Label("Username:") == "<label>Username:</label>");
+  assert(H5Label().forElement("username") == "<label for=\"username\"></label>");
+  assert(H5Label("Username:").forElement("username") == "<label for=\"username\">Username:</label>");
 }

@@ -18,9 +18,12 @@ class HtmlElement : IHtmlElement {
     _selfClosing = false;
   }
 
-  this(string tag) {
+  this(string tag, string content = "") {
     this();
     this.tagName(tag);
+    if (content.length > 0) {
+      addContent(content);
+    }
   }
 
   this(string tag, string[] classes, string content = "") {
@@ -184,6 +187,12 @@ class HtmlElement : IHtmlElement {
   /// Get an attribute by name
   IHtmlAttribute attribute(string name) {
     return _attributes.get(name, null);
+  }
+
+  /// Remove an attribute by name
+  IHtmlElement removeAttribute(string name) {
+    _attributes.remove(name);
+    return this;
   }
   // #endregion attributes
 

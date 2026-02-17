@@ -11,24 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
-class DEm : HtmlElement {
-  this() {
-    super("em");
-    this.selfClosing(false);
-  }
-}
+/**
+  * The <em> HTML element represents emphasized text. 
+  * The content inside is typically displayed in italics by browsers, but the exact presentation may vary based on the browser's default styles and any additional CSS applied. 
+  * The <em> element is used to indicate that the text it contains should be emphasized or stressed in some way, which can be important for conveying meaning or tone in written content.
+  *
+  * Example usage:
+  * <p>This is an <em>important</em> message.</p>
+  */
+class H5Em : HtmlElement {
+  mixin H5This!("em", false);
 
-auto Em() {
-  return new DEm();
-}
-
-auto Em(string content) {
-  auto element = new DEm();
-  element.content(content);
-  return element;
+  mixin(H5Calls!("em"));
 }
 
 unittest {
-  assert(Em() == "<em></em>");
-  assert(Em("Hello") == "<em>Hello</em>");
+  assert(H5Em() == "<em></em>");
+  assert(H5Em("Hello") == "<em>Hello</em>");
 }

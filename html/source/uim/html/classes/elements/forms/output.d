@@ -17,7 +17,7 @@ mixin(ShowModule!());
   The output element represents the result of a calculation or user action. 
   It is typically used in forms to display results that are computed based on user input.
 */
-class H5Output : FormElement {
+class H5Output : H5FormElement {
   mixin H5This!("output", false);
 
   /// Associates the output element with other elements

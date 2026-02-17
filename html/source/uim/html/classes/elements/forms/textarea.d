@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML textarea element
-class H5Textarea : FormElement {
+class H5Textarea : H5FormElement {
   mixin H5This!("textarea", false);
 
   IHtmlAttribute name() {

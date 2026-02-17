@@ -28,20 +28,10 @@ mixin(ShowModule!());
   *   <option value="Safari">
   * </datalist>
   */
-class H5Datalist : FormElement {
-  this() {
-    super("datalist");
-  }
+class H5Datalist : H5FormElement {
+  mixin H5This!("datalist", false);
 
-  static H5Datalist opCall() {
-    return new H5Datalist();
-  }
-
-  static H5Datalist opCall(string text) {
-    auto html = new H5Datalist();
-    html.text(text);
-    return html;
-  }
+  mixin(H5Calls!("datalist"));
 }
 /// 
 unittest {

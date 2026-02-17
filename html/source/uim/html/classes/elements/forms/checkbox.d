@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class H5Checkbox : Input {
+class H5Checkbox : H5Input {
   this() {
     super("input");
     type("checkbox");

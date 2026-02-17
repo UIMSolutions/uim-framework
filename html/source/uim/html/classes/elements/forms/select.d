@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML select element
-class H5Select : FormElement {
+class H5Select : H5FormElement {
   mixin H5This!("select", false);
 
   /// Gets the name attribute of the select element.
