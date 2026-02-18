@@ -27,9 +27,8 @@ class H5Canvas : HtmlElement {
   }
 
   /// Get height attribute
-  H5Canvas height() {
-    attribute("height");
-    return this;
+  IHtmlAttribute height() {
+    return attribute("height");
   }
 
   // #region width
@@ -40,9 +39,8 @@ class H5Canvas : HtmlElement {
   }
 
   /// Get width attribute
-  H5Canvas width() {
-    attribute("width");
-    return this;
+  IHtmlAttribute width() {
+    return attribute("width");
   }
   // #endregion width
 
@@ -50,6 +48,6 @@ class H5Canvas : HtmlElement {
 }
 ///
 unittest {
-  assert(Canvas() == `<canvas></canvas>`);
-  assert(Canvas("400", "600") == `<canvas height="400" width="600"></canvas>`);
+  assert(H5Canvas() == `<canvas></canvas>`);
+  assert(H5Canvas("400", "600") == `<canvas height="400" width="600"></canvas>`);
 }

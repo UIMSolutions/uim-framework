@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.forms.input;
+module uim.html.classes.elements.forms.inputs.input;
 
 import uim.html;
 
@@ -25,7 +25,7 @@ mixin(ShowModule!());
 class H5Input : HtmlElement {
   mixin H5This!("input", false);
 
-  IInput type(string typeValue) {
+  H5Input type(string typeValue) {
     attribute("type", typeValue);
     return this;
   }
@@ -38,7 +38,7 @@ class H5Input : HtmlElement {
     return attribute("name");
   }
 
-  IHtmlElement name(string nameValue) {
+  H5Input name(string nameValue) {
     attribute("name", nameValue);
     return this;
   }
@@ -46,6 +46,10 @@ class H5Input : HtmlElement {
   H5Input value(string valueValue) {
     attribute("value", valueValue);
     return this;
+  }
+
+  IHtmlAttribute value() {
+    return attribute("value");
   }
 
   H5Input placeholder(string text) {
@@ -57,23 +61,35 @@ class H5Input : HtmlElement {
     return attribute("placeholder");
   }
 
-  H5Input required() {
-    attribute("required", "");
+  H5Input required(bool isRequired = true) {
+    if (isRequired)
+      attribute("required", "");
+    else
+      removeAttribute("required");
     return this;
   }
 
-  H5Input disabled() {
-    attribute("disabled", "");
+  H5Input disabled(bool isDisabled = true) {
+    if (isDisabled)
+      attribute("disabled", "");
+    else
+      removeAttribute("disabled");
     return this;
   }
 
-  H5Input readonly() {
-    attribute("readonly", "");
+  H5Input readonly(bool isReadonly = true) {
+    if (isReadonly)
+      attribute("readonly", "");
+    else
+      removeAttribute("readonly");
     return this;
   }
 
-  H5Input checked() {
-    attribute("checked", "");
+  H5Input checked(bool isChecked = true) {
+    if (isChecked)
+      attribute("checked", "");
+    else
+      removeAttribute("checked");
     return this;
   }
 
@@ -81,77 +97,18 @@ class H5Input : HtmlElement {
 }
 ///
 unittest {
-  auto input = TextInput("username");
-  assert(input.toString().indexOf("type=\"text\"") > 0);
+  auto input = H5Input().type("text").name("username").value("JohnDoe").placeholder("Enter your username").required();
+  assert(input == `<input type="text" name="username" value="JohnDoe" placeholder="Enter your username" required />`);
+  assert(input.type() == "text");
+  assert(input.name() == "username");
+  assert(input.value() == "JohnDoe");
+  assert(input.placeholder() == "Enter your username");
+  assert(input.attribute("required") !is null);
 }
 
-static H5Input TextInput(string name = null) {
-  auto input = new H5Input();
-  input.type("text");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input PasswordInput(string name = null) {
-  auto input = new H5Input();
-  input.type("password");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input EmailInput(string name = null) {
-  auto input = new H5Input();
-  input.type("email");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input NumberInput(string name = null) {
-  auto input = new H5Input();
-  input.type("number");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input CheckboxInput(string name = null) {
-  auto input = new H5Input();
-  input.type("checkbox");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input RadioInput(string name = null) {
-  auto input = new H5Input();
-  input.type("radio");
-  if (name)
-    input.name(name);
-  return input;
-}
 
-static H5Input FileInput(string name = null) {
-  auto input = new H5Input();
-  input.type("file");
-  if (name)
-    input.name(name);
-  return input;
-}
-
-static H5Input HiddenInput(string name = null) {
-  auto input = new H5Input();
-  input.type("hidden");
-  if (name)
-    input.name(name);
-  return input;
-}
-
-static H5Input SubmitInput(string value = "Submit") {
-  auto input = new H5Input();
-  input.type("submit");
-  input.value(value);
-  return input;
-}

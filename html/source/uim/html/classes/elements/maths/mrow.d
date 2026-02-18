@@ -19,5 +19,5 @@ class H5Mrow : HtmlElement {
 ///
 unittest {
   assert(H5Mrow() == "<mrow></mrow>");
-  assert(H5MMrow("Hello") == "<mrow>Hello</mrow>");
+  assert(H5Mrow("Hello") == "<mrow>Hello</mrow>");
 }

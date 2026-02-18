@@ -8,13 +8,26 @@ public {
     import uim.html.classes.elements.inlinetext.bdo;
     import uim.html.classes.elements.inlinetext.br;
     import uim.html.classes.elements.inlinetext.cite;
+    import uim.html.classes.elements.inlinetext.code;
     import uim.html.classes.elements.inlinetext.data;
     import uim.html.classes.elements.inlinetext.dfn;
+    import uim.html.classes.elements.inlinetext.em;
+    import uim.html.classes.elements.inlinetext.i;
+    import uim.html.classes.elements.inlinetext.kbd;
+    import uim.html.classes.elements.inlinetext.mark;
+    import uim.html.classes.elements.inlinetext.q;
+    import uim.html.classes.elements.inlinetext.rp;
+    import uim.html.classes.elements.inlinetext.rt;
+    import uim.html.classes.elements.inlinetext.ruby;
     import uim.html.classes.elements.inlinetext.s;
     import uim.html.classes.elements.inlinetext.samp;
+    import uim.html.classes.elements.inlinetext.small;
     import uim.html.classes.elements.inlinetext.span;
     import uim.html.classes.elements.inlinetext.strong;
     import uim.html.classes.elements.inlinetext.sub;
     import uim.html.classes.elements.inlinetext.sup;
     import uim.html.classes.elements.inlinetext.time;
+    import uim.html.classes.elements.inlinetext.u;
+    import uim.html.classes.elements.inlinetext.var;
+    import uim.html.classes.elements.inlinetext.wbr;
 }

@@ -18,38 +18,53 @@ mixin(ShowModule!());
   * auto option = H5Option("Option 1").value("1").selected();
   */
 class H5Option : HtmlElement {
-    mixin H5This!("option", false);
+  mixin H5This!("option", false);
 
-    H5Option value(string valueValue) {
-        attribute("value", valueValue);
-        return this;
+  H5Option value(string valueValue) {
+    attribute("value", valueValue);
+    return this;
+  }
+
+  IHtmlAttribute value() {
+    return attribute("value");
+  }
+
+  H5Option label(string labelValue) {
+    attribute("label", labelValue);
+    return this;
+  }
+
+  IHtmlAttribute label() {
+    return attribute("label");
+  }
+
+  H5Option selected(bool isSelected = true) {
+    if (isSelected) {
+      attribute("selected", "");
+    } else {
+      removeAttribute("selected");
     }
+    return this;
+  }
 
-    IHtmlAttribute value() {
-        return attribute("value");
+  H5Option disabled(bool isDisabled = true) {
+    if (isDisabled) {
+      attribute("disabled", "");
+    } else {
+      removeAttribute("disabled");
     }
+    return this;
+  }
 
-    H5Option label(string labelValue) { 
-        
-    H5Option selected() {
-        attribute("selected", "");
-        return this;
-    }
-
-    H5Option disabled() {
-        attribute("disabled", "");
-        return this;
-    }
-
-    mixin(H5Calls!("Option"));
+  mixin(H5Calls!("Option"));
 }
 ///
 unittest {
-    mixin(ShowTest!"Testing Option Class");
+  mixin(ShowTest!"Testing Option Class");
 
-    assert(H5Option() == `<option></option>`);
-    assert(H5Option("Option 1") == `<option>Option 1</option>`);
-    assert(H5Option().value("1") == `<option value="1"></option>`);
-    assert(H5Option().selected() == `<option selected=""></option>`);
-    assert(H5Option().disabled() == `<option disabled=""></option>`);
+  assert(H5Option() == `<option></option>`);
+  assert(H5Option("Option 1") == `<option>Option 1</option>`);
+  assert(H5Option().value("1") == `<option value="1"></option>`);
+  assert(H5Option().selected() == `<option selected=""></option>`);
+  assert(H5Option().disabled() == `<option disabled=""></option>`);
 }

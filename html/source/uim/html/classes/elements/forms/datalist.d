@@ -45,16 +45,14 @@ class H5Datalist : HtmlElement {
 
   H5Datalist addOption(string value, string label) {
     auto option = new H5Option();
-    option.value(value);
-    option.label(label);
+    option.value(value).label(label);
     addContent(option);
     return this;
   }
 
   H5Datalist addOption(string value, string label, bool disabled) {
     auto option = new H5Option();
-    option.value(value);
-    option.label(label);
+    option.value(value).label(label);
     if (disabled) {
       option.disabled(true);
     }

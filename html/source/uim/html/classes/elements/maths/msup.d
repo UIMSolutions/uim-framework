@@ -18,6 +18,6 @@ class H5Msup : HtmlElement {
 }
 ///
 unittest {
-  assert(H5MMsup() == "<msup></msup>");
-  assert(H5MMsup("Hello") == "<msup>Hello</msup>");
+  assert(H5Msup() == "<msup></msup>");
+  assert(H5Msup("Hello") == "<msup>Hello</msup>");
 }

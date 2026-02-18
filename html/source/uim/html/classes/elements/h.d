@@ -12,75 +12,40 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML heading element (h1-h6)
-class DH : HtmlElement {
-  this(int level) {
-    import std.conv : to;
+class H5H1 : HtmlElement {
+  mixin H5This!("h1", false);
 
-    super("h" ~ level.to!string);
-  }
+  mixin(H5Calls!("h1")); 
 }
 
-auto H1() {
-  return new DH(1);
+class H5H2 : HtmlElement {
+  mixin H5This!("h2", false);
+
+  mixin(H5Calls!("h2")); 
 }
 
-auto H1(string content) {
-  auto element = new DH(1);
-  element.content(content);
-  return element;
+class H5H3 : HtmlElement {
+  mixin H5This!("h3", false);
+
+  mixin(H5Calls!("h3")); 
 }
 
-auto H2() {
-  return new DH(2);
+class H5H4 : HtmlElement {
+  mixin H5This!("h4", false);
+
+  mixin(H5Calls!("h4")); 
 }
 
-auto H2(string content) {
-  auto element = new DH(2);
-  element.content(content);
-  return element;
+class H5H5 : HtmlElement {
+  mixin H5This!("h5", false);
+
+  mixin(H5Calls!("h5")); 
 }
 
-auto H3() {
-  return new DH(3);
+class H5H6 : HtmlElement {
+  mixin H5This!("h6", false);
+
+  mixin(H5Calls!("h6")); 
 }
 
-auto H3(string content) {
-  auto element = new DH(3);
-  element.content(content);
-  return element;
-}
 
-auto H4() {
-  return new DH(4);
-}
-
-auto H4(string content) {
-  auto element = new DH(4);
-  element.content(content);
-  return element;
-}
-
-auto H5() {
-  return new DH(5);
-}
-
-auto H5(string content) {
-  auto element = new DH(5);
-  element.content(content);
-  return element;
-}
-
-auto H6() {
-  return new DH(6);
-}
-
-auto H6(string content) {
-  auto element = new DH(6);
-  element.content(content);
-  return element;
-}
-
-unittest {
-  auto h1 = H1("Title");
-  assert(h1.toString() == "<h1>Title</h1>");
-}

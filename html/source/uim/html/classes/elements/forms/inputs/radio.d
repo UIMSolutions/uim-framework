@@ -1,4 +1,4 @@
-module uim.html.classes.forms.radio;
+module uim.html.classes.elements.forms.inputs.radio;
 
 import uim.html;
 
