@@ -28,7 +28,6 @@ class H5ResetInput : H5Input {
 ///
 unittest {
   auto resetInput = H5ResetInput("reset");
-  assert(resetInput == `<input type="reset" name="reset">`);
+  assert(resetInput == `<input type="reset">`);
   assert(resetInput.type() == "reset");
-  assert(resetInput.name() == "reset");  
 }

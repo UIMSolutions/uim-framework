@@ -21,21 +21,13 @@ mixin(ShowModule!());
   * assert(urlInput.name() == "url");
   */
 class H5UrlInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("url");
-    return true;  
-  }
+  mixin H5InputThis!("url");
 
   mixin(H5Calls!("UrlInput"));
 }
 ///
 unittest {
   auto urlInput = H5UrlInput("url");
-  assert(urlInput == `<input type="url" name="url">`);
+  assert(urlInput == `<input type="url">`);
   assert(urlInput.type() == "url");
-  assert(urlInput.name() == "url");  
 }

@@ -46,7 +46,7 @@ class HtmlElement : IHtmlElement {
     foreach (className; classes) {
       addClass(className);
     }
-    elements.each!(element => addContent(element)); 
+    elements.each!(element => addContent(element));
 
     initialize();
   }
@@ -73,7 +73,7 @@ class HtmlElement : IHtmlElement {
     foreach (name, value; attributes) {
       attribute(name, value);
     }
-    elements.each!(element => addContent(element)); 
+    elements.each!(element => addContent(element));
 
     initialize();
   }
@@ -103,7 +103,7 @@ class HtmlElement : IHtmlElement {
     foreach (name, value; attributes) {
       attribute(name, value);
     }
-    elements.each!(element => addContent(element)); 
+    elements.each!(element => addContent(element));
 
     initialize();
   }
@@ -279,14 +279,23 @@ class HtmlElement : IHtmlElement {
     import std.array : join;
     import std.algorithm : map;
 
-    if (_attributes.length == 0)
+    if (_attributes.length == 0) {
       return "";
+    }
 
     string[] attrStrings;
+    string id = "";
+    string classes = "";
     foreach (attribute; _attributes) {
-      attrStrings ~= attribute.toString();
+      if (attribute.name == "id") {
+        id = attribute.toString();
+      } else if (attribute.name == "class") {
+        classes = attribute.toString();
+      } else {
+        attrStrings ~= attribute.toString();
+      }
     }
-    return " " ~ attrStrings.join(" ");
+      return " " ~ [id, classes, attrStrings.sort.join(" ")].filter!(a => a.length > 0).join(" ");
   }
 
   /// Convert element to HTML string

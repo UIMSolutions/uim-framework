@@ -32,12 +32,20 @@ class H5Dialog : HtmlElement {
   }
 
   H5Dialog closedBy(bool val = true) {
-    attribute("closedby");
+    if (val) {  
+      attribute("closedby", "");
+    } else {
+      removeAttribute("closedby");
+    }
     return this;
   }
 
   H5Dialog open(bool val = true) {
-    attribute("open", "");
+    if (val) {
+      attribute("open", "");
+    } else {
+      removeAttribute("open");
+    }
     return this;
   }
 
@@ -51,5 +59,5 @@ unittest {
   assert(H5Dialog().closedBy("outside") == `<dialog closedby="outside"></dialog>`);
   assert(H5Dialog().closedBy("none") == `<dialog closedby="none"></dialog>`);
   assert(H5Dialog().closedBy(true) == `<dialog closedby></dialog>`);
-  assert(H5Dialog().open() == `<dialog open=""></dialog>`);
+  assert(H5Dialog().open() == `<dialog open></dialog>`);
 }

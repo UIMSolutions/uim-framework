@@ -74,8 +74,8 @@ class H5Select : HtmlElement {
 
   /// Adds an option to the select element with the specified value and display text.
   H5Select addOption(string value, string text) {
-    // addChild(SelectOption(value, text));
-    addContent(SelectOption(value, text));
+    auto option = H5Option(text).value(value);
+    addContent(option);
     return this;
   }
 

@@ -64,5 +64,5 @@ class H5Ol : HtmlElement {
 unittest {
   assert(H5Ol() == "<ol></ol>");
   assert(H5Ol("Item 1") == "<ol>Item 1</ol>");
-  assert(H5Ol().type("A").start("3") == "<ol type=\"A\" start=\"3\"></ol>");
+  assert(H5Ol().type("A").start("3") == `<ol start="3" type="A"></ol>`);
 }

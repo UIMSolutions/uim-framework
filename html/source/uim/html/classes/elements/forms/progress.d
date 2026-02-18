@@ -45,5 +45,5 @@ unittest {
   assert(H5Progress() == `<progress></progress>`);
   assert(H5Progress().value(50) == `<progress value="50"></progress>`);
   assert(H5Progress().max(100) == `<progress max="100"></progress>`);
-  assert(H5Progress().value(70).max(100) == `<progress value="70" max="100"></progress>`);
+  assert(H5Progress().value(70).max(100) == `<progress max="100" value="70"></progress>`);
 }

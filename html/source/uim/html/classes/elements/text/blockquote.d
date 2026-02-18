@@ -42,6 +42,6 @@ class H5Blockquote : HtmlElement {
 ///
 unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
-  assert(H5Blockquote(
-      "https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
+   assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
+    assert(H5Blockquote().cite("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
 }

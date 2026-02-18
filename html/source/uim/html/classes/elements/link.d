@@ -32,7 +32,7 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  IHtmlElement rel() {
+  IHtmlAttribute rel() {
     return attribute("rel");
   }
 

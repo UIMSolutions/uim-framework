@@ -25,5 +25,5 @@ class H5Sub : HtmlElement {
 unittest {
   assert(H5Sub() == "<sub></sub>");
   assert(H5Sub("Hello") == "<sub>Hello</sub>");
-  assert(H5Sub(["test"], "Hello") == "<sub>Hello</sub>");
+  assert(H5Sub(["test"], "Hello") == `<sub class="test">Hello</sub>`);
 }

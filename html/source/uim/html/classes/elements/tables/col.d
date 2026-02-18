@@ -50,5 +50,6 @@ unittest {
   assert(H5Col() == "<col />");
   assert(H5Col().colspan("2") == `<col colspan="2" />`);
   assert(H5Col().rowspan("3") == `<col rowspan="3" />`);
+  writeln(H5Col().colspan("2").rowspan("3"));
   assert(H5Col().colspan("2").rowspan("3") == `<col colspan="2" rowspan="3" />`);
 }

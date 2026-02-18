@@ -28,6 +28,7 @@ class H5Wbr : HtmlElement {
 }
 ///
 unittest {
+  writeln(H5Wbr());
   assert(H5Wbr() == "<wbr></wbr>");
   assert(H5Wbr("Hello") == "<wbr>Hello</wbr>");
   assert(H5Wbr(["test"], "Hello") == `<wbr class="test">Hello</wbr>`);

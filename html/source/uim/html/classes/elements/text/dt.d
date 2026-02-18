@@ -25,7 +25,9 @@ class H5Dt : HtmlElement {
 unittest {
   assert(H5Dt() == "<dt></dt>");
   assert(H5Dt("Term") == "<dt>Term</dt>");
+  writeln(H5Dt(["test"], "Term"));
   assert(H5Dt(["test"], "Term") == `<dt class="test">Term</dt>`);
   assert(H5Dt(["a":"b"], "Term") == `<dt a="b">Term</dt>`);
+
   assert(H5Dt(["test"], ["a":"b"], "Term") == `<dt class="test" a="b">Term</dt>`);
 }

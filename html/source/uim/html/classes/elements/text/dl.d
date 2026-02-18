@@ -30,5 +30,6 @@ unittest {
   assert(H5Dl("Hello") == "<dl>Hello</dl>");
   assert(H5Dl(["test"], "Hello") == `<dl class="test">Hello</dl>`);
   assert(H5Dl(["a":"b"], "Hello") == `<dl a="b">Hello</dl>`);
+  writeln(H5Dl(["test"], ["a":"b"], "Hello"));
   assert(H5Dl(["test"], ["a":"b"], "Hello") == `<dl class="test" a="b">Hello</dl>`);
 }

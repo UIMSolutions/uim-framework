@@ -32,7 +32,7 @@ class H5Math : HtmlElement {
   mixin H5This!("math", false);
 
   H5Math display(string value) {
-    this.setAttribute("display", value);
+    attribute("display", value);
     return this;
   }
 

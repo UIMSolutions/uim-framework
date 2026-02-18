@@ -28,5 +28,5 @@ class H5Small : HtmlElement {
 unittest {
   assert(H5Small() == "<small></small>");
   assert(H5Small("Hello") == "<small>Hello</small>");
-  assert(H5Small(["test"], "Hello") == "<small>Hello</small>");
+  assert(H5Small(["test"], "Hello") == `<small class="test">Hello</small>`);
 }

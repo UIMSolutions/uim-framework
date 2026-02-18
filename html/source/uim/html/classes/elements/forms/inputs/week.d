@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(weekInput.name() == "week");
   */
 class H5WeekInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("week");
-    return true;  
-  }
+  mixin H5InputThis!("week");
 
   mixin(H5Calls!("WeekInput"));
 }
