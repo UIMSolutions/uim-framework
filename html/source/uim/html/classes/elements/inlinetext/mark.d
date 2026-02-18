@@ -12,9 +12,13 @@ mixin(ShowModule!());
 @safe:
 
 /** 
- * The <mark> HTML element represents text which is marked or highlighted for reference or notation purposes, due to the marked passage's relevance in another context. 
- * It is often used to highlight parts of a text that are relevant to a search query, or to indicate a part of a text that has been changed or added in a document.
- */
+  * The <mark> HTML element represents text that is marked or highlighted for reference or notation purposes. 
+  * It is typically used to indicate a portion of text that has been highlighted by the user or to draw attention to specific content within a document.
+  * The content inside the <mark> element is usually displayed with a yellow background by browsers, but the exact presentation may vary based on the browser's default styles and any additional CSS applied.
+  *
+  * Example usage:
+  * <p>This is a <mark>highlighted</mark> word.</p>
+  */
 class H5Mark : HtmlElement {
   mixin H5This!("mark", false);
 

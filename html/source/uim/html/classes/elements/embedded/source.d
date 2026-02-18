@@ -26,10 +26,72 @@ mixin(ShowModule!());
 class H5Source : HtmlElement {
   mixin H5This!("source", false);
 
+  H5Source srcset(string srcset) {
+    attribute("srcset", srcset);
+    return this;
+  }
+
+  IHTMLAttribute srcset() {
+    return attribute("srcset");
+  }
+
+  H5Source media(string mediaQuery) {
+    attribute("media", mediaQuery);
+    return this;
+  }
+
+  IHTMLAttribute media() {
+    return attribute("media");
+  }
+
+  H5Source type(string mimeType) {
+    attribute("type", mimeType);
+    return this;
+  }
+
+  IHTMLAttribute type() {
+    return attribute("type");
+  }
+
+  H5Source sizes(string sizes) {
+    attribute("sizes", sizes);
+    return this;
+  }
+
+  IHTMLAttribute sizes() {
+    return attribute("sizes");
+  }
+
+  H5Source width(string width) {
+    attribute("width", width);
+    return this;
+  }
+
+  IHTMLAttribute width() {
+    return attribute("width");
+  }
+
+  H5Source height(string height) {
+    attribute("height", height);
+    return this;
+  }
+
+  IHTMLAttribute height() {
+    return attribute("height");
+  }
+
   mixin(H5Calls!("source"));
 }
 ///
 unittest {
   assert(H5Source() == "<source></source>");
   assert(H5Source("Hello") == "<source>Hello</source>");
+  assert(H5Source().srcset("image.jpg").media("(min-width: 600px)").type("image/jpeg").sizes("100vw").width("600").height("400") == "<source srcset=\"image.jpg\" media=\"(min-width: 600px)\" type=\"image/jpeg\" sizes=\"100vw\" width=\"600\" height=\"400\"></source>");
+
+  assert(H5Source().srcset() == "image.jpg");
+  assert(H5Source().media() == "(min-width: 600px)");
+  assert(H5Source().type() == "image/jpeg");
+  assert(H5Source().sizes() == "100vw");
+  assert(H5Source().width() == "600");
+  assert(H5Source().height() == "400");
 }

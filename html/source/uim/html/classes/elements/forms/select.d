@@ -11,7 +11,23 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML select element
+/**
+  * The <select> HTML element represents a control that provides a menu of options. 
+  * The <select> element can be used in forms to gather user input, and it can be styled using CSS to customize its appearance. 
+  * The <select> element can contain one or more <option> elements, which represent the available options in the dropdown menu. 
+  * The user can select one or more options from the dropdown menu, depending on the presence of the multiple attribute.
+  *
+  * Example usage:
+  * <form>
+  *   <label for="country">Choose a country:</label>
+  *   <select id="country" name="country">
+  *     <option value="usa">United States</option>
+  *     <option value="canada">Canada</option>
+  *     <option value="mexico">Mexico</option>
+  *   </select>
+  *   <input type="submit" value="Submit">
+  * </form>
+ */
 class H5Select : H5FormElement {
   mixin H5This!("select", false);
 

@@ -12,9 +12,21 @@ mixin(ShowModule!());
 @safe:
 
 /**
-  * Represents an HTML <form> element.
-  * Provides methods to set form attributes like action, method, and enctype.
-  */
+  * HTML form element
+  * 
+  * The <form> element represents a document section that contains interactive controls for submitting information to a web server. 
+  * A form can contain various types of input elements, such as text fields, checkboxes, radio buttons, submit buttons, and more. 
+  * The <form> element has attributes like action (the URL to which the form data will be sent) and method (the HTTP method to use when submitting the form). 
+  * Forms are essential for collecting user input and facilitating interactions on websites.
+  *
+  * Example usage:
+  *
+  * <form action="/submit" method="POST">
+  *   <label for="name">Name:</label>
+  *   <input type="text" id="name" name="name"><br><br>
+  *   <input type="submit" value="Submit">
+  * </form>
+ */
 class H5Form : HtmlElement, IHtmlForm {
   mixin H5This!("form", false);
 

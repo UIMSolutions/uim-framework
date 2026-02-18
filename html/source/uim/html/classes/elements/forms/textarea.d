@@ -11,7 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML textarea element
+/**
+  * HTML textarea element
+  * 
+  * The <textarea> element represents a multi-line plain-text editing control. It is commonly used in forms to allow users to input longer text, such as comments, messages, or descriptions.
+  * 
+  * Example usage:
+  * 
+  * <textarea name="message" rows="4" cols="50" placeholder="Enter your message here..."></textarea>
+  *
+  * The <textarea> element can be configured with attributes like name, rows, cols, placeholder, required, disabled, and readonly to control its behavior and appearance.
+  */
 class H5Textarea : H5FormElement {
   mixin H5This!("textarea", false);
 

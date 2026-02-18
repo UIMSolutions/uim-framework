@@ -31,19 +31,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tr : HtmlElement {
-  this() {
-    super("tr");
-  }
+  mixin H5This!("tr", false);
 
-  static H5Tr opCall() {
-    return new H5Tr();
-  }
-
-  static H5Tr opCall(string content) {
-    auto html = new H5Tr();
-    html.text(content);
-    return html;
-  }
+  mixin(H5Calls!("tr"));
 }
 ///
 unittest {

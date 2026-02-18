@@ -31,6 +31,57 @@ mixin(ShowModule!());
 class H5Datalist : H5FormElement {
   mixin H5This!("datalist", false);
 
+   H5Datalist addOptions(H5Option[] options) {
+     options.each!(option => addOption(option));
+     return this;
+   }
+
+  H5Datalist addOption(string value) {
+    auto option = new H5Option();
+    option.value(value);
+    appendChild(option);
+    return this;
+  }
+
+   H5Datalist addOption(string value, string label) {
+    auto option = new H5Option();
+    option.value(value);
+    option.label(label);
+    appendChild(option);
+    return this;
+  }
+
+   H5Datalist addOption(string value, string label, bool disabled) {
+    auto option = new H5Option();
+    option.value(value);
+    option.label(label);
+    if (disabled) {
+      option.disabled(true);
+    }
+    appendChild(option);
+    return this;
+  }
+
+   H5Datalist addOption(string value, string label, bool disabled, bool selected) {
+    auto option = new H5Option();
+    option.value(value);
+    option.label(label);
+    if (disabled) {
+      option.disabled(true);
+    }
+    if (selected) {
+      option.selected(true);
+    }
+    appendChild(option);
+    return this;
+  }
+
+   H5Datalist addOption(H5Option option) {
+    appendChild(option);
+    return this;
+  }
+
+
   mixin(H5Calls!("datalist"));
 }
 /// 

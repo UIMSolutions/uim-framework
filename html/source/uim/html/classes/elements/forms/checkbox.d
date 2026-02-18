@@ -11,6 +11,20 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <input type="checkbox"> HTML element represents a checkbox, which is a form control that allows users to select one or more options from a set. 
+  * A checkbox is typically displayed as a small square box that can be checked (selected) or unchecked (deselected) by the user. 
+  * The <input type="checkbox"> element can be used in forms to gather user input, and it can be styled using CSS to customize its appearance. 
+  * When a checkbox is checked, its value is submitted with the form data, allowing the server to process the user's selection.
+  *
+  * Example usage:
+  * <form>
+  *   <label><input type="checkbox" name="option1" value="Option 1"> Option 1</label><br>
+  *   <label><input type="checkbox" name="option2" value="Option 2"> Option 2</label><br>
+  *   <label><input type="checkbox" name="option3" value="Option 3"> Option 3</label><br>
+  *   <input type="submit" value="Submit">
+  * </form>
+ */
 class H5Checkbox : H5Input {
   this() {
     super("input");
@@ -22,9 +36,7 @@ class H5Checkbox : H5Input {
     type("checkbox");
   }
 
-  static H5Checkbox opCall() {
-    return new H5Checkbox();
-  }
+  mixin(H5Calls!("checkbox"));
 }
 /// 
 unittest {

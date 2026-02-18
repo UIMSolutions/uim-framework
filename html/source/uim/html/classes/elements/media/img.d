@@ -28,7 +28,7 @@ mixin(ShowModule!());
 class H5Img : HtmlElement {
   mixin H5This!("img", true);
 
-  IHtmlElement src(string source) {
+  H5Img src(string source) {
     attribute("src", source);
     return this;
   }
@@ -37,7 +37,7 @@ class H5Img : HtmlElement {
     return attribute("src");
   }
 
-  IHtmlElement alt(string altText) {
+  H5Img alt(string altText) {
     attribute("alt", altText);
     return this;
   }
@@ -46,8 +46,8 @@ class H5Img : HtmlElement {
     return attribute("alt");
   }
 
-  IHtmlElement height(string h) {
-    attribute("height", h);
+  H5Img height(string size) {
+    attribute("height", size);
     return this;
   }
 
@@ -56,12 +56,13 @@ class H5Img : HtmlElement {
   }
 
   // #region width
-  // Width attribute
-  IHtmlElement width(string w) {
-    attribute("width", w);
+  /// Sets the width of the image. The value can be specified in pixels (e.g., "500px") or as a percentage (e.g., "50%").
+  H5Img width(string size) {
+    attribute("width", size);
     return this;
   }
 
+  /// Gets the width of the image. The value can be specified in pixels (e.g., "500px") or as a percentage (e.g., "50%").
   IHtmlAttribute width() {
     return attribute("width");
   }

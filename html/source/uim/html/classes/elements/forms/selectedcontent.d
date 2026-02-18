@@ -12,16 +12,13 @@ mixin(ShowModule!());
 @safe:
 
 /**
-  * Represents an HTML <selectedcontent> element.
-  * The <selectedcontent> element is used to define the content that is displayed when an option is selected in a <select> element.
-  * It can contain any HTML content, such as text, images, or other elements.
-  * Example usage:
-  * auto selectedContent = H5SelectedContent("Selected option details");
-  * selectedContent can be dynamically updated based on user selection in a <select> element.
+  * The <selectedcontent> HTML element is a custom element that can be used to represent content that is selected or highlighted in some way. 
+  * It is not a standard HTML element and may require additional styling and scripting to achieve the desired functionality.
+  * The <selectedcontent> element can be used in various contexts, such as within forms, lists, or any other part of a web page where selected content needs to be visually distinguished.
   *
-  * Note: The <selectedcontent> element is typically used in conjunction with JavaScript to dynamically update the displayed content based on user selection.
+  * Example usage:
+  * <selectedcontent>This content is selected.</selectedcontent>
   */
-
 class H5SelectedContent : HtmlElement {
   mixin H5This!("selectedcontent", false);
 

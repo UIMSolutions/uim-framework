@@ -12,18 +12,25 @@ mixin(ShowModule!());
 @safe:
 
 /**
-  * Represents an HTML <meter> element.
-  * Provides methods to set meter attributes like value, min, max, low, high, and optimum.
+  * The <meter> HTML element represents either a scalar value within a known range or a fractional value. 
+  * It is commonly used to display a measurement, such as disk usage, battery level, or any other value that can be represented as a fraction of a total.
+  * The <meter> element includes attributes like value (the current value), min (the minimum value), max (the maximum value), low (the lower bound of the "low" range), high (the upper bound of the "high" range), and optimum (the optimal value).
+  *
   * Example usage:
-  * auto meter = H5Meter().value(0.5).min(0).max(1);
+  * <meter value="0.6" min="0" max="1" low="0.3" high="0.8" optimum="0.5">60%</meter>
   */
-
 class H5Meter : HtmlElement {
   mixin H5This!("meter", false);
 
   /// Sets the value attribute of the meter.
   H5Meter value(double val) {
     attribute("value", val.to!string);
+    return this;
+  }
+
+    /// Gets the value attribute of the meter.
+  H5Meter value() {
+    attribute("value");
     return this;
   }
 
