@@ -25,19 +25,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Dd : HtmlElement {
-  this() {
-    super("dd");
-  }
+  mixin H5This!("dd", false);
 
-  static H5Dd opCall() {
-    return new H5Dd();
-  }
-
-  static H5Dd opCall(string content) {
-    auto dd = new H5Dd();
-    dd.text(content);
-    return dd;
-  }
+  mixin(H5Calls!("dd"));
 }
 ///
 unittest {

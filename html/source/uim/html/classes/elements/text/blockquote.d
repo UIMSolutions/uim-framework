@@ -26,11 +26,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Blockquote : HtmlElement {
-  this() {
-    super("blockquote");
-  }
+  mixin H5This!("blockquote", false);
 
-  IHtmlElement cite(string url) {
+  H5Blockquote cite(string url) {
     attribute("cite", url);
     return this;
   }
@@ -39,15 +37,7 @@ class H5Blockquote : HtmlElement {
     return attribute("cite");
   }
 
-  static H5Blockquote opCall() {
-    return new H5Blockquote();
-  }
-
-  static H5Blockquote opCall(string url, string text = null) {
-    auto element = new H5Blockquote();
-    element.cite(url);
-    return element;
-  }
+mixin(H5Calls!("blockquote"))
 }
 ///
 unittest {

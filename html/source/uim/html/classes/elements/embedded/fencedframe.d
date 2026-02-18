@@ -11,18 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+ * The <fencedframe> HTML element is a non-standard element that is not part of the official HTML specification. 
+ * It is used to create a fenced frame, which is a type of container that can be used to group and visually separate content on a web page. 
+ * The <fencedframe> element typically has a border around it, and it can be styled using CSS to customize its appearance. 
+ * However, since it is not a standard element, its behavior and support may vary across different web browsers, and it is generally recommended to use standard HTML elements for better compatibility and accessibility.
+ *
+ * Example usage:
+ * ```html
+ * <fencedframe>
+ *   <p>This content is inside a fenced frame.</p>
+ * </fencedframe>
+ * ```
+ * This would create a fenced frame containing a paragraph of text.
+ */
 class H5Fencedframe : HtmlElement {
   mixin H5This!("fencedframe", false);
 
-  static H5Fencedframe opCall() {
-    return new H5Fencedframe();
-  }
-
-  static H5Fencedframe opCall(string content) {
-    auto element = new H5Fencedframe();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("fencedframe"));
 }
 ///
 unittest {

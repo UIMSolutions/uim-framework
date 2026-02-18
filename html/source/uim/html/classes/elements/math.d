@@ -31,18 +31,7 @@ mixin(ShowModule!());
 class H5Math : HtmlElement {
   mixin H5This!("math", false);
 
-  // Factory methods
-  static H5Math opCall() {
-    return new H5Math();
-  }
-
-  // Factory methods
-  static H5Math opCall(string content) {
-    auto element = new H5Math();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Calls!("math"));
 }
 ///
 unittest {

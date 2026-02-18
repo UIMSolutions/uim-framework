@@ -12,25 +12,25 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML base element
-class Base : HtmlElement {
+class H5Base : HtmlElement {
   this() {
     super("base");
     this.selfClosing(true);
   }
 
-  IHtmlElement href(string h) {
+  H5Base href(string h) {
     attribute("href", h);
     return this;
   }
 
-  IHtmlAttribute href() {
+  IHTMLAttribute href() {
     return attribute("href");
   }
 
   // #region target
   // Valid values for target attribute
   // _self, _blank, _parent, _top, framename
-  IHtmlElement target(string value) {
+  H5Base target(string value) {
     attribute("target", value);
     return this;
   }

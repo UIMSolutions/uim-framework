@@ -26,9 +26,7 @@ mixin(ShowModule!());
   * than the <input type="button"> element, which cannot contain content.
   */
 class H5Button : H5FormElement {
-  this() {
-    super("button");
-  }
+  mixin H5This!("button", false);
 
   // #region type
   H5Button type(string typeValue) {
@@ -63,7 +61,7 @@ class H5Button : H5FormElement {
 unittest {
   assert(H5Button() == "<button></button>");
   assert(H5Button("Click me") == "<button>Click me</button>");
-// TODO:  assert(H5Button().submit() == "<button type=\"submit\"></button>");
-// TODO:  assert(H5Button().reset() == "<button type=\"reset\"></button>");
-// TODO:  assert(H5Button().disabled() == "<button disabled></button>");
+  assert(H5Button().submit() == "<button type=\"submit\"></button>");
+  assert(H5Button().reset() == "<button type=\"reset\"></button>");
+  assert(H5Button().disabled() == "<button disabled></button>");
 }

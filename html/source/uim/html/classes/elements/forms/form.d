@@ -15,49 +15,50 @@ mixin(ShowModule!());
   * Represents an HTML <form> element.
   * Provides methods to set form attributes like action, method, and enctype.
   */
-class Form : HtmlElement, IHtmlForm {
-  this() {
-    super("form");
+class H5Form : HtmlElement, IHtmlForm {
+  mixin H5This!("form", false);
+
+
+
+  H5Form name() {
+    attribute("name");
+    return this;
   }
 
-  IHtmlAttribute name() {
-    return attribute("name");
-  }
-
-  override IHtmlForm name(string nameValue) {
+  override H5Form name(string nameValue) {
     attribute("name", nameValue);
     return this;
   }
 
-  IHtmlForm action(string url) {
+  H5Form action(string url) {
     attribute("action", url);
     return this;
   }
 
-  IHtmlForm method(string methoUIMValue) {
+  H5Form method(string methoUIMValue) {
     attribute("method", methoUIMValue);
     return this;
   }
 
   /// Sets the method attribute of the form to "POST".
-  IHtmlForm post() {
-    return method("POST");
+  H5Form post() {
+    method("POST");
+    return this;
   }
 
   /// Sets the method attribute of the form to "GET".
-  IHtmlForm get() {
-    return method("GET");
+    H5Form get() {
+      method("GET");
+      return this;  
   }
 
   /// Sets the enctype attribute of the form.
-  IHtmlForm enctype(string value) {
+  H5Form enctype(string value) {
     attribute("enctype", value);
     return this;
   }
 
-  static Form opCall() {
-    return new Form();
-  }
+  mixin(H5Calls!("form"));
 }
 ///
 unittest {
