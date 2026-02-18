@@ -23,19 +23,19 @@ mixin(ShowModule!());
   * auto submitButton = H5Input().SubmitInput("Login");
   */
 class H5Input : HtmlElement {
-  mixin H5This!("input", false);
+  mixin H5This!("input", true);
 
   H5Input type(string typeValue) {
     attribute("type", typeValue);
     return this;
   }
 
-  IHtmlAttribute type() {
-    return attribute("type");
+  string type() {
+    return attribute("type").value;
   }
 
-  IHtmlAttribute name() {
-    return attribute("name");
+  string name() {
+    return attribute("name").value;
   }
 
   H5Input name(string nameValue) {
@@ -48,8 +48,8 @@ class H5Input : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute value() {
-    return attribute("value");
+  string value() {
+    return attribute("value").value;
   }
 
   H5Input placeholder(string text) {
@@ -57,8 +57,8 @@ class H5Input : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute placeholder() {
-    return attribute("placeholder");
+  string placeholder() {
+    return attribute("placeholder").value;
   }
 
   H5Input required(bool isRequired = true) {

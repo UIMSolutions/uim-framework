@@ -28,6 +28,6 @@ class H5UrlInput : H5Input {
 ///
 unittest {
   auto urlInput = H5UrlInput("url");
-  assert(urlInput == `<input type="url">`);
+  assert(urlInput == `<input type="url" />`);
   assert(urlInput.type() == "url");
 }

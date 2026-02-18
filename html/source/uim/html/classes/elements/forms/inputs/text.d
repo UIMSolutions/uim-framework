@@ -28,6 +28,6 @@ class H5TextInput : H5Input {
 ///
 unittest {
   auto textInput = H5TextInput("username");
-  assert(textInput == `<input type="text">`);
+  assert(textInput == `<input type="text" />`);
   assert(textInput.type() == "text");
 }

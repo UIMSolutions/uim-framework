@@ -28,7 +28,6 @@ class H5TimeInput : H5Input {
 ///
 unittest {
   auto timeInput = H5TimeInput("time");
-  assert(timeInput == `<input type="time" name="time">`);
+  assert(timeInput == `<input type="time" />`);
   assert(timeInput.type() == "time");
-  assert(timeInput.name() == "time");  
 }

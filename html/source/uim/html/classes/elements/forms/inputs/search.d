@@ -28,6 +28,6 @@ class H5SearchInput : H5Input {
 ///
 unittest {
   auto searchInput = H5SearchInput("search");
-  assert(searchInput == `<input type="search">`);
+  assert(searchInput == `<input type="search" />`);
   assert(searchInput.type() == "search");
 }

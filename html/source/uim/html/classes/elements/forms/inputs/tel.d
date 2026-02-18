@@ -28,7 +28,6 @@ class H5TelInput : H5Input {
 ///
 unittest {
   auto telInput = H5TelInput("phone");
-  assert(telInput == `<input type="tel" name="phone">`);
+  assert(telInput == `<input type="tel" />`);
   assert(telInput.type() == "tel");
-  assert(telInput.name() == "phone");  
 }

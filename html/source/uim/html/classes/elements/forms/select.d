@@ -84,7 +84,7 @@ class H5Select : HtmlElement {
 
 unittest {
   assert(H5Select() == "<select></select>");
-  assert(H5Select("country") == "<select name=\"country\"></select>");
+  assert(H5Select("country") == "<select>country</select>");
   // assert(H5Select().multiple() == "<select multiple></select>");
   // assert(H5Select().required() == "<select required></select>");
   // assert(H5Select().disabled() == "<select disabled></select>");

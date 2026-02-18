@@ -65,6 +65,6 @@ unittest {
   assert(H5Option() == `<option></option>`);
   assert(H5Option("Option 1") == `<option>Option 1</option>`);
   assert(H5Option().value("1") == `<option value="1"></option>`);
-  assert(H5Option().selected() == `<option selected=""></option>`);
-  assert(H5Option().disabled() == `<option disabled=""></option>`);
+  assert(H5Option().selected() == `<option selected></option>`);
+  assert(H5Option().disabled() == `<option disabled></option>`);
 }
