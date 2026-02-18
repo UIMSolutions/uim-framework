@@ -22,7 +22,7 @@ mixin(ShowModule!());
   *
   * The <textarea> element can be configured with attributes like name, rows, cols, placeholder, required, disabled, and readonly to control its behavior and appearance.
   */
-class H5Textarea : H5FormElement {
+class H5Textarea : HtmlElement {
   mixin H5This!("textarea", false);
 
   IHtmlAttribute name() {
@@ -39,14 +39,26 @@ class H5Textarea : H5FormElement {
     return this;
   }
 
+  IHtmlAttribute rows() {
+    return attribute("rows");
+  }
+
   H5Textarea cols(string colCount) {
     attribute("cols", colCount);
     return this;
   }
 
+  IHtmlAttribute cols() {
+    return attribute("cols");
+  }
+
   H5Textarea placeholder(string text) {
     attribute("placeholder", text);
     return this;
+  }
+
+  IHtmlAttribute placeholder() {
+    return attribute("placeholder");
   }
 
   H5Textarea required() {
@@ -73,4 +85,6 @@ unittest {
   assert(H5Textarea(["test"], "Hello") == `<textarea class="test">Hello</textarea>`);
   assert(H5Textarea(["a": "b"], "Hello") == `<textarea a="b">Hello</textarea>`);
   assert(H5Textarea(["test"], ["a": "b"], "Hello") == `<textarea class="test" a="b">Hello</textarea>`);
+
+  assert(H5Textarea().name("message") == `<textarea name="message"></textarea>`);
 }

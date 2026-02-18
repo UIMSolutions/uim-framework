@@ -28,41 +28,41 @@ mixin(ShowModule!());
   *   <option value="Safari">
   * </datalist>
   */
-class H5Datalist : H5FormElement {
+class H5Datalist : HtmlElement {
   mixin H5This!("datalist", false);
 
-   H5Datalist addOptions(H5Option[] options) {
-     options.each!(option => addOption(option));
-     return this;
-   }
+  H5Datalist addOptions(H5Option[] options) {
+    options.each!(option => addOption(option));
+    return this;
+  }
 
   H5Datalist addOption(string value) {
     auto option = new H5Option();
     option.value(value);
-    add(option);
+    addContent(option);
     return this;
   }
 
-   H5Datalist addOption(string value, string label) {
+  H5Datalist addOption(string value, string label) {
     auto option = new H5Option();
     option.value(value);
     option.label(label);
-    add(option);
+    addContent(option);
     return this;
   }
 
-   H5Datalist addOption(string value, string label, bool disabled) {
+  H5Datalist addOption(string value, string label, bool disabled) {
     auto option = new H5Option();
     option.value(value);
     option.label(label);
     if (disabled) {
       option.disabled(true);
     }
-    add(option);
+    addContent(option);
     return this;
   }
 
-   H5Datalist addOption(string value, string label, bool disabled, bool selected) {
+  H5Datalist addOption(string value, string label, bool disabled, bool selected) {
     auto option = new H5Option();
     option.value(value);
     option.label(label);
@@ -72,15 +72,14 @@ class H5Datalist : H5FormElement {
     if (selected) {
       option.selected(true);
     }
-    add(option);
-    return this;
-  }
-
-   H5Datalist addOption(H5Option option) {
     addContent(option);
     return this;
   }
 
+  H5Datalist addOption(H5Option option) {
+    addContent(option);
+    return this;
+  }
 
   mixin(H5Calls!("datalist"));
 }

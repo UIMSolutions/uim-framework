@@ -17,7 +17,7 @@ mixin(ShowModule!());
   * Example usage:
   * auto option = H5Option("Option 1").value("1").selected();
   */
-class H5Option : H5FormElement {
+class H5Option : HtmlElement {
     mixin H5This!("option", false);
 
     H5Option value(string valueValue) {
@@ -25,6 +25,12 @@ class H5Option : H5FormElement {
         return this;
     }
 
+    IHtmlAttribute value() {
+        return attribute("value");
+    }
+
+    H5Option label(string labelValue) { 
+        
     H5Option selected() {
         attribute("selected", "");
         return this;

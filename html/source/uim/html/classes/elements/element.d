@@ -1,8 +1,8 @@
 /****************************************************************************************************************
-  * Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
-  * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
-  * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
-  *****************************************************************************************************************/
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+*****************************************************************************************************************/
 module uim.html.classes.elements.element;
 
 import uim.html;
@@ -16,6 +16,7 @@ class HtmlElement : IHtmlElement {
   this() {
     // super();
     _selfClosing = false;
+    initialize();
   }
 
   this(string tag, string content = "") {
@@ -24,6 +25,7 @@ class HtmlElement : IHtmlElement {
     if (content.length > 0) {
       addContent(content);
     }
+    initialize();
   }
 
   this(string tag, string[] classes, string content = "") {
@@ -35,6 +37,7 @@ class HtmlElement : IHtmlElement {
     if (content.length > 0) {
       addContent(content);
     }
+    initialize();
   }
 
   this(string tag, string[] classes, IHtmlElement[] elements) {
@@ -44,6 +47,8 @@ class HtmlElement : IHtmlElement {
       addClass(className);
     }
     elements.each!(element => addContent(element)); 
+
+    initialize();
   }
 
   this(string tag, string[string] attributes, string content = "") {
@@ -57,6 +62,8 @@ class HtmlElement : IHtmlElement {
     if (content.length > 0) {
       addContent(content);
     }
+
+    initialize();
   }
 
   this(string tag, string[string] attributes, IHtmlElement[] elements) {
@@ -67,6 +74,8 @@ class HtmlElement : IHtmlElement {
       attribute(name, value);
     }
     elements.each!(element => addContent(element)); 
+
+    initialize();
   }
 
   this(string tag, string[] classes, string[string] attributes, string content = "") {
@@ -81,6 +90,8 @@ class HtmlElement : IHtmlElement {
     if (content.length > 0) {
       addContent(content);
     }
+
+    initialize();
   }
 
   this(string tag, string[] classes, string[string] attributes, IHtmlElement[] elements) {
@@ -93,6 +104,12 @@ class HtmlElement : IHtmlElement {
       attribute(name, value);
     }
     elements.each!(element => addContent(element)); 
+
+    initialize();
+  }
+
+  bool initialize(Json[string] initData = null) {
+    return true;
   }
 
   protected string _tagName;

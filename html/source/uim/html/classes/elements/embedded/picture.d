@@ -38,7 +38,7 @@ class H5Picture : HtmlElement {
   }
 
   H5Picture addSource(H5Source source) {
-    this.add(source);
+    addContent(source);
     return this;
   }
 
@@ -50,7 +50,7 @@ class H5Picture : HtmlElement {
   }
 
   H5Picture addImage(H5Img img) {
-    this.add(img);
+    addContent(img);
     return this;
   }
 

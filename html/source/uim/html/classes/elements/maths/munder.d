@@ -7,7 +7,7 @@ module uim.html.classes.elements.maths.munder;
 
 import uim.html;
 
-mixin(ShowMunderdule!());
+mixin(ShowModule!());
 
 @safe:
 

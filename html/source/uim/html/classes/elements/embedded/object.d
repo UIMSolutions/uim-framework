@@ -24,10 +24,7 @@ mixin(ShowModule!());
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
 class H5Object : HtmlElement {
-  this() {
-    super("object");
-    this.selfClosing(false);
-  }
+  mixin H5This!("object", false);
 
   /**
     * Sets the URL of the content being embedded in the <object> element. This attribute is required for the <object> element to function properly, as it specifies the source of the content to be displayed.

@@ -11,13 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-class H5MRow : HtmlElement {
+class H5Mrow : HtmlElement {
   mixin H5This!("mrow", false);
 
   mixin(H5Calls!("mrow"));
 }
 ///
 unittest {
-  assert(H5MRow() == "<mrow></mrow>");
-  assert(H5MRow("Hello") == "<mrow>Hello</mrow>");
+  assert(H5Mrow() == "<mrow></mrow>");
+  assert(H5MMrow("Hello") == "<mrow>Hello</mrow>");
 }

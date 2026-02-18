@@ -19,15 +19,19 @@ mixin(ShowModule!());
   * </form>
   */
 class H5Radio : H5Input {
-  this() {
-    super("input");
+  mixin H5This!("radio", false);
+
+  override bool initialize(Json[string] initData = null) {
+    super.initialize(initData);
+
     attribute("type", "radio");
+    return true;
   }
 
   mixin(H5Calls!("Radio"));
 }
 ///
 unittest {
-  assert(Radio() == `<input type="radio" />`);
+  assert(H5Radio() == `<input type="radio" />`);
   //TODO: assert(Radio("Option 1") == `<input type="radio" />Option 1`);
   }

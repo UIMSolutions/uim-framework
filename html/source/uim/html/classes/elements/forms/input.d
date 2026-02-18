@@ -22,16 +22,8 @@ mixin(ShowModule!());
   * auto passwordInput = H5Input().PasswordInput("password").placeholder("Enter your password");
   * auto submitButton = H5Input().SubmitInput("Login");
   */
-class H5Input : H5FormElement, IInput {
-  this() {
-    super("input");
-    this.selfClosing(true);
-  }
-
-  this(string tag) {
-    super(tag);
-    this.selfClosing(true);
-  }
+class H5Input : HtmlElement {
+  mixin H5This!("input", false);
 
   IInput type(string typeValue) {
     attribute("type", typeValue);
@@ -61,6 +53,10 @@ class H5Input : H5FormElement, IInput {
     return this;
   }
 
+  IHtmlAttribute placeholder() {
+    return attribute("placeholder");
+  }
+
   H5Input required() {
     attribute("required", "");
     return this;
@@ -81,14 +77,7 @@ class H5Input : H5FormElement, IInput {
     return this;
   }
 
-  static H5Input opCall() {
-    return new H5Input();
-  }
-
-  static H5Input opCall(string tag) {
-    return new H5Input(tag);
-  }
-
+  mixin(H5Calls!("Input"));
 }
 ///
 unittest {

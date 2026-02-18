@@ -17,7 +17,7 @@ mixin(ShowModule!());
   *   <!-- form fields here -->
   * </fieldset>
   */
-class H5Legend : H5FormElement {
+class H5Legend : HtmlElement {
   mixin H5This!("legend");
 
   mixin(H5Calls!("legend"));

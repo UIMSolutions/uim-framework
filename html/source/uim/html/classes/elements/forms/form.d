@@ -30,7 +30,6 @@ mixin(ShowModule!());
 class H5Form : HtmlElement { // IHtmlForm {
   mixin H5This!("form", false);
 
-
   H5Form name() {
     attribute("name");
     return this;
@@ -73,6 +72,6 @@ class H5Form : HtmlElement { // IHtmlForm {
 }
 ///
 unittest {
-  auto form = Form().action("/submit").post();
+  auto form = H5Form().action("/submit").post();
   assert(form.toString().indexOf("action=\"/submit\"") > 0);
 }

@@ -26,14 +26,13 @@ mixin(ShowModule!());
   * </form>
  */
 class H5Checkbox : H5Input {
-  this() {
-    super("input");
-    type("checkbox");
-  }
+  mixin H5This!("checkbox", false);
 
-  this(string tag) {
-    super(tag);
+  override bool initialize(Json[string] initData = null) {
+    super.initialize(initData);
+
     type("checkbox");
+    return true;
   }
 
   mixin(H5Calls!("checkbox"));
