@@ -28,9 +28,6 @@ class H5WeekInput : H5Input {
 ///
 unittest {
   auto weekInput = H5WeekInput("week");
-  writeln(weekInput);
   assert(weekInput == `<input type="week" />`);
-
-  writeln(weekInput.type());
   assert(weekInput.type() == "week");
 }

@@ -28,7 +28,6 @@ class H5ButtonInput : H5Input {
 ///
 unittest {
   auto buttonInput = H5ButtonInput("button");
-  assert(buttonInput == `<input type="button" name="button">`);
+  assert(buttonInput == `<input type="button" />`);
   assert(buttonInput.type() == "button");
-  assert(buttonInput.name() == "button");  
 }

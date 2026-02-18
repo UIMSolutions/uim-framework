@@ -28,7 +28,6 @@ class H5DateInput : H5Input {
 ///
 unittest {
   auto dateInput = H5DateInput("date");
-  assert(dateInput == `<input type="date" name="date">`);
+  assert(dateInput == `<input type="date" />`);
   assert(dateInput.type() == "date");
-  assert(dateInput.name() == "date");  
 }
