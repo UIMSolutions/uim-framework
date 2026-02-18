@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(telInput.name() == "phone");
   */
 class H5TelInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("tel");
-    return true;
-  }
+  mixin H5InputThis!("tel");
 
   mixin(H5Calls!("TelInput"));
 }

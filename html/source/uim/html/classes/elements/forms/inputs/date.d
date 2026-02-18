@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(dateInput.name() == "date");
   */
 class H5DateInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("date");
-    return true;  
-  }
+  mixin H5InputThis!("date");
 
   mixin(H5Calls!("DateInput"));
 }

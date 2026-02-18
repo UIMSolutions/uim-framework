@@ -2,7 +2,6 @@ module uim.html.classes.elements.forms.inputs;
 
 public {
     import uim.html.classes.elements.forms.inputs.input;
-    import uim.html.classes.elements.forms.inputs.mixins;
 
     import uim.html.classes.elements.forms.inputs.button;
     import uim.html.classes.elements.forms.inputs.checkbox;

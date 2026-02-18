@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(searchInput.name() == "search");
   */
 class H5SearchInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("search");
-    return true;  
-  }
+  mixin H5InputThis!("search");
 
   mixin(H5Calls!("SearchInput"));
 }

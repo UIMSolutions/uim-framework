@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(rangeInput.name() == "volume");
   */
 class H5RangeInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("range");
-    return true;
-  }
+  mixin H5InputThis!("range");
 
   mixin(H5Calls!("RangeInput"));
 }

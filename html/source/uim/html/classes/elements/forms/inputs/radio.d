@@ -19,14 +19,7 @@ mixin(ShowModule!());
   * </form>
   */
 class H5Radio : H5Input {
-  mixin H5This!("radio", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-
-    attribute("type", "radio");
-    return true;
-  }
+  mixin H5InputThis!("radio");
 
   mixin(H5Calls!("Radio"));
 }

@@ -21,13 +21,7 @@ mixin(ShowModule!());
   * assert(hiddenInput.name() == "token");
   */
 class H5HiddenInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    type("hidden");
-    return true;
-  }
+  mixin H5InputThis!("hidden");
 
   mixin(H5Calls!("HiddenInput"));
 }

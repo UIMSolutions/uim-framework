@@ -21,21 +21,14 @@ mixin(ShowModule!());
   * assert(datetimelocalInput.name() == "datetimelocal");
   */
 class H5DatetimelocalInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("datetimelocal");
-    return true;  
-  }
+  mixin H5InputThis!("datetime-local");
 
   mixin(H5Calls!("DatetimelocalInput"));
 }
 ///
 unittest {
-  auto datetimelocalInput = H5DatetimelocalInput("datetimelocal");
-  assert(datetimelocalInput == `<input type="datetimelocal" name="datetimelocal">`);
-  assert(datetimelocalInput.type() == "datetimelocal");
-  assert(datetimelocalInput.name() == "datetimelocal");  
+  auto datetimelocalInput = H5DatetimelocalInput("datetime-local");
+  assert(datetimelocalInput == `<input type="datetime-local" name="datetime-local">`);
+  assert(datetimelocalInput.type() == "datetime-local");
+  assert(datetimelocalInput.name() == "datetime-local");  
 }

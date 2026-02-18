@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(emailInput.name() == "email"); 
   */
 class H5EmailInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-
-    type("email");
-    return true;
-  }
+  mixin H5InputThis!("email");
 
   mixin(H5Calls!("EmailInput"));
 }

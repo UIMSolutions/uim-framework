@@ -21,13 +21,7 @@ mixin(ShowModule!());
   * assert(fileInput.name() == "file");
   */
 class H5FileInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    type("file");
-    return true;
-  }
+  mixin H5InputThis!("file");
 
   mixin(H5Calls!("FileInput"));
 }

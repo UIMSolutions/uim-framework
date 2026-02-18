@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(passwordInput.name() == "password"); 
   */
 class H5PasswordInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-
-    type("password");
-    return true;
-  }
+  mixin H5InputThis!("password");
 
   mixin(H5Calls!("PasswordInput"));
 }

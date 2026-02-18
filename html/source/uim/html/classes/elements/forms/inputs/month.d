@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(monthInput.name() == "month");
   */
 class H5MonthInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("month");
-    return true;  
-  }
+  mixin H5InputThis!("month");
 
   mixin(H5Calls!("MonthInput"));
 }

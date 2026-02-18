@@ -21,13 +21,7 @@ mixin(ShowModule!());
   * assert(numberInput.name() == "age");
   */
 class H5NumberInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    type("number");
-    return true;
-  }
+  mixin H5InputThis!("number");
 
   mixin(H5Calls!("NumberInput"));
 }

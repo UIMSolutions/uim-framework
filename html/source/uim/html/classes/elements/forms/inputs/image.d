@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(imageInput.name() == "image");
   */
 class H5ImageInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("image");
-    return true;  
-  }
+  mixin H5InputThis!("image");
 
   mixin(H5Calls!("ImageInput"));
 }

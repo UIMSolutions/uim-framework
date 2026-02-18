@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(textInput.name() == "username");
   */
 class H5TextInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("text");
-    return true;
-  }
+  mixin H5InputThis!("text");
 
   mixin(H5Calls!("TextInput"));
 }

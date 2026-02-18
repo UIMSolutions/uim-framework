@@ -21,13 +21,7 @@ mixin(ShowModule!());
   * assert(submitButton.value() == "Login");
   */
 class H5SubmitInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    type("submit");
-    return true;
-  }
+  mixin H5InputThis!("submit");
 
   mixin(H5Calls!("SubmitInput"));
 }

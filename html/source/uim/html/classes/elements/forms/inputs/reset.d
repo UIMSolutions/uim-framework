@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(resetInput.name() == "reset");
   */
 class H5ResetInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("reset");
-    return true;  
-  }
+  mixin H5InputThis!("reset");
 
   mixin(H5Calls!("ResetInput"));
 }
