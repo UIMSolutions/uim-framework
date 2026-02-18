@@ -49,7 +49,7 @@ class H5Embed : HtmlElement {
     * ```
     * This would embed a PDF document named "document.pdf" with a specified MIME type of "application/pdf".
     */
-  IHTMLAttribute src() {
+  IHtmlAttribute src() {
     return attribute("src");
   }
 
@@ -58,7 +58,7 @@ class H5Embed : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute width() {
+  IHtmlAttribute width() {
     return attribute("width");
   }
 
@@ -67,7 +67,7 @@ class H5Embed : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute height() {
+  IHtmlAttribute height() {
     return attribute("height");
   }
 
@@ -76,7 +76,7 @@ class H5Embed : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute title() {
+  IHtmlAttribute title() {
     return attribute("title");
   }
   
@@ -85,10 +85,11 @@ class H5Embed : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute type() {
+  IHtmlAttribute type() {
     return attribute("type");
   }
 
+  
   mixin(H5Calls!("embed"));
 }
 ///

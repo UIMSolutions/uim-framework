@@ -17,14 +17,14 @@ mixin(ShowModule!());
   *   <!-- form fields here -->
   * </fieldset>
   */
-class Legend : H5FormElement {
+class H5Legend : H5FormElement {
   mixin H5This!("legend");
 
   mixin(H5Calls!("legend"));
 }
 /// 
 unittest {
-  assert(Legend() == "<legend></legend>");
-  assert(Legend("Hello") == "<legend>Hello</legend>");
+  assert(H5Legend() == "<legend></legend>");
+  assert(H5Legend("Hello") == "<legend>Hello</legend>");
 
 }

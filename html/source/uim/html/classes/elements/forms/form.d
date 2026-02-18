@@ -27,9 +27,8 @@ mixin(ShowModule!());
   *   <input type="submit" value="Submit">
   * </form>
  */
-class H5Form : HtmlElement, IHtmlForm {
+class H5Form : HtmlElement { // IHtmlForm {
   mixin H5This!("form", false);
-
 
 
   H5Form name() {
@@ -37,7 +36,7 @@ class H5Form : HtmlElement, IHtmlForm {
     return this;
   }
 
-  override H5Form name(string nameValue) {
+  H5Form name(string nameValue) {
     attribute("name", nameValue);
     return this;
   }

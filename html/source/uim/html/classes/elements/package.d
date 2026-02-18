@@ -24,10 +24,12 @@ public {
 }
 
 public {
+  import uim.html.classes.elements.embedded;
   import uim.html.classes.elements.inlinetext;
   import uim.html.classes.elements.text;
   import uim.html.classes.elements.forms;
   import uim.html.classes.elements.lists;
+  import uim.html.classes.elements.media;
   import uim.html.classes.elements.meta;
   import uim.html.classes.elements.tables;
 }

@@ -39,7 +39,7 @@ class H5Datalist : H5FormElement {
   H5Datalist addOption(string value) {
     auto option = new H5Option();
     option.value(value);
-    appendChild(option);
+    add(option);
     return this;
   }
 
@@ -47,7 +47,7 @@ class H5Datalist : H5FormElement {
     auto option = new H5Option();
     option.value(value);
     option.label(label);
-    appendChild(option);
+    add(option);
     return this;
   }
 
@@ -58,7 +58,7 @@ class H5Datalist : H5FormElement {
     if (disabled) {
       option.disabled(true);
     }
-    appendChild(option);
+    add(option);
     return this;
   }
 
@@ -72,12 +72,12 @@ class H5Datalist : H5FormElement {
     if (selected) {
       option.selected(true);
     }
-    appendChild(option);
+    add(option);
     return this;
   }
 
    H5Datalist addOption(H5Option option) {
-    appendChild(option);
+    addContent(option);
     return this;
   }
 

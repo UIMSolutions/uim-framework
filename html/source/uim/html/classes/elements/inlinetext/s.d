@@ -29,13 +29,3 @@ unittest {
   assert(H5S() == "<s></s>");
   assert(H5S("Hello") == "<s>Hello</s>");
 }
-
-    element.content(content);
-    return element;
-  }
-}
-///
-unittest {
-  assert(H5S() == "<s></s>");
-  assert(H5S("Hello") == "<s>Hello</s>");
-}

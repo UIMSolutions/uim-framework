@@ -23,7 +23,7 @@ mixin(ShowModule!());
  * ```
  * This would embed the web page located at "https://www.example.com" with a specified width of 600 pixels and height of 400 pixels.
  */
-class Iframe : HtmlElement {
+class H5Iframe : HtmlElement {
   mixin H5This!("iframe", false);
 
   /**
@@ -35,7 +35,7 @@ class Iframe : HtmlElement {
       * ```
       * This would embed the web page located at "https://www.example.com" within the iframe.
       */
-  Iframe src(string url) {
+  H5Iframe src(string url) {
     attribute("src", url);
     return this;
   }
@@ -49,7 +49,7 @@ class Iframe : HtmlElement {
       * ```
       * This would embed the web page located at "https://www.example.com" within the iframe, and calling the src() method would return "https://www.example.com".
       */
-  IHTMLAttribute src() {
+  IHtmlAttribute src() {
     return attribute("src");
   }
 
@@ -58,7 +58,7 @@ class Iframe : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute width() {
+  IHtmlAttribute width() {
     return attribute("width");
   }
 
@@ -67,7 +67,7 @@ class Iframe : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute height() {
+  IHtmlAttribute height() {
     return attribute("height");
   }
 
@@ -76,10 +76,10 @@ class Iframe : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute title() {
+  IHtmlAttribute title() {
     return attribute("title");
   }
-  
+
   H5Iframe allowfullscreen(bool isAllowed) {
     if (isAllowed) {
       attribute("allowfullscreen", "allowfullscreen");
@@ -89,7 +89,7 @@ class Iframe : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute allowfullscreen() {
+  IHtmlAttribute allowfullscreen() {
     return attribute("allowfullscreen");
   }
 
@@ -98,7 +98,7 @@ class Iframe : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute loading() {
+  IHtmlAttribute loading() {
     return attribute("loading");
   }
 
@@ -108,14 +108,14 @@ class Iframe : HtmlElement {
 }
 ///
 unittest {
-  assert(Iframe() == "<iframe></iframe>");
-  assert(Iframe("Hello") == "<iframe>Hello</iframe>");
-  assert(Iframe()
+  assert(H5Iframe() == "<iframe></iframe>");
+  assert(H5Iframe("Hello") == "<iframe>Hello</iframe>");
+  assert(H5Iframe()
       .src("https://www.example.com") == "<iframe src=\"https://www.example.com\"></iframe>");
-  assert(Iframe().width("600") == "<iframe width=\"600\"></iframe>");
-  assert(Iframe().height("400") == "<iframe height=\"400\"></iframe>");
-  assert(Iframe().allowfullscreen(true) == "<iframe allowfullscreen=\"allowfullscreen\"></iframe>");
-  assert(Iframe().allowfullscreen(false) == "<iframe></iframe>");
-  assert(Iframe().loading("lazy") == "<iframe loading=\"lazy\"></iframe>");
-  assert(Iframe().title("Example Iframe") == "<iframe title=\"Example Iframe\"></iframe>");
+  assert(H5Iframe().width("600") == "<iframe width=\"600\"></iframe>");
+  assert(H5Iframe().height("400") == "<iframe height=\"400\"></iframe>");
+  assert(H5Iframe().allowfullscreen(true) == "<iframe allowfullscreen=\"allowfullscreen\"></iframe>");
+  assert(H5Iframe().allowfullscreen(false) == "<iframe></iframe>");
+  assert(H5Iframe().loading("lazy") == "<iframe loading=\"lazy\"></iframe>");
+  assert(H5Iframe().title("Example Iframe") == "<iframe title=\"Example Iframe\"></iframe>");
 }

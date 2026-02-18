@@ -37,10 +37,11 @@ class H5Blockquote : HtmlElement {
     return attribute("cite");
   }
 
-mixin(H5Calls!("blockquote"))
+  mixin(H5Calls!("blockquote"));
 }
 ///
 unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
-  assert(H5Blockquote("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
+  assert(H5Blockquote(
+      "https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
 }

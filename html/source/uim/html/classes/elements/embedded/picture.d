@@ -30,7 +30,6 @@ mixin(ShowModule!());
 class H5Picture : HtmlElement {
   mixin H5This!("picture", false);
 
-
   H5Picture addSource(string srcset, string media) {
     auto source = new H5Source();
     source.srcset(srcset).media(media);

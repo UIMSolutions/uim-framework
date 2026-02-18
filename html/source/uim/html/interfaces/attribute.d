@@ -20,5 +20,6 @@ interface IHtmlAttribute {
     string value();
     IHtmlAttribute value(string val);
 
+    bool opEquals(const string html);
     string toString();
 }

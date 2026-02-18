@@ -52,7 +52,7 @@ class H5Object : HtmlElement {
     * ```
     * This would embed a PDF document named "document.pdf" with a specified MIME type of "application/pdf".
     */
-  IHTMLAttribute data() {
+  IHtmlAttribute data() {
     return attribute("data");
   }
 
@@ -80,7 +80,7 @@ class H5Object : HtmlElement {
     * ```
     * This would embed a PowerPoint presentation file named "presentation.pptx" with a specified MIME type of "application/vnd.openxmlformats-officedocument.presentationml.presentation", and calling the type() method would return "application/vnd.openxmlformats-officedocument.presentationml.presentation".
     */
-  IHTMLAttribute type() {
+  IHtmlAttribute type() {
     return attribute("type");
   }
   // #endregion type attribute
@@ -91,7 +91,7 @@ class H5Object : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute width() {
+  IHtmlAttribute width() {
     return attribute("width");
   }
 
@@ -100,7 +100,7 @@ class H5Object : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute height() {
+  IHtmlAttribute height() {
     return attribute("height");
   }
 
@@ -109,7 +109,7 @@ class H5Object : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute name() {
+  IHtmlAttribute name() {
     return attribute("name");
   }
 
@@ -118,7 +118,7 @@ class H5Object : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute form() {
+  IHtmlAttribute form() {
     return attribute("form");
   }
 

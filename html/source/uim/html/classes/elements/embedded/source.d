@@ -31,7 +31,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute srcset() {
+  IHtmlAttribute srcset() {
     return attribute("srcset");
   }
 
@@ -40,7 +40,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute media() {
+  IHtmlAttribute media() {
     return attribute("media");
   }
 
@@ -49,7 +49,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute type() {
+  IHtmlAttribute type() {
     return attribute("type");
   }
 
@@ -58,7 +58,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute sizes() {
+  IHtmlAttribute sizes() {
     return attribute("sizes");
   }
 
@@ -67,7 +67,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute width() {
+  IHtmlAttribute width() {
     return attribute("width");
   }
 
@@ -76,7 +76,7 @@ class H5Source : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute height() {
+  IHtmlAttribute height() {
     return attribute("height");
   }
 

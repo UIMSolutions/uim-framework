@@ -23,7 +23,7 @@ class H5Base : HtmlElement {
     return this;
   }
 
-  IHTMLAttribute href() {
+  IHtmlAttribute href() {
     return attribute("href");
   }
 

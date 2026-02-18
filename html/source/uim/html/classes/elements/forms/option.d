@@ -15,35 +15,35 @@ mixin(ShowModule!());
   * Represents an HTML <option> element.
   * Provides methods to set option attributes like value, selected, and disabled.
   * Example usage:
-  * auto option = H5SelectOption("Option 1").value("1").selected();
+  * auto option = H5Option("Option 1").value("1").selected();
   */
-class H5SelectOption : H5FormElement {
+class H5Option : H5FormElement {
     mixin H5This!("option", false);
 
-    H5SelectOption value(string valueValue) {
+    H5Option value(string valueValue) {
         attribute("value", valueValue);
         return this;
     }
 
-    H5SelectOption selected() {
+    H5Option selected() {
         attribute("selected", "");
         return this;
     }
 
-    H5SelectOption disabled() {
+    H5Option disabled() {
         attribute("disabled", "");
         return this;
     }
 
-    mixin(H5Calls!("SelectOption"));
+    mixin(H5Calls!("Option"));
 }
 ///
 unittest {
-    mixin(ShowTest!"Testing SelectOption Class");
+    mixin(ShowTest!"Testing Option Class");
 
-    assert(H5SelectOption() == `<option></option>`);
-    assert(H5SelectOption("Option 1") == `<option>Option 1</option>`);
-    assert(H5SelectOption().value("1") == `<option value="1"></option>`);
-    assert(H5SelectOption().selected() == `<option selected=""></option>`);
-    assert(H5SelectOption().disabled() == `<option disabled=""></option>`);
+    assert(H5Option() == `<option></option>`);
+    assert(H5Option("Option 1") == `<option>Option 1</option>`);
+    assert(H5Option().value("1") == `<option value="1"></option>`);
+    assert(H5Option().selected() == `<option selected=""></option>`);
+    assert(H5Option().disabled() == `<option disabled=""></option>`);
 }

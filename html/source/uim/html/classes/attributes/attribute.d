@@ -68,6 +68,11 @@ class HtmlAttribute :  /* UIMObject, */ IHtmlAttribute {
     static HtmlAttribute opCall(string name, string value = null) {
         return new HtmlAttribute(name, value);
     }
+
+    bool opEquals(const string html) {
+    return toString() == html;
+  }
+
 }
 ///
 unittest {
