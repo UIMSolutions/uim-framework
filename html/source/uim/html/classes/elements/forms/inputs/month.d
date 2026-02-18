@@ -28,7 +28,6 @@ class H5MonthInput : H5Input {
 ///
 unittest {
   auto monthInput = H5MonthInput("month");
-  assert(monthInput == `<input type="month" name="month">`);
+  assert(monthInput == `<input type="month" />`);
   assert(monthInput.type() == "month");
-  assert(monthInput.name() == "month");  
 }

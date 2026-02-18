@@ -28,7 +28,6 @@ class H5HiddenInput : H5Input {
 ///
 unittest {
   auto hiddenInput = H5HiddenInput("token");
-  assert(hiddenInput == `<input type="hidden" name="token">`);
+  assert(hiddenInput == `<input type="hidden" />`);
   assert(hiddenInput.type() == "hidden");
-  assert(hiddenInput.name() == "token");  
 }

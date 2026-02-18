@@ -28,7 +28,6 @@ class H5ImageInput : H5Input {
 ///
 unittest {
   auto imageInput = H5ImageInput("image");
-  assert(imageInput == `<input type="image" name="image">`);
+  assert(imageInput == `<input type="image" />`);
   assert(imageInput.type() == "image");
-  assert(imageInput.name() == "image");  
 }

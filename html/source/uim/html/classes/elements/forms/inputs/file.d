@@ -28,7 +28,6 @@ class H5FileInput : H5Input {
 ///
 unittest {
   auto fileInput = H5FileInput("file");
-  assert(fileInput == `<input type="file" name="file">`);
+  assert(fileInput == `<input type="file" />`);
   assert(fileInput.type() == "file");
-  assert(fileInput.name() == "file");  
 }

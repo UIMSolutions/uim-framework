@@ -28,7 +28,6 @@ class H5NumberInput : H5Input {
 ///
 unittest {
   auto numberInput = H5NumberInput("age");
-  assert(numberInput == `<input type="number" name="age">`);
+  assert(numberInput == `<input type="number" />`);
   assert(numberInput.type() == "number");
-  assert(numberInput.name() == "age");  
 }

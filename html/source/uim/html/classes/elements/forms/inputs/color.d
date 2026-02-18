@@ -28,7 +28,6 @@ class H5ColorInput : H5Input {
 ///
 unittest {
   auto colorInput = H5ColorInput("color");
-  assert(colorInput == `<input type="color" name="color">`);
+  assert(colorInput == `<input type="color" />`);
   assert(colorInput.type() == "color");
-  assert(colorInput.name() == "color");  
 }

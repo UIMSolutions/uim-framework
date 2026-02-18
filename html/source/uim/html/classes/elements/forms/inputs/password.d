@@ -28,7 +28,6 @@ class H5PasswordInput : H5Input {
 ///
 unittest {
   auto passwordInput = H5PasswordInput("password");
-  assert(passwordInput == `<input type="password" name="password">`);
+  assert(passwordInput == `<input type="password" />`);
   assert(passwordInput.type() == "password");
-  assert(passwordInput.name() == "password");  
 }

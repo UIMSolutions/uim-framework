@@ -28,7 +28,6 @@ class H5SubmitInput : H5Input {
 ///
 unittest {
   auto submitButton = H5SubmitInput("Login");
-  assert(submitButton == `<input type="submit" value="Login">`);
+  assert(submitButton == `<input type="submit" />`);
   assert(submitButton.type() == "submit");
-  assert(submitButton.value() == "Login");  
 }

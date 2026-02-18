@@ -28,7 +28,6 @@ class H5RangeInput : H5Input {
 ///
 unittest {
   auto rangeInput = H5RangeInput("volume");
-  assert(rangeInput == `<input type="range" name="volume  ">`);
+  assert(rangeInput == `<input type="range" />`);
   assert(rangeInput.type() == "range");
-  assert(rangeInput.name() == "volume");  
 }

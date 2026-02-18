@@ -98,7 +98,7 @@ class H5Input : HtmlElement {
 ///
 unittest {
   auto input = H5Input().type("text").name("username").value("JohnDoe").placeholder("Enter your username").required();
-  assert(input == `<input type="text" name="username" value="JohnDoe" placeholder="Enter your username" required />`);
+  assert(input == `<input name="username" placeholder="Enter your username" required type="text" value="JohnDoe" />`);
   assert(input.type() == "text");
   assert(input.name() == "username");
   assert(input.value() == "JohnDoe");

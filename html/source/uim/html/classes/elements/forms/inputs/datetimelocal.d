@@ -28,6 +28,6 @@ class H5DatetimelocalInput : H5Input {
 ///
 unittest {
   auto datetimelocalInput = H5DatetimelocalInput("datetime-local");
-  assert(datetimelocalInput == `<input type="datetime-local">`);
+  assert(datetimelocalInput == `<input type="datetime-local" />`);
   assert(datetimelocalInput.type() == "datetime-local");
 }

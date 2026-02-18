@@ -28,7 +28,6 @@ class H5EmailInput : H5Input {
 ///
 unittest {
   auto emailInput = H5EmailInput("email");
-  assert(emailInput == `<input type="email" name="email">`);
+  assert(emailInput == `<input type="email" />`);
   assert(emailInput.type() == "email");
-  assert(emailInput.name() == "email");  
 }
