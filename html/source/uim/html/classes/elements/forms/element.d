@@ -1,4 +1,4 @@
-module uim.html.classes.forms.element;
+module uim.html.classes.elements.forms.element;
 
 import uim.html;
 

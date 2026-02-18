@@ -1,4 +1,4 @@
-module uim.html.classes.forms.fieldset;
+module uim.html.classes.elements.forms.fieldset;
 
 import uim.html;
 

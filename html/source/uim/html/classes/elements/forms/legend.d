@@ -1,4 +1,4 @@
-module uim.html.classes.forms.legend;
+module uim.html.classes.elements.forms.legend;
 
 import uim.html;
 
