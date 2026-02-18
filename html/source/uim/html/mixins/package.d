@@ -8,6 +8,7 @@ mixin(ShowModule!());
 
 public {
   import uim.html.mixins.element;
+  import uim.html.mixins.input;
 }
 
 /*

@@ -22,7 +22,7 @@ mixin(ShowModule!());
   * auto passwordInput = H5Input().PasswordInput("password").placeholder("Enter your password");
   * auto submitButton = H5Input().SubmitInput("Login");
   */
-class H5Input : HtmlElement {
+class H5Input : H5Input {
   mixin H5This!("input", false);
 
   H5Input type(string typeValue) {

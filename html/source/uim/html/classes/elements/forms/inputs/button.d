@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(buttonInput.name() == "button");
   */
 class H5ButtonInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("button");
-    return true;  
-  }
+  mixin H5InputThis!("button");
 
   mixin(H5Calls!("ButtonInput"));
 }

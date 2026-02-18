@@ -25,7 +25,7 @@ class H5EmailInput : H5Input {
 
   override bool initialize(Json[string] initData = null) {
     super.initialize(initData);
-    
+
     type("email");
     return true;
   }

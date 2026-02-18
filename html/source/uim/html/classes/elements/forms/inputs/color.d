@@ -21,14 +21,7 @@ mixin(ShowModule!());
   * assert(colorInput.name() == "color");
   */
 class H5ColorInput : H5Input {
-  mixin H5This!("input", false);
-
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-    
-    type("color");
-    return true;  
-  }
+  mixin H5InputThis!("color");
 
   mixin(H5Calls!("ColorInput"));
 }

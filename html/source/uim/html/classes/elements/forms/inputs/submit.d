@@ -23,8 +23,8 @@ mixin(ShowModule!());
 class H5SubmitInput : H5Input {
   mixin H5This!("input", false);
 
-  override bool initialize() {
-    super.initialize();
+  override bool initialize(Json[string] initData = null) {
+    super.initialize(initData);
     type("submit");
     return true;
   }

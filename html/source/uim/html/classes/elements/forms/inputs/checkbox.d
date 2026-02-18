@@ -26,16 +26,9 @@ mixin(ShowModule!());
   * </form>
  */
 class H5Checkbox : H5Input {
-  mixin H5This!("checkbox", false);
+  mixin H5InputThis!("checkbox");
 
-  override bool initialize(Json[string] initData = null) {
-    super.initialize(initData);
-
-    type("checkbox");
-    return true;
-  }
-
-  mixin(H5Calls!("checkbox"));
+  mixin(H5Calls!("Checkbox"));
 }
 /// 
 unittest {
