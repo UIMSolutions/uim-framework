@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.elements.math;
+module uim.html.classes.elements.maths.math;
 
 import uim.html;
 
@@ -30,6 +30,15 @@ mixin(ShowModule!());
   */
 class H5Math : HtmlElement {
   mixin H5This!("math", false);
+
+  H5Math display(string value) {
+    this.setAttribute("display", value);
+    return this;
+  }
+
+  IHtmlAttribute display() {
+    return attribute("display");
+  }
 
   mixin(H5Calls!("math"));
 }

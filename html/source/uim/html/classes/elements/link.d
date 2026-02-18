@@ -32,9 +32,8 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  H5Link rel() {
-    attribute("rel");
-    return this;
+  IHtmlElement rel() {
+    return attribute("rel");
   }
 
   H5Link href(string url) {
@@ -42,9 +41,8 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  H5Link href() {
-    attribute("href");
-    return this;
+  IHtmlAttribute href() {
+    return attribute("href");
   }
 
   H5Link type(string typeValue) {
@@ -52,9 +50,8 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  H5Link type() {
-    attribute("type");
-    return this;
+  IHtmlAttribute type() {
+    return attribute("type");
   }
 
   mixin(H5Calls!("link"));
