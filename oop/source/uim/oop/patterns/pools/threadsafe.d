@@ -97,19 +97,19 @@ class ThreadSafeObjectPool(T) : IObjectPool!T, IPoolStatistics {
   }
 
   // IPoolStatistics implementation
-  ulong acquireCount() @trusted {
+  size_t acquireCount() @trusted {
     synchronized (_mutex) {
       return _pool.acquireCount();
     }
   }
 
-  ulong releaseCount() @trusted {
+  size_t releaseCount() @trusted {
     synchronized (_mutex) {
       return _pool.releaseCount();
     }
   }
 
-  ulong createCount() @trusted {
+  ulosize_tng createCount() @trusted {
     synchronized (_mutex) {
       return _pool.createCount();
     }

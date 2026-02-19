@@ -16,7 +16,7 @@ mixin(ShowModule!());
 /// Batch insert builder for efficient multi-row insertions
 class BatchInsertBuilder {
     private TableRow[] _rows;
-    private ulong _batchSize = 1000;
+    private size_t _batchSize = 1000;
 
     this() {
         _rows.reserve(_batchSize); // Pre-allocate for efficiency

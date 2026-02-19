@@ -26,22 +26,22 @@ interface ITableRow {
   ITableRow data(string column, Json value);
 
   /// Check if a column exists in the row
-  bool has(string column) const;
+  bool hasColumn(string column) const;
 
   /// Remove a column from the row
   ITableRow remove(string column);
 
   /// Get all column names
-  @property string[] columns() const;
+  string[] columns() const;
 
   /// Get number of columns
-  @property size_t columnCount() const;
+  size_t columnCount() const;
 
   /// Clear all cells
   ITableRow clear();
 
   /// Check if row is empty
-  @property bool empty() const;
+  bool empty() const;
 
   /// Convert to string representation
   string toString();

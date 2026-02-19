@@ -11,7 +11,6 @@ class TableRow : UIMObject, ITableRow {
     super();
   }
 
-
   protected Json[string] _cells;
 
   this(Json[string] cells) {
@@ -49,7 +48,7 @@ class TableRow : UIMObject, ITableRow {
     return this;
   }
 
-  bool has(string column) const {
+  bool hasColumn(string column) const {
     return (column in _cells) !is null;
   }
 
@@ -58,11 +57,11 @@ class TableRow : UIMObject, ITableRow {
     return this;
   }
 
-  @property string[] columns() const {
+  string[] columns() const {
     return _cells.keys;
   }
 
-  @property size_t columnCount() const {
+  size_t columnCount() const {
     return _cells.length;
   }
 
@@ -71,7 +70,7 @@ class TableRow : UIMObject, ITableRow {
     return this;
   }
 
-  @property bool empty() const {
+  bool empty() const {
     return _cells.length == 0;
   }
 

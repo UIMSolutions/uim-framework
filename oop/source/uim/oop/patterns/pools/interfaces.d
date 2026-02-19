@@ -94,19 +94,19 @@ interface IPoolStatistics {
    * Get the number of times objects were acquired.
    * Returns: Total acquisition count
    */
-  ulong acquireCount();
+  size_t acquireCount();
 
   /**
    * Get the number of times objects were released.
    * Returns: Total release count
    */
-  ulong releaseCount();
+  size_t releaseCount();
 
   /**
    * Get the number of times new objects were created.
    * Returns: Total creation count
    */
-  ulong createCount();
+  size_t createCount();
 
   /**
    * Get the peak number of objects acquired at once.

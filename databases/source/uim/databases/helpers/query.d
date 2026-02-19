@@ -76,11 +76,11 @@ class QueryBuilder {
         return _ascending;
     }
 
-    ulong getLimit() const {
+    size_t getLimit() const {
         return _limitValue;
     }
 
-    ulong getOffset() const {
+    size_t getOffset() const {
         return _offsetValue;
     }
 }

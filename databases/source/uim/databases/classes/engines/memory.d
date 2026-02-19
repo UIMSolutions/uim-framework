@@ -43,21 +43,14 @@ class MemoryEngine : DatabaseEngine {
   // #endregion tables
 
   // #region rows
-  override ulong rowCount() const {
-    ulong total = 0;
-    foreach (table; _tables.byValue()) {
-      total += table.rowCount();
-    }
-    return total;
+  override size_t rowCount() const {
+    return _tables.byValue().map!(table => table.rowCount()).sum;
   }
   // #endregion rows
 
   override void clear() {
-    foreach (table; _tables.byValue()) {
-      table.clear();
-    }
+    _tables.byValue().each!(table => table.clear()); 
     _tables.clear();
-
   }
 
   override const(Table[string]) tables() const {

@@ -18,7 +18,7 @@ interface IDatabase {
   
   /// Get existing table by name
   /// Returns: table reference or null if not found
-  ITable getTable(string name);
+  ITable table(string name);
 
   /// Check if table exists
   bool hasTable(string name) const;
@@ -30,7 +30,7 @@ interface IDatabase {
   string[] tableNames() const;
   
   /// Get row count across all tables
-  ulong rowCount() const;
+  size_t rowCount() const;
   
   /// Clear all tables
   IDatabase clear();

@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 /// High-level database façade that wraps the in-memory engine
 /// and exposes type-safe helpers plus query execution.
-class Database : UIMObject, IValuebase {
+class Database : UIMObject, IDatabase {
     private DatabaseEngine _engine;
     private Table[string] _tableCache; // Cache for faster table access
 
@@ -37,7 +37,7 @@ class Database : UIMObject, IValuebase {
     }
 
     /// Get existing table as a wrapper; null if not found.
-    ITable getTable(string name) {
+    ITable table(string name) {
         // Check cache first
         if (auto cached = name in _tableCache) {
             return *cached;
@@ -68,14 +68,14 @@ class Database : UIMObject, IValuebase {
     }
 
     /// Clear all tables in the database.
-    IValuebase clear() {
+    IDatabase clear() {
         _engine.clear();
         _tableCache.clear(); // Clear cache
         return this;
     }
 
     /// Execute a QueryBuilder against a specific table.
-    TableRow[] execute(QueryBuilder qb) {
+    ITableRow[] execute(QueryBuilder qb) {
         enforce(qb !is null, "QueryBuilder cannot be null");
 
         auto table = getTable(qb.getTableName());

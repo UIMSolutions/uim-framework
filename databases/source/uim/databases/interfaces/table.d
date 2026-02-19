@@ -20,34 +20,35 @@ interface ITable {
   const(string[]) columns() const;
   
   /// Get row count
-  ulong rowCount() const;
+  size_t rowCount() const;
   
   /// Insert single row
-  ITable insert(TableRow row);
+  ITable insert(ITableRow row);
   
   /// Insert multiple rows as batch
-  ITable insertBatch(TableRow[] rows);
+  ITable insertBatch(ITableRow[] rows);
   
   /// Select rows with optional filter, sorting, limit
   ITableRow[] select(
     scope bool delegate(const ITableRow) @safe filter = null,
     string orderBy = "",
     bool ascending = true,
-    ulong limit = 0,
-    ulong offset = 0
+    size_t limit = 0,
+    size_t offset = 0
   );
   
   /// Count rows matching filter
-  ulong count(scope bool delegate(const ITableRow) @safe filter = null) const;
+  size_t count(scope bool delegate(const ITableRow) @safe filter = null) const;
   
+
   /// Update rows matching filter
-  ulong update(
+  size_t update(
     scope bool delegate(const ITableRow) @safe filter,
     scope ITableRow delegate(const ITableRow) @safe updateFn
   );
   
   /// Delete rows matching filter
-  ulong delete_(scope bool delegate(const ITableRow) @safe filter);
+  size_t delete_(scope bool delegate(const ITableRow) @safe filter);
   
   /// Clear all rows
   ITable clear();

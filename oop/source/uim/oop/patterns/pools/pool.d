@@ -22,9 +22,9 @@ class ObjectPool(T) : IObjectPool!T, IPoolStatistics {
     T delegate() @safe _factory;
 
     // Statistics
-    ulong _acquireCount;
-    ulong _releaseCount;
-    ulong _createCount;
+    size_t _acquireCount;
+    size_t _releaseCount;
+    size_t _createCount;
     size_t _peakAcquired;
     size_t _currentAcquired;
   }

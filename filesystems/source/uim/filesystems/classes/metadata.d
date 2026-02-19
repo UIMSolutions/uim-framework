@@ -14,7 +14,7 @@ import std.exception : enforce;
 /// File metadata structure
 struct FileMetadata {
     string path;
-    ulong size;
+    size_t size;
     SysTime timeCreated;
     SysTime timeModified;
     SysTime timeAccessed;

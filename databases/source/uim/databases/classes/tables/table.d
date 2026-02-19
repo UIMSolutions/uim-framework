@@ -9,19 +9,18 @@ mixin(ShowModule!());
 /// High-level table façade providing fluent helpers on top of BaseTable.
 class Table : UIMObject {
   private string _name;
-  private TableColumn[] _columns;
-  private TableRow[] _rows;
+  private ITableColumn[] _columns;
+  private ITableRow[] _rows;
   private bool[string] _indexes;
   private RedBlackTree!string[string] _indexeUIMValues; // column -> indexed values
 
   this(string name, string[] columns) {
     _name = name;
-    foreach (col; columns) {
-      _columns ~= new TableColumn(col, "string");
-    }
+    _columns = columns.map!(col => _columns ~= new TableColumn(col, "string")).array;
+    _rows = null;
   }
 
-  @property string name() const {
+  string name() const {
     return _name;
   }
 
@@ -29,7 +28,7 @@ class Table : UIMObject {
     return _columns.any!(c => c.name == column);
   }
 
-  @property string[] columns() const {
+  string[] columns() const {
     return _columns.map!(c => c.name).array;
   }
 
@@ -60,12 +59,12 @@ class Table : UIMObject {
   }
 
   /// Select rows with advanced filtering, sorting, and pagination
-  TableRow[] select(
+  ITableRow[] select(
     bool delegate(const ITableRow) filter = null,
     string orderBy = "",
     bool ascending = true,
-    ulong limit = 0,
-    ulong offset = 0
+    size_t limit = 0,
+    size_t offset = 0
   ) {
     TableRow[] result;
 
@@ -120,12 +119,12 @@ class Table : UIMObject {
   }
 
   /// Count rows matching optional filter
-  ulong count(scope bool delegate(const ITableRow) @safe filter = null) const {
+  size_t count(scope bool delegate(const ITableRow) @safe filter = null) const {
     if (filter is null)
       return _rows.length;
 
     // Optimization: Manual count avoids array allocation
-    ulong count = 0;
+    size_t count = 0;
     foreach (ref row; _rows) {
       if (filter(row))
         count++;
