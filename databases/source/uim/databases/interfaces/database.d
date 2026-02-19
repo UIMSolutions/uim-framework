@@ -30,7 +30,7 @@ interface IDatabase {
   string[] tableNames() const;
   
   /// Get row count across all tables
-  size_t rowCount() const;
+  size_t countRows() const;
   
   /// Clear all tables
   IDatabase clear();

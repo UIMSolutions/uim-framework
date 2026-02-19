@@ -15,7 +15,7 @@ mixin(ShowModule!());
 /// and exposes type-safe helpers plus query execution.
 class Database : UIMObject, IDatabase {
     private DatabaseEngine _engine;
-    private Table[string] _tableCache; // Cache for faster table access
+    private ITable[string] _tableCache; // Cache for faster table access
 
     this() {
         _engine = new MemoryEngine();
@@ -43,7 +43,7 @@ class Database : UIMObject, IDatabase {
             return *cached;
         }
 
-        auto table = _engine.getTable(name);
+        auto table = _engine.table(name);
         if (table !is null) {
             _tableCache[name] = table;
         }
@@ -63,8 +63,8 @@ class Database : UIMObject, IDatabase {
     }
 
     /// Total row count across all tables.
-    ulong rowCount() const {
-        return _engine.rowCount();
+    size_t countRows() const {
+        return _engine.countRows();
     }
 
     /// Clear all tables in the database.
@@ -78,7 +78,7 @@ class Database : UIMObject, IDatabase {
     ITableRow[] execute(QueryBuilder qb) {
         enforce(qb !is null, "QueryBuilder cannot be null");
 
-        auto table = getTable(qb.getTableName());
+        auto table = table(qb.getTableName());
         if (table is null) {
             return []; // Return empty array for non-existent table
         }

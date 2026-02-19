@@ -49,7 +49,7 @@ class BatchInsertBuilder {
     }
 
     /// Get number of rows currently in batch
-    ulong rowCount() const {
+    ulong countRows() const {
         return _rows.length;
     }
 

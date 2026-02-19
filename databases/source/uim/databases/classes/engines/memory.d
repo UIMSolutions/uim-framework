@@ -24,7 +24,7 @@ class MemoryEngine : DatabaseEngine {
     return table;
   }
 
-  override Table getTable(string name) {
+  override Table table(string name) {
     return _tables.get(name, null);
   }
 
@@ -43,8 +43,8 @@ class MemoryEngine : DatabaseEngine {
   // #endregion tables
 
   // #region rows
-  override size_t rowCount() const {
-    return _tables.byValue().map!(table => table.rowCount()).sum;
+  override size_t countRows() const {
+    return _tables.byValue().map!(table => table.countRows()).sum;
   }
   // #endregion rows
 

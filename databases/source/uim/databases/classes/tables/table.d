@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+*****************************************************************************************************************/
 module uim.databases.classes.tables.table;
 
 import uim.databases;
@@ -7,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// High-level table façade providing fluent helpers on top of BaseTable.
-class Table : UIMObject {
+class Table : UIMObject, ITable {
   private string _name;
   private ITableColumn[] _columns;
   private ITableRow[] _rows;
@@ -32,12 +37,16 @@ class Table : UIMObject {
     return _columns.map!(c => c.name).array;
   }
 
-  @property ulong rowCount() const {
+  size_t countColumns() const {
+    return _columns.length;
+  }
+
+  @property size_t countRows() const {
     return _rows.length;
   }
 
   /// Insert a single row.
-  void insert(TableRow row) {
+  void insert(ITableRow row) {
     _rows ~= row;
     _updateIndexes(row, _rows.length - 1);
   }
@@ -66,7 +75,7 @@ class Table : UIMObject {
     size_t limit = 0,
     size_t offset = 0
   ) {
-    TableRow[] result;
+    ITableRow[] result;
 
     // Optimization: If limit without sort, we can stop early
     if (filter is null && orderBy == "" && limit > 0 && offset == 0) {
@@ -248,11 +257,11 @@ unittest {
   auto table = new Table("users", ["id", "name", "email"]);
   assert(table.name == "users");
   assert(table.columns == ["id", "name", "email"]);
-  assert(table.rowCount == 0);
+  assert(table.countRows == 0);
 
   table.insert(new TableRow().data(["id": Json(1), "name": Json("Alice"), "email": Json("alice@example.com")]));
   table.insert(new TableRow().data(["id": Json(2), "name": Json("Bob"), "email": Json("bob@example.com")]));
-  assert(table.rowCount == 2);
+  assert(table.countRows == 2);
 
   auto results = table.select(r => r.get("name").toString().startsWith("A"));
   assert(results.length == 1);
@@ -270,8 +279,8 @@ unittest {
 
   // ulong deleted = table.delete_(r => r.get("name").toString() == "Alice");
   // assert(deleted == 1);
-  // assert(table.rowCount == 1);
+  // assert(table.countRows == 1);
 
   // table.clear();
-  // assert(table.rowCount == 0);
+  // assert(table.countRows == 0);
 } 

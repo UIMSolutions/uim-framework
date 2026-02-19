@@ -20,7 +20,7 @@ interface ITable {
   const(string[]) columns() const;
   
   /// Get row count
-  size_t rowCount() const;
+  size_t countRows() const;
   
   /// Insert single row
   ITable insert(ITableRow row);

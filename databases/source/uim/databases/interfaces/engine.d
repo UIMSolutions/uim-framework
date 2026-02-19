@@ -19,7 +19,7 @@ interface IDatabaseEngine {
   
   /// Get existing table by name
   /// Returns: table reference or null if not found
-  ITable getTable(string name);
+  ITable table(string name);
 
   /// Check if table exists
   bool hasTable(string name) const;
@@ -31,7 +31,7 @@ interface IDatabaseEngine {
   string[] tableNames() const;
   
   /// Get total row count across all tables
-  ulong rowCount() const;
+  ulong countRows() const;
   
   /// Clear all tables and data
   IDatabaseEngine clear();

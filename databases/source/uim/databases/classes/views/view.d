@@ -12,45 +12,45 @@ mixin(ShowModule!());
 @safe:
 
 /// Read-only view over a table with an attached filter/sort configuration.
-class TableView : UIMObject {
+class TableView : UIMObject, ITableView {
     private Table _table;
-    private bool delegate(const TableRow) @safe _filter;
+    private bool delegate(const ITableRow) @safe _filter;
     private string _orderBy = "";
     private bool _ascending = true;
-    private ulong _limit = 0;
-    private ulong _offset = 0;
+    private size_t _limit = 0;
+    private size_t _offset = 0;
 
-    this(Table table) {
+    this(ITable table) {
         enforce(table !is null, "Table cannot be null");
         _table = table;
     }
 
     /// Configure filtering predicate.
-    TableView where(bool delegate(const TableRow) @safe filter) {
+    ITableView where(bool delegate(const ITableRow) @safe filter) {
         _filter = filter;
         return this;
     }
 
     /// Configure ordering.
-    TableView orderBy(string column, bool ascending = true) {
+    ITableView orderBy(string column, bool ascending = true) {
         _orderBy = column;
         _ascending = ascending;
         return this;
     }
 
     /// Configure pagination.
-    TableView limit(ulong count) {
+    ITableView limit(ulong count) {
         _limit = count;
         return this;
     }
 
-    TableView offset(ulong count) {
+    ITableView offset(ulong count) {
         _offset = count;
         return this;
     }
 
     /// Reset all view parameters.
-    TableView reset() {
+    ITableView reset() {
         _filter = null;
         _orderBy = "";
         _ascending = true;
@@ -60,17 +60,17 @@ class TableView : UIMObject {
     }
 
     /// Materialize the view as rows.
-    TableRow[] materialize() {
+    ITableRow[] materialize() {
         return _table.select(_filter, _orderBy, _ascending, _limit, _offset);
     }
 
     /// Count rows after applying filter.
-    ulong count() {
+    size_t count() {
         return _table.count(_filter);
     }
 
     /// Get the underlying table.
-    @property Table table() {
+    ITable table() {
         return _table;
     }
 }

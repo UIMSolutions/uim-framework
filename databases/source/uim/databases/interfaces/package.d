@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.databases.interfaces;
 
+public import uim.databases.interfaces.column;
 public import uim.databases.interfaces.database;
 public import uim.databases.interfaces.engine;
 public import uim.databases.interfaces.table;
 public import uim.databases.interfaces.row;
+public import uim.databases.interfaces.view;
