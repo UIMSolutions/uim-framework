@@ -72,7 +72,7 @@ class Table : UIMObject, ITable {
 
   /// Select rows with advanced filtering, sorting, and pagination
   ITableRow[] select(
-    bool delegate(const ITableRow) filter = null,
+    bool delegate(const ITableRow) @safe filter = null,
     string orderBy = "",
     bool ascending = true,
     size_t limit = 0,
@@ -91,7 +91,11 @@ class Table : UIMObject, ITable {
     if (filter !is null) {
       // Pre-allocate assuming ~50% match rate for filters
       result.reserve(_rows.length / 2);
-      // TODO: result = _rows.filter!(r => filter(r)).array;
+      foreach (row; _rows) {
+        if (filter(row)) {
+          result ~= row;
+        }
+      }
     } else {
       result = _rows.dup;
     }
@@ -327,9 +331,9 @@ unittest {
     ]));
   assert(table.countRows == 2);
 
-  auto results = table.select(r => r.get("name").toString().startsWith("A"));
+  auto results = table.select(r => r.get("name").get!string.startsWith("A"));
   assert(results.length == 1);
-  assert(results[0].get("name").toString() == "Alice");
+  assert(results[0].get("name").get!string == "Alice");
 
   // ulong updated = table.update(
   //   r => r.get("name").toString() == "Bob",
