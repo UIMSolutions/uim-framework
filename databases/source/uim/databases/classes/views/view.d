@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 /// Read-only view over a table with an attached filter/sort configuration.
 class TableView : UIMObject, ITableView {
-    private Table _table;
+    private ITable _table;
     private bool delegate(const ITableRow) @safe _filter;
     private string _orderBy = "";
     private bool _ascending = true;

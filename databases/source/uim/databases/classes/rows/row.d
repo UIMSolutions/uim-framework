@@ -105,8 +105,8 @@ unittest {
   assert(row.columns.length == 2);
 
   row.remove("id");
-  assert(!row.has("id"));
-  assert(row.has("name"));
+  assert(!row.hasColumn("id"));
+  assert(row.hasColumn("name"));
 
   row.clear();
   assert(row.empty);

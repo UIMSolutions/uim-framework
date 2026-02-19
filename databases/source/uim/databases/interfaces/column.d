@@ -20,5 +20,5 @@ interface ITableColumn {
   string type() const;
 
   /// Set column type
-  ITableColumn type(string newType);
+  @property ITableColumn type(string newType);
 }

@@ -78,17 +78,17 @@ class Database : UIMObject, IDatabase {
     ITableRow[] execute(QueryBuilder qb) {
         enforce(qb !is null, "QueryBuilder cannot be null");
 
-        auto table = table(qb.getTableName());
+        auto table = table(qb.tableName());
         if (table is null) {
             return []; // Return empty array for non-existent table
         }
 
         return table.select(
-            qb.getFilter(),
-            qb.getOrderBy(),
+            // qb.filter(),
+            qb.orderBy(),
             qb.isAscending(),
-            qb.getLimit(),
-            qb.getOffset()
+            qb.limit(),
+            qb.offset()
         );
     }
 }

@@ -18,7 +18,7 @@ class DatabaseEngine : UIMObject, IDatabaseEngine {
     
     abstract Table table(string name);
 
-    abstract bool hasTable(string name) const;;
+    abstract bool hasTable(string name) const;
     
     abstract void dropTable(string name);
 

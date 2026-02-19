@@ -30,25 +30,31 @@ interface ITable {
   
   /// Select rows with optional filter, sorting, limit
   ITableRow[] select(
-    scope bool delegate(const ITableRow) @safe filter = null,
+    bool delegate(const ITableRow) @safe filter,
     string orderBy = "",
     bool ascending = true,
     size_t limit = 0,
     size_t offset = 0
   );
-  
+
+  ITableRow[] select(
+    string orderBy = "",
+    bool ascending = true,
+    size_t limit = 0,
+    size_t offset = 0
+  );
+
   /// Count rows matching filter
-  size_t count(scope bool delegate(const ITableRow) @safe filter = null) const;
-  
+  size_t count(bool delegate(const ITableRow) @safe filter = null) const;
 
   /// Update rows matching filter
   size_t update(
-    scope bool delegate(const ITableRow) @safe filter,
-    scope ITableRow delegate(const ITableRow) @safe updateFn
+    bool delegate(const ITableRow) @safe filter,
+    ITableRow delegate(const ITableRow) @safe updateFn
   );
   
   /// Delete rows matching filter
-  size_t delete_(scope bool delegate(const ITableRow) @safe filter);
+  size_t delete_(bool delegate(const ITableRow) @safe filter);
   
   /// Clear all rows
   ITable clear();

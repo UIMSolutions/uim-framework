@@ -60,15 +60,15 @@ class QueryBuilder {
         return this;
     }
 
-    string getTableName() const {
+    string tableName() const {
         return _tableName;
     }
 
-    bool delegate(const TableRow) getFilter() const {
+    bool delegate(const TableRow) @safe filter() const {
         return _filter;
     }
 
-    string getOrderBy() const {
+    string orderBy() const {
         return _orderBy;
     }
 
@@ -76,11 +76,11 @@ class QueryBuilder {
         return _ascending;
     }
 
-    size_t getLimit() const {
+    size_t limit() const {
         return _limitValue;
     }
 
-    size_t getOffset() const {
+    size_t offset() const {
         return _offsetValue;
     }
 }

@@ -21,7 +21,7 @@ class Table : UIMObject, ITable {
 
   this(string name, string[] columns) {
     _name = name;
-    _columns = columns.map!(col => _columns ~= new TableColumn(col, "string")).array;
+    _columns = columns.map!(col => cast(ITableColumn)new TableColumn(col, "string")).array;
     _rows = null;
   }
 
@@ -41,20 +41,22 @@ class Table : UIMObject, ITable {
     return _columns.length;
   }
 
-  @property size_t countRows() const {
+  size_t countRows() const {
     return _rows.length;
   }
 
   /// Insert a single row.
-  void insert(ITableRow row) {
+  ITable insert(ITableRow row) {
+    size_t rowIndex = _rows.length;
     _rows ~= row;
-    _updateIndexes(row, _rows.length - 1);
+    _updateIndexes(row, rowIndex);
+    return this;
   }
 
   /// Insert multiple rows efficiently
-  void insertBatch(ITableRow[] rows) {
+  ITable insertBatch(ITableRow[] rows) {
     if (rows.length == 0)
-      return;
+      return this;
 
     // Reserve capacity to avoid multiple reallocations
     size_t startIdx = _rows.length;
@@ -65,6 +67,7 @@ class Table : UIMObject, ITable {
     foreach (i, ref row; rows) {
       _updateIndexes(row, startIdx + i);
     }
+    return this;
   }
 
   /// Select rows with advanced filtering, sorting, and pagination
@@ -127,6 +130,56 @@ class Table : UIMObject, ITable {
     return result;
   }
 
+  ITableRow[] select(
+    string orderBy = "",
+    bool ascending = true,
+    size_t limit = 0,
+    size_t offset = 0
+  ) {
+    ITableRow[] result;
+
+    // Optimization: If limit without sort, we can stop early
+    if (orderBy == "" && limit > 0 && offset == 0) {
+      size_t count = limit < _rows.length ? limit : _rows.length;
+      result.reserve(count);
+      return _rows[0 .. count].dup;
+    }
+    result = _rows.dup;
+
+    // Apply sorting if requested
+    if (orderBy != "") {
+      bool columnExists = false;
+      foreach (col; _columns) {
+        if (col.name == orderBy) {
+          columnExists = true;
+          break;
+        }
+      }
+      if (columnExists) {
+        // Json comparison may need @trusted for opCmp
+        result.sort!((a, b) @trusted {
+          Json aVal = a.get(orderBy);
+          Json bVal = b.get(orderBy);
+
+          return ascending ? (aVal.toString() < bVal.toString()) : (
+            bVal.toString() < aVal.toString());
+        });
+      }
+    }
+
+    // Apply offset
+    if (offset > 0 && offset < result.length) {
+      result = result[offset .. $];
+    }
+
+    // Apply limit
+    if (limit > 0 && limit < result.length) {
+      result = result[0 .. limit];
+    }
+
+    return result;
+  }
+
   /// Count rows matching optional filter
   size_t count(scope bool delegate(const ITableRow) @safe filter = null) const {
     if (filter is null)
@@ -142,7 +195,7 @@ class Table : UIMObject, ITable {
   }
 
   /// Update rows matching filter with transformation function
-  ulong update(
+  size_t update(
     scope bool delegate(const ITableRow) @safe filter,
     scope ITableRow delegate(const ITableRow) @safe updateFn
   ) {
@@ -167,10 +220,10 @@ class Table : UIMObject, ITable {
   }
 
   /// Delete rows matching filter and return count
-  ulong delete_(scope bool delegate(const ITableRow) @safe filter) {
+  size_t delete_(scope bool delegate(const ITableRow) @safe filter) {
     size_t originalLength = _rows.length;
     _rows = _rows.filter!(r => !filter(r)).array;
-    ulong deleted = originalLength - _rows.length;
+    size_t deleted = originalLength - _rows.length;
 
     // Rebuild all indexes after deletion
     if (deleted > 0 && _indexes.length > 0) {
@@ -180,14 +233,16 @@ class Table : UIMObject, ITable {
     return deleted;
   }
 
-  void clear() {
+  ITable clear() {
     _rows.clear();
     _indexes.clear();
     _indexeUIMValues.clear();
+
+    return this;
   }
 
   /// Create an index on a column for faster lookups
-  void createIndex(string column) {
+  ITable createIndex(string column) {
     bool columnExists = false;
     foreach (col; _columns) {
       if (col.name == column) {
@@ -199,6 +254,7 @@ class Table : UIMObject, ITable {
       _indexes[column] = true;
       _buildIndexForColumn(column);
     }
+    return this;
   }
 
   /// Check if column has an index
@@ -259,8 +315,16 @@ unittest {
   assert(table.columns == ["id", "name", "email"]);
   assert(table.countRows == 0);
 
-  table.insert(new TableRow().data(["id": Json(1), "name": Json("Alice"), "email": Json("alice@example.com")]));
-  table.insert(new TableRow().data(["id": Json(2), "name": Json("Bob"), "email": Json("bob@example.com")]));
+  table.insert(new TableRow().data([
+      "id": Json(1),
+      "name": Json("Alice"),
+      "email": Json("alice@example.com")
+    ]));
+  table.insert(new TableRow().data([
+      "id": Json(2),
+      "name": Json("Bob"),
+      "email": Json("bob@example.com")
+    ]));
   assert(table.countRows == 2);
 
   auto results = table.select(r => r.get("name").toString().startsWith("A"));
@@ -283,4 +347,4 @@ unittest {
 
   // table.clear();
   // assert(table.countRows == 0);
-} 
+}

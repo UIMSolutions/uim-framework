@@ -16,7 +16,7 @@ mixin(ShowModule!());
     * It provides getters and setters for these properties, allowing for easy manipulation and retrieval of column information.
     * The toString method offers a convenient way to visualize the column's details for debugging purposes.
     */
-class TableColumn : UIMObject {
+class TableColumn : UIMObject, ITableColumn {
   private string _name;
   private string _type;
 
@@ -26,7 +26,7 @@ class TableColumn : UIMObject {
   }
 
   // #region name
-  @property string name() const {
+  override @property string name() const {
     return _name;
   }
 
@@ -36,12 +36,13 @@ class TableColumn : UIMObject {
   // #endregion name
 
   // #region type
-  @property string type() const {
+  override @property string type() const {
     return _type;
   }
 
-  @property void type(string value) {
+  override @property ITableColumn type(string value) {
     _type = value;
+    return this;
   }
   // #endregion type
 
