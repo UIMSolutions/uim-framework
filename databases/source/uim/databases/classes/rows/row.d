@@ -11,6 +11,7 @@ class TableRow : UIMObject, ITableRow {
     super();
   }
 
+
   protected Json[string] _cells;
 
   this(Json[string] cells) {
@@ -21,7 +22,7 @@ class TableRow : UIMObject, ITableRow {
     this._cells = data.data.dup;
   }
 
-  @property Json[string] data() const {
+  Json[string] data() const {
     // Create a mutable copy from const data
     Json[string] result;
     foreach (key, val; _cells) {
@@ -30,24 +31,20 @@ class TableRow : UIMObject, ITableRow {
     return result;
   }
 
-  @property void data(Json[string] values) {
+  ITableRow data(Json[string] values) {
     _cells = values.dup;
+    return this;
   }
 
   Json[string] getData() {
     return _cells.dup;
   }
 
-  ITableRow setData(Json[string] newData) {
-    _cells = newData.dup;
-    return this;
-  }
-
   Json get(string column) const {
     return column in _cells ? _cells[column] : Json(null);
   }
 
-  ITableRow set(string column, Json value) {
+  ITableRow data(string column, Json value) {
     _cells[column] = value;
     return this;
   }
@@ -83,7 +80,7 @@ class TableRow : UIMObject, ITableRow {
   }
 
   void opIndexAssign(Json value, string column) {
-    set(column, value);
+    data(column, value);
   }
 
   override string toString() {
@@ -102,10 +99,10 @@ unittest {
   auto row = new TableRow();
   assert(row.empty);
 
-  row.set("id", 123);
-  row.set("name", "Alice");
-  assert(row.get("id") == 123);
-  assert(row.get("name") == "Alice");
+  row.data("id", Json(123));
+  row.data("name", Json("Alice"));
+  assert(row.get("id") == Json(123));
+  assert(row.get("name") == Json("Alice"));
   assert(row.columns.length == 2);
 
   row.remove("id");

@@ -294,8 +294,7 @@ class UIMObject : IObject {
     obj.objName("TestObject");
     Json[string] debugInfo = obj.debugInfo();
     assert(debugInfo["objName"] == "TestObject");
-    writeln(debugInfo);
-    assert(debugInfo["classFullname"] == "uim.oop.datatypes.objects.obj.UIMObject");
+    assert(debugInfo["classFullname"] == "uim.oop.datatypes.objects.classes.obj.UIMObject");
   }
   // #endregion debugInfo
 

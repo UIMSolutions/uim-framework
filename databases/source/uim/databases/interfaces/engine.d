@@ -15,12 +15,12 @@ mixin(ShowModule!());
 interface IDatabaseEngine {
   /// Create a new table with specified name and columns
   /// Returns: reference to created table
-  Table createTable(string name, string[] columns);
+  ITable createTable(string name, string[] columns);
   
   /// Get existing table by name
   /// Returns: table reference or null if not found
-  Table getTable(string name);
-  
+  ITable getTable(string name);
+
   /// Check if table exists
   bool hasTable(string name) const;
   
@@ -37,5 +37,5 @@ interface IDatabaseEngine {
   IDatabaseEngine clear();
   
   /// Get all tables
-  const(Table[string]) tables() const;
+  const(ITable[string]) tables() const;
 }

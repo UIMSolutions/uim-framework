@@ -22,10 +22,10 @@ class Database : UIMObject, IValuebase {
     }
 
     /// Create a new table and return a rich Table wrapper.
-    Table createTable(string name, string[] columns) {
+    ITable createTable(string name, string[] columns) {
         enforce(name.length > 0, "Table name cannot be empty");
         enforce(columns.length > 0, "Table must have at least one column");
-        
+
         auto table = _engine.createTable(name, columns);
         _tableCache[name] = table; // Cache the table
         return table;
@@ -37,12 +37,12 @@ class Database : UIMObject, IValuebase {
     }
 
     /// Get existing table as a wrapper; null if not found.
-    Table getTable(string name) {
+    ITable getTable(string name) {
         // Check cache first
         if (auto cached = name in _tableCache) {
             return *cached;
         }
-        
+
         auto table = _engine.getTable(name);
         if (table !is null) {
             _tableCache[name] = table;
@@ -51,7 +51,7 @@ class Database : UIMObject, IValuebase {
     }
 
     /// Drop/delete a table by name.
-    IValuebase dropTable(string name) {
+    IDatabase dropTable(string name) {
         _engine.dropTable(name);
         _tableCache.remove(name); // Remove from cache
         return this;
@@ -77,12 +77,12 @@ class Database : UIMObject, IValuebase {
     /// Execute a QueryBuilder against a specific table.
     TableRow[] execute(QueryBuilder qb) {
         enforce(qb !is null, "QueryBuilder cannot be null");
-        
+
         auto table = getTable(qb.getTableName());
         if (table is null) {
             return []; // Return empty array for non-existent table
         }
-        
+
         return table.select(
             qb.getFilter(),
             qb.getOrderBy(),

@@ -14,13 +14,13 @@ mixin(ShowModule!());
 /// Interface for table objects
 interface ITable {
   /// Get table name
-  @property string name() const;
+  string name() const;
   
   /// Get column names
-  @property const(string[]) columns() const;
+  const(string[]) columns() const;
   
   /// Get row count
-  @property ulong rowCount() const;
+  ulong rowCount() const;
   
   /// Insert single row
   ITable insert(TableRow row);
@@ -29,8 +29,8 @@ interface ITable {
   ITable insertBatch(TableRow[] rows);
   
   /// Select rows with optional filter, sorting, limit
-  TableRow[] select(
-    scope bool delegate(const TableRow) @safe filter = null,
+  ITableRow[] select(
+    scope bool delegate(const ITableRow) @safe filter = null,
     string orderBy = "",
     bool ascending = true,
     ulong limit = 0,
@@ -38,16 +38,16 @@ interface ITable {
   );
   
   /// Count rows matching filter
-  ulong count(scope bool delegate(const TableRow) @safe filter = null) const;
+  ulong count(scope bool delegate(const ITableRow) @safe filter = null) const;
   
   /// Update rows matching filter
   ulong update(
-    scope bool delegate(const TableRow) @safe filter,
-    scope TableRow delegate(const TableRow) @safe updateFn
+    scope bool delegate(const ITableRow) @safe filter,
+    scope ITableRow delegate(const ITableRow) @safe updateFn
   );
   
   /// Delete rows matching filter
-  ulong delete_(scope bool delegate(const TableRow) @safe filter);
+  ulong delete_(scope bool delegate(const ITableRow) @safe filter);
   
   /// Clear all rows
   ITable clear();

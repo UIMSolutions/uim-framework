@@ -36,7 +36,8 @@ class TransactionalDAO(T, ID) : BaseDAO!(T, ID), ITransactionalDAO!(T, ID) {
    * Commit the current transaction.
    */
   void commit() {
-    if (!_transactionActive) return;
+    if (!_transactionActive)
+      return;
 
     // Apply pending changes
     foreach (id, entity; _pendingChanges) {
@@ -73,11 +74,13 @@ class TransactionalDAO(T, ID) : BaseDAO!(T, ID), ITransactionalDAO!(T, ID) {
    * Find an entity by its identifier.
    */
   override T findById(ID id) {
-    if (_transactionActive && id in _pendingChanges) {
-      return _pendingChanges[id];
-    }
-    if (_transactionActive && id in _pendingDeletes) {
-      return null;
+    if (_transactionActive) {
+      if (id in _pendingChanges) {
+        return _pendingChanges[id];
+      }
+      if (_pendingDeletes.hasValue(id)) {
+        return null;
+      }
     }
     return _innerDAO.findById(id);
   }
