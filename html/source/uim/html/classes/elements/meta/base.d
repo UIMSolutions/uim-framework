@@ -30,8 +30,8 @@ class H5Base : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute href() {
-    return attribute("href");
+  string href() {
+    return attribute("href").value;
   }
 
   // #region target
@@ -42,8 +42,8 @@ class H5Base : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute target() {
-    return attribute("target");
+  string target() {
+    return attribute("target").value;
   }
   // #endregion target
 
@@ -51,8 +51,8 @@ class H5Base : HtmlElement {
 }
 ///
 unittest {
-  assert(H5Base() == "<base>");
-  assert(H5Base().href("https://example.com") == "<base href=\"https://example.com\">");
-  assert(H5Base().target("_blank") == "<base target=\"_blank\">");
+  assert(H5Base() == "<base />");
+  assert(H5Base().href("https://example.com") == "<base href=\"https://example.com\" />");
+  assert(H5Base().target("_blank") == "<base target=\"_blank\" />");
   assert(H5Base().target("_blank").target() == "_blank");
 }

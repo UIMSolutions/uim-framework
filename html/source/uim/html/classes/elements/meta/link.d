@@ -165,19 +165,19 @@ class H5Link : HtmlElement {
 }
 ///
 unittest {
-  assert(H5Link() == "<link>");
-  assert(H5Link().href("https://example.com") == "<link href=\"https://example.com\">");
-  assert(H5Link().rel("stylesheet") == "<link rel=\"stylesheet\">");
-  assert(H5Link().as("style") == "<link as=\"style\">");
-  assert(H5Link().crossorigin("anonymous") == "<link crossorigin=\"anonymous\">");
-  assert(H5Link().fetchpriority("high") == "<link fetchpriority=\"high\">");
-  assert(H5Link().hreflang("en") == "<link hreflang=\"en\">");
-  assert(H5Link().imagesizes("(max-width: 600px) 100vw, 50vw") == "<link imagesizes=\"(max-width: 600px) 100vw, 50vw\">");
-  assert(H5Link().imagesrcset("image-small.jpg 500w, image-large.jpg 1000w") == "<link imagesrcset=\"image-small.jpg 500w, image-large.jpg 1000w\">");
-  assert(H5Link().integrity("sha384-abc123") == "<link integrity=\"sha384-abc123\">");
-  assert(H5Link().media("screen") == "<link media=\"screen\">");
-  assert(H5Link().referrerpolicy("no-referrer") == "<link referrerpolicy=\"no-referrer\">");
-  assert(H5Link().sizes("(max-width: 600px) 100vw, 50vw") == "<link sizes=\"(max-width: 600px) 100vw, 50vw\">");
-  assert(H5Link().title("Example Link") == "<link title=\"Example Link\">");
-  assert(H5Link().type("text/css") == "<link type=\"text/css\">");
+  assert(H5Link() == "<link />");
+  assert(H5Link().href("https://example.com") == "<link href=\"https://example.com\" />");
+  assert(H5Link().rel("stylesheet") == "<link rel=\"stylesheet\" />");
+  assert(H5Link().as("style") == "<link as=\"style\" />");
+  assert(H5Link().crossorigin("anonymous") == "<link crossorigin=\"anonymous\" />");
+  assert(H5Link().fetchpriority("high") == "<link fetchpriority=\"high\" />");
+  assert(H5Link().hreflang("en") == "<link hreflang=\"en\" />");
+  assert(H5Link().imagesizes("(max-width: 600px) 100vw, 50vw") == "<link imagesizes=\"(max-width: 600px) 100vw, 50vw\" />");
+  assert(H5Link().imagesrcset("image-small.jpg 500w, image-large.jpg 1000w") == "<link imagesrcset=\"image-small.jpg 500w, image-large.jpg 1000w\" />");
+  assert(H5Link().integrity("sha384-abc123") == "<link integrity=\"sha384-abc123\" />");
+  assert(H5Link().media("screen") == "<link media=\"screen\" />");
+  assert(H5Link().referrerpolicy("no-referrer") == "<link referrerpolicy=\"no-referrer\" />");
+  assert(H5Link().sizes("(max-width: 600px) 100vw, 50vw") == "<link sizes=\"(max-width: 600px) 100vw, 50vw\" />");
+  assert(H5Link().title("Example Link") == "<link title=\"Example Link\" />");
+  assert(H5Link().type("text/css") == "<link type=\"text/css\" />");
 }

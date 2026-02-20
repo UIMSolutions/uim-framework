@@ -68,7 +68,7 @@ unittest {
 
   assert(H5Datalist()
       .addOption("Option 1") == "<datalist><option value=\"Option 1\"></option></datalist>");
-  assert(H5Datalist().addOption("Option 2", "Label 2") == "<datalist><option value=\"Option 2\" label=\"Label 2\"></option></datalist>");
-  assert(H5Datalist().addOption("Option 3", "Label 3", true) == "<datalist><option value=\"Option 3\" label=\"Label 3\" disabled></option></datalist>");
-  assert(H5Datalist().addOption("Option 4", "Label 4", false, true) == "<datalist><option value=\"Option 4\" label=\"Label 4\" selected></option></datalist>");
+  assert(H5Datalist().addOption("Option 2", "Label 2") == "<datalist><option label=\"Label 2\" value=\"Option 2\"></option></datalist>");
+  assert(H5Datalist().addOption("Option 3", "Label 3", true) == `<datalist><option disabled label="Label 3" value="Option 3"></option></datalist>`);
+  assert(H5Datalist().addOption("Option 4", "Label 4", false, true) == "<datalist><option label=\"Label 4\" selected value=\"Option 4\"></option></datalist>");
 }

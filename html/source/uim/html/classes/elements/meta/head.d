@@ -18,5 +18,6 @@ class H5Head : HtmlElement {
 }
 ///
 unittest {
-  assert(head() == `<head>This is the head content</head>`);
+  assert(H5Head() == `<head></head>`);
+  assert(H5Head("Hello") == `<head>Hello</head>`);
 }

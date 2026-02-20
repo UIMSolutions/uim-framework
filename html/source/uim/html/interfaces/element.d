@@ -62,6 +62,8 @@ interface IHtmlElement {
   /// Set text content
   IHtmlElement text(string textContent);
 
+  bool opEquals(const string html);
+
   /// Convert element to HTML string
   string toString();
 }

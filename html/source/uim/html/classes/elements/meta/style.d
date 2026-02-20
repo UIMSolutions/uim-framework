@@ -30,7 +30,7 @@ mixin(ShowModule!());
 class H5Style : HtmlElement {
   mixin H5This!("style", true);
 
-  IHtmlElement href(string h) {
+  H5Style href(string h) {
     attribute("href", h);
     return this;
   }
@@ -42,7 +42,7 @@ class H5Style : HtmlElement {
   // #region target
   // Valid values for target attribute
   // _self, _blank, _parent, _top, framename
-  IHtmlElement target(string value) {
+  H5Style target(string value) {
     attribute("target", value);
     return this;
   }
