@@ -10,6 +10,12 @@
 	"targetName": "uim-datasources",
 	"targetType": "library",
 	"dependencies": {
+		"uim-framework:core": {
+			"path": ".."
+		},
+		"uim-framework:oop": {
+			"path": ".."
+		},
 		"vibe-d": "~>0.10.3"
 	}
 }

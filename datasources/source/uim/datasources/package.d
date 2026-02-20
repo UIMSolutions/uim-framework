@@ -10,6 +10,10 @@ import vibe.d;
 mixin(ShowModule!());
 
 public {
+  // Core framework
+  import uim.core;
+  import uim.oop;
+
   // DataSources components
   import uim.datasources.interfaces;
   import uim.datasources.providers;

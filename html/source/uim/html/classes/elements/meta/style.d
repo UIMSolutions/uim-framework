@@ -11,20 +11,32 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML style element
-class Style : HtmlElement {
-  this() {
-    super("style");
-    this.selfClosing(true);
-  }
+/**
+  * Represents the HTML <style> element, which is used to define CSS styles for a document.
+  *
+  * Example usage:
+  * <head>
+  *   <style>
+  *     body { background-color: lightblue; }
+  *     h1 { color: navy; }
+  *   </style>
+  * </head>
+  *
+  * Or with an external stylesheet:
+  * <head>
+  *   <style href="styles.css" target="_blank"></style>
+  * </head>
+  */
+class H5Style : HtmlElement {
+  mixin H5This!("style", true);
 
   IHtmlElement href(string h) {
     attribute("href", h);
     return this;
   }
 
-  IHtmlAttribute href() {
-    return attribute("href");
+  string href() {
+    return attribute("href").value;
   }
 
   // #region target
@@ -35,11 +47,18 @@ class Style : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute target() {
-    return attribute("target");
+  string target() {
+    return attribute("target").value;
   }
   // #endregion target
-  static Style opCall() {
-    return new Style();
-  }
+
+  mixin(H5Calls!("style"));
 }
+///
+unittest {
+  assert(H5Style() == "<style />");
+  assert(H5Style().href("styles.css") == "<style href=\"styles.css\" />");
+  assert(H5Style().target("_blank") == "<style target=\"_blank\" />");
+  assert(H5Style().target("_blank").target() == "_blank");
+
+} 

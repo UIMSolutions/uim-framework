@@ -12,20 +12,13 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML title element
-class Title : HtmlElement {
-  this() {
-    super("title");
-    this.selfClosing(false);
-  }
+class H5Title : HtmlElement {
+  mixin H5This!("title", false);
 
-  static Title opCall() {
-    return new Title();
-  }
-
-  static Title opCall(string content) {
-    auto title = new Title();
-    title.content(content);
-    return title;
-  }
+  mixin(H5Calls!("title"));
 }
 /// 
+unittest {
+  assert(H5Title() == `<title></title>`);
+  assert(H5Title("My Page Title") == `<title>My Page Title</title>`);
+}

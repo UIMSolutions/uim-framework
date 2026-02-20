@@ -26,26 +26,12 @@ mixin(ShowModule!());
   *   <meta name="author" content="John Doe">
   * </head>
   */
-class Meta : HtmlElement {
-  this() {
-    super("meta");
-    this.selfClosing(true);
-  }
+class H5Meta : HtmlElement {
+  mixin H5This!("meta", true);
 
-  // Factory methods
-  static Meta opCall() {
-    return new Meta();
-  }
-
-  // Factory methods
-  static Meta opCall(string content) {
-    auto html = new Meta();
-    html.content(content);
-    return html;
-  }
-
+  mixin(H5Calls!("meta"));
 }
 ///
 unittest {
-  assert(Meta() == "<meta />");
+  assert(H5Meta() == "<meta />");
 }

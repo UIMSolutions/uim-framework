@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.meta.head;
+module uim.html.classes.elements.meta.head;
 
 import uim.html;
 
@@ -11,24 +11,12 @@ mixin(ShowModule!());
 
 @safe:
 
-class Head : HtmlElement {
-  this() {
-    super("head");
-    this.selfClosing(false);
-  }
+class H5Head : HtmlElement {
+  mixin H5This!("head", false);
 
-  static Head opCall() {
-    return new Head();
-  }
-
-  static Head opCall(string content) {
-    auto element = new Head();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("head"));
 }
 ///
 unittest {
-  auto head = Head("This is the head content");
-  assert(head.toString() == `<head>This is the head content</head>`);
+  assert(head() == `<head>This is the head content</head>`);
 }

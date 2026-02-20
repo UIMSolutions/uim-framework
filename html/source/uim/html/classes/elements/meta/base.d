@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.html.classes.meta.base;
+module uim.html.classes.elements.meta.base;
 
 import uim.html;
 
@@ -11,15 +11,22 @@ mixin(ShowModule!());
 
 @safe:
 
-/// HTML base element
+/**
+  * HTML base element
+  * The <base> element specifies the base URL and/or target for all relative URLs in a document.
+  * It must be included inside the <head> element and can only appear once.
+  * 
+  * Example usage:
+  * 
+  * <head>
+  *   <base href="https://example.com/" target="_blank">
+  * </head>
+  */
 class H5Base : HtmlElement {
-  this() {
-    super("base");
-    this.selfClosing(true);
-  }
+  mixin H5This!("base", true);
 
-  H5Base href(string h) {
-    attribute("href", h);
+  H5Base href(string value) {
+    attribute("href", value);
     return this;
   }
 
@@ -39,7 +46,13 @@ class H5Base : HtmlElement {
     return attribute("target");
   }
   // #endregion target
-  static Base opCall() {
-    return new Base();
-  }
+
+  mixin(H5Calls!("base"));
+}
+///
+unittest {
+  assert(H5Base() == "<base>");
+  assert(H5Base().href("https://example.com") == "<base href=\"https://example.com\">");
+  assert(H5Base().target("_blank") == "<base target=\"_blank\">");
+  assert(H5Base().target("_blank").target() == "_blank");
 }

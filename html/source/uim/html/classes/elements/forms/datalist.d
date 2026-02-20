@@ -36,40 +36,20 @@ class H5Datalist : HtmlElement {
     return this;
   }
 
-  H5Datalist addOption(string value) {
+  H5Datalist addOption(string value, string label = null, bool disabled = false, bool selected = false) {
     auto option = new H5Option();
     option.value(value);
-    addContent(option);
-    return this;
-  }
 
-  H5Datalist addOption(string value, string label) {
-    auto option = new H5Option();
-    option.value(value).label(label);
-    addContent(option);
-    return this;
-  }
-
-  H5Datalist addOption(string value, string label, bool disabled) {
-    auto option = new H5Option();
-    option.value(value).label(label);
-    if (disabled) {
-      option.disabled(true);
+    if (label.length > 0) {
+      option.label(label);
     }
-    addContent(option);
-    return this;
-  }
-
-  H5Datalist addOption(string value, string label, bool disabled, bool selected) {
-    auto option = new H5Option();
-    option.value(value);
-    option.label(label);
     if (disabled) {
       option.disabled(true);
     }
     if (selected) {
       option.selected(true);
     }
+
     addContent(option);
     return this;
   }
@@ -84,5 +64,11 @@ class H5Datalist : HtmlElement {
 /// 
 unittest {
   assert(H5Datalist() == "<datalist></datalist>");
-  assert(H5Datalist("Some content") == "<datalist>Some content</datalist>");
+  assert(H5Datalist("Hello") == "<datalist>Hello</datalist>");
+
+  assert(H5Datalist()
+      .addOption("Option 1") == "<datalist><option value=\"Option 1\"></option></datalist>");
+  assert(H5Datalist().addOption("Option 2", "Label 2") == "<datalist><option value=\"Option 2\" label=\"Label 2\"></option></datalist>");
+  assert(H5Datalist().addOption("Option 3", "Label 3", true) == "<datalist><option value=\"Option 3\" label=\"Label 3\" disabled></option></datalist>");
+  assert(H5Datalist().addOption("Option 4", "Label 4", false, true) == "<datalist><option value=\"Option 4\" label=\"Label 4\" selected></option></datalist>");
 }

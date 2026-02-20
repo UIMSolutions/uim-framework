@@ -49,4 +49,5 @@ class H5Canvas : HtmlElement {
 ///
 unittest {
   assert(H5Canvas() == `<canvas></canvas>`);
+  assert(H5Canvas().height("400").width("600") == `<canvas height="400" width="600"></canvas>`);
 }

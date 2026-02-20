@@ -9,5 +9,9 @@ license "Apache-2.0"
 targetName "uim-datasources"
 targetType "library"
 
+// uim dependencies
+dependency "uim-framework:core" path=".."
+dependency "uim-framework:oop" path=".."
+
 // External dependencies
 dependency "vibe-d" version="~>0.10.3"
