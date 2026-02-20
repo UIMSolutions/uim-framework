@@ -109,7 +109,7 @@ class ThreadSafeObjectPool(T) : IObjectPool!T, IPoolStatistics {
     }
   }
 
-  ulosize_tng createCount() @trusted {
+  size_t createCount() @trusted {
     synchronized (_mutex) {
       return _pool.createCount();
     }
