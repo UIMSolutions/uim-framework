@@ -36,7 +36,7 @@ mixin(ShowModule!());
 class H5Th : HtmlElement {
   mixin H5This!("th", false);
 
-  mixin(StringAttributeMethods!H5Th);
+  mixin(AttributeMethods!H5Th);
 
   H5Th scope_(string value) {
     attribute("scope", value);

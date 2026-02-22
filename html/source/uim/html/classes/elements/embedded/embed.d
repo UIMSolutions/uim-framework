@@ -31,7 +31,7 @@ mixin(ShowModule!());
 class H5Embed : HtmlElement {
   mixin H5This!("embed", false);
 
-  mixin(StringAttributeMethods!H5Embed);
+  mixin(AttributeMethods!H5Embed);
 
   mixin(H5Calls!("embed"));
 }

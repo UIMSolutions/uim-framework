@@ -47,7 +47,7 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  mixin(StringAttributeMethods!H5Link);
+  mixin(AttributeMethods!H5Link);
 
   // Create a new Base element
   mixin(H5Calls!("link"));

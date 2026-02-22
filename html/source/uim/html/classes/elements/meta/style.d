@@ -32,7 +32,7 @@ mixin(ShowModule!());
 class H5Style : HtmlElement {
   mixin H5This!("style", true);
 
-  mixin(StringAttributeMethods!H5Style);
+  mixin(AttributeMethods!H5Style);
 
   mixin(H5Calls!("style"));
 }

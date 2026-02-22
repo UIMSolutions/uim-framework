@@ -29,7 +29,7 @@ mixin(ShowModule!());
 class H5Input : HtmlElement {
   mixin H5This!("input", true);
 
-  mixin(StringAttributeMethods!H5Input);
+  mixin(AttributeMethods!H5Input);
 
   H5Input required(bool isRequired = true) {
     if (isRequired)

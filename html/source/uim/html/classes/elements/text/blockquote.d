@@ -28,7 +28,7 @@ mixin(ShowModule!());
 class H5Blockquote : HtmlElement {
   mixin H5This!("blockquote", false);
 
-  mixin(StringAttributeMethods!H5Link);
+  mixin(AttributeMethods!H5Link);
 
   H5Blockquote cite(string url) {
     attribute("cite", url);

@@ -20,7 +20,7 @@ mixin(ShowModule!());
 class H5Caption : HtmlElement {
   mixin H5This!("caption", false);
 
-  mixin(StringAttributeMethods!H5Caption);
+  mixin(AttributeMethods!H5Caption);
 
   mixin(H5Calls!("caption"));
 }

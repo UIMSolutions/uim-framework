@@ -7,7 +7,7 @@ module uim.html.udas;
 
 @safe:
 
-import std.string : format;
+import std.string;
 
 /// Associates a symbol with an HTML tag name.
 struct HtmlTag {
@@ -54,7 +54,7 @@ struct DeprecatedHtml {
 /// Usage:
 /// @StringAttribute("sizes")
 /// class H5Link : HtmlElement {
-///   mixin(StringAttributeMethods!H5Link);
+///   mixin(AttributeMethods!H5Link);
 /// }
 struct StringAttribute {
   string methodName;
@@ -151,6 +151,25 @@ template BoolAttributeMethods(alias symbol) {
 
   enum string BoolAttributeMethods = {
     string code;
+
+    static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
+      code ~= generateBoolAttributeMethod(attribute);
+    }
+
+    return code;
+  }();
+}
+
+/// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
+template AttributeMethods(alias symbol) {
+  import std.traits : getUDAs;
+
+  enum string AttributeMethods = {
+    string code;
+
+    static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
+      code ~= generateStringAttributeMethod(attribute);
+    }
 
     static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
       code ~= generateBoolAttributeMethod(attribute);
@@ -297,7 +316,7 @@ unittest {
       return null;
     }
 
-    mixin(StringAttributeMethods!GeneratedLinkLike);
+    mixin(AttributeMethods!GeneratedLinkLike);
   }
 
   auto item = new GeneratedLinkLike();

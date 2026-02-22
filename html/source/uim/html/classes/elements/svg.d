@@ -14,7 +14,7 @@ mixin(ShowModule!());
 class H5Svg : HtmlElement {
   mixin H5This!("svg", false);
 
-  mixin(StringAttributeMethods!H5Svg);
+  mixin(AttributeMethods!H5Svg);
 
   mixin(H5Calls!("Svg"));
 }

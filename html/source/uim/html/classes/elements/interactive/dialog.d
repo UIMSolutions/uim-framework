@@ -17,40 +17,12 @@ mixin(ShowModule!());
   * The <dialog> element is not displayed by default. You can use the open attribute to show the dialog.
   * The <dialog> element also has a method called showModal() that can be used to display the dialog as a modal.
   */
-  
+@StringAttribute("closedby") // Specifies the conditions under which the dialog is to be closed. The value must be one of the following: "escape", "outside", "none"
+@BoolAttribute("open") // Indicates whether the dialog is open. If this attribute is not set, the dialog is closed. If this attribute is set, the dialog is open.
 class H5Dialog : HtmlElement {
   mixin H5This!("dialog", false);
 
-  mixin(StringAttributeMethods!H5Dialog);
-  
-    /** Specifies the conditions under which the dialog is to be closed.
-   * The value must be one of the following:
-   * - "escape": The dialog can be closed by pressing the Escape key.
-   * - "outside": The dialog can be closed by clicking outside the dialog.
-   * - "none": The dialog cannot be closed by user interaction.
-   */
-  H5Dialog closedBy(string mode) {
-    attribute("closedby", mode);
-    return this;
-  }
-
-  H5Dialog closedBy(bool val = true) {
-    if (val) {  
-      attribute("closedby", "");
-    } else {
-      removeAttribute("closedby");
-    }
-    return this;
-  }
-
-  H5Dialog open(bool val = true) {
-    if (val) {
-      attribute("open", "");
-    } else {
-      removeAttribute("open");
-    }
-    return this;
-  }
+  mixin(AttributeMethods!H5Dialog);
 
   mixin(H5Calls!("dialog"));
 }
@@ -58,9 +30,8 @@ class H5Dialog : HtmlElement {
 unittest {
   assert(H5Dialog() == "<dialog></dialog>");
   assert(H5Dialog("Hello") == "<dialog>Hello</dialog>");
-  assert(H5Dialog().closedBy("escape") == `<dialog closedby="escape"></dialog>`);
-  assert(H5Dialog().closedBy("outside") == `<dialog closedby="outside"></dialog>`);
-  assert(H5Dialog().closedBy("none") == `<dialog closedby="none"></dialog>`);
-  assert(H5Dialog().closedBy(true) == `<dialog closedby></dialog>`);
+  assert(H5Dialog().closedby("escape") == `<dialog closedby="escape"></dialog>`);
+  assert(H5Dialog().closedby("outside") == `<dialog closedby="outside"></dialog>`);
+  assert(H5Dialog().closedby("none") == `<dialog closedby="none"></dialog>`);
   assert(H5Dialog().open() == `<dialog open></dialog>`);
 }

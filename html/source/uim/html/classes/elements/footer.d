@@ -28,7 +28,7 @@ mixin(ShowModule!());
 class H5Footer : HtmlElement {
   mixin H5This!("footer", false);
 
-  mixin(StringAttributeMethods!H5Footer);
+  mixin(AttributeMethods!H5Footer);
 
   mixin(H5Calls!("footer"));
 }

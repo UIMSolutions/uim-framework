@@ -39,7 +39,7 @@ mixin(ShowModule!());
 class H5Table : HtmlElement {
   mixin H5This!("table", false);
 
-  mixin(StringAttributeMethods!H5Table);
+  mixin(AttributeMethods!H5Table);
 
   mixin(H5Calls!("table"));
 }
