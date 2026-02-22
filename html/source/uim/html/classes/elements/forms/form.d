@@ -27,28 +27,14 @@ mixin(ShowModule!());
   *   <input type="submit" value="Submit">
   * </form>
  */
+@StringAttribute("action")  // The action attribute specifies where to send the form data when the form is submitted.
+@StringAttribute("method")  // The method attribute specifies the HTTP method to use when submitting the form (e.g., GET, POST).
+@StringAttribute("name")  // The name attribute specifies the name of the form, which can be used to reference it in scripts or styles.
+@StringAttribute("enctype")  // The enctype attribute specifies how the form data should be encoded when submitting it to the server.
 class H5Form : HtmlElement { // IHtmlForm {
   mixin H5This!("form", false);
 
-  H5Form name() {
-    attribute("name");
-    return this;
-  }
-
-  H5Form name(string nameValue) {
-    attribute("name", nameValue);
-    return this;
-  }
-
-  H5Form action(string url) {
-    attribute("action", url);
-    return this;
-  }
-
-  H5Form method(string methoUIMValue) {
-    attribute("method", methoUIMValue);
-    return this;
-  }
+  mixin(AttributeMethods!H5Form);
 
   /// Sets the method attribute of the form to "POST".
   H5Form post() {
@@ -57,14 +43,8 @@ class H5Form : HtmlElement { // IHtmlForm {
   }
 
   /// Sets the method attribute of the form to "GET".
-    H5Form get() {
-      method("GET");
-      return this;  
-  }
-
-  /// Sets the enctype attribute of the form.
-  H5Form enctype(string value) {
-    attribute("enctype", value);
+  H5Form get() {
+    method("GET");
     return this;
   }
 
@@ -74,4 +54,16 @@ class H5Form : HtmlElement { // IHtmlForm {
 unittest {
   auto form = H5Form().action("/submit").post();
   assert(form.toString().indexOf("action=\"/submit\"") > 0);
+
+  assert(H5Form() == "<form></form>");
+  assert(H5Form("My Form") == "<form>My Form</form>");
+  assert(H5Form(["testclass"]) == "<form class=\"testclass\"></form>");
+  assert(H5Form(["a":"b"]) == "<form a=\"b\"></form>");
+
+  assert(H5Form().action("/submit") == "<form action=\"/submit\"></form>");
+  assert(H5Form().post() == "<form method=\"POST\"></form>");
+  assert(H5Form().get() == "<form method=\"GET\"></form>");
+  assert(H5Form().name("myForm") == "<form name=\"myForm\"></form>");
+  assert(H5Form().enctype("multipart/form-data") == "<form enctype=\"multipart/form-data\"></form>");
+  assert(H5Form().method("PUT") == "<form method=\"PUT\"></form>");
 }

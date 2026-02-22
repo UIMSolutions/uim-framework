@@ -25,20 +25,12 @@ mixin(ShowModule!());
   * The content of the <button> element can include text and other inline elements, making it more flexible
   * than the <input type="button"> element, which cannot contain content.
   */
+
+@StringAttribute("type")
 class H5Button : HtmlElement {
   mixin H5This!("button", false);
 
-  // #region type
-  H5Button type(string typeValue) {
-    attribute("type", typeValue);
-    return this;
-  }
-
-  H5Button type() {
-    attribute("type");
-    return this;
-  }
-  // #endregion type
+  mixin(AttributeMethods!H5Button);
 
   H5Button submit() {
     type("submit");

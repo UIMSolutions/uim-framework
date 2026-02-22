@@ -19,36 +19,26 @@ mixin(ShowModule!());
  *   <input type="email" id="email" name="email">
  * </fieldset>
  */
+ @StringAttribute("form") // The form attribute specifies one or more forms the fieldset belongs to.
+ @StringAttribute("name") // The name attribute specifies the name of the fieldset, which can be used to reference it in scripts or styles.
+ @BoolAttribute("disabled") // The disabled attribute indicates that the fieldset is disabled, meaning that the user cannot interact with it or its child elements.
 class H5Fieldset : HtmlElement {
-  this() {
-    super("fieldset");
-  }
+  mixin H5This!("fieldset", false);
 
-  /// Sets the disabled attribute of the fieldset element.
-  IHtmlElement disabled() {
-    attribute("disabled", "");
-    return this;
-  }
+  mixin(AttributeMethods!H5Fieldset);
 
-  /// Sets the form attribute of the fieldset element.
-  IHtmlElement form(string formId) {
-    attribute("form", formId);
-    return this;
-  }
-
-  /// Sets the name attribute of the fieldset element.
-  IHtmlElement name(string nameValue) {
-    attribute("name", nameValue);
-    return this;
-  }
-
-  static H5Fieldset opCall() {
-    return new H5Fieldset();
-  }
+  mixin(H5Calls!("fieldset"));
 }
 ///
 unittest {
   mixin(ShowTest!"Testing Fieldset Class");
 
   assert(H5Fieldset() == "<fieldset></fieldset>");
+  assert(H5Fieldset("Personal Information") == "<fieldset>Personal Information</fieldset>");
+  assert(H5Fieldset(["testclass"]) == "<fieldset class=\"testclass\"></fieldset>");
+  assert(H5Fieldset(["a":"b"]) == "<fieldset a=\"b\"></fieldset>");
+
+  assert(H5Fieldset().form("myForm") == "<fieldset form=\"myForm\"></fieldset>");
+  assert(H5Fieldset().name("myFieldset") == "<fieldset name=\"myFieldset\"></fieldset>");
+  assert(H5Fieldset().disabled() == "<fieldset disabled></fieldset>");
 }
