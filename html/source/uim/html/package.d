@@ -9,7 +9,10 @@ module uim.html;
 public import uim.oop;
 
 // HTML library modules
-public import uim.html.classes;
-public import uim.html.interfaces;
-public import uim.html.mixins;
-public import uim.html.tests;
+public {
+  import uim.html.classes;
+  import uim.html.interfaces;
+  import uim.html.mixins;
+  import uim.html.tests;
+  import uim.html.udas;
+}

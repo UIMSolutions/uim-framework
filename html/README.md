@@ -1,6 +1,6 @@
 # Library 📚 uim-html
 
-Updated on 1. February 2026
+Updated on 22. February 2026
 
 [![uim-html](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-html.yml/badge.svg)](https://github.com/UIMSolutions/uim-framework/actions/workflows/uim-html.yml) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -12,6 +12,7 @@ D language library for generating HTML programmatically.
 - **Type Safety**: Compile-time type checking for HTML elements
 - **Full HTML5 Support**: Common elements, forms, tables, lists, and more
 - **Attribute Management**: Easy attribute setting and manipulation
+- **UDA Support**: Declarative metadata using User Defined Attributes for tags, categories, and capabilities
 - **Document Generation**: Complete HTML document builder
 - **Self-Closing Tags**: Automatic handling of void elements (br, hr, img, etc.)
 
@@ -258,11 +259,31 @@ writeln(doc);
 
 ```d
 auto element = Div()
+
+## UDA Functionalities
+
+Use `uim.html.udas` to attach compile-time metadata to HTML-related symbols.
+
+```d
+import uim.html;
+
+@HtmlTag("img")
+@VoidElement
+@SupportsAttribute("src")
+@SupportsAttribute("alt")
+struct MyImageElement {}
+
+static assert(hasHtmlTagAttribute!MyImageElement);
+static assert(getHtmlTagAttribute!MyImageElement.name == "img");
+static assert(hasVoidElementAttribute!MyImageElement);
+```
+
     .id("main")                    // Set ID
     .addClass("container")         // Add CSS class
     .addClass("responsive")        // Add another class
     .style("color: red;")          // Set inline style
     .attribute("data-id", "123");  // Custom attribute
+
 ```
 
 ### Getting Attributes

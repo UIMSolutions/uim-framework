@@ -13,6 +13,7 @@ A modular compiler toolkit for D that covers the full pipeline from lexing to co
 - Diagnostics pipeline with recoverable errors
 - Pluggable architecture: swap phases without changing callers
 - Mixins to bootstrap compiler wiring and common behaviors
+- UDA helpers for declarative compiler component metadata
 - Examples that demonstrate tokens, AST building, optimization, and templated codegen
 
 ## Installation
@@ -167,6 +168,23 @@ class CustomCompiler : Compiler {
 
 auto compiler = new CustomCompiler();
 auto result = compiler.compile(sourceCode);
+```
+
+## UDA Functionalities
+
+Use `uim.compilers.udas` to annotate compiler components and query metadata at compile time.
+
+```d
+import uim.compilers;
+
+@CompilerPhase("lexer")
+@Language("json")
+@LexerImplementation("json-lexer")
+struct JsonLexer {}
+
+static assert(hasCompilerPhaseAttribute!JsonLexer);
+static assert(getCompilerPhaseAttribute!JsonLexer.name == "lexer");
+static assert(hasLanguageAttribute!JsonLexer);
 ```
 
 ## Testing

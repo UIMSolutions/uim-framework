@@ -17,4 +17,5 @@ public {
   import uim.compilers.mixins;
   import uim.compilers.structs;
   import uim.compilers.tests;
+  import uim.compilers.udas;
 }
