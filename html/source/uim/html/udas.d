@@ -52,11 +52,11 @@ struct DeprecatedHtml {
 /// UDA to generate fluent setter/getter methods for HTML attributes on an element class.
 ///
 /// Usage:
-/// @H5Attribute("sizes")
+/// @StringAttribute("sizes")
 /// class H5Link : HtmlElement {
-///   mixin(H5AttributeMethods!H5Link);
+///   mixin(StringAttributeMethods!H5Link);
 /// }
-struct H5Attribute {
+struct StringAttribute {
   string methodName;
   string attributeName;
 
@@ -66,7 +66,7 @@ struct H5Attribute {
   }
 }
 
-private string generateH5AttributeMethod(H5Attribute attribute) {
+private string generateStringAttributeMethod(StringAttribute attribute) {
   return format(q{
   @safe auto %1$s(string value) {
     attribute("%2$s", value);
@@ -80,25 +80,80 @@ private string generateH5AttributeMethod(H5Attribute attribute) {
 }, attribute.methodName, attribute.attributeName);
 }
 
-private string generateH5AttributeMethods(H5Attribute[] attributes) {
+private string generateStringAttributeMethods(StringAttribute[] attributes) {
   string code;
 
   foreach (attribute; attributes) {
-    code ~= generateH5AttributeMethod(attribute);
+    code ~= generateStringAttributeMethod(attribute);
   }
 
   return code;
 }
 
-/// Generates all setter/getter methods from `@H5Attribute(...)` UDAs on a class.
-template H5AttributeMethods(alias symbol) {
+/// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
+template StringAttributeMethods(alias symbol) {
   import std.traits : getUDAs;
 
-  enum string H5AttributeMethods = {
+  enum string StringAttributeMethods = {
     string code;
 
-    static foreach (attribute; getUDAs!(symbol, H5Attribute)) {
-      code ~= generateH5AttributeMethod(attribute);
+    static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
+      code ~= generateStringAttributeMethod(attribute);
+    }
+
+    return code;
+  }();
+}
+
+struct BoolAttribute {
+  string methodName;
+  string attributeName;
+    string isName;
+
+  this(string methodName, string attributeName = "") {
+    this.methodName = methodName;
+    this.attributeName = attributeName.length > 0 ? attributeName : methodName;
+    this.isName = "is"~methodName[0..1].toUpper()~methodName[1..$];
+  }
+}
+
+private string generateBoolAttributeMethod(BoolAttribute attribute) {
+  return format(q{
+  auto %1$s(bool val = true) {
+    if (val) {  
+      attribute("%2$s", "");
+    } else {
+      removeAttribute("%2$s");
+    }
+    return this;
+  }
+
+  bool %3$s() {
+    return attribute("%2$s") !is null;
+  }
+}, attribute.methodName, attribute.attributeName, attribute.isName);        
+
+}
+
+private string generateBoolAttributeMethods(BoolAttribute[] attributes) {
+  string code;
+
+  foreach (attribute; attributes) {
+    code ~= generateBoolAttributeMethod(attribute);
+  }
+
+  return code;
+}
+
+/// Generates all setter/getter methods from `@BoolAttribute(...)` UDAs on a class.
+template BoolAttributeMethods(alias symbol) {
+  import std.traits : getUDAs;
+
+  enum string BoolAttributeMethods = {
+    string code;
+
+    static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
+      code ~= generateBoolAttributeMethod(attribute);
     }
 
     return code;
@@ -216,8 +271,8 @@ unittest {
 }
 
 unittest {
-  @H5Attribute("sizes")
-  @H5Attribute("crossorigin")
+  @StringAttribute("sizes")
+  @StringAttribute("crossorigin")
   class GeneratedLinkLike {
     private string[string] _attributes;
 
@@ -242,7 +297,7 @@ unittest {
       return null;
     }
 
-    mixin(H5AttributeMethods!GeneratedLinkLike);
+    mixin(StringAttributeMethods!GeneratedLinkLike);
   }
 
   auto item = new GeneratedLinkLike();

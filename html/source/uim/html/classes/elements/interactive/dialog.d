@@ -17,10 +17,13 @@ mixin(ShowModule!());
   * The <dialog> element is not displayed by default. You can use the open attribute to show the dialog.
   * The <dialog> element also has a method called showModal() that can be used to display the dialog as a modal.
   */
+  
 class H5Dialog : HtmlElement {
   mixin H5This!("dialog", false);
 
-  /** Specifies the conditions under which the dialog is to be closed.
+  mixin(StringAttributeMethods!H5Dialog);
+  
+    /** Specifies the conditions under which the dialog is to be closed.
    * The value must be one of the following:
    * - "escape": The dialog can be closed by pressing the Escape key.
    * - "outside": The dialog can be closed by clicking outside the dialog.

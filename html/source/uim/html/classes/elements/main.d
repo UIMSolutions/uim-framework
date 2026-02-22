@@ -29,7 +29,7 @@ mixin(ShowModule!());
 class H5Main : HtmlElement {
   mixin H5This!("main", false);
 
-  mixin(H5AttributeMethods!H5Main);
+  mixin(StringAttributeMethods!H5Main);
 
   mixin(H5Calls!("main"));
 }

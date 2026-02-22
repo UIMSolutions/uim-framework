@@ -27,12 +27,12 @@ mixin(ShowModule!());
   *   <style href="styles.css" target="_blank"></style>
   * </head>
   */
-@H5Attribute("href")
-@H5Attribute("target")
+@StringAttribute("href")
+@StringAttribute("target")
 class H5Style : HtmlElement {
   mixin H5This!("style", true);
 
-  mixin(H5AttributeMethods!H5Style);
+  mixin(StringAttributeMethods!H5Style);
 
   mixin(H5Calls!("style"));
 }

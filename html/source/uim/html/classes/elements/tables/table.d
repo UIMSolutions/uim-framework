@@ -33,13 +33,13 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-  @H5Attribute("border")
-  @H5Attribute("cellspacing")
-  @H5Attribute("cellpadding")
+  @StringAttribute("border")
+  @StringAttribute("cellspacing")
+  @StringAttribute("cellpadding")
 class H5Table : HtmlElement {
   mixin H5This!("table", false);
 
-  mixin(H5AttributeMethods!H5Table);
+  mixin(StringAttributeMethods!H5Table);
 
   mixin(H5Calls!("table"));
 }

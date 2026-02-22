@@ -23,16 +23,16 @@ mixin(ShowModule!());
  * ```
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
- @H5Attribute("src")
- @H5Attribute("type")
- @H5Attribute("width")
- @H5Attribute("height")
- @H5Attribute("title")
+ @StringAttribute("src")
+ @StringAttribute("type")
+ @StringAttribute("width")
+ @StringAttribute("height")
+ @StringAttribute("title")
 class H5Embed : HtmlElement {
   mixin H5This!("embed", false);
 
-  mixin(H5AttributeMethods!H5Embed);
-    
+  mixin(StringAttributeMethods!H5Embed);
+
   mixin(H5Calls!("embed"));
 }
 ///

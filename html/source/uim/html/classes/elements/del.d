@@ -26,7 +26,7 @@ mixin(ShowModule!());
 class H5Del : HtmlElement {
   mixin H5This!("del", false);
 
-  mixin(H5AttributeMethods!H5Del);
+  mixin(StringAttributeMethods!H5Del);
 
   mixin(H5Calls!("del"));
 }

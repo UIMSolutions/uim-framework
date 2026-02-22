@@ -31,12 +31,12 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-  @H5Attribute("colspan")
-  @H5Attribute("rowspan")
+  @StringAttribute("colspan")
+  @StringAttribute("rowspan")
 class H5Th : HtmlElement {
   mixin H5This!("th", false);
 
-  mixin(H5AttributeMethods!H5Th);
+  mixin(StringAttributeMethods!H5Th);
 
   H5Th scope_(string value) {
     attribute("scope", value);

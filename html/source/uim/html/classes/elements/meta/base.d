@@ -22,12 +22,12 @@ mixin(ShowModule!());
   *   <base href="https://example.com/" target="_blank">
   * </head>
   */
-@H5Attribute("href")
-@H5Attribute("target")
+@StringAttribute("href")
+@StringAttribute("target")
 class H5Base : HtmlElement {
   mixin H5This!("base", true);
 
-  mixin(H5AttributeMethods!H5Base);
+  mixin(StringAttributeMethods!H5Base);
 
   mixin(H5Calls!("base"));
 }

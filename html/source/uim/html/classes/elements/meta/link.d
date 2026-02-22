@@ -24,21 +24,21 @@ mixin(ShowModule!());
   * <link rel="icon" href="favicon.ico" type="image/x-icon">
   * ```
   */
-@H5Attribute("as")
-@H5Attribute("blocking")
-@H5Attribute("crossorigin")
-@H5Attribute("fetchpriority")
-@H5Attribute("href")
-@H5Attribute("hreflang")
-@H5Attribute("imagesizes")
-@H5Attribute("imagesrcset")
-@H5Attribute("integrity")
-@H5Attribute("media")
-@H5Attribute("referrerpolicy")
-@H5Attribute("rel")
-@H5Attribute("sizes")
-@H5Attribute("title")
-@H5Attribute("type")
+@StringAttribute("as")
+@StringAttribute("blocking")
+@StringAttribute("crossorigin")
+@StringAttribute("fetchpriority")
+@StringAttribute("href")
+@StringAttribute("hreflang")
+@StringAttribute("imagesizes")
+@StringAttribute("imagesrcset")
+@StringAttribute("integrity")
+@StringAttribute("media")
+@StringAttribute("referrerpolicy")
+@StringAttribute("rel")
+@StringAttribute("sizes")
+@StringAttribute("title")
+@StringAttribute("type")
 class H5Link : HtmlElement {
   mixin H5This!("link", true);
 
@@ -47,7 +47,7 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  mixin(H5AttributeMethods!H5Link);
+  mixin(StringAttributeMethods!H5Link);
 
   // Create a new Base element
   mixin(H5Calls!("link"));
