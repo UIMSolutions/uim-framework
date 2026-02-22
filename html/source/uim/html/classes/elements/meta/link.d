@@ -12,6 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// HTML base element
+@H5Attribute("sizes")
 class H5Link : HtmlElement {
   mixin H5This!("link", true);
 
@@ -131,14 +132,7 @@ class H5Link : HtmlElement {
     return this;
   }
 
-  H5Link sizes(string value) {
-    attribute("sizes", value);
-    return this;
-  }
-
-  string sizes() {
-    return attribute("sizes").value;
-  }
+  mixin(H5AttributeMethods!H5Link);
 
   H5Link title(string value) {
     attribute("title", value);

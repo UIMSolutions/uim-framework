@@ -7,6 +7,8 @@ module uim.html.udas;
 
 @safe:
 
+import std.string : format;
+
 /// Associates a symbol with an HTML tag name.
 struct HtmlTag {
   string name;
@@ -45,6 +47,62 @@ struct DeprecatedHtml {
   this(string deprecationReason) {
     reason = deprecationReason;
   }
+}
+
+/// UDA to generate fluent setter/getter methods for HTML attributes on an element class.
+///
+/// Usage:
+/// @H5Attribute("sizes")
+/// class H5Link : HtmlElement {
+///   mixin(H5AttributeMethods!H5Link);
+/// }
+struct H5Attribute {
+  string methodName;
+  string attributeName;
+
+  this(string methodName, string attributeName = "") {
+    this.methodName = methodName;
+    this.attributeName = attributeName.length > 0 ? attributeName : methodName;
+  }
+}
+
+private string generateH5AttributeMethod(H5Attribute attribute) {
+  return format(q{
+  @safe auto %1$s(string value) {
+    attribute("%2$s", value);
+    return this;
+  }
+
+  @safe string %1$s() {
+    auto attr = attribute("%2$s");
+    return attr is null ? null : attr.value;
+  }
+}, attribute.methodName, attribute.attributeName);
+}
+
+private string generateH5AttributeMethods(H5Attribute[] attributes) {
+  string code;
+
+  foreach (attribute; attributes) {
+    code ~= generateH5AttributeMethod(attribute);
+  }
+
+  return code;
+}
+
+/// Generates all setter/getter methods from `@H5Attribute(...)` UDAs on a class.
+template H5AttributeMethods(alias symbol) {
+  import std.traits : getUDAs;
+
+  enum string H5AttributeMethods = {
+    string code;
+
+    static foreach (attribute; getUDAs!(symbol, H5Attribute)) {
+      code ~= generateH5AttributeMethod(attribute);
+    }
+
+    return code;
+  }();
 }
 
 /// Checks whether a symbol has an `HtmlTag` UDA.
@@ -155,4 +213,42 @@ unittest {
   assert(hasDeprecatedHtmlAttribute!CenterElement);
   assert(getDeprecatedHtmlAttribute!CenterElement.reason == "Use CSS text-align instead");
   assert(!hasDeprecatedHtmlAttribute!ImageElement);
+}
+
+unittest {
+  @H5Attribute("sizes")
+  @H5Attribute("crossorigin")
+  class GeneratedLinkLike {
+    private string[string] _attributes;
+
+    @safe GeneratedLinkLike attribute(string name, string value) {
+      _attributes[name] = value;
+      return this;
+    }
+
+    private class AttributeProxy {
+      string value;
+
+      this(string v) {
+        value = v;
+      }
+    }
+
+    @safe AttributeProxy attribute(string name) {
+      if (auto ptr = name in _attributes) {
+        return new AttributeProxy(*ptr);
+      }
+
+      return null;
+    }
+
+    mixin(H5AttributeMethods!GeneratedLinkLike);
+  }
+
+  auto item = new GeneratedLinkLike();
+  item.sizes("64x64");
+  item.crossorigin("anonymous");
+
+  assert(item.sizes() == "64x64");
+  assert(item.crossorigin() == "anonymous");
 }
