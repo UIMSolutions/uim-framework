@@ -290,7 +290,7 @@ class HtmlElement : IHtmlElement {
       if (attribute.name == "id") {
         id = attribute.toString();
       } else if (attribute.name == "class") {
-        classes = "class=\"" ~ attribute.value.split.sort.join(" ") ~ "\"";
+        classes = "class=\"" ~ attribute.value.split.uniq.array.sort.join(" ") ~ "\"";
       } else {
         attrStrings ~= attribute.toString();
       }

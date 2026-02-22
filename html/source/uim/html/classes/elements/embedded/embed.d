@@ -23,73 +23,16 @@ mixin(ShowModule!());
  * ```
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
+ @H5Attribute("src")
+ @H5Attribute("type")
+ @H5Attribute("width")
+ @H5Attribute("height")
+ @H5Attribute("title")
 class H5Embed : HtmlElement {
   mixin H5This!("embed", false);
 
-  /**
-    * Sets the URL of the content being embedded in the <embed> element. This attribute is required for the <embed> element to function properly, as it specifies the source of the content to be displayed.
-    *
-    * Example usage:
-    * ```html
-    * <embed src="audio.mp3" type="audio/mpeg">
-    * ```
-    * This would embed an audio file named "audio.mp3" with a specified MIME type of "audio/mpeg".
-    */
-  H5Embed src(string url) {
-    attribute("src", url);
-    return this;
-  }
-
-  /**
-    * Gets the value of the "src" attribute, which specifies the URL of the content being embedded in the <embed> element.
-    *
-    * Example usage:
-    * ```html
-    * <embed src="document.pdf" type="application/pdf">
-    * ```
-    * This would embed a PDF document named "document.pdf" with a specified MIME type of "application/pdf".
-    */
-  IHtmlAttribute src() {
-    return attribute("src");
-  }
-
-  H5Embed width(string width) {
-    attribute("width", width);
-    return this;
-  }
-
-  string width() {
-    return attribute("width");
-  }
-
-  H5Embed height(string height) {
-    attribute("height", height);
-    return this;
-  }
-
-  IHtmlAttribute height() {
-    return attribute("height");
-  }
-
-  H5Embed title(string title) {
-    attribute("title", title);
-    return this;
-  }
-
-  IHtmlAttribute title() {
-    return attribute("title");
-  }
-  
-  H5Embed type(string mimeType) {
-    attribute("type", mimeType);
-    return this;
-  }
-
-  IHtmlAttribute type() {
-    return attribute("type");
-  }
-
-  
+  mixin(H5AttributeMethods!H5Embed);
+    
   mixin(H5Calls!("embed"));
 }
 ///

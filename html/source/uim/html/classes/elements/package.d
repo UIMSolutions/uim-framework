@@ -18,7 +18,6 @@ public {
   import uim.html.classes.elements.hgroup;
   import uim.html.classes.elements.main;
   import uim.html.classes.elements.ins;
-  import uim.html.classes.elements.link;
   import uim.html.classes.elements.main;
   import uim.html.classes.elements.nav;
   import uim.html.classes.elements.search;

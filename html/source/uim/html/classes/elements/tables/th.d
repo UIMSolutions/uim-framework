@@ -31,22 +31,20 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
+  @H5Attribute("colspan")
+  @H5Attribute("rowspan")
 class H5Th : HtmlElement {
   mixin H5This!("th", false);
 
-  H5Th colspan(string value) {
-    attribute("colspan", value);
-    return this;
-  }
-
-  H5Th rowspan(string value) {
-    attribute("rowspan", value);
-    return this;
-  }
+  mixin(H5AttributeMethods!H5Th);
 
   H5Th scope_(string value) {
     attribute("scope", value);
     return this;
+  }
+
+  string scope_() {
+    return attribute("scope").value;
   }
 
   mixin(H5Calls!("th"));
@@ -55,4 +53,11 @@ class H5Th : HtmlElement {
 unittest {
   assert(H5Th() == "<th></th>");
   assert(H5Th("Header") == "<th>Header</th>");
+  assert(H5Th(["test"], "Header") == `<th class="test">Header</th>`);
+  assert(H5Th(["a": "b"], "Header") == `<th a="b">Header</th>`);
+  assert(H5Th(["test"], ["a": "b"], "Header") == `<th class="test" a="b">Header</th>`);
+
+  assert(H5Th().colspan("2") == `<th colspan="2"></th>`);
+  assert(H5Th().rowspan("3") == `<th rowspan="3"></th>`);
+  assert(H5Th().scope_("col") == `<th scope="col"></th>`);
 }

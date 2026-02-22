@@ -29,21 +29,12 @@ mixin(ShowModule!());
 class H5Main : HtmlElement {
   mixin H5This!("main", false);
 
-  static H5Main opCall() {
-    return new H5Main();
-  }
+  mixin(H5AttributeMethods!H5Main);
 
-  static H5Main opCall(string content) {
-    auto element = new H5Main();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("main"));
 }
 ///
 unittest {
-  auto main = H5Main();
-  assert(main.toString() == "<main></main>");
-
-  auto mainWithContent = H5Main("Hello");
-  assert(mainWithContent.toString() == "<main>Hello</main>");
+  assert(H5Main() == "<main></main>");
+  assert(H5Main("Hello") == "<main>Hello</main>");
 }

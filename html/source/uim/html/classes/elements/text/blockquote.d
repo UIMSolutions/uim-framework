@@ -28,6 +28,8 @@ mixin(ShowModule!());
 class H5Blockquote : HtmlElement {
   mixin H5This!("blockquote", false);
 
+  mixin(H5AttributeMethods!H5Link);
+
   H5Blockquote cite(string url) {
     attribute("cite", url);
     return this;
@@ -42,6 +44,7 @@ class H5Blockquote : HtmlElement {
 ///
 unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
-   assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
-    assert(H5Blockquote().cite("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
+  assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
+  assert(H5Blockquote()
+      .cite("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
 }

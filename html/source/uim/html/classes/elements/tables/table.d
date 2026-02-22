@@ -33,26 +33,13 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
+  @H5Attribute("border")
+  @H5Attribute("cellspacing")
+  @H5Attribute("cellpadding")
 class H5Table : HtmlElement {
   mixin H5This!("table", false);
 
-  ///  Gets or sets the border width of a table. This attribute is only applicable to "table" elements.
-  IHtmlElement border(string borderValue) {
-    attribute("border", borderValue);
-    return this;
-  }
-
-  ///   Gets or sets the amount of space between the borders of adjacent cells in a table. This attribute is only applicable to "table" elements.
-  IHtmlElement cellspacing(string value) {
-    attribute("cellspacing", value);
-    return this;
-  }
-
-  /// Gets or sets the amount of space between the borders of adjacent cells in a table. This attribute is only applicable to "table" elements.
-  IHtmlElement cellpadding(string value) {
-    attribute("cellpadding", value);
-    return this;
-  }
+  mixin(H5AttributeMethods!H5Table);
 
   mixin(H5Calls!("table"));
 }
@@ -61,4 +48,10 @@ unittest {
   mixin(ShowTest!"Testing Table Class");
 
   assert(H5Table() == "<table></table>");
+  assert(H5Table("Hello") == "<table>Hello</table>");
+  assert(H5Table(["test"], "Hello") == `<table class="test">Hello</table>`);
+  assert(H5Table(["a": "b"], "Hello") == `<table a="b">Hello</table>`);
+  assert(H5Table(["test"], ["a": "b"], "Hello") == `<table class="test" a="b">Hello</table>`);
+
+  assert(H5Table().border("1") == `<table border="1"></table>`);
 }

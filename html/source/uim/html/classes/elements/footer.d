@@ -37,5 +37,5 @@ unittest {
   assert(H5Footer() == "<footer></footer>");
   assert(H5Footer("Hello") == "<footer>Hello</footer>");
   assert(H5Footer(["testclass"]) == "<footer class=\"testclass\"></footer>");
-  assert(H5Footer(["a":"b"]) == "<footer class=\"a\">b</footer>");
+  assert(H5Footer(["a":"b"]) == `<footer a="b"></footer>`);
 }
