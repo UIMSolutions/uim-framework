@@ -22,30 +22,12 @@ mixin(ShowModule!());
   *   <base href="https://example.com/" target="_blank">
   * </head>
   */
+@H5Attribute("href")
+@H5Attribute("target")
 class H5Base : HtmlElement {
   mixin H5This!("base", true);
 
-  H5Base href(string value) {
-    attribute("href", value);
-    return this;
-  }
-
-  string href() {
-    return attribute("href").value;
-  }
-
-  // #region target
-  // Valid values for target attribute
-  // _self, _blank, _parent, _top, framename
-  H5Base target(string value) {
-    attribute("target", value);
-    return this;
-  }
-
-  string target() {
-    return attribute("target").value;
-  }
-  // #endregion target
+  mixin(H5AttributeMethods!H5Base);
 
   mixin(H5Calls!("base"));
 }

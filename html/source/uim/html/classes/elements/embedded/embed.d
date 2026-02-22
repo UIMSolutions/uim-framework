@@ -58,7 +58,7 @@ class H5Embed : HtmlElement {
     return this;
   }
 
-  IHtmlAttribute width() {
+  string width() {
     return attribute("width");
   }
 

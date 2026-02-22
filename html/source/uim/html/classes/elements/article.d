@@ -14,15 +14,9 @@ mixin(ShowModule!());
 class H5Article : HtmlElement {
   mixin H5This!("article", false);
 
-  static H5Article opCall() {
-    return new H5Article();
-  }
+  mixin(H5AttributeMethods!H5Article);
 
-  static H5Article opCall(string content) {
-    auto element = new H5Article();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("article"));
 }
 ///
 unittest {

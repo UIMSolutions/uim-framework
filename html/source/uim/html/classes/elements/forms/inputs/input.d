@@ -22,44 +22,14 @@ mixin(ShowModule!());
   * auto passwordInput = H5Input().PasswordInput("password").placeholder("Enter your password");
   * auto submitButton = H5Input().SubmitInput("Login");
   */
+@H5Attribute("type")
+@H5Attribute("name")
+@H5Attribute("value")
+@H5Attribute("placeholder")
 class H5Input : HtmlElement {
   mixin H5This!("input", true);
 
-  H5Input type(string typeValue) {
-    attribute("type", typeValue);
-    return this;
-  }
-
-  string type() {
-    return attribute("type").value;
-  }
-
-  string name() {
-    return attribute("name").value;
-  }
-
-  H5Input name(string nameValue) {
-    attribute("name", nameValue);
-    return this;
-  }
-
-  H5Input value(string valueValue) {
-    attribute("value", valueValue);
-    return this;
-  }
-
-  string value() {
-    return attribute("value").value;
-  }
-
-  H5Input placeholder(string text) {
-    attribute("placeholder", text);
-    return this;
-  }
-
-  string placeholder() {
-    return attribute("placeholder").value;
-  }
+  mixin(H5AttributeMethods!H5Input);
 
   H5Input required(bool isRequired = true) {
     if (isRequired)

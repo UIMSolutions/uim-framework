@@ -14,15 +14,9 @@ mixin(ShowModule!());
 class H5Aside : HtmlElement {
   mixin H5This!("aside", false);
 
-  static H5Aside opCall() {
-    return new H5Aside();
-  }
+  mixin(H5AttributeMethods!H5Aside);
 
-  static H5Aside opCall(string content) {
-    auto element = new H5Aside();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("aside"));
 }
 ///
 unittest {
