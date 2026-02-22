@@ -18,6 +18,8 @@ mixin(ShowModule!());
 class H5Strong : HtmlElement {
   mixin H5This!("strong", false);
 
+  mixin(AttributeMethods!H5Strong);
+
   mixin(H5Calls!("Strong"));
 }
 ///

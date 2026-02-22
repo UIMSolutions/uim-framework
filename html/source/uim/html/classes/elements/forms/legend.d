@@ -20,6 +20,8 @@ mixin(ShowModule!());
 class H5Legend : HtmlElement {
   mixin H5This!("legend");
 
+  mixin(AttributeMethods!H5Legend);
+
   mixin(H5Calls!("legend"));
 }
 /// 

@@ -23,6 +23,8 @@ mixin(ShowModule!());
   * <progress value="70" max="100">70%</progress>
   * ```
   */
+@StringAttribute("value")
+@StringAttribute("max")
 class H5Progress : HtmlElement {
   mixin H5This!("progress", false);
 

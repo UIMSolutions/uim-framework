@@ -22,10 +22,14 @@ mixin(ShowModule!());
 class H5Kbd : HtmlElement {
   mixin H5This!("kbd", false);
 
+  mixin(AttributeMethods!H5Kbd);
+
   mixin(H5Calls!("kbd"));
 }
 ///
 unittest {
   assert(H5Kbd() == "<kbd></kbd>");
   assert(H5Kbd("Hello") == "<kbd>Hello</kbd>");
+  assert(H5Kbd(["testclass"]) == `<kbd class="testclass"></kbd>`);
+  assert(H5Kbd(["a": "b"]) == `<kbd a="b"></kbd>`);
 }

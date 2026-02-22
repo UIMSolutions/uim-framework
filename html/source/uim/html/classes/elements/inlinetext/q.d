@@ -18,20 +18,11 @@ mixin(ShowModule!());
  * For longer quotations, the <blockquote> element should be used instead.
  */
 class H5Q : HtmlElement {
-  this() {
-    super("q");
-    this.selfClosing(false);
-  }
+  mixin H5This!("q", false);
 
-  static H5Q opCall() {
-    return new H5Q();
-  }
+  mixin(AttributeMethods!H5Q);
 
-  static H5Q opCall(string content) {
-    auto element = new H5Q();
-    element.content(content);
-    return element;
-  }
+  mixin(AttributeMethods!H5Q);
 }
 ///
 unittest {

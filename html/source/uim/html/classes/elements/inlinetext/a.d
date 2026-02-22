@@ -19,20 +19,13 @@ mixin(ShowModule!());
   * auto link = H5A("Click here").href("https://example.com").targetBlank();
   * This creates a hyperlink with the text "Click here" that points to "https://example.com" and opens in a new tab.
 */
+@StringAttribute("href") // The 'href' attribute specifies the URL of the page the link goes to.
+@StringAttribute("target") // The 'target' attribute specifies where to open the linked document. 
+
 class H5A : HtmlElement {
   mixin H5This!("a", false);
 
-  // Setting the href attribute
-  H5A href(string url) {
-    attribute("href", url);
-    return this;
-  }
-
-  // Setting the target attribute
-  H5A target(string targetValue) {
-    attribute("target", targetValue);
-    return this;
-  }
+mixin(AttributeMethods!H5A);
 
   // Setting target="_blank"
   H5A targetBlank() {
@@ -45,7 +38,14 @@ class H5A : HtmlElement {
 unittest {
   assert(H5A() == "<a></a>");
   assert(H5A("Click here") == "<a>Click here</a>");
+
   assert(H5A().href("https://example.com") == `<a href="https://example.com"></a>`);
+  assert(H5A().href("https://example.com").href() == "https://example.com");
+  
   assert(H5A().target("_self") == `<a target="_self"></a>`);
+  assert(H5A().target("_self").target() == "_self");
   assert(H5A().targetBlank() == `<a target="_blank"></a>`);
+  assert(H5A().targetBlank().target() == "_blank");
+
+  assert(H5A().href("https://example.com").target("_self") == `<a href="https://example.com" target="_self"></a>`);
 }

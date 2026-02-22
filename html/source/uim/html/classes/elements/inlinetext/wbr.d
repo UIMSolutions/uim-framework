@@ -24,6 +24,8 @@ mixin(ShowModule!());
 class H5Wbr : HtmlElement {
   mixin H5This!("wbr", true);
 
+  mixin(AttributeMethods!H5Wbr);
+
   mixin(H5Calls!("wbr"));
 }
 ///
