@@ -28,8 +28,8 @@ mixin(ShowModule!());
   * ```
   */
 class H5Map : HtmlElement {
-  mixin H5This!("map", false);
-
+  mixin(H5This!("map", false));
+  mixin(AttributeMethods!H5Map);
   mixin(H5Calls!("Map"));
 }
 ///

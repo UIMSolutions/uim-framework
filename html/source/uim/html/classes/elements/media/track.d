@@ -33,7 +33,8 @@ mixin(ShowModule!());
   * The <track> element is a powerful tool for enhancing the accessibility and usability of multimedia content on the web, and it is an essential part of creating inclusive and engaging user experiences.
   */
 class H5Track : HtmlElement {
-  mixin H5This!("track", false);
+  mixin(H5This!("track", false));
+  mixin(AttributeMethods!H5Track);
 
   mixin(H5Calls!("track"));
 }

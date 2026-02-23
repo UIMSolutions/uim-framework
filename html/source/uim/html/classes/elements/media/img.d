@@ -25,50 +25,16 @@ mixin(ShowModule!());
     * <img src="image.jpg" alt="A description of the image" width="500" height="300">
     * ```
     */
+    @StringAttribute("src")
+    @StringAttribute("alt")
+    @StringAttribute("width")
+    @StringAttribute("height")
 class H5Img : HtmlElement {
-  mixin H5This!("img", true);
+  mixin(H5This!("img", true));
 
-  H5Img src(string source) {
-    attribute("src", source);
-    return this;
-  }
+  mixin(AttributeMethods!H5Img);
 
-  IHtmlAttribute src() {
-    return attribute("src");
-  }
-
-  H5Img alt(string altText) {
-    attribute("alt", altText);
-    return this;
-  }
-
-  IHtmlAttribute alt() {
-    return attribute("alt");
-  }
-
-  H5Img height(string size) {
-    attribute("height", size);
-    return this;
-  }
-
-  IHtmlAttribute height() {
-    return attribute("height");
-  }
-
-  // #region width
-  /// Sets the width of the image. The value can be specified in pixels (e.g., "500px") or as a percentage (e.g., "50%").
-  H5Img width(string size) {
-    attribute("width", size);
-    return this;
-  }
-
-  /// Gets the width of the image. The value can be specified in pixels (e.g., "500px") or as a percentage (e.g., "50%").
-  IHtmlAttribute width() {
-    return attribute("width");
-  }
-  // #endregion width
-
-  mixin(H5Calls!("img"));
+  mixin(H5Calls!("Img"));
 }
 ///
 unittest {
