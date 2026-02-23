@@ -27,14 +27,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Main : HtmlElement {
-  mixin(H5This!("main", false));
-
+  mixin(H5Template!("Main", "main", false));
   mixin(AttributeMethods!H5Main);
-
-  mixin(H5Calls!("Main"));
 }
 ///
 unittest {
-  assert(H5Main() == "<main></main>");
-  assert(H5Main("Hello") == "<main>Hello</main>");
+  assert(H5Main() == `<main></main>`);
+  assert(H5Main(["testclass"]) == `<main class="testclass"></main>`);
+  assert(H5Main(["a":"b"]) == `<main a="b"></main>`);
+
+  assert(H5Main("Hello") == `<main>Hello</main>`);
+  assert(H5Main(["testclass"], "Hello") == `<main class="testclass">Hello</main>`);
+  assert(H5Main(["a":"b"], "Hello") == `<main a="b">Hello</main>`);
+
+  assert(H5Main(["testclass"], ["a":"b"], "Hello") == `<main class="testclass" a="b">Hello</main>`);
 }

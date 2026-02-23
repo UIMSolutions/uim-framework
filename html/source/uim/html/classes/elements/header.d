@@ -34,22 +34,18 @@ mixin(ShowModule!());
   */
 
 class H5Header : HtmlElement {
-  mixin(H5This!("header", false));
-
-   mixin(AttributeMethods!H5Header);
-
-  static H5Header opCall() {
-    return new H5Header();
-  }
-
-  static H5Header opCall(string content) {
-    auto element = new H5Header();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Template!("Header", "header", false));
+  mixin(AttributeMethods!H5Header);
 }
 ///
 unittest {
-  assert(H5Header() == "<header></header>");
-  assert(H5Header("Hello") == "<header>Hello</header>");
+  assert(H5Header() == `<header></header>`);
+  assert(H5Header(["testclass"]) == `<header class="testclass"></header>`);
+  assert(H5Header(["a":"b"]) == `<header a="b"></header>`);
+
+  assert(H5Header("Hello") == `<header>Hello</header>`);
+  assert(H5Header(["testclass"], "Hello") == `<header class="testclass">Hello</header>`);
+  assert(H5Header(["a":"b"], "Hello") == `<header a="b">Hello</header>`);
+
+  assert(H5Header(["testclass"], ["a":"b"], "Hello") == `<header class="testclass" a="b">Hello</header>`);
 }

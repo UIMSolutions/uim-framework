@@ -24,14 +24,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Del : HtmlElement {
-  mixin(H5This!("del", false));
-
+  mixin(H5Template!("Del", "del", false));
   mixin(AttributeMethods!H5Del);
-
-  mixin(H5Calls!("del"));
 }
 ///
 unittest {
-  assert(H5Del() == "<del></del>");
-  assert(H5Del("Hello") == "<del>Hello</del>");
+  assert(H5Del() == `<del></del>`);
+  assert(H5Del(["testclass"]) == `<del class="testclass"></del>`);
+  assert(H5Del(["a": "b"]) == `<del a="b"></del>`);
+
+  assert(H5Del("Hello") == `<del>Hello</del>`);
+  assert(H5Del(["testclass"], "Hello") == `<del class="testclass">Hello</del>`);
+  assert(H5Del(["a": "b"], "Hello") == `<del a="b">Hello</del>`);
+
+  assert(H5Del(["testclass"], ["a": "b"], "Hello") == `<del class="testclass" a="b">Hello</del>`);
 }

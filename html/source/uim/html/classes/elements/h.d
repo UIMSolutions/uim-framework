@@ -13,39 +13,104 @@ mixin(ShowModule!());
 
 /// HTML heading element (h1-h6)
 class H5H1 : HtmlElement {
-  mixin(H5This!("h1", false));
+  mixin(H5Template!("H1", "h1", false));
+  mixin(AttributeMethods!H5H1);
+}
+///
+unittest {
+  assert(H5H1() == `<h1></h1>`);
+  assert(H5H1(["testclass"]) == `<h1 class="testclass"></h1>`);
+  assert(H5H1(["a":"b"]) == `<h1 a="b"></h1>`);
 
-  mixin(H5Calls!("h1")); 
+  assert(H5H1("Hello") == `<h1>Hello</h1>`);
+  assert(H5H1(["testclass"], "Hello") == `<h1 class="testclass">Hello</h1>`);
+  assert(H5H1(["a":"b"], "Hello") == `<h1 a="b">Hello</h1>`);
+
+  assert(H5H1(["testclass"], ["a":"b"], "Hello") == `<h1 class="testclass" a="b">Hello</h1>`);
 }
 
 class H5H2 : HtmlElement {
-  mixin(H5This!("h2", false));
+  mixin(H5Template!("H2", "h2", false));
+  mixin(AttributeMethods!H5H2);
+}
+///
+unittest {
+  assert(H5H2() == `<h2></h2>`);
+  assert(H5H2(["testclass"]) == `<h2 class="testclass"></h2>`);
+  assert(H5H2(["a":"b"]) == `<h2 a="b"></h2>`);
 
-  mixin(H5Calls!("h2")); 
+  assert(H5H2("Hello") == `<h2>Hello</h2>`);
+  assert(H5H2(["testclass"], "Hello") == `<h2 class="testclass">Hello</h2>`);
+  assert(H5H2(["a":"b"], "Hello") == `<h2 a="b">Hello</h2>`);
+
+  assert(H5H2(["testclass"], ["a":"b"], "Hello") == `<h2 class="testclass" a="b">Hello</h2>`);
 }
 
 class H5H3 : HtmlElement {
-  mixin(H5This!("h3", false));
+  mixin(H5Template!("H3", "h3", false));
+  mixin(AttributeMethods!H5H3);
+}
+///
+unittest {
+  assert(H5H3() == `<h3></h3>`);
+  assert(H5H3(["testclass"]) == `<h3 class="testclass"></h3>`);
+  assert(H5H3(["a":"b"]) == `<h3 a="b"></h3>`);
 
-  mixin(H5Calls!("h3")); 
+  assert(H5H3("Hello") == `<h3>Hello</h3>`);
+  assert(H5H3(["testclass"], "Hello") == `<h3 class="testclass">Hello</h3>`);
+  assert(H5H3(["a":"b"], "Hello") == `<h3 a="b">Hello</h3>`);
+
+  assert(H5H3(["testclass"], ["a":"b"], "Hello") == `<h3 class="testclass" a="b">Hello</h3>`);
 }
 
 class H5H4 : HtmlElement {
-  mixin(H5This!("h4", false));
+  mixin(H5Template!("H4", "h4", false));
+  mixin(AttributeMethods!H5H4);
+}
+///
+unittest {
+  assert(H5H4() == `<h4></h4>`);
+  assert(H5H4(["testclass"]) == `<h4 class="testclass"></h4>`);
+  assert(H5H4(["a":"b"]) == `<h4 a="b"></h4>`);
 
-  mixin(H5Calls!("h4")); 
+  assert(H5H4("Hello") == `<h4>Hello</h4>`);
+  assert(H5H4(["testclass"], "Hello") == `<h4 class="testclass">Hello</h4>`);
+  assert(H5H4(["a":"b"], "Hello") == `<h4 a="b">Hello</h4>`);
+
+  assert(H5H4(["testclass"], ["a":"b"], "Hello") == `<h4 class="testclass" a="b">Hello</h4>`);
 }
 
 class H5H5 : HtmlElement {
-  mixin(H5This!("h5", false));
+  mixin(H5Template!("H5", "h5", false));
+  mixin(AttributeMethods!H5H5);
+}
+///
+unittest {
+  assert(H5H5() == `<h5></h5>`);
+  assert(H5H5(["testclass"]) == `<h5 class="testclass"></h5>`);
+  assert(H5H5(["a":"b"]) == `<h5 a="b"></h5>`);
 
-  mixin(H5Calls!("h5")); 
+  assert(H5H5("Hello") == `<h5>Hello</h5>`);
+  assert(H5H5(["testclass"], "Hello") == `<h5 class="testclass">Hello</h5>`);
+  assert(H5H5(["a":"b"], "Hello") == `<h5 a="b">Hello</h5>`);
+
+  assert(H5H5(["testclass"], ["a":"b"], "Hello") == `<h5 class="testclass" a="b">Hello</h5>`);
 }
 
 class H5H6 : HtmlElement {
-  mixin(H5This!("h6", false));
-
-  mixin(H5Calls!("h6")); 
+  mixin(H5Template!("H6", "h6", false));
+  mixin(AttributeMethods!H5H6);
 }
+///
+unittest {
+  assert(H5H6() == `<h6></h6>`);
+  assert(H5H6(["testclass"]) == `<h6 class="testclass"></h6>`);
+  assert(H5H6(["a":"b"]) == `<h6 a="b"></h6>`);
 
+  assert(H5H6("Hello") == `<h6>Hello</h6>`);
+  assert(H5H6(["testclass"], "Hello") == `<h6 class="testclass">Hello</h6>`);
+  assert(H5H6(["a":"b"], "Hello") == `<h6 a="b">Hello</h6>`);
+
+  assert(H5H6(["testclass"], ["a":"b"], "Hello") == `<h6 class="testclass" a="b">Hello</h6>`);
+}
 

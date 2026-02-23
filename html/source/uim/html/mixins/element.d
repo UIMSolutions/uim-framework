@@ -6,47 +6,54 @@ mixin(ShowModule!());
 
 @safe:
 
-template H5This(string tag, bool selfClosing = false) {
+string h5This(string tag, bool selfClosing = false) {
+  return `
   this() {
-    super(tag);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower());
+    _selfClosing = {selfClosing};
   }
 
   this(string content) {
-    super(tag.toLower());
+    super("{tag}".toLower());
     this.content(content);  
-    _selfClosing = selfClosing;
+    _selfClosing = {selfClosing};
   }
 
   this(string[] classes, string content = "") {
-    super(tag.toLower(), classes, content);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower(), classes, content);
+    _selfClosing = {selfClosing};
   }
 
   this(string[] classes, IHtmlElement[] elements) {
-    super(tag.toLower(), classes, elements);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower(), classes, elements);
+    _selfClosing = {selfClosing};
   }
 
   this(string[string] attributes, string content = "") {
-    super(tag.toLower(), attributes, content);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower(), attributes, content);
+    _selfClosing = {selfClosing};
   }
 
   this(string[string] attributes, IHtmlElement[] elements) {
-    super(tag.toLower(), attributes, elements);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower(), attributes, elements);
+    _selfClosing = {selfClosing};
   }
 
   this(string[] classes, string[string] attributes, string content = "") {
-    super(tag.toLower(), classes, attributes, content);
-    _selfClosing = selfClosing;
+    super("{tag}".toLower(), classes, attributes, content);
+    _selfClosing = {selfClosing};
   }
 
   this(string[] classes, string[string] attributes, IHtmlElement[] elements) {
-    super(tag.toLower(), classes, attributes, elements);
-    _selfClosing = selfClosing;
-  }
+    super("{tag}".toLower(), classes, attributes, elements);
+    _selfClosing = {selfClosing};
+  }`
+  .mustache("tag", tag)
+  .mustache("selfClosing", selfClosing ? "true" : "false");
+}
+
+template H5This(string tag, bool selfClosing = false) {
+  const char[] H5This = h5This(tag, selfClosing);
 }
 
 string h5Calls(string name) {
@@ -75,4 +82,12 @@ string h5Calls(string name) {
 
 template H5Calls(string name) {
   const char[] H5Calls = h5Calls(name);
+}
+
+string h5Template(string name, string tag, bool selfClosing = false) {
+  return h5This(tag, selfClosing) ~ h5Calls(name);
+}
+
+template H5Template(string name, string tag, bool selfClosing = false) {
+  const char[] H5Template = h5Template(name, tag, selfClosing);
 }

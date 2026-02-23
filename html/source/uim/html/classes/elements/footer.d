@@ -26,16 +26,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Footer : HtmlElement {
-  mixin(H5This!("footer", false));
-
+  mixin(H5Template!("Footer", "footer", false));
   mixin(AttributeMethods!H5Footer);
-
-  mixin(H5Calls!("footer"));
 }
 ///
 unittest {
-  assert(H5Footer() == "<footer></footer>");
-  assert(H5Footer("Hello") == "<footer>Hello</footer>");
-  assert(H5Footer(["testclass"]) == "<footer class=\"testclass\"></footer>");
+  assert(H5Footer() == `<footer></footer>`);
+  assert(H5Footer(["testclass"]) == `<footer class="testclass"></footer>`);
   assert(H5Footer(["a":"b"]) == `<footer a="b"></footer>`);
+
+  assert(H5Footer("Hello") == `<footer>Hello</footer>`);
+  assert(H5Footer(["testclass"], "Hello") == `<footer class="testclass">Hello</footer>`);
+  assert(H5Footer(["a":"b"], "Hello") == `<footer a="b">Hello</footer>`);
+
+  assert(H5Footer(["testclass"], ["a":"b"], "Hello") == `<footer class="testclass" a="b">Hello</footer>`);
 }

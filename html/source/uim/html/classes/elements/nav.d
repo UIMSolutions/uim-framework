@@ -34,16 +34,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Nav : HtmlElement {
-  mixin(H5This!("nav", false));
+  mixin(H5Template!("Nav", "nav", false));
   mixin(AttributeMethods!H5Nav);
-
-  mixin(H5Calls!("nav"));
 }
-
+///
 unittest {
-  assert(H5Nav() == "<nav></nav>");
-  assert(H5Nav("Hello") == "<nav>Hello</nav>");
-  assert(H5Nav(["main", "navigation"], "Hello") == `<nav class="main navigation">Hello</nav>`);
-  assert(H5Nav(["a": "b"], "Hello") == `<nav a="b">Hello</nav>`);
-  assert(H5Nav(["test"], ["a": "b"], "Hello") == `<nav class="test" a="b">Hello</nav>`);
+  assert(H5Nav() == `<nav></nav>`);
+  assert(H5Nav(["testclass"]) == `<nav class="testclass"></nav>`);
+  assert(H5Nav(["a":"b"]) == `<nav a="b"></nav>`);
+
+  assert(H5Nav("Hello") == `<nav>Hello</nav>`);
+  assert(H5Nav(["testclass"], "Hello") == `<nav class="testclass">Hello</nav>`);
+  assert(H5Nav(["a":"b"], "Hello") == `<nav a="b">Hello</nav>`);
+
+  assert(H5Nav(["testclass"], ["a":"b"], "Hello") == `<nav class="testclass" a="b">Hello</nav>`);
 }

@@ -24,26 +24,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Ins : HtmlElement {
-  this() {
-    super("ins");
-    this.selfClosing(false);
-  }
-
-  // Factory methods
-  static H5Ins opCall() {
-    return new H5Ins();
-  }
-
-  // Factory methods
-  static H5Ins opCall(string content) {
-    auto element = new H5Ins();
-    element.content(content);
-    return element;
-  }
-
+  mixin(H5Template!("Ins", "ins", false));
+  mixin(AttributeMethods!H5Ins);
 }
 ///
 unittest {
-  assert(H5Ins() == "<ins></ins>");
-  assert(H5Ins("Hello") == "<ins>Hello</ins>");
+  assert(H5Ins() == `<ins></ins>`);
+  assert(H5Ins(["testclass"]) == `<ins class="testclass"></ins>`);
+  assert(H5Ins(["a":"b"]) == `<ins a="b"></ins>`);
+
+  assert(H5Ins("Hello") == `<ins>Hello</ins>`);
+  assert(H5Ins(["testclass"], "Hello") == `<ins class="testclass">Hello</ins>`);
+  assert(H5Ins(["a":"b"], "Hello") == `<ins a="b">Hello</ins>`);
+
+  assert(H5Ins(["testclass"], ["a":"b"], "Hello") == `<ins class="testclass" a="b">Hello</ins>`);
 }

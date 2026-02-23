@@ -12,16 +12,18 @@ mixin(ShowModule!());
 @safe:
 
 class H5Svg : HtmlElement {
-  mixin(H5This!("svg", false));
-
+  mixin(H5Template!("Svg", "svg", false));
   mixin(AttributeMethods!H5Svg);
-
-  mixin(H5Calls!("Svg"));
 }
 ///
 unittest {
-  assert(H5Svg() == "<svg></svg>");
-  assert(H5Svg("Hello") == "<svg>Hello</svg>");
-  assert(H5Svg(["id": "my-svg"]) == "<svg id=\"my-svg\"></svg>");
-  assert(H5Svg(["id": "my-svg"], "Hello") == "<svg id=\"my-svg\">Hello</svg>");
+  assert(H5Svg() == `<svg></svg>`);
+  assert(H5Svg(["testclass"]) == `<svg class="testclass"></svg>`);
+  assert(H5Svg(["a":"b"]) == `<svg a="b"></svg>`);
+
+  assert(H5Svg("Hello") == `<svg>Hello</svg>`);
+  assert(H5Svg(["testclass"], "Hello") == `<svg class="testclass">Hello</svg>`);
+  assert(H5Svg(["a":"b"], "Hello") == `<svg a="b">Hello</svg>`);
+
+  assert(H5Svg(["testclass"], ["a":"b"], "Hello") == `<svg class="testclass" a="b">Hello</svg>`);
 }
