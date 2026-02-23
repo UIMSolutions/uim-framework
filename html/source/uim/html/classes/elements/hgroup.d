@@ -11,6 +11,19 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+  * Represents the HTML <hgroup> element, which is used to group a set of <h1> to <h6> elements when a heading has multiple levels. The <hgroup> element allows you to semantically group related headings together, indicating that they belong to the same section or topic. This can be useful for accessibility and SEO purposes, as it helps search engines and assistive technologies understand the structure of your content.
+  * 
+  * Browser support: All major browsers support the <hgroup> element.
+  *
+  * Examples:
+  * ```html
+  * <hgroup>
+  *   <h1>Main Heading</h1>
+  *   <h2>Subheading</h2>
+  * </hgroup>
+  * ```
+  */
 class H5Hgroup : HtmlElement {
   mixin(H5Template!("Hgroup", "hgroup", false));
   mixin(AttributeMethods!H5Hgroup);

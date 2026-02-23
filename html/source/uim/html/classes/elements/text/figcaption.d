@@ -25,23 +25,19 @@ mixin(ShowModule!());
  * </figure>
  * ```
  */
-class Figcaption : HtmlElement {
-  this() {
-    super("figcaption");
-  }
-
-  static Figcaption opCall() {
-    return new Figcaption();
-  }
-
-  static Figcaption opCall(string content) {
-    auto figcaption = new Figcaption();
-    figcaption.text(content);
-    return figcaption;
-  }
+class H5Figcaption : HtmlElement {
+  mixin(H5Template!("Figcaption", "figcaption", false));
+  mixin(AttributeMethods!H5Figcaption);
 }
 ///
 unittest {
-  assert(Figcaption() == "<figcaption></figcaption>");
-  assert(Figcaption("Description") == "<figcaption>Description</figcaption>");
+  assert(H5Figcaption() == `<figcaption></figcaption>`);
+  assert(H5Figcaption(["testclass"]) == `<figcaption class="testclass"></figcaption>`);
+  assert(H5Figcaption(["a":"b"]) == `<figcaption a="b"></figcaption>`);
+
+  assert(H5Figcaption("Hello") == `<figcaption>Hello</figcaption>`);
+  assert(H5Figcaption(["testclass"], "Hello") == `<figcaption class="testclass">Hello</figcaption>`);
+  assert(H5Figcaption(["a":"b"], "Hello") == `<figcaption a="b">Hello</figcaption>`);
+
+  assert(H5Figcaption(["testclass"], ["a":"b"], "Hello") == `<figcaption class="testclass" a="b">Hello</figcaption>`);
 }

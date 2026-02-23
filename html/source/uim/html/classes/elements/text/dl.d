@@ -18,19 +18,18 @@ mixin(ShowModule!());
  * The <dl> element can also contain other flow content, such as headings, paragraphs, and images, to provide additional context or information about the terms and their descriptions.
  */
 class H5Dl : HtmlElement {
-  mixin(H5This!("dl", false));
-
+  mixin(H5Template!("Dl", "dl", false));
   mixin(AttributeMethods!H5Dl);
-
-  mixin(H5Calls!("Dl"));
 }
 ///
 unittest {
-  mixin(ShowTest!"Testing H5Dl");
+  assert(H5Dl() == `<dl></dl>`);
+  assert(H5Dl(["testclass"]) == `<dl class="testclass"></dl>`);
+  assert(H5Dl(["a":"b"]) == `<dl a="b"></dl>`);
 
-  assert(H5Dl() == "<dl></dl>");
-  assert(H5Dl("Hello") == "<dl>Hello</dl>");
-  assert(H5Dl(["test"], "Hello") == `<dl class="test">Hello</dl>`);
+  assert(H5Dl("Hello") == `<dl>Hello</dl>`);
+  assert(H5Dl(["testclass"], "Hello") == `<dl class="testclass">Hello</dl>`);
   assert(H5Dl(["a":"b"], "Hello") == `<dl a="b">Hello</dl>`);
-  assert(H5Dl(["test"], ["a":"b"], "Hello") == `<dl class="test" a="b">Hello</dl>`);
+
+  assert(H5Dl(["testclass"], ["a":"b"], "Hello") == `<dl class="testclass" a="b">Hello</dl>`);
 }

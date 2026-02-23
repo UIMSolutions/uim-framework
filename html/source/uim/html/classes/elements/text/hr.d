@@ -18,11 +18,18 @@ mixin(ShowModule!());
  * It is a self-closing element, meaning that it does not require a closing tag, and it can be styled using CSS to customize its appearance.
  */
 class H5Hr : HtmlElement {
-  mixin(H5This!("hr", true));
-
-  mixin(H5Calls!("hr"));
+  mixin(H5Template!("Hr", "hr", true));
+  mixin(AttributeMethods!H5Hr);
 }
 ///
 unittest {
-  assert(H5Hr() == "<hr />");
+  assert(H5Hr() == `<hr />`);
+  assert(H5Hr(["testclass"]) == `<hr class="testclass" />`);
+  assert(H5Hr(["a":"b"]) == `<hr a="b" />`);
+
+  assert(H5Hr("Hello") == `<hr>Hello</hr>`);
+  assert(H5Hr(["testclass"], "Hello") == `<hr class="testclass">Hello</hr>`);
+  assert(H5Hr(["a":"b"], "Hello") == `<hr a="b">Hello</hr>`);
+
+  assert(H5Hr(["testclass"], ["a":"b"], "Hello") == `<hr class="testclass" a="b">Hello</hr>`);
 }

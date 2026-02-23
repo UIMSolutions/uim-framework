@@ -19,13 +19,18 @@ mixin(ShowModule!());
  */
  @StringAttribute("value")
 class H5Li : HtmlElement {
-  mixin(H5This!("li", false));
+  mixin(H5Template!("Li", "li", false));
   mixin(AttributeMethods!H5Li);
-
-  mixin(H5Calls!("li"));
 }
 ///
 unittest {
-  assert(H5Li() == "<li></li>");
-  assert(H5Li("Item") == "<li>Item</li>");
+  assert(H5Li() == `<li></li>`);
+  assert(H5Li(["testclass"]) == `<li class="testclass"></li>`);
+  assert(H5Li(["a":"b"]) == `<li a="b"></li>`);
+
+  assert(H5Li("Hello") == `<li>Hello</li>`);
+  assert(H5Li(["testclass"], "Hello") == `<li class="testclass">Hello</li>`);
+  assert(H5Li(["a":"b"], "Hello") == `<li a="b">Hello</li>`);
+
+  assert(H5Li(["testclass"], ["a":"b"], "Hello") == `<li class="testclass" a="b">Hello</li>`);
 }

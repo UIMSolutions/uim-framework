@@ -18,22 +18,18 @@ mixin(ShowModule!());
  * When used in conjunction with the <figcaption> element, the <figure> element helps to create a clear association between the media content and its caption or description.
  */
 class H5Figure : HtmlElement {
-  this() {
-    super("figure");
-  }
-
-  static H5Figure opCall() {
-    return new H5Figure();
-  }
-
-  static H5Figure opCall(string content) {
-    auto figure = new H5Figure();
-    figure.text(content);
-    return figure;
-  }
+  mixin(H5Template!("Figure", "figure", false));
+  mixin(AttributeMethods!H5Figure);
 }
 ///
 unittest {
-  assert(H5Figure() == "<figure></figure>");
-  assert(H5Figure("Description") == "<figure>Description</figure>");
+  assert(H5Figure() == `<figure></figure>`);
+  assert(H5Figure(["testclass"]) == `<figure class="testclass"></figure>`);
+  assert(H5Figure(["a":"b"]) == `<figure a="b"></figure>`);
+
+  assert(H5Figure("Hello") == `<figure>Hello</figure>`);
+  assert(H5Figure(["testclass"], "Hello") == `<figure class="testclass">Hello</figure>`);
+  assert(H5Figure(["a":"b"], "Hello") == `<figure a="b">Hello</figure>`);
+
+  assert(H5Figure(["testclass"], ["a":"b"], "Hello") == `<figure class="testclass" a="b">Hello</figure>`);
 }

@@ -33,15 +33,20 @@ mixin(ShowModule!());
  @StringAttribute("type") // Specifies the type of numbering for the list items. Possible values include "1" for decimal numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
  @StringAttribute("start") // Specifies the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
 class H5Ol : HtmlElement {
-  mixin(H5This!("ol", false));
-
+  mixin(H5Template!("Ol", "ol", false));
   mixin(AttributeMethods!H5Ol);
-
-  mixin(H5Calls!("ol"));
 }
-/// Creates an ordered list with the specified content. The content can be a string or any object that can be converted to a string.
+///
 unittest {
-  assert(H5Ol() == "<ol></ol>");
-  assert(H5Ol("Item 1") == "<ol>Item 1</ol>");
+  assert(H5Ol() == `<ol></ol>`);
+  assert(H5Ol(["testclass"]) == `<ol class="testclass"></ol>`);
+  assert(H5Ol(["a":"b"]) == `<ol a="b"></ol>`);
+
+  assert(H5Ol("Hello") == `<ol>Hello</ol>`);
+  assert(H5Ol(["testclass"], "Hello") == `<ol class="testclass">Hello</ol>`);
+  assert(H5Ol(["a":"b"], "Hello") == `<ol a="b">Hello</ol>`);
+
+  assert(H5Ol(["testclass"], ["a":"b"], "Hello") == `<ol class="testclass" a="b">Hello</ol>`);
+
   assert(H5Ol().type("A").start("3") == `<ol start="3" type="A"></ol>`);
 }

@@ -25,14 +25,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Dd : HtmlElement {
-  mixin(H5This!("dd", false));
-
+  mixin(H5Template!("Dd", "dd", false));
   mixin(AttributeMethods!H5Dd);
-
-  mixin(H5Calls!("dd"));
 }
 ///
 unittest {
-  assert(H5Dd() == "<dd></dd>");
-  assert(H5Dd("Description") == "<dd>Description</dd>");
+  assert(H5Dd() == `<dd></dd>`);
+  assert(H5Dd(["testclass"]) == `<dd class="testclass"></dd>`);
+  assert(H5Dd(["a":"b"]) == `<dd a="b"></dd>`);
+
+  assert(H5Dd("Hello") == `<dd>Hello</dd>`);
+  assert(H5Dd(["testclass"], "Hello") == `<dd class="testclass">Hello</dd>`);
+  assert(H5Dd(["a":"b"], "Hello") == `<dd a="b">Hello</dd>`);
+
+  assert(H5Dd(["testclass"], ["a":"b"], "Hello") == `<dd class="testclass" a="b">Hello</dd>`);
 }

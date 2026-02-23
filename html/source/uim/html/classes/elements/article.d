@@ -11,6 +11,19 @@ mixin(ShowModule!());
 
 @safe:
 
+/** 
+  * Represents the HTML <article> element, which is used to define a self-contained piece of content that can be independently distributed or reused. The <article> element is typically used for blog posts, news articles, forum posts, or any other type of content that can stand alone and be syndicated. It can contain various types of content, including text, images, videos, and other HTML elements.
+  * 
+  * Browser support: All major browsers support the <article> element.
+  *
+  * Examples:
+  * ```html
+  * <article>
+  *   <h2>Article Title</h2>
+  *   <p>This is the content of the article.</p>
+  * </article>  
+    * ```
+*/
 class H5Article : HtmlElement {
   mixin(H5Template!("Article", "article", false));
   mixin(AttributeMethods!H5Article);

@@ -24,19 +24,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Div : HtmlElement {
-  mixin(H5This!("div", false));
-
-  mixin(AttributeMethods!H5Link);
-
-  mixin(H5Calls!("Div"));
+  mixin(H5Template!("Div", "div", false));
+  mixin(AttributeMethods!H5Div);
 }
 ///
 unittest {
-  mixin(ShowTest!"Testing H5Div");
+  assert(H5Div() == `<div></div>`);
+  assert(H5Div(["testclass"]) == `<div class="testclass"></div>`);
+  assert(H5Div(["a":"b"]) == `<div a="b"></div>`);
 
-  assert(H5Div() == "<div></div>");
-  assert(H5Div("Hello") == "<div>Hello</div>");
-  assert(H5Div(["test"], "Hello") == `<div class="test">Hello</div>`);
+  assert(H5Div("Hello") == `<div>Hello</div>`);
+  assert(H5Div(["testclass"], "Hello") == `<div class="testclass">Hello</div>`);
   assert(H5Div(["a":"b"], "Hello") == `<div a="b">Hello</div>`);
-  assert(H5Div(["test"], ["a":"b"], "Hello") == `<div class="test" a="b">Hello</div>`);
+
+  assert(H5Div(["testclass"], ["a":"b"], "Hello") == `<div class="testclass" a="b">Hello</div>`);
 }

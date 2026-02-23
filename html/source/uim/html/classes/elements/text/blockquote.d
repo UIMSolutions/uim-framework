@@ -25,26 +25,23 @@ mixin(ShowModule!());
   * </blockquote>
   * ```
   */
+  @StringAttribute("cite")
 class H5Blockquote : HtmlElement {
-  mixin(H5This!("blockquote", false));
-
+  mixin(H5Template!("Blockquote", "blockquote", false));
   mixin(AttributeMethods!H5Blockquote);
-
-  H5Blockquote cite(string url) {
-    attribute("cite", url);
-    return this;
-  }
-
-  IHtmlAttribute cite() {
-    return attribute("cite");
-  }
-
-  mixin(H5Calls!("blockquote"));
 }
 ///
 unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
+  assert(H5Blockquote(["testclass"]) == `<blockquote class="testclass"></blockquote>`);
+  assert(H5Blockquote(["a":"b"]) == `<blockquote a="b"></blockquote>`);
+
   assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
+  assert(H5Blockquote(["testclass"], "Hello") == `<blockquote class="testclass">Hello</blockquote>`);
+  assert(H5Blockquote(["a":"b"], "Hello") == `<blockquote a="b">Hello</blockquote>`);
+
+  assert(H5Blockquote(["testclass"], ["a":"b"], "Hello") == `<blockquote class="testclass" a="b">Hello</blockquote>`);
+
   assert(H5Blockquote()
       .cite("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);
 }
