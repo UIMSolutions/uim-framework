@@ -11,10 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <head> HTML element contains metadata about the document, including the document's title, links to stylesheets, scripts, and other meta-information. 
+  * It is placed between the <html> tag and the <body> tag in an HTML document. 
+  * The content of the <head> element is not displayed on the page but is used by browsers and search engines to understand the structure and content of the document.
+  */
 class H5Head : HtmlElement {
-  mixin H5This!("head", false);
+  mixin(H5This!("head", false));
 
-  mixin(H5Calls!("head"));
+  mixin(AttributeMethods!H5Head);
+
+  mixin(H5Calls!("Head"));
 }
 ///
 unittest {

@@ -40,7 +40,7 @@ mixin(ShowModule!());
 @StringAttribute("title")
 @StringAttribute("type")
 class H5Link : HtmlElement {
-  mixin H5This!("link", true);
+  mixin(H5This!("link", true));
 
   H5Link disabled() {
     attribute("disabled", "");
@@ -50,7 +50,7 @@ class H5Link : HtmlElement {
   mixin(AttributeMethods!H5Link);
 
   // Create a new Base element
-  mixin(H5Calls!("link"));
+  mixin(H5Calls!("Link"));
 }
 ///
 unittest {

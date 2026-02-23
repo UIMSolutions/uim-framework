@@ -27,7 +27,9 @@ mixin(ShowModule!());
   * </head>
   */
 class H5Meta : HtmlElement {
-  mixin H5This!("meta", true);
+  mixin(H5This!("meta", true));
+
+  mixin(AttributeMethods!H5Meta);
 
   mixin(H5Calls!("meta"));
 }
