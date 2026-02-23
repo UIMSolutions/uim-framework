@@ -18,14 +18,18 @@ mixin(ShowModule!());
  * When rendered in a web browser, the <p> element typically displays the text within it as a block-level element, meaning that it takes up the full width of its container and starts on a new line.
  */
 class H5P : HtmlElement {
-  mixin(H5This!("p", false));
-
+  mixin(H5Template!("P", "p", false));
   mixin(AttributeMethods!H5P);
-
-  mixin(H5Calls!("p"));
 }
 ///
 unittest {
-  assert(H5P() == "<p></p>");
-  assert(H5P("Paragraph text") == "<p>Paragraph text</p>");
+  assert(H5P() == `<p></p>`);
+  assert(H5P(["testclass"]) == `<p class="testclass"></p>`);
+  assert(H5P(["a":"b"]) == `<p a="b"></p>`);
+
+  assert(H5P("Hello") == `<p>Hello</p>`);
+  assert(H5P(["testclass"], "Hello") == `<p class="testclass">Hello</p>`);
+  assert(H5P(["a":"b"], "Hello") == `<p a="b">Hello</p>`);
+
+  assert(H5P(["testclass"], ["a":"b"], "Hello") == `<p class="testclass" a="b">Hello</p>`);
 }

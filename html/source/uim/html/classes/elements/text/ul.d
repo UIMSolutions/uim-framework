@@ -17,20 +17,18 @@ mixin(ShowModule!());
  * When rendered in a web browser, the <ul> element typically displays the list items with bullet points to indicate that they are part of an unordered list.
  */
 class H5Ul : HtmlElement {
-    this() {
-        super("ul");
-    }
-
-    static H5Ul opCall() {
-        return new H5Ul();
-    }
-
-
-    static H5Ul opCall(string content) {
-        return new H5Ul();
-    }
+  mixin(H5Template!("Ul", "ul", false));
+  mixin(AttributeMethods!H5Ul);
 }
 ///
 unittest {
-    assert(H5Ul() == "<ul></ul>");
+  assert(H5Ul() == `<ul></ul>`);
+  assert(H5Ul(["testclass"]) == `<ul class="testclass"></ul>`);
+  assert(H5Ul(["a": "b"]) == `<ul a="b"></ul>`);
+
+  assert(H5Ul("Hello") == `<ul>Hello</ul>`);
+  assert(H5Ul(["testclass"], "Hello") == `<ul class="testclass">Hello</ul>`);
+  assert(H5Ul(["a": "b"], "Hello") == `<ul a="b">Hello</ul>`);
+
+  assert(H5Ul(["testclass"], ["a": "b"], "Hello") == `<ul class="testclass" a="b">Hello</ul>`);
 }

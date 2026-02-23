@@ -33,17 +33,18 @@ mixin(ShowModule!());
   * Note: The <colgroup> element must be placed within the <table> element, and it should be defined before any <tr> elements that contain the table's data.
   */
 class H5Colgroup : HtmlElement {
-  mixin(H5This!("colgroup", false));
-
+  mixin(H5Template!("Colgroup", "colgroup", false));
   mixin(AttributeMethods!H5Colgroup);
-
-  mixin(H5Calls!("colgroup"));
 }
 ///
 unittest {
-  assert(H5Colgroup() == "<colgroup></colgroup>");
-  assert(H5Colgroup("Hello") == "<colgroup>Hello</colgroup>");
-  assert(H5Colgroup(["test"], "Hello") == `<colgroup class="test">Hello</colgroup>`);
-  assert(H5Colgroup(["a": "b"], "Hello") == `<colgroup a="b">Hello</colgroup>`);
-  assert(H5Colgroup(["test"], ["a": "b"], "Hello") == `<colgroup class="test" a="b">Hello</colgroup>`);
+  assert(H5Colgroup() == `<colgroup></colgroup>`);
+  assert(H5Colgroup(["testclass"]) == `<colgroup class="testclass"></colgroup>`);
+  assert(H5Colgroup(["a":"b"]) == `<colgroup a="b"></colgroup>`);
+
+  assert(H5Colgroup("Hello") == `<colgroup>Hello</colgroup>`);
+  assert(H5Colgroup(["testclass"], "Hello") == `<colgroup class="testclass">Hello</colgroup>`);
+  assert(H5Colgroup(["a":"b"], "Hello") == `<colgroup a="b">Hello</colgroup>`);
+
+  assert(H5Colgroup(["testclass"], ["a":"b"], "Hello") == `<colgroup class="testclass" a="b">Hello</colgroup>`);
 }

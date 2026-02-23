@@ -34,17 +34,18 @@ mixin(ShowModule!());
   * </table>
   */
 class H5Caption : HtmlElement {
-  mixin(H5This!("caption", false));
-
+  mixin(H5Template!("Caption", "caption", false));
   mixin(AttributeMethods!H5Caption);
-
-  mixin(H5Calls!("caption"));
 }
 ///
 unittest {
-  assert(H5Caption() == "<caption></caption>");
-  assert(H5Caption("Hello") == "<caption>Hello</caption>");
-  assert(H5Caption(["test"], "Hello") == `<caption class="test">Hello</caption>`);
-  assert(H5Caption(["a": "b"], "Hello") == `<caption a="b">Hello</caption>`);
-  assert(H5Caption(["test"], ["a": "b"], "Hello") == `<caption class="test" a="b">Hello</caption>`);
+  assert(H5Caption() == `<caption></caption>`);
+  assert(H5Caption(["testclass"]) == `<caption class="testclass"></caption>`);
+  assert(H5Caption(["a":"b"]) == `<caption a="b"></caption>`);
+
+  assert(H5Caption("Hello") == `<caption>Hello</caption>`);
+  assert(H5Caption(["testclass"], "Hello") == `<caption class="testclass">Hello</caption>`);
+  assert(H5Caption(["a":"b"], "Hello") == `<caption a="b">Hello</caption>`);
+
+  assert(H5Caption(["testclass"], ["a":"b"], "Hello") == `<caption class="testclass" a="b">Hello</caption>`);
 }

@@ -31,14 +31,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tr : HtmlElement {
-  mixin(H5This!("tr", false));
-
+  mixin(H5Template!("Tr", "tr", false));
   mixin(AttributeMethods!H5Tr);
-
-  mixin(H5Calls!("tr"));
 }
 ///
 unittest {
-  assert(H5Tr() == "<tr></tr>");
-  assert(H5Tr("Row content") == "<tr>Row content</tr>");
+  assert(H5Tr() == `<tr></tr>`);
+  assert(H5Tr(["testclass"]) == `<tr class="testclass"></tr>`);
+  assert(H5Tr(["a":"b"]) == `<tr a="b"></tr>`);
+
+  assert(H5Tr("Hello") == `<tr>Hello</tr>`);
+  assert(H5Tr(["testclass"], "Hello") == `<tr class="testclass">Hello</tr>`);
+  assert(H5Tr(["a":"b"], "Hello") == `<tr a="b">Hello</tr>`);
+
+  assert(H5Tr(["testclass"], ["a":"b"], "Hello") == `<tr class="testclass" a="b">Hello</tr>`);
 }

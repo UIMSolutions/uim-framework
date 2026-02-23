@@ -32,17 +32,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tbody : HtmlElement {
-  mixin(H5This!("tbody", false));
-
+  mixin(H5Template!("Tbody", "tbody", false));
   mixin(AttributeMethods!H5Tbody);
-
-  mixin(H5Calls!("tbody"));
 }
 ///
 unittest {
-  assert(H5Tbody() == "<tbody></tbody>");
-  assert(H5Tbody("Hello") == "<tbody>Hello</tbody>");
-  assert(H5Tbody(["test"], "Hello") == `<tbody class="test">Hello</tbody>`);
-  assert(H5Tbody(["a": "b"], "Hello") == `<tbody a="b">Hello</tbody>`);
-  assert(H5Tbody(["test"], ["a": "b"], "Hello") == `<tbody class="test" a="b">Hello</tbody>`);
+  assert(H5Tbody() == `<tbody></tbody>`);
+  assert(H5Tbody(["testclass"]) == `<tbody class="testclass"></tbody>`);
+  assert(H5Tbody(["a":"b"]) == `<tbody a="b"></tbody>`);
+
+  assert(H5Tbody("Hello") == `<tbody>Hello</tbody>`);
+  assert(H5Tbody(["testclass"], "Hello") == `<tbody class="testclass">Hello</tbody>`);
+  assert(H5Tbody(["a":"b"], "Hello") == `<tbody a="b">Hello</tbody>`);
+
+  assert(H5Tbody(["testclass"], ["a":"b"], "Hello") == `<tbody class="testclass" a="b">Hello</tbody>`);
 }

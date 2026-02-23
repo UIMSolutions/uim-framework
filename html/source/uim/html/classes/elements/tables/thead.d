@@ -31,17 +31,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Thead : HtmlElement {
-    mixin(H5This!("thead", false));
-
+  mixin(H5Template!("Thead", "thead", false));
   mixin(AttributeMethods!H5Thead);
-
-    mixin(H5Calls!("thead"));
 }
 ///
 unittest {
-    assert(H5Thead() == "<thead></thead>");
-    assert(H5Thead("Hello") == "<thead>Hello</thead>");
-    assert(H5Thead(["test"], "Hello") == `<thead class="test">Hello</thead>`);
-    assert(H5Thead(["a": "b"], "Hello") == `<thead a="b">Hello</thead>`);
-    assert(H5Thead(["test"], ["a": "b"], "Hello") == `<thead class="test" a="b">Hello</thead>`);
+  assert(H5Thead() == `<thead></thead>`);
+  assert(H5Thead(["testclass"]) == `<thead class="testclass"></thead>`);
+  assert(H5Thead(["a":"b"]) == `<thead a="b"></thead>`);
+
+  assert(H5Thead("Hello") == `<thead>Hello</thead>`);
+  assert(H5Thead(["testclass"], "Hello") == `<thead class="testclass">Hello</thead>`);
+  assert(H5Thead(["a":"b"], "Hello") == `<thead a="b">Hello</thead>`);
+
+  assert(H5Thead(["testclass"], ["a":"b"], "Hello") == `<thead class="testclass" a="b">Hello</thead>`);
 }

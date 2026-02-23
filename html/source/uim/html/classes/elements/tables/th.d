@@ -34,8 +34,7 @@ mixin(ShowModule!());
   @StringAttribute("colspan")
   @StringAttribute("rowspan")
 class H5Th : HtmlElement {
-  mixin(H5This!("th", false));
-
+  mixin(H5Template!("Th", "th", false));
   mixin(AttributeMethods!H5Th);
 
   H5Th scope_(string value) {
@@ -46,16 +45,18 @@ class H5Th : HtmlElement {
   string scope_() {
     return attribute("scope").value;
   }
-
-  mixin(H5Calls!("th"));
 }
-
+///
 unittest {
-  assert(H5Th() == "<th></th>");
-  assert(H5Th("Header") == "<th>Header</th>");
-  assert(H5Th(["test"], "Header") == `<th class="test">Header</th>`);
-  assert(H5Th(["a": "b"], "Header") == `<th a="b">Header</th>`);
-  assert(H5Th(["test"], ["a": "b"], "Header") == `<th class="test" a="b">Header</th>`);
+  assert(H5Th() == `<th></th>`);
+  assert(H5Th(["testclass"]) == `<th class="testclass"></th>`);
+  assert(H5Th(["a":"b"]) == `<th a="b"></th>`);
+
+  assert(H5Th("Hello") == `<th>Hello</th>`);
+  assert(H5Th(["testclass"], "Hello") == `<th class="testclass">Hello</th>`);
+  assert(H5Th(["a":"b"], "Hello") == `<th a="b">Hello</th>`);
+
+  assert(H5Th(["testclass"], ["a":"b"], "Hello") == `<th class="testclass" a="b">Hello</th>`);
 
   assert(H5Th().colspan("2") == `<th colspan="2"></th>`);
   assert(H5Th().rowspan("3") == `<th rowspan="3"></th>`);

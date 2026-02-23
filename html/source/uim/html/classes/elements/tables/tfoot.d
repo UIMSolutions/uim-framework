@@ -34,17 +34,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tfoot : HtmlElement {
-  mixin(H5This!("tfoot", false));
-
+  mixin(H5Template!("Tfoot", "tfoot", false));
   mixin(AttributeMethods!H5Tfoot);
-
-  mixin(H5Calls!("tfoot"));
 }
 ///
 unittest {
-  assert(H5Tfoot() == "<tfoot></tfoot>");
-  assert(H5Tfoot("Hello") == "<tfoot>Hello</tfoot>");
-  assert(H5Tfoot(["test"], "Hello") == `<tfoot class="test">Hello</tfoot>`);
-  assert(H5Tfoot(["a": "b"], "Hello") == `<tfoot a="b">Hello</tfoot>`);
-  assert(H5Tfoot(["test"], ["a": "b"], "Hello") == `<tfoot class="test" a="b">Hello</tfoot>`);
+  assert(H5Tfoot() == `<tfoot></tfoot>`);
+  assert(H5Tfoot(["testclass"]) == `<tfoot class="testclass"></tfoot>`);
+  assert(H5Tfoot(["a":"b"]) == `<tfoot a="b"></tfoot>`);
+
+  assert(H5Tfoot("Hello") == `<tfoot>Hello</tfoot>`);
+  assert(H5Tfoot(["testclass"], "Hello") == `<tfoot class="testclass">Hello</tfoot>`);
+  assert(H5Tfoot(["a":"b"], "Hello") == `<tfoot a="b">Hello</tfoot>`);
+
+  assert(H5Tfoot(["testclass"], ["a":"b"], "Hello") == `<tfoot class="testclass" a="b">Hello</tfoot>`);
 }
