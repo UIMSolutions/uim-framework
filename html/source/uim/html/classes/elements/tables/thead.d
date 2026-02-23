@@ -31,7 +31,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Thead : HtmlElement {
-    mixin H5This!("thead", false);
+    mixin(H5This!("thead", false));
 
   mixin(AttributeMethods!H5Thead);
 

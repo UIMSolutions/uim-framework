@@ -34,7 +34,7 @@ mixin(ShowModule!());
   @StringAttribute("colspan")
   @StringAttribute("rowspan")
 class H5Th : HtmlElement {
-  mixin H5This!("th", false);
+  mixin(H5This!("th", false));
 
   mixin(AttributeMethods!H5Th);
 

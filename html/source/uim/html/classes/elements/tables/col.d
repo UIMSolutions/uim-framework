@@ -29,17 +29,20 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
+  @StringAttribute("colspan") // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
+  @StringAttribute("rowspan") // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
 class H5Col : HtmlElement {
-  mixin H5This!("col", true);
+  mixin(H5This!("col", true));
+  mixin(AttributeMethods!H5Col);
 
   /// Sets the number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
-  H5Col colspan(string value) {
-    attribute("colspan", value);
+  H5Col colspan(size_t value) {
+    attribute("colspan", to!string(value));
     return this;
   }
 
-  H5Col rowspan(string value) {
-    attribute("rowspan", value);
+  H5Col rowspan(size_t value) {
+    attribute("rowspan", to!string(value));
     return this;
   }
 
@@ -48,6 +51,10 @@ class H5Col : HtmlElement {
 
 unittest {
   assert(H5Col() == "<col />");
+  assert(H5Col().colspan(2) == `<col colspan="2" />`);
+  assert(H5Col().rowspan(3) == `<col rowspan="3" />`);
+  assert(H5Col().colspan(2).rowspan(3) == `<col colspan="2" rowspan="3" />`);
+
   assert(H5Col().colspan("2") == `<col colspan="2" />`);
   assert(H5Col().rowspan("3") == `<col rowspan="3" />`);
   assert(H5Col().colspan("2").rowspan("3") == `<col colspan="2" rowspan="3" />`);

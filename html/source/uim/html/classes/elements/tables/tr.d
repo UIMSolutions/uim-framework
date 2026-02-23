@@ -31,7 +31,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tr : HtmlElement {
-  mixin H5This!("tr", false);
+  mixin(H5This!("tr", false));
+
+  mixin(AttributeMethods!H5Tr);
 
   mixin(H5Calls!("tr"));
 }

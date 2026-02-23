@@ -28,8 +28,10 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
+  @StringAttribute("colspan") // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
+  @StringAttribute("rowspan") // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
 class H5Td : HtmlElement {
- mixin H5This!("td", false);
+ mixin(H5This!("td", false));
 
   H5Td colspan(string value) {
     attribute("colspan", value);

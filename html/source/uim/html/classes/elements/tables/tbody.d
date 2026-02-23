@@ -32,7 +32,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tbody : HtmlElement {
-  mixin H5This!("tbody", false);
+  mixin(H5This!("tbody", false));
+
+  mixin(AttributeMethods!H5Tbody);
 
   mixin(H5Calls!("tbody"));
 }
