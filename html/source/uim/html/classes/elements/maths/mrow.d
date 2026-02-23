@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mrow> HTML element represents a row of mathematical expressions. 
+  * It is used within the <math> element to group together multiple elements in a horizontal layout.
+  */
 class H5Mrow : HtmlElement {
-  mixin H5This!("mrow", false);
+  mixin(H5This!("mrow", false));
 
-  mixin(H5Calls!("mrow"));
+  mixin(AttributeMethods!H5Mrow);
+
+  mixin(H5Calls!("Mrow"));
 }
 ///
 unittest {

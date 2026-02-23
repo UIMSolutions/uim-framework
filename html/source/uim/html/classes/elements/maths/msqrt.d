@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <msqrt> HTML element represents a square root in a mathematical expression. 
+  * It is used within the <math> element to define the square root of a number or expression.
+  */
 class H5Msqrt : HtmlElement {
-  mixin H5This!("msqrt", false);
+  mixin(H5This!("msqrt", false));
 
-  mixin(H5Calls!("msqrt"));
+  mixin(AttributeMethods!H5Msqrt);
+
+  mixin(H5Calls!("Msqrt"));
 }
 ///
 unittest {

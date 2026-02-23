@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mtd> HTML element represents a cell in a mathematical table. 
+  * It is used within the <math> element to define individual cells in a matrix or table layout.
+  */
 class H5Mtd : HtmlElement {
-  mixin H5This!("mtd", false);
+  mixin(H5This!("mtd", false));
 
-  mixin(H5Calls!("mtd"));
+  mixin(AttributeMethods!H5Mtd);
+
+  mixin(H5Calls!("Mtd"));
 }
 ///
 unittest {

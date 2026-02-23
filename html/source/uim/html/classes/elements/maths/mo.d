@@ -11,10 +11,17 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mo> HTML element represents an operator in a mathematical expression. 
+  * It is used within the <math> element to define mathematical operators such as addition (+), subtraction (-), multiplication (×), division (÷), and more complex operators. 
+  * The <mo> element can also be used to represent relational operators, logical operators, and other symbols that are part of mathematical notation.
+  */
 class H5Mo : HtmlElement {
-  mixin H5This!("mo", false);
+  mixin(H5This!("mo", false));
 
-  mixin(H5Calls!("mo"));
+  mixin(AttributeMethods!H5Mo);
+
+  mixin(H5Calls!("Mo"));
 }
 ///
 unittest {

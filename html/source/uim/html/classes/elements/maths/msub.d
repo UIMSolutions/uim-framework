@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <msub> HTML element represents a subscript in a mathematical expression. 
+  * It is used within the <math> element to apply a subscript to a base element.
+  */
 class H5Msub : HtmlElement {
-  mixin H5This!("msub", false);
+  mixin(H5This!("msub", false));
 
-  mixin(H5Calls!("msub"));
+  mixin(AttributeMethods!H5Msub);
+
+  mixin(H5Calls!("Msub"));
 }
 ///
 unittest {

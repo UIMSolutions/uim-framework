@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <munder> HTML element represents a mathematical expression with an under element. 
+  * It is used within the <math> element to apply an under element to a base element.
+  */
 class H5Munder : HtmlElement {
-  mixin H5This!("munder", false);
+  mixin(H5This!("munder", false));
 
-  mixin(H5Calls!("munder"));
+  mixin(AttributeMethods!H5Munder);
+
+  mixin(H5Calls!("Munder"));
 }
 ///
 unittest {

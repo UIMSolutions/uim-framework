@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mn> HTML element represents a number in a mathematical expression. 
+  * It is used within the <math> element to define numeric values.
+  */
 class H5Mn : HtmlElement {
-  mixin H5This!("mn", false);
+  mixin(H5This!("mn", false));
 
-  mixin(H5Calls!("mn"));
+  mixin(AttributeMethods!H5Mn);
+
+  mixin(H5Calls!("Mn"));
 }
 ///
 unittest {

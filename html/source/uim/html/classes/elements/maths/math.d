@@ -28,19 +28,13 @@ mixin(ShowModule!());
   * </math>
   * ```
   */
+  @StringAttribute("display") // The display attribute specifies the display style of the mathematical expression, such as "inline" or "block".
 class H5Math : HtmlElement {
-  mixin H5This!("math", false);
+  mixin(H5This!("math", false));
 
-  H5Math display(string value) {
-    attribute("display", value);
-    return this;
-  }
+  mixin(AttributeMethods!H5Math);
 
-  IHtmlAttribute display() {
-    return attribute("display");
-  }
-
-  mixin(H5Calls!("math"));
+  mixin(H5Calls!("Math"));
 }
 ///
 unittest {

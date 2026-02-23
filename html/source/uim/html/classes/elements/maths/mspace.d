@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mspace> HTML element represents a space in a mathematical expression. 
+  * It is used within the <math> element to define horizontal or vertical spacing between elements.
+  */
 class H5Mspace : HtmlElement {
-  mixin H5This!("mspace", false);
+  mixin(H5This!("mspace", false));
 
-  mixin(H5Calls!("mspace"));
+  mixin(AttributeMethods!H5Mspace);
+
+  mixin(H5Calls!("Mspace"));
 }
 ///
 unittest {

@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mtable> HTML element represents a mathematical table. 
+  * It is used within the <math> element to create a table layout for mathematical expressions, such as matrices or arrays.
+  */
 class H5Mtable : HtmlElement {
-  mixin H5This!("mtable", false);
+  mixin(H5This!("mtable", false));
 
-  mixin(H5Calls!("mtable"));
+  mixin(AttributeMethods!H5Mtable);
+  
+  mixin(H5Calls!("Mtable"));
 }
 ///
 unittest {

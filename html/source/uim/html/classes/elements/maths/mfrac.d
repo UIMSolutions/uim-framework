@@ -12,9 +12,11 @@ mixin(ShowModule!());
 @safe:
 
 class H5Mfrac : HtmlElement {
-  mixin H5This!("mfrac", false);
+  mixin(H5This!("mfrac", false));
 
-  mixin(H5Calls!("mfrac"));
+  mixin(AttributeMethods!H5Mfrac);
+
+  mixin(H5Calls!("Mfrac"));
 }
 ///
 unittest {

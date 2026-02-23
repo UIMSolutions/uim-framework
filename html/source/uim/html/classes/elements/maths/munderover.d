@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <munderover> HTML element represents a mathematical expression with both an under and over element. 
+  * It is used within the <math> element to apply both under and over elements to a base element.
+  */
 class H5Munderover : HtmlElement {
-  mixin H5This!("munderover", false);
+  mixin(H5This!("munderover", false));
 
-  mixin(H5Calls!("munderover"));
+  mixin(AttributeMethods!H5Munderover);
+
+  mixin(H5Calls!("Munderover"));
 }
 ///
 unittest {

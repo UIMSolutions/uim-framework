@@ -11,8 +11,14 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <msup> HTML element represents a superscript in a mathematical expression. 
+  * It is used within the <math> element to apply a superscript to a base element.
+  */
 class H5Msup : HtmlElement {
-  mixin H5This!("msup", false);
+  mixin(H5This!("msup", false));
+
+  mixin(AttributeMethods!H5Msup);
 
   mixin(H5Calls!("msup"));
 }

@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mstyle> HTML element represents a style in a mathematical expression. 
+  * It is used within the <math> element to apply style attributes to its child elements.
+  */
 class H5Mstyle : HtmlElement {
-  mixin H5This!("mstyle", false);
+  mixin(H5This!("mstyle", false));
 
-  mixin(H5Calls!("mstyle"));
+  mixin(AttributeMethods!H5Mstyle);
+
+  mixin(H5Calls!("Mstyle"));
 }
 ///
 unittest {

@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mphantom> HTML element represents an invisible element in a mathematical expression. 
+  * It is used within the <math> element to create space without displaying any content.
+  */
 class H5Mphantom : HtmlElement {
-  mixin H5This!("mphantom", false);
+  mixin(H5This!("mphantom", false));
 
-  mixin(H5Calls!("mphantom"));
+  mixin(AttributeMethods!H5Mphantom);
+
+  mixin(H5Calls!("Mphantom"));
 }
 ///
 unittest {

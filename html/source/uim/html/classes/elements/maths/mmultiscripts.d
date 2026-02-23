@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mmultiscripts> HTML element represents a mathematical expression with multiple scripts, such as subscripts and superscripts. 
+  * It is used within the <math> element to define complex mathematical notations that involve multiple levels of scripts.
+  */
 class H5Mmultiscripts : HtmlElement {
-  mixin H5This!("mmultiscripts", false);
+  mixin(H5This!("mmultiscripts", false));
 
-  mixin(H5Calls!("mmultiscripts"));
+  mixin(AttributeMethods!H5Mmultiscripts);
+
+  mixin(H5Calls!("Mmultiscripts"));
 }
 ///
 unittest {

@@ -11,10 +11,16 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+  * The <mtr> HTML element represents a row in a mathematical table. 
+  * It is used within the <mtable> element to define a row of cells in a mathematical table.
+  */
 class H5Mtr : HtmlElement {
-  mixin H5This!("mtr", false);
+  mixin(H5This!("mtr", false));
 
-  mixin(H5Calls!("mtr"));
+  mixin(AttributeMethods!H5Mtr);
+
+  mixin(H5Calls!("Mtr"));
 }
 ///
 unittest {
