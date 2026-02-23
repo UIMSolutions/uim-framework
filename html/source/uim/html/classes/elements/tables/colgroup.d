@@ -41,6 +41,7 @@ unittest {
   assert(H5Colgroup() == `<colgroup></colgroup>`);
   assert(H5Colgroup(["testclass"]) == `<colgroup class="testclass"></colgroup>`);
   assert(H5Colgroup(["a":"b"]) == `<colgroup a="b"></colgroup>`);
+  assert(H5Colgroup(["testclass"], ["a":"b"]) == `<colgroup a="b"></colgroup>`);
 
   assert(H5Colgroup("Hello") == `<colgroup>Hello</colgroup>`);
   assert(H5Colgroup(["testclass"], "Hello") == `<colgroup class="testclass">Hello</colgroup>`);

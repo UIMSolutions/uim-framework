@@ -26,6 +26,7 @@ unittest {
   assert(H5Pre() == `<pre></pre>`);
   assert(H5Pre(["testclass"]) == `<pre class="testclass"></pre>`);
   assert(H5Pre(["a":"b"]) == `<pre a="b"></pre>`);
+  assert(H5Pre(["testclass"], ["a":"b"]) == `<pre class="testclass" a="b"></pre>`);
 
   assert(H5Pre("Hello") == `<pre>Hello</pre>`);
   assert(H5Pre(["testclass"], "Hello") == `<pre class="testclass">Hello</pre>`);

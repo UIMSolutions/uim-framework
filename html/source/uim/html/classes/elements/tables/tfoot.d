@@ -42,6 +42,7 @@ unittest {
   assert(H5Tfoot() == `<tfoot></tfoot>`);
   assert(H5Tfoot(["testclass"]) == `<tfoot class="testclass"></tfoot>`);
   assert(H5Tfoot(["a":"b"]) == `<tfoot a="b"></tfoot>`);
+  assert(H5Tfoot(["testclass"], ["a":"b"]) == `<tfoot class="testclass" a="b"></tfoot>`);
 
   assert(H5Tfoot("Hello") == `<tfoot>Hello</tfoot>`);
   assert(H5Tfoot(["testclass"], "Hello") == `<tfoot class="testclass">Hello</tfoot>`);

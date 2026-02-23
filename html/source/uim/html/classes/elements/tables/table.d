@@ -45,6 +45,7 @@ unittest {
   assert(H5Table() == `<table></table>`);
   assert(H5Table(["testclass"]) == `<table class="testclass"></table>`);
   assert(H5Table(["a":"b"]) == `<table a="b"></table>`);
+  assert(H5Table(["testclass"], ["a":"b"]) == `<table class="testclass" a="b"></table>`);
 
   assert(H5Table("Hello") == `<table>Hello</table>`);
   assert(H5Table(["testclass"], "Hello") == `<table class="testclass">Hello</table>`);

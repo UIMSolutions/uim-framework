@@ -49,6 +49,7 @@ unittest {
   assert(H5Td() == `<td></td>`);
   assert(H5Td(["testclass"]) == `<td class="testclass"></td>`);
   assert(H5Td(["a":"b"]) == `<td a="b"></td>`);
+  assert(H5Td(["testclass"], ["a":"b"]) == `<td class="testclass" a="b"></td>`);
 
   assert(H5Td("Hello") == `<td>Hello</td>`);
   assert(H5Td(["testclass"], "Hello") == `<td class="testclass">Hello</td>`);

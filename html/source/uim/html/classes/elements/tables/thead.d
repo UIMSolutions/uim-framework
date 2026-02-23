@@ -39,6 +39,7 @@ unittest {
   assert(H5Thead() == `<thead></thead>`);
   assert(H5Thead(["testclass"]) == `<thead class="testclass"></thead>`);
   assert(H5Thead(["a":"b"]) == `<thead a="b"></thead>`);
+  assert(H5Thead(["testclass"], ["a":"b"]) == `<thead class="testclass" a="b"></thead>`);
 
   assert(H5Thead("Hello") == `<thead>Hello</thead>`);
   assert(H5Thead(["testclass"], "Hello") == `<thead class="testclass">Hello</thead>`);

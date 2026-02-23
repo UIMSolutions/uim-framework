@@ -40,6 +40,7 @@ unittest {
   assert(H5Tbody() == `<tbody></tbody>`);
   assert(H5Tbody(["testclass"]) == `<tbody class="testclass"></tbody>`);
   assert(H5Tbody(["a":"b"]) == `<tbody a="b"></tbody>`);
+  assert(H5Tbody(["testclass"], ["a":"b"]) == `<tbody class="testclass" a="b"></tbody>`);
 
   assert(H5Tbody("Hello") == `<tbody>Hello</tbody>`);
   assert(H5Tbody(["testclass"], "Hello") == `<tbody class="testclass">Hello</tbody>`);

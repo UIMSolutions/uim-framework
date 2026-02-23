@@ -39,6 +39,7 @@ unittest {
   assert(H5Tr() == `<tr></tr>`);
   assert(H5Tr(["testclass"]) == `<tr class="testclass"></tr>`);
   assert(H5Tr(["a":"b"]) == `<tr a="b"></tr>`);
+  assert(H5Tr(["testclass"], ["a":"b"]) == `<tr class="testclass" a="b"></tr>`);
 
   assert(H5Tr("Hello") == `<tr>Hello</tr>`);
   assert(H5Tr(["testclass"], "Hello") == `<tr class="testclass">Hello</tr>`);

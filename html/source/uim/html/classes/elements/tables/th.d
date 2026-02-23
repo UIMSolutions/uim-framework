@@ -51,6 +51,7 @@ unittest {
   assert(H5Th() == `<th></th>`);
   assert(H5Th(["testclass"]) == `<th class="testclass"></th>`);
   assert(H5Th(["a":"b"]) == `<th a="b"></th>`);
+  assert(H5Th(["testclass"], ["a":"b"]) == `<th class="testclass" a="b"></th>`);
 
   assert(H5Th("Hello") == `<th>Hello</th>`);
   assert(H5Th(["testclass"], "Hello") == `<th class="testclass">Hello</th>`);

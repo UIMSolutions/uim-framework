@@ -49,7 +49,8 @@ unittest {
   assert(H5Address() == `<address></address>`);
   assert(H5Address(["testclass"]) == `<address class="testclass"></address>`);
   assert(H5Address(["a":"b"]) == `<address a="b"></address>`);
-
+  assert(H5Address(["testclass"], ["a":"b"]) == `<address class="testclass" a="b"></address>`);
+  
   assert(H5Address("Hello") == `<address>Hello</address>`);
   assert(H5Address(["testclass"], "Hello") == `<address class="testclass">Hello</address>`);
   assert(H5Address(["a":"b"], "Hello") == `<address a="b">Hello</address>`);
