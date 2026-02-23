@@ -34,6 +34,7 @@ unittest {
   assert(H5Figcaption() == `<figcaption></figcaption>`);
   assert(H5Figcaption(["testclass"]) == `<figcaption class="testclass"></figcaption>`);
   assert(H5Figcaption(["a":"b"]) == `<figcaption a="b"></figcaption>`);
+  assert(H5Figcaption(["testclass"], ["a":"b"]) == `<figcaption class="testclass" a="b"></figcaption>`);
 
   assert(H5Figcaption("Hello") == `<figcaption>Hello</figcaption>`);
   assert(H5Figcaption(["testclass"], "Hello") == `<figcaption class="testclass">Hello</figcaption>`);

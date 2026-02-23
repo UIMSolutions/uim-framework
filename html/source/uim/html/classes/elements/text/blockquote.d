@@ -35,6 +35,7 @@ unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
   assert(H5Blockquote(["testclass"]) == `<blockquote class="testclass"></blockquote>`);
   assert(H5Blockquote(["a":"b"]) == `<blockquote a="b"></blockquote>`);
+  assert(H5Blockquote(["testclass"], ["a":"b"]) == `<blockquote class="testclass" a="b"></blockquote>`);
 
   assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
   assert(H5Blockquote(["testclass"], "Hello") == `<blockquote class="testclass">Hello</blockquote>`);

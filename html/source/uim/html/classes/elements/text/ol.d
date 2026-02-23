@@ -41,6 +41,7 @@ unittest {
   assert(H5Ol() == `<ol></ol>`);
   assert(H5Ol(["testclass"]) == `<ol class="testclass"></ol>`);
   assert(H5Ol(["a":"b"]) == `<ol a="b"></ol>`);
+  assert(H5Ol(["testclass"], ["a":"b"]) == `<ol class="testclass" a="b"></ol>`);
 
   assert(H5Ol("Hello") == `<ol>Hello</ol>`);
   assert(H5Ol(["testclass"], "Hello") == `<ol class="testclass">Hello</ol>`);

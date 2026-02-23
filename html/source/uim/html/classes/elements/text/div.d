@@ -32,6 +32,7 @@ unittest {
   assert(H5Div() == `<div></div>`);
   assert(H5Div(["testclass"]) == `<div class="testclass"></div>`);
   assert(H5Div(["a":"b"]) == `<div a="b"></div>`);
+  assert(H5Div(["testclass"], ["a":"b"]) == `<div class="testclass" a="b"></div>`);
 
   assert(H5Div("Hello") == `<div>Hello</div>`);
   assert(H5Div(["testclass"], "Hello") == `<div class="testclass">Hello</div>`);

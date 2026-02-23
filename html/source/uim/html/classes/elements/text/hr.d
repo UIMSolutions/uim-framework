@@ -26,10 +26,5 @@ unittest {
   assert(H5Hr() == `<hr />`);
   assert(H5Hr(["testclass"]) == `<hr class="testclass" />`);
   assert(H5Hr(["a":"b"]) == `<hr a="b" />`);
-
-  assert(H5Hr("Hello") == `<hr>Hello</hr>`);
-  assert(H5Hr(["testclass"], "Hello") == `<hr class="testclass">Hello</hr>`);
-  assert(H5Hr(["a":"b"], "Hello") == `<hr a="b">Hello</hr>`);
-
-  assert(H5Hr(["testclass"], ["a":"b"], "Hello") == `<hr class="testclass" a="b">Hello</hr>`);
+  assert(H5Hr(["testclass"], ["a":"b"]) == `<hr class="testclass" a="b" />`);
 }

@@ -26,6 +26,7 @@ unittest {
   assert(H5Dl() == `<dl></dl>`);
   assert(H5Dl(["testclass"]) == `<dl class="testclass"></dl>`);
   assert(H5Dl(["a":"b"]) == `<dl a="b"></dl>`);
+  assert(H5Dl(["testclass"], ["a":"b"]) == `<dl class="testclass" a="b"></dl>`);
 
   assert(H5Dl("Hello") == `<dl>Hello</dl>`);
   assert(H5Dl(["testclass"], "Hello") == `<dl class="testclass">Hello</dl>`);

@@ -26,6 +26,7 @@ unittest {
   assert(H5P() == `<p></p>`);
   assert(H5P(["testclass"]) == `<p class="testclass"></p>`);
   assert(H5P(["a":"b"]) == `<p a="b"></p>`);
+  assert(H5P(["testclass"], ["a":"b"]) == `<p class="testclass" a="b"></p>`);
 
   assert(H5P("Hello") == `<p>Hello</p>`);
   assert(H5P(["testclass"], "Hello") == `<p class="testclass">Hello</p>`);

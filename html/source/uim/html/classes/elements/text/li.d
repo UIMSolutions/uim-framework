@@ -27,6 +27,7 @@ unittest {
   assert(H5Li() == `<li></li>`);
   assert(H5Li(["testclass"]) == `<li class="testclass"></li>`);
   assert(H5Li(["a":"b"]) == `<li a="b"></li>`);
+  assert(H5Li(["testclass"], ["a":"b"]) == `<li class="testclass" a="b"></li>`);
 
   assert(H5Li("Hello") == `<li>Hello</li>`);
   assert(H5Li(["testclass"], "Hello") == `<li class="testclass">Hello</li>`);
