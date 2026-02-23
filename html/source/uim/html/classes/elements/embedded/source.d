@@ -23,62 +23,14 @@ mixin(ShowModule!());
   *   Your browser does not support the video tag.
   * </video>
   */
+  @StringAttribute("srcset")
+  @StringAttribute("media")
+  @StringAttribute("type")
+  @StringAttribute("sizes")
+  @StringAttribute("width")
+  @StringAttribute("height")
 class H5Source : HtmlElement {
-  mixin H5This!("source", false);
-
-  H5Source srcset(string srcset) {
-    attribute("srcset", srcset);
-    return this;
-  }
-
-  IHtmlAttribute srcset() {
-    return attribute("srcset");
-  }
-
-  H5Source media(string mediaQuery) {
-    attribute("media", mediaQuery);
-    return this;
-  }
-
-  IHtmlAttribute media() {
-    return attribute("media");
-  }
-
-  H5Source type(string mimeType) {
-    attribute("type", mimeType);
-    return this;
-  }
-
-  IHtmlAttribute type() {
-    return attribute("type");
-  }
-
-  H5Source sizes(string sizes) {
-    attribute("sizes", sizes);
-    return this;
-  }
-
-  IHtmlAttribute sizes() {
-    return attribute("sizes");
-  }
-
-  H5Source width(string width) {
-    attribute("width", width);
-    return this;
-  }
-
-  IHtmlAttribute width() {
-    return attribute("width");
-  }
-
-  H5Source height(string height) {
-    attribute("height", height);
-    return this;
-  }
-
-  IHtmlAttribute height() {
-    return attribute("height");
-  }
+  mixin(H5This!("source", false));
 
   mixin(H5Calls!("source"));
 }

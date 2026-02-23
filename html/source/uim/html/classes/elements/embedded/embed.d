@@ -29,7 +29,7 @@ mixin(ShowModule!());
  @StringAttribute("height")
  @StringAttribute("title")
 class H5Embed : HtmlElement {
-  mixin H5This!("embed", false);
+  mixin(H5This!("embed", false));
 
   mixin(AttributeMethods!H5Embed);
 

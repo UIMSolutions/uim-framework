@@ -24,7 +24,7 @@ mixin(ShowModule!());
  * This would embed the web page located at "https://www.example.com" with a specified width of 600 pixels and height of 400 pixels.
  */
 class H5Iframe : HtmlElement {
-  mixin H5This!("iframe", false);
+  mixin(H5This!("iframe", false));
 
   /**
       * Sets the URL of the content being embedded in the <iframe> element. This attribute is required for the <iframe> element to function properly, as it specifies the source of the content to be displayed.
