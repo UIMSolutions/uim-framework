@@ -29,7 +29,7 @@ mixin(ShowModule!());
   * </datalist>
   */
 class H5Datalist : HtmlElement {
-  mixin H5This!("datalist", false);
+  mixin(H5This!("datalist", false));
 
   H5Datalist addOptions(H5Option[] options) {
     options.each!(option => addOption(option));

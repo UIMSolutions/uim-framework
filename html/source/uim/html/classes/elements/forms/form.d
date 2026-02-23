@@ -32,7 +32,7 @@ mixin(ShowModule!());
 @StringAttribute("name")  // The name attribute specifies the name of the form, which can be used to reference it in scripts or styles.
 @StringAttribute("enctype")  // The enctype attribute specifies how the form data should be encoded when submitting it to the server.
 class H5Form : HtmlElement { // IHtmlForm {
-  mixin H5This!("form", false);
+  mixin(H5This!("form", false));
 
   mixin(AttributeMethods!H5Form);
 

@@ -27,7 +27,7 @@ mixin(ShowModule!());
 @StringAttribute("value")
 @StringAttribute("placeholder")
 class H5Input : HtmlElement {
-  mixin H5This!("input", true);
+  mixin(H5This!("input", true));
 
   mixin(AttributeMethods!H5Input);
 

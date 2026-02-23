@@ -20,10 +20,9 @@ mixin(ShowModule!());
   * <selectedcontent>This content is selected.</selectedcontent>
   */
 class H5SelectedContent : HtmlElement {
-  mixin H5This!("selectedcontent", false);
+  mixin(H5This!("selectedcontent", false));
 
-   /// Sets the content of the selectedcontent element.
-
+    mixin(AttributeMethods!H5SelectedContent);
   mixin(H5Calls!("SelectedContent"));
 }
 ///

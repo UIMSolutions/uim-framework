@@ -19,22 +19,14 @@ mixin(ShowModule!());
   *
   * Note: The <optgroup> element is used to group related options in a dropdown list.
   */
+  @BoolAttribute("disabled") // The 'disabled' attribute indicates that the optgroup is not available for interaction.  
 class H5Optgroup : HtmlElement {
-  mixin H5This!("optgroup", false);
+  mixin(H5This!("optgroup", false));
+  mixin(AttributeMethods!H5Optgroup);
 
   /// Sets the label attribute of the optgroup.
   H5Optgroup label(string val) {
     attribute("label", val);
-    return this;
-  }
-
-  /// Sets the disabled attribute of the optgroup.
-  H5Optgroup disabled(bool val = true) {
-    if (val) {
-      attribute("disabled", "disabled");
-    } else {
-      removeAttribute("disabled");
-    } 
     return this;
   }
 
@@ -45,7 +37,7 @@ unittest {
   assert(H5Optgroup() == "<optgroup></optgroup>");
   assert(H5Optgroup("Hello") == "<optgroup>Hello</optgroup>");
   assert(H5Optgroup().label("Group 1") == "<optgroup label=\"Group 1\"></optgroup>");
-  assert(H5Optgroup().disabled() == "<optgroup disabled=\"disabled\"></optgroup>");
+  assert(H5Optgroup().disabled() == "<optgroup disabled></optgroup>");
   assert(H5Optgroup().disabled(false) == "<optgroup></optgroup>");
 
 }

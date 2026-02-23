@@ -18,7 +18,7 @@ mixin(ShowModule!());
   * </fieldset>
   */
 class H5Legend : HtmlElement {
-  mixin H5This!("legend");
+  mixin(H5This!("legend"));
 
   mixin(AttributeMethods!H5Legend);
 

@@ -23,7 +23,7 @@ mixin(ShowModule!());
 * Note: The <label> element can also be used without the 'for' attribute by nesting the <input> element inside the <label>. However, using the 'for' attribute is generally recommended for better accessibility and separation of concerns.
   */
 class H5Label : HtmlElement {
-  mixin H5This!("label", false);
+  mixin(H5This!("label", false));
 
   mixin(AttributeMethods!H5Label);
 

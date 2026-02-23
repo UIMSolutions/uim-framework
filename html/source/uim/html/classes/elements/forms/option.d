@@ -18,7 +18,7 @@ mixin(ShowModule!());
   * auto option = H5Option("Option 1").value("1").selected();
   */
 class H5Option : HtmlElement {
-  mixin H5This!("option", false);
+  mixin(H5This!("option", false));
 
   H5Option value(string valueValue) {
     attribute("value", valueValue);

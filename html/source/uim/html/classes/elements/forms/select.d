@@ -29,7 +29,7 @@ mixin(ShowModule!());
   * </form>
  */
 class H5Select : HtmlElement {
-  mixin H5This!("select", false);
+  mixin(H5This!("select", false));
 
   /// Gets the name attribute of the select element.
   IHtmlAttribute name() {

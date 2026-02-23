@@ -23,11 +23,11 @@ mixin(ShowModule!());
 class H5ButtonInput : H5Input {
   mixin H5InputThis!("button");
 
+  mixin(AttributeMethods!H5ButtonInput);
+
   mixin(H5Calls!("ButtonInput"));
 }
 ///
 unittest {
-  auto buttonInput = H5ButtonInput("button");
-  assert(buttonInput == `<input type="button" />`);
-  assert(buttonInput.type() == "button");
+  assert(H5ButtonInput() == `<input type="button" />`);
 }

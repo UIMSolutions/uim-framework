@@ -28,7 +28,7 @@ mixin(ShowModule!());
 
 @StringAttribute("type")
 class H5Button : HtmlElement {
-  mixin H5This!("button", false);
+  mixin(H5This!("button", false));
 
   mixin(AttributeMethods!H5Button);
 

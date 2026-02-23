@@ -30,7 +30,7 @@ mixin(ShowModule!());
   @BoolAttribute("disabled") // The 'disabled' attribute indicates that the textarea is not available for interaction.
   @BoolAttribute("readonly") // The 'readonly' attribute indicates that the textarea is read-only and cannot be modified by the user.
 class H5Textarea : HtmlElement {
-  mixin H5This!("textarea", false);
+  mixin(H5This!("textarea", false));
 
   mixin(AttributeMethods!H5Textarea);
 

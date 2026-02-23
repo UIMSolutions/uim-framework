@@ -18,7 +18,7 @@ mixin(ShowModule!());
   It is typically used in forms to display results that are computed based on user input.
 */
 class H5Output : HtmlElement {
-  mixin H5This!("output", false);
+  mixin(H5This!("output", false));
 
   /// Associates the output element with other elements
   H5Output forElement(string elementId) {
