@@ -17,32 +17,12 @@ mixin(ShowModule!());
   * Example usage:
   * auto canvas = Canvas("400", "600");
   */
+  @StringAttribute("height") /// The height of the canvas in pixels or as a percentage of the containing element.
+  @StringAttribute("width") /// The width of the canvas in pixels or as a percentage of the containing element.
 class H5Canvas : HtmlElement {
-  mixin H5This!("canvas", false);
-
-  /// Set height attribute
-  H5Canvas height(string heightValue) {
-    attribute("height", heightValue);
-    return this;
-  }
-
-  /// Get height attribute
-  IHtmlAttribute height() {
-    return attribute("height");
-  }
-
-  // #region width
-  /// Set width attribute
-  H5Canvas width(string widthValue) {
-    attribute("width", widthValue);
-    return this;
-  }
-
-  /// Get width attribute
-  IHtmlAttribute width() {
-    return attribute("width");
-  }
-  // #endregion width
+  mixin(H5This!("canvas", false));
+  
+  mixin(AttributeMethods!H5Canvas);
 
   mixin(H5Calls!("canvas"));
 }

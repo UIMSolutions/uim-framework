@@ -18,7 +18,7 @@ mixin(ShowModule!());
   * auto address = Address("123 Main St, Anytown, USA");
   */
 class H5Address : HtmlElement {
-  mixin H5This!("address", false);
+  mixin(H5This!("address", false));
 
   mixin(AttributeMethods!H5Address);
 

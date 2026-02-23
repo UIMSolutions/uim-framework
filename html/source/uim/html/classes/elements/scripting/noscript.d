@@ -18,8 +18,8 @@ mixin(ShowModule!());
   * auto noscript = Noscript("JavaScript is disabled in your browser.");
   */
 class H5Noscript : HtmlElement {
-  mixin H5This!("noscript", false);
-
+  mixin(H5This!("noscript", false));
+  mixin(AttributeMethods!H5Noscript);
   mixin(H5Calls!("noscript"));
 }
 ///
