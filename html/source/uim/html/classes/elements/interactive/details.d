@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * </details>
   */
 class H5Details : HtmlElement {
-  mixin H5This!("details", false);
+  mixin(H5This!("details", false));
 
   mixin(AttributeMethods!H5Details);
 

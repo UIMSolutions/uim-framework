@@ -20,11 +20,11 @@ mixin(ShowModule!());
 @StringAttribute("closedby") // Specifies the conditions under which the dialog is to be closed. The value must be one of the following: "escape", "outside", "none"
 @BoolAttribute("open") // Indicates whether the dialog is open. If this attribute is not set, the dialog is closed. If this attribute is set, the dialog is open.
 class H5Dialog : HtmlElement {
-  mixin H5This!("dialog", false);
+  mixin(H5This!("dialog", false));
 
   mixin(AttributeMethods!H5Dialog);
 
-  mixin(H5Calls!("dialog"));
+  mixin(H5Calls!("Dialog"));
 }
 ///
 unittest {

@@ -12,9 +12,11 @@ mixin(ShowModule!());
 @safe:
 
 class H5Geolocation : HtmlElement {
-  mixin H5This!("geolocation", false);
+  mixin(H5This!("geolocation", false));
 
-  mixin(H5Calls!("geolocation"));
+  mixin(AttributeMethods!H5Geolocation);
+
+  mixin(H5Calls!("Geolocation"));
 }
 ///
 unittest {
