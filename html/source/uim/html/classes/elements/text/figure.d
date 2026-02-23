@@ -26,7 +26,7 @@ unittest {
   assert(H5Figure() == `<figure></figure>`);
   assert(H5Figure(["testclass"]) == `<figure class="testclass"></figure>`);
   assert(H5Figure(["a":"b"]) == `<figure a="b"></figure>`);
-  assert(H5Figure(["testclass"], ["a":"b"]) == `<figure a="b"></figure>`);
+  assert(H5Figure(["testclass"], ["a":"b"]) == `<figure class="testclass" a="b"></figure>`);
 
   assert(H5Figure("Hello") == `<figure>Hello</figure>`);
   assert(H5Figure(["testclass"], "Hello") == `<figure class="testclass">Hello</figure>`);
