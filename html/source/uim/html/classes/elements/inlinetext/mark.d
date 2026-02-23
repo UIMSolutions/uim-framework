@@ -20,11 +20,11 @@ mixin(ShowModule!());
   * <p>This is a <mark>highlighted</mark> word.</p>
   */
 class H5Mark : HtmlElement {
-  mixin H5This!("mark", false);
+  mixin(H5This!("mark", false));
 
   mixin(AttributeMethods!H5Mark);
 
-  mixin(H5Calls!("mark"));
+  mixin(H5Calls!("Mark"));
 }
 ///
 unittest {

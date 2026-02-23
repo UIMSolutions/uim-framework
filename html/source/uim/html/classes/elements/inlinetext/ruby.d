@@ -23,12 +23,16 @@ mixin(ShowModule!());
   * </ruby>
   */
 class H5Ruby : HtmlElement {
-  mixin H5This!("ruby", false);
+  mixin(H5This!("ruby", false));
 
-  mixin(H5Calls!("ruby"));
+  mixin(AttributeMethods!H5Ruby);
+
+  mixin(H5Calls!("Ruby"));
 }
 ///
 unittest {
   assert(H5Ruby() == "<ruby></ruby>");
   assert(H5Ruby("Hello") == "<ruby>Hello</ruby>");
+  assert(H5Ruby(["testclass"]) == `<ruby class="testclass"></ruby>`);
+  assert(H5Ruby(["a": "b"]) == `<ruby a="b"></ruby>`);
 }

@@ -20,7 +20,9 @@ mixin(ShowModule!());
   * <p>This is an <em>important</em> message.</p>
   */
 class H5Em : HtmlElement {
-  mixin H5This!("em", false);
+  mixin(H5This!("em", false));
+
+  mixin(AttributeMethods!H5Em);
 
   mixin(H5Calls!("em"));
 }

@@ -24,7 +24,7 @@ mixin(ShowModule!());
   * }</code></pre>
   */
 class H5Code : HtmlElement {
-  mixin H5This!("code", false);
+  mixin(H5This!("code", false));
 
   mixin(H5Calls!("Code"));
 }

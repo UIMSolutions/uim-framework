@@ -20,9 +20,11 @@ mixin(ShowModule!());
   * <ruby>漢 <rp>kan</rp><rt>かん</rt><rp>kan</rp> 字 <rp>ji</rp><rt>じ</rt><rp>ji</rp></ruby>
   */  
 class H5Rt : HtmlElement {
-  mixin H5This!("rt", false);
+  mixin(H5This!("rt", false));
 
-  mixin(H5Calls!("rt"));
+  mixin(AttributeMethods!H5Rt);
+
+  mixin(H5Calls!("Rt"));
 }
 ///
 unittest {

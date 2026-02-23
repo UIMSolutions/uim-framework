@@ -20,9 +20,11 @@ mixin(ShowModule!());
   * <p>This is a <span class="highlight">highlighted</span> word.</p>
   */
 class H5Span : HtmlElement {
-  mixin H5This!("span", false);
+  mixin(H5This!("span", false));
 
-  mixin(H5Calls!("span"));
+  mixin(AttributeMethods!H5Span);
+
+  mixin(H5Calls!("Span"));
 }
 ///
 unittest {

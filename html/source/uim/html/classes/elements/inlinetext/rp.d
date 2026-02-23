@@ -17,9 +17,11 @@ mixin(ShowModule!());
  * The <rp> element allows authors to specify what should be displayed in place of the ruby text for browsers that do not support it, ensuring that the content remains readable and understandable even without ruby annotation support.
  */
 class H5Rp : HtmlElement {
-  mixin H5This!("rp", false);
+  mixin(H5This!("rp", false));
 
-  mixin(H5Calls!("rp"));
+  mixin(AttributeMethods!H5Rp);
+
+  mixin(H5Calls!("Rp"));
 }
 ///
 unittest {

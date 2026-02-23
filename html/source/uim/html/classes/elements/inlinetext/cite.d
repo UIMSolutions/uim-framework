@@ -17,7 +17,9 @@ mixin(ShowModule!());
   * The <cite> element must not be used to reference the name of an author of a cited work; the <cite> element is for referencing the title of the work itself.
   */
 class H5Cite : HtmlElement {
-  mixin H5This!("cite", false);
+  mixin(H5This!("cite", false));
+
+  mixin(AttributeMethods!H5Cite);
 
   mixin(H5Calls!("Cite"));
 }

@@ -12,17 +12,9 @@ mixin(ShowModule!());
 @safe:
 
 class H5B : HtmlElement {
-  mixin H5This!("b", false);
+  mixin(H5This!("b", false));
 
-  static H5B opCall() {
-    return new H5B();
-  }
-
-  static H5B opCall(string content) {
-    auto element = new H5B();
-    element.content(content);
-    return element;
-  }
+  mixin(H5Calls!("B"));
 }
 ///
 unittest {

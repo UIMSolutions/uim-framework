@@ -17,9 +17,11 @@ mixin(ShowModule!());
   * The <sup> element does not affect the meaning of the text it contains, but it indicates that the text should be displayed in a smaller font size and positioned higher than the surrounding text.
   */
 class H5Sup : HtmlElement {
-  mixin H5This!("sup", false);
+  mixin(H5This!("sup", false));
 
- mixin(H5Calls!("sup"));
+  mixin(AttributeMethods!H5Sup);
+
+  mixin(H5Calls!("Sup"));
 }
 ///
 unittest {

@@ -28,11 +28,11 @@ mixin(ShowModule!());
   * <var>count</var> = 10
   */
 class H5Var : HtmlElement {
-  mixin H5This!("var", false);
+  mixin(H5This!("var", false));
 
   mixin(AttributeMethods!H5Var);
 
-  mixin(H5Calls!("var"));
+  mixin(H5Calls!("Var"));
 }
 ///
 unittest {

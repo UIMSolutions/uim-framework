@@ -20,9 +20,11 @@ mixin(ShowModule!());
   * <p>This is some text. <small>This is small print.</small></p>
   */
 class H5Small : HtmlElement {
-  mixin H5This!("small", false);
+  mixin(H5This!("small", false));
 
-  mixin(H5Calls!("small"));
+  mixin(AttributeMethods!H5Small);
+
+  mixin(H5Calls!("Small"));
 }
 ///
 unittest {

@@ -23,7 +23,7 @@ mixin(ShowModule!());
 @StringAttribute("target") // The 'target' attribute specifies where to open the linked document. 
 
 class H5A : HtmlElement {
-  mixin H5This!("a", false);
+  mixin(H5This!("a", false));
 
 mixin(AttributeMethods!H5A);
 
