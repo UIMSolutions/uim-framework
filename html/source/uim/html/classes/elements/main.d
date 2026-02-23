@@ -27,11 +27,11 @@ mixin(ShowModule!());
   * ```
   */
 class H5Main : HtmlElement {
-  mixin H5This!("main", false);
+  mixin(H5This!("main", false));
 
   mixin(AttributeMethods!H5Main);
 
-  mixin(H5Calls!("main"));
+  mixin(H5Calls!("Main"));
 }
 ///
 unittest {

@@ -25,9 +25,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Dd : HtmlElement {
-  mixin H5This!("dd", false);
+  mixin(H5This!("dd", false));
 
-  mixin(AttributeMethods!H5Link);
+  mixin(AttributeMethods!H5Dd);
 
   mixin(H5Calls!("dd"));
 }

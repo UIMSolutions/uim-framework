@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class H5Aside : HtmlElement {
-  mixin H5This!("aside", false);
+  mixin(H5This!("aside", false));
 
   mixin(AttributeMethods!H5Aside);
 

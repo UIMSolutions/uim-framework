@@ -27,7 +27,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Section : HtmlElement {
-  mixin H5This!("section", false);
+  mixin(H5This!("section", false));
 
   mixin(AttributeMethods!H5Section);
 

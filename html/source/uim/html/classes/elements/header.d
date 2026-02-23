@@ -34,7 +34,9 @@ mixin(ShowModule!());
   */
 
 class H5Header : HtmlElement {
-  mixin H5This!("header", false);
+  mixin(H5This!("header", false));
+
+   mixin(AttributeMethods!H5Header);
 
   static H5Header opCall() {
     return new H5Header();

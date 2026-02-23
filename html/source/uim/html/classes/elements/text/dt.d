@@ -17,7 +17,7 @@ mixin(ShowModule!());
  * The <dt> element is usually displayed in bold font by default, and it is often indented from the left margin to visually distinguish it from the <dd> elements that follow it. 
  */
 class H5Dt : HtmlElement {
-  mixin H5This!("dt", false);
+  mixin(H5This!("dt", false));
 
   mixin(H5Calls!("Dt"));
 }

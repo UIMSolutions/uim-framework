@@ -30,33 +30,12 @@ mixin(ShowModule!());
   * D. Item 2
   * E. Item 3
  */
+ @StringAttribute("type") // Specifies the type of numbering for the list items. Possible values include "1" for decimal numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
+ @StringAttribute("start") // Specifies the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
 class H5Ol : HtmlElement {
-  mixin H5This!("ol", false);
+  mixin(H5This!("ol", false));
 
-  /// Sets the type of numbering for the list items in an ordered list. 
-  /// Valid values are "1" for numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
-  H5Ol type(string listType) {
-    attribute("type", listType);
-    return this;
-  }
-
-  /// Gets the value of the "type" attribute, which specifies the type of numbering for the list items in an ordered list.
-  H5Ol type() {
-    attribute("type");
-    return this;
-  }
-
-  /// Sets the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
-  H5Ol start(string startValue) {
-    attribute("start", startValue);
-    return this;
-  }
-
-  /// Gets the value of the "start" attribute, which specifies the starting value for the first list item in an ordered list.
-  H5Ol start() {
-    attribute("start");
-    return this;
-  }
+  mixin(AttributeMethods!H5Ol);
 
   mixin(H5Calls!("ol"));
 }

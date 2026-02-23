@@ -18,7 +18,7 @@ mixin(ShowModule!());
   * auto caption = Caption("Table Caption");
   */
 class H5Caption : HtmlElement {
-  mixin H5This!("caption", false);
+  mixin(H5This!("caption", false));
 
   mixin(AttributeMethods!H5Caption);
 

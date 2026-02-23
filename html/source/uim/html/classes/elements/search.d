@@ -27,7 +27,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Search : HtmlElement {
-  mixin H5This!("search", false);
+  mixin(H5This!("search", false));
+
+  mixin(AttributeMethods!H5Search);
 
   mixin(H5Calls!("search"));
 }

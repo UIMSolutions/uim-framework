@@ -18,7 +18,9 @@ mixin(ShowModule!());
  * The <dl> element can also contain other flow content, such as headings, paragraphs, and images, to provide additional context or information about the terms and their descriptions.
  */
 class H5Dl : HtmlElement {
-  mixin H5This!("dl", false);
+  mixin(H5This!("dl", false));
+
+  mixin(AttributeMethods!H5Dl);
 
   mixin(H5Calls!("Dl"));
 }

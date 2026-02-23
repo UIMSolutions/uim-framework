@@ -26,9 +26,9 @@ mixin(ShowModule!());
   * ```
   */
 class H5Blockquote : HtmlElement {
-  mixin H5This!("blockquote", false);
+  mixin(H5This!("blockquote", false));
 
-  mixin(AttributeMethods!H5Link);
+  mixin(AttributeMethods!H5Blockquote);
 
   H5Blockquote cite(string url) {
     attribute("cite", url);
