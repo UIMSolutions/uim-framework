@@ -11,13 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 
-// Test Service implementations
+// Test Object implementations
 
-class EmailService : Service {
+class EmailObject : LocatorObject {
   private string _recipient;
 
   this() {
-    super("EmailService");
+    super("EmailObject");
     _recipient = "";
   }
 
@@ -34,11 +34,11 @@ class EmailService : Service {
   }
 }
 
-class DatabaseService : Service {
+class DatabaseObject : LocatorObject {
   private string _connectionString;
 
   this() {
-    super("DatabaseService");
+    super("DatabaseObject");
     _connectionString = "localhost:5432";
   }
 
@@ -55,11 +55,11 @@ class DatabaseService : Service {
   }
 }
 
-class LoggingService : Service {
+class LoggingObject : LocatorObject {
   private string _logLevel;
 
   this() {
-    super("LoggingService");
+    super("LoggingObject");
     _logLevel = "INFO";
   }
 
@@ -76,11 +76,11 @@ class LoggingService : Service {
   }
 }
 
-class CacheService : Service {
+class CacheObject : LocatorObject {
   private size_t _capacity;
 
   this() {
-    super("CacheService");
+    super("CacheObject");
     _capacity = 100;
   }
 
@@ -101,277 +101,277 @@ class CacheService : Service {
 // Comprehensive Tests
 
 @safe unittest {
-  mixin(ShowTest!("Basic ServiceLocator registration and retrieval"));
+  mixin(ShowTest!("Basic ObjectLocator registration and retrieval"));
 
-  auto locator = new ServiceLocator();
-  auto emailService = new EmailService();
-  emailService.setRecipient("test@example.com");
+  auto locator = new ObjectLocator();
+  auto emailObject = new EmailObject();
+  emailObject.setRecipient("test@example.com");
 
-  locator.registerService("email", emailService);
-  assert(locator.hasService("email"), "Service should be registered");
+  locator.registerObject("email", emailObject);
+  assert(locator.hasObject("email"), "Object should be registered");
 
-  auto retrieved = cast(EmailService) locator.getService("email");
-  assert(retrieved !is null, "Service should be retrievable");
-  assert(retrieved.recipient() == "test@example.com", "Service state should be preserved");
-  assert(retrieved.execute().length > 0, "Service should be executable");
+  auto retrieved = cast(EmailObject) locator.getObject("email");
+  assert(retrieved !is null, "Object should be retrievable");
+  assert(retrieved.recipient() == "test@example.com", "Object state should be preserved");
+  assert(retrieved.execute().length > 0, "Object should be executable");
 }
 
 @safe unittest {
-  mixin(ShowTest!("ServiceLocator multiple services"));
+  mixin(ShowTest!("ObjectLocator multiple objects"));
 
-  auto locator = new ServiceLocator();
-  auto emailService = new EmailService();
-  auto dbService = new DatabaseService();
-  auto logService = new LoggingService();
+  auto locator = new ObjectLocator();
+  auto emailObject = new EmailObject();
+  auto dbObject = new DatabaseObject();
+  auto logObject = new LoggingObject();
 
-  locator.registerService("email", emailService);
-  locator.registerService("database", dbService);
-  locator.registerService("logging", logService);
+  locator.registerObject("email", emailObject);
+  locator.registerObject("database", dbObject);
+  locator.registerObject("logging", logObject);
 
-  assert(locator.hasService("email"));
-  assert(locator.hasService("database"));
-  assert(locator.hasService("logging"));
+  assert(locator.hasObject("email"));
+  assert(locator.hasObject("database"));
+  assert(locator.hasObject("logging"));
 
-  auto names = locator.getServiceNames();
-  assert(names.length == 3, "Should have 3 registered services");
+  auto names = locator.getObjectNames();
+  assert(names.length == 3, "Should have 3 registered objects");
 }
 
 @safe unittest {
-  mixin(ShowTest!("ServiceLocator unregister service"));
+  mixin(ShowTest!("ObjectLocator unregister object"));
 
-  auto locator = new ServiceLocator();
-  auto service = new EmailService();
+  auto locator = new ObjectLocator();
+  auto object = new EmailObject();
 
-  locator.registerService("email", service);
-  assert(locator.hasService("email"));
+  locator.registerObject("email", object);
+  assert(locator.hasObject("email"));
 
-  bool removed = locator.unregisterService("email");
-  assert(removed, "Service should be removed");
-  assert(!locator.hasService("email"), "Service should no longer be registered");
+  bool removed = locator.unregisterObject("email");
+  assert(removed, "Object should be removed");
+  assert(!locator.hasObject("email"), "Object should no longer be registered");
 
-  bool removedAgain = locator.unregisterService("email");
-  assert(!removedAgain, "Removing non-existent service should return false");
+  bool removedAgain = locator.unregisterObject("email");
+  assert(!removedAgain, "Removing non-existent object should return false");
 }
 
 @safe unittest {
-  mixin(ShowTest!("ServiceLocator clear all services"));
+  mixin(ShowTest!("ObjectLocator clear all objects"));
 
-  auto locator = new ServiceLocator();
-  locator.registerService("email", new EmailService());
-  locator.registerService("database", new DatabaseService());
+  auto locator = new ObjectLocator();
+  locator.registerObject("email", new EmailObject());
+  locator.registerObject("database", new DatabaseObject());
 
-  assert(locator.getServiceNames().length == 2);
+  assert(locator.getObjectNames().length == 2);
 
   locator.clear();
-  assert(locator.getServiceNames().length == 0, "All services should be cleared");
-  assert(!locator.hasService("email"));
-  assert(!locator.hasService("database"));
+  assert(locator.getObjectNames().length == 0, "All objects should be cleared");
+  assert(!locator.hasObject("email"));
+  assert(!locator.hasObject("database"));
 }
 
 @safe unittest {
-  mixin(ShowTest!("LazyServiceLocator factory registration"));
+  mixin(ShowTest!("LazyObjectLocator factory registration"));
 
-  auto locator = new LazyServiceLocator();
+  auto locator = new LazyObjectLocator();
 
   locator.registerFactory("email", () {
-    auto svc = new EmailService();
+    auto svc = new EmailObject();
     svc.setRecipient("lazy@example.com");
-    return cast(IService) svc;
+    return cast(IObject) svc;
   });
 
-  assert(locator.hasService("email"), "Factory-registered service should be available");
+  assert(locator.hasObject("email"), "Factory-registered object should be available");
 
-  auto service = cast(EmailService) locator.getService("email");
-  assert(service !is null, "Service should be created");
-  assert(service.recipient() == "lazy@example.com", "Service should be initialized correctly");
+  auto object = cast(EmailObject) locator.getObject("email");
+  assert(object !is null, "Object should be created");
+  assert(object.recipient() == "lazy@example.com", "Object should be initialized correctly");
 
   // Second call should return same instance
-  auto service2 = locator.getService("email");
-  assert(service is service2, "Should return cached instance");
+  auto object2 = locator.getObject("email");
+  assert(object is object2, "Should return cached instance");
 }
 
 @safe unittest {
-  mixin(ShowTest!("LazyServiceLocator mixed registration"));
+  mixin(ShowTest!("LazyObjectLocator mixed registration"));
 
-  auto locator = new LazyServiceLocator();
+  auto locator = new LazyObjectLocator();
 
-  // Register immediate service
-  auto emailService = new EmailService();
-  locator.registerService("email", emailService);
+  // Register immediate object
+  auto emailObject = new EmailObject();
+  locator.registerObject("email", emailObject);
 
-  // Register lazy service
-  locator.registerFactory("database", () => cast(IService) new DatabaseService());
+  // Register lazy object
+  locator.registerFactory("database", () => cast(IObject) new DatabaseObject());
 
-  assert(locator.hasService("email"));
-  assert(locator.hasService("database"));
+  assert(locator.hasObject("email"));
+  assert(locator.hasObject("database"));
 
-  auto email = locator.getService("email");
-  auto db = locator.getService("database");
+  auto email = locator.getObject("email");
+  auto db = locator.getObject("database");
 
   assert(email !is null);
   assert(db !is null);
 }
 
 @safe unittest {
-  mixin(ShowTest!("CachedServiceLocator caching behavior"));
+  mixin(ShowTest!("CachedObjectLocator caching behavior"));
 
-  auto locator = new CachedServiceLocator();
+  auto locator = new CachedObjectLocator();
   assert(locator.isCacheEnabled(), "Cache should be enabled by default");
 
-  auto service = new EmailService();
-  locator.registerService("email", service);
+  auto object = new EmailObject();
+  locator.registerObject("email", object);
 
-  auto retrieved1 = locator.getService("email");
-  auto retrieved2 = locator.getService("email");
+  auto retrieved1 = locator.getObject("email");
+  auto retrieved2 = locator.getObject("email");
 
   assert(retrieved1 is retrieved2, "Should return same cached instance");
 
   locator.clearCache();
-  auto retrieved3 = locator.getService("email");
-  assert(retrieved3 !is null, "Service should still be available after cache clear");
+  auto retrieved3 = locator.getObject("email");
+  assert(retrieved3 !is null, "Object should still be available after cache clear");
 }
 
 @safe unittest {
-  mixin(ShowTest!("CachedServiceLocator disable caching"));
+  mixin(ShowTest!("CachedObjectLocator disable caching"));
 
-  auto locator = new CachedServiceLocator();
+  auto locator = new CachedObjectLocator();
   locator.setCacheEnabled(false);
   assert(!locator.isCacheEnabled(), "Cache should be disabled");
 
-  auto service = new EmailService();
-  locator.registerService("email", service);
+  auto object = new EmailObject();
+  locator.registerObject("email", object);
 
-  auto retrieved = locator.getService("email");
-  assert(retrieved !is null, "Service should be retrievable without cache");
+  auto retrieved = locator.getObject("email");
+  assert(retrieved !is null, "Object should be retrievable without cache");
 
   locator.setCacheEnabled(true);
   assert(locator.isCacheEnabled(), "Cache should be re-enabled");
 }
 
 @safe unittest {
-  mixin(ShowTest!("HierarchicalServiceLocator parent-child relationship"));
+  mixin(ShowTest!("HierarchicalObjectLocator parent-child relationship"));
 
-  auto parentLocator = new HierarchicalServiceLocator();
-  auto childLocator = new HierarchicalServiceLocator(parentLocator);
+  auto parentLocator = new HierarchicalObjectLocator();
+  auto childLocator = new HierarchicalObjectLocator(parentLocator);
 
-  // Register service in parent
-  parentLocator.registerService("logging", new LoggingService());
+  // Register object in parent
+  parentLocator.registerObject("logging", new LoggingObject());
 
-  // Register service in child
-  childLocator.registerService("email", new EmailService());
+  // Register object in child
+  childLocator.registerObject("email", new EmailObject());
 
-  // Child can access its own service
-  assert(childLocator.hasService("email"));
-  auto emailSvc = childLocator.getService("email");
+  // Child can access its own object
+  assert(childLocator.hasObject("email"));
+  auto emailSvc = childLocator.getObject("email");
   assert(emailSvc !is null);
 
-  // Child can access parent's service
-  assert(childLocator.hasService("logging"));
-  auto logSvc = childLocator.getService("logging");
+  // Child can access parent's object
+  assert(childLocator.hasObject("logging"));
+  auto logSvc = childLocator.getObject("logging");
   assert(logSvc !is null);
-  assert(logSvc.serviceName() == "LoggingService");
+  assert(logSvc.objectName() == "LoggingObject");
 
-  // Parent cannot access child's service
-  assert(!parentLocator.hasService("email"));
+  // Parent cannot access child's object
+  assert(!parentLocator.hasObject("email"));
 }
 
 @safe unittest {
-  mixin(ShowTest!("HierarchicalServiceLocator multi-level hierarchy"));
+  mixin(ShowTest!("HierarchicalObjectLocator multi-level hierarchy"));
 
-  auto rootLocator = new HierarchicalServiceLocator();
-  auto middleLocator = new HierarchicalServiceLocator(rootLocator);
-  auto leafLocator = new HierarchicalServiceLocator(middleLocator);
+  auto rootLocator = new HierarchicalObjectLocator();
+  auto middleLocator = new HierarchicalObjectLocator(rootLocator);
+  auto leafLocator = new HierarchicalObjectLocator(middleLocator);
 
-  rootLocator.registerService("root", new LoggingService());
-  middleLocator.registerService("middle", new DatabaseService());
-  leafLocator.registerService("leaf", new EmailService());
+  rootLocator.registerObject("root", new LoggingObject());
+  middleLocator.registerObject("middle", new DatabaseObject());
+  leafLocator.registerObject("leaf", new EmailObject());
 
   // Leaf can access all levels
-  assert(leafLocator.hasService("leaf"));
-  assert(leafLocator.hasService("middle"));
-  assert(leafLocator.hasService("root"));
+  assert(leafLocator.hasObject("leaf"));
+  assert(leafLocator.hasObject("middle"));
+  assert(leafLocator.hasObject("root"));
 
-  auto rootSvc = leafLocator.getService("root");
+  auto rootSvc = leafLocator.getObject("root");
   assert(rootSvc !is null);
 }
 
 @safe unittest {
-  mixin(ShowTest!("HierarchicalServiceLocator service shadowing"));
+  mixin(ShowTest!("HierarchicalObjectLocator object shadowing"));
 
-  auto parentLocator = new HierarchicalServiceLocator();
-  auto childLocator = new HierarchicalServiceLocator(parentLocator);
+  auto parentLocator = new HierarchicalObjectLocator();
+  auto childLocator = new HierarchicalObjectLocator(parentLocator);
 
-  // Register same service name in both
-  auto parentEmail = new EmailService();
+  // Register same object name in both
+  auto parentEmail = new EmailObject();
   parentEmail.setRecipient("parent@example.com");
-  parentLocator.registerService("email", parentEmail);
+  parentLocator.registerObject("email", parentEmail);
 
-  auto childEmail = new EmailService();
+  auto childEmail = new EmailObject();
   childEmail.setRecipient("child@example.com");
-  childLocator.registerService("email", childEmail);
+  childLocator.registerObject("email", childEmail);
 
-  // Child should get its own service (shadowing parent's)
-  auto retrieved = cast(EmailService) childLocator.getService("email");
+  // Child should get its own object (shadowing parent's)
+  auto retrieved = cast(EmailObject) childLocator.getObject("email");
   assert(retrieved !is null);
-  assert(retrieved.recipient() == "child@example.com", "Child service should shadow parent");
+  assert(retrieved.recipient() == "child@example.com", "Child object should shadow parent");
 }
 
 @safe unittest {
-  mixin(ShowTest!("ServiceLocator service replacement"));
+  mixin(ShowTest!("ObjectLocator object replacement"));
 
-  auto locator = new ServiceLocator();
+  auto locator = new ObjectLocator();
   
-  auto service1 = new EmailService();
-  service1.setRecipient("first@example.com");
-  locator.registerService("email", service1);
+  auto object1 = new EmailObject();
+  object1.setRecipient("first@example.com");
+  locator.registerObject("email", object1);
 
-  auto retrieved1 = cast(EmailService) locator.getService("email");
+  auto retrieved1 = cast(EmailObject) locator.getObject("email");
   assert(retrieved1.recipient() == "first@example.com");
 
-  // Replace with new service
-  auto service2 = new EmailService();
-  service2.setRecipient("second@example.com");
-  locator.registerService("email", service2);
+  // Replace with new object
+  auto object2 = new EmailObject();
+  object2.setRecipient("second@example.com");
+  locator.registerObject("email", object2);
 
-  auto retrieved2 = cast(EmailService) locator.getService("email");
-  assert(retrieved2.recipient() == "second@example.com", "Service should be replaced");
+  auto retrieved2 = cast(EmailObject) locator.getObject("email");
+  assert(retrieved2.recipient() == "second@example.com", "Object should be replaced");
 }
 
 @safe unittest {
-  mixin(ShowTest!("Real-world scenario: Application with multiple services"));
+  mixin(ShowTest!("Real-world scenario: Application with multiple objects"));
 
-  // Create application service locator
-  auto appLocator = new CachedServiceLocator();
+  // Create application object locator
+  auto appLocator = new CachedObjectLocator();
 
-  // Register application services
-  auto dbService = new DatabaseService();
-  dbService.setConnectionString("prod-db.example.com:5432");
-  appLocator.registerService("database", dbService);
+  // Register application objects
+  auto dbObject = new DatabaseObject();
+  dbObject.setConnectionString("prod-db.example.com:5432");
+  appLocator.registerObject("database", dbObject);
 
-  auto emailService = new EmailService();
-  emailService.setRecipient("admin@example.com");
-  appLocator.registerService("email", emailService);
+  auto emailObject = new EmailObject();
+  emailObject.setRecipient("admin@example.com");
+  appLocator.registerObject("email", emailObject);
 
-  auto logService = new LoggingService();
-  logService.setLogLevel("ERROR");
-  appLocator.registerService("logging", logService);
+  auto logObject = new LoggingObject();
+  logObject.setLogLevel("ERROR");
+  appLocator.registerObject("logging", logObject);
 
-  auto cacheService = new CacheService();
-  cacheService.setCapacity(1000);
-  appLocator.registerService("cache", cacheService);
+  auto cacheObject = new CacheObject();
+  cacheObject.setCapacity(1000);
+  appLocator.registerObject("cache", cacheObject);
 
-  // Simulate application using services
-  assert(appLocator.getServiceNames().length == 4);
+  // Simulate application using objects
+  assert(appLocator.getObjectNames().length == 4);
 
-  auto db = cast(DatabaseService) appLocator.getService("database");
+  auto db = cast(DatabaseObject) appLocator.getObject("database");
   assert(db !is null);
   assert(db.connectionString().length > 0);
 
-  auto log = cast(LoggingService) appLocator.getService("logging");
+  auto log = cast(LoggingObject) appLocator.getObject("logging");
   assert(log !is null);
   assert(log.logLevel() == "ERROR");
 
-  // Services should be cached
-  auto db2 = appLocator.getService("database");
+  // Objects should be cached
+  auto db2 = appLocator.getObject("database");
   assert(db is db2, "Should return cached instance");
 }

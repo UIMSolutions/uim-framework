@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 // Registry for Commands
-class DCommanUIMRegistry : UIMRegistry!(string, ICommand) {
+class CommandRegistry : UIMRegistry!(string, ICommand) {
   this() {
     super();
   }

@@ -41,10 +41,7 @@ class UIMRegistry(K, V) : IRegistry!(K, V) {
   }
 
   V get(K key, V defaultValue) {
-    if (auto item = key in _items) {
-      return *item;
-    }
-    return defaultValue;
+    return (key in _items) ? _items[key] : defaultValue;
   }
 
   bool has(K key) {
@@ -77,9 +74,9 @@ class UIMRegistry(K, V) : IRegistry!(K, V) {
     int result = 0;
     foreach (key, value; _items) {
       result = dg(key, value);
-      if (result) break;
+      if (result)
+        break;
     }
     return result;
   }
 }
-

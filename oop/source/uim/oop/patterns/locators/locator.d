@@ -8,160 +8,160 @@ module uim.oop.patterns.locators.locator;
 import uim.oop.patterns.locators.interfaces;
 @safe:
 /**
- * Base abstract service that can be registered with Service Locator.
+ * Base abstract object that can be registered with Object Locator.
  */
-abstract class Service : IService {
+abstract class LocatorObject : ILocatorObject {
   private string _name;
 
   /**
    * Constructor.
    * Params:
-   *   name = The name of the service
+   *   name = The name of the object
    */
   this(string name) {
     _name = name;
   }
 
   /**
-   * Get the name of this service.
+   * Get the name of this object.
    */
-  string serviceName() {
+  string objectName() {
     return _name;
   }
 
   /**
-   * Execute the service's main operation.
+   * Execute the object's main operation.
    * Override in derived classes.
    */
   abstract string execute() @safe;
 }
 
 /**
- * Basic Service Locator implementation.
- * Provides centralized registry for obtaining services.
+ * Basic Object Locator implementation.
+ * Provides centralized registry for obtaining objects.
  */
-class ServiceLocator : IServiceLocator {
-  private IService[string] _services;
+class ObjectLocator : ILocator {
+  private ILocatorObject[string] _objects;
 
   /**
    * Constructor.
    */
   this() {
-    _services = null;
+    _objects = null;
   }
 
   /**
-   * Register a service with the locator.
+   * Register a object with the locator.
    */
-  void registerService(string name, IService service) {
-    _services[name] = service;
+  void registerObject(string name, ILocatorObject object) {
+    _objects[name] = object;
   }
 
   /**
-   * Get a service by name.
+   * Get a object by name.
    */
-  IService getService(string name) {
-    return name in _services ? _services[name] : null;
+  ILocatorObject getObject(string name) {
+    return name in _objects ? _objects[name] : null;
   }
 
   /**
-   * Check if a service is registered.
+   * Check if a object is registered.
    */
-  bool hasService(string name) {
-    return (name in _services) !is null;
+  bool hasObject(string name) {
+    return (name in _objects) !is null;
   }
 
   /**
-   * Unregister a service.
+   * Unregister a object.
    */
-  bool unregisterService(string name) {
-    if (name in _services) {
-      _services.remove(name);
+  bool unregisterObject(string name) {
+    if (name in _objects) {
+      _objects.remove(name);
       return true;
     }
     return false;
   }
 
   /**
-   * Get all registered service names.
+   * Get all registered object names.
    */
-  string[] getServiceNames() {
+  string[] getObjectNames() {
     import std.array : array;
-    return _services.keys.array;
+    return _objects.keys.array;
   }
 
   /**
-   * Clear all registered services.
+   * Clear all registered objects.
    */
   void clear() {
-    _services.clear();
+    _objects.clear();
   }
 }
 
 /**
- * Lazy-loading Service Locator.
- * Creates services on-demand using factory functions.
+ * Lazy-loading Object Locator.
+ * Creates objects on-demand using factory functions.
  */
-class LazyServiceLocator : ILazyServiceLocator {
-  private IService[string] _services;
-  private IService delegate() @safe[string] _factories;
+class LazyObjectLocator : ILazyLocatorObject {
+  private ILocatorObject[string] _objects;
+  private ILocatorObject delegate() @safe[string] _factories;
 
   /**
    * Constructor.
    */
   this() {
-    _services = null;
+    _objects = null;
     _factories = null;
   }
 
   /**
-   * Register a service with the locator.
+   * Register a object with the locator.
    */
-  void registerService(string name, IService service) {
-    _services[name] = service;
+  void registerObject(string name, ILocatorObject object) {
+    _objects[name] = object;
   }
 
   /**
-   * Register a service factory for lazy instantiation.
+   * Register a object factory for lazy instantiation.
    */
-  void registerFactory(string name, IService delegate() @safe factory) {
+  void registerFactory(string name, ILocatorObject delegate() @safe factory) {
     _factories[name] = factory;
   }
 
   /**
-   * Get a service by name.
-   * If service not instantiated, creates it using factory.
+   * Get a object by name.
+   * If object not instantiated, creates it using factory.
    */
-  IService getService(string name) {
+  ILocatorObject getObject(string name) {
     // Check if already instantiated
-    if (name in _services) {
-      return _services[name];
+    if (name in _objects) {
+      return _objects[name];
     }
 
     // Check if factory exists
     if (name in _factories) {
-      auto service = _factories[name]();
-      _services[name] = service;
-      return service;
+      auto object = _factories[name]();
+      _objects[name] = object;
+      return object;
     }
 
     return null;
   }
 
   /**
-   * Check if a service is registered.
+   * Check if a object is registered.
    */
-  bool hasService(string name) {
-    return (name in _services) !is null || (name in _factories) !is null;
+  bool hasObject(string name) {
+    return (name in _objects) !is null || (name in _factories) !is null;
   }
 
   /**
-   * Unregister a service.
+   * Unregister a object.
    */
-  bool unregisterService(string name) {
+  bool unregisterObject(string name) {
     bool removed = false;
-    if (name in _services) {
-      _services.remove(name);
+    if (name in _objects) {
+      _objects.remove(name);
       removed = true;
     }
     if (name in _factories) {
@@ -172,87 +172,87 @@ class LazyServiceLocator : ILazyServiceLocator {
   }
 
   /**
-   * Get all registered service names.
+   * Get all registered object names.
    */
-  string[] getServiceNames() {
+  string[] getObjectNames() {
     import std.array : array;
     import std.algorithm : uniq, sort;
     
-    auto keys = _services.keys ~ _factories.keys;
+    auto keys = _objects.keys ~ _factories.keys;
     return keys.sort.uniq.array;
   }
 
   /**
-   * Clear all registered services and factories.
+   * Clear all registered objects and factories.
    */
   void clear() {
-    _services.clear();
+    _objects.clear();
     _factories.clear();
   }
 }
 
 /**
- * Cached Service Locator.
- * Caches service lookups for improved performance.
+ * Cached Object Locator.
+ * Caches object lookups for improved performance.
  */
-class CachedServiceLocator : ICachedServiceLocator {
-  private IService[string] _services;
-  private IService[string] _cache;
+class CachedObjectLocator : ICachedObjectLocator {
+  private ILocatorObject[string] _objects;
+  private ILocatorObject[string] _cache;
   private bool _cacheEnabled;
 
   /**
    * Constructor.
    */
   this() {
-    _services = null;
+    _objects = null;
     _cache = null;
     _cacheEnabled = true;
   }
 
   /**
-   * Register a service with the locator.
+   * Register a object with the locator.
    */
-  void registerService(string name, IService service) {
-    _services[name] = service;
+  void registerObject(string name, ILocatorObject object) {
+    _objects[name] = object;
     if (_cacheEnabled) {
-      _cache[name] = service;
+      _cache[name] = object;
     }
   }
 
   /**
-   * Get a service by name.
+   * Get a object by name.
    */
-  IService getService(string name) {
+  ILocatorObject getObject(string name) {
     // Check cache first if enabled
     if (_cacheEnabled && name in _cache) {
       return _cache[name];
     }
 
-    // Get from services
-    auto service = name in _services ? _services[name] : null;
+    // Get from objects
+    auto object = name in _objects ? _objects[name] : null;
     
     // Cache it if found and caching is enabled
-    if (_cacheEnabled && service !is null) {
-      _cache[name] = service;
+    if (_cacheEnabled && object !is null) {
+      _cache[name] = object;
     }
 
-    return service;
+    return object;
   }
 
   /**
-   * Check if a service is registered.
+   * Check if a object is registered.
    */
-  bool hasService(string name) {
-    return (name in _services) !is null;
+  bool hasObject(string name) {
+    return (name in _objects) !is null;
   }
 
   /**
-   * Unregister a service.
+   * Unregister a object.
    */
-  bool unregisterService(string name) {
+  bool unregisterObject(string name) {
     bool removed = false;
-    if (name in _services) {
-      _services.remove(name);
+    if (name in _objects) {
+      _objects.remove(name);
       removed = true;
     }
     if (name in _cache) {
@@ -262,18 +262,18 @@ class CachedServiceLocator : ICachedServiceLocator {
   }
 
   /**
-   * Get all registered service names.
+   * Get all registered object names.
    */
-  string[] getServiceNames() {
+  string[] getObjectNames() {
     import std.array : array;
-    return _services.keys.array;
+    return _objects.keys.array;
   }
 
   /**
-   * Clear all registered services.
+   * Clear all registered objects.
    */
   void clear() {
-    _services.clear();
+    _objects.clear();
     _cache.clear();
   }
 
@@ -295,7 +295,7 @@ class CachedServiceLocator : ICachedServiceLocator {
   }
 
   /**
-   * Clear the service cache.
+   * Clear the object cache.
    */
   void clearCache() {
     _cache.clear();
@@ -303,180 +303,178 @@ class CachedServiceLocator : ICachedServiceLocator {
 }
 
 /**
- * Hierarchical Service Locator.
- * Supports parent-child relationship for service lookup.
+ * Hierarchical Object Locator.
+ * Supports parent-child relationship for object lookup.
  */
-class HierarchicalServiceLocator : IServiceLocator {
-  private IService[string] _services;
-  private HierarchicalServiceLocator _parent;
+class HierarchicalObjectLocator : ILocator {
+  private ILocatorObject[string] _objects;
+  private HierarchicalObjectLocator _parent;
 
   /**
    * Constructor.
    */
-  this(HierarchicalServiceLocator parent = null) {
-    _services = null;
+  this(HierarchicalObjectLocator parent = null) {
+    _objects = null;
     _parent = parent;
   }
 
   /**
    * Set the parent locator.
    */
-  void setParent(HierarchicalServiceLocator parent) {
+  void setParent(HierarchicalObjectLocator parent) {
     _parent = parent;
   }
 
   /**
    * Get the parent locator.
    */
-  HierarchicalServiceLocator getParent() {
+  HierarchicalObjectLocator getParent() {
     return _parent;
   }
 
   /**
-   * Register a service with the locator.
+   * Register a object with the locator.
    */
-  void registerService(string name, IService service) {
-    _services[name] = service;
+  void registerObject(string name, ILocatorObject object) {
+    _objects[name] = object;
   }
 
   /**
-   * Get a service by name.
+   * Get a object by name.
    * Searches parent locators if not found locally.
    */
-  IService getService(string name) {
-    // Check local services first
-    if (name in _services) {
-      return _services[name];
+  ILocatorObject getObject(string name) {
+    // Check local objects first
+    if (name in _objects) {
+      return _objects[name];
     }
 
     // Search parent if available
     if (_parent !is null) {
-      return _parent.getService(name);
+      return _parent.getObject(name);
     }
 
     return null;
   }
 
   /**
-   * Check if a service is registered locally or in parent.
+   * Check if a object is registered locally or in parent.
    */
-  bool hasService(string name) {
-    if (name in _services) {
+  bool hasObject(string name) {
+    if (name in _objects) {
       return true;
     }
-    if (_parent !is null) {
-      return _parent.hasService(name);
+
+    return _parent !is null ? _parent.hasObject(name) : false;
+  }
+
+  /**
+   * Unregister a object (only from local registry).
+   */
+  bool unregisterObject(string name) {
+    if (name in _objects) {
+      _objects.remove(name);
+      return true;
     }
     return false;
   }
 
   /**
-   * Unregister a service (only from local registry).
+   * Get all registered object names (local only).
    */
-  bool unregisterService(string name) {
-    if (name in _services) {
-      _services.remove(name);
-      return true;
-    }
-    return false;
-  }
-
-  /**
-   * Get all registered service names (local only).
-   */
-  string[] getServiceNames() {
+  string[] getObjectNames() {
     import std.array : array;
-    return _services.keys.array;
+    return _objects.keys.array;
   }
 
   /**
-   * Clear all registered services (local only).
+   * Clear all registered objects (local only).
    */
   void clear() {
-    _services.clear();
+    _objects.clear();
   }
 }
 
 // Unit Tests
 
 @safe unittest {
-  // Create a simple test service
-  class TestService : Service {
+  // Create a simple test object
+  class TestObject : LocatorObject {
     this() {
-      super("TestService");
+      super("TestObject");
     }
 
     override string execute() {
-      return "Test service executed";
+      return "Test object executed";
     }
   }
 
-  // Test basic ServiceLocator
-  auto locator = new ServiceLocator();
-  auto service = new TestService();
+  // Test basic ObjectLocator
+  auto locator = new ObjectLocator();
+  auto object = new TestObject();
   
-  locator.registerService("test", service);
-  assert(locator.hasService("test"));
+  locator.registerObject("test", object);
+  assert(locator.hasObject("test"));
   
-  auto retrieved = locator.getService("test");
+  auto retrieved = locator.getObject("test");
   assert(retrieved !is null);
-  assert(retrieved.serviceName() == "TestService");
+  assert(retrieved.objectName() == "TestObject");
   
-  assert(locator.unregisterService("test"));
-  assert(!locator.hasService("test"));
+  assert(locator.unregisterObject("test"));
+  assert(!locator.hasObject("test"));
 }
 
 @safe unittest {
-  // Test LazyServiceLocator
-  class LazyTestService : Service {
+  // Test LazyObjectLocator
+  class LazyTestObject : LocatorObject {
     this() {
-      super("LazyService");
+      super("LazyObject");
     }
 
     override string execute() {
-      return "Lazy service executed";
+      return "Lazy object executed";
     }
   }
 
-  auto locator = new LazyServiceLocator();
+  auto locator = new LazyObjectLocator();
   
   // Register factory
-  locator.registerFactory("lazy", () => cast(IService) new LazyTestService());
-  assert(locator.hasService("lazy"));
+  locator.registerFactory("lazy", () => cast(IObject) new LazyTestObject());
+  assert(locator.hasObject("lazy"));
   
-  // Service should be created on first access
-  auto service = locator.getService("lazy");
-  assert(service !is null);
-  assert(service.serviceName() == "LazyService");
+  // Object should be created on first access
+  auto object = locator.getObject("lazy");
+  assert(object !is null);
+  assert(object.objectName() == "LazyObject");
   
   // Second access should return same instance
-  auto service2 = locator.getService("lazy");
-  assert(service is service2);
+  auto object2 = locator.getObject("lazy");
+  assert(object is object2);
 }
 
 @safe unittest {
-  // Test CachedServiceLocator
-  class CachedTestService : Service {
+  // Test CachedObjectLocator
+  class CachedTestObject : Object {
     this() {
-      super("CachedService");
+      super("CachedObject");
     }
 
     override string execute() {
-      return "Cached service executed";
+      return "Cached object executed";
     }
   }
 
-  auto locator = new CachedServiceLocator();
+  auto locator = new CachedObjectLocator();
   assert(locator.isCacheEnabled());
   
-  auto service = new CachedTestService();
-  locator.registerService("cached", service);
+  auto object = new CachedTestObject();
+  locator.registerObject("cached", object);
   
-  auto retrieved = locator.getService("cached");
+  auto retrieved = locator.getObject("cached");
   assert(retrieved !is null);
   
   locator.clearCache();
-  retrieved = locator.getService("cached");
+  retrieved = locator.getObject("cached");
   assert(retrieved !is null);
   
   locator.setCacheEnabled(false);
@@ -484,41 +482,41 @@ class HierarchicalServiceLocator : IServiceLocator {
 }
 
 @safe unittest {
-  // Test HierarchicalServiceLocator
-  class ParentService : Service {
+  // Test HierarchicalObjectLocator
+  class ParentObject : Object {
     this() {
-      super("ParentService");
+      super("ParentObject");
     }
 
     override string execute() {
-      return "Parent service executed";
+      return "Parent object executed";
     }
   }
 
-  class ChildService : Service {
+  class ChildObject : Object {
     this() {
-      super("ChildService");
+      super("ChildObject");
     }
 
     override string execute() {
-      return "Child service executed";
+      return "Child object executed";
     }
   }
 
-  auto parentLocator = new HierarchicalServiceLocator();
-  auto childLocator = new HierarchicalServiceLocator(parentLocator);
+  auto parentLocator = new HierarchicalObjectLocator();
+  auto childLocator = new HierarchicalObjectLocator(parentLocator);
   
-  parentLocator.registerService("parent", new ParentService());
-  childLocator.registerService("child", new ChildService());
+  parentLocator.registerObject("parent", new ParentObject());
+  childLocator.registerObject("child", new ChildObject());
   
-  // Child should find its own service
-  assert(childLocator.hasService("child"));
-  auto childSvc = childLocator.getService("child");
+  // Child should find its own object
+  assert(childLocator.hasObject("child"));
+  auto childSvc = childLocator.getObject("child");
   assert(childSvc !is null);
   
-  // Child should find parent's service
-  assert(childLocator.hasService("parent"));
-  auto parentSvc = childLocator.getService("parent");
+  // Child should find parent's object
+  assert(childLocator.hasObject("parent"));
+  auto parentSvc = childLocator.getObject("parent");
   assert(parentSvc !is null);
-  assert(parentSvc.serviceName() == "ParentService");
+  assert(parentSvc.objectName() == "ParentObject");
 }

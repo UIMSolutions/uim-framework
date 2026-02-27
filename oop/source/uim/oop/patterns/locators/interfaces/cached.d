@@ -12,9 +12,9 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Interface for cached service locator.
+ * Interface for cached object locator.
  */
-interface ICachedServiceLocator : IServiceLocator {
+interface ICachedObjectLocator : ILocator {
   /**
    * Enable or disable caching.
    * Params:
@@ -29,7 +29,7 @@ interface ICachedServiceLocator : IServiceLocator {
   bool isCacheEnabled() @safe;
 
   /**
-   * Clear the service cache.
+   * Clear the object cache.
    */
   void clearCache() @safe;
 }

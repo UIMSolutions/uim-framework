@@ -7,50 +7,50 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Interface for Service Locator pattern.
- * Provides centralized registry for obtaining services.
+ * Interface for Object Locator pattern.
+ * Provides centralized registry for obtaining objects.
  */
-interface IServiceLocator {
+interface ILocator {
   /**
-   * Register a service with the locator.
+   * Register a object with the locator.
    * Params:
-   *   name = The name to register the service under
-   *   service = The service instance to register
+   *   name = The name to register the object under
+   *   object = The object instance to register
    */
-  void registerService(string name, IService service) @safe;
+  void registerObject(string name, ILocatorObject obj) @safe;
 
   /**
-   * Get a service by name.
+   * Get a object by name.
    * Params:
-   *   name = The name of the service to retrieve
-   * Returns: The service instance, or null if not found
+   *   name = The name of the object to retrieve
+   * Returns: The object instance, or null if not found
    */
-  IService getService(string name) @safe;
+  ILocatorObject getObject(string name) @safe;
 
   /**
-   * Check if a service is registered.
+   * Check if a object is registered.
    * Params:
-   *   name = The name of the service to check
-   * Returns: true if the service is registered, false otherwise
+   *   name = The name of the object to check
+   * Returns: true if the object is registered, false otherwise
    */
-  bool hasService(string name) @safe;
+  bool hasObject(string name) @safe;
 
   /**
-   * Unregister a service.
+   * Unregister a object.
    * Params:
-   *   name = The name of the service to unregister
-   * Returns: true if the service was unregistered, false if it wasn't found
+   *   name = The name of the object to unregister
+   * Returns: true if the object was unregistered, false if it wasn't found
    */
-  bool unregisterService(string name) @safe;
+  bool unregisterObject(string name) @safe;
 
   /**
-   * Get all registered service names.
-   * Returns: Array of service names
+   * Get all registered object names.
+   * Returns: Array of object names
    */
-  string[] getServiceNames() @safe;
+  string[] getObjectNames() @safe;
 
   /**
-   * Clear all registered services.
+   * Clear all registered objects.
    */
   void clear() @safe;
 }
