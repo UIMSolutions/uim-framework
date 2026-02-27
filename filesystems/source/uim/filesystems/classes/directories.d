@@ -9,7 +9,20 @@ import uim.filesystems;
 
 @safe:
 
-/// Directory entry information
+/**
+    * Directory entry structure
+    *
+    * Represents a file or subdirectory within a directory listing.
+    *
+    * Fields:
+    * - name: The name of the entry (file or directory name)
+    * - path: The full path of the entry
+    * - size: The size of the entry in bytes
+    * - timeModified: The last modification time of the entry
+    * - isDirectory: Whether the entry is a directory
+    * - isFile: Whether the entry is a file
+    * - isSymlink: Whether the entry is a symbolic link
+    */
 struct DirectoryEntry {
     string name;
     string path;

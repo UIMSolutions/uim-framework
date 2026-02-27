@@ -8,7 +8,21 @@ module uim.filesystems.classes.filesystems.memory;
 import uim.filesystems;
 @safe:  
 
-/// In-memory file representation
+/** 
+  * In-memory filesystem implementation for testing and temporary storage.
+  * This filesystem exists only in memory and does not persist data to disk.
+  *
+  * Note: This is a simplified implementation for demonstration purposes. It does not support all filesystem features
+  * such as permissions, symbolic links, or advanced metadata. It is designed for use cases where a lightweight, temporary filesystem is needed, such as unit testing or caching.
+  *
+  * Example usage:
+  * auto memFS = new MemoryFilesystem("TempFS", "Temporary In-Memory Filesystem", 1024 * 1024); // 1 MB capacity
+  * memFS.createDirectory("/temp");
+  * memFS.createFile("/temp/file.txt");
+  * memFS.writeFile("/temp/file.txt", "Hello, World!");
+  * auto content = memFS.readFile("/temp/file.txt");
+  * writeln("File content: ", content);
+  */
 class MemoryFilesystem : UIMFilesystem {
     /* private struct InMemoryFile {
         ubyte[] data;
