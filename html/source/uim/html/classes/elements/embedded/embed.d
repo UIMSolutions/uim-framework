@@ -23,11 +23,11 @@ mixin(ShowModule!());
  * ```
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
- @StringAttribute("src")
- @StringAttribute("type")
- @StringAttribute("width")
- @StringAttribute("height")
- @StringAttribute("title")
+@StringAttribute("src")
+@StringAttribute("type")
+@StringAttribute("width")
+@StringAttribute("height")
+@StringAttribute("title")
 class H5Embed : HtmlElement {
   mixin(H5This!("embed", false));
 
@@ -46,4 +46,3 @@ unittest {
   // assert(H5Embed().title() == "Audio Player");
   // assert(H5Embed().src("https://www.example.com/audio.mp3").type("audio/mpeg").width("300").height("32").title("Audio Player") == "<embed src=\"https://www.example.com/audio.mp3\" type=\"audio/mpeg\" width=\"300\" height=\"32\" title=\"Audio Player\"></embed>");
 }
-

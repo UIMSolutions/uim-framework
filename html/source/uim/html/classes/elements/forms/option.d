@@ -13,9 +13,22 @@ mixin(ShowModule!());
 
 /**
   * Represents an HTML <option> element.
-  * Provides methods to set option attributes like value, selected, and disabled.
+  * Provides methods to set option attributes and content.
   * Example usage:
-  * auto option = H5Option("Option 1").value("1").selected();
+  * auto option = Option("Option 1").value("1").selected();
+  *
+  * Note: The <option> element is used within a <select> element to define an option that can be selected by the user.
+  * The 'value' attribute specifies the value to be sent to the server when the form is submitted.
+  * The 'label' attribute provides a user-friendly label for the option, which can be different from the value.
+  * The 'selected' attribute indicates that the option is pre-selected when the page loads.
+  * The 'disabled' attribute indicates that the option is not available for selection.
+  *
+  * Example usage:
+  * <select name="options">
+  *   <option value="1" selected>Option 1</option>
+  *   <option value="2">Option 2</option>
+  *   <option value="3" disabled>Option 3</option>
+  * </select> 
   */
 class H5Option : HtmlElement {
   mixin(H5This!("option", false));

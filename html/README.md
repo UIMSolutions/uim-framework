@@ -6,6 +6,14 @@ Updated on 22. February 2026
 
 D language library for generating HTML programmatically.
 
+## NAFv4 Description
+
+The `uim-html` package exposes a fluent and type-safe API for constructing
+HTML5 elements and complete HTML documents in D. It focuses on semantic
+structure, composable element building, and predictable attribute handling,
+while keeping output generation straightforward for server-side rendering,
+templating workflows, and static page composition.
+
 ## Features
 
 - **Object-Oriented Design**: Clean, chainable API for building HTML
