@@ -5,14 +5,11 @@
 *****************************************************************************************************************/
 module uim.filesystems.classes.paths;
 
-import std.path;
-import std.file : exists, getcwd;
-import std.algorithm : map, filter;
-import std.array : array, split;
-import std.string : strip;
+import uim.filesystems;
+
+mixin(ShowModule!());
 
 @safe:
-
 /// Normalize path (resolve . and .., convert separators)
 string normalizePath(string path) {
     return buildNormalizedPath(path);

@@ -7,6 +7,8 @@ module uim.filesystems.classes.temporary;
 
 import uim.filesystems;
 
+mixin(ShowModule!());
+
 @safe:
 
 /**

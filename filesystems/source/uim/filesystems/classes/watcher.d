@@ -7,6 +7,8 @@ module uim.filesystems.classes.watcher;
 
 import uim.filesystems;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// File system event types

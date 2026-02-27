@@ -12,6 +12,7 @@ public {
 
     import uim.filesystems.classes;
     import uim.filesystems.async_;
+    import uim.filesystems.interfaces;
 }
 
 // Main function for unit testing

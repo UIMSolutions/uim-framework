@@ -5,13 +5,9 @@
 *****************************************************************************************************************/
 module uim.filesystems.classes.files;
 
-import std.file;
-import std.stdio : File;
-import std.string : strip;
-import std.path : baseName, dirName, extension;
-import std.array : array;
-import std.algorithm : filter;
-import std.exception : enforce;
+import uim.filesystems;
+
+mixin(ShowModule!());
 
 @safe:
 

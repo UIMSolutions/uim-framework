@@ -7,6 +7,8 @@ module uim.filesystems.async_;
 
 import uim.filesystems;
 
+mixin(ShowModule!());
+
 @safe:
 
 /// Read file asynchronously
