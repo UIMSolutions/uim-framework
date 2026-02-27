@@ -34,7 +34,7 @@ mixin(ShowModule!());
   */
 class H5Colgroup : HtmlElement {
   mixin(H5Template!("Colgroup", "colgroup", false));
-  mixin(AttributeMethods!H5Colgroup);
+  mixin(HtmlMethods!H5Colgroup);
 }
 ///
 unittest {

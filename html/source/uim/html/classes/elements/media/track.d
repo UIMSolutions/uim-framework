@@ -34,7 +34,7 @@ mixin(ShowModule!());
   */
 class H5Track : HtmlElement {
   mixin(H5This!("track", false));
-  mixin(AttributeMethods!H5Track);
+  mixin(HtmlMethods!H5Track);
 
   mixin(H5Calls!("track"));
 }

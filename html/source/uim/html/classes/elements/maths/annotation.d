@@ -14,7 +14,7 @@ mixin(ShowModule!());
 class H5Annotation : HtmlElement {
   mixin(H5This!("annotation", false));
 
-  mixin(AttributeMethods!H5Annotation);
+  mixin(HtmlMethods!H5Annotation);
 
   mixin(H5Calls!("Annotation"));
 }

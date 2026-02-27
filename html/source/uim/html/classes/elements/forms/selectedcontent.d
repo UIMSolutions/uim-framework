@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5SelectedContent : HtmlElement {
   mixin(H5This!("selectedcontent", false));
 
-    mixin(AttributeMethods!H5SelectedContent);
+    mixin(HtmlMethods!H5SelectedContent);
   mixin(H5Calls!("SelectedContent"));
 }
 ///

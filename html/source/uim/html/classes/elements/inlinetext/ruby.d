@@ -25,7 +25,7 @@ mixin(ShowModule!());
 class H5Ruby : HtmlElement {
   mixin(H5This!("ruby", false));
 
-  mixin(AttributeMethods!H5Ruby);
+  mixin(HtmlMethods!H5Ruby);
 
   mixin(H5Calls!("Ruby"));
 }

@@ -32,7 +32,7 @@ mixin(ShowModule!());
 class H5Time : HtmlElement {
   mixin(H5This!("time", false));
 
-  mixin(AttributeMethods!H5Time);
+  mixin(HtmlMethods!H5Time);
 
   mixin(H5Calls!("Time"));
 }

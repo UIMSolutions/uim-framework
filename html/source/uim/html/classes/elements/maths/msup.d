@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Msup : HtmlElement {
   mixin(H5This!("msup", false));
 
-  mixin(AttributeMethods!H5Msup);
+  mixin(HtmlMethods!H5Msup);
 
   mixin(H5Calls!("msup"));
 }

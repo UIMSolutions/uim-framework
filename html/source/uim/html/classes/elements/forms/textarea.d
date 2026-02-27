@@ -32,7 +32,7 @@ mixin(ShowModule!());
 class H5Textarea : HtmlElement {
   mixin(H5This!("textarea", false));
 
-  mixin(AttributeMethods!H5Textarea);
+  mixin(HtmlMethods!H5Textarea);
 
   H5Textarea rows(size_t rowCount) {
     attribute("rows", rowCount.to!string);

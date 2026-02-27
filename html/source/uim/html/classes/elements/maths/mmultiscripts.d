@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Mmultiscripts : HtmlElement {
   mixin(H5This!("mmultiscripts", false));
 
-  mixin(AttributeMethods!H5Mmultiscripts);
+  mixin(HtmlMethods!H5Mmultiscripts);
 
   mixin(H5Calls!("Mmultiscripts"));
 }

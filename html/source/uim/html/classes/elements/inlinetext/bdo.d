@@ -16,7 +16,7 @@ mixin(ShowModule!());
 class H5Bdo : HtmlElement {
   mixin(H5This!("bdo", false));
 
-mixin(AttributeMethods!H5Bdo);
+mixin(HtmlMethods!H5Bdo);
 
   mixin(H5Calls!("Bdo"));
 }

@@ -22,7 +22,7 @@ mixin(ShowModule!());
   @BoolAttribute("disabled") // The 'disabled' attribute indicates that the optgroup is not available for interaction.  
 class H5Optgroup : HtmlElement {
   mixin(H5This!("optgroup", false));
-  mixin(AttributeMethods!H5Optgroup);
+  mixin(HtmlMethods!H5Optgroup);
 
   /// Sets the label attribute of the optgroup.
   H5Optgroup label(string val) {

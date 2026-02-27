@@ -26,7 +26,7 @@ mixin(ShowModule!());
 class H5Summary : HtmlElement {
   mixin(H5This!("summary", false));
 
-  mixin(AttributeMethods!H5Summary);
+  mixin(HtmlMethods!H5Summary);
 
   mixin(H5Calls!("Summary"));
 }

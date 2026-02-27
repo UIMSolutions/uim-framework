@@ -30,7 +30,7 @@ mixin(ShowModule!());
 class H5Var : HtmlElement {
   mixin(H5This!("var", false));
 
-  mixin(AttributeMethods!H5Var);
+  mixin(HtmlMethods!H5Var);
 
   mixin(H5Calls!("Var"));
 }

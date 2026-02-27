@@ -25,7 +25,7 @@ mixin(ShowModule!());
 class H5Label : HtmlElement {
   mixin(H5This!("label", false));
 
-  mixin(AttributeMethods!H5Label);
+  mixin(HtmlMethods!H5Label);
 
   H5Label forElement(string elementId) {
     attribute("for", elementId);

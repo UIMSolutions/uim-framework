@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Dialog : HtmlElement {
   mixin(H5This!("dialog", false));
 
-  mixin(AttributeMethods!H5Dialog);
+  mixin(HtmlMethods!H5Dialog);
 
   mixin(H5Calls!("Dialog"));
 }

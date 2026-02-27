@@ -19,7 +19,7 @@ mixin(ShowModule!());
  */
 class H5Figure : HtmlElement {
   mixin(H5Template!("Figure", "figure", false));
-  mixin(AttributeMethods!H5Figure);
+  mixin(HtmlMethods!H5Figure);
 }
 ///
 unittest {

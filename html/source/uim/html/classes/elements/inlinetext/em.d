@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Em : HtmlElement {
   mixin(H5This!("em", false));
 
-  mixin(AttributeMethods!H5Em);
+  mixin(HtmlMethods!H5Em);
 
   mixin(H5Calls!("em"));
 }

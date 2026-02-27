@@ -32,7 +32,7 @@ mixin(ShowModule!());
 class H5Math : HtmlElement {
   mixin(H5This!("math", false));
 
-  mixin(AttributeMethods!H5Math);
+  mixin(HtmlMethods!H5Math);
 
   mixin(H5Calls!("Math"));
 }

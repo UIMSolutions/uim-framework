@@ -32,7 +32,7 @@ mixin(ShowModule!());
 class H5Img : HtmlElement {
   mixin(H5This!("img", true));
 
-  mixin(AttributeMethods!H5Img);
+  mixin(HtmlMethods!H5Img);
 
   mixin(H5Calls!("Img"));
 }

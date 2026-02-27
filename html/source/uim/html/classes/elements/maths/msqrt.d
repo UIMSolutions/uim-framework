@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Msqrt : HtmlElement {
   mixin(H5This!("msqrt", false));
 
-  mixin(AttributeMethods!H5Msqrt);
+  mixin(HtmlMethods!H5Msqrt);
 
   mixin(H5Calls!("Msqrt"));
 }

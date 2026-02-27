@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Munderover : HtmlElement {
   mixin(H5This!("munderover", false));
 
-  mixin(AttributeMethods!H5Munderover);
+  mixin(HtmlMethods!H5Munderover);
 
   mixin(H5Calls!("Munderover"));
 }

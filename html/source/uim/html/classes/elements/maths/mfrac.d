@@ -11,10 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
+
+/** 
+    * Represents the <mfrac> HTML element, which is used to display a fraction in mathematical notation.
+    *
+    * The <mfrac> element typically contains two child elements: the numerator and the denominator. 
+    * The numerator is displayed above the fraction line, while the denominator is displayed below it.
+    *
+    * Example usage:
+    * ```
+    * H5Mfrac(H5Mi("x"), H5Mi("y")) // Renders as <mfrac><mi>x</mi><mi>y</mi></mfrac>
+    * ```
+    *
+    * This class provides methods to set attributes and content for the <mfrac> element, allowing for flexible usage in mathematical expressions.
+    */
 class H5Mfrac : HtmlElement {
   mixin(H5This!("mfrac", false));
 
-  mixin(AttributeMethods!H5Mfrac);
+  mixin(HtmlMethods!H5Mfrac);
 
   mixin(H5Calls!("Mfrac"));
 }

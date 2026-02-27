@@ -25,7 +25,7 @@ mixin(ShowModule!());
 class H5Script : HtmlElement {
   mixin(H5This!("script", false));
 
-  mixin(AttributeMethods!H5Script);
+  mixin(HtmlMethods!H5Script);
 
   mixin(H5Calls!("script"));
 }

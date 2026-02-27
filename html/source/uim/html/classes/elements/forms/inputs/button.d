@@ -23,7 +23,7 @@ mixin(ShowModule!());
 class H5ButtonInput : H5Input {
   mixin H5InputThis!("button");
 
-  mixin(AttributeMethods!H5ButtonInput);
+  mixin(HtmlMethods!H5ButtonInput);
 
   mixin(H5Calls!("ButtonInput"));
 }

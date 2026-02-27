@@ -32,7 +32,7 @@ mixin(ShowModule!());
   */
 class H5Tr : HtmlElement {
   mixin(H5Template!("Tr", "tr", false));
-  mixin(AttributeMethods!H5Tr);
+  mixin(HtmlMethods!H5Tr);
 }
 ///
 unittest {

@@ -42,7 +42,7 @@ mixin(ShowModule!());
   */
 class H5Address : HtmlElement {
   mixin(H5Template!("Address", "address", false));
-  mixin(AttributeMethods!H5Address);
+  mixin(HtmlMethods!H5Address);
 }
 ///
 unittest {

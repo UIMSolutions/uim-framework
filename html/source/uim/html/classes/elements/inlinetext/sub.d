@@ -19,7 +19,7 @@ mixin(ShowModule!());
 class H5Sub : HtmlElement {
   mixin(H5This!("sub", false));
 
-  mixin(AttributeMethods!H5Sub);
+  mixin(HtmlMethods!H5Sub);
 
   mixin(H5Calls!("Sub"));
 }

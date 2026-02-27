@@ -14,7 +14,7 @@ mixin(ShowModule!());
 class H5Geolocation : HtmlElement {
   mixin(H5This!("geolocation", false));
 
-  mixin(AttributeMethods!H5Geolocation);
+  mixin(HtmlMethods!H5Geolocation);
 
   mixin(H5Calls!("Geolocation"));
 }

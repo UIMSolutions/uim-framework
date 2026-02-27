@@ -34,7 +34,7 @@ mixin(ShowModule!());
   */
 class H5Header : HtmlElement {
   mixin(H5Template!("Header", "header", false));
-  mixin(AttributeMethods!H5Header);
+  mixin(HtmlMethods!H5Header);
 }
 ///
 unittest {
