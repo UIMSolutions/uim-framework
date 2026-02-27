@@ -374,7 +374,7 @@ unittest {
 
 unittest {
   @CssClass("container")
-  @CssClass("isPrimary", "btn-primary")
+  @CssClass("primary", "btn-primary")
   class GeneratedClassLike {
     private string[] _classes;
 
@@ -393,10 +393,10 @@ unittest {
   }
 
   auto item = new GeneratedClassLike();
-  item.container().isPrimary();
+  item.container().primary();
 
   assert(item.hasClass("container"));
   assert(item.hasClass("btn-primary"));
   assert(item.isContainer());
-  assert(item.isIsPrimary());
+  assert(item.isPrimary());
 }
