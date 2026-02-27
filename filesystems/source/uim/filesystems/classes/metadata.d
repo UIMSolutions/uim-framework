@@ -41,7 +41,7 @@ FileMetadata getMetadata(string path) @trusted {
     meta.attributes = attrs;
     meta.isFile = isFile(path);
     meta.isDirectory = isDir(path);
-    meta.isSymlink = isSymlink(path);
+    meta.isSymlink = std.file.isSymlink(path);
     
     if (meta.isFile) {
         meta.size = getSize(path);
@@ -219,7 +219,7 @@ unittest {
     }
     
     // Create test file
-    write(testFile, "test content");
+    std.file.write(testFile, "test content");
     
     // Test get metadata
     auto meta = getMetadata(testFile);

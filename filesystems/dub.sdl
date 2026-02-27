@@ -21,7 +21,6 @@ dependency "vibe-d" version="~>0.10.3"
 
 // Compiler options
 buildRequirements "allowWarnings" "silenceDeprecations"
-buildOptions "ignoreDeprecations" "debugInfo"
 
 // Source files
 sourcePaths "source"
@@ -35,4 +34,5 @@ configuration "default" {
 configuration "unittest" {
     targetType "executable"
     targetName "filesystems-test"
+    mainSourceFile "source/uim/filesystems/package.d"
 }

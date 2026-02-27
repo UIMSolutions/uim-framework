@@ -63,7 +63,7 @@ void writeFileText(string path, string content, FileOptions options = FileOption
     copyFile(path, path ~ options.backupSuffix);
   }
 
-  write(path, content);
+  std.file.write(path, content);
 }
 
 /// Write bytes to file
@@ -80,7 +80,7 @@ void writeFileBytes(string path, const ubyte[] data, FileOptions options = FileO
     copyFile(path, path ~ options.backupSuffix);
   }
 
-  write(path, data);
+  std.file.write(path, data);
 }
 
 /// Append text to file
@@ -174,7 +174,7 @@ string fileExtension(string path) {
 
 /// Get file name without directory
 string fileName(string path) {
-  return baseName(path);
+  return std.path.baseName(path);
 }
 
 /// Atomic file write (write to temp, then rename)
@@ -188,7 +188,7 @@ void writeFileAtomic(string path, string content) @trusted {
     }
   }
 
-  write(tempPath, content);
+  std.file.write(tempPath, content);
   rename(tempPath, path);
 }
 
