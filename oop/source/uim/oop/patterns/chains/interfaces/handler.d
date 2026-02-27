@@ -6,6 +6,9 @@
 module uim.oop.patterns.chains.interfaces.handler;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 
 /**

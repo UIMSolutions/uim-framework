@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.interfaces.priority;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 
 /**

@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.usecases.httprequestprocessing;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 // Real-world example: HTTP Request Processing
 

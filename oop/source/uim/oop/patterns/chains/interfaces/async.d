@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.interfaces.async;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Async handler interface for asynchronous processing.

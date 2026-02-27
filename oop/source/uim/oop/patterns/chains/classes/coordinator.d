@@ -1,5 +1,8 @@
 module uim.oop.patterns.chains.classes.coordinator;
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Chain coordinator for managing multiple chains.

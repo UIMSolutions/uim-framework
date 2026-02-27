@@ -1,5 +1,8 @@
 module uim.oop.patterns.chains.usecases.purchaseapproval;
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 // Real-world example: Purchase Approval
 

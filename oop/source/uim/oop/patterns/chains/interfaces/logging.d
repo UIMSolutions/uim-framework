@@ -6,6 +6,9 @@
 module uim.oop.patterns.chains.interfaces.logging;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 
 /**

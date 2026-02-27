@@ -1,5 +1,8 @@
 module uim.oop.patterns.chains.classes.condition;
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Abstract conditional handler with filtering capability.

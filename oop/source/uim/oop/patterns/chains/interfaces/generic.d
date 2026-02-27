@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.interfaces.generic;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Generic handler interface with typed request and response.

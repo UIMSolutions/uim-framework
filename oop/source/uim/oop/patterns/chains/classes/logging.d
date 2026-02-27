@@ -1,5 +1,8 @@
 module uim.oop.patterns.chains.classes.logging;
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Logging handler that tracks request flow.

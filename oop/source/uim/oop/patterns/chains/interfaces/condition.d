@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.interfaces.condition;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Conditional handler interface that can filter requests.

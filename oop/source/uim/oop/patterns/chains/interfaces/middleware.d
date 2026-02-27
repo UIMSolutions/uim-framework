@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.interfaces.middleware;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 /**
  * Middleware handler interface with before/after hooks.

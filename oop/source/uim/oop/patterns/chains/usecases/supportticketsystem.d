@@ -1,6 +1,9 @@
 module uim.oop.patterns.chains.usecases.supportticketsystem;
 
 import uim.oop;
+
+mixin(ShowModule!());
+
 @safe:
 // Real-world example: Support Ticket System
 
