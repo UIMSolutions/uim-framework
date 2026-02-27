@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.core.datatypes.jsons.types.doubles.typecheck;
+module uim.core.datatypes.jsons.types.floats.typecheck;
 
 import uim.core;
 

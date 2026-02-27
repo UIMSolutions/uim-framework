@@ -8,9 +8,10 @@ module uim.core.datatypes.jsons.types;
 public {
   import uim.core.datatypes.jsons.types.arrays;
   import uim.core.datatypes.jsons.types.booleans;
-  import uim.core.datatypes.jsons.types.doubles;
+  import uim.core.datatypes.jsons.types.floats;
   import uim.core.datatypes.jsons.types.integers;
   import uim.core.datatypes.jsons.types.nulls;
+  import uim.core.datatypes.jsons.types.numbers;
   import uim.core.datatypes.jsons.types.objects;
   import uim.core.datatypes.jsons.types.scalars;
   import uim.core.datatypes.jsons.types.strings;

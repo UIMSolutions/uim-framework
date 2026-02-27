@@ -16,7 +16,7 @@ mixin(ShowModule!());
  */
 class JsonRpcRequest : UIMObject {
   alias toJson = UIMObject.toJson;
-  
+
   protected string _jsonRpc = "2.0";
   protected string _method;
   protected Json _params;
@@ -36,15 +36,34 @@ class JsonRpcRequest : UIMObject {
   }
 
   // Getters
-  string jsonRpc() { return _jsonRpc; }
-  string method() { return _method; }
-  Json params() { return _params; }
-  Json id() { return _id; }
+  string jsonRpc() {
+    return _jsonRpc;
+  }
+
+  string method() {
+    return _method;
+  }
+
+  Json params() {
+    return _params;
+  }
+
+  Json id() {
+    return _id;
+  }
 
   // Setters
-  void method(string value) { _method = value; }
-  void params(Json value) { _params = value; }
-  void id(Json value) { _id = value; }
+  void method(string value) {
+    _method = value;
+  }
+
+  void params(Json value) {
+    _params = value;
+  }
+
+  void id(Json value) {
+    _id = value;
+  }
 
   /**
    * Check if this is a notification (no id).
@@ -60,15 +79,15 @@ class JsonRpcRequest : UIMObject {
     auto result = Json.emptyObject;
     result["jsonRpc"] = _jsonRpc;
     result["method"] = _method;
-    
+
     if (_params.type != Json.Type.null_) {
       result["params"] = _params;
     }
-    
+
     if (_id.type != Json.Type.null_) {
       result["id"] = _id;
     }
-    
+
     return result;
   }
 
@@ -77,7 +96,7 @@ class JsonRpcRequest : UIMObject {
    */
   static JsonRpcRequest fromJson(Json json) {
     auto request = new JsonRpcRequest();
-    
+
     if (auto jsonRpc = "jsonRpc" in json) {
       if (jsonRpc.get!string != "2.0") {
         throw new Exception("Invalid Json-RPC version");
@@ -85,21 +104,21 @@ class JsonRpcRequest : UIMObject {
     } else {
       throw new Exception("Missing jsonRpc field");
     }
-    
+
     if (auto method = "method" in json) {
       request.method = method.get!string;
     } else {
       throw new Exception("Missing method field");
     }
-    
+
     if (auto params = "params" in json) {
       request.params = *params;
     }
-    
+
     if (auto id = "id" in json) {
       request.id = *id;
     }
-    
+
     return request;
   }
 
@@ -107,25 +126,20 @@ class JsonRpcRequest : UIMObject {
    * Validate the request.
    */
   bool validate() {
-    if (_jsonRpc != "2.0") return false;
-    if (_method.length == 0) return false;
-    
+    if (_jsonRpc != "2.0")
+      return false;
+    if (_method.length == 0)
+      return false;
+
     // Params must be array or object if present
-    if (!_params.isNull && 
-        !_params.isArray && 
-        !_params.isObject) {
+    if (!_params.isNull &&
+      !_params.isArray &&
+      !_params.isObject) {
       return false;
     }
-    
+
     // ID must be string, number or null
-    if (!_id.isNull &&
-        !_id.isString &&
-        !_id.isInteger &&
-        !_id.isDouble) {
-      return false;
-    }
-    
-    return true;
+    return !_id.isNull && !_id.isString && !_id.isNumber ? false : true;
   }
 
   override string toString() const {
@@ -155,7 +169,7 @@ unittest {
   assert(req.method == "subtract");
   assert(!req.isNotification());
   assert(req.validate());
-  
+
   auto json = req.toJson();
   assert("jsonRpc" in json);
   assert(json["jsonRpc"].get!string == "2.0");

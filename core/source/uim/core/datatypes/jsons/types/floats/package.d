@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.core.datatypes.jsons.types.doubles;
+module uim.core.datatypes.jsons.types.floats;
 
 public {
-  import uim.core.datatypes.jsons.types.doubles.count;
-  import uim.core.datatypes.jsons.types.doubles.filter;
-  import uim.core.datatypes.jsons.types.doubles.get;
-  import uim.core.datatypes.jsons.types.doubles.typecheck;
+  import uim.core.datatypes.jsons.types.floats.count;
+  import uim.core.datatypes.jsons.types.floats.filter;
+  import uim.core.datatypes.jsons.types.floats.get;
+  import uim.core.datatypes.jsons.types.floats.typecheck;
 }

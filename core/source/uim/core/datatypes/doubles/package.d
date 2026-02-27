@@ -6,5 +6,5 @@
 module uim.core.datatypes.floats;
 
 public {
-  import uim.core.datatypes.doubles.fuzzy;
+  import uim.core.datatypes.floats.fuzzy;
 }

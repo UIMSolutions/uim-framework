@@ -73,7 +73,7 @@ private double[][] parseInputs(const Json payload, size_t maxBatch) {
     inputs[i].length = cols.length;
     foreach (j, valueNode; cols) {
       double numeric;
-      if (valueNode.isDouble) numeric = valueNode.get!double;
+      if (valueNode.isFloat) numeric = valueNode.get!double;
       else if (valueNode.isInteger) numeric = to!double(valueNode.get!int);
       else numeric = 0.0;
 

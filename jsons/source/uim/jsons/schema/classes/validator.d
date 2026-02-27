@@ -66,7 +66,7 @@ class JsonSchemaValidator : UIMObject {
       // Map Json types
       if (data.type == Json.Type.string) {
         actualType = "string";
-      } else if (data.isInteger || data.isDouble) {
+      } else if (data.isNumber) {
         actualType = "number";
       } else if (data.isBoolean) {
         actualType = "boolean";
@@ -104,7 +104,7 @@ class JsonSchemaValidator : UIMObject {
     }
 
     // Number validations
-    if (data.isInteger || data.isDouble) {
+    if (data.isNumber) {
       double value = data.isInteger ? data.get!long : data.get!double;
       valid = validateNumberConstraints(value, schemaJson, errors) && valid;
     }
