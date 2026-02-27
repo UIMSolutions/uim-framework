@@ -197,6 +197,16 @@ class HtmlElement : IHtmlElement {
     return this;
   }
 
+  bool hasAttribute(string name) {
+    return (name in _attributes) && _attributes[name] !is null;
+  }
+  ///
+  unittest {
+    auto div = HtmlElement("div").attribute("data-test", "value");
+    assert(div.hasAttribute("data-test"));
+    assert(!div.hasAttribute("nonexistent"));
+  }
+
   /// Get an attribute by name
   IHtmlAttribute attribute(string name) {
     return _attributes.get(name, null);
@@ -229,8 +239,7 @@ class HtmlElement : IHtmlElement {
   string[] classes() {
     auto classAttr = attribute("class");
     if (classAttr) {
-      return classAttr.value.split.uniq.array.sort.array;
-      
+      return classAttr.value.split.uniq.array.sort.array;  
     }
     return null;
   }
@@ -244,18 +253,49 @@ class HtmlElement : IHtmlElement {
     // assert(classList[1] == "class2");
   }
 
+  IHtmlElement classes(string[] classNames) {
+    attribute("class", classNames.sort.join(" "));
+    return this;
+  }
+  ///
+  unittest {
+    auto div = HtmlElement("div").classes(["class2", "class1"]);
+    auto classList = div.classes();
+    assert(classList.length == 2);
+    assert(classList[0] == "class1");
+    assert(classList[1] == "class2");
+  }
+
+  // #region hasClass
   bool hasAllClass(string[] classNames) {
     return classNames.all!(className => hasClass(className));
+  }
+  ///
+  unittest {
+    auto div = HtmlElement("div").addClass("class1").addClass("class2");  
+    assert(div.hasAllClass(["class1", "class2"]));
+
+    auto div2 = HtmlElement("div").addClass("class1");
+    assert(!div2.hasAllClass(["class1", "class2"]));
   }
 
   bool hasAnyClass(string[] classNames) {
     return classNames.any!(className => hasClass(className));
+  }
+  ///
+  unittest {
+    auto div = HtmlElement("div").addClass("class1").addClass("class2");  
+    assert(div.hasAnyClass(["class1", "class3"]));    
+
+    auto div2 = HtmlElement("div").addClass("class1");  
+    assert(div2.hasAnyClass(["class1", "class3"]));
   }
 
   bool hasClass(string className) {
     auto classList = classes();
     return classList && classList.canFind(className);
   }
+  // #endregion hasClass
 
   /// Add CSS class
   IHtmlElement addClasses(string[] classNames) {

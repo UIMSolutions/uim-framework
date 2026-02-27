@@ -33,11 +33,16 @@ interface IHtmlElement {
   bool selfClosing();
   IHtmlElement selfClosing(bool value);
 
-  // Add an attribute to the element
-  IHtmlElement attribute(string name, string value);
+  // #region Attributes
+  IHtmlElement attributes(string[string] map);
 
-  /// Get an attribute by name
+  bool hasAttribute(string name);
+
+  IHtmlElement attribute(string name, string value);
   IHtmlAttribute attribute(string name);
+
+  IHtmlElement removeAttribute(string name);
+  // #endregion Attributes
 
   // Getter / Setter for ID
   IHtmlElement id(string value);
@@ -45,10 +50,13 @@ interface IHtmlElement {
   // #endregion ID
 
   string[] classes();
+  IHtmlElement classes(string[] classNames);
+  
   bool hasClass(string className);
   bool hasAllClass(string[] classNames);
   bool hasAnyClass(string[] classNames);
 
+  IHtmlElement addClasses(string[] classNames);
   IHtmlElement addClass(string className);
 
   /// Set style attribute
