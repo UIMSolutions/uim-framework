@@ -55,9 +55,7 @@ class HtmlElement : IHtmlElement {
     this();
     this.tagName(tag);
 
-    foreach (name, value; attributes) {
-      attribute(name, value);
-    }
+    attributes.byKeyValue.each!(kv => attribute(kv.key, kv.value));
 
     if (content.length > 0) {
       addContent(content);
@@ -70,9 +68,8 @@ class HtmlElement : IHtmlElement {
     this();
     this.tagName(tag);
 
-    foreach (name, value; attributes) {
-      attribute(name, value);
-    }
+    attributes.byKeyValue.each!(kv => attribute(kv.key, kv.value));
+
     elements.each!(element => addContent(element));
 
     initialize();
@@ -84,9 +81,9 @@ class HtmlElement : IHtmlElement {
     foreach (className; classes) {
       addClass(className);
     }
-    foreach (name, value; attributes) {
-      attribute(name, value);
-    }
+    
+    this.attributes(attributes);
+
     if (content.length > 0) {
       addContent(content);
     }
@@ -100,9 +97,8 @@ class HtmlElement : IHtmlElement {
     foreach (className; classes) {
       addClass(className);
     }
-    foreach (name, value; attributes) {
-      attribute(name, value);
-    }
+    attributes.byKeyValue.each!(kv => attribute(kv.key, kv.value));
+
     elements.each!(element => addContent(element));
 
     initialize();
@@ -226,7 +222,47 @@ class HtmlElement : IHtmlElement {
   }
   // #endregion ID
 
+  // #region classes
+  /**
+    * Get CSS classes as array. Returns null if no class attribute is set.
+    */
+  string[] classes() {
+    auto classAttr = attribute("class");
+    if (classAttr) {
+      return classAttr.value.split.uniq.array.sort.array;
+      
+    }
+    return null;
+  }
+  ///
+  unittest {
+    // auto div = HtmlElement("div").addClass("class1").addClass("class2").addClass("class1");
+    // writeln(div.classes()); // Should print ["class1", "class2"]
+    // auto classList = div.classes();
+    // assert(classList.length == 2);
+    // assert(classList[0] == "class1");
+    // assert(classList[1] == "class2");
+  }
+
+  bool hasAllClass(string[] classNames) {
+    return classNames.all!(className => hasClass(className));
+  }
+
+  bool hasAnyClass(string[] classNames) {
+    return classNames.any!(className => hasClass(className));
+  }
+
+  bool hasClass(string className) {
+    auto classList = classes();
+    return classList && classList.canFind(className);
+  }
+
   /// Add CSS class
+  IHtmlElement addClasses(string[] classNames) {
+    classNames.each!(className => addClass(className));
+    return this;
+  }
+
   IHtmlElement addClass(string className) {
     auto classAttr = attribute("class");
     if (classAttr) {
@@ -236,6 +272,27 @@ class HtmlElement : IHtmlElement {
     }
     return this;
   }
+  ///
+  unittest {
+    auto div = HtmlElement("div").addClass("class1").addClass("class2");
+    assert(div.hasClass("class1"));
+    assert(div.hasClass("class2"));
+    assert(!div.hasClass("class3"));
+  }
+
+  // IHtmlElement removeClasses(string[] classNames) {
+  //   classNames.each!(className => removeClass(className));
+  //   return this;
+  // }
+
+  // IHtmlElement removeClass(string className) {
+  //   auto classAttr = attribute("class");
+  //   if (classAttr) {
+  //     classAttr.value(classAttr.value.replace(className, "").strip());
+  //   }
+  //   return this;
+  // }
+  // #endregion classes
 
   /// Set style attribute
   IHtmlElement style(string styleValue) {
@@ -295,7 +352,7 @@ class HtmlElement : IHtmlElement {
         attrStrings ~= attribute.toString();
       }
     }
-      return " " ~ [id, classes, attrStrings.sort.join(" ")].filter!(a => a.length > 0).join(" ");
+    return " " ~ [id, classes, attrStrings.sort.join(" ")].filter!(a => a.length > 0).join(" ");
   }
 
   /// Convert element to HTML string

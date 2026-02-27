@@ -44,7 +44,11 @@ interface IHtmlElement {
   string id();
   // #endregion ID
 
-  /// Add CSS class
+  string[] classes();
+  bool hasClass(string className);
+  bool hasAllClass(string[] classNames);
+  bool hasAnyClass(string[] classNames);
+
   IHtmlElement addClass(string className);
 
   /// Set style attribute
