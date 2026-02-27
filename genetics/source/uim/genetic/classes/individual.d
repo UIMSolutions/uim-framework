@@ -12,8 +12,27 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Base implementation of a genetic individual.
- */
+  * Represents an individual in the genetic algorithm, encapsulating its genome and fitness value.
+  * The genome is represented as an array of unsigned bytes (ubyte[]), and the fitness is a double value.
+  * The class provides methods to get and set the genome and fitness, check if the individual has been evaluated, clone itself, and serialize/deserialize to/from JSON.
+  * Note: The actual representation of the genome and the calculation of fitness would depend on the specific problem being solved by the genetic algorithm.
+  *
+  * Example usage:
+  * auto ind = new Individual([1, 0, 1, 1]);
+  * ind.fitness(0.75);
+  * writeln("Genome: ", ind.genome());
+  * writeln("Fitness: ", ind.fitness());
+  * The individual can be cloned to create a new instance with the same genome and fitness:
+  * auto clone = ind.clone();
+  * writeln("Cloned Genome: ", clone.genome());
+  * writeln("Cloned Fitness: ", clone.fitness());
+  * The individual can also be serialized to JSON and deserialized back:
+  * Json json = ind.toJson();
+  * auto indFromJson = Individual.fromJson(json);
+  * writeln("Genome from JSON: ", indFromJson.genome());
+  * writeln("Fitness from JSON: ", indFromJson.fitness());
+  * Note: The actual implementation of the genetic algorithm components (selection, crossover, mutation) and the population management is simplified for demonstration purposes and may need to be expanded for a real-world application.
+  */
 class Individual : IIndividual {
   protected ubyte[] _genome;
   protected double _fitness = -1.0;
@@ -85,4 +104,26 @@ class Individual : IIndividual {
     }
     return ind;
   }
+}
+///
+unittest {
+  auto ind = new Individual([1, 0, 1, 1]);
+  assert(ind.genome() == [1, 0, 1, 1]);
+  assert(ind.fitness() == -1.0);
+  assert(!ind.isEvaluated());
+
+  ind.fitness(0.75);
+  assert(ind.fitness() == 0.75);
+  assert(ind.isEvaluated());
+
+  auto clone = ind.clone();
+  assert(clone.genome() == ind.genome());
+  assert(clone.fitness() == ind.fitness());
+  assert(clone.isEvaluated());
+
+  Json json = ind.toJson();
+  auto indFromJson = Individual.fromJson(json);
+  assert(indFromJson.genome() == ind.genome());
+  assert(indFromJson.fitness() == ind.fitness());
+  assert(indFromJson.isEvaluated());
 }

@@ -16,10 +16,10 @@ mixin(ShowModule!());
  * Commands delegate to receivers to perform operations.
  */
 interface IReceiver {
-    /**
+  /**
      * Performs an action.
      * Params:
      *   action = The action to perform
      */
-    @safe void action(string action);
+  @safe void action(string action);
 }

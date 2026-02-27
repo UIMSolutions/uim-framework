@@ -15,14 +15,14 @@ mixin(ShowModule!());
  * Undoable command interface that supports undo operations.
  */
 interface IUndoableCommand : ICommand {
-    /**
-     * Undoes the command execution.
-     */
-    @safe void undo();
-    
-    /**
-     * Checks if the command can be undone.
-     * Returns: true if undo is possible
-     */
-    @safe bool canUndo() const;
+  /**
+    * Undoes the command execution.
+    */
+  void undo();
+
+  /**
+    * Checks if the command can be undone.
+    * Returns: true if undo is possible
+    */
+  bool canUndo() const;
 }

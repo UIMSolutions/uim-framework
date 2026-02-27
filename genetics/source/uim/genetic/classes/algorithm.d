@@ -13,6 +13,25 @@ mixin(ShowModule!());
 
 /**
  * Main genetic algorithm implementation with async support.
+ * This class manages the population, selection, crossover, and mutation processes, and allows for asynchronous execution with callbacks.
+ * It also provides methods to initialize the population, run the algorithm, stop it, and retrieve statistics about the current state of the population.
+ * Note: This implementation assumes the existence of interfaces and classes such as IPopulation, IFitnessEvaluator, ISelectionStrategy, ICrossoverOperator, IMutationOperator, IIndividual, and Population, which should be defined elsewhere in the codebase.
+ * 
+ * Example usage:
+  * auto ga = new GeneticAlgorithm();
+  * ga.fitnessEvaluator(new MyFitnessEvaluator());
+  * ga.initializePopulation(100, 20);
+  * ga.runAsync((bool success, IIndividual best) {
+  *   if (success) {
+  *     writeln("Best solution found: ", best);
+  *   } else {
+  *     writeln("Algorithm stopped without finding a solution.");
+  *   }
+  * });
+  * 
+  * The algorithm will run until it reaches the target fitness or the maximum number of generations, and it will call the provided callback with the best solution found.
+  * The statistics method can be used to retrieve information about the current generation, whether the algorithm is running, and other population metrics.
+  * Note: The actual implementation of the genetic algorithm components (selection, crossover, mutation) and the population management is simplified for demonstration purposes and may need to be expanded for a real-world application.
  */
 class GeneticAlgorithm {
   protected IPopulation _population;

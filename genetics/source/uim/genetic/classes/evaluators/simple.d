@@ -9,10 +9,22 @@ import uim.genetic;
 
 @safe:
 
-/**
- * Simple fitness evaluator for testing.
- * Evaluates how close a genome is to a target pattern.
- */
+/** 
+  * A simple fitness evaluator that compares an individual's genome to a target pattern and calculates fitness based on the number of matching genes.
+  * The fitness is calculated as the ratio of matching genes to the total length of the genome, resulting in a value between 0.0 and 1.0.
+  * This class implements the IFitnessEvaluator interface, allowing it to be used in the genetic algorithm framework for evaluating individuals and populations.
+  *
+  * Example usage:
+  * auto target = [1, 0, 1, 1];
+  * auto matcher = new SimplePatternMatcher(target);
+  * auto ind = new Individual([1, 0, 0, 1]);
+  * matcher.evaluate(ind, (double fitness) {
+  *   writeln("Fitness: ", fitness);
+  * });
+  *
+  * In this example, the individual's genome is compared to the target pattern, and the fitness is calculated based on the number of matching genes. The fitness is printed to the console.
+  * Note: The actual implementation of the genetic algorithm components (selection, crossover, mutation) and the population management is simplified for demonstration purposes and may need to be expanded for a real-world application.
+  */
 class SimplePatternMatcher : IFitnessEvaluator {
   protected ubyte[] _targetPattern;
 

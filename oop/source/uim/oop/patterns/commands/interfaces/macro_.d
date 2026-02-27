@@ -1,5 +1,9 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+*****************************************************************************************************************/
 module uim.oop.patterns.commands.interfaces.macro_;
-
 
 import uim.oop;
 
@@ -11,16 +15,16 @@ mixin(ShowModule!());
  * Executes multiple commands as a single command.
  */
 interface IMacroCommand : ICommand {
-    /**
-     * Adds a command to the macro.
-     * Params:
-     *   command = The command to add
-     */
-    @safe void addCommand(ICommand command);
-    
-    /**
-     * Gets the number of commands in the macro.
-     * Returns: The command count
-     */
-    @safe size_t commandCount() const;
+  /**
+    * Adds a command to the macro.
+    * Params:
+    *   command = The command to add
+    */
+  void addCommand(ICommand command);
+
+  /**
+    * Gets the number of commands in the macro.
+    * Returns: The command count
+    */
+  size_t commandCount() const;
 }

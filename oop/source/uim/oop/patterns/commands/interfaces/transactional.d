@@ -10,24 +10,24 @@ mixin(ShowModule!());
  * Supports rollback if execution fails.
  */
 interface ITransactionalCommand : ICommand {
-    /**
+  /**
      * Begins the transaction.
      */
-    @safe void begin();
-    
-    /**
+  void begin();
+
+  /**
      * Commits the transaction.
      */
-    @safe void commit();
-    
-    /**
+  void commit();
+
+  /**
      * Rolls back the transaction.
      */
-    @safe void rollback();
-    
-    /**
+  void rollback();
+
+  /**
      * Checks if the command is in a transaction.
      * Returns: true if in transaction
      */
-    @safe bool inTransaction() const;
+  bool inTransaction() const;
 }

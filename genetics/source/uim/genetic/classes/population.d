@@ -12,8 +12,20 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Basic population implementation.
- */
+  * Represents a population of individuals in the genetic algorithm, providing methods to manage and evaluate the population.
+  * The class implements the IPopulation interface, which defines methods for adding individuals, retrieving them, and calculating statistics about the population.
+  * The population can be sorted based on fitness, and it provides methods to get the best and worst individuals, as well as the average fitness of the population.
+  * Note: The actual implementation of the genetic algorithm components (selection, crossover, mutation) and the population management is simplified for demonstration purposes and may need to be expanded for a real-world application.
+  *
+  * Example usage:
+  * auto pop = new Population();
+  * pop.add(new Individual([1, 0, 1]));
+  * pop.add(new Individual([0, 1, 0]));
+  * writeln("Population size: ", pop.size());
+  * writeln("Best fitness: ", pop.best().fitness());
+  * writeln("Worst fitness: ", pop.worst().fitness());
+  * writeln("Average fitness: ", pop.averageFitness());
+  */
 class Population : IPopulation {
   protected IIndividual[] _individuals;
 
