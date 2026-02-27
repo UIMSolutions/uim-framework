@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 // #region Json
 // #region path
-// #region getDoubles(json, paths)
+// #region getFloats(json, paths)
 /**
   * Retrieves all doubles at the specified paths from the Json object.
   * Params:
@@ -23,14 +23,14 @@ mixin(ShowModule!());
   * Returns:
   *   An string[] containing all doubles found at the specified paths.
 **/
-double[] getDoubles(Json json, string[][] paths, double defaultValue = 0.0) {
+double[] getFloats(Json json, string[][] paths, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return json.isObject ? json.toMap.getDoubles(paths, defaultValue) : null;
+  return json.isObject ? json.toMap.getFloats(paths, defaultValue) : null;
 }
-// #endregion getDoubles(json, paths)
+// #endregion getFloats(json, paths)
 
-// #region getDouble(json, path)
+// #region getFloat(json, path)
 /**
   * Retrieves the double at the specified path from the Json object.
   *
@@ -42,24 +42,24 @@ double[] getDoubles(Json json, string[][] paths, double defaultValue = 0.0) {
   * Returns:
   *  The double at the specified path, or the default value if not found.
 **/
-double getDouble(Json json, string[] path, double defaultValue = 0.0) {
+double getFloat(Json json, string[] path, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return json.isDouble(path) ? json.getValue(path).getDouble : defaultValue;
+  return json.isFloat(path) ? json.getValue(path).getFloat : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble with path");
+  mixin(ShowTest!"Testing getFloat with path");
 
   Json json = parseJsonString(`{"data": { "test": [ 1, {"a": 1}, [3, 4] ]}}`);
-  // assert(json.getDouble(["data", "test"])[0] == 1.1.toJson, "Expected double at path ['data', 'test'][0]");
-  // assert(json.getDouble(["data", "test"]).filterArrays()[0] == 1.1.toJson, "Expected filtered double at path ['data', 'test'][0]");
+  // assert(json.getFloat(["data", "test"])[0] == 1.1.toJson, "Expected double at path ['data', 'test'][0]");
+  // assert(json.getFloat(["data", "test"]).filterArrays()[0] == 1.1.toJson, "Expected filtered double at path ['data', 'test'][0]");
 }
-// #endregion getDouble(json, path)
+// #endregion getFloat(json, path)
 // #endregion path
 
 // #region key
-// #region getDoubles(json, keys)
+// #region getFloats(json, keys)
 /**
   * Retrieves all doubles at the specified keys from the Json object.
   * Params:
@@ -69,14 +69,14 @@ unittest {
   * Returns:
   *   An string[] containing all doubles found at the specified keys.
 **/
-double[] getDoubles(Json json, string[] keys, double defaultValue = 0.0) {
+double[] getFloats(Json json, string[] keys, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return json.isObject ? json.toMap.getDoubles(keys, defaultValue) : null;
+  return json.isObject ? json.toMap.getFloats(keys, defaultValue) : null;
 }
-// #endregion getDoubles(json, keys)
+// #endregion getFloats(json, keys)
 
-// #region getDouble(json, key)
+// #region getFloat(json, key)
 /**
   * Retrieves the double at the specified key from the Json object.
   *
@@ -88,25 +88,25 @@ double[] getDoubles(Json json, string[] keys, double defaultValue = 0.0) {
   * Returns:
   *   The double at the specified key, or the default value if not found.
 **/
-double getDouble(Json json, string key, double defaultValue = 0.0) {
+double getFloat(Json json, string key, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return json.isDouble(key) ? json[key].getDouble : defaultValue;
+  return json.isFloat(key) ? json[key].getFloat : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble for Json with key");
+  mixin(ShowTest!"Testing getFloat for Json with key");
 
   Json jsonMap = [
     "first": 1.1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ].toJson;
-  assert(jsonMap.getDouble("first") == 1.1, "Expected double at key 'first'");
+  assert(jsonMap.getFloat("first") == 1.1, "Expected double at key 'first'");
 }
-// #endregion getDouble(Json, key)
+// #endregion getFloat(Json, key)
 // #endregion key
 
 // #region index
-// #region getDoubles(json, indices)
+// #region getFloats(json, indices)
 /**
   * Retrieves all doubles at the specified indices from the Json array.
   * Params:
@@ -116,14 +116,14 @@ unittest {
   * Returns:
   *   An double[] containing all doubles found at the specified indices.
 **/
-double[] getDoubles(Json json, size_t[] indices) {
+double[] getFloats(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.getDoubles(indices) : null;
+  return json.isArray ? json.toArray.getFloats(indices) : null;
 }
-// #endregion getDoubles(json, indices)
+// #endregion getFloats(json, indices)
 
-// #region getDouble(json, index)
+// #region getFloat(json, index)
 /**
   * Retrieves the double at the specified index from the Json object.
   *
@@ -135,30 +135,30 @@ double[] getDoubles(Json json, size_t[] indices) {
   * Returns:
   *  The double at the specified index, or the default value if not found.
 **/
-double getDouble(Json json, size_t index, double defaultValue = 0.0) {
+double getFloat(Json json, size_t index, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return json.isDouble(index) ? json[index].getDouble : defaultValue;
+  return json.isFloat(index) ? json[index].getFloat : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble for Json with index");
+  mixin(ShowTest!"Testing getFloat for Json with index");
 
   Json jsonArray = [
     1.1.toJson, ["a": 1].toJson, [3, 4].toJson
   ].toJson;
-  assert(jsonArray.getDouble(0) == 1.1, "Expected double at index 0");
+  assert(jsonArray.getFloat(0) == 1.1, "Expected double at index 0");
 }
-// #endregion getDouble(json, index)
+// #endregion getFloat(json, index)
 // #endregion index
 // #endregion Json
 
 // #region Json[string]
 // #region path
-double[] getDoubles(Json[string] map, string[][] paths, double defaultValue = 0.0) {
+double[] getFloats(Json[string] map, string[][] paths, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return paths.map!(path => map.getDouble(path, defaultValue)).array;
+  return paths.map!(path => map.getFloat(path, defaultValue)).array;
 }
 /**
   * Retrieves the double at the specified path from the Json map.
@@ -171,24 +171,24 @@ double[] getDoubles(Json[string] map, string[][] paths, double defaultValue = 0.
   * Returns:
   *   The double at the specified path, or the default value if not found.
 **/
-double getDouble(Json[string] map, string[] path, double defaultValue = 0.0) {
+double getFloat(Json[string] map, string[] path, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return map.getValue(path).isDouble ? map.getValue(path).getDouble : defaultValue;
+  return map.getValue(path).isFloat ? map.getValue(path).getFloat : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble for Json[string] with path");
+  mixin(ShowTest!"Testing getFloat for Json[string] with path");
 
   Json[string] map = [
     "first": 1.1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getDouble("first") == 1.1, "Expected double at path 'first'");
+  assert(map.getFloat("first") == 1.1, "Expected double at path 'first'");
 }
 // #endregion path
 
 // #region key
-// #region getDoubles(Json[string] map, keys)
+// #region getFloats(Json[string] map, keys)
 /**
   * Retrieves all doubles at the specified keys from the Json map.
   * Params:
@@ -197,26 +197,26 @@ unittest {
   * Returns:
   *   An double[] containing all doubles found at the specified keys.
 **/ 
-double[] getDoubles(Json[string] map, string[] keys, double defaultValue = 0.0) {
+double[] getFloats(Json[string] map, string[] keys, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return keys.map!(key => map.getDouble(key, defaultValue)).array;
+  return keys.map!(key => map.getFloat(key, defaultValue)).array;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDoubles for Json[string] with keys");
+  mixin(ShowTest!"Testing getFloats for Json[string] with keys");
 
   Json[string] map = [
     "first": 1.1.toJson, "second": ["a": 1].toJson, "third": 2.2.toJson, "fourth": [3, 4].toJson
   ];
-  auto doubles = map.getDoubles(["first", "third", "fourth"]);
+  auto doubles = map.getFloats(["first", "third", "fourth"]);
   assert(doubles.length == 3, "Expected 3 doubles");
   assert(doubles[0] == 1.1, "Expected double at key 'first'");
   assert(doubles[1] == 2.2, "Expected double at key 'third'");
 }
-// #endregion getDoubles(Json[string] map, keys)
+// #endregion getFloats(Json[string] map, keys)
 
-// #region getDouble(Json[string] map, key)
+// #region getFloat(Json[string] map, key)
 /**
   * Retrieves the double at the specified key from the Json map.
   *
@@ -228,10 +228,10 @@ unittest {
   * Returns:
   *  The double at the specified key, or the default value if not found.
 **/
-double getDouble(Json[string] map, string key, double defaultValue = 0.0) {
+double getFloat(Json[string] map, string key, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return map.getValue(key).isDouble ? map.getValue(key).getDouble : defaultValue;
+  return map.getValue(key).isFloat ? map.getValue(key).getFloat : defaultValue;
 }
 /// 
 unittest {
@@ -240,12 +240,12 @@ unittest {
   Json[string] map = [
     "first": 1.1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getDouble("first") == 1.1.toJson, "Expected string at key 'first'");
+  assert(map.getFloat("first") == 1.1.toJson, "Expected string at key 'first'");
 }
-// #endregion getDouble(Json[string] map, key)
+// #endregion getFloat(Json[string] map, key)
 // #endregion key
 
-// #region getDoubles(Json[string] map)
+// #region getFloats(Json[string] map)
 /** 
   * Retrieves all arrays from the Json map.
   *
@@ -255,22 +255,22 @@ unittest {
   * Returns:
   *  A Json[string] containing all arrays found in the Json map.
 **/
-double[string] getDoubles(Json[string] map) {
+double[string] getFloats(Json[string] map) {
   mixin(ShowFunction!());
 
   double[string] result;
   foreach (key, value; map) {
-    if (value.isDouble) {
-      result[key] = value.getDouble;
+    if (value.isFloat) {
+      result[key] = value.getFloat;
     }
   }
   return result;
 }
-// #endregion getDoubles(Json[string] map)
+// #endregion getFloats(Json[string] map)
 // #endregion Json[string]
 
 // #region Json[]
-// #region getDoubles(Json[], indices) 
+// #region getFloats(Json[], indices) 
 /** 
   * Retrieves all doubles at the specified indices from the Json array.
   *
@@ -280,24 +280,24 @@ double[string] getDoubles(Json[string] map) {
   * Returns:
   *   An double[] of doubles found at the specified indices.
 **/
-double[] getDoubles(Json[] jsons, size_t[] indices) {
+double[] getFloats(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValues(indices, (size_t index) => jsons[index].isDouble).map!(json => json.getDouble).array;
+  return jsons.getValues(indices, (size_t index) => jsons[index].isFloat).map!(json => json.getFloat).array;
 }
 ///
 unittest {
-  mixin(ShowTest!"Testing getDoubles for Json[] with indices");
+  mixin(ShowTest!"Testing getFloats for Json[] with indices");
 
   Json[] jsons = [1.1.toJson, ["a": 1].toJson, 2.2.toJson, [3, 4].toJson];
-  auto doubles = jsons.getDoubles([0, 2]);
+  auto doubles = jsons.getFloats([0, 2]);
   assert(doubles.length == 2, "Expected 2 doubles");
   assert(doubles[0] == 1.1, "Expected double at index 0");
   assert(doubles[1] == 2.2, "Expected double at index 2");
 }
-// #endregion getDoubles(Json[], indices) 
+// #endregion getFloats(Json[], indices) 
 
-// #region getDouble(Json[], index)
+// #region getFloat(Json[], index)
 /** 
   * Retrieves the double at the specified index from the Json array.
   *
@@ -309,21 +309,21 @@ unittest {
   * Returns:
   *  The double at the specified index, or the default value if not found.
 **/
-double getDouble(Json[] jsons, size_t index, double defaultValue = 0.0) {
+double getFloat(Json[] jsons, size_t index, double defaultValue = 0.0) {
   mixin(ShowFunction!());
 
-  return jsons.getValue(index).isDouble ? jsons[index].getDouble : defaultValue;
+  return jsons.getValue(index).isFloat ? jsons[index].getFloat : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble for Json[] with index");
+  mixin(ShowTest!"Testing getFloat for Json[] with index");
 
   Json[] jsons = [1.1.toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(jsons.getDouble(0) == 1.1, "Expected double at index 0");
+  assert(jsons.getFloat(0) == 1.1, "Expected double at index 0");
 }
-// #endregion getDouble(Json[], index)
+// #endregion getFloat(Json[], index)
 
-// #region getDouble(Json[])
+// #region getFloat(Json[])
 /** 
   * Retrieves all arrays from the Json array.
   *
@@ -333,28 +333,28 @@ unittest {
   * Returns:
   *  An double[] of Json arrays found in the input array.
 **/
-double[] getDoubles(Json[] jsons) {
+double[] getFloats(Json[] jsons) {
   mixin(ShowFunction!());
 
-  return jsons.filter!(json => json.isDouble).map!(json => json.getDouble).array;
+  return jsons.filter!(json => json.isFloat).map!(json => json.getFloat).array;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDoubles for Json[]");
+  mixin(ShowTest!"Testing getFloats for Json[]");
 
   Json[] jsons = [
     1.1.toJson, ["a": 1].toJson, 2.2.toJson, [3, 4].toJson
   ];
-  auto doubles = jsons.getDoubles;
+  auto doubles = jsons.getFloats;
   assert(doubles.length == 2, "Expected 2 doubles");
   assert(doubles[0] == 1.1.toJson, "Expected string at index 0");
   assert(doubles[1] == 2.2.toJson, "Expected double at index 1");
 }
-// #endregion getDouble(Json[])
+// #endregion getFloat(Json[])
 // #endregion Json[]
 
 // #region Json
-// #region getDoubles(Json)
+// #region getFloats(Json)
 /** 
   * Retrieves all arrays from the Json object.
   *
@@ -364,24 +364,24 @@ unittest {
   * Returns:
   *  A Json containing all arrays found in the Json object.
 **/
-double[] getDoubles(Json json) {
+double[] getFloats(Json json) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.getDoubles : null;
+  return json.isArray ? json.toArray.getFloats : null;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDoubles for Json");
+  mixin(ShowTest!"Testing getFloats for Json");
 
   Json jsonArray = [
     1.1.toJson, ["a": 1].toJson, [3, 4].toJson, 42.2.toJson
   ].toJson;
-  auto arraysFromArray = jsonArray.getDoubles;
+  auto arraysFromArray = jsonArray.getFloats;
   // TODO
 }
-// #endregion getDoubles(Json)
+// #endregion getFloats(Json)
 
-// #region getDouble(Json)
+// #region getFloat(Json)
 /** 
   * Retrieves the double from the Json object.
   * Params:
@@ -389,16 +389,16 @@ unittest {
   * Returns:
   *   The double contained in the Json object, or null if not a double.
 **/
-double getDouble(Json json) {
+double getFloat(Json json) {
   mixin(ShowFunction!());
 
-  return json.isDouble ? json.get!double : 0.0;
+  return json.isFloat ? json.get!double : 0.0;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getDouble for Json");
+  mixin(ShowTest!"Testing getFloat for Json");
 
   Json json = 1.1.toJson;
-  assert(json.getDouble == 1.1, "Expected double from Json");
+  assert(json.getFloat == 1.1, "Expected double from Json");
 }
-// #endregion getDouble(Json)
+// #endregion getFloat(Json)

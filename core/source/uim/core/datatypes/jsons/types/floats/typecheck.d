@@ -14,24 +14,24 @@ mixin(ShowModule!());
 // #region Json[]
 // #region indices
 // #region all
-bool isAllDouble(Json[] jsons, size_t[] indices = null) {
+bool isAllFloat(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isDouble) : indices.all!(
-      index => jsons.isDouble(index));
+    ? jsons.length > 0 && jsons.all!(value => value.isFloat) : indices.all!(
+      index => jsons.isFloat(index));
 }
 // #endregion all
 
 // #region any
-bool isAnyDouble(Json[] jsons, size_t[] indices = null) {
+bool isAnyFloat(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isDouble) : indices.any!(
-      index => jsons.isDouble(index));
+    ? jsons.length > 0 && jsons.any!(value => value.isFloat) : indices.any!(
+      index => jsons.isFloat(index));
 }
 // #endregion any
 
 // #region is
-bool isDouble(Json[] jsons, size_t index) {
-  return jsons.length > index && jsons.getValue(index).isDouble;
+bool isFloat(Json[] jsons, size_t index) {
+  return jsons.length > index && jsons.getValue(index).isFloat;
 }
 // #endregion is
 // #endregion indices
@@ -40,46 +40,46 @@ bool isDouble(Json[] jsons, size_t index) {
 // #region Json[string]
 // #region paths
 // #region all
-bool isAllDouble(Json[string] map, string[][] paths) {
+bool isAllFloat(Json[string] map, string[][] paths) {
   return paths.length > 0
-    ? paths.all!(path => map.isDouble(path)) : false;
+    ? paths.all!(path => map.isFloat(path)) : false;
 }
 // #endregion all
 
 // #region any
-bool isAnyDouble(Json[string] map, string[][] paths) {
+bool isAnyFloat(Json[string] map, string[][] paths) {
   return paths.length > 0
-    ? paths.any!(path => map.isDouble(path)) : false;
+    ? paths.any!(path => map.isFloat(path)) : false;
 }
 // #endregion any
 
 // #region is
-bool isDouble(Json[string] map, string[] path) {
-  return map.getValue(path).isDouble;
+bool isFloat(Json[string] map, string[] path) {
+  return map.getValue(path).isFloat;
 }
 // #endregion is
 // #endregion paths
 
 // #region keys
 // #region all
-bool isAllDouble(Json[string] map, string[] keys = null) {
+bool isAllFloat(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isDouble) : map.getValues.all!(value => value.isDouble);
+        .isFloat) : map.getValues.all!(value => value.isFloat);
 }
 // #endregion all
 
 // #region any
-bool isAnyDouble(Json[string] map, string[] keys = null) {
+bool isAnyFloat(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isDouble) : map.getValues.any!(value => value.isDouble);
+        .isFloat) : map.getValues.any!(value => value.isFloat);
 }
 // #endregion any
 
 // #region is
-bool isDouble(Json[string] map, string key) {
-  return map.getValue(key).isDouble;
+bool isFloat(Json[string] map, string key) {
+  return map.getValue(key).isFloat;
 }
 // #endregion is
 // #endregion keys
@@ -87,75 +87,75 @@ bool isDouble(Json[string] map, string key) {
 
 // #region Json
 // #region index
-bool isAllDouble(Json json, size_t[] indices) {
+bool isAllFloat(Json json, size_t[] indices) {
   return json.isArray && indices.length > 0
-    ? indices.all!(index => json.isDouble(index)) : false;
+    ? indices.all!(index => json.isFloat(index)) : false;
 }
 
-bool isAnyDouble(Json json, size_t[] indices) {
+bool isAnyFloat(Json json, size_t[] indices) {
   return json.isArray && indices.length > 0
-    ? indices.any!(index => json.isDouble(index)) : false;
+    ? indices.any!(index => json.isFloat(index)) : false;
 }
 
-bool isDouble(Json json, size_t index) {
-  return json.getValue(index).isDouble;
+bool isFloat(Json json, size_t index) {
+  return json.getValue(index).isFloat;
 }
 // #endregion index
 
 // #region paths
 // #region all
-bool isAllDouble(Json json, string[][] paths) {
+bool isAllFloat(Json json, string[][] paths) {
   return json.isObject && paths.length > 0
-    ? paths.all!(path => json.isDouble(path)) : false;
+    ? paths.all!(path => json.isFloat(path)) : false;
 }
 // #endregion all
 
 // #region any
-bool isAnyDouble(Json json, string[][] paths) {
+bool isAnyFloat(Json json, string[][] paths) {
   return json.isObject && paths.length > 0
-    ? paths.any!(path => json.isDouble(path)) : false;
+    ? paths.any!(path => json.isFloat(path)) : false;
 }
 // #endregion any
 
 // #region is
-bool isDouble(Json json, string[] path) {
-  return json.getValue(path).isDouble;
+bool isFloat(Json json, string[] path) {
+  return json.getValue(path).isFloat;
 }
 // #endregion is
 // #endregion paths
 
 // #region key
-bool isAllDouble(Json json, string[] keys = null) {
+bool isAllFloat(Json json, string[] keys = null) {
   if (json.isArray) {
     return keys.length == 0
-      ? json.toArray().isAllDouble : false;
+      ? json.toArray().isAllFloat : false;
   }
   if (json.isObject) {
     return keys.length == 0
-      ? json.toMap.isAllDouble : json.toMap.isAllDouble(keys);
+      ? json.toMap.isAllFloat : json.toMap.isAllFloat(keys);
   }
   return false;
 }
 
-bool isAnyDouble(Json json, string[] keys = null) {
+bool isAnyFloat(Json json, string[] keys = null) {
   if (json.isArray) {
     return keys.length == 0
-      ? json.toArray().isAnyDouble : false;
+      ? json.toArray().isAnyFloat : false;
   }
   if (json.isObject) {
     return keys.length == 0
-      ? json.toMap.isAnyDouble : json.toMap.isAnyDouble(keys);
+      ? json.toMap.isAnyFloat : json.toMap.isAnyFloat(keys);
   }
   return false;
 }
 
-bool isDouble(Json json, string key) {
-  return json.getValue(key).isDouble;
+bool isFloat(Json json, string key) {
+  return json.getValue(key).isFloat;
 }
 // #region key
 
 // #region base
-bool isDouble(Json json) {
+bool isFloat(Json json) {
   return (json.type == Json.Type.float_);
 }
 // #endregion base
