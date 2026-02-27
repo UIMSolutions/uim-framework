@@ -9,7 +9,18 @@ import uim.filesystems;
 
 @safe:
 
-/// Temporary file that is automatically deleted on destruction
+/**
+    * Temporary file and directory utilities
+    *
+    * Provides structures and functions for creating and managing temporary files and directories that are automatically cleaned up.
+    *
+    * Features:
+    * - TemporaryFile: RAII wrapper for a temporary file that is deleted on destruction
+    * - TemporaryDirectory: RAII wrapper for a temporary directory that is deleted on destruction
+    * - createTemporaryFile: Function to create a temporary file with content
+    * - createTemporaryDirectory: Function to create a temporary directory
+    * - getTemporaryDirectory: Function to get the system temporary directory path
+    */
 struct TemporaryFile {
     private string _path;
     private bool _autoDelete = true;

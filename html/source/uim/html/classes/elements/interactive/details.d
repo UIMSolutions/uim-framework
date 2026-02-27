@@ -34,5 +34,13 @@ class H5Details : HtmlElement {
 ///
 unittest {
   assert(H5Details() == "<details></details>");
+
   assert(H5Details("Some content") == "<details>Some content</details>");
+  assert(H5Details(["testClass"]) == `<details class="testClass"></details>`);
+  assert(H5Details(["a":"b"]) == `<details a="b"></details>`);
+
+  assert(H5Details(["testClass"], "Some content") == `<details class="testClass">Some content</details>`);
+  assert(H5Details(["a":"b"], "Some content") == `<details a="b">Some content</details>`);
+
+  assert(H5Details(["testClass"], ["a":"b"], "Some content") == `<details class="testClass" a="b">Some content</details>`);
 }

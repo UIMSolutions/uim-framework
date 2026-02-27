@@ -21,5 +21,13 @@ class H5Annotation : HtmlElement {
 ///
 unittest {
   assert(H5Annotation() == "<annotation></annotation>");
-  assert(H5Annotation("Hello") == "<annotation>Hello</annotation>");
+
+  assert(H5Annotation("Some content") == "<annotation>Some content</annotation>");
+  assert(H5Annotation(["testClass"]) == `<annotation class="testClass"></annotation>`);
+  assert(H5Annotation(["a": "b"]) == `<annotation a="b"></annotation>`);
+
+  assert(H5Annotation(["testClass"], "Some content") == `<annotation class="testClass">Some content</annotation>`);
+  assert(H5Annotation(["a": "b"], "Some content") == `<annotation a="b">Some content</annotation>`);
+
+  assert(H5Annotation(["testClass"], ["a": "b"], "Some content") == `<annotation class="testClass" a="b">Some content</annotation>`);
 }

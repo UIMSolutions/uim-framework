@@ -21,5 +21,13 @@ class H5Mfrac : HtmlElement {
 ///
 unittest {
   assert(H5Mfrac() == "<mfrac></mfrac>");
-  assert(H5Mfrac("Hello") == "<mfrac>Hello</mfrac>");
+
+  assert(H5Mfrac("Some content") == "<mfrac>Some content</mfrac>");
+  assert(H5Mfrac(["testClass"]) == `<mfrac class="testClass"></mfrac>`);
+  assert(H5Mfrac(["a": "b"]) == `<mfrac a="b"></mfrac>`);
+
+  assert(H5Mfrac(["testClass"], "Some content") == `<mfrac class="testClass">Some content</mfrac>`);
+  assert(H5Mfrac(["a": "b"], "Some content") == `<mfrac a="b">Some content</mfrac>`);
+
+  assert(H5Mfrac(["testClass"], ["a": "b"], "Some content") == `<mfrac class="testClass" a="b">Some content</mfrac>`);  
 }

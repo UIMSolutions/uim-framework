@@ -39,5 +39,13 @@ class H5Math : HtmlElement {
 ///
 unittest {
   assert(H5Math() == "<math></math>");
-  assert(H5Math("Hello") == "<math>Hello</math>");
+
+  assert(H5Math("Some content") == "<math>Some content</math>");
+  assert(H5Math(["testClass"]) == `<math class="testClass"></math>`);
+  assert(H5Math(["a": "b"]) == `<math a="b"></math>`);
+
+  assert(H5Math(["testClass"], "Some content") == `<math class="testClass">Some content</math>`);
+  assert(H5Math(["a": "b"], "Some content") == `<math a="b">Some content</math>`);
+
+  assert(H5Math(["testClass"], ["a": "b"], "Some content") == `<math class="testClass" a="b">Some content</math>`);
 }

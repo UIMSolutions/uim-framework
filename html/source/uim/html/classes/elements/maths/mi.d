@@ -26,5 +26,13 @@ class H5Mi : HtmlElement {
 ///
 unittest {
   assert(H5Mi() == "<mi></mi>");
-  assert(H5Mi("Hello") == "<mi>Hello</mi>");
+
+  assert(H5Mi("Some content") == "<mi>Some content</mi>");
+  assert(H5Mi(["testClass"]) == `<mi class="testClass"></mi>`);
+  assert(H5Mi(["a": "b"]) == `<mi a="b"></mi>`);
+
+  assert(H5Mi(["testClass"], "Some content") == `<mi class="testClass">Some content</mi>`);
+  assert(H5Mi(["a": "b"], "Some content") == `<mi a="b">Some content</mi>`);
+
+  assert(H5Mi(["testClass"], ["a": "b"], "Some content") == `<mi class="testClass" a="b">Some content</mi>`);
 }
