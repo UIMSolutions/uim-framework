@@ -1,6 +1,8 @@
 module uim.services;
 
 public {
+  import uim.errors;
+  
   import uim.services.classes;
   import uim.services.config;
   import uim.services.exceptions;

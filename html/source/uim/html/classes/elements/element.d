@@ -320,18 +320,18 @@ class HtmlElement : IHtmlElement {
     assert(!div.hasClass("class3"));
   }
 
-  // IHtmlElement removeClasses(string[] classNames) {
-  //   classNames.each!(className => removeClass(className));
-  //   return this;
-  // }
+  IHtmlElement removeClasses(string[] classNames) {
+    classNames.each!(className => removeClass(className));
+    return this;
+  }
 
-  // IHtmlElement removeClass(string className) {
-  //   auto classAttr = attribute("class");
-  //   if (classAttr) {
-  //     classAttr.value(classAttr.value.replace(className, "").strip());
-  //   }
-  //   return this;
-  // }
+  IHtmlElement removeClass(string className) {
+    auto classAttr = attribute("class");
+    if (classAttr) {
+      attribute("class", classAttr.value.replace(className, "").strip());
+    }
+    return this;
+  }
   // #endregion classes
 
   /// Set style attribute

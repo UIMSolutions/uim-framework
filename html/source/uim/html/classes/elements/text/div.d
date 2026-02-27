@@ -23,6 +23,7 @@ mixin(ShowModule!());
   * </div>
   * ```
   */
+@CssClass("container")
 class H5Div : HtmlElement {
   mixin(H5Template!("Div", "div", false));
   mixin(AttributeMethods!H5Div);
@@ -39,4 +40,8 @@ unittest {
   assert(H5Div(["a":"b"], "Hello") == `<div a="b">Hello</div>`);
 
   assert(H5Div(["testclass"], ["a":"b"], "Hello") == `<div class="testclass" a="b">Hello</div>`);
+
+  auto styledDiv = H5Div().container();
+  assert(styledDiv == `<div class="container"></div>`);
+  assert(styledDiv.isContainer());
 }

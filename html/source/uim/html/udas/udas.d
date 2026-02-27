@@ -50,6 +50,25 @@ struct DeprecatedHtml {
   }
 }
 
+/// UDA to generate fluent CSS-class helper methods on an element class.
+///
+/// Usage:
+/// @CssClass("container")
+/// class H5Div : HtmlElement {
+///   mixin(AttributeMethods!H5Div);
+/// }
+struct CssClass {
+  string methodName;
+  string className;
+  string isName;
+
+  this(string methodName, string className = "") {
+    this.methodName = methodName;
+    this.className = className.length > 0 ? className : methodName;
+    this.isName = "is" ~ methodName[0 .. 1].toUpper() ~ methodName[1 .. $];
+  }
+}
+
 /// UDA to generate fluent setter/getter methods for HTML attributes on an element class.
 ///
 /// Usage:
@@ -142,6 +161,46 @@ template BoolAttributeMethods(alias symbol) {
   }();
 }
 
+private string generateCssClassMethod(CssClass cssClass) {
+  return format(q{
+  @safe auto %1$s(bool val = true) {
+    if (val) {
+      addClass("%2$s");
+    }
+    return this;
+  }
+
+  @safe bool %3$s() {
+    return hasClass("%2$s");
+  }
+}, cssClass.methodName, cssClass.className, cssClass.isName);
+}
+
+private string generateCssClassMethods(CssClass[] cssClasses) {
+  string code;
+
+  foreach (cssClass; cssClasses) {
+    code ~= generateCssClassMethod(cssClass);
+  }
+
+  return code;
+}
+
+/// Generates all setter/getter-like methods from `@CssClass(...)` UDAs on a class.
+template CssClassMethods(alias symbol) {
+  import std.traits : getUDAs;
+
+  enum string CssClassMethods = {
+    string code;
+
+    static foreach (cssClass; getUDAs!(symbol, CssClass)) {
+      code ~= generateCssClassMethod(cssClass);
+    }
+
+    return code;
+  }();
+}
+
 /// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
 template AttributeMethods(alias symbol) {
   import std.traits : getUDAs;
@@ -155,6 +214,10 @@ template AttributeMethods(alias symbol) {
 
     static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
       code ~= generateBoolAttributeMethod(attribute);
+    }
+
+    static foreach (cssClass; getUDAs!(symbol, CssClass)) {
+      code ~= generateCssClassMethod(cssClass);
     }
 
     return code;
@@ -307,4 +370,33 @@ unittest {
 
   assert(item.sizes() == "64x64");
   assert(item.crossorigin() == "anonymous");
+}
+
+unittest {
+  @CssClass("container")
+  @CssClass("isPrimary", "btn-primary")
+  class GeneratedClassLike {
+    private string[] _classes;
+
+    @safe GeneratedClassLike addClass(string className) {
+      if (!_classes.canFind(className)) {
+        _classes ~= className;
+      }
+      return this;
+    }
+
+    @safe bool hasClass(string className) {
+      return _classes.canFind(className);
+    }
+
+    mixin(AttributeMethods!GeneratedClassLike);
+  }
+
+  auto item = new GeneratedClassLike();
+  item.container().isPrimary();
+
+  assert(item.hasClass("container"));
+  assert(item.hasClass("btn-primary"));
+  assert(item.isContainer());
+  assert(item.isIsPrimary());
 }

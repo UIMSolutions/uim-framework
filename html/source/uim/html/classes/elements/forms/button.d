@@ -27,6 +27,7 @@ mixin(ShowModule!());
   */
 
 @StringAttribute("type")
+@CssClass("primary", "btn-primary")
 class H5Button : HtmlElement {
   mixin(H5This!("button", false));
 
@@ -56,4 +57,6 @@ unittest {
   assert(H5Button().submit() == "<button type=\"submit\"></button>");
   assert(H5Button().reset() == "<button type=\"reset\"></button>");
   assert(H5Button().disabled() == "<button disabled></button>");
+  assert(H5Button().primary() == "<button class=\"btn-primary\"></button>");
+  assert(H5Button().primary().isPrimary());
 }

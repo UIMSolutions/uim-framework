@@ -59,6 +59,9 @@ interface IHtmlElement {
   IHtmlElement addClasses(string[] classNames);
   IHtmlElement addClass(string className);
 
+  IHtmlElement removeClasses(string[] classNames);
+  IHtmlElement removeClass(string className);
+  
   /// Set style attribute
   IHtmlElement style(string styleValue);
 

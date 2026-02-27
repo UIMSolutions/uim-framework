@@ -267,6 +267,12 @@ writeln(doc);
 
 ```d
 auto element = Div()
+    .id("main")                    // Set ID
+    .addClass("container")         // Add CSS class
+    .addClass("responsive")        // Add another class
+    .style("color: red;")          // Set inline style
+    .attribute("data-id", "123"); // Custom attribute
+```
 
 ## UDA Functionalities
 
@@ -284,15 +290,22 @@ struct MyImageElement {}
 static assert(hasHtmlTagAttribute!MyImageElement);
 static assert(getHtmlTagAttribute!MyImageElement.name == "img");
 static assert(hasVoidElementAttribute!MyImageElement);
+
+@CssClass("container")
+@CssClass("primary", "btn-primary")
+class MyStyledElement : HtmlElement {
+    this() { super("div"); }
+    mixin(AttributeMethods!MyStyledElement);
+}
+
+auto styled = new MyStyledElement();
+styled.container().primary();
+assert(styled.isContainer());
+assert(styled.isPrimary());
 ```
 
-    .id("main")                    // Set ID
-    .addClass("container")         // Add CSS class
-    .addClass("responsive")        // Add another class
-    .style("color: red;")          // Set inline style
-    .attribute("data-id", "123");  // Custom attribute
-
-```
+`@CssClass("name")` generates `name()` and `isName()` for the same CSS class.
+Use `@CssClass("methodName", "class-name")` when the fluent method should differ from the emitted CSS class token.
 
 ### Getting Attributes
 
