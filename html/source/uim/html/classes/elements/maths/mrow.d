@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Mrow : HtmlElement {
   mixin(H5This!("mrow", false));
 
-  mixin(AttributeMethods!H5Mrow);
+  mixin(HtmlMethods!H5Mrow);
 
   mixin(H5Calls!("Mrow"));
 }

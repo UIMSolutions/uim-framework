@@ -25,7 +25,7 @@ mixin(ShowModule!());
 class H5A : HtmlElement {
   mixin(H5This!("a", false));
 
-mixin(AttributeMethods!H5A);
+mixin(HtmlMethods!H5A);
 
   // Setting target="_blank"
   H5A targetBlank() {

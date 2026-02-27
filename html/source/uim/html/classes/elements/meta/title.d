@@ -15,7 +15,7 @@ mixin(ShowModule!());
 class H5Title : HtmlElement {
   mixin(H5This!("title", false));
 
-  mixin(AttributeMethods!H5Title);
+  mixin(HtmlMethods!H5Title);
 
   mixin(H5Calls!("Title"));
 }

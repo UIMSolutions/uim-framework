@@ -30,7 +30,7 @@ mixin(ShowModule!());
 class H5Fieldset : HtmlElement {
   mixin(H5This!("fieldset", false));
 
-  mixin(AttributeMethods!H5Fieldset);
+  mixin(HtmlMethods!H5Fieldset);
 
   mixin(H5Calls!("fieldset"));
 }

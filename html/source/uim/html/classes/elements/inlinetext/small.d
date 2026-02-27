@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Small : HtmlElement {
   mixin(H5This!("small", false));
 
-  mixin(AttributeMethods!H5Small);
+  mixin(HtmlMethods!H5Small);
 
   mixin(H5Calls!("Small"));
 }

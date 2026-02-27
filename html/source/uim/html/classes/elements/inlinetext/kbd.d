@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Kbd : HtmlElement {
   mixin(H5This!("kbd", false));
 
-  mixin(AttributeMethods!H5Kbd);
+  mixin(HtmlMethods!H5Kbd);
 
   mixin(H5Calls!("kbd"));
 }

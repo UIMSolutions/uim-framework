@@ -28,7 +28,7 @@ mixin(ShowModule!());
   @StringAttribute("cite")
 class H5Blockquote : HtmlElement {
   mixin(H5Template!("Blockquote", "blockquote", false));
-  mixin(AttributeMethods!H5Blockquote);
+  mixin(HtmlMethods!H5Blockquote);
 }
 ///
 unittest {

@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Mspace : HtmlElement {
   mixin(H5This!("mspace", false));
 
-  mixin(AttributeMethods!H5Mspace);
+  mixin(HtmlMethods!H5Mspace);
 
   mixin(H5Calls!("Mspace"));
 }

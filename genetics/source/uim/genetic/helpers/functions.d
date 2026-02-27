@@ -11,10 +11,25 @@ mixin(ShowModule!());
 
 @safe:
 
+/**
+    * Helper functions for genetic algorithms
+    *
+    * This module provides utility functions for working with genetic algorithms, such as checking genome lengths,
+    * comparing gene sets, and verifying unique permutations of genes.
+    */
 bool isSameLength(IIndividual parent1, IIndividual parent2) {
   return parent1.genomeLength() == parent2.genomeLength();
 }
 
+/**
+    * Checks if two gene sets contain the same genes, regardless of order.
+    *
+    * Parameters:
+    * - genes1: The first gene set
+    * - genes2: The second gene set
+    *
+    * Returns: true if both gene sets contain the same genes, false otherwise
+    */
 bool hasSameGeneSet(const(ubyte)[] genes1, const(ubyte)[] genes2) {
   if (genes1.length != genes2.length) return false;
 

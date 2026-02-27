@@ -21,7 +21,7 @@ mixin(ShowModule!());
   */
 class H5Aside : HtmlElement {
   mixin(H5Template!("Aside", "aside", false));
-  mixin(AttributeMethods!H5Aside);
+  mixin(HtmlMethods!H5Aside);
 }
 ///
 unittest {

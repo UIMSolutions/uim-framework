@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5S : HtmlElement {
   mixin(H5This!("s", false));
 
-   mixin(AttributeMethods!H5S); 
+   mixin(HtmlMethods!H5S); 
 
   mixin(H5Calls!("s"));
 }

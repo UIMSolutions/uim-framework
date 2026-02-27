@@ -1,28 +1,38 @@
 
 module uim.filesystems.classes.filesystems.filesystem;
-interface IFilesystem {
-    void createDirectory(string path);
-    void createDirectories(string path);
-    void deleteDirectory(string path);
-    void deleteDirectoryRecursive(string path);
-    bool directoryExists(string path) nothrow;
-    bool isDirectoryEmpty(string path);
-    DirectoryEntry[] listDirectory(string path, ListOptions options = ListOptions.init);
-    string[] getFiles(string path, string pattern = "*");
-    string[] getDirectories(string path);
-    ulong directorySize(string path, bool recursive = true);
-    void copyDirectory(string source, string dest);
-    void moveDirectory(string source, string dest);
-    void walkDirectory(string path, void delegate(string path, bool isDir) @safe callback);
-    string[] findFiles(string path, bool delegate(string) @safe predicate);
-    string getCurrentDirectory();
-    void changeDirectory(string path);
-}
 
 import uim.filesystems;
 
+mixin(ShowModule!());
+
 @safe:
 
+/**
+    * UIMFilesystem class implementing IFilesystem interface.
+    * Provides basic filesystem operations using std.file and std.path.
+    *
+    * Note: This is a basic implementation and may not cover all edge cases or platform-specific behaviors.
+    * It is intended as a starting point and can be extended with additional features such as:
+    * - Symbolic link handling
+    * - File locking
+    * - Advanced error handling
+    * - Support for different character encodings
+    * - Integration with file system watchers
+    * - Caching of file metadata for performance
+    * - Asynchronous file operations
+    * - Support for virtual file systems (e.g., in-memory, network-based)
+    * Example usage:
+    * auto fs = new UIMFilesystem();
+    * fs.createDirectory("testDir");
+    * fs.createDirectories("testDir/subDir");
+    * fs.listDirectory("testDir", ListOptions(true));
+    * fs.copyDirectory("testDir", "testDirCopy");
+    * fs.moveDirectory("testDirCopy", "testDirMoved");
+    * fs.deleteDirectoryRecursive("testDirMoved");
+
+    * Note: Always ensure to handle exceptions that may arise from file operations, such as permissions issues, non-existent paths, or disk errors. The above methods may throw exceptions if the operations fail, so it is recommended to wrap calls in try-catch blocks or use enforce statements to validate conditions before performing operations.
+    * The implementation uses std.file and std.path from the D standard library, which provide cross-platform support for file system operations. However, be aware that certain behaviors may differ between operating systems (e.g., case sensitivity, path separators), so additional platform-specific handling may be necessary for a robust implementation.
+    */  
 class UIMFilesystem : UIMObject, IFilesystem {
     // Placeholder for filesystem-related methods and properties
 

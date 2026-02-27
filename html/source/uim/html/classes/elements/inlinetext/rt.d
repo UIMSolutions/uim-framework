@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Rt : HtmlElement {
   mixin(H5This!("rt", false));
 
-  mixin(AttributeMethods!H5Rt);
+  mixin(HtmlMethods!H5Rt);
 
   mixin(H5Calls!("Rt"));
 }

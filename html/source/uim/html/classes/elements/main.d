@@ -28,7 +28,7 @@ mixin(ShowModule!());
   */
 class H5Main : HtmlElement {
   mixin(H5Template!("Main", "main", false));
-  mixin(AttributeMethods!H5Main);
+  mixin(HtmlMethods!H5Main);
 }
 ///
 unittest {

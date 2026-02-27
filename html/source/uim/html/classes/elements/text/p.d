@@ -19,7 +19,7 @@ mixin(ShowModule!());
  */
 class H5P : HtmlElement {
   mixin(H5Template!("P", "p", false));
-  mixin(AttributeMethods!H5P);
+  mixin(HtmlMethods!H5P);
 }
 ///
 unittest {

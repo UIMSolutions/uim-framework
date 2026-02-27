@@ -19,7 +19,7 @@ mixin(ShowModule!());
 class H5Cite : HtmlElement {
   mixin(H5This!("cite", false));
 
-  mixin(AttributeMethods!H5Cite);
+  mixin(HtmlMethods!H5Cite);
 
   mixin(H5Calls!("Cite"));
 }

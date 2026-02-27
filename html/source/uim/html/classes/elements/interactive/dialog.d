@@ -22,13 +22,23 @@ mixin(ShowModule!());
 class H5Dialog : HtmlElement {
   mixin(H5This!("dialog", false));
 
-  mixin(AttributeMethods!H5Dialog);
+  mixin(HtmlMethods!H5Dialog);
 
   mixin(H5Calls!("Dialog"));
 }
 ///
 unittest {
   assert(H5Dialog() == "<dialog></dialog>");
+
+  assert(H5Dialog("Some content") == "<dialog>Some content</dialog>");
+  assert(H5Dialog(["testClass"]) == `<dialog class="testClass"></dialog>`);
+  assert(H5Dialog(["a":"b"]) == `<dialog a="b"></dialog>`);
+
+  assert(H5Dialog(["testClass"], "Some content") == `<dialog class="testClass">Some content</dialog>`);
+  assert(H5Dialog(["a":"b"], "Some content") == `<dialog a="b">Some content</dialog>`);
+
+  assert(H5Dialog(["testClass"], ["a":"b"], "Some content") == `<dialog class="testClass" a="b">Some content</dialog>`);
+  
   assert(H5Dialog("Hello") == "<dialog>Hello</dialog>");
   assert(H5Dialog().closedby("escape") == `<dialog closedby="escape"></dialog>`);
   assert(H5Dialog().closedby("outside") == `<dialog closedby="outside"></dialog>`);

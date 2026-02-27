@@ -19,7 +19,7 @@ mixin(ShowModule!());
  */
 class H5Pre : HtmlElement {
   mixin(H5Template!("Pre", "pre", false));
-  mixin(AttributeMethods!H5Pre);
+  mixin(HtmlMethods!H5Pre);
 }
 ///
 unittest {

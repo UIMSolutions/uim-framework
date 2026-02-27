@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Dfn : HtmlElement {
   mixin(H5This!("dfn", false));
 
-  mixin(AttributeMethods!H5Dfn);
+  mixin(HtmlMethods!H5Dfn);
   
   mixin(H5Calls!("Dfn"));
 }

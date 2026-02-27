@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class H5Mtable : HtmlElement {
   mixin(H5This!("mtable", false));
 
-  mixin(AttributeMethods!H5Mtable);
+  mixin(HtmlMethods!H5Mtable);
   
   mixin(H5Calls!("Mtable"));
 }

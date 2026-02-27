@@ -26,7 +26,7 @@ mixin(ShowModule!());
   */
 class H5Hgroup : HtmlElement {
   mixin(H5Template!("Hgroup", "hgroup", false));
-  mixin(AttributeMethods!H5Hgroup);
+  mixin(HtmlMethods!H5Hgroup);
 }
 ///
 unittest {

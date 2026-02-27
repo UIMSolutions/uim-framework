@@ -31,7 +31,7 @@ mixin(ShowModule!());
 class H5Button : HtmlElement {
   mixin(H5This!("button", false));
 
-  mixin(AttributeMethods!H5Button);
+  mixin(HtmlMethods!H5Button);
 
   H5Button submit() {
     type("submit");

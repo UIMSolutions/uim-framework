@@ -19,7 +19,7 @@ mixin(ShowModule!());
 class H5Head : HtmlElement {
   mixin(H5This!("head", false));
 
-  mixin(AttributeMethods!H5Head);
+  mixin(HtmlMethods!H5Head);
 
   mixin(H5Calls!("Head"));
 }

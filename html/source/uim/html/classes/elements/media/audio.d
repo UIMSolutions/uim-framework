@@ -30,7 +30,7 @@ mixin(ShowModule!());
 class H5Audio : HtmlElement {
   mixin(H5This!("audio", false));
 
-  mixin(AttributeMethods!H5Audio);
+  mixin(HtmlMethods!H5Audio);
 
   mixin(H5Calls!("Audio"));
 }

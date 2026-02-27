@@ -28,7 +28,7 @@ mixin(ShowModule!());
   */
 class H5Search : HtmlElement {
   mixin(H5Template!("Search", "search", false));
-  mixin(AttributeMethods!H5Search);
+  mixin(HtmlMethods!H5Search);
 }
 ///
 unittest {

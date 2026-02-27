@@ -19,7 +19,7 @@ mixin(ShowModule!());
   */
 class H5Noscript : HtmlElement {
   mixin(H5This!("noscript", false));
-  mixin(AttributeMethods!H5Noscript);
+  mixin(HtmlMethods!H5Noscript);
   mixin(H5Calls!("noscript"));
 }
 ///

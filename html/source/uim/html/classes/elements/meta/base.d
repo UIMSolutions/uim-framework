@@ -27,7 +27,7 @@ mixin(ShowModule!());
 class H5Base : HtmlElement {
   mixin(H5This!("base", true));
 
-  mixin(AttributeMethods!H5Base);
+  mixin(HtmlMethods!H5Base);
 
   mixin(H5Calls!("Base"));
 }

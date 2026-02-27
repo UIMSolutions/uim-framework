@@ -34,7 +34,7 @@ mixin(ShowModule!());
 class H5Form : HtmlElement { // IHtmlForm {
   mixin(H5This!("form", false));
 
-  mixin(AttributeMethods!H5Form);
+  mixin(HtmlMethods!H5Form);
 
   /// Sets the method attribute of the form to "POST".
   H5Form post() {

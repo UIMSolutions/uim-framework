@@ -22,7 +22,7 @@ mixin(ShowModule!());
 class H5Canvas : HtmlElement {
   mixin(H5This!("canvas", false));
   
-  mixin(AttributeMethods!H5Canvas);
+  mixin(HtmlMethods!H5Canvas);
 
   mixin(H5Calls!("canvas"));
 }

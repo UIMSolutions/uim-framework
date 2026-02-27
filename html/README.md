@@ -295,7 +295,7 @@ static assert(hasVoidElementAttribute!MyImageElement);
 @CssClass("primary", "btn-primary")
 class MyStyledElement : HtmlElement {
     this() { super("div"); }
-    mixin(AttributeMethods!MyStyledElement);
+    mixin(HtmlMethods!MyStyledElement);
 }
 
 auto styled = new MyStyledElement();

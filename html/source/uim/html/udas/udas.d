@@ -55,7 +55,7 @@ struct DeprecatedHtml {
 /// Usage:
 /// @CssClass("container")
 /// class H5Div : HtmlElement {
-///   mixin(AttributeMethods!H5Div);
+///   mixin(HtmlMethods!H5Div);
 /// }
 struct CssClass {
   string methodName;
@@ -74,7 +74,7 @@ struct CssClass {
 /// Usage:
 /// @StringAttribute("sizes")
 /// class H5Link : HtmlElement {
-///   mixin(AttributeMethods!H5Link);
+///   mixin(HtmlMethods!H5Link);
 /// }
 
 private string generateStringAttributeMethod(StringAttribute attribute) {
@@ -91,7 +91,7 @@ private string generateStringAttributeMethod(StringAttribute attribute) {
 }, attribute.methodName, attribute.attributeName);
 }
 
-private string generateStringAttributeMethods(StringAttribute[] attributes) {
+private string generateStringHtmlMethods(StringAttribute[] attributes) {
   string code;
 
   foreach (attribute; attributes) {
@@ -102,10 +102,10 @@ private string generateStringAttributeMethods(StringAttribute[] attributes) {
 }
 
 /// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
-template StringAttributeMethods(alias symbol) {
+template StringHtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
-  enum string StringAttributeMethods = {
+  enum string StringHtmlMethods = {
     string code;
 
     static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
@@ -136,7 +136,7 @@ private string generateBoolAttributeMethod(BoolAttribute attribute) {
 
 }
 
-private string generateBoolAttributeMethods(BoolAttribute[] attributes) {
+private string generateBoolHtmlMethods(BoolAttribute[] attributes) {
   string code;
 
   foreach (attribute; attributes) {
@@ -147,10 +147,10 @@ private string generateBoolAttributeMethods(BoolAttribute[] attributes) {
 }
 
 /// Generates all setter/getter methods from `@BoolAttribute(...)` UDAs on a class.
-template BoolAttributeMethods(alias symbol) {
+template BoolHtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
-  enum string BoolAttributeMethods = {
+  enum string BoolHtmlMethods = {
     string code;
 
     static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
@@ -202,10 +202,10 @@ template CssClassMethods(alias symbol) {
 }
 
 /// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
-template AttributeMethods(alias symbol) {
+template HtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
-  enum string AttributeMethods = {
+  enum string HtmlMethods = {
     string code;
 
     static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
@@ -361,7 +361,7 @@ unittest {
       return null;
     }
 
-    mixin(AttributeMethods!GeneratedLinkLike);
+    mixin(HtmlMethods!GeneratedLinkLike);
   }
 
   auto item = new GeneratedLinkLike();
@@ -389,7 +389,7 @@ unittest {
       return _classes.canFind(className);
     }
 
-    mixin(AttributeMethods!GeneratedClassLike);
+    mixin(HtmlMethods!GeneratedClassLike);
   }
 
   auto item = new GeneratedClassLike();

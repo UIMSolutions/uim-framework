@@ -18,12 +18,7 @@ enum FileSystemEvent {
     Unknown
 }
 
-interface IFileSystemWatcher {
-    void onEvent(WatchCallback callback) @safe;
-    void start() @trusted;
-    void stop() @safe;
-    bool isRunning() const @safe;
-}
+
 
 /// File system change notification
 struct FileSystemChange {

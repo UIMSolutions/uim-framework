@@ -14,12 +14,20 @@ mixin(ShowModule!());
 class H5Geolocation : HtmlElement {
   mixin(H5This!("geolocation", false));
 
-  mixin(AttributeMethods!H5Geolocation);
+  mixin(HtmlMethods!H5Geolocation);
 
   mixin(H5Calls!("Geolocation"));
 }
 ///
 unittest {
   assert(H5Geolocation() == "<geolocation></geolocation>");
+
   assert(H5Geolocation("Some content") == "<geolocation>Some content</geolocation>");
+  assert(H5Geolocation(["testClass"]) == `<geolocation class="testClass"></geolocation>`);
+  assert(H5Geolocation(["a":"b"]) == `<geolocation a="b"></geolocation>`);
+
+  assert(H5Geolocation(["testClass"], "Some content") == `<geolocation class="testClass">Some content</geolocation>`);
+  assert(H5Geolocation(["a":"b"], "Some content") == `<geolocation a="b">Some content</geolocation>`);
+
+  assert(H5Geolocation(["testClass"], ["a":"b"], "Some content") == `<geolocation class="testClass" a="b">Some content</geolocation>`);
 }

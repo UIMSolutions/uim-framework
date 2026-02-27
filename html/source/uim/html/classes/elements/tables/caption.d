@@ -35,7 +35,7 @@ mixin(ShowModule!());
   */
 class H5Caption : HtmlElement {
   mixin(H5Template!("Caption", "caption", false));
-  mixin(AttributeMethods!H5Caption);
+  mixin(HtmlMethods!H5Caption);
 }
 ///
 unittest {

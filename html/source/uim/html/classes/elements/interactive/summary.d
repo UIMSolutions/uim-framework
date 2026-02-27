@@ -26,12 +26,20 @@ mixin(ShowModule!());
 class H5Summary : HtmlElement {
   mixin(H5This!("summary", false));
 
-  mixin(AttributeMethods!H5Summary);
+  mixin(HtmlMethods!H5Summary);
 
   mixin(H5Calls!("Summary"));
 }
 ///
 unittest {
   assert(H5Summary() == "<summary></summary>");
+
   assert(H5Summary("Some content") == "<summary>Some content</summary>");
+  assert(H5Summary(["testClass"]) == `<summary class="testClass"></summary>`);
+  assert(H5Summary(["a": "b"]) == `<summary a="b"></summary>`);
+
+  assert(H5Summary(["testClass"], "Some content") == `<summary class="testClass">Some content</summary>`);
+  assert(H5Summary(["a": "b"], "Some content") == `<summary a="b">Some content</summary>`);
+
+  assert(H5Summary(["testClass"], ["a": "b"], "Some content") == `<summary class="testClass" a="b">Some content</summary>`);
 }
