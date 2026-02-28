@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.services.helpers.registry;
 
-import uim.services;
+import uim.errors;
+import uim.services.interfaces.service;
 
 mixin(ShowModule!());
 

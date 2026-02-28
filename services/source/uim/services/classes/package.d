@@ -6,6 +6,7 @@
 module uim.services.classes;
 
 public {
-    import uim.services.classes.interfaces;
+    import uim.services.interfaces;
     import uim.services.classes.service;
+    import uim.services.classes.configuration;
 }

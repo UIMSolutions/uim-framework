@@ -5,7 +5,9 @@
 *****************************************************************************************************************/
 module uim.services.helpers.factory;
 
-import uim.services;
+import uim.errors;
+import uim.services.interfaces.service;
+import uim.services.classes.service;
 
 mixin(ShowModule!());
 

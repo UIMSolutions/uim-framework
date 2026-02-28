@@ -8,7 +8,9 @@ public {
   import uim.services.exceptions;
   import uim.services.helpers;
   import uim.services.i18n;
+  import uim.services.interfaces;
   import uim.services.loggers;
   import uim.services.mixins;
   import uim.services.tests;
+  import uim.services.vibeservice;
 }

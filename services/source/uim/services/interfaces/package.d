@@ -1,0 +1,6 @@
+module uim.services.interfaces;
+
+public {
+    import uim.services.interfaces.configuration;
+    import uim.services.interfaces.service;
+}

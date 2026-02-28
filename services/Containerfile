@@ -1,0 +1,21 @@
+FROM docker.io/dlang2/dmd-ubuntu:latest AS builder
+
+WORKDIR /workspace
+COPY . .
+RUN dub build :services -c service -b release
+
+FROM docker.io/library/ubuntu:24.04
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ca-certificates libevent-2.1-7 libssl3 \
+  && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY --from=builder /workspace/services/bin/uim-services-api /app/uim-services-api
+
+ENV HOST=0.0.0.0
+ENV PORT=8080
+ENV SERVICE_NAME=uim-services
+
+EXPOSE 8080
+ENTRYPOINT ["/app/uim-services-api"]

@@ -11,6 +11,7 @@ targetType "library"
 
 // dependencies
 dependency "uim-framework:errors" version="*"
+dependency "vibe-d" version="~>0.10.3"
 
 // configurations
 configuration "default" {
@@ -40,4 +41,12 @@ configuration "calls" {
 configuration "verbose" {
 	targetType "library"
 	versions "show_module" "show_test" "show_init" "show_function"
+}
+
+configuration "service" {
+	targetType "executable"
+	targetName "uim-services-api"
+	mainSourceFile "source/app.d"
+	targetPath "bin"
+	versions "show_module"
 }
