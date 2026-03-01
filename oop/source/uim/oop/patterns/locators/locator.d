@@ -439,7 +439,7 @@ class HierarchicalObjectLocator : ILocator {
   auto locator = new LazyObjectLocator();
   
   // Register factory
-  locator.registerFactory("lazy", () => cast(IObject) new LazyTestObject());
+  locator.registerFactory("lazy", () => cast(ILocatorObject) new LazyTestObject());
   assert(locator.hasObject("lazy"));
   
   // Object should be created on first access
@@ -454,7 +454,7 @@ class HierarchicalObjectLocator : ILocator {
 
 @safe unittest {
   // Test CachedObjectLocator
-  class CachedTestObject : Object {
+  class CachedTestObject : LocatorObject {
     this() {
       super("CachedObject");
     }
@@ -483,7 +483,7 @@ class HierarchicalObjectLocator : ILocator {
 
 @safe unittest {
   // Test HierarchicalObjectLocator
-  class ParentObject : Object {
+  class ParentObject : LocatorObject {
     this() {
       super("ParentObject");
     }
@@ -493,7 +493,7 @@ class HierarchicalObjectLocator : ILocator {
     }
   }
 
-  class ChildObject : Object {
+  class ChildObject : LocatorObject {
     this() {
       super("ChildObject");
     }

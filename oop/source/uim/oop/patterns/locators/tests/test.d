@@ -176,7 +176,7 @@ class CacheObject : LocatorObject {
   locator.registerFactory("email", () {
     auto svc = new EmailObject();
     svc.setRecipient("lazy@example.com");
-    return cast(IObject) svc;
+    return cast(ILocatorObject) svc;
   });
 
   assert(locator.hasObject("email"), "Factory-registered object should be available");
@@ -200,7 +200,7 @@ class CacheObject : LocatorObject {
   locator.registerObject("email", emailObject);
 
   // Register lazy object
-  locator.registerFactory("database", () => cast(IObject) new DatabaseObject());
+  locator.registerFactory("database", () => cast(ILocatorObject) new DatabaseObject());
 
   assert(locator.hasObject("email"));
   assert(locator.hasObject("database"));
