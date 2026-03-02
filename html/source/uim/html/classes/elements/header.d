@@ -33,7 +33,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Header : HtmlElement {
-  mixin(H5Template!("Header", "header", false));
+  mixin(HtmlTemplate!("Header", "header", false));
   mixin(HtmlMethods!H5Header);
 }
 ///

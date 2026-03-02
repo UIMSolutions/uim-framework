@@ -20,7 +20,7 @@ mixin(ShowModule!());
   * Note: The content of the <aside> element should be relevant to the surrounding content, but it is not essential for understanding the main content of the page.
   */
 class H5Aside : HtmlElement {
-  mixin(H5Template!("Aside", "aside", false));
+  mixin(HtmlTemplate!("Aside", "aside", false));
   mixin(HtmlMethods!H5Aside);
 }
 ///

@@ -27,7 +27,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Main : HtmlElement {
-  mixin(H5Template!("Main", "main", false));
+  mixin(HtmlTemplate!("Main", "main", false));
   mixin(HtmlMethods!H5Main);
 }
 ///

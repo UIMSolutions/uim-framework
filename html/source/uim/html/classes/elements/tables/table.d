@@ -33,25 +33,25 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-  @StringAttribute("border")
-  @StringAttribute("cellspacing")
-  @StringAttribute("cellpadding")
+@StringAttribute("border")
+@StringAttribute("cellspacing")
+@StringAttribute("cellpadding")
 class H5Table : HtmlElement {
-  mixin(H5Template!("Table", "table", false));
+  mixin(HtmlTemplate!("Table", "table", false));
   mixin(HtmlMethods!H5Table);
 }
 ///
 unittest {
   assert(H5Table() == `<table></table>`);
   assert(H5Table(["testclass"]) == `<table class="testclass"></table>`);
-  assert(H5Table(["a":"b"]) == `<table a="b"></table>`);
-  assert(H5Table(["testclass"], ["a":"b"]) == `<table class="testclass" a="b"></table>`);
+  assert(H5Table(["a": "b"]) == `<table a="b"></table>`);
+  assert(H5Table(["testclass"], ["a": "b"]) == `<table class="testclass" a="b"></table>`);
 
   assert(H5Table("Hello") == `<table>Hello</table>`);
   assert(H5Table(["testclass"], "Hello") == `<table class="testclass">Hello</table>`);
-  assert(H5Table(["a":"b"], "Hello") == `<table a="b">Hello</table>`);
+  assert(H5Table(["a": "b"], "Hello") == `<table a="b">Hello</table>`);
 
-  assert(H5Table(["testclass"], ["a":"b"], "Hello") == `<table class="testclass" a="b">Hello</table>`);
+  assert(H5Table(["testclass"], ["a": "b"], "Hello") == `<table class="testclass" a="b">Hello</table>`);
 
   assert(H5Table().border("1") == `<table border="1"></table>`);
   assert(H5Table().cellspacing("0") == `<table cellspacing="0"></table>`);

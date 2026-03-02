@@ -18,7 +18,7 @@ mixin(ShowModule!());
  * It is a self-closing element, meaning that it does not require a closing tag, and it can be styled using CSS to customize its appearance.
  */
 class H5Hr : HtmlElement {
-  mixin(H5Template!("Hr", "hr", true));
+  mixin(HtmlTemplate!("Hr", "hr", true));
   mixin(HtmlMethods!H5Hr);
 }
 ///

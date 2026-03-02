@@ -33,7 +33,7 @@ mixin(ShowModule!());
  @StringAttribute("type") // Specifies the type of numbering for the list items. Possible values include "1" for decimal numbers, "A" for uppercase letters, "a" for lowercase letters, "I" for uppercase Roman numerals, and "i" for lowercase Roman numerals.
  @StringAttribute("start") // Specifies the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
 class H5Ol : HtmlElement {
-  mixin(H5Template!("Ol", "ol", false));
+  mixin(HtmlTemplate!("Ol", "ol", false));
   mixin(HtmlMethods!H5Ol);
 }
 ///

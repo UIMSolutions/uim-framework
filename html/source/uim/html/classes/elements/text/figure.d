@@ -18,7 +18,7 @@ mixin(ShowModule!());
  * When used in conjunction with the <figcaption> element, the <figure> element helps to create a clear association between the media content and its caption or description.
  */
 class H5Figure : HtmlElement {
-  mixin(H5Template!("Figure", "figure", false));
+  mixin(HtmlTemplate!("Figure", "figure", false));
   mixin(HtmlMethods!H5Figure);
 }
 ///

@@ -27,7 +27,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Section : HtmlElement {
-  mixin(H5Template!("Section", "section", false));
+  mixin(HtmlTemplate!("Section", "section", false));
   mixin(HtmlMethods!H5Section);
 }
 ///

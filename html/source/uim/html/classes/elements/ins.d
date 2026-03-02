@@ -24,7 +24,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Ins : HtmlElement {
-  mixin(H5Template!("Ins", "ins", false));
+  mixin(HtmlTemplate!("Ins", "ins", false));
   mixin(HtmlMethods!H5Ins);
 }
 ///

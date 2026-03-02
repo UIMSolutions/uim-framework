@@ -25,7 +25,7 @@ mixin(ShowModule!());
     * ```
 */
 class H5Article : HtmlElement {
-  mixin(H5Template!("Article", "article", false));
+  mixin(HtmlTemplate!("Article", "article", false));
   mixin(HtmlMethods!H5Article);
 }
 ///

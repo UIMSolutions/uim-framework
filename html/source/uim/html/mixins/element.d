@@ -84,10 +84,10 @@ template H5Calls(string name) {
   const char[] H5Calls = h5Calls(name);
 }
 
-string h5Template(string name, string tag, bool selfClosing = false) {
+string htmlTemplate(string name, string tag, bool selfClosing = false) {
   return h5This(tag, selfClosing) ~ h5Calls(name);
 }
 
-template H5Template(string name, string tag, bool selfClosing = false) {
-  const char[] H5Template = h5Template(name, tag, selfClosing);
+template HtmlTemplate(string name, string tag, bool selfClosing = false) {
+  const char[] HtmlTemplate = htmlTemplate(name, tag, selfClosing);
 }

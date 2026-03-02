@@ -34,7 +34,7 @@ mixin(ShowModule!());
   * </table>
   */
 class H5Caption : HtmlElement {
-  mixin(H5Template!("Caption", "caption", false));
+  mixin(HtmlTemplate!("Caption", "caption", false));
   mixin(HtmlMethods!H5Caption);
 }
 ///

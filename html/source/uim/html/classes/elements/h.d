@@ -13,7 +13,7 @@ mixin(ShowModule!());
 
 /// HTML heading element (h1-h6)
 class H5H1 : HtmlElement {
-  mixin(H5Template!("H1", "h1", false));
+  mixin(HtmlTemplate!("H1", "h1", false));
   mixin(HtmlMethods!H5H1);
 }
 ///
@@ -30,7 +30,7 @@ unittest {
 }
 
 class H5H2 : HtmlElement {
-  mixin(H5Template!("H2", "h2", false));
+  mixin(HtmlTemplate!("H2", "h2", false));
   mixin(HtmlMethods!H5H2);
 }
 ///
@@ -47,7 +47,7 @@ unittest {
 }
 
 class H5H3 : HtmlElement {
-  mixin(H5Template!("H3", "h3", false));
+  mixin(HtmlTemplate!("H3", "h3", false));
   mixin(HtmlMethods!H5H3);
 }
 ///
@@ -64,7 +64,7 @@ unittest {
 }
 
 class H5H4 : HtmlElement {
-  mixin(H5Template!("H4", "h4", false));
+  mixin(HtmlTemplate!("H4", "h4", false));
   mixin(HtmlMethods!H5H4);
 }
 ///
@@ -81,7 +81,7 @@ unittest {
 }
 
 class H5H5 : HtmlElement {
-  mixin(H5Template!("H5", "h5", false));
+  mixin(HtmlTemplate!("H5", "h5", false));
   mixin(HtmlMethods!H5H5);
 }
 ///
@@ -98,7 +98,7 @@ unittest {
 }
 
 class H5H6 : HtmlElement {
-  mixin(H5Template!("H6", "h6", false));
+  mixin(HtmlTemplate!("H6", "h6", false));
   mixin(HtmlMethods!H5H6);
 }
 ///

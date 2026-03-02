@@ -41,7 +41,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Address : HtmlElement {
-  mixin(H5Template!("Address", "address", false));
+  mixin(HtmlTemplate!("Address", "address", false));
   mixin(HtmlMethods!H5Address);
 }
 ///
