@@ -13,7 +13,6 @@ mixin(ShowModule!());
 
 class H5Svg : HtmlElement {
   mixin(HtmlTemplate!("Svg", "svg", false));
-  mixin(HtmlMethods!H5Svg);
 }
 ///
 unittest {

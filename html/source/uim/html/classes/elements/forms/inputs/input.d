@@ -63,6 +63,26 @@ class H5Input : HtmlElement {
     return this;
   }
 
+  H5Input value(int aValue) {
+    attribute("value", to!string(aValue));
+    return this;
+  }
+
+  H5Input value(long aValue) {
+    attribute("value", to!string(aValue));
+    return this;
+  }
+
+  H5Input value(double aValue) {
+    attribute("value", to!string(aValue));
+    return this;
+  }
+
+  H5Input value(Json aValue) {
+    attribute("value", aValue.toString());
+    return this;
+  }
+  
   mixin(H5Calls!("Input"));
 }
 ///

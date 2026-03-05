@@ -27,11 +27,9 @@ mixin(ShowModule!());
   */
 
 @StringAttribute("type")
-@CssClass("primary", "btn-primary")
+@BoolAttribute("disabled") // disabled state
 class H5Button : HtmlElement {
-  mixin(H5This!("button", false));
-
-  mixin(HtmlMethods!H5Button);
+  mixin(HtmlTemplate!("Button", "button", false));
 
   H5Button submit() {
     type("submit");
@@ -42,13 +40,6 @@ class H5Button : HtmlElement {
     type("reset");
     return this;
   }
-
-  H5Button disabled() {
-    attribute("disabled", "");
-    return this;
-  }
-
-  mixin(H5Calls!("button"));
 }
 /// 
 unittest {
@@ -57,6 +48,4 @@ unittest {
   assert(H5Button().submit() == "<button type=\"submit\"></button>");
   assert(H5Button().reset() == "<button type=\"reset\"></button>");
   assert(H5Button().disabled() == "<button disabled></button>");
-  assert(H5Button().primary() == "<button class=\"btn-primary\"></button>");
-  assert(H5Button().primary().isPrimary());
 }

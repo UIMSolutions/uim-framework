@@ -65,19 +65,18 @@ unittest {
 
 class H5H4 : HtmlElement {
   mixin(HtmlTemplate!("H4", "h4", false));
-  mixin(HtmlMethods!H5H4);
 }
 ///
 unittest {
   assert(H5H4() == `<h4></h4>`);
   assert(H5H4(["testclass"]) == `<h4 class="testclass"></h4>`);
-  assert(H5H4(["a":"b"]) == `<h4 a="b"></h4>`);
+  assert(H5H4(["a": "b"]) == `<h4 a="b"></h4>`);
+  assert(H5H4(["testclass"], ["a": "b"]) == `<h4 class="testclass" a="b"></h4>`);
 
   assert(H5H4("Hello") == `<h4>Hello</h4>`);
   assert(H5H4(["testclass"], "Hello") == `<h4 class="testclass">Hello</h4>`);
-  assert(H5H4(["a":"b"], "Hello") == `<h4 a="b">Hello</h4>`);
-
-  assert(H5H4(["testclass"], ["a":"b"], "Hello") == `<h4 class="testclass" a="b">Hello</h4>`);
+  assert(H5H4(["a": "b"], "Hello") == `<h4 a="b">Hello</h4>`);
+  assert(H5H4(["testclass"], ["a": "b"], "Hello") == `<h4 class="testclass" a="b">Hello</h4>`);
 }
 
 class H5H5 : HtmlElement {

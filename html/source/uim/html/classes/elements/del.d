@@ -32,10 +32,10 @@ unittest {
   assert(H5Del() == `<del></del>`);
   assert(H5Del(["testclass"]) == `<del class="testclass"></del>`);
   assert(H5Del(["a": "b"]) == `<del a="b"></del>`);
+  assert(H5Del(["testclass"], ["a": "b"]) == `<del class="testclass" a="b"></del>`);
 
   assert(H5Del("Hello") == `<del>Hello</del>`);
   assert(H5Del(["testclass"], "Hello") == `<del class="testclass">Hello</del>`);
   assert(H5Del(["a": "b"], "Hello") == `<del a="b">Hello</del>`);
-
   assert(H5Del(["testclass"], ["a": "b"], "Hello") == `<del class="testclass" a="b">Hello</del>`);
 }

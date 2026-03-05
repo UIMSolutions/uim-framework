@@ -28,8 +28,8 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-  @StringAttribute("colspan") // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
-  @StringAttribute("rowspan") // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
+@StringAttribute("colspan")  // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
+@StringAttribute("rowspan")  // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
 class H5Td : HtmlElement {
   mixin(HtmlTemplate!("Td", "td", false));
   mixin(HtmlMethods!H5Td);
@@ -48,15 +48,17 @@ class H5Td : HtmlElement {
 unittest {
   assert(H5Td() == `<td></td>`);
   assert(H5Td(["testclass"]) == `<td class="testclass"></td>`);
-  assert(H5Td(["a":"b"]) == `<td a="b"></td>`);
-  assert(H5Td(["testclass"], ["a":"b"]) == `<td class="testclass" a="b"></td>`);
+  assert(H5Td(["a": "b"]) == `<td a="b"></td>`);
+  assert(H5Td(["testclass"], ["a": "b"]) == `<td class="testclass" a="b"></td>`);
 
   assert(H5Td("Hello") == `<td>Hello</td>`);
   assert(H5Td(["testclass"], "Hello") == `<td class="testclass">Hello</td>`);
-  assert(H5Td(["a":"b"], "Hello") == `<td a="b">Hello</td>`);
+  assert(H5Td(["a": "b"], "Hello") == `<td a="b">Hello</td>`);
 
-  assert(H5Td(["testclass"], ["a":"b"], "Hello") == `<td class="testclass" a="b">Hello</td>`);
+  assert(H5Td(["testclass"], ["a": "b"], "Hello") == `<td class="testclass" a="b">Hello</td>`);
 
+  assert(H5Td().colspan("2") == `<td colspan="2"></td>`);
   assert(H5Td().colspan(2) == `<td colspan="2"></td>`);
+  assert(H5Td().rowspan("3") == `<td rowspan="3"></td>`);
   assert(H5Td().rowspan(3) == `<td rowspan="3"></td>`);
 }

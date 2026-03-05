@@ -25,7 +25,6 @@ mixin(ShowModule!());
   */
 class H5Ins : HtmlElement {
   mixin(HtmlTemplate!("Ins", "ins", false));
-  mixin(HtmlMethods!H5Ins);
 }
 ///
 unittest {

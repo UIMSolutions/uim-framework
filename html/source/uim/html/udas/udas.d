@@ -61,11 +61,15 @@ struct CssClass {
   string methodName;
   string className;
   string isName;
+  string prefix;
+  string postfix;
 
-  this(string methodName, string className = "") {
+  this(string methodName, string className = "", string prefix = "", string postfix = "") {
     this.methodName = methodName;
-    this.className = className.length > 0 ? className : methodName;
+    this.className = (prefix.length > 0 ? prefix~"-" : "") ~ (className.length > 0 ? className : methodName) ~ (postfix.length > 0 ? "-"~postfix : "");
     this.isName = "is" ~ methodName[0 .. 1].toUpper() ~ methodName[1 .. $];
+    this.prefix = prefix;
+    this.postfix = postfix;
   }
 }
 
