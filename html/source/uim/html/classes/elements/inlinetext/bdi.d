@@ -18,17 +18,6 @@ mixin(ShowModule!());
  */
 class H5Bdi : HtmlElement {
   mixin(HtmlTemplate!(H5Bdi, "Bdi", "bdi", false));
-
-  /// Creates a new <bdi> element with optional content.
-  static H5Bdi opCall() {
-    return new H5Bdi();
-  }
-
-  static H5Bdi opCall(string content) {
-    auto element = new H5Bdi();
-    element.content(content);
-    return element;
-  }
 }
 ///
 unittest {

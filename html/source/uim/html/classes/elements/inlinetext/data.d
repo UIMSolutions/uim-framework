@@ -29,6 +29,7 @@ class H5Data : HtmlElement {
     attribute("value", val);
     return this;
   }
+}
 ///
 unittest {
   assert(H5Data() == "<data></data>");

@@ -23,6 +23,7 @@ templating workflows, and static page composition.
 - **UDA Support**: Declarative metadata using User Defined Attributes for tags, categories, and capabilities
 - **Document Generation**: Complete HTML document builder
 - **Self-Closing Tags**: Automatic handling of void elements (br, hr, img, etc.)
+- **Unified Mixin Pattern**: `HtmlTemplate!(ElementType, Name, Tag, selfClosing)` for constructors, fluent methods, and static factories
 
 ## Installation
 
@@ -146,8 +147,8 @@ auto submit = SubmitInput("Submit");
 ```d
 // Textarea
 auto textarea = Textarea("comment")
-    .rows("5")
-    .cols("40")
+    .rows(5)
+    .cols(40)
     .placeholder("Enter your comment");
 
 // Select dropdown
@@ -307,6 +308,9 @@ assert(styled.isPrimary());
 `@CssClass("name")` generates `name()` and `isName()` for the same CSS class.
 Use `@CssClass("methodName", "class-name")` when the fluent method should differ from the emitted CSS class token.
 
+Element UDAs like `@StringAttribute` and `@BoolAttribute` generate fluent helpers as well.
+For example, `H5Textarea` supports both `rows(size_t)` and `rows(string)` (same for `cols`).
+
 ### Getting Attributes
 
 ```d
@@ -315,6 +319,20 @@ auto classAttr = element.attribute("class");  // Get attribute object
 ```
 
 ## Advanced Usage
+
+### Element Template Pattern
+
+Most concrete elements are defined with a single mixin:
+
+```d
+import uim.html;
+
+class H5Geolocation : HtmlElement {
+    mixin(HtmlTemplate!(H5Geolocation, "Geolocation", "geolocation", false));
+}
+```
+
+This is the preferred style over manually combining `H5This`, `H5Calls`, and `HtmlMethods`.
 
 ### Building Complex Structures
 

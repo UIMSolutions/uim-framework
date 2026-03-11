@@ -41,11 +41,7 @@ class H5Textarea : HtmlElement {
     attribute("cols", colCount.to!string);
     return this;
   }
-  
-  H5Textarea placeholder(string placeholderText) {
-    attribute("placeholder", placeholderText);
-    return this;
-  }
+}
 ///
 unittest {
   assert(H5Textarea() == "<textarea></textarea>");

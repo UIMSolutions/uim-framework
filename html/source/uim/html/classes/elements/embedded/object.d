@@ -30,7 +30,7 @@ mixin(ShowModule!());
  @StringAttribute("name")
  @StringAttribute("form")
 class H5Object : HtmlElement {
-  mixin(HtmlTemplate!("object", false));
+  mixin(HtmlTemplate!(H5Object, "Object", "object", false));
 }
 ///
 unittest {

@@ -197,6 +197,8 @@ class H5Input {
 
 class "<<mixin>> H5This" as H5This
 class "<<mixin>> H5Calls" as H5Calls
+class "<<mixin>> HtmlTemplate" as HtmlTemplate
+class "<<mixin>> HtmlMethods" as HtmlMethods
 class "<<mixin>> H5InputThis" as H5InputThis
 
 H5Div --|> HtmlElement
@@ -204,20 +206,20 @@ H5Img --|> HtmlElement
 H5Form --|> HtmlElement
 H5Input --|> HtmlElement
 
-H5Div ..> H5This : uses
-H5Div ..> H5Calls : uses
-H5Img ..> H5This : uses
-H5Img ..> H5Calls : uses
-H5Form ..> H5This : uses
-H5Form ..> H5Calls : uses
-H5Input ..> H5This : uses
-H5Input ..> H5Calls : uses
+H5Div ..> HtmlTemplate : uses
+H5Img ..> HtmlTemplate : uses
+H5Form ..> HtmlTemplate : uses
+H5Input ..> HtmlTemplate : uses
+HtmlTemplate ..> H5This : composes
+HtmlTemplate ..> H5Calls : composes
+HtmlTemplate ..> HtmlMethods : composes
 H5Input ..> H5InputThis : optional typed setup
 
-note right of H5This
-Generates constructor overloads
-for tag/class/attribute/content
-combinations.
+note right of HtmlTemplate
+Preferred element mixin entry point.
+Combines constructor overloads,
+static opCall factories,
+and fluent attribute helpers.
 end note
 
 note right of H5Calls
@@ -312,6 +314,6 @@ deactivate Doc
 ```
 
 ## Notes
-- Most concrete elements are generated with a common pattern (`H5This` + `H5Calls`) to reduce boilerplate while preserving explicit class types.
+- Most concrete elements are generated with `HtmlTemplate!(ElementType, Name, Tag, selfClosing)`, which composes `H5This`, `H5Calls`, and `HtmlMethods`.
 - `HtmlDocument` owns page-level concerns (head/body/meta/resources), while `HtmlElement` focuses on tag-level composition and rendering.
 - UDA support in `uim.html.udas` enables compile-time classification and metadata-driven tooling for elements.
