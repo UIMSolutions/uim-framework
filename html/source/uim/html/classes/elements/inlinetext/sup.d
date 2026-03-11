@@ -22,6 +22,12 @@ class H5Sup : HtmlElement {
 ///
 unittest {
   assert(H5Sup() == "<sup></sup>");
+  assert(H5Sup(["testclass"]) == "<sup class=\"testclass\"></sup>");
+  assert(H5Sup(["a":"b"]) == "<sup a=\"b\"></sup>");
+  assert(H5Sup(["testclass"], ["a":"b"]) == "<sup class=\"testclass\" a=\"b\"></sup>");
+
   assert(H5Sup("Hello") == "<sup>Hello</sup>");
-  assert(H5Sup(["test"], "Hello") == `<sup class="test">Hello</sup>`);
+  assert(H5Sup(["testclass"], "Hello") == `<sup class="testclass">Hello</sup>`);
+  assert(H5Sup(["a":"b"], "Hello") == `<sup a="b">Hello</sup>`);
+  assert(H5Sup(["testclass"], ["a":"b"], "Hello") == `<sup class="testclass" a="b">Hello</sup>`);
 }

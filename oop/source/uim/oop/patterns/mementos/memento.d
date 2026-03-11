@@ -210,7 +210,7 @@ class GameCharacter : IOriginator {
 
 
 
-// Real-world example: Configuration Manager
+// Real-world example: MementoConfiguration Manager
 
 
 
@@ -410,7 +410,7 @@ class MultiLevelUndoManager : IMultiLevelUndoManager {
 
 @safe unittest {
     // Test configuration save/restore
-    auto config = new Configuration();
+    auto config = new MementoConfiguration();
     config.set("theme", "dark");
     config.set("language", "en");
     

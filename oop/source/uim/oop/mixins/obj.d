@@ -41,14 +41,22 @@ template ObjThis(string name, bool withOverride = true) {
   const char[] ObjThis = objThis(name, withOverride);
 }
 
-string objCalls(string name) {
+string objCalls(string name, string resultType = "auto") {
   return `
-    auto {name}() { return new D{name}(); }
-    auto {name}(Json[string] initData) { return new D{name}(initData); }
-    auto {name}(string name, Json[string] initData = null) { return new D{name}(name, initData); }
-    `.replace("{name}", name);
+    {resultType} {name}() {{ return new D{name}(); }}
+    {resultType} {name}(Json[string] initData) {{ return new D{name}(initData); }}
+    {resultType} {name}(string name, Json[string] initData = null) {{ return new D{name}(name, initData); }}
+    `.replace("{name}", name).replace("{resultType}", resultType);
 }
 
-template ObjCalls(string name) {
-  const char[] ObjCalls = objCalls(name);
+template ObjCalls(string name, string resultType = "auto") {
+  const char[] ObjCalls = objCalls(name, resultType);
+}
+
+string objTemplate(string name, bool withOverride = true, string resultType = "auto") {
+  return objThis(name, withOverride) ~ objCalls(name, resultType);
+}
+
+template ObjTemplate(alias htmlClass, string name, bool withOverride = true, string resultType = "auto") {
+  const char[] ObjTemplate = objTemplate(name, withOverride, resultType); // ~ HtmlMethods!htmlClass;
 }

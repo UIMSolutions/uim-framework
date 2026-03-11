@@ -13,7 +13,7 @@ mixin(ShowModule!());
 /**
  * Application configuration with rollback support.
  */
-class Configuration : IOriginator {
+class MementoConfiguration : IOriginator {
     private string[string] _settings;
     
     @safe void set(string key, string value) {
@@ -50,7 +50,7 @@ class Configuration : IOriginator {
         private string[string] _savedSettings;
         
         this(string[string] settings) {
-            super("Configuration");
+            super("MementoConfiguration");
             _savedSettings = settings;
         }
         
