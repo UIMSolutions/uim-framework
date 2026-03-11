@@ -18,19 +18,19 @@ mixin(ShowModule!());
  * When used in conjunction with the <figcaption> element, the <figure> element helps to create a clear association between the media content and its caption or description.
  */
 class H5Figure : HtmlElement {
-  mixin(HtmlTemplate!("Figure", "figure", false));
+  mixin(HtmlTemplate!(H5Figure, "Figure", "figure", false));
   mixin(HtmlMethods!H5Figure);
 }
 ///
 unittest {
   assert(H5Figure() == `<figure></figure>`);
   assert(H5Figure(["testclass"]) == `<figure class="testclass"></figure>`);
-  assert(H5Figure(["a":"b"]) == `<figure a="b"></figure>`);
-  assert(H5Figure(["testclass"], ["a":"b"]) == `<figure class="testclass" a="b"></figure>`);
+  assert(H5Figure(["a": "b"]) == `<figure a="b"></figure>`);
+  assert(H5Figure(["testclass"], ["a": "b"]) == `<figure class="testclass" a="b"></figure>`);
 
   assert(H5Figure("Hello") == `<figure>Hello</figure>`);
   assert(H5Figure(["testclass"], "Hello") == `<figure class="testclass">Hello</figure>`);
-  assert(H5Figure(["a":"b"], "Hello") == `<figure a="b">Hello</figure>`);
+  assert(H5Figure(["a": "b"], "Hello") == `<figure a="b">Hello</figure>`);
 
-  assert(H5Figure(["testclass"], ["a":"b"], "Hello") == `<figure class="testclass" a="b">Hello</figure>`);
+  assert(H5Figure(["testclass"], ["a": "b"], "Hello") == `<figure class="testclass" a="b">Hello</figure>`);
 }

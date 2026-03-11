@@ -18,18 +18,18 @@ mixin(ShowModule!());
   * auto caption = H5Caption("Table Caption");
   */
 class H5Caption : HtmlElement {
-  mixin(HtmlTemplate!("Caption", "caption", false));
+  mixin(HtmlTemplate!(H5Caption, "Caption", "caption", false));
   mixin(HtmlMethods!H5Caption);
 }
 ///
 unittest {
   assert(H5Caption() == `<caption></caption>`);
   assert(H5Caption(["testclass"]) == `<caption class="testclass"></caption>`);
-  assert(H5Caption(["a":"b"]) == `<caption a="b"></caption>`);
+  assert(H5Caption(["a": "b"]) == `<caption a="b"></caption>`);
 
   assert(H5Caption("Hello") == `<caption>Hello</caption>`);
   assert(H5Caption(["testclass"], "Hello") == `<caption class="testclass">Hello</caption>`);
-  assert(H5Caption(["a":"b"], "Hello") == `<caption a="b">Hello</caption>`);
+  assert(H5Caption(["a": "b"], "Hello") == `<caption a="b">Hello</caption>`);
 
-  assert(H5Caption(["testclass"], ["a":"b"], "Hello") == `<caption class="testclass" a="b">Hello</caption>`);
+  assert(H5Caption(["testclass"], ["a": "b"], "Hello") == `<caption class="testclass" a="b">Hello</caption>`);
 }

@@ -24,7 +24,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Del : HtmlElement {
-  mixin(HtmlTemplate!("Del", "del", false));
+  mixin(HtmlTemplate!(H5Del, "Del", "del", false));
   mixin(HtmlMethods!H5Del);
 }
 ///

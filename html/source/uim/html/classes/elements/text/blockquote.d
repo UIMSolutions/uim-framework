@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * </blockquote>
   * ```
   */
-  @StringAttribute("cite")
+@StringAttribute("cite")
 class H5Blockquote : HtmlElement {
   mixin(HtmlTemplate!(H5Blockquote, "Blockquote", "blockquote", false));
   mixin(HtmlMethods!H5Blockquote);
@@ -34,14 +34,14 @@ class H5Blockquote : HtmlElement {
 unittest {
   assert(H5Blockquote() == `<blockquote></blockquote>`);
   assert(H5Blockquote(["testclass"]) == `<blockquote class="testclass"></blockquote>`);
-  assert(H5Blockquote(["a":"b"]) == `<blockquote a="b"></blockquote>`);
-  assert(H5Blockquote(["testclass"], ["a":"b"]) == `<blockquote class="testclass" a="b"></blockquote>`);
+  assert(H5Blockquote(["a": "b"]) == `<blockquote a="b"></blockquote>`);
+  assert(H5Blockquote(["testclass"], ["a": "b"]) == `<blockquote class="testclass" a="b"></blockquote>`);
 
   assert(H5Blockquote("Hello") == `<blockquote>Hello</blockquote>`);
   assert(H5Blockquote(["testclass"], "Hello") == `<blockquote class="testclass">Hello</blockquote>`);
-  assert(H5Blockquote(["a":"b"], "Hello") == `<blockquote a="b">Hello</blockquote>`);
+  assert(H5Blockquote(["a": "b"], "Hello") == `<blockquote a="b">Hello</blockquote>`);
 
-  assert(H5Blockquote(["testclass"], ["a":"b"], "Hello") == `<blockquote class="testclass" a="b">Hello</blockquote>`);
+  assert(H5Blockquote(["testclass"], ["a": "b"], "Hello") == `<blockquote class="testclass" a="b">Hello</blockquote>`);
 
   assert(H5Blockquote()
       .cite("https://example.com") == `<blockquote cite="https://example.com"></blockquote>`);

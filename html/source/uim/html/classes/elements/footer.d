@@ -26,7 +26,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Footer : HtmlElement {
-  mixin(HtmlTemplate!("Footer", "footer", false));
+  mixin(HtmlTemplate!(H5Footer, "Footer", "footer", false));
 }
 ///
 unittest {

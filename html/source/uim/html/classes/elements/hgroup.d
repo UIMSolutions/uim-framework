@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Hgroup : HtmlElement {
-  mixin(HtmlTemplate!("Hgroup", "hgroup", false));
+  mixin(HtmlTemplate!(H5Hgroup, "Hgroup", "hgroup", false));
   mixin(HtmlMethods!H5Hgroup);
 }
 ///

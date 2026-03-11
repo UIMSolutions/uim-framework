@@ -33,18 +33,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Header : HtmlElement {
-  mixin(HtmlTemplate!("Header", "header", false));
+  mixin(HtmlTemplate!(H5Header, "Header", "header", false));
   mixin(HtmlMethods!H5Header);
 }
 ///
 unittest {
   assert(H5Header() == `<header></header>`);
   assert(H5Header(["testclass"]) == `<header class="testclass"></header>`);
-  assert(H5Header(["a":"b"]) == `<header a="b"></header>`);
+  assert(H5Header(["a": "b"]) == `<header a="b"></header>`);
 
   assert(H5Header("Hello") == `<header>Hello</header>`);
   assert(H5Header(["testclass"], "Hello") == `<header class="testclass">Hello</header>`);
-  assert(H5Header(["a":"b"], "Hello") == `<header a="b">Hello</header>`);
+  assert(H5Header(["a": "b"], "Hello") == `<header a="b">Hello</header>`);
 
-  assert(H5Header(["testclass"], ["a":"b"], "Hello") == `<header class="testclass" a="b">Hello</header>`);
+  assert(H5Header(["testclass"], ["a": "b"], "Hello") == `<header class="testclass" a="b">Hello</header>`);
 }

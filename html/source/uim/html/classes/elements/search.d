@@ -27,17 +27,17 @@ mixin(ShowModule!());
   * ```
   */
 class H5Search : HtmlElement {
-  mixin(HtmlTemplate!("Search", "search", false));
+  mixin(HtmlTemplate!(H5Search, "Search", "search", false));
 }
 ///
 unittest {
   assert(H5Search() == `<search></search>`);
   assert(H5Search(["testclass"]) == `<search class="testclass"></search>`);
-  assert(H5Search(["a":"b"]) == `<search a="b"></search>`);
+  assert(H5Search(["a": "b"]) == `<search a="b"></search>`);
 
   assert(H5Search("Hello") == `<search>Hello</search>`);
   assert(H5Search(["testclass"], "Hello") == `<search class="testclass">Hello</search>`);
-  assert(H5Search(["a":"b"], "Hello") == `<search a="b">Hello</search>`);
+  assert(H5Search(["a": "b"], "Hello") == `<search a="b">Hello</search>`);
 
-  assert(H5Search(["testclass"], ["a":"b"], "Hello") == `<search class="testclass" a="b">Hello</search>`);
+  assert(H5Search(["testclass"], ["a": "b"], "Hello") == `<search class="testclass" a="b">Hello</search>`);
 }

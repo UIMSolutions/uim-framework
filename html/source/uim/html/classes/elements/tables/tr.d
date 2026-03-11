@@ -31,7 +31,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tr : HtmlElement {
-  mixin(HtmlTemplate!("Tr", "tr", false));
+  mixin(HtmlTemplate!(H5Tr, "Tr", "tr", false));
 }
 ///
 unittest {

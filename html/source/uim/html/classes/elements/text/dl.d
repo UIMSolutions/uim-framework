@@ -25,12 +25,12 @@ class H5Dl : HtmlElement {
 unittest {
   assert(H5Dl() == `<dl></dl>`);
   assert(H5Dl(["testclass"]) == `<dl class="testclass"></dl>`);
-  assert(H5Dl(["a":"b"]) == `<dl a="b"></dl>`);
-  assert(H5Dl(["testclass"], ["a":"b"]) == `<dl class="testclass" a="b"></dl>`);
+  assert(H5Dl(["a": "b"]) == `<dl a="b"></dl>`);
+  assert(H5Dl(["testclass"], ["a": "b"]) == `<dl class="testclass" a="b"></dl>`);
 
   assert(H5Dl("Hello") == `<dl>Hello</dl>`);
   assert(H5Dl(["testclass"], "Hello") == `<dl class="testclass">Hello</dl>`);
-  assert(H5Dl(["a":"b"], "Hello") == `<dl a="b">Hello</dl>`);
+  assert(H5Dl(["a": "b"], "Hello") == `<dl a="b">Hello</dl>`);
 
-  assert(H5Dl(["testclass"], ["a":"b"], "Hello") == `<dl class="testclass" a="b">Hello</dl>`);
+  assert(H5Dl(["testclass"], ["a": "b"], "Hello") == `<dl class="testclass" a="b">Hello</dl>`);
 }

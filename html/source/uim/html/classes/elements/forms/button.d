@@ -27,9 +27,9 @@ mixin(ShowModule!());
   */
 
 @StringAttribute("type")
-@BoolAttribute("disabled") // disabled state
+@BoolAttribute("disabled")  // disabled state
 class H5Button : HtmlElement {
-  mixin(HtmlTemplate!("Button", "button", false));
+  mixin(HtmlTemplate!(H5Button, "Button", "button", false));
 
   H5Button submit() {
     type("submit");
