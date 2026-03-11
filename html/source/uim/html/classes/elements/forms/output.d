@@ -40,7 +40,7 @@ mixin(ShowModule!());
   * </form>
   */
 class H5Output : HtmlElement {
-  mixin(H5This!("output", false));
+  mixin(HtmlTemplate!(H5Output, "Output", "output", false));
 
   /// Associates the output element with other elements
   H5Output forElement(string elementId) {
@@ -51,8 +51,6 @@ class H5Output : HtmlElement {
   IHtmlAttribute forElement() {
     return attribute("for");
   }
-
-  mixin(H5Calls!("Output"));
 }
 ///
 unittest {

@@ -28,9 +28,7 @@ mixin(ShowModule!());
  @StringAttribute("name") // The name attribute specifies the name of the fieldset, which can be used to reference it in scripts or styles.
  @BoolAttribute("disabled") // The disabled attribute indicates that the fieldset is disabled, meaning that the user cannot interact with it or its child elements.
 class H5Fieldset : HtmlElement {
-  mixin(H5This!("fieldset", false));
-
-  mixin(H5Calls!("fieldset"));
+  mixin(HtmlTemplate!(H5Fieldset, "Fieldset", "fieldset", false));
 }
 ///
 unittest {

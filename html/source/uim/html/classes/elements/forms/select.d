@@ -29,7 +29,7 @@ mixin(ShowModule!());
   * </form>
  */
 class H5Select : HtmlElement {
-  mixin(H5This!("select", false));
+  mixin(HtmlTemplate!(H5Select, "Select", "select", false));
 
   /// Gets the name attribute of the select element.
   IHtmlAttribute name() {
@@ -78,10 +78,8 @@ class H5Select : HtmlElement {
     addContent(option);
     return this;
   }
-
-  mixin(H5Calls!("Select"));
 }
-
+///
 unittest {
   assert(H5Select() == "<select></select>");
   assert(H5Select("country") == "<select>country</select>");

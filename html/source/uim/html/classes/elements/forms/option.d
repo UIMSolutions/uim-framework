@@ -31,7 +31,7 @@ mixin(ShowModule!());
   * </select> 
   */
 class H5Option : HtmlElement {
-  mixin(H5This!("option", false));
+  mixin(HtmlTemplate!(H5Option, "Option", "option", false));
 
   H5Option value(string valueValue) {
     attribute("value", valueValue);
@@ -68,8 +68,6 @@ class H5Option : HtmlElement {
     }
     return this;
   }
-
-  mixin(H5Calls!("Option"));
 }
 ///
 unittest {

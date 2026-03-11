@@ -27,7 +27,7 @@ unittest {
   assert(H5Aside() == `<aside></aside>`);
   assert(H5Aside(["testclass"]) == `<aside class="testclass"></aside>`);
   assert(H5Aside(["a":"b"]) == `<aside a="b"></aside>`);
-  assert(H5Aside(["testclass"], ["a":"b"]) == `<aside a="b"></aside>`);
+  assert(H5Aside(["testclass"], ["a":"b"]) == `<aside class="testclass" a="b"></aside>`);
 
   assert(H5Aside("Hello") == `<aside>Hello</aside>`);
   assert(H5Aside(["testclass"], "Hello") == `<aside class="testclass">Hello</aside>`);

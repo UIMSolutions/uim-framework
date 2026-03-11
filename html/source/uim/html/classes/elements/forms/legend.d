@@ -18,15 +18,10 @@ mixin(ShowModule!());
   * </fieldset>
   */
 class H5Legend : HtmlElement {
-  mixin(H5This!("legend"));
-
-  mixin(HtmlMethods!H5Legend);
-
-  mixin(H5Calls!("legend"));
+  mixin(HtmlTemplate!(H5Legend, "Legend", "legend", false));
 }
 /// 
 unittest {
   assert(H5Legend() == "<legend></legend>");
   assert(H5Legend("Hello") == "<legend>Hello</legend>");
-
 }
