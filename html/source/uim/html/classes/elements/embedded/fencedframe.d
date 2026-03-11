@@ -26,9 +26,7 @@ mixin(ShowModule!());
  * This would create a fenced frame containing a paragraph of text.
  */
 class H5Fencedframe : HtmlElement {
-  mixin(H5This!("fencedframe", false));
-
-  mixin(H5Calls!("fencedframe"));
+  mixin(HtmlTemplate!(H5Fencedframe, "Fencedframe", "fencedframe", false));
 }
 ///
 unittest {

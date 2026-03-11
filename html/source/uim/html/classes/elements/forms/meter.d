@@ -20,7 +20,7 @@ mixin(ShowModule!());
   * <meter value="0.6" min="0" max="1" low="0.3" high="0.8" optimum="0.5">60%</meter>
   */
 class H5Meter : HtmlElement {
-  mixin(H5This!("meter", false));
+  mixin(HtmlTemplate!(H5Meter, "Meter", "meter", false));
 
   /// Sets the value attribute of the meter.
   H5Meter value(double val) {
@@ -63,8 +63,6 @@ class H5Meter : HtmlElement {
     attribute("optimum", val.to!string);
     return this;
   }
-
-  mixin(H5Calls!("Meter"));
 }
 ///
 unittest {

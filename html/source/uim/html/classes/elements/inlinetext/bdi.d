@@ -17,11 +17,9 @@ mixin(ShowModule!());
  * The <bdi> element does not affect the directionality of the text it contains, but it prevents the surrounding text from affecting the directionality of the contained text.
  */
 class H5Bdi : HtmlElement {
-  mixin(H5This!("bdi", false));
+  mixin(HtmlTemplate!(H5Bdi, "Bdi", "bdi", false));
 
-   /// Creates a new <bdi> element with optional content.
-
-
+  /// Creates a new <bdi> element with optional content.
   static H5Bdi opCall() {
     return new H5Bdi();
   }

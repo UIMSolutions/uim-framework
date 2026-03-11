@@ -20,13 +20,9 @@ mixin(ShowModule!());
   * <p>This is an <em>important</em> message.</p>
   */
 class H5Em : HtmlElement {
-  mixin(H5This!("em", false));
-
-  mixin(HtmlMethods!H5Em);
-
-  mixin(H5Calls!("em"));
+  mixin(HtmlTemplate!(H5Em, "Em", "em", false));
 }
-
+///
 unittest {
   assert(H5Em() == "<em></em>");
   assert(H5Em("Hello") == "<em>Hello</em>");

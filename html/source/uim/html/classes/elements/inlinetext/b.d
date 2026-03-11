@@ -12,9 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class H5B : HtmlElement {
-  mixin(H5This!("b", false));
-
-  mixin(H5Calls!("B"));
+  mixin(HtmlTemplate!(H5B, "B", "b", false));
 }
 ///
 unittest {

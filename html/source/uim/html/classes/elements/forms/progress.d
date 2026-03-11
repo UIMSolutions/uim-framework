@@ -26,7 +26,7 @@ mixin(ShowModule!());
 @StringAttribute("value")
 @StringAttribute("max")
 class H5Progress : HtmlElement {
-  mixin(H5This!("progress", false));
+  mixin(HtmlTemplate!(H5Progress, "Progress", "progress", false));
 
   /// Sets the value attribute of the progress element, indicating the current progress.
   H5Progress value(double val) {
@@ -39,8 +39,6 @@ class H5Progress : HtmlElement {
     attribute("max", val.to!string);
     return this;
   }
-
-  mixin(H5Calls!("Progress"));
 }
 ///
 unittest {

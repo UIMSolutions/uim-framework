@@ -20,11 +20,7 @@ mixin(ShowModule!());
   */
 @StringAttribute("title") // The 'title' attribute provides additional information about the term being defined.
 class H5Dfn : HtmlElement {
-  mixin(H5This!("dfn", false));
-
-  mixin(HtmlMethods!H5Dfn);
-  
-  mixin(H5Calls!("Dfn"));
+  mixin(HtmlTemplate!(H5Dfn, "Dfn", "dfn", false));
 }
 ///
 unittest {
