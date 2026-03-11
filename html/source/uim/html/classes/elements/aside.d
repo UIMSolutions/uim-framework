@@ -20,17 +20,17 @@ mixin(ShowModule!());
   * Note: The content of the <aside> element should be relevant to the surrounding content, but it is not essential for understanding the main content of the page.
   */
 class H5Aside : HtmlElement {
-  mixin(HtmlTemplate!("Aside", "aside", false));
+  mixin(HtmlTemplate!(H5Aside,"Aside", "aside", false));
 }
 ///
 unittest {
   assert(H5Aside() == `<aside></aside>`);
   assert(H5Aside(["testclass"]) == `<aside class="testclass"></aside>`);
   assert(H5Aside(["a":"b"]) == `<aside a="b"></aside>`);
+  assert(H5Aside(["testclass"], ["a":"b"]) == `<aside a="b"></aside>`);
 
   assert(H5Aside("Hello") == `<aside>Hello</aside>`);
   assert(H5Aside(["testclass"], "Hello") == `<aside class="testclass">Hello</aside>`);
   assert(H5Aside(["a":"b"], "Hello") == `<aside a="b">Hello</aside>`);
-
   assert(H5Aside(["testclass"], ["a":"b"], "Hello") == `<aside class="testclass" a="b">Hello</aside>`);
 }

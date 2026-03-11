@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class H5Svg : HtmlElement {
-  mixin(HtmlTemplate!("Svg", "svg", false));
+  mixin(HtmlTemplate!(H5Svg, "Svg", "svg", false));
 }
 ///
 unittest {

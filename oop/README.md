@@ -141,6 +141,43 @@ set.add("item1");
 set.add("item2");
 ```
 
+### Spring-style UDAs
+
+The OOP package includes Spring-inspired UDAs (annotations) in a dedicated module:
+
+```d
+import uim.oop.udas;
+```
+
+Note: `uim.oop.udas` is imported explicitly to avoid naming collisions with existing MVC symbols (for example `Controller`).
+
+```d
+import std.traits : hasUDA;
+import uim.oop.udas;
+
+@Service("userService")
+class UserService {
+  @Autowired(true)
+  UserRepository repository;
+}
+
+@Controller("users")
+class UserController {
+  @GetMapping("/users")
+  void list() {}
+}
+
+static assert(hasComponentAttribute!UserService);
+static assert(getComponentName!UserService == "userService");
+
+alias listMethod = __traits(getMember, UserController, "list");
+static assert(hasRequestMapping!listMethod);
+static assert(getRequestMethod!listMethod == "GET");
+static assert(getRequestPath!listMethod == "/users");
+```
+
+Available stereotypes and DI-related UDAs include `Component`, `Service`, `Repository`, `Controller`, `Configuration`, `Bean`, `Autowired`, `Inject`, `Qualifier`, `Value`, `Scope`, `Lazy`, `Primary`, `PostConstruct`, `PreDestroy`, `Getter`, `Setter`, `Accessor`, and HTTP mapping UDAs.
+
 ## Build Configurations
 
 The library provides several build configurations for different use cases:

@@ -41,7 +41,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Address : HtmlElement {
-  mixin(HtmlTemplate!("Address", "address", false));
+  mixin(HtmlTemplate!(H5Address, "Address", "address", false));
 }
 ///
 unittest {
@@ -53,6 +53,5 @@ unittest {
   assert(H5Address("Hello") == `<address>Hello</address>`);
   assert(H5Address(["testclass"], "Hello") == `<address class="testclass">Hello</address>`);
   assert(H5Address(["a":"b"], "Hello") == `<address a="b">Hello</address>`);
-
   assert(H5Address(["testclass"], ["a":"b"], "Hello") == `<address class="testclass" a="b">Hello</address>`);
 }

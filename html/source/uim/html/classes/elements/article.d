@@ -25,17 +25,17 @@ mixin(ShowModule!());
     * ```
 */
 class H5Article : HtmlElement {
-  mixin(HtmlTemplate!("Article", "article", false));
+  mixin(HtmlTemplate!(H5Article, "Article", "article", false));
 }
 ///
 unittest {
   assert(H5Article() == `<article></article>`);
   assert(H5Article(["testclass"]) == `<article class="testclass"></article>`);
   assert(H5Article(["a":"b"]) == `<article a="b"></article>`);
+  assert(H5Article(["testclass"], ["a":"b"]) == `<article class="testclass" a="b"></article>`);
 
   assert(H5Article("Hello") == `<article>Hello</article>`);
   assert(H5Article(["testclass"], "Hello") == `<article class="testclass">Hello</article>`);
   assert(H5Article(["a":"b"], "Hello") == `<article a="b">Hello</article>`);
-
   assert(H5Article(["testclass"], ["a":"b"], "Hello") == `<article class="testclass" a="b">Hello</article>`);
 }

@@ -48,8 +48,8 @@ string h5This(string tag, bool selfClosing = false) {
     super("{tag}".toLower(), classes, attributes, elements);
     _selfClosing = {selfClosing};
   }`
-  .mustache("tag", tag)
-  .mustache("selfClosing", selfClosing ? "true" : "false");
+    .mustache("tag", tag)
+    .mustache("selfClosing", selfClosing ? "true" : "false");
 }
 
 template H5This(string tag, bool selfClosing = false) {
@@ -58,8 +58,8 @@ template H5This(string tag, bool selfClosing = false) {
 
 string h5Calls(string name) {
   if (name.length > 0) {
-    name = "H5" ~ name[0..1].capitalize ~ name[1 .. $];
-  }  
+    name = "H5" ~ name[0 .. 1].capitalize ~ name[1 .. $];
+  }
 
   return `
     static {name} opCall() {
@@ -88,6 +88,6 @@ string htmlTemplate(string name, string tag, bool selfClosing = false) {
   return h5This(tag, selfClosing) ~ h5Calls(name);
 }
 
-template HtmlTemplate(string name, string tag, bool selfClosing = false) {
-  const char[] HtmlTemplate = htmlTemplate(name, tag, selfClosing);
+template HtmlTemplate(alias htmlClass, string name, string tag, bool selfClosing = false) {
+  const char[] HtmlTemplate = htmlTemplate(name, tag, selfClosing) ~ HtmlMethods!htmlClass;
 }

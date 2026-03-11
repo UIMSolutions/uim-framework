@@ -14,4 +14,6 @@ public  {
     import uim.oop.formatters;
     import uim.oop.helpers;
     import uim.oop.patterns;
+    import uim.oop.mixins;
+    import uim.oop.udas;
 }

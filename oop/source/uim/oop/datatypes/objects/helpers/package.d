@@ -4,7 +4,3 @@
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
 module uim.oop.datatypes.objects.helpers;
-
-public {
-  import uim.oop.datatypes.objects.helpers.mixins;
-}
