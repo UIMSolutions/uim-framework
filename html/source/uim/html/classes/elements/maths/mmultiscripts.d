@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to define complex mathematical notations that involve multiple levels of scripts.
   */
 class H5Mmultiscripts : HtmlElement {
-  mixin(H5This!("mmultiscripts", false));
-
-  mixin(HtmlMethods!H5Mmultiscripts);
-
-  mixin(H5Calls!("Mmultiscripts"));
+  mixin(HtmlTemplate!(H5Mmultiscripts, "Mmultiscripts", "mmultiscripts", false));
 }
 ///
 unittest {

@@ -22,11 +22,7 @@ mixin(ShowModule!());
   * <p>This is a long word: supercalifragilisticexpialidocious<wbr> which may break at the wbr point.</p>
   */
 class H5Wbr : HtmlElement {
-  mixin(H5This!("wbr", true));
-
-  mixin(HtmlMethods!H5Wbr);
-
-  mixin(H5Calls!("Wbr"));
+  mixin(HtmlTemplate!(H5Wbr, "Wbr", "wbr", true));
 }
 ///
 unittest {

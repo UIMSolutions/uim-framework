@@ -17,11 +17,7 @@ mixin(ShowModule!());
   * The <mo> element can also be used to represent relational operators, logical operators, and other symbols that are part of mathematical notation.
   */
 class H5Mo : HtmlElement {
-  mixin(H5This!("mo", false));
-
-  mixin(HtmlMethods!H5Mo);
-
-  mixin(H5Calls!("Mo"));
+  mixin(HtmlTemplate!(H5Mo, "Mo", "mo", false));
 }
 ///
 unittest {

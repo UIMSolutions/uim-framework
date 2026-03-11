@@ -24,11 +24,7 @@ mixin(ShowModule!());
   * </video>
   */
 class H5Video : HtmlElement {
-  mixin(H5This!("video", false));
-
-  mixin(HtmlMethods!H5Video);
-
-  mixin(H5Calls!("Video"));
+  mixin(HtmlTemplate!(H5Video, "Video", "video", false));
 }
 ///
 unittest {

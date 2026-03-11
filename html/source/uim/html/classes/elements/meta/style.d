@@ -30,11 +30,7 @@ mixin(ShowModule!());
 @StringAttribute("href")
 @StringAttribute("target")
 class H5Style : HtmlElement {
-  mixin(H5This!("style", true));
-
-  mixin(HtmlMethods!H5Style);
-
-  mixin(H5Calls!("Style"));
+  mixin(HtmlTemplate!(H5Style, "Style", "style", true));
 }
 ///
 unittest {

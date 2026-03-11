@@ -24,11 +24,7 @@ mixin(ShowModule!());
   * </details>
   */
 class H5Summary : HtmlElement {
-  mixin(H5This!("summary", false));
-
-  mixin(HtmlMethods!H5Summary);
-
-  mixin(H5Calls!("Summary"));
+  mixin(HtmlTemplate!(H5Summary, "Summary", "summary", false));
 }
 ///
 unittest {

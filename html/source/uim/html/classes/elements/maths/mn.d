@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to define numeric values.
   */
 class H5Mn : HtmlElement {
-  mixin(H5This!("mn", false));
-
-  mixin(HtmlMethods!H5Mn);
-
-  mixin(H5Calls!("Mn"));
+  mixin(HtmlTemplate!(H5Mn, "Mn", "mn", false));
 }
 ///
 unittest {

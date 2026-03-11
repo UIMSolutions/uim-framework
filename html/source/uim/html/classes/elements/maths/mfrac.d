@@ -26,11 +26,7 @@ mixin(ShowModule!());
     * This class provides methods to set attributes and content for the <mfrac> element, allowing for flexible usage in mathematical expressions.
     */
 class H5Mfrac : HtmlElement {
-  mixin(H5This!("mfrac", false));
-
-  mixin(HtmlMethods!H5Mfrac);
-
-  mixin(H5Calls!("Mfrac"));
+  mixin(HtmlTemplate!(H5Mfrac, "Mfrac", "mfrac", false));
 }
 ///
 unittest {
