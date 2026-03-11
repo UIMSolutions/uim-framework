@@ -1,7 +1,8 @@
 # uim-framework
 
-Updated on 20. February 2026
-![DUB Version](https://img.shields.io/dub/v/uim-framework)[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)![DUB Downloads](https://img.shields.io/dub/dm/uim-framework)![DUB Score](https://img.shields.io/dub/score/uim-framework)
+Updated on 1. March 2026 
+
+![DUB Version](https://img.shields.io/dub/v/uim-framework) [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) ![DUB Downloads](https://img.shields.io/dub/dm/uim-framework) ![DUB Score](https://img.shields.io/dub/score/uim-framework)
 
 A collection of libraries built up over eight years of experience with the D language.
 
