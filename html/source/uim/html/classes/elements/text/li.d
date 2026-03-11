@@ -20,7 +20,6 @@ mixin(ShowModule!());
 @StringAttribute("value")
 class H5Li : HtmlElement {
   mixin(HtmlTemplate!(H5Li, "Li", "li", false));
-  mixin(HtmlMethods!H5Li);
 }
 ///
 unittest {

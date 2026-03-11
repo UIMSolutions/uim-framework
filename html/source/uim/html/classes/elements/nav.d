@@ -40,11 +40,11 @@ class H5Nav : HtmlElement {
 unittest {
   assert(H5Nav() == `<nav></nav>`);
   assert(H5Nav(["testclass"]) == `<nav class="testclass"></nav>`);
-  assert(H5Nav(["a":"b"]) == `<nav a="b"></nav>`);
+  assert(H5Nav(["a": "b"]) == `<nav a="b"></nav>`);
 
   assert(H5Nav("Hello") == `<nav>Hello</nav>`);
   assert(H5Nav(["testclass"], "Hello") == `<nav class="testclass">Hello</nav>`);
-  assert(H5Nav(["a":"b"], "Hello") == `<nav a="b">Hello</nav>`);
+  assert(H5Nav(["a": "b"], "Hello") == `<nav a="b">Hello</nav>`);
 
-  assert(H5Nav(["testclass"], ["a":"b"], "Hello") == `<nav class="testclass" a="b">Hello</nav>`);
+  assert(H5Nav(["testclass"], ["a": "b"], "Hello") == `<nav class="testclass" a="b">Hello</nav>`);
 }

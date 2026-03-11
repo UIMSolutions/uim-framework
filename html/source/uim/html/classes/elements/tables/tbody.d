@@ -32,8 +32,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Tbody : HtmlElement {
-  mixin(HtmlTemplate!("Tbody", "tbody", false));
-  mixin(HtmlMethods!H5Tbody);
+  mixin(HtmlTemplate!(H5Tbody, "Tbody", "tbody", false));
 }
 ///
 unittest {

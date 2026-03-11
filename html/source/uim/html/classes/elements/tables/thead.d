@@ -32,7 +32,6 @@ mixin(ShowModule!());
   */
 class H5Thead : HtmlElement {
   mixin(HtmlTemplate!(H5Thead, "Thead", "thead", false));
-  mixin(HtmlMethods!H5Thead);
 }
 ///
 unittest {

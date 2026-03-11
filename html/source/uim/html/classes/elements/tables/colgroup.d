@@ -33,8 +33,7 @@ mixin(ShowModule!());
   * Note: The <colgroup> element must be placed within the <table> element, and it should be defined before any <tr> elements that contain the table's data.
   */
 class H5Colgroup : HtmlElement {
-  mixin(HtmlTemplate!("Colgroup", "colgroup", false));
-  mixin(HtmlMethods!H5Colgroup);
+  mixin(HtmlTemplate!(H5Colgroup, "Colgroup", "colgroup", false));
 }
 ///
 unittest {

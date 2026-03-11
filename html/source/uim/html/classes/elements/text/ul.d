@@ -18,7 +18,6 @@ mixin(ShowModule!());
  */
 class H5Ul : HtmlElement {
   mixin(HtmlTemplate!(H5Ul, "Ul", "ul", false));
-  mixin(HtmlMethods!H5Ul);
 }
 ///
 unittest {

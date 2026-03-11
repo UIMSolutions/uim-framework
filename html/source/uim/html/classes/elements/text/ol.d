@@ -34,7 +34,6 @@ mixin(ShowModule!());
  @StringAttribute("start") // Specifies the starting value for the first list item in an ordered list. This attribute is only applicable when the "type" attribute is set to "1", "A", "a", "I", or "i".
 class H5Ol : HtmlElement {
   mixin(HtmlTemplate!(H5Ol, "Ol", "ol", false));
-  mixin(HtmlMethods!H5Ol);
 }
 ///
 unittest {

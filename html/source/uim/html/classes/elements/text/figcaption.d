@@ -26,8 +26,7 @@ mixin(ShowModule!());
  * ```
  */
 class H5Figcaption : HtmlElement {
-  mixin(HtmlTemplate!("Figcaption", "figcaption", false));
-  mixin(HtmlMethods!H5Figcaption);
+  mixin(HtmlTemplate!(H5Figcaption, "Figcaption", "figcaption", false));
 }
 ///
 unittest {
