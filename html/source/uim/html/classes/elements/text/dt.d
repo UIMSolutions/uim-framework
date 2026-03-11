@@ -17,19 +17,19 @@ mixin(ShowModule!());
  * The <dt> element is usually displayed in bold font by default, and it is often indented from the left margin to visually distinguish it from the <dd> elements that follow it. 
  */
 class H5Dt : HtmlElement {
-  mixin(HtmlTemplate!("Dt", "dt", false));
+  mixin(HtmlTemplate!(H5Dt, "Dt", "dt", false));
   mixin(HtmlMethods!H5Dt);
 }
 ///
 unittest {
   assert(H5Dt() == `<dt></dt>`);
   assert(H5Dt(["testclass"]) == `<dt class="testclass"></dt>`);
-  assert(H5Dt(["a":"b"]) == `<dt a="b"></dt>`);
-  assert(H5Dt(["testclass"], ["a":"b"]) == `<dt class="testclass" a="b"></dt>`);
+  assert(H5Dt(["a": "b"]) == `<dt a="b"></dt>`);
+  assert(H5Dt(["testclass"], ["a": "b"]) == `<dt class="testclass" a="b"></dt>`);
 
   assert(H5Dt("Hello") == `<dt>Hello</dt>`);
   assert(H5Dt(["testclass"], "Hello") == `<dt class="testclass">Hello</dt>`);
-  assert(H5Dt(["a":"b"], "Hello") == `<dt a="b">Hello</dt>`);
+  assert(H5Dt(["a": "b"], "Hello") == `<dt a="b">Hello</dt>`);
 
-  assert(H5Dt(["testclass"], ["a":"b"], "Hello") == `<dt class="testclass" a="b">Hello</dt>`);
+  assert(H5Dt(["testclass"], ["a": "b"], "Hello") == `<dt class="testclass" a="b">Hello</dt>`);
 }

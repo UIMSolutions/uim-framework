@@ -17,7 +17,7 @@ mixin(ShowModule!());
  * When rendered in a web browser, the <ul> element typically displays the list items with bullet points to indicate that they are part of an unordered list.
  */
 class H5Ul : HtmlElement {
-  mixin(HtmlTemplate!("Ul", "ul", false));
+  mixin(HtmlTemplate!(H5Ul, "Ul", "ul", false));
   mixin(HtmlMethods!H5Ul);
 }
 ///

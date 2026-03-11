@@ -32,7 +32,7 @@ mixin(ShowModule!());
 @StringAttribute("colspan")  // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
 @StringAttribute("rowspan")  // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
 class H5Col : HtmlElement {
-  mixin(HtmlTemplate!("Col", "col", true));
+  mixin(HtmlTemplate!(H5Col, "Col", "col", true));
   mixin(HtmlMethods!H5Col);
 
   /// Sets the number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.

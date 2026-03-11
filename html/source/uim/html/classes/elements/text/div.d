@@ -25,7 +25,7 @@ mixin(ShowModule!());
   */
 @CssClass("container")
 class H5Div : HtmlElement {
-  mixin(HtmlTemplate!("Div", "div", false));
+  mixin(HtmlTemplate!(H5Div, "Div", "div", false));
   mixin(HtmlMethods!H5Div);
 }
 ///

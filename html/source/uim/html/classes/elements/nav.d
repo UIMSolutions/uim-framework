@@ -34,7 +34,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Nav : HtmlElement {
-  mixin(HtmlTemplate!("Nav", "nav", false));
+  mixin(HtmlTemplate!(H5Nav, "Nav", "nav", false));
 }
 ///
 unittest {

@@ -27,18 +27,18 @@ mixin(ShowModule!());
   * ```
   */
 class H5Section : HtmlElement {
-  mixin(HtmlTemplate!("Section", "section", false));
+  mixin(HtmlTemplate!(H5Section, "Section", "section", false));
   mixin(HtmlMethods!H5Section);
 }
 ///
 unittest {
   assert(H5Section() == `<section></section>`);
   assert(H5Section(["testclass"]) == `<section class="testclass"></section>`);
-  assert(H5Section(["a":"b"]) == `<section a="b"></section>`);
+  assert(H5Section(["a": "b"]) == `<section a="b"></section>`);
 
   assert(H5Section("Hello") == `<section>Hello</section>`);
   assert(H5Section(["testclass"], "Hello") == `<section class="testclass">Hello</section>`);
-  assert(H5Section(["a":"b"], "Hello") == `<section a="b">Hello</section>`);
+  assert(H5Section(["a": "b"], "Hello") == `<section a="b">Hello</section>`);
 
-  assert(H5Section(["testclass"], ["a":"b"], "Hello") == `<section class="testclass" a="b">Hello</section>`);
+  assert(H5Section(["testclass"], ["a": "b"], "Hello") == `<section class="testclass" a="b">Hello</section>`);
 }

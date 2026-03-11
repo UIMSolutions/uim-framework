@@ -37,7 +37,7 @@ mixin(ShowModule!());
 @StringAttribute("cellspacing")
 @StringAttribute("cellpadding")
 class H5Table : HtmlElement {
-  mixin(HtmlTemplate!("Table", "table", false));
+  mixin(HtmlTemplate!(H5Table, "Table", "table", false));
   mixin(HtmlMethods!H5Table);
 }
 ///
