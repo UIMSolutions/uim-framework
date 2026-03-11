@@ -25,6 +25,12 @@ class H5SelectedContent : HtmlElement {
 ///
 unittest {
   assert(H5SelectedContent() == "<selectedcontent></selectedcontent>");
+  assert(H5SelectedContent(["testclass"]) == "<selectedcontent class=\"testclass\"></selectedcontent>");
+  assert(H5SelectedContent(["a":"b"]) == "<selectedcontent a=\"b\"></selectedcontent>");
+  assert(H5SelectedContent(["testclass"], ["a":"b"]) == "<selectedcontent class=\"testclass\" a=\"b\"></selectedcontent>");
+
   assert(H5SelectedContent("Some content") == "<selectedcontent>Some content</selectedcontent>");
-  
+  assert(H5SelectedContent(["testclass"], "Some content") == "<selectedcontent class=\"testclass\">Some content</selectedcontent>");
+  assert(H5SelectedContent(["a":"b"], "Some content") == "<selectedcontent a=\"b\">Some content</selectedcontent>");
+  assert(H5SelectedContent(["testclass"], ["a":"b"], "Some content") == "<selectedcontent class=\"testclass\" a=\"b\">Some content</selectedcontent>");
 }

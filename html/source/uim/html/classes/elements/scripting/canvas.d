@@ -25,5 +25,14 @@ class H5Canvas : HtmlElement {
 ///
 unittest {
   assert(H5Canvas() == `<canvas></canvas>`);
+  assert(H5Canvas(["testclass"]) == `<canvas class="testclass"></canvas>`);
+  assert(H5Canvas(["a":"b"]) == `<canvas a="b"></canvas>`);
+  assert(H5Canvas(["testclass"], ["a":"b"]) == `<canvas class="testclass" a="b"></canvas>`);
+
+  assert(H5Canvas("Hello") == `<canvas></canvas>`);
+  assert(H5Canvas(["testclass"], "Hello") == `<canvas class="testclass">Hello</canvas>`);
+  assert(H5Canvas(["a":"b"], "Hello") == `<canvas a="b">Hello</canvas>`);
+  assert(H5Canvas(["testclass"], ["a":"b"], "Hello") == `<canvas class="testclass" a="b">Hello</canvas>`);
+
   assert(H5Canvas().height("400").width("600") == `<canvas height="400" width="600"></canvas>`);
 }

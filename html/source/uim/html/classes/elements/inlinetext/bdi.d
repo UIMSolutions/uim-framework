@@ -22,5 +22,12 @@ class H5Bdi : HtmlElement {
 ///
 unittest {
   assert(H5Bdi() == "<bdi></bdi>");
+  assert(H5Bdi(["testClass"]) == `<bdi class="testClass"></bdi>`);
+  assert(H5Bdi(["a":"b"]) == `<bdi a="b"></bdi>`);
+  assert(H5Bdi(["testClass"], ["a":"b"]) == `<bdi class="testClass" a="b"></bdi>`);
+
   assert(H5Bdi("Hello") == "<bdi>Hello</bdi>");
+  assert(H5Bdi(["testClass"], "Hello") == `<bdi class="testClass">Hello</bdi>`);
+  assert(H5Bdi(["a":"b"], "Hello") == `<bdi a="b">Hello</bdi>`);
+  assert(H5Bdi(["testClass"], ["a":"b"], "Hello") == `<bdi class="testClass" a="b">Hello</bdi>`);
 }

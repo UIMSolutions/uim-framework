@@ -31,10 +31,17 @@ class H5Optgroup : HtmlElement {
 }
 
 unittest {
-  assert(H5Optgroup() == "<optgroup></optgroup>");
-  assert(H5Optgroup("Hello") == "<optgroup>Hello</optgroup>");
-  assert(H5Optgroup().label("Group 1") == "<optgroup label=\"Group 1\"></optgroup>");
-  assert(H5Optgroup().disabled() == "<optgroup disabled></optgroup>");
-  assert(H5Optgroup().disabled(false) == "<optgroup></optgroup>");
+  assert(H5Optgroup() == `<optgroup></optgroup>`);
+  assert(H5Optgroup(["testclass"]) == `<optgroup class="testclass"></optgroup>`);
+  assert(H5Optgroup(["a":"b"]) == `<optgroup a="b"></optgroup>`);
+  assert(H5Optgroup(["testclass"], ["a":"b"]) == `<optgroup class="testclass" a="b"></optgroup>`);
 
+  assert(H5Optgroup("Hello") == `<optgroup>Hello</optgroup>`);
+  assert(H5Optgroup(["testclass"], "Hello") == `<optgroup class="testclass">Hello</optgroup>`);
+  assert(H5Optgroup(["a":"b"], "Hello") == `<optgroup a="b">Hello</optgroup>`);
+  assert(H5Optgroup(["testclass"], ["a":"b"], "Hello") == `<optgroup class="testclass" a="b">Hello</optgroup>`);
+
+  assert(H5Optgroup().label("Group 1") == `<optgroup label="Group 1"></optgroup>`);
+  assert(H5Optgroup().disabled() == `<optgroup disabled></optgroup>`);
+  assert(H5Optgroup().disabled(false) == `<optgroup></optgroup>`);
 }

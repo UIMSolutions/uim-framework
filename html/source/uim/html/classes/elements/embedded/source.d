@@ -34,8 +34,16 @@ class H5Source : HtmlElement {
 }
 ///
 unittest {
-  assert(H5Source() == "<source></source>");
-  assert(H5Source("Hello") == "<source>Hello</source>");
+  assert(H5Source() == `<source></source>`);
+  assert(H5Source(["testclass"]) == `<source class="testclass"></source>`);
+  assert(H5Source(["a": "b"]) == `<source a="b"></source>`);
+  assert(H5Source(["testclass"], ["a": "b"]) == `<source class="testclass" a="b"></source>`);
+
+  assert(H5Source("Hello") == `<source>Hello</source>`);
+  assert(H5Source(["testclass"], "Hello") == `<source class="testclass">Hello</source>`);
+  assert(H5Source(["a": "b"], "Hello") == `<source a="b">Hello</source>`);
+  assert(H5Source(["testclass"], ["a": "b"], "Hello") == `<source class="testclass" a="b">Hello</source>`);
+
   // assert(H5Source().srcset("image.jpg").media("(min-width: 600px)").type("image/jpeg").sizes("100vw").width("600").height("400") == "<source srcset=\"image.jpg\" media=\"(min-width: 600px)\" type=\"image/jpeg\" sizes=\"100vw\" width=\"600\" height=\"400\"></source>");
 
   // assert(H5Source().srcset() == "image.jpg");

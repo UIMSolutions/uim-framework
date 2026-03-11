@@ -33,7 +33,15 @@ class H5Data : HtmlElement {
 ///
 unittest {
   assert(H5Data() == "<data></data>");
+  assert(H5Data(["testClass"]) == `<data class="testClass"></data>`);
+  assert(H5Data(["a":"b"]) == `<data a="b"></data>`);
+  assert(H5Data(["testClass"], ["a":"b"]) == `<data class="testClass" a="b"></data>`);
+
   assert(H5Data("Hello") == "<data>Hello</data>");
+  assert(H5Data(["testClass"], "Hello") == `<data class="testClass">Hello</data>`);
+  assert(H5Data(["a":"b"], "Hello") == `<data a="b">Hello</data>`);
+  assert(H5Data(["testClass"], ["a":"b"], "Hello") == `<data class="testClass" a="b">Hello</data>`);
+
   assert(H5Data().value(42) == `<data value="42"></data>`);
   assert(H5Data().value("42") == `<data value="42"></data>`);
 }

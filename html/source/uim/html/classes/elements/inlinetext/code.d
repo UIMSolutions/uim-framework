@@ -29,5 +29,12 @@ class H5Code : HtmlElement {
 ///
 unittest {
   assert(H5Code() == "<code></code>");
+  assert(H5Code(["testclass"]) == "<code class=\"testclass\"></code>");
+  assert(H5Code(["a":"b"]) == "<code a=\"b\"></code>");
+  assert(H5Code(["testclass"], ["a":"b"]) == "<code class=\"testclass\" a=\"b\"></code>");
+
   assert(H5Code("Hello") == "<code>Hello</code>");
+  assert(H5Code(["testclass"], "Hello") == "<code class=\"testclass\">Hello</code>");
+  assert(H5Code(["a":"b"], "Hello") == "<code a=\"b\">Hello</code>");
+  assert(H5Code(["testclass"], ["a":"b"], "Hello") == "<code class=\"testclass\" a=\"b\">Hello</code>");
 }

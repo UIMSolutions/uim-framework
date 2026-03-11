@@ -23,17 +23,34 @@ mixin(ShowModule!());
  * ```
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
- @StringAttribute("data")
- @StringAttribute("type")
- @StringAttribute("width")
- @StringAttribute("height")
- @StringAttribute("name")
- @StringAttribute("form")
+@StringAttribute("data")
+@StringAttribute("type")
+@StringAttribute("width")
+@StringAttribute("height")
+@StringAttribute("name")
+@StringAttribute("form")
 class H5Object : HtmlElement {
   mixin(HtmlTemplate!(H5Object, "Object", "object", false));
 }
 ///
 unittest {
   assert(H5Object() == "<object></object>");
+  assert(H5Object(["testclass"]) == `<object class="testclass"></object>`);
+  assert(H5Object(["a": "b"]) == `<object a="b"></object>`);
+  assert(H5Object(["testclass"], ["a": "b"]) == `<object class="testclass" a="b"></object>`);
+
   assert(H5Object("Hello") == "<object>Hello</object>");
+  assert(H5Object(["testclass"], "Hello") == `<object class="testclass">Hello</object>`);
+  assert(H5Object(["a": "b"], "Hello") == `<object a="b">Hello</object>`);
+  assert(H5Object(["testclass"], ["a": "b"], "Hello") == `<object class="testclass" a="b">Hello</object>`);
+
+  assert(H5Object().data("x") == `<object data="x"></object>`);
+  assert(H5Object().type("video/mp4") == `<object type="video/mp4"></object>`);
+  assert(H5Object().width("640") == `<object width="640"></object>`);
+  assert(H5Object().height("360") == `<object height="360"></object>`);
+  assert(H5Object().name("test") == `<object name="test"></object>`);
+  assert(H5Object().form("testform") == `<object form="testform"></object>`);
+
+  assert(H5Object().data("x").type("video/mp4").width("640")
+      .height("360") == `<object data="x" height="360" type="video/mp4" width="640"></object>`);
 }

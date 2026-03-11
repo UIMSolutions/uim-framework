@@ -22,5 +22,12 @@ class H5Cite : HtmlElement {
 ///
 unittest {
   assert(H5Cite() == "<cite></cite>");
+  assert(H5Cite(["testclass"]) == "<cite class=\"testclass\"></cite>");
+  assert(H5Cite(["a":"b"]) == "<cite a=\"b\"></cite>");
+  assert(H5Cite(["testclass"], ["a":"b"]) == "<cite class=\"testclass\" a=\"b\"></cite>");
+
   assert(H5Cite("Hello") == "<cite>Hello</cite>");
+  assert(H5Cite(["testclass"], "Hello") == "<cite class=\"testclass\">Hello</cite>");
+  assert(H5Cite(["a":"b"], "Hello") == "<cite a=\"b\">Hello</cite>");
+  assert(H5Cite(["testclass"], ["a":"b"], "Hello") == "<cite class=\"testclass\" a=\"b\">Hello</cite>");
 }
