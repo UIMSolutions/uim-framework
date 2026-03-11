@@ -18,11 +18,7 @@ mixin(ShowModule!());
   * If you want to indicate that text is misspelled or has some other type of annotation, it is recommended to use the <span> element with appropriate CSS styling instead of the <u> element.
   */
 class H5U : HtmlElement {
-  mixin(H5This!("u", false));
-
-  mixin(HtmlMethods!H5U);
-
-  mixin(H5Calls!("U"));
+  mixin(HtmlTemplate!(H5U, "U", "u", false));
 }
 ///
 unittest {

@@ -18,11 +18,7 @@ mixin(ShowModule!());
  * For longer quotations, the <blockquote> element should be used instead.
  */
 class H5Q : HtmlElement {
-  mixin(H5This!("q", false));
-
-  mixin(HtmlMethods!H5Q);
-
-  mixin(H5Calls!("Q"));
+  mixin(HtmlTemplate!(H5Q, "Q", "q", false));
 }
 ///
 unittest {

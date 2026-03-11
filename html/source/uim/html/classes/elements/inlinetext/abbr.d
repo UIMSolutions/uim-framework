@@ -20,7 +20,7 @@ mixin(ShowModule!());
   * Note: The <abbr> element is used to represent an abbreviation or acronym, providing a full description in the title attribute.
 */
 class H5Abbr : HtmlElement {
-  mixin(H5This!("abbr", false));
+  mixin(HtmlTemplate!(H5Abbr, "Abbr", "abbr", false));
 
   /// Sets the title attribute of the abbreviation.
   H5Abbr title(string val) {
@@ -28,7 +28,9 @@ class H5Abbr : HtmlElement {
     return this;
   }
 
-  mixin(H5Calls!("Abbr"));
+  IHtmlAttribute title() {
+    return attribute("title");
+  }
 }
 ///
 unittest {

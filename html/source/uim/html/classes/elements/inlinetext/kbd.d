@@ -20,11 +20,7 @@ mixin(ShowModule!());
   * <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy.</p>
   */
 class H5Kbd : HtmlElement {
-  mixin(H5This!("kbd", false));
-
-  mixin(HtmlMethods!H5Kbd);
-
-  mixin(H5Calls!("kbd"));
+  mixin(HtmlTemplate!(H5Kbd, "Kbd", "kbd", false));
 }
 ///
 unittest {

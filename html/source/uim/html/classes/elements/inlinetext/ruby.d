@@ -23,11 +23,7 @@ mixin(ShowModule!());
   * </ruby>
   */
 class H5Ruby : HtmlElement {
-  mixin(H5This!("ruby", false));
-
-  mixin(HtmlMethods!H5Ruby);
-
-  mixin(H5Calls!("Ruby"));
+  mixin(HtmlTemplate!(H5Ruby, "Ruby", "ruby", false));
 }
 ///
 unittest {

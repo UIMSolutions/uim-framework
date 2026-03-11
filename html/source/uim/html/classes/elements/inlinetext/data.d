@@ -17,7 +17,7 @@ mixin(ShowModule!());
  * If the content is a number, the value attribute must be present and contain a valid floating point number.
  */
 class H5Data : HtmlElement {
-  mixin(H5This!("data", false));
+  mixin(HtmlTemplate!(H5Data, "Data", "data", false));
 
   /// Sets the value attribute of the data element.
   H5Data value(double val) {
@@ -25,11 +25,14 @@ class H5Data : HtmlElement {
     return this;
   }
 
-  mixin(H5Calls!("Data"));
-}
+  H5Data value(string val) {
+    attribute("value", val);
+    return this;
+  }
 ///
 unittest {
   assert(H5Data() == "<data></data>");
   assert(H5Data("Hello") == "<data>Hello</data>");
   assert(H5Data().value(42) == `<data value="42"></data>`);
+  assert(H5Data().value("42") == `<data value="42"></data>`);
 }

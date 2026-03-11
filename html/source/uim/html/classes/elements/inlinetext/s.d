@@ -20,11 +20,7 @@ mixin(ShowModule!());
   * <p>This is <s>old</s> text.</p>
   */
 class H5S : HtmlElement {
-  mixin(H5This!("s", false));
-
-   mixin(HtmlMethods!H5S); 
-
-  mixin(H5Calls!("s"));
+  mixin(HtmlTemplate!(H5S, "S", "s", false));
 }
 ///
 unittest {

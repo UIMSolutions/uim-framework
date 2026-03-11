@@ -30,11 +30,7 @@ mixin(ShowModule!());
   * 
   */
 class H5Time : HtmlElement {
-  mixin(H5This!("time", false));
-
-  mixin(HtmlMethods!H5Time);
-
-  mixin(H5Calls!("Time"));
+  mixin(HtmlTemplate!(H5Time, "Time", "time", false));
 }
 ///
 unittest {
