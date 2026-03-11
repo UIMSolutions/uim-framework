@@ -28,11 +28,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Area : HtmlElement {
-  mixin(H5This!("area", false));
-
-  mixin(HtmlMethods!H5Area);
-
-  mixin(H5Calls!("Area"));
+  mixin(HtmlTemplate!(H5Area, "Area", "area", false));
 }
 ///
 unittest {

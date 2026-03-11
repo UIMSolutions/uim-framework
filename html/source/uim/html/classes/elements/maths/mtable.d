@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to create a table layout for mathematical expressions, such as matrices or arrays.
   */
 class H5Mtable : HtmlElement {
-  mixin(H5This!("mtable", false));
-
-  mixin(HtmlMethods!H5Mtable);
-  
-  mixin(H5Calls!("Mtable"));
+  mixin(HtmlTemplate!(H5Mtable, "Mtable", "mtable", false));
 }
 ///
 unittest {

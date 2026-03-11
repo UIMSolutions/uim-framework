@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to apply a subscript to a base element.
   */
 class H5Msub : HtmlElement {
-  mixin(H5This!("msub", false));
-
-  mixin(HtmlMethods!H5Msub);
-
-  mixin(H5Calls!("Msub"));
+  mixin(HtmlTemplate!(H5Msub, "Msub", "msub", false));
 }
 ///
 unittest {

@@ -27,11 +27,7 @@ mixin(ShowModule!());
   * </head>
   */
 class H5Meta : HtmlElement {
-  mixin(H5This!("meta", true));
-
-  mixin(HtmlMethods!H5Meta);
-
-  mixin(H5Calls!("meta"));
+  mixin(HtmlTemplate!(H5Meta, "Meta", "meta", true));
 }
 ///
 unittest {

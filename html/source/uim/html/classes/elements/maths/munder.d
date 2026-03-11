@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to apply an under element to a base element.
   */
 class H5Munder : HtmlElement {
-  mixin(H5This!("munder", false));
-
-  mixin(HtmlMethods!H5Munder);
-
-  mixin(H5Calls!("Munder"));
+  mixin(HtmlTemplate!(H5Munder, "Munder", "munder", false));
 }
 ///
 unittest {

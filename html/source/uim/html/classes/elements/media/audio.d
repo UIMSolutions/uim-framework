@@ -28,11 +28,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Audio : HtmlElement {
-  mixin(H5This!("audio", false));
-
-  mixin(HtmlMethods!H5Audio);
-
-  mixin(H5Calls!("Audio"));
+  mixin(HtmlTemplate!(H5Audio, "Audio", "audio", false));
 }
 ///
 unittest {

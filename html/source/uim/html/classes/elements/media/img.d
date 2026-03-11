@@ -30,11 +30,7 @@ mixin(ShowModule!());
     @StringAttribute("width")
     @StringAttribute("height")
 class H5Img : HtmlElement {
-  mixin(H5This!("img", true));
-
-  mixin(HtmlMethods!H5Img);
-
-  mixin(H5Calls!("Img"));
+  mixin(HtmlTemplate!(H5Img, "Img", "img", true));
 }
 ///
 unittest {

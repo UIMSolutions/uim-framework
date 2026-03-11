@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <mtable> element to define a row of cells in a mathematical table.
   */
 class H5Mtr : HtmlElement {
-  mixin(H5This!("mtr", false));
-
-  mixin(HtmlMethods!H5Mtr);
-
-  mixin(H5Calls!("Mtr"));
+  mixin(HtmlTemplate!(H5Mtr, "Mtr", "mtr", false));
 }
 ///
 unittest {

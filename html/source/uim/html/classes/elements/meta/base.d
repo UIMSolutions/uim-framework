@@ -25,11 +25,7 @@ mixin(ShowModule!());
 @StringAttribute("href")
 @StringAttribute("target")
 class H5Base : HtmlElement {
-  mixin(H5This!("base", true));
-
-  mixin(HtmlMethods!H5Base);
-
-  mixin(H5Calls!("Base"));
+  mixin(HtmlTemplate!(H5Base, "Base", "base", true));
 }
 ///
 unittest {
