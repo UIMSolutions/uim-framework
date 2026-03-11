@@ -20,11 +20,7 @@ mixin(ShowModule!());
   @StringAttribute("height") /// The height of the canvas in pixels or as a percentage of the containing element.
   @StringAttribute("width") /// The width of the canvas in pixels or as a percentage of the containing element.
 class H5Canvas : HtmlElement {
-  mixin(H5This!("canvas", false));
-  
-  mixin(HtmlMethods!H5Canvas);
-
-  mixin(H5Calls!("canvas"));
+  mixin(HtmlTemplate!(H5Canvas, "Canvas", "canvas", false));
 }
 ///
 unittest {

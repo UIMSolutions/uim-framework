@@ -23,11 +23,7 @@ mixin(ShowModule!());
   *
   */
 class H5Script : HtmlElement {
-  mixin(H5This!("script", false));
-
-  mixin(HtmlMethods!H5Script);
-
-  mixin(H5Calls!("script"));
+  mixin(HtmlTemplate!(H5Script, "Script", "script", false));
 }
 ///
 unittest {

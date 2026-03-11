@@ -13,11 +13,7 @@ mixin(ShowModule!());
 
 /// HTML title element
 class H5Title : HtmlElement {
-  mixin(H5This!("title", false));
-
-  mixin(HtmlMethods!H5Title);
-
-  mixin(H5Calls!("Title"));
+  mixin(HtmlTemplate!(H5Title, "Title", "title", false));
 }
 /// 
 unittest {

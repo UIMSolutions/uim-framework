@@ -30,9 +30,7 @@ mixin(ShowModule!());
   @StringAttribute("width")
   @StringAttribute("height")
 class H5Source : HtmlElement {
-  mixin(H5This!("source", false));
-
-  mixin(H5Calls!("source"));
+  mixin(HtmlTemplate!(H5Source, "Source", "source", false));
 }
 ///
 unittest {

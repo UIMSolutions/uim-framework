@@ -30,9 +30,7 @@ mixin(ShowModule!());
   @BoolAttribute("disabled") // The 'disabled' attribute indicates that the textarea is not available for interaction.
   @BoolAttribute("readonly") // The 'readonly' attribute indicates that the textarea is read-only and cannot be modified by the user.
 class H5Textarea : HtmlElement {
-  mixin(H5This!("textarea", false));
-
-  mixin(HtmlMethods!H5Textarea);
+  mixin(HtmlTemplate!(H5Textarea, "Textarea", "textarea", false));
 
   H5Textarea rows(size_t rowCount) {
     attribute("rows", rowCount.to!string);
@@ -43,9 +41,11 @@ class H5Textarea : HtmlElement {
     attribute("cols", colCount.to!string);
     return this;
   }
-
-  mixin(H5Calls!("textarea"));
-}
+  
+  H5Textarea placeholder(string placeholderText) {
+    attribute("placeholder", placeholderText);
+    return this;
+  }
 ///
 unittest {
   assert(H5Textarea() == "<textarea></textarea>");

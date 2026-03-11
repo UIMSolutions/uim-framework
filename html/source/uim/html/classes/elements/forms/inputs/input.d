@@ -27,9 +27,7 @@ mixin(ShowModule!());
 @StringAttribute("value")
 @StringAttribute("placeholder")
 class H5Input : HtmlElement {
-  mixin(H5This!("input", true));
-
-  mixin(HtmlMethods!H5Input);
+  mixin(HtmlTemplate!(H5Input, "Input", "input", true));
 
   H5Input required(bool isRequired = true) {
     if (isRequired)
@@ -82,8 +80,6 @@ class H5Input : HtmlElement {
     attribute("value", aValue.toString());
     return this;
   }
-  
-  mixin(H5Calls!("Input"));
 }
 ///
 unittest {
