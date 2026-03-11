@@ -25,7 +25,6 @@ mixin(ShowModule!());
   */
 class H5Del : HtmlElement {
   mixin(HtmlTemplate!(H5Del, "Del", "del", false));
-  mixin(HtmlMethods!H5Del);
 }
 ///
 unittest {

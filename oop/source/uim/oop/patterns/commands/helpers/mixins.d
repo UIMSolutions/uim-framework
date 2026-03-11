@@ -12,19 +12,19 @@ mixin(ShowModule!());
 @safe:
 
 string commandThis(string name = null, bool overrideMemberNames = true) {
-    string fullName = name ~ "Command";
-    return objThis(fullName, overrideMemberNames);
+  string fullName = name ~ "Command";
+  return objThis(fullName, overrideMemberNames);
 }
 
 template CommandThis(string name = null, bool overrideMemberNames = true) {
-    const char[] CommandThis = commandThis(name, overrideMemberNames);
+  const char[] CommandThis = commandThis(name, overrideMemberNames);
 }
 
 string commandCalls(string name) {
-    string fullName = name ~ "Command";
-    return objCalls(fullName);
+  string fullName = name ~ "Command";
+  return objCalls(fullName);
 }
 
 template CommandCalls(string name) {
-    const char[] CommandCalls = commandCalls(name);
+  const char[] CommandCalls = commandCalls(name);
 }

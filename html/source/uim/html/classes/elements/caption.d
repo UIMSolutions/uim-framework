@@ -19,7 +19,6 @@ mixin(ShowModule!());
   */
 class H5Caption : HtmlElement {
   mixin(HtmlTemplate!(H5Caption, "Caption", "caption", false));
-  mixin(HtmlMethods!H5Caption);
 }
 ///
 unittest {

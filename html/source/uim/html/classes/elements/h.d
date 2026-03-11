@@ -99,7 +99,6 @@ unittest {
 
 class H5H6 : HtmlElement {
   mixin(HtmlTemplate!(H5H6, "H6", "h6", false));
-  mixin(HtmlMethods!H5H6);
 }
 ///
 unittest {

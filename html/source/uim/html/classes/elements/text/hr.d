@@ -19,7 +19,6 @@ mixin(ShowModule!());
  */
 class H5Hr : HtmlElement {
   mixin(HtmlTemplate!(H5Hr, "Hr", "hr", true));
-  mixin(HtmlMethods!H5Hr);
 }
 ///
 unittest {
