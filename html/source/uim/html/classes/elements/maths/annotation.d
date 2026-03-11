@@ -12,11 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 class H5Annotation : HtmlElement {
-  mixin(H5This!("annotation", false));
-
-  mixin(HtmlMethods!H5Annotation);
-
-  mixin(H5Calls!("Annotation"));
+  mixin(HtmlTemplate!(H5Annotation, "Annotation", "annotation", false));
 }
 ///
 unittest {

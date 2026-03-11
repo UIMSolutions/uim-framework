@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to create space without displaying any content.
   */
 class H5Mphantom : HtmlElement {
-  mixin(H5This!("mphantom", false));
-
-  mixin(HtmlMethods!H5Mphantom);
-
-  mixin(H5Calls!("Mphantom"));
+  mixin(HtmlTemplate!(H5Mphantom, "Mphantom", "mphantom", false));
 }
 ///
 unittest {

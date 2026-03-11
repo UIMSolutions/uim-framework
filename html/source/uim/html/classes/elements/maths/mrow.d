@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to group together multiple elements in a horizontal layout.
   */
 class H5Mrow : HtmlElement {
-  mixin(H5This!("mrow", false));
-
-  mixin(HtmlMethods!H5Mrow);
-
-  mixin(H5Calls!("Mrow"));
+  mixin(HtmlTemplate!(H5Mrow, "Mrow", "mrow", false));
 }
 ///
 unittest {

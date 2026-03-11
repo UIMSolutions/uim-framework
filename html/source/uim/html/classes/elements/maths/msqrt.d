@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to define the square root of a number or expression.
   */
 class H5Msqrt : HtmlElement {
-  mixin(H5This!("msqrt", false));
-
-  mixin(HtmlMethods!H5Msqrt);
-
-  mixin(H5Calls!("Msqrt"));
+  mixin(HtmlTemplate!(H5Msqrt, "Msqrt", "msqrt", false));
 }
 ///
 unittest {

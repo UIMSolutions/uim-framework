@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to apply a superscript to a base element.
   */
 class H5Msup : HtmlElement {
-  mixin(H5This!("msup", false));
-
-  mixin(HtmlMethods!H5Msup);
-
-  mixin(H5Calls!("msup"));
+  mixin(HtmlTemplate!(H5Msup, "Msup", "msup", false));
 }
 ///
 unittest {

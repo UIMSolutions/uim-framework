@@ -17,11 +17,7 @@ mixin(ShowModule!());
   * The <mi> element can contain text or other elements that represent the identifier, and it is typically rendered in italic type by browsers to distinguish it from regular text.
   */
 class H5Mi : HtmlElement {
-  mixin(H5This!("mi", false));
-
-  mixin(HtmlMethods!H5Mi);
-
-  mixin(H5Calls!("Mi"));
+  mixin(HtmlTemplate!(H5Mi, "Mi", "mi", false));
 }
 ///
 unittest {

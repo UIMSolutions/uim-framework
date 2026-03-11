@@ -16,12 +16,9 @@ mixin(ShowModule!());
   * It is used within the <math> element to define individual cells in a matrix or table layout.
   */
 class H5Mtd : HtmlElement {
-  mixin(H5This!("mtd", false));
-
-  mixin(HtmlMethods!H5Mtd);
-
-  mixin(H5Calls!("Mtd"));
+  mixin(HtmlTemplate!(H5Mtd, "Mtd", "mtd", false));
 }
+
 ///
 unittest {
   assert(H5Mtd() == "<mtd></mtd>");

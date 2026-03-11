@@ -17,11 +17,7 @@ mixin(ShowModule!());
   * The content of the <head> element is not displayed on the page but is used by browsers and search engines to understand the structure and content of the document.
   */
 class H5Head : HtmlElement {
-  mixin(H5This!("head", false));
-
-  mixin(HtmlMethods!H5Head);
-
-  mixin(H5Calls!("Head"));
+  mixin(HtmlTemplate!(H5Head, "Head", "head", false));
 }
 ///
 unittest {

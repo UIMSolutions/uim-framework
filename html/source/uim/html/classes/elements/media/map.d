@@ -28,9 +28,7 @@ mixin(ShowModule!());
   * ```
   */
 class H5Map : HtmlElement {
-  mixin(H5This!("map", false));
-  mixin(HtmlMethods!H5Map);
-  mixin(H5Calls!("Map"));
+  mixin(HtmlTemplate!(H5Map, "Map", "map", false));
 }
 ///
 unittest {

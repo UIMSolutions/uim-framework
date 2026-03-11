@@ -16,11 +16,7 @@ mixin(ShowModule!());
   * It is used within the <math> element to apply style attributes to its child elements.
   */
 class H5Mstyle : HtmlElement {
-  mixin(H5This!("mstyle", false));
-
-  mixin(HtmlMethods!H5Mstyle);
-
-  mixin(H5Calls!("Mstyle"));
+  mixin(HtmlTemplate!(H5Mstyle, "Mstyle", "mstyle", false));
 }
 ///
 unittest {
