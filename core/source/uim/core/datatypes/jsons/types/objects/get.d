@@ -7,7 +7,7 @@ mixin(ShowModule!());
 @safe:
 
 // #region Json[]
-Json getObject(Json[] jsons, size_t index, Json defaultValue = Json(null)) {
+Json getObject(Json[] jsons, size_t index, Json defaultValue = Json.emptyObject) {
   return jsons.getValue(index).isObject() ? jsons[index] : defaultValue;
 }
 /// 
@@ -22,7 +22,7 @@ unittest {
 // #endregion Json[]
 
 // #region Json[string]
-Json getObject(Json[string] map, string[] path, Json defaultValue = Json(null)) {
+Json getObject(Json[string] map, string[] path, Json defaultValue = Json.emptyObject) {
   return map.getValue(path).isObject ? map.getValue(path) : defaultValue;
 }
 /// 
@@ -48,13 +48,13 @@ unittest {
     "first": ["a":1].toJson, "second": [1,2].toJson, "third": ["b":2].toJson
   ];
   assert(map.getObject("first") == ["a":1].toJson);
-  assert(map.getObject("second", Json("default")) == Json("default"));
+  assert(map.getObject("second", Json.emptyObject) == Json.emptyObject);
   assert(map.getObject("third") == ["b":2].toJson);
 }
 // #endregion Json[string]
 
 // #region Json
-Json getObject(Json json, size_t index, Json defaultValue = Json(null)) {
+Json getObject(Json json, size_t index, Json defaultValue = Json.emptyObject) {
   return json[index].isObject ? json.getValue(index) : defaultValue;
 }
 /// 
@@ -63,11 +63,11 @@ unittest {
 
   Json json = [ ["a":1].toJson, [1,2].toJson, ["b":2].toJson ].toJson;
   assert(json.getObject(0) == ["a":1].toJson);
-  assert(json.getObject(1, Json("default")) == Json("default"));
+  assert(json.getObject(1, Json.emptyObject) == Json.emptyObject);
   assert(json.getObject(2) == ["b":2].toJson);
 }
 
-Json getObject(Json json, string[] path, Json defaultValue = Json(null)) {
+Json getObject(Json json, string[] path, Json defaultValue = Json.emptyObject) {
   return json.getValue(path).isObject ? json.getValue(path) : defaultValue;
 }
 /// 
@@ -76,11 +76,11 @@ unittest {
 
   Json json = parseJsonString(`{"first": {"a":1}, "second": [1,2], "third": {"b":2}}`);
   assert(json.getObject("first") == ["a":1].toJson);
-  assert(json.getObject("second", Json("default")) == Json("default"));
+  assert(json.getObject("second", Json.emptyObject) == Json.emptyObject);
   assert(json.getObject("third") == ["b":2].toJson);
 }
 
-Json getObject(Json json, string key, Json defaultValue = Json(null)) {
+Json getObject(Json json, string key, Json defaultValue = Json.emptyObject) {
   return json.getValue(key).isObject ? json.getValue(key) : defaultValue;
 }
 /// 
@@ -89,7 +89,7 @@ unittest {
 
   Json json = parseJsonString(`{"first": {"a":1}, "second": [1,2], "third": {"b":2}}`);
   assert(json.getObject("first") == ["a":1].toJson);
-  assert(json.getObject("second", Json("default")) == Json("default"));
+  assert(json.getObject("second", Json.emptyObject) == Json.emptyObject);
   assert(json.getObject("third") == ["b":2].toJson);
 }
 // #endregion Json

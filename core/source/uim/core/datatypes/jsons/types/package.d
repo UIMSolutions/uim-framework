@@ -16,4 +16,5 @@ public {
   import uim.core.datatypes.jsons.types.scalars;
   import uim.core.datatypes.jsons.types.strings;
   import uim.core.datatypes.jsons.types.undefineds;
+  import uim.core.datatypes.jsons.types.uuids;
 }

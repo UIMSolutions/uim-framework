@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.udas;
 
+import uim.oop;
+
 @safe:
 
 /** Marks a type as a generic IoC component. */
@@ -44,7 +46,7 @@ struct WebController {
 }
 
 /** Marks a type that contains bean factory methods. */
-struct Configuration {
+struct UDAConfiguration {
 }
 
 /** Marks a method as bean factory method. */
@@ -119,12 +121,112 @@ struct PreDestroy {
 
 /** Marks a member for getter generation/handling. */
 struct Getter {
+  string fieldName;
+  string datatype;
+  string methodName;
+
+  this(string field, string type = "", string method = "") {
+    fieldName = field;
+    datatype = type.length > 0 ? type : "auto";
+    methodName = method.length > 0 ? method : "get" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
+    ;
+  }
+}
+///
+unittest {
+  Getter g = Getter("age", "int");
+  assert(g.fieldName == "age");
+  assert(g.datatype == "int");
+  assert(g.methodName == "getAge");
+
+  Getter g2 = Getter("name", "string", "fetchName");
+  assert(g2.fieldName == "name");
+  assert(g2.datatype == "string");
+  assert(g2.methodName == "fetchName");
+}
+
+private string generateGetterMethod(Getter getter) {
+  string fieldName = getter.fieldName;
+  string methodName = getter.methodName.length > 0 ? getter.methodName
+    : "get" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
+
+  return format(q{
+  %1$s %2$s() {
+    return this.%3$s;
+  }}, getter.datatype.length > 0 ? getter.datatype : "auto", methodName, fieldName);
+}
+///
+unittest {
+  Getter g = Getter("age", "int");
+  string generatedCode = generateGetterMethod(g);
+  assert(generatedCode == q{
+  int getAge() {
+    return this.age;
+  }});
 }
 
 /** Marks a member for setter generation/handling. */
 struct Setter {
+  string fieldName;
+  string datatype;
+  string methodName;
+  string resultType;
+  string returnCode;
+  this(string field, string type = "", string method = "", string result = "void", string returns = "") {
+    fieldName = field;
+    datatype = type.length > 0 ? type : "auto";
+    methodName = method.length > 0 ? method : "set" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
+    resultType = result.length > 0 ? result : "void";
+    this.returnCode = returns;
+
+  }
+}
+/// 
+unittest {
+  Setter s = Setter("age", "int");
+  assert(s.fieldName == "age");
+  assert(s.datatype == "int");
+  assert(s.methodName == "setAge");
+  assert(s.resultType == "void");
+  assert(s.returnCode == "");
+
+  Setter s2 = Setter("name", "string", "updateName");
+  assert(s2.fieldName == "name");
+  assert(s2.datatype == "string");
+  assert(s2.methodName == "updateName");
+  assert(s2.resultType == "void");
+  assert(s.returnCode == "");
+
+  Setter s3 = Setter("email", "string", "changeEmail", "string", "return this.email;");
+  assert(s3.fieldName == "email");
+  assert(s3.datatype == "string");
+  assert(s3.methodName == "changeEmail");
+  assert(s3.resultType == "string");
+  assert(s3.returnCode == "return this.email;");
 }
 
+private string generateSetterMethod(Setter setter) {
+  string fieldName = setter.fieldName;
+  string methodName = setter.methodName.length > 0 ? setter.methodName
+    : "set" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
+
+  return format(q{
+  %4$s %2$s(%1$s value) {
+    this.%3$s = value;
+  }}, setter.datatype.length > 0 ? setter.datatype : "auto", methodName, fieldName, setter
+      .resultType);
+}
+/// 
+unittest {
+  Setter s = Setter("age", "int");
+  string generatedCode = generateSetterMethod(s);
+
+  writeln(generatedCode);
+  assert(generatedCode == q{
+  int setAge(int value) {
+    this.age = value;
+  }});
+}
 /** Marks a member as both getter and setter capable. */
 struct Accessor {
 }
@@ -133,7 +235,6 @@ struct Accessor {
 struct RequestMapping {
   string path;
   string method;
-
   this(string mappingPath, string httpMethod = "") {
     path = mappingPath;
     method = httpMethod;
@@ -143,7 +244,6 @@ struct RequestMapping {
 /** Shortcut for GET request mapping. */
 struct GetMapping {
   string path;
-
   this(string mappingPath) {
     path = mappingPath;
   }
@@ -152,7 +252,6 @@ struct GetMapping {
 /** Shortcut for POST request mapping. */
 struct PostMapping {
   string path;
-
   this(string mappingPath) {
     path = mappingPath;
   }
@@ -161,7 +260,6 @@ struct PostMapping {
 /** Shortcut for PUT request mapping. */
 struct PutMapping {
   string path;
-
   this(string mappingPath) {
     path = mappingPath;
   }
@@ -170,7 +268,6 @@ struct PutMapping {
 /** Shortcut for DELETE request mapping. */
 struct DeleteMapping {
   string path;
-
   this(string mappingPath) {
     path = mappingPath;
   }
@@ -179,7 +276,6 @@ struct DeleteMapping {
 /** Shortcut for PATCH request mapping. */
 struct PatchMapping {
   string path;
-
   this(string mappingPath) {
     path = mappingPath;
   }
@@ -190,9 +286,9 @@ template hasComponentAttribute(T) {
   import std.traits : hasUDA;
 
   enum hasComponentAttribute = hasUDA!(T, Component)
-      || hasUDA!(T, Service)
-      || hasUDA!(T, Repository)
-      || hasUDA!(T, WebController);
+    || hasUDA!(T, Service)
+    || hasUDA!(T, Repository)
+    || hasUDA!(T, WebController);
 }
 
 /** Returns the configured component name (empty when not specified). */
@@ -242,11 +338,11 @@ template hasRequestMapping(alias member) {
   import std.traits : hasUDA;
 
   enum hasRequestMapping = hasUDA!(member, RequestMapping)
-      || hasUDA!(member, GetMapping)
-      || hasUDA!(member, PostMapping)
-      || hasUDA!(member, PutMapping)
-      || hasUDA!(member, DeleteMapping)
-      || hasUDA!(member, PatchMapping);
+    || hasUDA!(member, GetMapping)
+    || hasUDA!(member, PostMapping)
+    || hasUDA!(member, PutMapping)
+    || hasUDA!(member, DeleteMapping)
+    || hasUDA!(member, PatchMapping);
 }
 
 /** Checks whether a member has a getter marker UDA. */
@@ -268,7 +364,7 @@ template hasAccessorAttribute(alias member) {
   import std.traits : hasUDA;
 
   enum hasAccessorAttribute = hasUDA!(member, Accessor)
-      || (hasUDA!(member, Getter) && hasUDA!(member, Setter));
+    || (hasUDA!(member, Getter) && hasUDA!(member, Setter));
 }
 
 /** Returns mapped path for request mapping UDAs. */
@@ -297,7 +393,8 @@ template getRequestMethod(alias member) {
   import std.traits : getUDAs, hasUDA;
 
   static if (hasUDA!(member, RequestMapping)) {
-    enum getRequestMethod = getUDAs!(member, RequestMapping)[0].method;
+    enum getRequestMethod = getUDAs!(member, RequestMapping)[0]
+        .method;
   } else static if (hasUDA!(member, GetMapping)) {
     enum getRequestMethod = "GET";
   } else static if (hasUDA!(member, PostMapping)) {
@@ -322,13 +419,11 @@ unittest {
   class UserService {
     @Autowired UserRepository repository;
 
-    @Getter
-    @Setter
+    @Getter("displayName", "string")
+    @Setter("displayName", "string")
     string displayName;
-
     @Accessor
     string email;
-
     @PostConstruct
     void init() {
     }
@@ -345,7 +440,7 @@ unittest {
     }
   }
 
-  @Configuration
+  @UDAConfiguration
   class AppConfig {
     @Bean("repo")
     UserRepository createRepository() {
@@ -354,15 +449,20 @@ unittest {
   }
 
   static assert(hasComponentAttribute!UserService);
-  static assert(getComponentName!UserService == "userService");
+  static assert(
+    getComponentName!UserService == "userService");
 
   alias repositoryField = __traits(getMember, UserService, "repository");
-  static assert(hasInjectionAttribute!repositoryField);
+  static assert(
+    hasInjectionAttribute!repositoryField);
 
   alias displayNameField = __traits(getMember, UserService, "displayName");
-  static assert(hasGetterAttribute!displayNameField);
-  static assert(hasSetterAttribute!displayNameField);
-  static assert(hasAccessorAttribute!displayNameField);
+  static assert(
+    hasGetterAttribute!displayNameField);
+  static assert(
+    hasSetterAttribute!displayNameField);
+  static assert(
+    hasAccessorAttribute!displayNameField);
 
   alias emailField = __traits(getMember, UserService, "email");
   static assert(hasGetterAttribute!emailField);
@@ -371,13 +471,18 @@ unittest {
 
   alias listMethod = __traits(getMember, UserController, "list");
   static assert(hasRequestMapping!listMethod);
-  static assert(getRequestPath!listMethod == "/users");
-  static assert(getRequestMethod!listMethod == "GET");
+  static assert(
+    getRequestPath!listMethod == "/users");
+  static assert(
+    getRequestMethod!listMethod == "GET");
 
   alias removeMethod = __traits(getMember, UserController, "remove");
-  static assert(getRequestMethod!removeMethod == "DELETE");
+  static assert(
+    getRequestMethod!removeMethod == "DELETE");
 
   alias createRepositoryMethod = __traits(getMember, AppConfig, "createRepository");
-  static assert(hasBeanAttribute!createRepositoryMethod);
-  static assert(getBeanName!createRepositoryMethod == "repo");
+  static assert(
+    hasBeanAttribute!createRepositoryMethod);
+  static assert(
+    getBeanName!createRepositoryMethod == "repo");
 }
