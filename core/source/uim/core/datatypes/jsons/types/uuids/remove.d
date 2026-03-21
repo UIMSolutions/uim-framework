@@ -179,6 +179,18 @@ Json removeUUIDs(Json json) {
 
   return json.removeValues((Json j) => j.isUUID);
 }
+///
+unittest {
+  Json json = [
+    "not a uuid",
+    "123e4567-e89b-12d3-a456-426614174000",
+    "also not a uuid",
+    "123e4567-e89b-12d3-a456-426614174001"
+  ].toJson;
+
+  json = removeUUIDs(json);
+  assert(json.length == 2);
+}
 // #endregion base
 // #endregion Json
 

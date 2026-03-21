@@ -7,6 +7,9 @@ module uim.core.datatypes;
 
 public {
   import uim.core.datatypes.booleans;
+  import uim.core.datatypes.colors;
+  import uim.core.datatypes.geo;
+  import uim.core.datatypes.geometry;
   import uim.core.datatypes.datetimes;
   import uim.core.datatypes.jsons;
   import uim.core.datatypes.bsons;
