@@ -240,6 +240,21 @@ unittest {
   assert(compiler.analyzer() !is null);
   assert(compiler.optimizer() !is null);
   assert(compiler.codeGenerator() !is null);
+
+  // Test version getter/setter
+  assert(compiler.version_() == "1.0.0");
+  compiler.version_("2.0.0");
+  assert(compiler.version_() == "2.0.0");
+
+  // Test diagnostics handling
+  assert(compiler.diagnostics().length == 0);
+  compiler.addDiagnostic(Diagnostic(DiagnosticSeverity.Warning, "Test warning"));
+  assert(compiler.diagnostics().length == 1);
+  assert(compiler.hasErrors() == false);
+  compiler.addDiagnostic(Diagnostic(DiagnosticSeverity.Error, "Test error"));
+  assert(compiler.diagnostics().length == 2);
+  assert(compiler.hasErrors() == true);
+  
 }
 
 /**

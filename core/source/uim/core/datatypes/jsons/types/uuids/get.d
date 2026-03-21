@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.core.datatypes.jsons.types.integers.get;
+module uim.core.datatypes.jsons.types.uuids.get;
 
 import uim.core;
 
@@ -13,239 +13,239 @@ mixin(ShowModule!());
 
 // #region Json
 // #region path
-// #region getIntegers(json, paths)
+// #region getUUIDs(json, paths)
 /**
-  * Retrieves all integers at the specified paths from the Json object.
+  * Retrieves all uuids at the specified paths from the Json object.
   * Params:
   *   json = The Json object to retrieve from.
-  *   paths = The paths of the integers to retrieve.
+  *   paths = The paths of the uuids to retrieve.
   *   defaultValue = The value to return if the path does not contain an array.
   * Returns:
-  *   An int[] containing all integers found at the specified paths.
+  *   An uuid[] containing all uuids found at the specified paths.
 **/
-int[] getIntegers(Json json, string[][] paths, int defaultValue = 0) {
+uuid[] getUUIDs(Json json, string[][] paths, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return json.isObject ? json.toMap.getIntegers(paths, defaultValue) : null;
+  return json.isObject ? json.toMap.getUUIDs(paths, defaultValue) : null;
 }
-// #endregion getIntegers(json, paths)
+// #endregion getUUIDs(json, paths)
 
-// #region getInteger(json, path)
+// #region getUUID(json, path)
 /**
-  * Retrieves the integer at the specified path from the Json object.
+  * Retrieves the uuid at the specified path from the Json object.
   *
   * Params:
   *  json = The Json object to retrieve from.
-  *  path = The path of the integer to retrieve.
+  *  path = The path of the uuid to retrieve.
   *  defaultValue = The value to return if the path does not contain an array.
   *
   * Returns:
-  *  The integer at the specified path, or the default value if not found.
+  *  The uuid at the specified path, or the default value if not found.
 **/
-int getInteger(Json json, string[] path, int defaultValue = 0) {
+UUID getUUID(Json json, string[] path, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return json.isInteger(path) ? json.getValue(path).getInteger : defaultValue;
+  return json.isUUID(path) ? json.getValue(path).getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger with path");
+  mixin(ShowTest!"Testing getUUID with path");
 
   Json json = parseJsonString(`{"data": { "test": [ 1, {"a": 1}, [3, 4] ]}}`);
-  // assert(json.getInteger(["data", "test"])[0] == 1.toJson, "Expected integer at path ['data', 'test'][0]");
-  // assert(json.getInteger(["data", "test"]).filterArrays()[0] == 1.toJson, "Expected filtered integer at path ['data', 'test'][0]");
+  // assert(json.getUUID(["data", "test"])[0] == 1.toJson, "Expected uuid at path ['data', 'test'][0]");
+  // assert(json.getUUID(["data", "test"]).filterArrays()[0] == 1.toJson, "Expected filtered uuid at path ['data', 'test'][0]");
 }
-// #endregion getInteger(json, path)
+// #endregion getUUID(json, path)
 // #endregion path
 
 // #region key
-// #region getIntegers(json, keys)
+// #region getUUIDs(json, keys)
 /**
-  * Retrieves all integers at the specified keys from the Json object.
+  * Retrieves all uuids at the specified keys from the Json object.
   * Params:
   *   json = The Json object to retrieve from.
-  *   keys = The keys of the integers to retrieve.
+  *   keys = The keys of the uuids to retrieve.
   *   defaultValue = The value to return if the key does not contain an array.
   * Returns:
-  *   An int[] containing all integers found at the specified keys.
+  *   An uuid[] containing all uuids found at the specified keys.
 **/
-int[] getIntegers(Json json, string[] keys, int defaultValue = 0) {
+uuid[] getUUIDs(Json json, string[] keys, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return json.isObject ? json.toMap.getIntegers(keys, defaultValue) : null;
+  return json.isObject ? json.toMap.getUUIDs(keys, defaultValue) : null;
 }
-// #endregion getIntegers(json, keys)
+// #endregion getUUIDs(json, keys)
 
-// #region getInteger(json, key)
+// #region getUUID(json, key)
 /**
-  * Retrieves the integer at the specified key from the Json object.
+  * Retrieves the uuid at the specified key from the Json object.
   *
   * Params:
   *   json = The Json object to retrieve from.
-  *   key = The key of the integer to retrieve.
+  *   key = The key of the uuid to retrieve.
   *   defaultValue = The value to return if the key does not contain an array.
   *
   * Returns:
-  *   The integer at the specified key, or the default value if not found.
+  *   The uuid at the specified key, or the default value if not found.
 **/
-int getInteger(Json json, string key, int defaultValue = 0) {
+UUID getUUID(Json json, string key, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return json.isInteger(key) ? json[key].getInteger : defaultValue;
+  return json.isUUID(key) ? json[key].getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json with key");
+  mixin(ShowTest!"Testing getUUID for Json with key");
 
   Json jsonMap = [
     "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ].toJson;
-  assert(jsonMap.getInteger("first") == 1, "Expected integer at key 'first'");
+  assert(jsonMap.getUUID("first") == 1, "Expected uuid at key 'first'");
 }
-// #endregion getInteger(Json, key)
+// #endregion getUUID(Json, key)
 // #endregion key
 
 // #region index
-// #region getIntegers(json, indices)
+// #region getUUIDs(json, indices)
 /**
-  * Retrieves all integers at the specified indices from the Json array.
+  * Retrieves all uuids at the specified indices from the Json array.
   * Params:
   *   json = The Json object to retrieve from.
-  *   indices = The indices of the integers to retrieve.
+  *   indices = The indices of the uuids to retrieve.
   *   defaultValue = The value to return if the key does not contain an array.
   * Returns:
-  *   An int[] containing all integers found at the specified keys.
+  *   An uuid[] containing all uuids found at the specified keys.
 **/
-int[] getIntegers(Json json, size_t[] indices) {
+uuid[] getUUIDs(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.getIntegers(indices) : null;
+  return json.isArray ? json.toArray.getUUIDs(indices) : null;
 }
-// #endregion getIntegers(json, indices)
+// #endregion getUUIDs(json, indices)
 
-// #region getInteger(json, index)
+// #region getUUID(json, index)
 /**
-  * Retrieves the integer at the specified index from the Json object.
+  * Retrieves the uuid at the specified index from the Json object.
   *
   * Params:
   *  json = The Json object to retrieve from.
-  *  index = The index of the integer to retrieve.
+  *  index = The index of the uuid to retrieve.
   *  defaultValue = The value to return if the index does not contain an array.
   *
   * Returns:
-  *  The integer at the specified index, or the default value if not found.
+  *  The uuid at the specified index, or the default value if not found.
 **/
-int getInteger(Json json, size_t index, int defaultValue = 0) {
+UUID getUUID(Json json, size_t index, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return json.isInteger(index) ? json[index].getInteger : defaultValue;
+  return json.isUUID(index) ? json[index].getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json with index");
+  mixin(ShowTest!"Testing getUUID for Json with index");
 
   Json jsonArray = [
     1.toJson, ["a": 1].toJson, [3, 4].toJson
   ].toJson;
-  assert(jsonArray.getInteger(0) == 1, "Expected integer at index 0");
+  assert(jsonArray.getUUID(0) == 1, "Expected uuid at index 0");
 }
-// #endregion getInteger(json, index)
+// #endregion getUUID(json, index)
 // #endregion index
 // #endregion Json
 
 // #region Json[string]
 // #region path
-int[] getIntegers(Json[string] map, string[][] paths, int defaultValue = 0) {
+uuid[] getUUIDs(Json[string] map, string[][] paths, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return paths.map!(path => map.getInteger(path, defaultValue)).array;
+  return paths.map!(path => map.getUUID(path, defaultValue)).array;
 }
 /**
-  * Retrieves the integer at the specified path from the Json map.
+  * Retrieves the uuid at the specified path from the Json map.
   *
   * Params:
   *   map = The Json map to retrieve from.
-  *   path = The path of the integer to retrieve.
+  *   path = The path of the uuid to retrieve.
   *   defaultValue = The value to return if the path does not contain an array.
   *
   * Returns:
-  *   The integer at the specified path, or the default value if not found.
+  *   The uuid at the specified path, or the default value if not found.
 **/
-int getInteger(Json[string] map, string[] path, int defaultValue = 0) {
+UUID getUUID(Json[string] map, string[] path, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return map.getValue(path).isInteger ? map.getValue(path).getInteger : defaultValue;
+  return map.getValue(path).isUUID ? map.getValue(path).getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json[string] with path");
+  mixin(ShowTest!"Testing getUUID for Json[string] with path");
 
   Json[string] map = [
     "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getInteger("first") == 1.toJson, "Expected integer at path 'first'");
+  assert(map.getUUID("first") == 1.toJson, "Expected uuid at path 'first'");
 }
 // #endregion path
 
 // #region key
-// #region getIntegers(Json[string] map, keys)
+// #region getUUIDs(Json[string] map, keys)
 /**
-  * Retrieves all integers at the specified keys from the Json map.
+  * Retrieves all uuids at the specified keys from the Json map.
   * Params:
   *   map = The Json map to retrieve from.
-  *   keys = The keys of the integers to retrieve.
+  *   keys = The keys of the uuids to retrieve.
   * Returns:
-  *   An int[] containing all integers found at the specified keys.
+  *   An uuid[] containing all uuids found at the specified keys.
 **/ 
-int[] getIntegers(Json[string] map, string[] keys, int defaultValue = 0) {
+uuid[] getUUIDs(Json[string] map, string[] keys, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return keys.map!(key => map.getInteger(key, defaultValue)).array;
+  return keys.map!(key => map.getUUID(key, defaultValue)).array;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getIntegers for Json[string] with keys");
+  mixin(ShowTest!"Testing getUUIDs for Json[string] with keys");
 
   Json[string] map = [
     "first": 1.toJson, "second": ["a": 1].toJson, "third": 2.toJson, "fourth": [3, 4].toJson
   ];
-  auto integers = map.getIntegers(["first", "third", "fourth"]);
-  assert(integers.length == 3, "Expected 3 integers");
-  assert(integers[0] == 1, "Expected integer at key 'first'");
-  assert(integers[1] == 2, "Expected integer at key 'third'");
+  auto uuids = map.getUUIDs(["first", "third", "fourth"]);
+  assert(uuids.length == 3, "Expected 3 uuids");
+  assert(uuids[0] == 1, "Expected uuid at key 'first'");
+  assert(uuids[1] == 2, "Expected uuid at key 'third'");
 }
-// #endregion getIntegers(Json[string] map, keys)
+// #endregion getUUIDs(Json[string] map, keys)
 
-// #region getInteger(Json[string] map, key)
+// #region getUUID(Json[string] map, key)
 /**
-  * Retrieves the integer at the specified key from the Json map.
+  * Retrieves the uuid at the specified key from the Json map.
   *
   * Params:
   *  map = The Json map to retrieve from.
-  *  key = The key of the integer to retrieve.
+  *  key = The key of the uuid to retrieve.
   *  defaultValue = The value to return if the key does not contain an array.
   *
   * Returns:
-  *  The integer at the specified key, or the default value if not found.
+  *  The uuid at the specified key, or the default value if not found.
 **/
-int getInteger(Json[string] map, string key, int defaultValue = 0) {
+UUID getUUID(Json[string] map, string key, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return map.getValue(key).isInteger ? map.getValue(key).getInteger : defaultValue;
+  return map.getValue(key).isUUID ? map.getValue(key).getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json[string] with key");
+  mixin(ShowTest!"Testing getUUID for Json[string] with key");
 
   Json[string] map = [
     "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getInteger("first") == 1.toJson, "Expected integer at key 'first'");
+  assert(map.getUUID("first") == 1.toJson, "Expected uuid at key 'first'");
 }
-// #endregion getInteger(Json[string] map, key)
+// #endregion getUUID(Json[string] map, key)
 // #endregion key
 
-// #region getIntegers(Json[string] map)
+// #region getUUIDs(Json[string] map)
 /** 
   * Retrieves all arrays from the Json map.
   *
@@ -255,75 +255,75 @@ unittest {
   * Returns:
   *  A Json[string] containing all arrays found in the Json map.
 **/
-int[string] getIntegers(Json[string] map) {
+UUID[string] getUUIDs(Json[string] map) {
   mixin(ShowFunction!());
 
-  int[string] result;
+  UUID[string] result;
   foreach (key, value; map) {
-    if (value.isInteger) {
-      result[key] = value.getInteger;
+    if (value.isUUID) {
+      result[key] = value.getUUID;
     }
   }
   return result;
 }
-// #endregion getIntegers(Json[string] map)
+// #endregion getUUIDs(Json[string] map)
 // #endregion Json[string]
 
 // #region Json[]
-// #region getIntegers(Json[], indices) 
+// #region getUUIDs(Json[], indices) 
 /** 
-  * Retrieves all integers at the specified indices from the Json array.
+  * Retrieves all uuids at the specified indices from the Json array.
   *
   * Params:
   *   jsons = The array of Json objects to retrieve from.
-  *   indices = The indices of the integers to retrieve.
+  *   indices = The indices of the uuids to retrieve.
   * Returns:
-  *   An array of integers found at the specified indices.
+  *   An array of uuids found at the specified indices.
 **/
-int[] getIntegers(Json[] jsons, size_t[] indices) {
+uuid[] getUUIDs(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
-  return jsons.getValues(indices, (size_t index) => jsons[index].isInteger).map!(json => json.getInteger).array;
+  return jsons.getValues(indices, (size_t index) => jsons[index].isUUID).map!(json => json.getUUID).array;
 }
 ///
 unittest {
-  mixin(ShowTest!"Testing getIntegers for Json[] with indices");
+  mixin(ShowTest!"Testing getUUIDs for Json[] with indices");
 
   Json[] jsons = [1.toJson, ["a": 1].toJson, 2.toJson, [3, 4].toJson];
-  auto integers = jsons.getIntegers([0, 2]);
-  assert(integers.length == 2, "Expected 2 integers");
-  assert(integers[0] == 1, "Expected integer at index 0");
-  assert(integers[1] == 2, "Expected integer at index 2");
+  auto uuids = jsons.getUUIDs([0, 2]);
+  assert(uuids.length == 2, "Expected 2 uuids");
+  assert(uuids[0] == 1, "Expected uuid at index 0");
+  assert(uuids[1] == 2, "Expected uuid at index 2");
 }
-// #endregion getIntegers(Json[], indices) 
+// #endregion getUUIDs(Json[], indices) 
 
-// #region getInteger(Json[], index)
+// #region getUUID(Json[], index)
 /** 
-  * Retrieves the integer at the specified index from the Json array.
+  * Retrieves the uuid at the specified index from the Json array.
   *
   * Params:
   *  jsons = The array of Json objects to retrieve from.
-  *  index = The index of the integer to retrieve.
+  *  index = The index of the uuid to retrieve.
   *  defaultValue = The value to return if the index does not contain an array.
   *
   * Returns:
-  *  The integer at the specified index, or the default value if not found.
+  *  The uuid at the specified index, or the default value if not found.
 **/
-int getInteger(Json[] jsons, size_t index, int defaultValue = 0) {
+UUID getUUID(Json[] jsons, size_t index, UUID defaultValue = 0) {
   mixin(ShowFunction!());
 
-  return jsons.getValue(index).isInteger ? jsons[index].getInteger : defaultValue;
+  return jsons.getValue(index).isUUID ? jsons[index].getUUID : defaultValue;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json[] with index");
+  mixin(ShowTest!"Testing getUUID for Json[] with index");
 
   Json[] jsons = [1.toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(jsons.getInteger(0) == 1, "Expected integer at index 0");
+  assert(jsons.getUUID(0) == 1, "Expected uuid at index 0");
 }
-// #endregion getInteger(Json[], index)
+// #endregion getUUID(Json[], index)
 
-// #region getInteger(Json[])
+// #region getUUID(Json[])
 /** 
   * Retrieves all arrays from the Json array.
   *
@@ -331,30 +331,30 @@ unittest {
   *  jsons = The array of Json objects to retrieve from.
   *
   * Returns:
-  *  An array of integers found in the input array.
+  *  An array of uuids found in the input array.
 **/
-int[] getIntegers(Json[] jsons) {
+uuid[] getUUIDs(Json[] jsons) {
   mixin(ShowFunction!());
 
-  return jsons.filter!(json => json.isInteger).map!(json => json.getInteger).array;
+  return jsons.filter!(json => json.isUUID).map!(json => json.getUUID).array;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getIntegers for Json[]");
+  mixin(ShowTest!"Testing getUUIDs for Json[]");
 
   Json[] jsons = [
     1.toJson, ["a": 1].toJson, 2.toJson, [3, 4].toJson
   ];
-  auto integers = jsons.getIntegers;
-  assert(integers.length == 2, "Expected 2 integers");
-  assert(integers[0] == 1.toJson, "Expected integer at index 0");
-  assert(integers[1] == 2.toJson, "Expected integer at index 1");
+  auto uuids = jsons.getUUIDs;
+  assert(uuids.length == 2, "Expected 2 uuids");
+  assert(uuids[0] == 1.toJson, "Expected uuid at index 0");
+  assert(uuids[1] == 2.toJson, "Expected uuid at index 1");
 }
-// #endregion getInteger(Json[])
+// #endregion getUUID(Json[])
 // #endregion Json[]
 
 // #region Json
-// #region getIntegers(Json)
+// #region getUUIDs(Json)
 /** 
   * Retrieves all arrays from the Json object.
   *
@@ -364,41 +364,41 @@ unittest {
   * Returns:
   *  A Json containing all arrays found in the Json object.
 **/
-int[] getIntegers(Json json) {
+uuid[] getUUIDs(Json json) {
   mixin(ShowFunction!());
 
-  return json.isArray ? json.toArray.getIntegers : null;
+  return json.isArray ? json.toArray.getUUIDs : null;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getIntegers for Json");
+  mixin(ShowTest!"Testing getUUIDs for Json");
 
   Json jsonArray = [
     1.toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
   ].toJson;
-  auto arraysFromArray = jsonArray.getIntegers;
+  auto arraysFromArray = jsonArray.getUUIDs;
   // TODO
 }
-// #endregion getIntegers(Json)
+// #endregion getUUIDs(Json)
 
-// #region getInteger(Json)
+// #region getUUID(Json)
 /** 
-  * Retrieves the integer from the Json object.
+  * Retrieves the uuid from the Json object.
   * Params:
   *   json = The Json object to retrieve from.
   * Returns:
-  *   The integer contained in the Json object, or null if not an integer.
+  *   The uuid contained in the Json object, or null if not an uuid.
 **/
-int getInteger(Json json) {
+UUID getUUID(Json json) {
   mixin(ShowFunction!());
 
-  return json.isInteger ? json.get!int : 0;
+  return json.isUUID ? json.get!UUID : 0;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing getInteger for Json");
+  mixin(ShowTest!"Testing getUUID for Json");
 
   Json json = 1.toJson;
-  assert(json.getInteger == 1, "Expected integer from Json");
+  assert(json.getUUID == 1, "Expected uuid from Json");
 }
-// #endregion getInteger(Json)
+// #endregion getUUID(Json)

@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache false license, as written in the included LICENSE.txt file.         *
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.core.datatypes.jsons.types.integers.typecheck;
+module uim.core.datatypes.jsons.types.uuids.typecheck;
 
 import uim.core;
 
@@ -14,24 +14,24 @@ mixin(ShowModule!());
 // #region Json[]
 // #region indices
 // #region all
-bool isAllInteger(Json[] jsons, size_t[] indices = null) {
+bool isAllUUID(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.all!(value => value.isInteger) : indices.all!(
-      index => jsons.isInteger(index));
+    ? jsons.length > 0 && jsons.all!(value => value.isUUID) : indices.all!(
+      index => jsons.isUUID(index));
 }
 // #endregion all
 
 // #region any
-bool isAnyInteger(Json[] jsons, size_t[] indices = null) {
+bool isAnyUUID(Json[] jsons, size_t[] indices = null) {
   return indices.length == 0
-    ? jsons.length > 0 && jsons.any!(value => value.isInteger) : indices.any!(
-      index => jsons.isInteger(index));
+    ? jsons.length > 0 && jsons.any!(value => value.isUUID) : indices.any!(
+      index => jsons.isUUID(index));
 }
 // #endregion any
 
 // #region is
-bool isInteger(Json[] jsons, size_t index) {
-  return jsons.length > index && jsons.getValue(index).isInteger;
+bool isUUID(Json[] jsons, size_t index) {
+  return jsons.length > index && jsons.getValue(index).isUUID;
 }
 // #endregion is
 // #endregion indices
@@ -40,46 +40,46 @@ bool isInteger(Json[] jsons, size_t index) {
 // #region Json[string]
 // #region paths
 // #region all
-bool isAllInteger(Json[string] map, string[][] paths) {
+bool isAllUUID(Json[string] map, string[][] paths) {
   return paths.length > 0
-    ? paths.all!(path => map.isInteger(path)) : false;
+    ? paths.all!(path => map.isUUID(path)) : false;
 }
 // #endregion all
 
 // #region any
-bool isAnyInteger(Json[string] map, string[][] paths) {
+bool isAnyUUID(Json[string] map, string[][] paths) {
   return paths.length > 0
-    ? paths.any!(path => map.isInteger(path)) : false;
+    ? paths.any!(path => map.isUUID(path)) : false;
 }
 // #endregion any
 
 // #region is
-bool isInteger(Json[string] map, string[] path) {
-  return map.getValue(path).isInteger;
+bool isUUID(Json[string] map, string[] path) {
+  return map.getValue(path).isUUID;
 }
 // #endregion is
 // #endregion paths
 
 // #region keys
 // #region all
-bool isAllInteger(Json[string] map, string[] keys = null) {
+bool isAllUUID(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.all!(key => map.getValue(key)
-        .isInteger) : map.getValues.all!(value => value.isInteger);
+        .isUUID) : map.getValues.all!(value => value.isUUID);
 }
 // #endregion all
 
 // #region any
-bool isAnyInteger(Json[string] map, string[] keys = null) {
+bool isAnyUUID(Json[string] map, string[] keys = null) {
   return keys.length > 0
     ? keys.any!(key => map.getValue(key)
-        .isInteger) : map.getValues.any!(value => value.isInteger);
+        .isUUID) : map.getValues.any!(value => value.isUUID);
 }
 // #endregion any
 
 // #region is
-bool isInteger(Json[string] map, string key) {
-  return map.getValue(key).isInteger;
+bool isUUID(Json[string] map, string key) {
+  return map.getValue(key).isUUID;
 }
 // #endregion is
 // #endregion keys
@@ -87,75 +87,75 @@ bool isInteger(Json[string] map, string key) {
 
 // #region Json
 // #region index
-bool isAllInteger(Json json, size_t[] indices) {
+bool isAllUUID(Json json, size_t[] indices) {
   return json.isArray && indices.length > 0
-    ? indices.all!(index => json.isInteger(index)) : false;
+    ? indices.all!(index => json.isUUID(index)) : false;
 }
 
-bool isAnyInteger(Json json, size_t[] indices) {
+bool isAnyUUID(Json json, size_t[] indices) {
   return json.isArray && indices.length > 0
-    ? indices.any!(index => json.isInteger(index)) : false;
+    ? indices.any!(index => json.isUUID(index)) : false;
 }
 
-bool isInteger(Json json, size_t index) {
-  return json.getValue(index).isInteger;
+bool isUUID(Json json, size_t index) {
+  return json.getValue(index).isUUID;
 }
 // #endregion index
 
 // #region paths
 // #region all
-bool isAllInteger(Json json, string[][] paths) {
+bool isAllUUID(Json json, string[][] paths) {
   return json.isObject && paths.length > 0
-    ? paths.all!(path => json.isInteger(path)) : false;
+    ? paths.all!(path => json.isUUID(path)) : false;
 }
 // #endregion all
 
 // #region any
-bool isAnyInteger(Json json, string[][] paths) {
+bool isAnyUUID(Json json, string[][] paths) {
   return json.isObject && paths.length > 0
-    ? paths.any!(path => json.isInteger(path)) : false;
+    ? paths.any!(path => json.isUUID(path)) : false;
 }
 // #endregion any
 
 // #region is
-bool isInteger(Json json, string[] path) {
-  return json.getValue(path).isInteger;
+bool isUUID(Json json, string[] path) {
+  return json.getValue(path).isUUID;
 }
 // #endregion is
 // #endregion paths
 
 // #region key
-bool isAllInteger(Json json, string[] keys = null) {
+bool isAllUUID(Json json, string[] keys = null) {
   if (json.isArray) {
     return keys.length == 0
-      ? json.toArray().isAllInteger : false;
+      ? json.toArray().isAllUUID : false;
   }
   if (json.isObject) {
     return keys.length == 0
-      ? json.toMap.isAllInteger : json.toMap.isAllInteger(keys);
+      ? json.toMap.isAllUUID : json.toMap.isAllUUID(keys);
   }
   return false;
 }
 
-bool isAnyInteger(Json json, string[] keys = null) {
+bool isAnyUUID(Json json, string[] keys = null) {
   if (json.isArray) {
     return keys.length == 0
-      ? json.toArray().isAnyInteger : false;
+      ? json.toArray().isAnyUUID : false;
   }
   if (json.isObject) {
     return keys.length == 0
-      ? json.toMap.isAnyInteger : json.toMap.isAnyInteger(keys);
+      ? json.toMap.isAnyUUID : json.toMap.isAnyUUID(keys);
   }
   return false;
 }
 
-bool isInteger(Json json, string key) {
-  return json.getValue(key).isInteger;
+bool isUUID(Json json, string key) {
+  return json.getValue(key).isUUID;
 }
 // #region key
 
 // #region base
-bool isInteger(Json json) {
+bool isUUID(Json json) {
   return (json.type == Json.Type.int_);
 }
 // #endregion base

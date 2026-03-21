@@ -139,7 +139,30 @@ class SemanticAnalyzer : UIMObject, ISemanticAnalyzer {
 ///
 unittest {
   mixin(ShowTest!"Testing SemanticAnalyzer");
-  
+
+  // Test creation of analyzer
   auto analyzer = new SemanticAnalyzer();
   assert(analyzer !is null);
+
+  // Test initialization
+  assert(analyzer.initialize());
+  assert(analyzer.symbolTable() !is null);
+
+  // Test analysis of a simple AST
+  ASTNode ast = new ASTNode();
+  ast.type = ASTNodeType.FunctionDeclaration;
+  ast.token.value = "myFunction";
+  analyzer.analyze(ast);
+  assert(analyzer.symbolTable().lookup("myFunction") !is null);   
+
+  // Test error and warning collection
+  assert(analyzer.errors().length == 0);
+  assert(analyzer.warnings().length == 0);
+
+  // Test analysis of a variable declaration
+  ASTNode varDecl = new ASTNode();
+  varDecl.type = ASTNodeType.VariableDeclaration;
+  varDecl.token.value = "myVariable";
+  analyzer.analyze(varDecl);
+  assert(analyzer.symbolTable().lookup("myVariable") !is null); 
 }

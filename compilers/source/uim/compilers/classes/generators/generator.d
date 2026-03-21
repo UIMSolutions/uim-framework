@@ -36,7 +36,6 @@ class CodeGenerator : UIMObject, ICodeGenerator {
     return true;
   }
 
-  protected string _target = "generic";
   protected string[] _supportedTargets;
 
   CodeGenResult generate(ASTNode ast, CodeGenOptions options = CodeGenOptions.init) {
@@ -75,6 +74,7 @@ class CodeGenerator : UIMObject, ICodeGenerator {
     return result;
   }
 
+  protected string _target = "generic";
   string target() {
     return _target;
   }

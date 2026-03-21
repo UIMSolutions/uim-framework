@@ -96,13 +96,36 @@ class SymbolTable : ISymbolTable {
 }
 ///
 unittest {
+  mixin(ShowTest!"Testing SymbolTable");
+
   auto table = new SymbolTable();
   table.define("x", Symbol("int"));
-  // TODO: assert(table.resolve("x").type == "int");
-  // TODO: table.enterScope();
-  // TODO: assert(table.resolve("x").type == "int");
-  // TODO: table.define("y", Symbol("float"));
-  // TODO: assert(table.resolve("y").type == "float");
-  // TODO: table.exitScope();
-  // TODO: assert(table.resolve("y").type == null);
+  assert(table.resolve("x").type == "int");
+  table.enterScope();
+  assert(table.resolve("x").type == "int");
+  table.define("y", Symbol("float"));
+  assert(table.resolve("y").type == "float");
+  table.exitScope();
+  assert(table.resolve("y").type == null);
+
+  // Test symbol existence
+  assert(table.exists("x") == true);
+  assert(table.exists("y") == false);
+
+  // Test symbols retrieval
+  auto symbols = table.symbols();
+  assert(symbols["x"].type == "int");
+
+  // Test exiting global scope does not cause errors
+  table.exitScope();
+  assert(table.resolve("x").type == "int");
+
+  // Test entering and exiting multiple scopes
+  table.enterScope();
+  table.define("z", Symbol("string"));
+  assert(table.resolve("z").type == "string");
+  table.enterScope();
+  assert(table.resolve("z").type == "string");
+  table.exitScope();
+  assert(table.resolve("z").type == "string");
 }
