@@ -156,7 +156,27 @@ bool isUUID(Json json, string key) {
 
 // #region base
 bool isUUID(Json json) {
-  return (json.type == Json.Type.int_);
+  import uim.core.datatypes.uuids.nulls;
+
+  if (!json.isString) {
+    return false;
+  }
+
+  auto uuid = json.getString;
+  if (!uim.core.datatypes.uuids.nulls.isUUID(uuid)) {
+    return false;
+  }
+  
+  // Additional checks for UUID can be added here
+  return true;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing isUUID for Json");
+
+  auto id = randomUUID().toJson;
+  assert(isUUID(id));
+  assert(!isUUID("not a uuid".toJson));
 }
 // #endregion base
 // #endregion Json

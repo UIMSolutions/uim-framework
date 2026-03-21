@@ -22,14 +22,13 @@ unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] with indices and filterFunc");
 
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, randomUUID().toJson, 4.2.toJson
   ];
 
-  auto filtered = jsons.filterUUIDs([0, 2, 3],
+  auto filtered = jsons.filterUUIDs([0, 1, 2],
     (size_t index) @safe => jsons.isUUID(index));
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == jsons[2]);
 }
 // #endregion filter with indices and filterFunc
 
@@ -42,13 +41,12 @@ unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] with indices");
 
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, randomUUID().toJson, 4.2.toJson
   ];
 
   auto filtered = jsons.filterUUIDs([0, 1, 2]);
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == jsons[2]);
 }
 // #endregion filter with indices
 
@@ -61,14 +59,13 @@ unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] with filterFunc");
 
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, randomUUID().toJson, 4.2.toJson
   ];
 
   auto filtered = jsons.filterUUIDs(
     (size_t index) @safe => jsons.isUUID(index));
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == jsons[2]);
 }
 // #endregion with filterFunc
 // #endregion indices
@@ -82,14 +79,18 @@ Json[] filterUUIDs(Json[] jsons, Json[] values, bool delegate(Json) @safe filter
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] with values and filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, id, 4.2.toJson
   ];
+
+  Json[] values = [1.toJson, ["x", "y"].toJson, id];
+
   auto filtered = jsons.filterUUIDs(
-    [1.toJson, ["x", "y"].toJson],
-    (Json json) @safe => json == 1.toJson);
+    values,
+    (Json json) @safe => json == id);
   assert(filtered.length == 1);
-  assert(filtered[0] == 1.toJson);
+  assert(filtered[0] == id);
 }
 // #endregion filter with values and filterFunc
 
@@ -101,13 +102,13 @@ Json[] filterUUIDs(Json[] jsons, bool delegate(Json) @safe filterFunc) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] with filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, id, 4.2.toJson
   ];
   auto filtered = jsons.filterUUIDs((Json j) @safe => j.isUUID);
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == id);
 }
 // #endregion with filterFunc
 
@@ -118,13 +119,14 @@ Json[] filterUUIDs(Json[] jsons, Json[] values) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] by values");
 
+  auto id = randomUUID().toJson;
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, id, 4.2.toJson
   ];
   auto filtered = jsons.filterUUIDs(
-    [1.toJson, ["x", "y"].toJson]);
+    [1.toJson, ["x", "y"].toJson, id]);
   assert(filtered.length == 1);
-  assert(filtered[0] == 1.toJson);
+  assert(filtered[0] == id);
 }
 // #endregion by values
 
@@ -140,13 +142,13 @@ Json[] filterUUIDs(Json[] jsons) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[] by datatype");
 
+  auto id = randomUUID().toJson;
   Json[] jsons = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, id, 4.2.toJson
   ];
   auto filtered = jsons.filterUUIDs();
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == id);
 }
 // #endregion by datatype
 // #endregion values
@@ -162,16 +164,18 @@ Json[string] filterUUIDs(Json[string] map, string[][] paths, bool delegate(strin
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with paths and filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
-  auto filtered = map.filterUUIDs([["a"], ["c"]],
-    (string[] path) @safe => path.length == 1 && path[0] == "a");
+  auto filtered = map.filterUUIDs([["a"], ["c"], ["e"]],
+    (string[] path) @safe => path.length == 1 && path[0] == "e");
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion with paths and filterFunc
 
@@ -183,15 +187,17 @@ Json[string] filterUUIDs(Json[string] map, string[][] paths) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with paths");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
-  auto filtered = map.filterUUIDs([["a"], ["c"]]);
+  auto filtered = map.filterUUIDs([["a"], ["c"], ["e"]]);
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == map["e"]);
 }
 // #endregion with paths
 // #endregion paths
@@ -205,17 +211,19 @@ Json[string] filterUUIDs(Json[string] map, string[] keys, bool delegate(string) 
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with keys and filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
   auto filtered = map.filterUUIDs(
-    ["a", "c"],
-    (string key) @safe => key == "a");
+    ["a", "c", "e"],
+     (string key) @safe => key == "e");
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter with keys and filterFunc
 
@@ -227,16 +235,18 @@ Json[string] filterUUIDs(Json[string] map, string[] keys) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with keys");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
   auto filtered = map.filterUUIDs(
-    ["a", "c"]);
+    ["a", "c", "e"]);
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter with keys
 
@@ -259,15 +269,17 @@ Json[string] filterUUIDs(Json[string] map, bool delegate(string) @safe filterFun
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
-  auto filtered = map.filterUUIDs((string key) @safe => key == "b");
+  auto filtered = map.filterUUIDs((string key) @safe => key == "e");
   assert(filtered.length == 1);
-  assert(filtered["b"] == ["x", "y"].toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion with filterFunc
 // #endregion keys
@@ -281,17 +293,20 @@ Json[string] filterUUIDs(Json[string] map, Json[] values, bool delegate(Json) @s
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with values and filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
+
   auto filtered = map.filterUUIDs(
-    [1.toJson, ["x", "y"].toJson],
+    [1.toJson, ["x", "y"].toJson, id],
     (Json json) @safe => json.isUUID);
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter with values and filterFunc
 
@@ -303,16 +318,18 @@ Json[string] filterUUIDs(Json[string] map, Json[] values) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with values");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
   auto filtered = map.filterUUIDs(
-    [1.toJson, ["x", "y"].toJson]);
+    [1.toJson, ["x", "y"].toJson, id]);
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter with values
 
@@ -324,15 +341,17 @@ Json[string] filterUUIDs(Json[string] map, bool delegate(Json) @safe filterFunc)
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] with filterFunc");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
   auto filtered = map.filterUUIDs((Json j) @safe => j.isUUID);
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter with filterFunc
 
@@ -344,15 +363,17 @@ Json[string] filterUUIDs(Json[string] map) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json[string] all arrays");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
     "a": 1.toJson,
     "b": ["x", "y"].toJson,
     "c": "not an array".toJson,
-    "d": 4.2.toJson
+    "d": 4.2.toJson,
+    "e": id
   ];
   auto filtered = map.filterUUIDs();
   assert(filtered.length == 1);
-  assert(filtered["a"] == 1.toJson);
+  assert(filtered["e"] == id);
 }
 // #endregion filter all arrays
 // #endregion values
@@ -368,11 +389,12 @@ Json filterUUIDs(Json json, size_t[] indices, bool delegate(size_t) @safe filter
 unittest {
   mixin(ShowTest!"Testing filterUUIDs with indices and filterFunc");
 
-  Json json = [Json(1.1), Json(2.1), Json(3), Json(4), Json(5)].toJson;
+  auto id = randomUUID().toJson;
+  Json json = [Json(1.1), Json(2.1), Json(3), id, Json(5)].toJson;
 
-  auto filtered = json.filterUUIDs([0, 2, 4],
+  auto filtered = json.filterUUIDs([0, 2, 3, 4],
     (size_t index) @safe => json.isUUID(index));
-  assert(filtered.length == 2);
+  assert(filtered.length == 1);
 }
 // #endregion with indices and filterFunc
 
@@ -384,10 +406,11 @@ Json filterUUIDs(Json json, size_t[] indices) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs with indices");
 
-  Json json = [Json(1.1), Json(2), Json(3), Json(4), Json(5)].toJson;
+  auto id = randomUUID().toJson;
+  Json json = [Json(1.1), Json(2), Json(3), id, Json(5)].toJson;
 
-  auto filtered = json.filterUUIDs([0, 2, 4]);
-  assert(filtered.length == 2);
+  auto filtered = json.filterUUIDs([0, 2, 3, 4]);
+  assert(filtered.length == 1);
 }
 // #endregion with indices
 
@@ -399,15 +422,17 @@ Json filterUUIDs(Json json, bool delegate(size_t) @safe filterFunc) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs with filterFunc");
 
-  Json json1 = [Json(1), Json(2), Json(3), Json(4), Json(5)].toJson;
+  auto id = randomUUID().toJson;
+  Json json1 = [Json(1), Json(2), Json(3), id, Json(5)].toJson;
   auto filtered1 = json1.filterUUIDs(
     (size_t index) @safe => json1.isUUID(index));
-  assert(filtered1.length == 5);
+  assert(filtered1.length == 1);
 
-  Json json2 = [Json(1.1), Json(2.2), Json(3), Json(4), Json(5)].toJson;
+  auto id2 = randomUUID().toJson;
+  Json json2 = [Json(1.1), Json(2.2), Json(3), id2, Json(5)].toJson;
   auto filtered2 = json2.filterUUIDs(
     (size_t index) @safe => json2.isUUID(index));
-  assert(filtered2.length == 3);
+  assert(filtered2.length == 1);
 }
 // #endregion with filterFunc
 // #endregion indices
@@ -421,14 +446,16 @@ Json filterUUIDs(Json json, Json[] values, bool delegate(Json) @safe filterFunc)
 unittest {
   mixin(ShowTest!"Testing filterUUIDs with values and filterFunc");
 
+
+  auto id = randomUUID().toJson;
   Json json = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, 2.toJson, id, 4.2.toJson
   ].toJson;
   auto filtered = json.filterUUIDs(
-    [1.toJson, ["x", "y"].toJson],
+    [1.toJson, ["x", "y"].toJson, id],
     (Json json) @safe => json.isUUID);
   assert(filtered.length == 1);
-  assert(filtered[0] == 1.toJson);
+  assert(filtered[0] == id);
 }
 // #endregion with values and filterFunc
 
@@ -440,13 +467,13 @@ Json filterUUIDs(Json json, bool delegate(Json) @safe filterFunc) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs with filterFunc");
 
+  auto id = randomUUID().toJson;
   Json json = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, 2.toJson, id, 4.2.toJson
   ].toJson;
   auto filtered = json.filterUUIDs((Json j) @safe => j.isUUID);
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == id);
 }
 // #endregion with filterFunc
 
@@ -458,15 +485,14 @@ Json filterUUIDs(Json json) {
 unittest {
   mixin(ShowTest!"Testing filterUUIDs for Json by datatype");
 
+  auto id = randomUUID().toJson;
   Json json = [
-    1.toJson, "not an array".toJson, 2.toJson, 4.2.toJson
+    1.toJson, "not an array".toJson, 2.toJson, id, 4.2.toJson
   ].toJson;
   auto filtered = json.filterUUIDs();
-  assert(filtered.length == 2);
-  assert(filtered[0] == 1.toJson);
-  assert(filtered[1] == 2.toJson);
+  assert(filtered.length == 1);
+  assert(filtered[0] == id);
 }
 // #endregion simple values
 // #endregion values
 // #endregion Json
-

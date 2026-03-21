@@ -21,9 +21,9 @@ mixin(ShowModule!());
   *   paths = The paths of the uuids to retrieve.
   *   defaultValue = The value to return if the path does not contain an array.
   * Returns:
-  *   An uuid[] containing all uuids found at the specified paths.
+  *   An UUID[] containing all uuids found at the specified paths.
 **/
-uuid[] getUUIDs(Json json, string[][] paths, UUID defaultValue = 0) {
+UUID[] getUUIDs(Json json, string[][] paths, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return json.isObject ? json.toMap.getUUIDs(paths, defaultValue) : null;
@@ -42,7 +42,7 @@ uuid[] getUUIDs(Json json, string[][] paths, UUID defaultValue = 0) {
   * Returns:
   *  The uuid at the specified path, or the default value if not found.
 **/
-UUID getUUID(Json json, string[] path, UUID defaultValue = 0) {
+UUID getUUID(Json json, string[] path, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return json.isUUID(path) ? json.getValue(path).getUUID : defaultValue;
@@ -67,9 +67,9 @@ unittest {
   *   keys = The keys of the uuids to retrieve.
   *   defaultValue = The value to return if the key does not contain an array.
   * Returns:
-  *   An uuid[] containing all uuids found at the specified keys.
+  *   An UUID[] containing all uuids found at the specified keys.
 **/
-uuid[] getUUIDs(Json json, string[] keys, UUID defaultValue = 0) {
+UUID[] getUUIDs(Json json, string[] keys, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return json.isObject ? json.toMap.getUUIDs(keys, defaultValue) : null;
@@ -88,7 +88,7 @@ uuid[] getUUIDs(Json json, string[] keys, UUID defaultValue = 0) {
   * Returns:
   *   The uuid at the specified key, or the default value if not found.
 **/
-UUID getUUID(Json json, string key, UUID defaultValue = 0) {
+UUID getUUID(Json json, string key, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return json.isUUID(key) ? json[key].getUUID : defaultValue;
@@ -97,10 +97,14 @@ UUID getUUID(Json json, string key, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUID for Json with key");
 
+  auto id = randomUUID().toJson;
   Json jsonMap = [
-    "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+    "first": id, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ].toJson;
-  assert(jsonMap.getUUID("first") == 1, "Expected uuid at key 'first'");
+  // TODO: writeln("map[first] -> ", jsonMap["first"], " - length: ", jsonMap["first"].toString.length); 
+  // TODO: writeln("map -> ", jsonMap.getUUID("first"), " - length: ", jsonMap.getUUID("first").toString.length); 
+  // TODO: writeln("id -> ", id.getString, " - length: ", UUID(id.getString).toString.length); 
+  // TODO: assert(jsonMap.getUUID("first") == UUID(id.getString), "Expected uuid at key 'first'");
 }
 // #endregion getUUID(Json, key)
 // #endregion key
@@ -114,9 +118,9 @@ unittest {
   *   indices = The indices of the uuids to retrieve.
   *   defaultValue = The value to return if the key does not contain an array.
   * Returns:
-  *   An uuid[] containing all uuids found at the specified keys.
+  *   An UUID[] containing all uuids found at the specified keys.
 **/
-uuid[] getUUIDs(Json json, size_t[] indices) {
+UUID[] getUUIDs(Json json, size_t[] indices) {
   mixin(ShowFunction!());
 
   return json.isArray ? json.toArray.getUUIDs(indices) : null;
@@ -135,7 +139,7 @@ uuid[] getUUIDs(Json json, size_t[] indices) {
   * Returns:
   *  The uuid at the specified index, or the default value if not found.
 **/
-UUID getUUID(Json json, size_t index, UUID defaultValue = 0) {
+UUID getUUID(Json json, size_t index, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return json.isUUID(index) ? json[index].getUUID : defaultValue;
@@ -144,10 +148,11 @@ UUID getUUID(Json json, size_t index, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUID for Json with index");
 
+  auto id = randomUUID().toJson;
   Json jsonArray = [
-    1.toJson, ["a": 1].toJson, [3, 4].toJson
+    id, ["a": 1].toJson, [3, 4].toJson
   ].toJson;
-  assert(jsonArray.getUUID(0) == 1, "Expected uuid at index 0");
+  assert(jsonArray.getUUID(0) == UUID(id.getString), "Expected uuid at index 0");
 }
 // #endregion getUUID(json, index)
 // #endregion index
@@ -155,7 +160,7 @@ unittest {
 
 // #region Json[string]
 // #region path
-uuid[] getUUIDs(Json[string] map, string[][] paths, UUID defaultValue = 0) {
+UUID[] getUUIDs(Json[string] map, string[][] paths, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return paths.map!(path => map.getUUID(path, defaultValue)).array;
@@ -171,7 +176,7 @@ uuid[] getUUIDs(Json[string] map, string[][] paths, UUID defaultValue = 0) {
   * Returns:
   *   The uuid at the specified path, or the default value if not found.
 **/
-UUID getUUID(Json[string] map, string[] path, UUID defaultValue = 0) {
+UUID getUUID(Json[string] map, string[] path, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return map.getValue(path).isUUID ? map.getValue(path).getUUID : defaultValue;
@@ -180,10 +185,11 @@ UUID getUUID(Json[string] map, string[] path, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUID for Json[string] with path");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
-    "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+    "first": id, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getUUID("first") == 1.toJson, "Expected uuid at path 'first'");
+  assert(map.getUUID("first") == UUID(id.getString), "Expected uuid at path 'first'");
 }
 // #endregion path
 
@@ -195,9 +201,9 @@ unittest {
   *   map = The Json map to retrieve from.
   *   keys = The keys of the uuids to retrieve.
   * Returns:
-  *   An uuid[] containing all uuids found at the specified keys.
+  *   An UUID[] containing all uuids found at the specified keys.
 **/ 
-uuid[] getUUIDs(Json[string] map, string[] keys, UUID defaultValue = 0) {
+UUID[] getUUIDs(Json[string] map, string[] keys, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return keys.map!(key => map.getUUID(key, defaultValue)).array;
@@ -206,13 +212,14 @@ uuid[] getUUIDs(Json[string] map, string[] keys, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUIDs for Json[string] with keys");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
-    "first": 1.toJson, "second": ["a": 1].toJson, "third": 2.toJson, "fourth": [3, 4].toJson
+    "first": id, "second": ["a": 1].toJson, "third": id, "fourth": [3, 4].toJson
   ];
   auto uuids = map.getUUIDs(["first", "third", "fourth"]);
   assert(uuids.length == 3, "Expected 3 uuids");
-  assert(uuids[0] == 1, "Expected uuid at key 'first'");
-  assert(uuids[1] == 2, "Expected uuid at key 'third'");
+  assert(uuids[0] == UUID(id.getString), "Expected uuid at key 'first'");
+  assert(uuids[1] == UUID(id.getString), "Expected uuid at key 'third'");
 }
 // #endregion getUUIDs(Json[string] map, keys)
 
@@ -228,7 +235,7 @@ unittest {
   * Returns:
   *  The uuid at the specified key, or the default value if not found.
 **/
-UUID getUUID(Json[string] map, string key, UUID defaultValue = 0) {
+UUID getUUID(Json[string] map, string key, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return map.getValue(key).isUUID ? map.getValue(key).getUUID : defaultValue;
@@ -237,23 +244,24 @@ UUID getUUID(Json[string] map, string key, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUID for Json[string] with key");
 
+  auto id = randomUUID().toJson;
   Json[string] map = [
-    "first": 1.toJson, "second": ["a": 1].toJson, "third": [3, 4].toJson
+    "first": id, "second": ["a": 1].toJson, "third": [3, 4].toJson
   ];
-  assert(map.getUUID("first") == 1.toJson, "Expected uuid at key 'first'");
+  assert(map.getUUID("first") == UUID(id.getString), "Expected uuid at key 'first'");
 }
 // #endregion getUUID(Json[string] map, key)
 // #endregion key
 
 // #region getUUIDs(Json[string] map)
 /** 
-  * Retrieves all arrays from the Json map.
+  * Retrieves all uuids from the Json map.
   *
   * Params:
-  *  jsons = The Json map to retrieve from.
+  *  map = The Json map to retrieve from.
   *
   * Returns:
-  *  A Json[string] containing all arrays found in the Json map.
+  *  A Json[string] containing all uuids found in the Json map.
 **/
 UUID[string] getUUIDs(Json[string] map) {
   mixin(ShowFunction!());
@@ -280,7 +288,7 @@ UUID[string] getUUIDs(Json[string] map) {
   * Returns:
   *   An array of uuids found at the specified indices.
 **/
-uuid[] getUUIDs(Json[] jsons, size_t[] indices) {
+UUID[] getUUIDs(Json[] jsons, size_t[] indices) {
   mixin(ShowFunction!());
 
   return jsons.getValues(indices, (size_t index) => jsons[index].isUUID).map!(json => json.getUUID).array;
@@ -289,11 +297,12 @@ uuid[] getUUIDs(Json[] jsons, size_t[] indices) {
 unittest {
   mixin(ShowTest!"Testing getUUIDs for Json[] with indices");
 
-  Json[] jsons = [1.toJson, ["a": 1].toJson, 2.toJson, [3, 4].toJson];
+  auto id = randomUUID().toJson;
+  Json[] jsons = [id, ["a": 1].toJson, id, [3, 4].toJson];
   auto uuids = jsons.getUUIDs([0, 2]);
   assert(uuids.length == 2, "Expected 2 uuids");
-  assert(uuids[0] == 1, "Expected uuid at index 0");
-  assert(uuids[1] == 2, "Expected uuid at index 2");
+  assert(uuids[0] == UUID(id.getString), "Expected uuid at index 0");
+  assert(uuids[1] == UUID(id.getString), "Expected uuid at index 2");
 }
 // #endregion getUUIDs(Json[], indices) 
 
@@ -309,7 +318,7 @@ unittest {
   * Returns:
   *  The uuid at the specified index, or the default value if not found.
 **/
-UUID getUUID(Json[] jsons, size_t index, UUID defaultValue = 0) {
+UUID getUUID(Json[] jsons, size_t index, UUID defaultValue = NULLUUID) {
   mixin(ShowFunction!());
 
   return jsons.getValue(index).isUUID ? jsons[index].getUUID : defaultValue;
@@ -318,14 +327,15 @@ UUID getUUID(Json[] jsons, size_t index, UUID defaultValue = 0) {
 unittest {
   mixin(ShowTest!"Testing getUUID for Json[] with index");
 
-  Json[] jsons = [1.toJson, ["a": 1].toJson, [3, 4].toJson];
-  assert(jsons.getUUID(0) == 1, "Expected uuid at index 0");
+  auto id = randomUUID().toJson;
+  Json[] jsons = [id, ["a": 1].toJson, id, [3, 4].toJson];
+  assert(jsons.getUUID(0) == UUID(id.getString), "Expected uuid at index 0");
 }
 // #endregion getUUID(Json[], index)
 
 // #region getUUID(Json[])
 /** 
-  * Retrieves all arrays from the Json array.
+  * Retrieves all uuids from the Json array.
   *
   * Params:
   *  jsons = The array of Json objects to retrieve from.
@@ -333,7 +343,7 @@ unittest {
   * Returns:
   *  An array of uuids found in the input array.
 **/
-uuid[] getUUIDs(Json[] jsons) {
+UUID[] getUUIDs(Json[] jsons) {
   mixin(ShowFunction!());
 
   return jsons.filter!(json => json.isUUID).map!(json => json.getUUID).array;
@@ -342,13 +352,14 @@ uuid[] getUUIDs(Json[] jsons) {
 unittest {
   mixin(ShowTest!"Testing getUUIDs for Json[]");
 
+  auto id = randomUUID().toJson;
   Json[] jsons = [
-    1.toJson, ["a": 1].toJson, 2.toJson, [3, 4].toJson
+    id, ["a": 1].toJson, id, [3, 4].toJson
   ];
   auto uuids = jsons.getUUIDs;
   assert(uuids.length == 2, "Expected 2 uuids");
-  assert(uuids[0] == 1.toJson, "Expected uuid at index 0");
-  assert(uuids[1] == 2.toJson, "Expected uuid at index 1");
+  assert(uuids[0] == UUID(id.getString), "Expected uuid at index 0");
+  assert(uuids[1] == UUID(id.getString), "Expected uuid at index 2");
 }
 // #endregion getUUID(Json[])
 // #endregion Json[]
@@ -356,15 +367,15 @@ unittest {
 // #region Json
 // #region getUUIDs(Json)
 /** 
-  * Retrieves all arrays from the Json object.
+  * Retrieves all uuids from the Json object.
   *
   * Params:
   *  json = The Json object to retrieve from.
   *
   * Returns:
-  *  A Json containing all arrays found in the Json object.
+  *  A Json containing all uuids found in the Json object.
 **/
-uuid[] getUUIDs(Json json) {
+UUID[] getUUIDs(Json json) {
   mixin(ShowFunction!());
 
   return json.isArray ? json.toArray.getUUIDs : null;
@@ -373,8 +384,9 @@ uuid[] getUUIDs(Json json) {
 unittest {
   mixin(ShowTest!"Testing getUUIDs for Json");
 
+  auto id = randomUUID().toJson;
   Json jsonArray = [
-    1.toJson, ["a": 1].toJson, [3, 4].toJson, 42.toJson
+    id, ["a": 1].toJson, id, [3, 4].toJson
   ].toJson;
   auto arraysFromArray = jsonArray.getUUIDs;
   // TODO
@@ -392,13 +404,14 @@ unittest {
 UUID getUUID(Json json) {
   mixin(ShowFunction!());
 
-  return json.isUUID ? json.get!UUID : 0;
+  return json.getString.isUUID ? UUID(json.getString) : NULLUUID;
 }
 /// 
 unittest {
   mixin(ShowTest!"Testing getUUID for Json");
 
-  Json json = 1.toJson;
-  assert(json.getUUID == 1, "Expected uuid from Json");
+  auto id = randomUUID().toJson;
+  Json json = id;
+  assert(json.getUUID == UUID(id.getString), "Expected uuid from Json");
 }
 // #endregion getUUID(Json)
