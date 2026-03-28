@@ -20,12 +20,17 @@ class UIMObject : IObject {
   }
 
   this(Json initData) {
-    if (!initData.isObject)
-      return;
-
-    this.initialize(initData.toMap);
+    if (initData.isObject || initData. isArray) {
+      if (initData.isObject) {this.initialize(initData.toMap);}
+      else {this.initialize(initData.toArray);}
+    }
+    else {
+    this.initialize;
+    }
   }
-
+this(Json[] initData) {
+    this.initialize(initData);
+}
   this(Json[string] initData) {
     this.initialize(initData);
   }
@@ -34,8 +39,13 @@ class UIMObject : IObject {
     this.initialize(initData);
     objName(newName);
   }
+ bool initialize() { return true;}
 
-  bool initialize(Json[string] initData = null) {
+    bool initialize(Json[] initData) {
+      initialize;
+      return true; }
+  bool initialize(Json[string] initData) {
+    initialize;
     objId(initData.hasKey("objId") ? UUID(initData["objId"].to!string) : randomUUID);
     objName(initData.hasKey("objName") ? initData["objName"].to!string : "Object");
 
