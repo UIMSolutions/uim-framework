@@ -137,10 +137,47 @@ Json setValue(Json json, string key, Json value) {
 }
 /// 
 unittest {
-  version (show_module)
-    writeln("Testing setValue with key and value");
+  mixin(ShowTest("Testing setValue with key and value"));
 
   auto json = Json.emptyObject;
   json = json.setValue("name", Json("example"));
   assert(json["name"] == Json("example"));
+}
+
+Json set(T)(Json json, string key, T value) {
+  if (!json.isObject) return json;
+
+  json[key] = value.toJson;
+  return json;
+}
+
+Json set(T)(Json json, string key, T[] values) {
+  if (!json.isObject) return json;
+
+  json[key] = values.toJson;
+  return json;
+}
+///
+unittest {
+  mixin(ShowTest("Testing set with key and value for generic type"));
+
+  auto json = Json.emptyObject;
+  json = json.set("age", 30);
+  assert(json["age"] == Json(30));
+
+  json = json.set("name", "Alice");
+  assert(json["name"] == Json("Alice"));
+
+  json = json.set("isActive", true);
+  assert(json["isActive"] == Json(true));
+
+  auto json2 = Json.emptyObject
+    .set("age", 30)
+    .set("name", "Alice")
+    .set("isActive", true);
+  
+  assert(json2["age"] == Json(30));
+  assert(json2["name"] == Json("Alice"));
+  assert(json2["isActive"] == Json(true));
+
 }

@@ -13,9 +13,9 @@ mixin(ShowModule!());
 @safe:
 
 interface IElement {
-	// Read data from string[string]
-  void readFromMap(string[string] reqParameters, bool usePrefix = false);
+	// // Read data from string[string]
+  // void readFromMap(string[string] reqParameters, bool usePrefix = false);
 
-  // Read data from request
-  void readFromRequest(string[string] requestValues, bool usePrefix = true);
+  // // Read data from request
+  // void readFromRequest(string[string] requestValues, bool usePrefix = true);
 }

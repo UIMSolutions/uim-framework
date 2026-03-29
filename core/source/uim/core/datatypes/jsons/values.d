@@ -566,3 +566,4 @@ Json[string] getValueMap(Json[string] map, bool delegate(string key) @safe getFu
   return result;
 }
 // #endregion ValueMap
+
