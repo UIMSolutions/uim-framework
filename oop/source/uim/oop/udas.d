@@ -163,6 +163,20 @@ unittest {
   int getAge() {
     return this.age;
   }});
+
+  Getter g2 = Getter("name", "string", "fetchName");
+  string generatedCode2 = generateGetterMethod(g2);
+  assert(generatedCode2 == q{
+  string fetchName() {
+    return this.name;
+  }});
+
+  Getter g3 = Getter("email");
+  string generatedCode3 = generateGetterMethod(g3);
+  assert(generatedCode3 == q{
+  auto getEmail() {
+    return this.email;
+  }});
 }
 
 /** Marks a member for setter generation/handling. */
@@ -195,7 +209,7 @@ unittest {
   assert(s2.datatype == "string");
   assert(s2.methodName == "updateName");
   assert(s2.resultType == "void");
-  assert(s.returnCode == "");
+  assert(s2.returnCode == "");
 
   Setter s3 = Setter("email", "string", "changeEmail", "string", "return this.email;");
   assert(s3.fieldName == "email");
@@ -223,7 +237,7 @@ unittest {
 
   writeln(generatedCode);
   assert(generatedCode == q{
-  int setAge(int value) {
+  void setAge(int value) {
     this.age = value;
   }});
 }

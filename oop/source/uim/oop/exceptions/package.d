@@ -4,3 +4,7 @@
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
 module uim.oop.exceptions;
+
+public {
+    import uim.oop.exceptions.exception;
+}

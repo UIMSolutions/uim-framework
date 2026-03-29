@@ -1,8 +1,6 @@
 module uim.core.helpers.geo;
 
 import uim.core;
-import std.math : PI;
-import std.traits : isFloatingPoint;
 
 mixin(ShowModule!());
 
