@@ -20,17 +20,11 @@ class UIMObject : IObject {
   }
 
   this(Json initData) {
-    if (initData.isObject || initData. isArray) {
-      if (initData.isObject) {this.initialize(initData.toMap);}
-      else {this.initialize(initData.toArray);}
-    }
-    else {
-    this.initialize;
+    if (initData.isObject) {
+      this.initialize(initData.toMap);
     }
   }
-this(Json[] initData) {
-    this.initialize(initData);
-}
+
   this(Json[string] initData) {
     this.initialize(initData);
   }
@@ -39,13 +33,8 @@ this(Json[] initData) {
     this.initialize(initData);
     objName(newName);
   }
- bool initialize() { return true;}
 
-    bool initialize(Json[] initData) {
-      initialize;
-      return true; }
-  bool initialize(Json[string] initData) {
-    initialize;
+  bool initialize(Json[string] initData = null) {
     objId(initData.hasKey("objId") ? UUID(initData["objId"].to!string) : randomUUID);
     objName(initData.hasKey("objName") ? initData["objName"].to!string : "Object");
 
@@ -276,7 +265,7 @@ this(Json[] initData) {
     *   - If showKeys is provided, only the keys specified in showKeys are included in the output.
     *   - If hideKeys is provided, the keys specified in hideKeys are removed from the output after applying the showKeys filter (if any).
     *   - If both showKeys and hideKeys are provided, the method first applies the showKeys filter and then removes any keys specified in hideKeys from the resulting JSON object.
-  */  
+  */
   Json toJson(string[] showKeys, string[] hideKeys) {
     return hideKeys is null ? toJson(showKeys) : toJson(showKeys).removeKeys(hideKeys);
   }

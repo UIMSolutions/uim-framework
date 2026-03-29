@@ -214,7 +214,7 @@ class UIMValue : UIMObject, IValue {
   protected bool _isNull;
   bool isNull() {
     if (isNullable)
-      return isNull;
+      return _isNull;
     return false;
   }
 
@@ -292,6 +292,7 @@ class UIMValue : UIMObject, IValue {
     copy._isReadOnly = this._isReadOnly;
     copy._isNullable = this._isNullable;
     copy._isNull = this._isNull;
+    copy._stringValue = this._stringValue;
     return copy;
   }
 
@@ -307,11 +308,14 @@ class UIMValue : UIMObject, IValue {
     return Json(null);
   }
 
+  protected string _stringValue;
+
   override string toString() {
-    return null;
+    return _stringValue;
   }
 
   void fromString(string newValue) {
+    _stringValue = newValue;
   }
 }
 ///
@@ -382,10 +386,6 @@ unittest {
   assert(v.isNullable == false);
   v.isNullable = true;
   assert(v.isNullable == true);
-
-  assert(v.isNull == false);
-  v.isNull = true;
-  assert(v.isNull == true);
 
   assert(v.isNull == false);
   v.isNull = true;
