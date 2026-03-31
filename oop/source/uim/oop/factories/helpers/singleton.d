@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.oop.patterns.factories.helpers.builder;
+module uim.oop.factories.helpers.singleton;
 
 import uim.oop;
 
@@ -11,47 +11,41 @@ mixin(ShowModule!());
 
 @safe:
 /**
- * Factory builder for fluent configuration.
+ * Singleton factory - ensures only one instance exists.
  */
-class FactoryBuilder(T) {
-  private T delegate() @safe _creator;
-  private bool _singleton = false;
-  private bool _cached = false;
-
-  this(T delegate() @safe creator) {
-    _creator = creator;
-  }
-
-  FactoryBuilder!T asSingleton() {
-    _singleton = true;
-    return this;
-  }
-
-  FactoryBuilder!T withCaching() {
-    _cached = true;
-    return this;
-  }
-
-  IFactory!T build() {
-    if (_singleton) {
-      return new SingletonFactoryWrapper!T(_creator);
-    }
-    return new Factory!T(_creator);
-  }
-}
-
-private class SingletonFactoryWrapper(T) : IFactory!T {
-  private T _instance;
+class SingletonFactory(T) {
+  private static T _instance;
   private T delegate() @safe _creator;
 
   this(T delegate() @safe creator) {
     _creator = creator;
   }
 
-  T create() {
+  T getInstance() {
     if (_instance is null) {
       _instance = _creator();
     }
     return _instance;
   }
+
+  void reset() {
+    _instance = null;
+  }
+}
+///
+unittest {
+  mixin(ShowTest!"Testing Singleton Factory Pattern");
+
+  class Product {
+    int value;
+    this() { value = 42; }
+  }
+
+  auto singletonFactory = new SingletonFactory!Product(() => new Product());
+  
+  auto instance1 = singletonFactory.getInstance();
+  auto instance2 = singletonFactory.getInstance();
+  
+  assert(instance1 is instance2); // Same instance
+  assert(instance1.value == 42);
 }
