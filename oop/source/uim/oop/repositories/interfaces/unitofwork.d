@@ -1,4 +1,4 @@
-module uim.oop.patterns.repositories.interfaces.unitofwork;
+module uim.oop.repositories.interfaces.unitofwork;
 
 
 import uim.oop;

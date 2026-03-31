@@ -1,4 +1,4 @@
-module uim.oop.patterns.repositories.memory;
+module uim.oop.repositories.memory;
 
 import uim.oop;
 
@@ -90,6 +90,7 @@ class MemoryRepository(K, V) : IRepository!(K, V) {
         return _entities.length;
     }
 
+    
     /**
      * Clear all entities from the repository.
      */

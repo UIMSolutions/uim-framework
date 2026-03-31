@@ -1,4 +1,4 @@
-module uim.oop.patterns.repositories.helpers.factory;
+module uim.oop.repositories.helpers.factory;
 
 import uim.oop;
 

@@ -1,4 +1,4 @@
-module uim.oop.patterns.repositories.interfaces.specification;
+module uim.oop.repositories.interfaces.specification;
 
 import uim.oop;
 

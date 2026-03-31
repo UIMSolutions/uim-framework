@@ -1,4 +1,4 @@
-module uim.oop.patterns.repositories.engines;
+module uim.oop.repositories.engines;
 
 public {
     import uim.oop.patterns.repositories.engines.rest;
