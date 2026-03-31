@@ -12,10 +12,12 @@ public  {
     import uim.oop.containers;
     import uim.oop.datatypes;
     import uim.oop.exceptions;
+    import uim.oop.factories;
     import uim.oop.formatters;
     import uim.oop.helpers;
-    import uim.oop.patterns;
     import uim.oop.mixins;
+    import uim.oop.patterns;
+    import uim.oop.registries;
     import uim.oop.repositories;
     import uim.oop.udas;
 }
