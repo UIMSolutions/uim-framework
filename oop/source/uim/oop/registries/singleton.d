@@ -30,13 +30,13 @@ class SingletonRegistry(K, V) : IRegistry!(K, V) {
 
   V get(K key) {
     // Return existing instance if available
-    if (auto instance = key in _instances) {
-      return *instance;
+    if (key in _instances) {
+      return _instances[key];
     }
 
     // Create new instance using factory
-    if (auto factory = key in _factories) {
-      auto instance = (*factory)();
+    if (key in _factories) {
+      auto instance = _factories[key]();
       _instances[key] = instance;
       return instance;
     }
@@ -92,4 +92,8 @@ unittest {
   
   assert(instance1 is instance2); // Same instance
   assert(instance1.value == 42);
+
+  // Test has method
+  assert(registry.has("service") == true);
+  assert(registry.has("nonexistent") == false);
 }

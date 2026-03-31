@@ -12,8 +12,14 @@ mixin(ShowModule!());
 @safe:
 
 /**
- * Lazy registry - creates instances on first access
- */
+  * Lazy registry implementation that supports deferred creation of values using factory delegates.
+  * Values are created on demand and cached for subsequent access.
+  *
+  * Example usage:
+  * auto registry = new LazyRegistry!(string, MyService);
+  * registry.register("service", () => new MyService());
+  * auto service = registry.get("service"); // MyService instance is created on first access
+  */
 class LazyRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _cache;
   private V delegate() @safe[K] _factories;
@@ -30,13 +36,13 @@ class LazyRegistry(K, V) : IRegistry!(K, V) {
 
   V get(K key) {
     // Check cache first
-    if (auto cached = key in _cache) {
-      return *cached;
+    if (key in _cache) {
+      return _cache[key];
     }
 
     // Create and cache
-    if (auto factory = key in _factories) {
-      auto value = (*factory)();
+    if (key in _factories) {
+      auto value = _factories[key]();
       _cache[key] = value;
       return value;
     }

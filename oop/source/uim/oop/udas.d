@@ -235,7 +235,6 @@ unittest {
   Setter s = Setter("age", "int");
   string generatedCode = generateSetterMethod(s);
 
-  writeln(generatedCode);
   assert(generatedCode == q{
   void setAge(int value) {
     this.age = value;

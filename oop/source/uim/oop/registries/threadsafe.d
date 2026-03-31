@@ -13,7 +13,7 @@ mixin(ShowModule!());
 /**
  * Thread-safe registry with synchronized access
  */
- /* 
+/* 
 synchronized class ThreadSafeRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _items;
 

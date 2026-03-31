@@ -80,3 +80,19 @@ class UIMRegistry(K, V) : IRegistry!(K, V) {
     return result;
   }
 }
+///
+unittest {
+  auto registry = UIMRegistry!(string, int).instance();
+  registry.register("one", 1);
+  registry.register("two", 2);
+
+  assert(registry.get("one") == 1);
+  assert(registry.get("two") == 2);
+  assert(registry.get("three", -1) == -1); // Default value
+  assert(registry.has("one") == true);
+  assert(registry.has("three") == false); 
+  registry.unregister("one");
+  assert(registry.has("one") == false);
+  registry.clear();
+  assert(registry.count() == 0);
+}

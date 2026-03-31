@@ -29,8 +29,8 @@ class TypeUIMRegistry(Base) {
   }
 
   T get(T : Base)(string key) {
-    if (auto item = key in _items) {
-      return cast(T)(*item);
+    if (key in _items) {
+      return cast(T)(_items[key]);
     }
     throw new Exception("Item not found: " ~ key);
   }
@@ -40,8 +40,8 @@ class TypeUIMRegistry(Base) {
   }
 
   TypeInfo getType(string key) {
-    if (auto type = key in _types) {
-      return *type;
+    if (key in _types) {
+      return _types[key];
     }
     return null;
   }

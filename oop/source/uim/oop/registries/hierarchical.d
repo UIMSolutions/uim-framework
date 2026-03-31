@@ -10,9 +10,21 @@ import uim.oop;
 mixin(ShowModule!());
 
 @safe:
+
 /**
- * Hierarchical registry with parent-child relationships
- */
+  * Hierarchical registry implementation that supports parent-child relationships between registries.
+  * Child registries can inherit items from their parent registry, allowing for flexible scoping and overrides.
+  *
+  * Example usage:
+  * auto parent = new HierarchicalRegistry!(string, int);
+  * parent.register("global", 100);
+  *
+  * auto child = parent.createChild();
+  * child.register("local", 200);
+  *
+  * assert(child.get("local") == 200); // Local item
+  * assert(child.get("global") == 100); // Inherited from parent
+  */
 class HierarchicalRegistry(K, V) : IRegistry!(K, V) {
   private V[K] _items;
   private HierarchicalRegistry!(K, V) _parent;
@@ -100,4 +112,9 @@ unittest {
   
   assert(child.get("local") == 200);
   assert(child.get("global") == 100);
+
+  // Test override
+  child.register("global", 300);
+  assert(child.get("global") == 300); // Local override
+  assert(parent.get("global") == 100); // Parent remains unchanged
 }
