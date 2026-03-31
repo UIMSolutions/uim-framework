@@ -1,7 +1,7 @@
 module uim.oop.repositories.interfaces;
 
 public {
-  import uim.oop.patterns.repositories.interfaces.repository;
-  import uim.oop.patterns.repositories.interfaces.specification;
-  import uim.oop.patterns.repositories.interfaces.unitofwork;
+  import uim.oop.repositories.interfaces.repository;
+  import uim.oop.repositories.interfaces.specification;
+  import uim.oop.repositories.interfaces.unitofwork;
 }

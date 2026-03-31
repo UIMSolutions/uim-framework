@@ -25,7 +25,6 @@ public import uim.oop.patterns.pools;
 public import uim.oop.patterns.prototypes;
 public import uim.oop.patterns.proxies;
 public import uim.oop.patterns.registries;
-public import uim.oop.patterns.repositories;
 public import uim.oop.patterns.states;
 public import uim.oop.patterns.strategies;
 public import uim.oop.patterns.transferobjects;

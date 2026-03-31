@@ -441,6 +441,9 @@ unittest {
     @PostConstruct
     void init() {
     }
+
+    auto repo = new UserRepository();
+    // auto serv = new UserService();
   }
 
   @WebController("users")

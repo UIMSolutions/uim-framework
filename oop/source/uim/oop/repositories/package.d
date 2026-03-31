@@ -6,14 +6,14 @@
 module uim.oop.repositories;
 
 public {
-    import uim.oop.patterns.repositories.engines;
-    import uim.oop.patterns.repositories.helpers;
+    import uim.oop.repositories.engines;
+    import uim.oop.repositories.helpers;
 }
 
 public {
-    import uim.oop.patterns.repositories.interfaces;
-    import uim.oop.patterns.repositories.memory;
-    import uim.oop.patterns.repositories.repository;
-    import uim.oop.patterns.repositories.specification;
-    import uim.oop.patterns.repositories.unitofwork;
+    import uim.oop.repositories.interfaces;
+    import uim.oop.repositories.memory;
+    import uim.oop.repositories.repository;
+    import uim.oop.repositories.specification;
+    import uim.oop.repositories.unitofwork;
 }

@@ -6,5 +6,5 @@
 module uim.oop.repositories.helpers;
 
 public {
-    import uim.oop.patterns.repositories.helpers.factory;
+    import uim.oop.repositories.helpers.factory;
 }

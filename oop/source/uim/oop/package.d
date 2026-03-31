@@ -16,5 +16,6 @@ public  {
     import uim.oop.helpers;
     import uim.oop.patterns;
     import uim.oop.mixins;
+    import uim.oop.repositories;
     import uim.oop.udas;
 }
