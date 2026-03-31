@@ -6,11 +6,11 @@
 module uim.oop.factories;
 
 public { // Packages
-  import uim.oop.patterns.factories.interfaces;
-  import uim.oop.patterns.factories.helpers;
+  import uim.oop.factories.interfaces;
+  import uim.oop.factories.helpers;
 }
 
 public { // Modules
-  import uim.oop.patterns.factories.factory;
+  import uim.oop.factories.factory;
 }
 

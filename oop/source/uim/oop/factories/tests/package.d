@@ -6,5 +6,5 @@
 module uim.oop.factories.tests;
 
 public {
-  import uim.oop.patterns.factories.tests.test;
+  import uim.oop.factories.tests.test;
 }

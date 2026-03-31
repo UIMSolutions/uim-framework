@@ -11,8 +11,13 @@ mixin(ShowModule!());
 
 @safe:
 /**
- * Singleton factory - ensures only one instance exists.
- */
+  * A helper class for implementing the Singleton design pattern.
+  * This class ensures that only one instance of a given type T is created and provides a global access point to it.
+  *
+  * Example usage:
+  * auto singletonFactory = new SingletonFactory!MyClass(() => new MyClass());
+  * auto instance = singletonFactory.getInstance();
+  */
 class SingletonFactory(T) {
   private static T _instance;
   private T delegate() @safe _creator;
@@ -48,4 +53,12 @@ unittest {
   
   assert(instance1 is instance2); // Same instance
   assert(instance1.value == 42);
+
+  // Reset and create a new instance
+  singletonFactory.reset();
+  auto instance3 = singletonFactory.getInstance();
+
+  // After reset, should be a different instance
+  assert(instance1 !is instance3);
+  assert(instance3.value == 42);  
 }

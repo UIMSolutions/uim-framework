@@ -6,6 +6,6 @@
 module uim.oop.factories.interfaces;
 
 public {
-  import uim.oop.patterns.factories.interfaces.abstract_;
-  import uim.oop.patterns.factories.interfaces.factory;
+  import uim.oop.factories.interfaces.abstract_;
+  import uim.oop.factories.interfaces.factory;
 }

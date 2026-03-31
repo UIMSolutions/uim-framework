@@ -6,6 +6,6 @@
 module uim.oop.factories.helpers;
 
 public {
-  import uim.oop.patterns.factories.helpers.builder;
-  import uim.oop.patterns.factories.helpers.singleton;
+  import uim.oop.factories.helpers.builder;
+  import uim.oop.factories.helpers.singleton;
 }

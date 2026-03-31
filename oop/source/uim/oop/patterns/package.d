@@ -5,28 +5,28 @@
 *****************************************************************************************************************/
 module uim.oop.patterns;
 
-public import uim.oop.patterns.bridges;
-public import uim.oop.patterns.chains;
-public import uim.oop.patterns.commands;
-public import uim.oop.patterns.composites;
-public import uim.oop.patterns.daos;
-public import uim.oop.patterns.decorators;
-public import uim.oop.patterns.delegates;
-public import uim.oop.patterns.facades;
-public import uim.oop.patterns.factories;
-public import uim.oop.patterns.flyweights;
-public import uim.oop.patterns.interpreters;
-public import uim.oop.patterns.locators;
-public import uim.oop.patterns.mediators;
-public import uim.oop.patterns.mementos;
-public import uim.oop.patterns.mvc;
-public import uim.oop.patterns.observers;
-public import uim.oop.patterns.pools;
-public import uim.oop.patterns.prototypes;
-public import uim.oop.patterns.proxies;
-public import uim.oop.patterns.registries;
-public import uim.oop.patterns.states;
-public import uim.oop.patterns.strategies;
-public import uim.oop.patterns.transferobjects;
-public import uim.oop.patterns.visitors;
+public {
+    import uim.oop.patterns.bridges;
+    import uim.oop.patterns.chains;
+    import uim.oop.patterns.commands;
+    import uim.oop.patterns.composites;
+    import uim.oop.patterns.daos;
+    import uim.oop.patterns.decorators;
+    import uim.oop.patterns.delegates;
+    import uim.oop.patterns.facades;
+    import uim.oop.patterns.flyweights;
+    import uim.oop.patterns.interpreters;
+    import uim.oop.patterns.locators;
+    import uim.oop.patterns.mediators;
+    import uim.oop.patterns.mementos;
+    import uim.oop.patterns.mvc;
+    import uim.oop.patterns.observers;
+    import uim.oop.patterns.pools;
+    import uim.oop.patterns.prototypes;
+    import uim.oop.patterns.proxies;
+    import uim.oop.patterns.states;
+    import uim.oop.patterns.strategies;
+    import uim.oop.patterns.transferobjects;
+    import uim.oop.patterns.visitors;
+}
 /* public import uim.oop.patterns.singleton; */
