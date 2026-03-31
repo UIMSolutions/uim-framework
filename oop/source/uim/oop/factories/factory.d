@@ -96,7 +96,7 @@ class UIMFactory(K, V) : IFactory!(K, V) {
     *     true if the key is registered, false otherwise.
     */
   bool isRegistered(K key) {
-    return key in _creators ? true : false;
+    return (key in _creators) !is null;
   }
 
   /** 

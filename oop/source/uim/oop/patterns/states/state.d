@@ -126,7 +126,7 @@ class StateMachine : IStateMachine {
     }
     
     @safe string[] availableStates() const {
-        return _states.keys.dup;
+        return _states.keys;
     }
     
     /**
@@ -142,7 +142,7 @@ class StateMachine : IStateMachine {
             return [];
         }
         
-        return _transitions[current].keys.dup;
+        return _transitions[current].keys;
     }
 }
 

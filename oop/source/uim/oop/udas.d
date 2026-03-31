@@ -129,7 +129,6 @@ struct Getter {
     fieldName = field;
     datatype = type.length > 0 ? type : "auto";
     methodName = method.length > 0 ? method : "get" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
-    ;
   }
 }
 ///
@@ -146,14 +145,10 @@ unittest {
 }
 
 private string generateGetterMethod(Getter getter) {
-  string fieldName = getter.fieldName;
-  string methodName = getter.methodName.length > 0 ? getter.methodName
-    : "get" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
-
   return format(q{
   %1$s %2$s() {
     return this.%3$s;
-  }}, getter.datatype.length > 0 ? getter.datatype : "auto", methodName, fieldName);
+  }}, getter.datatype, getter.methodName, getter.fieldName);
 }
 ///
 unittest {
@@ -220,15 +215,10 @@ unittest {
 }
 
 private string generateSetterMethod(Setter setter) {
-  string fieldName = setter.fieldName;
-  string methodName = setter.methodName.length > 0 ? setter.methodName
-    : "set" ~ fieldName[0 .. 1].toUpper() ~ fieldName[1 .. $];
-
   return format(q{
   %4$s %2$s(%1$s value) {
     this.%3$s = value;
-  }}, setter.datatype.length > 0 ? setter.datatype : "auto", methodName, fieldName, setter
-      .resultType);
+  }}, setter.datatype, setter.methodName, setter.fieldName, setter.resultType);
 }
 /// 
 unittest {

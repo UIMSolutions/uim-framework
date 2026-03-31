@@ -260,11 +260,7 @@ class PropertyList {
      * Converts to a simple string representation
      */
   override string toString() const {
-    auto result = appender!string();
-    result.put("PropertyList(");
-    result.put(_data.length.to!string);
-    result.put(" items)");
-    return result.data;
+    return "PropertyList(" ~ _data.length.to!string ~ " items)";
   }
 }
 

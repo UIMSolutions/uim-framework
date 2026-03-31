@@ -11,7 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class ormatterRegistry : UIMRegistry!(string, IFormatter) {
+class FormatterRegistry : UIMRegistry!(string, IFormatter) {
   this() {
     super();
   }

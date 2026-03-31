@@ -129,11 +129,8 @@ class XMLPlistWriter {
     }
 
     private string getIndent() const {
-        string result = "";
-        for (int i = 0; i < _indentLevel; i++) {
-            result ~= _indent;
-        }
-        return result;
+        import std.array : replicate;
+        return replicate(_indent, _indentLevel);
     }
 
     private string escapeXML(string str) const {
