@@ -17,7 +17,6 @@ dependency "vibe-d" version="~>0.10.3"
 dependency "dyaml" version="~>0.10.0"
 
 // Internal Dependencies
-dependency ":compilers" version="*"
 dependency ":core" version="*"
 dependency ":css" version="*"
 dependency ":errors" version="*"
@@ -38,7 +37,6 @@ dependency ":neural" version="*"
 sourceFiles "./source/uim/framework.d"
 
 // Subpackages
-subPackage "compilers"
 subPackage "core"
 subPackage "css"
 subPackage "errors"
