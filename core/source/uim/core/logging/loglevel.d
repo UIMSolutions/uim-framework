@@ -81,7 +81,7 @@ class LogLevels {
   }
   // #endregion logMap
 
-  // #region lebels
+  // #region labels
   // Get the log level for a given label.
   string[] labels(string level = null) {
     return (level.isEmpty)
@@ -93,7 +93,7 @@ class LogLevels {
   string label(string label) {
     return _logMap.get(label, "unknown");
   }
-  // #region lebels
+  // #endregion labels
 
   // #region level
   string level(string label) {

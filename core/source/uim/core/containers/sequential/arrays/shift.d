@@ -24,17 +24,12 @@ mixin(ShowModule!());
   *   An array containing the removed elements, or `null` if `times` is zero.
   */
 Tuple!(T[], T[]) shiftMany(T)(T[] values, size_t times = 1) {
-  T[] nullResult;
-  if (values.length == 0) {
-    return tuple(nullResult, values);
-  }
-
-  if (times == 0) {
-    return tuple(nullResult, values);
+  if (values.length == 0 || times == 0) {
+    return tuple((T[]).init, values);
   }
 
   if (times >= values.length) {
-    return tuple(values.dup, nullResult);
+    return tuple(values.dup, (T[]).init);
   }
 
   return tuple(values[0 .. times].dup, values[times .. $].dup);

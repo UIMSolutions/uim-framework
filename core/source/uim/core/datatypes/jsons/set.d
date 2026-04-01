@@ -137,7 +137,7 @@ Json setValue(Json json, string key, Json value) {
 }
 /// 
 unittest {
-  mixin(ShowTest("Testing setValue with key and value"));
+  mixin(ShowTest!("Testing setValue with key and value"));
 
   auto json = Json.emptyObject;
   json = json.setValue("name", Json("example"));
@@ -151,7 +151,7 @@ Json set(T)(Json json, string key, T value) {
   return json;
 }
 
-Json set(T)(Json json, string key, T[] values) {
+Json set(T)(Json json, string key, T[] values) if (!is(T[] == string)) {
   if (!json.isObject) return json;
 
   json[key] = values.toJson;
@@ -159,7 +159,7 @@ Json set(T)(Json json, string key, T[] values) {
 }
 ///
 unittest {
-  mixin(ShowTest("Testing set with key and value for generic type"));
+  mixin(ShowTest!("Testing set with key and value for generic type"));
 
   auto json = Json.emptyObject;
   json = json.set("age", 30);

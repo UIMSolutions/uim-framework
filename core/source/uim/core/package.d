@@ -27,8 +27,6 @@ public {
   import std.exception;
   import std.file;
   import std.format;
-  import std.file;
-  import std.format;
   import std.getopt;
   import std.logger;
   import std.math;
@@ -41,9 +39,8 @@ public {
   import std.traits;
   import std.typecons;
   import std.uni;
-  import std.uuid;  
-  import std.utf;
   import std.uuid;
+  import std.utf;
   import std.zip;
 
   import vibe.d;
