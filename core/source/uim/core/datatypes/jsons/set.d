@@ -76,7 +76,7 @@ Json setValue(Json json, string[] path, Json value) {
     child = child.setValue(path[1 .. $], value);
     result[path[0]] = child;
   }
-  
+
   return result;
 }
 /// 
@@ -122,10 +122,7 @@ unittest {
 }
 // #endregion Json[string]
 
-
 /// Set path with value
-
-
 
 /// Sets a single key to a value
 Json setValue(Json json, string key, Json value) {
@@ -145,14 +142,43 @@ unittest {
 }
 
 Json set(T)(Json json, string key, T value) {
-  if (!json.isObject) return json;
+  if (!json.isObject)
+    return json;
 
   json[key] = value.toJson;
   return json;
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing set with key and value for generic type"));
+
+  auto json = Json.emptyObject;
+
+  json = json.set("age", 30);
+  assert(json["age"] == Json(30));
+
+  json = json.set("name", "Alice");
+  assert(json["name"] == Json("Alice"));
+
+  json = json.set("isActive", true);
+  assert(json["isActive"] == Json(true));
+
+  auto id = randomUUID();
+  json = json.set("id", id);
+  assert(json["id"] == id.toJson);
+
+  auto json2 = Json.emptyObject
+    .set("age", 30)
+    .set("name", "Alice")
+    .set("isActive", true);
+  assert(json2["age"] == Json(30));
+  assert(json2["name"] == Json("Alice"));
+  assert(json2["isActive"] == Json(true));
+}
 
 Json set(T)(Json json, string key, T[] values) if (!is(T[] == string)) {
-  if (!json.isObject) return json;
+  if (!json.isObject)
+    return json;
 
   json[key] = values.toJson;
   return json;
@@ -175,9 +201,35 @@ unittest {
     .set("age", 30)
     .set("name", "Alice")
     .set("isActive", true);
-  
+
   assert(json2["age"] == Json(30));
   assert(json2["name"] == Json("Alice"));
   assert(json2["isActive"] == Json(true));
 
+}
+
+Json set(T)(Json json, string key, T[] values) if (!is(T[] == string)) {
+  if (!json.isObject)
+    return json;
+
+  Json jArray = Json.emptyArray;
+  foreach (v; values) {
+    jArray ~= v.toJson;
+  }
+  json[key] = jArray;
+  return json;
+}
+
+unittest {
+  Json j1 = Json.emptyObject
+    .set("key1", "value1");
+
+  assert(j1["key1"] == "value1");
+
+  Json j2 = Json.emptyObject
+    .set("key1", "value1")
+    .set("key2", "value2");
+
+  assert(j2["key1"] == "value1");
+  assert(j2["key2"] == "value2");
 }

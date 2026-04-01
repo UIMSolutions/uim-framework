@@ -132,6 +132,17 @@ unittest {
 
 // #region keys
 // #region with keys and filterFunc
+/**
+  * Filters the keys of a Json object based on the specified keys and a filter function.
+  *
+  * Params:
+  *   json = The Json object to filter.
+  *   keys = The keys to consider for filtering.
+  *   filterFunc = A delegate function that takes a key and returns true if the key should be included in the result.
+  *
+  * Returns:
+  *   A new Json object containing only the specified keys that satisfy the filter function, or null if the input is not an object or if keys are empty.
+  */
 Json filterKeys(Json json, string[] keys, bool delegate(string) @safe filterFunc) {
   return json.isObject ? json.toMap.filterKeys(keys, filterFunc).toJson : Json(null);
 }
@@ -155,6 +166,16 @@ unittest {
 // #endregion with keys and filterFunc
 
 // #region with keys
+/**
+  * Filters the keys of a Json object based on the specified keys.
+  *
+  * Params:
+  *   json = The Json object to filter.
+  *   keys = The keys to keep in the filtered result.
+  *
+  * Returns:
+  *   A new Json object containing only the specified keys, or null if the input is not an object or if keys are empty.
+  */
 Json filterKeys(Json json, string[] keys) {
   return json.isObject ? json.toMap.filterKeys(keys).toJson : Json(null);
 }

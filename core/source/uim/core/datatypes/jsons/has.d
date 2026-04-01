@@ -11,196 +11,177 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region Json[string]
+// #region hasKey(Json[string] map, string key)
+bool hasKey(Json[string] map, string key) {
+  return (key in map) ? true : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing hasKey for Json[string] with key"); 
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(hasKey(map, "a"));
+  assert(!hasKey(map, "d"));
+}
+// #endregion hasKey(Json[string] map, string key)
+// #endregion Json[string]
+
 // #region Json
-// #region indices
-// #region hasAll
-bool hasAllIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
-  return json.isArray ? json.toArray.hasAllIndices(indices, hasFunc) : false;
-}
-
-bool hasAllIndices(Json json, size_t[] indices) {
-  return json.isArray ? json.toArray.hasAllIndices(indices) : false;
-}
-
-bool hasAllIndices(Json json, bool delegate(size_t) @safe hasFunc) {
-  return json.isArray ? json.toArray.hasAllIndices(hasFunc) : false;
-}
-// #endregion hasAll
-
-// #region hasAny
-bool hasAnyIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
-  return json.isArray ? json.toArray.hasAnyIndices(indices, hasFunc) : false;
-}
-
-bool hasAnyIndices(Json json, size_t[] indices) {
-  return json.isArray ? json.toArray.hasAnyIndices(indices) : false;
-}
-
-bool hasAnyIndices(Json json, bool delegate(size_t) @safe hasFunc) {
-  return json.isArray ? json.toArray.hasAnyIndices(hasFunc) : false;
-}
-// #endregion hasAny
-
-// #region has
-bool hasIndex(Json json, size_t index) {
-  return json.isArray ? json.length > index : false;
-}
-// #endregion has
-// #endregion indices
-
-// #region keys
-// #region hasAll
-bool hasAllKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
-  return json.isObject ? json.toMap.keys.all!(key => keys.canFind(key) && hasFunc(key)) : false;
-}
-
-bool hasAllKeys(Json json, string[] keys) {
-  return json.isObject ? json.toMap.keys.all!(key => keys.canFind(key)) : false;
-}
-
-bool hasAllKeys(Json json, bool delegate(string) @safe hasFunc) {
-  return json.isObject ? json.toMap.keys.all!(key => hasFunc(key)) : false;
-}
-// #endregion hasAll
-
-// #region hasAny
-bool hasAnyKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
-  return json.isObject ? json.toMap.keys.any!(key => keys.canFind(key) && hasFunc(key)) : false;
-}
-
-bool hasAnyKeys(Json json, string[] keys) {
-  return json.isObject ? json.toMap.keys.any!(key => keys.canFind(key)) : false;
-}
-
-bool hasAnyKeys(Json json, bool delegate(string) @safe hasFunc) {
-  return json.isObject ? json.toMap.keys.any!(key => hasFunc(key)) : false;
-}
-// #endregion hasAny
-
-// #region has
-// bool hasValue(Json[string] map, Json value) {
-//   if (json == Json(null)) {
-//     return false;
-//   }
-
-//   return jsons.any!(v => v == value);
-// }
-// #endregion has
-// #endregion keys
-
-// #region values
-// #region hasAll
-bool hasAllValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
-  if (json.isArray) {
-    return json.toArray.hasAllValues(values, hasFunc);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAllValues(values, hasFunc);
-  }
-  return false;
-}
-
-bool hasAllValues(Json json, Json[] values) {
-  if (json.isArray) {
-    return json.toArray.hasAllValues(values);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAllValues(values);
-  }
-  return false;
-}
-
-bool hasAllValues(Json json, bool delegate(Json) @safe hasFunc) {
-  if (json.isArray) {
-    return json.toArray.hasAllValues(hasFunc);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAllValues(hasFunc);
-  }
-  return false;
-}
-// #endregion hasAll
-
-// #region hasAny
-bool hasAnyValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
-  if (json.isArray) {
-    return json.toArray.hasAnyValues(values, hasFunc);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAnyValues(values, hasFunc);
-  }
-  return false;
-}
-
-bool hasAnyValues(Json json, Json[] values) {
-  if (json.isArray) {
-    return json.toArray.hasAnyValues(values);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAnyValues(values);
-  }
-  return false;
-}
-
-bool hasAnyValues(Json json, bool delegate(Json) @safe hasFunc) {
-  if (json.isArray) {
-    return json.toArray.hasAnyValues(hasFunc);
-  }
-  if (json.isObject) {
-    return json.toMap.hasAnyValues(hasFunc);
-  }
-  return false;
-}
-// #endregion hasAny
-
-// #region has
-bool hasValue(Json json, Json value) {
-  if (json == Json(null)) {
+// #region key
+// #region hasAllKey(Json json, string[] keys)
+bool hasAllKey(Json json, string[] keys) {
+  if (!json.isObject || keys.length == 0) {
     return false;
   }
 
-  if (json.isArray) {
-    return json.toArray.any!(v => v == value);
-  } else if (json.isObject) {
-    foreach (k, v; json.toMap) {
-      if (v == value) {
-        return true;
-      }
-    }
+  return keys.all!(key => json.hasKey(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing hasAllKey for Json with keys");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAllKey(json, ["a", "b"]));
+  assert(!hasAllKey(json, ["a", "d"]));
+}
+// #endregion hasAllKey(Json json, string[] keys)
+
+// #region hasAnyKey(Json json, string[] keys)
+bool hasAnyKey(Json json, string[] keys) {
+  return keys.any!(key => json.hasKey(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing hasAnyKey for Json with keys");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasAnyKey(json, ["b", "d"]));
+  assert(!hasAnyKey(json, ["d", "e"]));
+}
+// #endregion hasAnyKey(Json json, string[] keys)
+// #endregion key
+// #endregion Json
+
+bool hasKeyValue(Json json, string key, Json value) {
+  if (!json.isObject || !json.hasKey(key)) {
+    return false;
   }
-  return false;
+
+  return json[key] == value;
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing hasKeyValue for Json with key and value");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasKeyValue(json, "a", Json(1)));
+  assert(!hasKeyValue(json, "b", Json(3)));
+  assert(!hasKeyValue(json, "d", Json(4)));
 }
 // #endregion has
-// #endregion values
-// #endregion Json
+
+// #region hasKey
+/** 
+  * Checks if the given Json value has the specified key.
+  *
+  * Params:
+  *   json = The Json value to check.
+  *   key = The key to check for.
+  *
+  * Returns:
+  *   `true` if the Json value has the specified key, `false` otherwise.
+  */
+bool hasKey(Json json, string key) {
+  return json.isObject && key in json;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing hasKey for Json with key");
+
+  // Non-object Json -> always false
+  auto json1 = Json(1);
+  assert(!hasKey(json1, "foo"));
+  assert(!hasKey(json1, ""));
+
+  // Object with keys -> true for present keys, false for absent
+  auto json2 = ["a": Json(1), "": Json(2)].toJson;
+  assert(hasKey(json2, "a"));
+  assert(hasKey(json2, ""));
+  assert(!hasKey(json2, "b"));
+
+  // Keys are exact (case-sensitive)
+  auto json3 = ["Key": Json(1)].toJson;
+  assert(hasKey(json3, "Key"));
+  assert(!hasKey(json3, "key"));
+
+  // Keys with special characters
+  auto json4 = ["weird:key!": Json(42)].toJson;
+  assert(hasKey(json4, "weird:key!"));
+}
+// #endregion hasKey
 
 // #region Json[]
 // #region indices
 // #region hasAll
 bool hasAllIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
-  if (jsons.length == 0 || indices.length == 0) {
+  if (indices.length == 0) {
+    return true;
+  }
+
+  if (jsons.length == 0) {
     return false;
   }
 
-  foreach (index, value; jsons) {
-    if (!indices.canFind(index) || !hasFunc(index)) {
+  foreach (index; indices) {
+    if (jsons.length <= index || !hasFunc(index)) {
       return false;
     }
   }
   return true;
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices for Json[] with indices and function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllIndices([0, 1], i => i < 3));
+  assert(!jsons.hasAllIndices([0, 3], i => i < 3));
+}
 
 bool hasAllIndices(Json[] jsons, size_t[] indices) {
-  if (jsons.length == 0 || indices.length == 0) {
+  if (indices.length == 0) {
+    return true;
+  }
+
+  if (jsons.length == 0) {
     return false;
   }
 
-  foreach (index, value; jsons) {
-    if (!indices.canFind(index)) {
-      return false;
-    }
-  }
-  return true;
+  return indices.all!(index => jsons.length > index);
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices for Json[] with indices"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllIndices([0, 1]));
+  assert(!jsons.hasAllIndices([0, 3]));
 }
 
 bool hasAllIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
@@ -215,31 +196,64 @@ bool hasAllIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
   }
   return true;
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices for Json[] with function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllIndices(i => i < 3));
+  assert(!jsons.hasAllIndices(i => i < 2));
+}
 // #endregion hasAll
 
 // #region hasAny
 bool hasAnyIndices(Json[] jsons, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
-  if (jsons.length == 0 || indices.length == 0) {
+  if (indices.length == 0) {
+    return true;
+  }
+
+  if (jsons.length == 0) {
     return false;
   }
 
-  foreach (index, value; jsons) {
-    if (indices.canFind(index) && hasFunc(index))
-      return true;
-  }
-  return false;
+  return indices.any!(index => jsons.length > index && hasFunc(index));
+}
+
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyIndices for Json[] with indices and function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyIndices([0, 1], i => i < 3));
+  assert(jsons.hasAnyIndices([0, 3], i => i < 3));
 }
 
 bool hasAnyIndices(Json[] jsons, size_t[] indices) {
-  if (jsons.length == 0 || indices.length == 0) {
+  if (indices.length == 0) {
+    return true;
+  }
+
+  if (jsons.length == 0) {
     return false;
   }
 
-  foreach (index, value; jsons) {
-    if (indices.canFind(index))
-      return true;
-  }
-  return false;
+  return indices.any!(index => jsons.length > index);
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyIndices for Json[] with indices"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyIndices([0, 1]));
+  assert(jsons.hasAnyIndices([0, 3]));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyIndices for Json[] with indices"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyIndices([0, 1]));
+  assert(jsons.hasAnyIndices([0, 3]));
 }
 
 bool hasAnyIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
@@ -248,16 +262,34 @@ bool hasAnyIndices(Json[] jsons, bool delegate(size_t) @safe hasFunc) {
   }
 
   foreach (index, value; jsons) {
-    if (hasFunc(index))
+    if (hasFunc(index)) {
       return true;
+    }
   }
   return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyIndices for Json[] with function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyIndices(i => i < 3));
+  assert(jsons.hasAnyIndices(i => i < 2));
 }
 // #endregion hasAny
 
 // #region has
 bool hasIndex(Json[] jsons, size_t index) {
   return jsons.length > index;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasIndex for Json[] with index"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasIndex(0));
+  assert(jsons.hasIndex(2));
+  assert(!jsons.hasIndex(3));
 }
 // #endregion has
 // #endregion indices
@@ -269,7 +301,15 @@ bool hasAllValues(Json[] jsons, Json[] values, bool delegate(Json) @safe hasFunc
     return false;
   }
 
-  return jsons.all!(value => values.canFind(value) && hasFunc(value));
+  return values.all!(value => jsons.canFind(value) && hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[] with values and function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllValues([Json(1), Json(2)], v => v.isNumber));
+  assert(!jsons.hasAllValues([Json(1), Json(4)], v => v.isNumber));
 }
 
 bool hasAllValues(Json[] jsons, Json[] values) {
@@ -277,7 +317,15 @@ bool hasAllValues(Json[] jsons, Json[] values) {
     return false;
   }
 
-  return jsons.all!(value => values.canFind(value));
+  return values.all!(value => jsons.canFind(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[] with values"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllValues([Json(1), Json(2)]));
+  assert(!jsons.hasAllValues([Json(1), Json(4)]));
 }
 
 bool hasAllValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
@@ -287,6 +335,15 @@ bool hasAllValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
 
   return jsons.all!(value => hasFunc(value));
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[] with function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAllValues(v => v.isNumber));
+  assert(!jsons.hasAllValues(v => v.isString));
+}
+
 // #endregion hasAll
 
 // #region hasAny
@@ -295,7 +352,16 @@ bool hasAnyValues(Json[] jsons, Json[] values, bool delegate(Json) @safe hasFunc
     return false;
   }
 
-  return jsons.any!(value => values.canFind(value) && hasFunc(value));
+  return values.any!(value => jsons.canFind(value) && hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[] with values and function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyValues([Json(1), Json(2)], v => v.isNumber));
+  assert(jsons.hasAnyValues([Json(1), Json(4)], v => v.isNumber));
+  assert(!jsons.hasAnyValues([Json(4), Json(5)], v => v.isNumber));
 }
 
 bool hasAnyValues(Json[] jsons, Json[] values) {
@@ -303,7 +369,16 @@ bool hasAnyValues(Json[] jsons, Json[] values) {
     return false;
   }
 
-  return jsons.any!(value => values.canFind(value));
+  return values.any!(value => jsons.canFind(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[] with values"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyValues([Json(1), Json(2)]));
+  assert(jsons.hasAnyValues([Json(1), Json(4)]));
+  assert(!jsons.hasAnyValues([Json(4), Json(5)]));
 }
 
 bool hasAnyValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
@@ -312,6 +387,14 @@ bool hasAnyValues(Json[] jsons, bool delegate(Json) @safe hasFunc) {
   }
 
   return jsons.any!(value => hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[] with function"));
+
+  auto jsons = [Json(1), Json(2), Json(3)];
+  assert(jsons.hasAnyValues(v => v.isNumber));
+  assert(!jsons.hasAnyValues(v => v.isString));
 }
 // #endregion hasAny
 
@@ -335,7 +418,15 @@ bool hasAllKeys(Json[string] map, string[] keys, bool delegate(string) @safe has
     return false;
   }
 
-  return map.keys.all!(key => keys.canFind(key) && hasFunc(key));
+  return keys.all!(key => map.hasKey(key) && hasFunc(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys for Json[string] with keys and function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllKeys(["a", "b"], k => k.length == 1));
+  assert(!map.hasAllKeys(["a", "d"], k => k.length == 1));
 }
 
 bool hasAllKeys(Json[string] map, string[] keys) {
@@ -343,7 +434,15 @@ bool hasAllKeys(Json[string] map, string[] keys) {
     return false;
   }
 
-  return map.keys.all!(key => keys.canFind(key));
+  return keys.all!(key => map.hasKey(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys for Json[string] with keys"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllKeys(["a", "b"]));
+  assert(!map.hasAllKeys(["a", "d"]));
 }
 
 bool hasAllKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
@@ -353,6 +452,14 @@ bool hasAllKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
 
   return map.keys.all!(key => hasFunc(key));
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys for Json[string] with function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllKeys(k => k.length == 1));
+  assert(!map.hasAllKeys(k => k.length == 2));
+}
 // #endregion hasAll
 
 // #region hasAny
@@ -361,7 +468,15 @@ bool hasAnyKeys(Json[string] map, string[] keys, bool delegate(string) @safe has
     return false;
   }
 
-  return map.keys.any!(key => keys.canFind(key) && hasFunc(key));
+  return keys.any!(key => map.hasKey(key) && hasFunc(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys for Json[string] with keys and function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyKeys(["b", "d"], k => k.length == 1));
+  assert(!map.hasAnyKeys(["d", "e"], k => k.length == 1));
 }
 
 bool hasAnyKeys(Json[string] map, string[] keys) {
@@ -369,7 +484,15 @@ bool hasAnyKeys(Json[string] map, string[] keys) {
     return false;
   }
 
-  return map.keys.any!(key => keys.canFind(key));
+  return keys.any!(key => map.hasKey(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys for Json[string] with keys"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyKeys(["b", "d"]));
+  assert(!map.hasAnyKeys(["d", "e"]));
 }
 
 bool hasAnyKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
@@ -378,6 +501,14 @@ bool hasAnyKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
   }
 
   return map.keys.any!(key => hasFunc(key));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys for Json[string] with function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyKeys(k => k.length == 1));
+  assert(!map.hasAnyKeys(k => k.length == 2));
 }
 // #endregion hasAny
 
@@ -395,11 +526,27 @@ bool hasAnyKeys(Json[string] map, bool delegate(string) @safe hasFunc) {
 // #region values
 // #region hasAll
 bool hasAllValues(Json[string] map, Json[] values, bool delegate(Json) @safe hasFunc) {
-  return map.hasAllValues((Json value) => values.canFind(value) && hasFunc(value));
+  return values.all!(value => map.hasValue(value) && hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[string] with values and function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllValues([Json(1), Json(2)], v => v.isNumber));
+  assert(!map.hasAllValues([Json(1), Json(4)], v => v.isNumber));
 }
 
 bool hasAllValues(Json[string] map, Json[] values) {
-  return map.hasAllValues((Json value) => values.canFind(value));
+  return values.all!(value => map.hasValue(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[string] with values"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllValues([Json(1), Json(2)]));
+  assert(!map.hasAllValues([Json(1), Json(4)]));
 }
 
 bool hasAllValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
@@ -407,22 +554,46 @@ bool hasAllValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
     return false;
   }
 
-  foreach(key, value; map) {
+  foreach (key, value; map) {
     if (!hasFunc(value)) {
       return false;
     }
   }
   return true;
 }
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues for Json[string] with function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAllValues(v => v.isNumber));
+  assert(!map.hasAllValues(v => v.isString));
+}
 // #endregion hasAll
 
 // #region hasAny
 bool hasAnyValues(Json[string] map, Json[] values, bool delegate(Json) @safe hasFunc) {
-  return map.hasAnyValues((Json value) => values.canFind(value) && hasFunc(value));
+  return values.any!(value => map.hasValue(value) && hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[string] with values and function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyValues([Json(1), Json(4)], v => v.isNumber));
+  assert(!map.hasAnyValues([Json(4), Json(5)], v => v.isNumber));
 }
 
 bool hasAnyValues(Json[string] map, Json[] values) {
-  return map.hasAnyValues((Json value) => values.canFind(value));
+  return values.any!(value => map.hasValue(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[string] with values"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyValues([Json(1), Json(4)]));
+  assert(!map.hasAnyValues([Json(4), Json(5)]));
 }
 
 bool hasAnyValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
@@ -430,27 +601,34 @@ bool hasAnyValues(Json[string] map, bool delegate(Json) @safe hasFunc) {
     return false;
   }
 
-  foreach(key, value; map) {
-    if (hasFunc(value)) {
+  return map.values.any!(value => hasFunc(value));
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues for Json[string] with function"));
+
+  Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
+  assert(map.hasAnyValues(v => v.isNumber));
+  assert(!map.hasAnyValues(v => v.isString));
+}
+// #endregion hasAny
+
+// #region has
+bool hasValue(Json[string] map, Json value) {
+  if (map.length == 0) {
+    return false;
+  }
+
+  foreach (k, v; map) {
+    if (v == value) {
       return true;
     }
   }
   return false;
 }
-// #endregion hasAny
-
-// #region has
-// bool hasValue(Json[string] map, Json value) {
-//   if (json == Json(null)) {
-//     return false;
-//   }
-
-//   return jsons.any!(v => v == value);
-// }
 // #endregion has
 // #endregion values
 // #endregion Json[string]
-
 
 /*
 // #region value
@@ -671,112 +849,340 @@ unittest {
 }
 // #endregion Json[string]
 
-// #region key
-// Check if json has key
-bool hasAllKey(Json json, string[] keys) {
-  if (!json.isObject || keys.length == 0) {
+
+
+
+// #region Json
+// #region indices
+// #region hasAll
+bool hasAllIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAllIndices(indices, hasFunc) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices with indices and function"));
+
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasAllIndices([0, 1], i => i < 3));
+  assert(!json.hasAllIndices([0, 3], i => i < 3));
+}
+
+bool hasAllIndices(Json json, size_t[] indices) {
+  return json.isArray ? indices.all!(i => json.length > i) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices with indices"));
+
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasAllIndices([0, 1]));
+  assert(!json.hasAllIndices([0, 3]));
+}
+
+bool hasAllIndices(Json json, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAllIndices(hasFunc) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllIndices with function"));
+
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasAllIndices(i => i < 3));
+  assert(!json.hasAllIndices(i => i < 2));
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyIndices(Json json, size_t[] indices, bool delegate(size_t) @safe hasFunc) {
+  return json.isArray ? json.toArray.hasAnyIndices(indices, hasFunc) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyIndices with indices and function"));
+
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasAnyIndices([0, 3], i => i < 3));
+  assert(!json.hasAnyIndices([3, 4], i => i < 3));
+}
+
+bool hasAnyIndices(Json json, size_t[] indices) {
+  return json.isArray ? json.toArray.hasAnyIndices(indices) : false;
+}
+
+bool hasAnyIndices(Json json, bool delegate(size_t) @safe hasFunc) {
+  if (!json.isArray) {
     return false;
   }
 
-  return keys.all!(key => hasKey(json, key));
+  return json.toArray.hasAnyIndices(hasFunc);
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing hasAllKey for Json with keys");
+  mixin(ShowTest!("Testing hasAnyIndices with function"));
 
-  Json json = [
-    "a": Json(1),
-    "b": Json(2),
-    "c": Json(3)
-  ].toJson;
-
-  assert(hasAllKey(json, ["a", "b"]));
-  assert(!hasAllKey(json, ["a", "d"]));
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasAnyIndices(i => i < 3));
+  assert(json.hasAnyIndices(i => i < 2));
+  assert(!json.hasAnyIndices(i => i < 0));
 }
+// #endregion hasAny
 
-/// Check if Json has key
-bool hasAnyKey(Json json, string[] keys) {
-  return keys.any!(key => hasKey(json, key));
+// #region has
+bool hasIndex(Json json, size_t index) {
+  return json.isArray ? json.length > index : false;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing hasAnyKey for Json with keys");
+  mixin(ShowTest!("Testing hasIndex for Json with index"));
 
-  Json json = [
-    "a": Json(1),
-    "b": Json(2),
-    "c": Json(3)
-  ].toJson;
-
-  assert(hasAnyKey(json, ["b", "d"]));
-  assert(!hasAnyKey(json, ["d", "e"]));
-}
-
-// #region hasKey
-/** 
-  * Checks if the given Json value has the specified key.
-  *
-  * Params:
-  *   json = The Json value to check.
-  *   key = The key to check for.
-  *
-  * Returns:
-  *   `true` if the Json value has the specified key, `false` otherwise.
-  */
-bool hasKey(Json json, string key) {
-  return json.isObject && key in json;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing hasKey for Json with key");
-
-  // Non-object Json -> always false
-  auto json1 = Json(1);
-  assert(!hasKey(json1, "foo"));
-  assert(!hasKey(json1, ""));
-
-  // Object with keys -> true for present keys, false for absent
-  auto json2 = Json(["a": Json(1), "": Json(2)]);
-  assert(hasKey(json2, "a"));
-  assert(hasKey(json2, ""));
-  assert(!hasKey(json2, "b"));
-
-  // Keys are exact (case-sensitive)
-  auto json3 = Json(["Key": Json(1)]);
-  assert(hasKey(json3, "Key"));
-  assert(!hasKey(json3, "key"));
-
-  // Keys with special characters
-  auto json4 = Json(["weird:key!": Json(42)]);
-  assert(hasKey(json4, "weird:key!"));
-}
-// #endregion hasKey
-
-bool hasKey(Json[string] map, string key) {
-  return (key in map) ? true : false;
-}
-// #endregion key
-
-bool hasKeyValue(Json json, string key, Json value) {
-  if (!json.isObject || !json.hasKey(key)) {
-    return false;
-  }
-
-  return json[key] == value;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing hasKeyValue for Json with key and value");
-
-  Json json = [
-    "a": Json(1),
-    "b": Json(2),
-    "c": Json(3)
-  ].toJson;
-
-  assert(hasKeyValue(json, "a", Json(1)));
-  assert(!hasKeyValue(json, "b", Json(3)));
-  assert(!hasKeyValue(json, "d", Json(4)));
+  auto json = [1, 2, 3].toJson;
+  assert(json.hasIndex(0));
+  assert(json.hasIndex(2));
+  assert(!json.hasIndex(3));
 }
 // #endregion has
+// #endregion indices
 
+// #region keys
+// #region hasAllKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc)
+bool hasAllKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
+  if (!json.isObject) {
+    return false;
+  }
+
+  return json.isObject ? keys.all!(key => json.hasKey(key) && hasFunc(key)) : false;
+} /// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys with keys and function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAllKeys(["a", "b"], k => k.length == 1));
+  assert(!json.hasAllKeys(["a", "d"], k => k.length == 1));
+}
+// #endregion hasAllKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc)
+
+// #region hasAllKeys(Json json, string[] keys)
+bool hasAllKeys(Json json, string[] keys) {
+  return json.isObject ? keys.all!(key => json.hasKey(key)) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys with keys"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAllKeys(["a", "b"]));
+  assert(!json.hasAllKeys(["a", "d"]));
+}
+// #endregion hasAllKeys(Json json, string[] keys)
+
+// #region hasAllKeys(Json json, bool delegate(string) @safe hasFunc)
+bool hasAllKeys(Json json, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.all!(key => hasFunc(key)) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllKeys with function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAllKeys(k => k.length == 1));
+  assert(!json.hasAllKeys(k => k.length == 2));
+}
+// #endregion hasAllKeys(Json json, bool delegate(string) @safe hasFunc)
+
+// #region hasAnyKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc)
+bool hasAnyKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? keys.any!(key => json.hasKey(key) && hasFunc(key)) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys with keys and function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAnyKeys(["b", "d"], k => k.length == 1));
+  assert(!json.hasAnyKeys(["d", "e"], k => k.length == 1));
+}
+// #endregion hasAnyKeys(Json json, string[] keys, bool delegate(string) @safe hasFunc)
+
+bool hasAnyKeys(Json json, string[] keys) {
+  return json.isObject ? keys.any!(key => json.hasKey(key)) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys with keys"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAnyKeys(["b", "d"]));
+  assert(!json.hasAnyKeys(["d", "e"]));
+}
+
+bool hasAnyKeys(Json json, bool delegate(string) @safe hasFunc) {
+  return json.isObject ? json.toMap.keys.any!(key => hasFunc(key)) : false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyKeys with function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAnyKeys(k => k.length == 1));
+  assert(!json.hasAnyKeys(k => k.length == 2));
+}
+// #endregion hasAny
+
+// #region has
+// bool hasValue(Json[string] map, Json value) {
+//   if (json == Json(null)) {
+//     return false;
+//   }
+
+//   return jsons.any!(v => v == value);
+// }
+// #endregion has
+// #endregion keys
+
+// #region values
+// #region hasAll
+bool hasAllValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(values, hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(values, hasFunc);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues with values and function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.hasAllValues([Json(1), Json(2)], v => v.isNumber));
+  assert(!json.hasAllValues([Json(1), Json(4)], v => v.isNumber));
+}
+
+bool hasAllValues(Json json, Json[] values) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(values);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(values);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues with values"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasAllValues([Json(1), Json(2)]));
+  assert(!json.hasAllValues([Json(1), Json(4)]));
+}
+
+bool hasAllValues(Json json, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAllValues(hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAllValues(hasFunc);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAllValues with function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasAllValues(v => v.isNumber));
+  assert(!json.hasAllValues(v => v.isString));
+}
+// #endregion hasAll
+
+// #region hasAny
+bool hasAnyValues(Json json, Json[] values, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(values, hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(values, hasFunc);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues with values and function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasAnyValues([Json(1), Json(4)], v => v.isNumber));
+  assert(!json.hasAnyValues([Json(4), Json(5)], v => v.isNumber));
+}
+
+bool hasAnyValues(Json json, Json[] values) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(values);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(values);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues with values"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasAnyValues([Json(1), Json(4)]));
+  assert(!json.hasAnyValues([Json(4), Json(5)]));
+}
+
+bool hasAnyValues(Json json, bool delegate(Json) @safe hasFunc) {
+  if (json.isArray) {
+    return json.toArray.hasAnyValues(hasFunc);
+  }
+  if (json.isObject) {
+    return json.toMap.hasAnyValues(hasFunc);
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasAnyValues with function"));
+
+  auto json = ["a": 1, "b": 2, "c": 3].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasAnyValues(v => v.isNumber));
+  assert(!json.hasAnyValues(v => v.isString));
+}
+// #endregion hasAny
+
+// #region has
+bool hasValue(Json json, Json value) {
+  if (json == Json(null)) {
+    return false;
+  }
+
+  if (json.isArray) {
+    return json.toArray.any!(v => v == value);
+  } else if (json.isObject) {
+    foreach (k, v; json.toMap) {
+      if (v == value) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+/// 
+unittest {
+  mixin(ShowTest!("Testing hasValue for Json with value"));
+
+  auto json = ["a": 1, "b": 2, "d": 5].toJson;
+  assert(json.isObject && !json.isArray);
+  assert(json.hasValue(Json(2)));
+  assert(!json.hasValue(Json(6)));
+}
+// #endregion has
+// #endregion values
+// #endregion Json

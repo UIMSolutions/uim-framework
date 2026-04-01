@@ -50,6 +50,17 @@ Json[] getValues(Json[] jsons, bool delegate(size_t) @safe getFunc) {
   }
   return result;
 }
+///
+unittest {
+  mixin(ShowTest!"Testing getValues with getFunc for indices");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  auto values = jsons.getValues((size_t index) { return index % 2 == 0; });
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.0.toJson);
+}
+
 Json[] values(Json[] jsons, bool delegate(size_t) @safe getFunc) {
   Json[] result;
   foreach (index, value; jsons) {
@@ -59,11 +70,28 @@ Json[] values(Json[] jsons, bool delegate(size_t) @safe getFunc) {
   }
   return result;
 }
+///
+unittest {
+  mixin(ShowTest!"Testing getValues with getFunc for indices");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  auto values = jsons.getValues((size_t index) { return index % 2 == 0; });
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.0.toJson);
+}
 // #endregion with getFunc(index)
 
 // #region index
 Json getValue(Json[] jsons, size_t index) {
   return index < jsons.length ? jsons[index] : Json(null);
+}
+///
+unittest {
+  mixin(ShowTest!"Testing getValue with index");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  assert(jsons.getValue(1) == "two".toJson);
 }
 // #endregion index
 // #endregion indices
@@ -75,6 +103,16 @@ Json[] getValues(Json[] jsons, Json[] values, bool delegate(Json) @safe getFunc)
 
   return jsons.getValues(values).getValues((Json value) => getFunc(value));
 }
+///
+unittest {
+  mixin(ShowTest!"Testing getValues with values and getFunc");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  auto values = jsons.getValues([1.toJson, 3.0.toJson], value => value.isNumber);
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.0.toJson);
+}
 // #endregion with values and getFunc(value)
 
 // #region with values
@@ -83,11 +121,36 @@ Json[] getValues(Json[] jsons, Json[] values) {
 
   return jsons.getValues((Json value) => values.canFind(value));
 }
+///
+unittest {
+  mixin(ShowTest!"Testing getValues with values");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  auto values = jsons.getValues([1.toJson, 3.0.toJson]);
+  assert(values.length == 2);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == 3.0.toJson);
+}
 
 Json[] getValues(Json[] jsons, bool delegate(Json) @safe getFunc) {
   mixin(ShowFunction!());
 
-  return jsons.filter!(json => getFunc(json)).array;
+  Json[] result;
+  foreach(value; jsons) {
+    if (getFunc(value)) {
+      result ~= value;
+    }
+  }
+  return result;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing getValues with getFunc");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.toJson];
+  auto values = jsons.getValues((Json json) { return json.isString; });
+  assert(values.length == 1);
+  assert(values[0] == "two".toJson);
 }
 // #endregion with values
 
@@ -95,6 +158,17 @@ Json[] getValues(Json[] jsons) {
   mixin(ShowFunction!());
 
   return jsons.dup;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing getValues without parameters");
+
+  Json[] jsons = [1.toJson, "two".toJson, 3.0.toJson];
+  auto values = jsons.getValues();
+  assert(values.length == 3);
+  assert(values[0] == 1.toJson);
+  assert(values[1] == "two".toJson);
+  assert(values[2] == 3.0.toJson);
 }
 // #endregion values 
 // #endregion Json[]

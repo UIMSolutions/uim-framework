@@ -166,25 +166,25 @@ unittest {
   *
   * Returns:
   *   true if the value exists in the map, false otherwise.
-  * /
-bool hasValue(K, V)(V[K] map, V value) {
-  return map.hasItem((K k, V v) => v == value);
-}
-///
-unittest {
-  mixin(ShowTest!"Testing hasValue function");
+  */
+// bool hasValue(K, V)(V[K] map, V value) {
+//   return map.hasItem((K k, V v) => v == value);
+// }
+// ///
+// unittest {
+//   mixin(ShowTest!"Testing hasValue function");
 
-  auto map = ["a": 1, "b": 2, "c": 3];
+//   auto map = ["a": 1, "b": 2, "c": 3];
 
-  assert(map.hasValue(1));
-  assert(map.hasValue(2));
-  assert(map.hasValue(3));
-  assert(!map.hasValue(4));
-  assert(!map.hasValue(0));
+//   assert(map.hasValue(1));
+//   assert(map.hasValue(2));
+//   assert(map.hasValue(3));
+//   assert(!map.hasValue(4));
+//   assert(!map.hasValue(0));
 
-  int[string] emptyMap;
-  assert(!emptyMap.hasValue(1));
-}
+//   int[string] emptyMap;
+//   assert(!emptyMap.hasValue(1));
+// }
 // #endregion Values
 
 // #region Items

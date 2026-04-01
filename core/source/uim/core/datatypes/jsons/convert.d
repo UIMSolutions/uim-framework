@@ -94,7 +94,9 @@ Json toJson(T:double)(T value) {
 }
 /// 
 unittest {
-  assert(toJson(3.14) == Json(3.14));  
+  mixin(ShowTest!("Testing toJson with double value"));
+
+  assert(toJson(3.14) == Json(3.14));
 }
 
 /// Convert string to Json
