@@ -1,0 +1,44 @@
+name "odata"
+description "uim library for OData v4 protocol services with vibe.d"
+homepage "https://www.sueel.de/uim/odata"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+
+// target
+targetName "uim-odata"
+targetType "library"
+
+// dependencies
+dependency "uim-framework:errors" version="*"
+dependency "vibe-d" version="~>0.10.3"
+
+// configurations
+configuration "default" {
+	targetType "library"
+}
+
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
