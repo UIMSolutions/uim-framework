@@ -30,6 +30,9 @@ dependency ":numerical" version="*"
 dependency ":oop" version="*"
 dependency ":services" version="*"
 
+// OData
+dependency ":odata" version="*"
+
 // Neural networks
 dependency ":neural" version="*"
 
@@ -50,6 +53,7 @@ subPackage "neural"
 subPackage "oop"
 subPackage "security"
 subPackage "services"
+subPackage "odata"
 subPackage "filesystems"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
