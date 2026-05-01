@@ -10,6 +10,36 @@ import uim.core;
 mixin(ShowModule!());
 
 @safe:
+// #region isObject(Json)
+bool isObject(Json json) {
+  mixin(ShowFunction!());
+
+  return (json.type == Json.Type.object);
+}
+/// 
+unittest {
+  assert(isObject(["key": "value"].toJson));
+  assert(!isObject([1, 2, 3].toJson));
+} 
+// #endregion isObject(Json)
+
+// #region isObject(Json[])
+bool isObject(Json[] jsons) {
+  mixin(ShowFunction!());
+
+  return false;
+}
+// #endregion isObject(Json[])
+
+// #region isObject(Json[string])
+bool isObject(Json[string] map) {
+  mixin(ShowFunction!());
+  
+  return map is null ? false : true;
+}
+// #endregion isObject(Json[string])
+
+
 /* 
 // #region Json[]
 /** 
@@ -211,24 +241,4 @@ bool isObject(Json json, size_t index) {
 // #endregion index
 // #endregion Json
 */ 
-
-// #region base
-bool isObject(Json[] jsons) {
-  mixin(ShowFunction!());
-
-  return false;
-}
-
-bool isObject(Json[string] map) {
-  mixin(ShowFunction!());
-  
-  return map is null ? false : true;
-}
-
-bool isObject(Json json) {
-  mixin(ShowFunction!());
-
-  return (json.type == Json.Type.object);
-}
-// #endregion base
 

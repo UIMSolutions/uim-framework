@@ -53,6 +53,16 @@ unittest {
 // #endregion Json
 
 // #region Json[string]
+/** 
+  * Checks if the given Json[string] map has the specified key.
+  *
+  * Params:
+  *   map = The Json[string] map to check.
+  *   key = The key to check for.
+  *
+  * Returns:
+  *   `true` if the Json[string] map has the specified key, `false` otherwise.
+  */
 bool hasKey(Json[string] map, string key) {
   return (key in map) ? true : false;
 }
@@ -68,6 +78,17 @@ unittest {
 // #endregion hasKey
 
 // #region hasKeyValue
+/** 
+  * Checks if the given Json object has the specified key with the specified value.
+  *
+  * Params:
+  *   json = The Json value to check (must be an object).
+  *   key = The key to check for.
+  *   value = The value to compare against.
+  *
+  * Returns:
+  *   `true` if the Json object has the specified key and its value equals the specified value, `false` otherwise.
+  */
 bool hasKeyValue(Json json, string key, Json value) {
   return json.hasKey(key) && json[key] == value;
 }
@@ -90,6 +111,16 @@ unittest {
 // #region Json
 // #region key
 // #region hasAllKey(Json json, string[] keys)
+/** 
+  * Checks if the given Json object has all the specified keys.
+  *
+  * Params:
+  *   json = The Json value to check (must be an object).
+  *   keys = The keys to check for.
+  *
+  * Returns:
+  *   `true` if the Json object has all the specified keys, `false` otherwise.
+  */
 bool hasAllKey(Json json, string[] keys) {
   if (!json.isObject || keys.length == 0) {
     return false;
