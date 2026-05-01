@@ -11,21 +11,81 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region hasKey
+// #region Json
+/** 
+  * Checks if the given Json value has the specified key.
+  *
+  * Params:
+  *   json = The Json value to check.
+  *   key = The key to check for.
+  *
+  * Returns:
+  *   `true` if the Json value has the specified key, `false` otherwise.
+  */
+bool hasKey(Json json, string key) {
+  return json.isObject && key in json;
+}
+///
+unittest {
+  mixin(ShowTest!"Testing hasKey for Json with key");
+
+  // Non-object Json -> always false
+  auto json1 = Json(1);
+  assert(!hasKey(json1, "foo"));
+  assert(!hasKey(json1, ""));
+
+  // Object with keys -> true for present keys, false for absent
+  auto json2 = ["a": Json(1), "": Json(2)].toJson;
+  assert(hasKey(json2, "a"));
+  assert(hasKey(json2, ""));
+  assert(!hasKey(json2, "b"));
+
+  // Keys are exact (case-sensitive)
+  auto json3 = ["Key": Json(1)].toJson;
+  assert(hasKey(json3, "Key"));
+  assert(!hasKey(json3, "key"));
+
+  // Keys with special characters
+  auto json4 = ["weird:key!": Json(42)].toJson;
+  assert(hasKey(json4, "weird:key!"));
+}
+// #endregion Json
+
 // #region Json[string]
-// #region hasKey(Json[string] map, string key)
 bool hasKey(Json[string] map, string key) {
   return (key in map) ? true : false;
 }
 /// 
 unittest {
-  mixin(ShowTest!"Testing hasKey for Json[string] with key"); 
+  mixin(ShowTest!"Testing hasKey for Json[string] with key");
 
   Json[string] map = ["a": Json(1), "b": Json(2), "c": Json(3)];
   assert(hasKey(map, "a"));
   assert(!hasKey(map, "d"));
 }
-// #endregion hasKey(Json[string] map, string key)
 // #endregion Json[string]
+// #endregion hasKey
+
+// #region hasKeyValue
+bool hasKeyValue(Json json, string key, Json value) {
+  return json.hasKey(key) && json[key] == value;
+}
+/// 
+unittest {
+  mixin(ShowTest!"Testing hasKeyValue for Json with key and value");
+
+  Json json = [
+    "a": Json(1),
+    "b": Json(2),
+    "c": Json(3)
+  ].toJson;
+
+  assert(hasKeyValue(json, "a", Json(1)));
+  assert(!hasKeyValue(json, "b", Json(3)));
+  assert(!hasKeyValue(json, "d", Json(4)));
+}
+// #endregion hasKeyValue
 
 // #region Json
 // #region key
@@ -73,67 +133,9 @@ unittest {
 // #endregion key
 // #endregion Json
 
-bool hasKeyValue(Json json, string key, Json value) {
-  if (!json.isObject || !json.hasKey(key)) {
-    return false;
-  }
-
-  return json[key] == value;
-}
-/// 
-unittest {
-  mixin(ShowTest!"Testing hasKeyValue for Json with key and value");
-
-  Json json = [
-    "a": Json(1),
-    "b": Json(2),
-    "c": Json(3)
-  ].toJson;
-
-  assert(hasKeyValue(json, "a", Json(1)));
-  assert(!hasKeyValue(json, "b", Json(3)));
-  assert(!hasKeyValue(json, "d", Json(4)));
-}
 // #endregion has
 
 // #region hasKey
-/** 
-  * Checks if the given Json value has the specified key.
-  *
-  * Params:
-  *   json = The Json value to check.
-  *   key = The key to check for.
-  *
-  * Returns:
-  *   `true` if the Json value has the specified key, `false` otherwise.
-  */
-bool hasKey(Json json, string key) {
-  return json.isObject && key in json;
-}
-///
-unittest {
-  mixin(ShowTest!"Testing hasKey for Json with key");
-
-  // Non-object Json -> always false
-  auto json1 = Json(1);
-  assert(!hasKey(json1, "foo"));
-  assert(!hasKey(json1, ""));
-
-  // Object with keys -> true for present keys, false for absent
-  auto json2 = ["a": Json(1), "": Json(2)].toJson;
-  assert(hasKey(json2, "a"));
-  assert(hasKey(json2, ""));
-  assert(!hasKey(json2, "b"));
-
-  // Keys are exact (case-sensitive)
-  auto json3 = ["Key": Json(1)].toJson;
-  assert(hasKey(json3, "Key"));
-  assert(!hasKey(json3, "key"));
-
-  // Keys with special characters
-  auto json4 = ["weird:key!": Json(42)].toJson;
-  assert(hasKey(json4, "weird:key!"));
-}
 // #endregion hasKey
 
 // #region Json[]
@@ -848,9 +850,6 @@ unittest {
   assert(!hasPath(json, ["a", "b", "d"]));
 }
 // #endregion Json[string]
-
-
-
 
 // #region Json
 // #region indices

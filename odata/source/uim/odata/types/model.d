@@ -38,22 +38,36 @@ class EdmModel {
     }
 
     /// Finds an entity type by simple or fully-qualified name.
-    EdmEntityType findEntityType(string name) const nothrow {
+    EdmEntityType findEntityType(string name) const {
         foreach (ref schema; _schemas) {
             foreach (ref et; schema.entityTypes) {
-                if (et.name == name || et.fullName == name)
-                    return et;
+                if (et.name == name || et.fullName == name) {
+                    // copy out of const
+                    EdmEntityType result = {
+                        name: et.name,
+                        namespace: et.namespace,
+                        keyProperties: et.keyProperties.dup,
+                        properties: et.properties.dup,
+                        navigationProperties: et.navigationProperties.dup,
+                    };
+                    return result;
+                }
             }
         }
         return EdmEntityType.init;
     }
 
     /// Finds an entity set by name.
-    EdmEntitySet findEntitySet(string name) const nothrow {
+    EdmEntitySet findEntitySet(string name) const {
         foreach (ref schema; _schemas) {
             foreach (ref es; schema.entitySets) {
-                if (es.name == name)
-                    return es;
+                if (es.name == name) {
+                    EdmEntitySet result = {
+                        name: es.name,
+                        entityTypeName: es.entityTypeName,
+                    };
+                    return result;
+                }
             }
         }
         return EdmEntitySet.init;

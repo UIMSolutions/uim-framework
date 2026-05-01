@@ -55,6 +55,7 @@ subPackage "security"
 subPackage "services"
 subPackage "odata"
 subPackage "filesystems"
+subPackage "odbc"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"

@@ -62,7 +62,7 @@ Json serializeError(string code, string message) @trusted {
 }
 
 /// Serializes an EdmEntityType to its JSON metadata representation.
-Json serializeEntityType(EdmEntityType et) @trusted {
+Json serializeEntityType(const EdmEntityType et) @trusted {
     auto t = Json.emptyObject;
 
     auto keyArr = Json.emptyArray;

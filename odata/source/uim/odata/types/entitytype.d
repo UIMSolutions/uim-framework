@@ -32,13 +32,13 @@ struct EdmEntityType {
         return namespace ~ "." ~ name;
     }
 
-    /// Finds a property by name.  Returns null pointer when not found.
-    const(EdmProperty)* findProperty(string propName) const pure nothrow return {
+    /// Finds a property by name.  Returns EdmProperty.init when not found.
+    EdmProperty findProperty(string propName) const pure nothrow {
         foreach (ref p; properties) {
             if (p.name == propName)
-                return &p;
+                return p;
         }
-        return null;
+        return EdmProperty.init;
     }
 }
 

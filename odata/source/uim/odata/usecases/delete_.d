@@ -20,7 +20,7 @@ class DeleteEntityUseCase {
         _repository = repository;
     }
 
-    ODataResponse execute(string entitySetName, string key) {
+    ODataResponse execute(string entitySetName, string key) @trusted {
         if (!_repository.entitySetExists(entitySetName))
             return ODataResponse.notFound("Entity set '" ~ entitySetName ~ "' not found");
 
