@@ -11,6 +11,26 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region base
+/** 
+  * Checks if the given Json value is a boolean.
+  * 
+  * Params:
+  *   json = The Json value to check.
+  * 
+  * Returns:
+  *   true if the Json value is a boolean, false otherwise.
+  */
+bool isBoolean(Json json) {
+  return (json.type == Json.Type.bool_);
+}
+///
+unittest {
+  assert(Json(true).isBoolean); 
+  assert(!Json("Hello").isBoolean);
+}
+// #endregion base
+
 // #region Json[]
 // #region indices
 // #region all
@@ -152,9 +172,5 @@ bool isBoolean(Json json, string key) {
 }
 // #region key
 
-// #region base
-bool isBoolean(Json json) {
-  return (json.type == Json.Type.bool_);
-}
-// #endregion base
+
 // #endregion Json

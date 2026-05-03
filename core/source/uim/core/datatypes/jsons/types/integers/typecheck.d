@@ -11,6 +11,26 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region base
+/** 
+  * Checks if the given Json value is an integer.
+  * 
+  * Params:
+  *   json = The Json value to check.
+  * 
+  * Returns:
+  *   true if the Json value is an integer, false otherwise.
+  */
+bool isInteger(Json json) {
+  return (json.type == Json.Type.int_);
+}
+///
+unittest {
+  assert(Json(42).isInteger);
+  assert(!Json("Hello").isInteger);
+}
+// #endregion base
+
 // #region Json[]
 // #region indices
 // #region all
@@ -154,9 +174,5 @@ bool isInteger(Json json, string key) {
 }
 // #region key
 
-// #region base
-bool isInteger(Json json) {
-  return (json.type == Json.Type.int_);
-}
-// #endregion base
+
 // #endregion Json

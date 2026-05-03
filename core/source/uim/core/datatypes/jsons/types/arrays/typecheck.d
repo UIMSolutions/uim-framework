@@ -11,6 +11,65 @@ mixin(ShowModule!());
 
 @safe:
 
+// #region base
+/** 
+  * Checks if the given Json value is an array.
+  * 
+  * Params:
+  *   json = The Json value to check.
+  * 
+  * Returns:
+  *   true if the Json value is an array, false otherwise.
+  */
+bool isArray(Json json) {
+  mixin(ShowFunction!());
+
+  return (json.type == Json.Type.array);
+}
+///
+unittest {
+  assert([1, 2, 3].toJson.isArray);
+  assert(!Json("Hello").isArray);
+}
+
+/** 
+  * Checks if the given Json value is an array of arrays.
+  * 
+  * Params:
+  *   json = The Json value to check.
+  * 
+  * Returns:
+  *   true if the Json value is an array of arrays, false otherwise.
+  */
+bool isArray(Json[] jsons) {
+  mixin(ShowFunction!());
+
+  return jsons is null ? false : true;
+}
+///
+unittest {
+  assert([ [1, 2].toJson, [3, 4].toJson ].isArray);
+}
+
+/** 
+  * Checks if the given Json value is an array of arrays.
+  * 
+  * Params:
+  *   map = The Json[string] map to check.
+  * 
+  * Returns:
+  *   true if the Json[string] map is an array of arrays, false otherwise.
+  */
+bool isArray(Json[string] map) {
+  mixin(ShowFunction!());
+
+  return false;
+}
+///
+unittest {
+  assert(!["key": "value"].toJson.isArray);
+}
+// #endregion base
 // #region Json
 // #region indices
 // #region all
@@ -619,22 +678,4 @@ bool isArray(Json[] jsons, Json value) {
 // #endregion values
 // #endregion Json[]
 
-// #region base
-bool isArray(Json[] jsons) {
-  mixin(ShowFunction!());
 
-  return jsons is null ? false : true;
-}
-
-bool isArray(Json[string] map) {
-  mixin(ShowFunction!());
-
-  return false;
-}
-
-bool isArray(Json json) {
-  mixin(ShowFunction!());
-
-  return (json.type == Json.Type.array);
-}
-// #endregion base
