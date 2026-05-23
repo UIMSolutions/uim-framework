@@ -5,6 +5,7 @@
 *****************************************************************************************************************/
 module uim.jsons.rpc.error;
 
+import std.conv : to;
 import uim.jsons;
 
 mixin(ShowModule!());
@@ -46,14 +47,14 @@ class JsonRpcError : UIMObject {
   }
 
   // Getters
-  int code() { return _code; }
-  string message() { return _message; }
-  Json data() { return _data; }
+  @property int code() { return _code; }
+  @property string message() { return _message; }
+  @property Json data() { return _data; }
 
   // Setters
-  void code(int value) { _code = value; }
-  void message(string value) { _message = value; }
-  void data(Json value) { _data = value; }
+  @property void code(int value) { _code = value; }
+  @property void message(string value) { _message = value; }
+  @property void data(Json value) { _data = value; }
 
   /**
    * Convert to Json object.

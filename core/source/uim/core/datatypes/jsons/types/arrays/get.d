@@ -78,7 +78,8 @@ unittest {
 Json[] getArray(Json json, string key, Json[] defaultValue = null) {
   mixin(ShowFunction!());
 
-  return json.getValue(key).isArray ? json.getValue(key).toArray : defaultValue;
+  auto value = json.getValue(key);
+  return value.isArray ? value.toArray : defaultValue;
 }
 /// 
 unittest {

@@ -16,7 +16,7 @@ mixin(ShowModule!());
   *   A new array with each boolean value toggled.
 **/
 bool[] toggle(bool[] values) {
-  return values.map!(v => !v).array;
+  return values.map!(v => toggle(v)).array;
 }
 
 /**

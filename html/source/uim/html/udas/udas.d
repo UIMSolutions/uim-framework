@@ -6,6 +6,9 @@
 module uim.html.udas.udas;
 
 
+import std.string;
+import std.format;
+import std.algorithm;
 import uim.html;
 @safe:
 
@@ -47,6 +50,30 @@ struct DeprecatedHtml {
 
   this(string deprecationReason) {
     reason = deprecationReason;
+  }
+}
+
+/// UDA to associate a symbol with a string attribute.
+struct StringAttribute {
+  string methodName;
+  string attributeName;
+
+  this(string methodName, string attributeName = "") {
+    this.methodName = methodName;
+    this.attributeName = attributeName.length > 0 ? attributeName : methodName;
+  }
+}
+
+/// UDA to associate a symbol with a boolean attribute.
+struct BoolAttribute {
+  string methodName;
+  string attributeName;
+  string isName;
+
+  this(string methodName, string attributeName = "") {
+    this.methodName = methodName;
+    this.attributeName = attributeName.length > 0 ? attributeName : methodName;
+    this.isName = "is" ~ methodName[0 .. 1].toUpper() ~ methodName[1 .. $];
   }
 }
 
