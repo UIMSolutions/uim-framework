@@ -3,8 +3,11 @@ module uim.services;
 public {
   import uim.errors;
   
+  import uim.services.application;
   import uim.services.classes;
   import uim.services.config;
+  import uim.services.domain;
+  import uim.services.infrastructure;
   import uim.services.exceptions;
   import uim.services.helpers;
   import uim.services.i18n;
@@ -13,4 +16,5 @@ public {
   import uim.services.mixins;
   import uim.services.tests;
   import uim.services.vibeservice;
+  import uim.services.presentation;
 }

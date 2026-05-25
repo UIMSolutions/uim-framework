@@ -5,13 +5,12 @@
 *****************************************************************************************************************/
 module uim.html.udas.udas;
 
-
 import std.string;
 import std.format;
 import std.algorithm;
 import uim.html;
-@safe:
 
+@safe:
 
 /// Associates a symbol with an HTML tag name.
 struct HtmlTag {
@@ -46,7 +45,7 @@ struct SupportsAttribute {
 
 /// Declares deprecation metadata for an HTML symbol.
 struct DeprecatedHtml {
-  string reason;
+  string reason;  
 
   this(string deprecationReason) {
     reason = deprecationReason;
