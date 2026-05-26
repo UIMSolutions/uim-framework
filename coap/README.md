@@ -11,6 +11,9 @@ A lightweight CoAP library for dlang built on vibe.d networking primitives. The 
 - Binary CoAP packet encoder/decoder (header, token, options, payload)
 - UDP transport adapter built on `vibe.core.net.listenUDP`
 - Async client callbacks using vibe.d `runTask`
+- Confirmable message retransmission with exponential backoff
+- Observe registration and cancellation helpers
+- Content-Format and JSON payload helper utilities
 
 ## Installation
 
@@ -31,9 +34,17 @@ void main() {
 
   client.request(CoAPCode.get, "/sensors/temp", null, (ICoAPMessage response) {
     import std.stdio : writeln;
+    import uim.coap.helpers.content_format : coapBytesToString;
     writeln("response code=", cast(ubyte) response.code());
-    writeln("payload=", cast(string) response.payload());
+    writeln("payload=", coapBytesToString(response.payload()));
   });
+
+  client.observe("/events", (ICoAPMessage notification) {
+    import std.stdio : writeln;
+    writeln("observe update on ", notification.path());
+  });
+
+  client.cancelObserve("/events");
 
   client.disconnect();
 }
@@ -48,6 +59,8 @@ void main() {
 - `uim.coap.transport.codec`: CoAP packet encode/decode helpers
 - `uim.coap.transport.udp_adapter`: UDP endpoint adapter using vibe-core net
 - `uim.coap.helpers.path`: CoAP URI path normalization
+- `uim.coap.helpers.options`: CoAP option constants and uint option helpers
+- `uim.coap.helpers.content_format`: Content-Format and JSON payload helpers
 
 ## Notes
 

@@ -5,8 +5,6 @@
 *****************************************************************************************************************/
 module uim.coap.interfaces.message;
 
-mixin(ShowModule!());
-
 @safe:
 
 enum CoAPType : ubyte {

@@ -71,7 +71,7 @@ ICoAPMessage coapDecodeMessage(const(ubyte)[] packet) {
       } else {
         reconstructedPath ~= "/";
       }
-      reconstructedPath ~= cast(string) opt.value;
+      reconstructedPath ~= coapBytesToString(opt.value);
     }
   }
   message.path(reconstructedPath.length == 0 ? "/" : reconstructedPath);
@@ -106,7 +106,7 @@ ubyte[] coapEncodeMessage(ICoAPMessage message) {
 
   CoAPOption[] options = message.options();
   foreach (segment; normalizeCoAPPath(message.path())) {
-    options ~= CoAPOption(11, cast(ubyte[]) segment.dup);
+    options ~= CoAPOption(11, coapStringToBytes(segment));
   }
 
   options = options.sort!((a, b) => a.number < b.number).array;
@@ -171,8 +171,24 @@ private void encodeExtendedValue(ref Appender!(ubyte[]) sink, ushort value) {
   sink.put(cast(ubyte)(v & 0xFF));
 }
 
+private ubyte[] coapStringToBytes(string value) {
+  auto bytes = new ubyte[](value.length);
+  foreach (i, ch; value) {
+    bytes[i] = cast(ubyte) ch;
+  }
+  return bytes;
+}
+
+private string coapBytesToString(const(ubyte)[] value) {
+  auto chars = new char[](value.length);
+  foreach (i, b; value) {
+    chars[i] = cast(char) b;
+  }
+  return chars.idup;
+}
+
 unittest {
-  auto original = CoAPMessage(CoAPCode.post, "/a/b", cast(ubyte[]) "hello");
+  auto original = CoAPMessage(CoAPCode.post, "/a/b", coapStringToBytes("hello"));
   original.type(CoAPType.confirmable);
   original.messageId(101);
   original.token([0xAB, 0xCD]);
@@ -182,6 +198,6 @@ unittest {
 
   assert(decoded.code() == CoAPCode.post);
   assert(decoded.path() == "/a/b");
-  assert(cast(string) decoded.payload() == "hello");
+  assert(coapBytesToString(decoded.payload()) == "hello");
   assert(decoded.messageId() == 101);
 }
