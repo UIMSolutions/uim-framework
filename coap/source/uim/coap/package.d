@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Suel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.mqtt;
+module uim.coap;
 
 import vibe.d;
 
@@ -15,12 +15,12 @@ public {
 }
 
 public {
-  import uim.mqtt.helpers;
-  import uim.mqtt.interfaces;
+  import uim.coap.helpers;
+  import uim.coap.interfaces;
 }
 
 public {
-  import uim.mqtt.message;
-  import uim.mqtt.client;
-  import uim.mqtt.transport;
+  import uim.coap.message;
+  import uim.coap.client;
+  import uim.coap.transport;
 }

@@ -18,6 +18,7 @@ dependency "dyaml" version="~>0.10.0"
 
 // Internal Dependencies
 dependency ":core" version="*"
+dependency ":coap" version="*"
 dependency ":css" version="*"
 dependency ":errors" version="*"
 dependency ":events" version="*"
@@ -42,6 +43,7 @@ sourceFiles "./source/uim/framework.d"
 
 // Subpackages
 subPackage "core"
+subPackage "coap"
 subPackage "css"
 subPackage "errors"
 subPackage "events"

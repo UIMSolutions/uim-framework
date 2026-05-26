@@ -7,6 +7,7 @@ module uim.mqtt.client;
 
 import std.datetime : Clock;
 import std.format : format;
+import std.string : startsWith;
 import core.time : msecs;
 import vibe.d : runTask, sleep;
 
@@ -21,6 +22,8 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
   private string _brokerUrl;
   private string _clientId;
   private MQTTMessageHandler[][string] _subscriptions;
+  private UIMMQTTTcpAdapter _transport;
+  private bool _transportEnabled = false;
 
   bool connect(string brokerUrl, string clientId = "") {
     if (brokerUrl.length == 0) {
@@ -29,6 +32,21 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
 
     _brokerUrl = brokerUrl;
     _clientId = clientId.length > 0 ? clientId : format("uim-mqtt-%s", Clock.currTime().toUnixTime());
+
+    _transportEnabled = false;
+    _transport = null;
+
+    // Try broker transport first; keep local behavior as fallback.
+    if (brokerUrl.startsWith("mqtt://") || brokerUrl.startsWith("mqtts://")) {
+      auto adapter = new UIMMQTTTcpAdapter();
+      if (adapter.open(brokerUrl) && adapter.sendConnect(_clientId)) {
+        _transport = adapter;
+        _transportEnabled = true;
+      } else {
+        adapter.close();
+      }
+    }
+
     _connected = true;
     return true;
   }
@@ -36,6 +54,12 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
   bool disconnect() {
     if (!_connected) {
       return false;
+    }
+
+    if (_transportEnabled && _transport !is null) {
+      _transport.close();
+      _transport = null;
+      _transportEnabled = false;
     }
 
     _subscriptions.clear();
@@ -49,6 +73,11 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
     }
 
     auto message = MQTTMessage(topic, payload, qos, retain);
+
+    if (_transportEnabled && _transport !is null) {
+      _transport.sendPublish(message);
+    }
+
     handleMessage(message);
     return true;
   }
@@ -59,6 +88,11 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
     }
 
     _subscriptions[topicFilter] ~= handler;
+
+    if (_transportEnabled && _transport !is null) {
+      _transport.sendSubscribe(topicFilter);
+    }
+
     return true;
   }
 
@@ -81,6 +115,10 @@ class UIMMQTTClient : UIMObject, IMQTTClient {
 
   string brokerUrl() const {
     return _brokerUrl;
+  }
+
+  bool usingBrokerTransport() const {
+    return _transportEnabled;
   }
 
   /// Delivers messages asynchronously to all matching subscriptions.

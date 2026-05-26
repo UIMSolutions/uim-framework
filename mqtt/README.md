@@ -46,6 +46,8 @@ void main() {
 - `uim.mqtt.interfaces`: Contracts for message and client components
 - `uim.mqtt.message`: Concrete MQTT message implementation
 - `uim.mqtt.client`: vibe.d async MQTT client implementation
+- `uim.mqtt.transport.codec`: MQTT v3.1.1 packet encode/decode helpers
+- `uim.mqtt.transport.tcp_adapter`: TCP broker adapter using vibe-core sockets
 - `uim.mqtt.helpers.topic`: MQTT topic filter matcher
 
 ## Notes
