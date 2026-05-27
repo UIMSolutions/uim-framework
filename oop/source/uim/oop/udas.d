@@ -10,7 +10,7 @@ import uim.oop;
 @safe:
 
 /** Marks a type as a generic IoC component. */
-struct Component {
+struct UDAComponent {
   string name;
 
   this(string componentName) {
@@ -19,7 +19,7 @@ struct Component {
 }
 
 /** Marks a type as a service component. */
-struct Service {
+struct UDAService {
   string name;
 
   this(string serviceName) {
@@ -28,7 +28,7 @@ struct Service {
 }
 
 /** Marks a type as a repository component. */
-struct Repository {
+struct UDARepository {
   string name;
 
   this(string repositoryName) {
@@ -37,7 +37,7 @@ struct Repository {
 }
 
 /** Marks a type as a web/controller component. */
-struct WebController {
+struct UDAWebController {
   string name;
 
   this(string controllerName) {
@@ -50,7 +50,7 @@ struct UDAConfiguration {
 }
 
 /** Marks a method as bean factory method. */
-struct Bean {
+struct UDABean {
   string name;
 
   this(string beanName) {
@@ -59,7 +59,7 @@ struct Bean {
 }
 
 /** Marks a field/parameter for autowiring. */
-struct Autowired {
+struct UDAAutowired {
   bool required = true;
 
   this(bool isRequired) {
@@ -68,11 +68,11 @@ struct Autowired {
 }
 
 /** JSR-style injection marker. */
-struct Inject {
+struct UDAInject {
 }
 
 /** Selects a concrete bean by qualifier name. */
-struct Qualifier {
+struct UDAQualifier {
   string value;
 
   this(string qualifier) {
@@ -81,7 +81,7 @@ struct Qualifier {
 }
 
 /** Injects a literal or property expression value. */
-struct Value {
+struct UDAValue {
   string expression;
 
   this(string expr) {
@@ -90,7 +90,7 @@ struct Value {
 }
 
 /** Declares component scope, e.g. singleton/prototype. */
-struct Scope {
+struct UDAScope {
   string name;
 
   this(string scopeName) {
@@ -99,7 +99,7 @@ struct Scope {
 }
 
 /** Marks a component for lazy initialization. */
-struct Lazy {
+struct UDALazy {
   bool enabled = true;
 
   this(bool isEnabled) {
@@ -108,7 +108,7 @@ struct Lazy {
 }
 
 /** Marks a preferred bean candidate. */
-struct Primary {
+struct UDAPrimary {
 }
 
 /** Lifecycle hook called after dependency injection. */
@@ -289,9 +289,9 @@ template hasComponentAttribute(T) {
   import std.traits : hasUDA;
 
   enum hasComponentAttribute = hasUDA!(T, Component)
-    || hasUDA!(T, Service)
-    || hasUDA!(T, Repository)
-    || hasUDA!(T, WebController);
+    || hasUDA!(T, UDAService)
+    || hasUDA!(T, UDARepository)
+    || hasUDA!(T, UDAWebController);
 }
 
 /** Returns the configured component name (empty when not specified). */
@@ -300,12 +300,12 @@ template getComponentName(T) {
 
   static if (hasUDA!(T, Component)) {
     enum getComponentName = getUDAs!(T, Component)[0].name;
-  } else static if (hasUDA!(T, Service)) {
-    enum getComponentName = getUDAs!(T, Service)[0].name;
-  } else static if (hasUDA!(T, Repository)) {
-    enum getComponentName = getUDAs!(T, Repository)[0].name;
-  } else static if (hasUDA!(T, WebController)) {
-    enum getComponentName = getUDAs!(T, WebController)[0].name;
+  } else static if (hasUDA!(T, UDAService)) {
+    enum getComponentName = getUDAs!(T, UDAService)[0].name;
+  } else static if (hasUDA!(T, UDARepository)) {
+    enum getComponentName = getUDAs!(T, UDARepository)[0].name;
+  } else static if (hasUDA!(T, UDAWebController)) {
+    enum getComponentName = getUDAs!(T, UDAWebController)[0].name;
   } else {
     enum getComponentName = "";
   }
@@ -315,22 +315,22 @@ template getComponentName(T) {
 template hasInjectionAttribute(alias member) {
   import std.traits : hasUDA;
 
-  enum hasInjectionAttribute = hasUDA!(member, Autowired) || hasUDA!(member, Inject);
+  enum hasInjectionAttribute = hasUDA!(member, UDAAutowired) || hasUDA!(member, UDAInject);
 }
 
 /** Returns true when a method is marked as bean factory. */
 template hasBeanAttribute(alias member) {
   import std.traits : hasUDA;
 
-  enum hasBeanAttribute = hasUDA!(member, Bean);
+  enum hasBeanAttribute = hasUDA!(member, UDABean);
 }
 
-/** Returns bean name from @Bean("...") or an empty string. */
+/** Returns bean name from @UDABean("...") or an empty string. */
 template getBeanName(alias member) {
   import std.traits : getUDAs;
 
   static if (hasBeanAttribute!member) {
-    enum getBeanName = getUDAs!(member, Bean)[0].name;
+    enum getBeanName = getUDAs!(member, UDABean)[0].name;
   } else {
     enum getBeanName = "";
   }
@@ -414,13 +414,13 @@ template getRequestMethod(alias member) {
 }
 
 unittest {
-  @Repository("userRepository")
+  @UDARepository("userRepository")
   class UserRepository {
   }
 
-  @Service("userService")
+  @UDAService("userService")
   class UserService {
-    @Autowired UserRepository repository;
+    @UDAAutowired UserRepository repository;
 
     @Getter("displayName", "string")
     @Setter("displayName", "string")
@@ -435,7 +435,7 @@ unittest {
     // auto serv = new UserService();
   }
 
-  @WebController("users")
+  @UDAWebController("users")
   class UserController {
     @GetMapping("/users")
     void list() {
@@ -448,7 +448,7 @@ unittest {
 
   @UDAConfiguration
   class AppConfig {
-    @Bean("repo")
+    @UDABean("repo")
     UserRepository createRepository() {
       return new UserRepository();
     }
@@ -491,4 +491,17 @@ unittest {
     hasBeanAttribute!createRepositoryMethod);
   static assert(
     getBeanName!createRepositoryMethod == "repo");
+
+  @UDAScope("prototype")
+  @UDALazy(true)
+  class ProtoService {}
+  
+  import std.traits : getUDAs, hasUDA;
+  static assert(hasUDA!(ProtoService, UDAScope));
+  static assert(getUDAs!(ProtoService, UDAScope)[0].name == "prototype");
+  static assert(getUDAs!(ProtoService, UDALazy)[0].enabled == true);
+
+  class UnmarkedClass {}
+  static assert(!hasComponentAttribute!UnmarkedClass);
+  static assert(getComponentName!UnmarkedClass == "");
 }

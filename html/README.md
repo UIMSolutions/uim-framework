@@ -284,8 +284,8 @@ import uim.html;
 
 @HtmlTag("img")
 @VoidElement
-@SupportsAttribute("src")
-@SupportsAttribute("alt")
+@UDASupportsAttribute("src")
+@UDASupportsAttribute("alt")
 struct MyImageElement {}
 
 static assert(hasHtmlTagAttribute!MyImageElement);
@@ -308,7 +308,7 @@ assert(styled.isPrimary());
 `@CssClass("name")` generates `name()` and `isName()` for the same CSS class.
 Use `@CssClass("methodName", "class-name")` when the fluent method should differ from the emitted CSS class token.
 
-Element UDAs like `@StringAttribute` and `@BoolAttribute` generate fluent helpers as well.
+Element UDAs like `@UDAStringAttribute(` and `@BoolAttribute` generate fluent helpers as well.
 For example, `H5Textarea` supports both `rows(size_t)` and `rows(string)` (same for `cols`).
 
 ### Getting Attributes

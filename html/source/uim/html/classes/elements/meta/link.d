@@ -24,21 +24,21 @@ mixin(ShowModule!());
   * <link rel="icon" href="favicon.ico" type="image/x-icon">
   * ```
   */
-@StringAttribute("as")
-@StringAttribute("blocking")
-@StringAttribute("crossorigin")
-@StringAttribute("fetchpriority")
-@StringAttribute("href")
-@StringAttribute("hreflang")
-@StringAttribute("imagesizes")
-@StringAttribute("imagesrcset")
-@StringAttribute("integrity")
-@StringAttribute("media")
-@StringAttribute("referrerpolicy")
-@StringAttribute("rel")
-@StringAttribute("sizes")
-@StringAttribute("title")
-@StringAttribute("type")
+@UDAStringAttribute("as")
+@UDAStringAttribute("blocking")
+@UDAStringAttribute("crossorigin")
+@UDAStringAttribute("fetchpriority")
+@UDAStringAttribute("href")
+@UDAStringAttribute("hreflang")
+@UDAStringAttribute("imagesizes")
+@UDAStringAttribute("imagesrcset")
+@UDAStringAttribute("integrity")
+@UDAStringAttribute("media")
+@UDAStringAttribute("referrerpolicy")
+@UDAStringAttribute("rel")
+@UDAStringAttribute("sizes")
+@UDAStringAttribute("title")
+@UDAStringAttribute("type")
 class H5Link : HtmlElement {
   mixin(HtmlTemplate!(H5Link, "Link", "link", true));
 

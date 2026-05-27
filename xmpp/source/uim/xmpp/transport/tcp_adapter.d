@@ -138,3 +138,21 @@ unittest {
   assert(endpoint.host == "chat.example.org");
   assert(endpoint.port == 5224);
 }
+
+unittest {
+  import std.exception : assertThrown;
+  assertThrown!Exception(xmppParseServerUrl(""));
+  assertThrown!Exception(xmppParseServerUrl("http://localhost"));
+  assertThrown!Exception(xmppParseServerUrl("xmpp://"));
+  assertThrown!Exception(xmppParseServerUrl("xmpp://localhost:abc"));
+}
+
+unittest {
+  // Test with trailing slash
+  auto endpoint = xmppParseServerUrl("xmpp://example.com:5222/");
+  assert(endpoint.host == "example.com");
+  assert(endpoint.port == 5222);
+
+  import std.exception : assertThrown;
+  assertThrown!Exception(xmppParseServerUrl("xmpp://:5222"));
+}

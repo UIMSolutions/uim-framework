@@ -169,3 +169,71 @@ unittest {
   assert(hit == 1);
   assert(client.disconnect());
 }
+
+unittest {
+  auto client = XMPPClient();
+  client.connect("xmpp://localhost");
+
+  int messageCount = 0;
+  int iqCount = 0;
+
+  client.on(XMPPStanzaKind.message, (s) { messageCount++; });
+  client.on(XMPPStanzaKind.iq, (s) { iqCount++; });
+
+  client.send(XMPPStanza(XMPPStanzaKind.message));
+  client.send(XMPPStanza(XMPPStanzaKind.iq));
+
+  import vibe.d : sleep;
+  import core.time : msecs;
+  sleep(50.msecs);
+
+  assert(messageCount == 1);
+  assert(iqCount == 1);
+}
+
+unittest {
+  auto client = XMPPClient();
+  
+  // Test sending while disconnected
+  assert(!client.send(XMPPStanza()));
+  
+  // Test anonymous JID generation
+  assert(client.connect("xmpp://localhost"));
+  assert(client.jid().startsWith("anon-"));
+  assert(client.connected());
+  
+  // Test handler registration while disconnected
+  auto otherClient = XMPPClient();
+  assert(!otherClient.on(XMPPStanzaKind.message, (s) {}));
+  
+  // Test invalid connection string
+  assert(!otherClient.connect(""));
+  assert(!otherClient.connected());
+}
+
+unittest {
+  auto client = XMPPClient();
+  client.connect("xmpp://localhost");
+
+  int countA = 0;
+  int countB = 0;
+
+  // Test multiple handlers for the same kind
+  client.on(XMPPStanzaKind.message, (s) { countA++; });
+  client.on(XMPPStanzaKind.message, (s) { countB++; });
+
+  client.send(XMPPStanza(XMPPStanzaKind.message));
+
+  import vibe.d : sleep;
+  import core.time : msecs;
+  sleep(50.msecs);
+
+  assert(countA == 1);
+  assert(countB == 1);
+  
+  // Test disconnect behavior
+  assert(client.disconnect());
+  assert(!client.connected());
+  // Registration should fail when disconnected
+  assert(!client.on(XMPPStanzaKind.presence, (s) {}));
+}

@@ -23,12 +23,12 @@ mixin(ShowModule!());
  * ```
  * This would embed a video file named "video.mp4" with a specified width of 640 pixels and height of 360 pixels.
  */
-@StringAttribute("data")
-@StringAttribute("type")
-@StringAttribute("width")
-@StringAttribute("height")
-@StringAttribute("name")
-@StringAttribute("form")
+@UDAStringAttribute("data")
+@UDAStringAttribute("type")
+@UDAStringAttribute("width")
+@UDAStringAttribute("height")
+@UDAStringAttribute("name")
+@UDAStringAttribute("form")
 class H5Object : HtmlElement {
   mixin(HtmlTemplate!(H5Object, "Object", "object", false));
 }

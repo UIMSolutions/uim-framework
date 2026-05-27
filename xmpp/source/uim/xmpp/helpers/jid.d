@@ -41,4 +41,18 @@ unittest {
   assert(xmppNormalizeJid("  alice@example.org/home ") == "alice@example.org/home");
   assert(xmppBareJid("alice@example.org/home") == "alice@example.org");
   assert(xmppResource("alice@example.org/home") == "home");
+
+  assert(xmppBareJid("bob@example.com") == "bob@example.com");
+  assert(xmppResource("bob@example.com") == "");
+  assert(xmppBareJid("user@host/res/with/slashes") == "user@host");
+  assert(xmppResource("user@host/res/with/slashes") == "res/with/slashes");
+  assert(xmppNormalizeJid("") == "");
+  assert(xmppBareJid("/") == "");
+  assert(xmppResource("/") == "");
+
+  // Test domain-only JID
+  assert(xmppBareJid("example.org") == "example.org");
+  assert(xmppResource("example.org") == "");
+  // Test JID with trailing slash (empty resource)
+  assert(xmppResource("user@host/") == "");
 }

@@ -19,7 +19,7 @@ mixin(ShowModule!());
   *
   * Note: The <optgroup> element is used to group related options in a dropdown list.
   */
-@BoolAttribute("disabled")  // The 'disabled' attribute indicates that the optgroup is not available for interaction.  
+@UDABoolAttribute("disabled")  // The 'disabled' attribute indicates that the optgroup is not available for interaction.  
 class H5Optgroup : HtmlElement {
   mixin(HtmlTemplate!(H5Optgroup, "Optgroup", "optgroup", false));
 

@@ -18,7 +18,7 @@ mixin(ShowModule!());
   * auto dfn = Dfn("HTML").title("HyperText Markup Language");
   * Note: The <dfn> element is typically used in conjunction with JavaScript to provide additional functionality, such as displaying a tooltip with the definition when the user hovers over the term.
   */
-@StringAttribute("title") // The 'title' attribute provides additional information about the term being defined.
+@UDAStringAttribute("title") // The 'title' attribute provides additional information about the term being defined.
 class H5Dfn : HtmlElement {
   mixin(HtmlTemplate!(H5Dfn, "Dfn", "dfn", false));
 }

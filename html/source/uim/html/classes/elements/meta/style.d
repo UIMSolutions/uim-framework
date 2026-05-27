@@ -27,8 +27,8 @@ mixin(ShowModule!());
   *   <style href="styles.css" target="_blank"></style>
   * </head>
   */
-@StringAttribute("href")
-@StringAttribute("target")
+@UDAStringAttribute("href")
+@UDAStringAttribute("target")
 class H5Style : HtmlElement {
   mixin(HtmlTemplate!(H5Style, "Style", "style", true));
 }

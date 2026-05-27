@@ -28,8 +28,8 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-@StringAttribute("colspan")  // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
-@StringAttribute("rowspan")  // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
+@UDAStringAttribute("colspan")  // The number of columns a cell should span. This attribute is only applicable to "td" and "th" elements.
+@UDAStringAttribute("rowspan")  // The number of rows a cell should span. This attribute is only applicable to "td" and "th" elements.
 class H5Td : HtmlElement {
   mixin(HtmlTemplate!(H5Td, "Td", "td", false));
 

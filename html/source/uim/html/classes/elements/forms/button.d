@@ -26,8 +26,8 @@ mixin(ShowModule!());
   * than the <input type="button"> element, which cannot contain content.
   */
 
-@StringAttribute("type")
-@BoolAttribute("disabled")  // disabled state
+@UDAStringAttribute("type")
+@UDABoolAttribute("disabled")  // disabled state
 class H5Button : HtmlElement {
   mixin(HtmlTemplate!(H5Button, "Button", "button", false));
 

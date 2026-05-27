@@ -24,9 +24,9 @@ mixin(ShowModule!());
  *   <input type="email" id="email" name="email">
  * </fieldset>
  */
- @StringAttribute("form") // The form attribute specifies one or more forms the fieldset belongs to.
- @StringAttribute("name") // The name attribute specifies the name of the fieldset, which can be used to reference it in scripts or styles.
- @BoolAttribute("disabled") // The disabled attribute indicates that the fieldset is disabled, meaning that the user cannot interact with it or its child elements.
+ @UDAStringAttribute("form") // The form attribute specifies one or more forms the fieldset belongs to.
+ @UDAStringAttribute("name") // The name attribute specifies the name of the fieldset, which can be used to reference it in scripts or styles.
+ @UDABoolAttribute("disabled") // The disabled attribute indicates that the fieldset is disabled, meaning that the user cannot interact with it or its child elements.
 class H5Fieldset : HtmlElement {
   mixin(HtmlTemplate!(H5Fieldset, "Fieldset", "fieldset", false));
 }

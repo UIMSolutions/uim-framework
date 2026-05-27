@@ -17,8 +17,8 @@ mixin(ShowModule!());
   * The <dialog> element is not displayed by default. You can use the open attribute to show the dialog.
   * The <dialog> element also has a method called showModal() that can be used to display the dialog as a modal.
   */
-@StringAttribute("closedby") // Specifies the conditions under which the dialog is to be closed. The value must be one of the following: "escape", "outside", "none"
-@BoolAttribute("open") // Indicates whether the dialog is open. If this attribute is not set, the dialog is closed. If this attribute is set, the dialog is open.
+@UDAStringAttribute("closedby") // Specifies the conditions under which the dialog is to be closed. The value must be one of the following: "escape", "outside", "none"
+@UDABoolAttribute("open") // Indicates whether the dialog is open. If this attribute is not set, the dialog is closed. If this attribute is set, the dialog is open.
 class H5Dialog : HtmlElement {
   mixin(HtmlTemplate!(H5Dialog, "Dialog", "dialog", false));
 }

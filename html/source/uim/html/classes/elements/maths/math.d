@@ -28,7 +28,7 @@ mixin(ShowModule!());
   * </math>
   * ```
   */
-  @StringAttribute("display") // The display attribute specifies the display style of the mathematical expression, such as "inline" or "block".
+  @UDAStringAttribute("display") // The display attribute specifies the display style of the mathematical expression, such as "inline" or "block".
 class H5Math : HtmlElement {
   mixin(HtmlTemplate!(H5Math, "Math", "math", false));
 }

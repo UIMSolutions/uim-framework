@@ -35,7 +35,7 @@ struct HtmlCategory {
 }
 
 /// Declares that a symbol supports a specific attribute.
-struct SupportsAttribute {
+struct UDASupportsAttribute {
   string name;
 
   this(string attributeName) {
@@ -53,7 +53,7 @@ struct DeprecatedHtml {
 }
 
 /// UDA to associate a symbol with a string attribute.
-struct StringAttribute {
+struct UDAStringAttribute {
   string methodName;
   string attributeName;
 
@@ -64,7 +64,7 @@ struct StringAttribute {
 }
 
 /// UDA to associate a symbol with a boolean attribute.
-struct BoolAttribute {
+struct UDABoolAttribute {
   string methodName;
   string attributeName;
   string isName;
@@ -102,12 +102,12 @@ struct CssClass {
 /// UDA to generate fluent setter/getter methods for HTML attributes on an element class.
 ///
 /// Usage:
-/// @StringAttribute("sizes")
+/// @UDAStringAttribute("sizes")
 /// class H5Link : HtmlElement {
 ///   mixin(HtmlMethods!H5Link);
 /// }
 
-private string generateStringAttributeMethod(StringAttribute attribute) {
+private string generateStringAttributeMethod(UDAStringAttribute attribute) {
   return format(q{
   @safe auto %1$s(string value) {
     attribute("%2$s", value);
@@ -121,7 +121,7 @@ private string generateStringAttributeMethod(StringAttribute attribute) {
 }, attribute.methodName, attribute.attributeName);
 }
 
-private string generateStringHtmlMethods(StringAttribute[] attributes) {
+private string generateStringHtmlMethods(UDAStringAttribute[] attributes) {
   string code;
 
   foreach (attribute; attributes) {
@@ -131,14 +131,14 @@ private string generateStringHtmlMethods(StringAttribute[] attributes) {
   return code;
 }
 
-/// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
+/// Generates all setter/getter methods from `@UDAStringAttribute(...)` UDAs on a class.
 template StringHtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
   enum string StringHtmlMethods = {
     string code;
 
-    static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
+    static foreach (attribute; getUDAs!(symbol, UDAStringAttribute)) {
       code ~= generateStringAttributeMethod(attribute);
     }
 
@@ -148,7 +148,7 @@ template StringHtmlMethods(alias symbol) {
 
 
 
-private string generateBoolAttributeMethod(BoolAttribute attribute) {
+private string generateBoolAttributeMethod(UDABoolAttribute attribute) {
   return format(q{
   auto %1$s(bool val = true) {
     if (val) {  
@@ -166,7 +166,7 @@ private string generateBoolAttributeMethod(BoolAttribute attribute) {
 
 }
 
-private string generateBoolHtmlMethods(BoolAttribute[] attributes) {
+private string generateBoolHtmlMethods(UDABoolAttribute[] attributes) {
   string code;
 
   foreach (attribute; attributes) {
@@ -176,14 +176,14 @@ private string generateBoolHtmlMethods(BoolAttribute[] attributes) {
   return code;
 }
 
-/// Generates all setter/getter methods from `@BoolAttribute(...)` UDAs on a class.
+/// Generates all setter/getter methods from `@UDABoolAttribute(...)` UDAs on a class.
 template BoolHtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
   enum string BoolHtmlMethods = {
     string code;
 
-    static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
+    static foreach (attribute; getUDAs!(symbol, UDABoolAttribute)) {
       code ~= generateBoolAttributeMethod(attribute);
     }
 
@@ -231,18 +231,18 @@ template CssClassMethods(alias symbol) {
   }();
 }
 
-/// Generates all setter/getter methods from `@StringAttribute(...)` UDAs on a class.
+/// Generates all setter/getter methods from `@UDAStringAttribute(...)` UDAs on a class.
 template HtmlMethods(alias symbol) {
   import std.traits : getUDAs;
 
   enum string HtmlMethods = {
     string code;
 
-    static foreach (attribute; getUDAs!(symbol, StringAttribute)) {
+    static foreach (attribute; getUDAs!(symbol, UDAStringAttribute)) {
       code ~= generateStringAttributeMethod(attribute);
     }
 
-    static foreach (attribute; getUDAs!(symbol, BoolAttribute)) {
+    static foreach (attribute; getUDAs!(symbol, UDABoolAttribute)) {
       code ~= generateBoolAttributeMethod(attribute);
     }
 
@@ -297,7 +297,7 @@ template getHtmlCategoryAttribute(alias symbol) {
 template hasSupportsAttributeAttribute(alias symbol) {
   import std.traits : hasUDA;
 
-  enum hasSupportsAttributeAttribute = hasUDA!(symbol, SupportsAttribute);
+  enum hasSupportsAttributeAttribute = hasUDA!(symbol, UDASupportsAttribute);
 }
 
 /// Gets the first `SupportsAttribute` metadata entry for a symbol.
@@ -305,7 +305,7 @@ template getSupportsAttribute(alias symbol) {
   import std.traits : getUDAs;
 
   static if (hasSupportsAttributeAttribute!symbol) {
-    alias getSupportsAttribute = getUDAs!(symbol, SupportsAttribute)[0];
+    alias getSupportsAttribute = getUDAs!(symbol, UDASupportsAttribute)[0];
   }
 }
 
@@ -313,7 +313,7 @@ template getSupportsAttribute(alias symbol) {
 template getSupportsAttributes(alias symbol) {
   import std.traits : getUDAs;
 
-  alias getSupportsAttributes = getUDAs!(symbol, SupportsAttribute);
+  alias getSupportsAttributes = getUDAs!(symbol,  UDASupportsAttribute);
 }
 
 /// Checks whether a symbol has a `DeprecatedHtml` UDA.
@@ -336,8 +336,8 @@ unittest {
   @HtmlTag("img")
   @VoidElement
   @HtmlCategory("embedded")
-  @SupportsAttribute("src")
-  @SupportsAttribute("alt")
+  @UDASupportsAttribute("src")
+  @UDASupportsAttribute("alt")
   struct ImageElement {
   }
 
@@ -365,8 +365,8 @@ unittest {
 }
 
 unittest {
-  @StringAttribute("sizes")
-  @StringAttribute("crossorigin")
+  @UDAStringAttribute("sizes")
+  @UDAStringAttribute("crossorigin")
   class GeneratedLinkLike {
     private string[string] _attributes;
 

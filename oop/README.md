@@ -155,9 +155,9 @@ Note: `uim.oop.udas` is imported explicitly to avoid naming collisions with exis
 import std.traits : hasUDA;
 import uim.oop.udas;
 
-@Service("userService")
+@UDAService("userService")
 class UserService {
-  @Autowired(true)
+  @UDAAutowired(true)
   UserRepository repository;
 }
 

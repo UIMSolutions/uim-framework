@@ -22,13 +22,13 @@ mixin(ShowModule!());
   *
   * The <textarea> element can be configured with attributes like name, rows, cols, placeholder, required, disabled, and readonly to control its behavior and appearance.
   */
-  @StringAttribute("name") // The 'name' attribute specifies the name of the textarea, which is used when submitting form data.
-  @StringAttribute("rows") // The 'rows' attribute specifies the visible number of lines in the textarea.
-  @StringAttribute("cols") // The 'cols' attribute specifies the visible width of the textarea in characters.
-  @StringAttribute("placeholder") // The 'placeholder' attribute provides a hint to the user of what can be entered in the textarea.
-  @BoolAttribute("required") // The 'required' attribute indicates that the textarea must be filled out before submitting the form.
-  @BoolAttribute("disabled") // The 'disabled' attribute indicates that the textarea is not available for interaction.
-  @BoolAttribute("readonly") // The 'readonly' attribute indicates that the textarea is read-only and cannot be modified by the user.
+  @UDAStringAttribute("name") // The 'name' attribute specifies the name of the textarea, which is used when submitting form data.
+  @UDAStringAttribute("rows") // The 'rows' attribute specifies the visible number of lines in the textarea.
+  @UDAStringAttribute("cols") // The 'cols' attribute specifies the visible width of the textarea in characters.
+  @UDAStringAttribute("placeholder") // The 'placeholder' attribute provides a hint to the user of what can be entered in the textarea.
+  @UDABoolAttribute("required") // The 'required' attribute indicates that the textarea must be filled out before submitting the form.
+  @UDABoolAttribute("disabled") // The 'disabled' attribute indicates that the textarea is not available for interaction.
+  @UDABoolAttribute("readonly") // The 'readonly' attribute indicates that the textarea is read-only and cannot be modified by the user.
 class H5Textarea : HtmlElement {
   mixin(HtmlTemplate!(H5Textarea, "Textarea", "textarea", false));
 

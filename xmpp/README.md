@@ -57,6 +57,15 @@ void main() {
 - `uim.xmpp.transport.tcp_adapter`: TCP server adapter using vibe-core sockets
 - `uim.xmpp.helpers.jid`: JID normalization and parsing helpers
 
+## Examples
+
+Run the included examples from the `xmpp` directory:
+
+```bash
+dub --single examples/basic_client.d
+dub --single examples/stanza_codec.d
+```
+
 ## Notes
 
 This initial release focuses on core client-side building blocks and local async dispatch behavior. Full XMPP stream management, SASL/TLS negotiation, and server interoperability flows are intentionally staged for subsequent versions.

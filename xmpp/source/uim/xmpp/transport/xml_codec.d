@@ -85,7 +85,7 @@ string xmppEscapeXml(string value) {
   outValue.reserve(value.length + 8);
 
   foreach (ch; value) {
-    final switch (ch) {
+    switch (ch) {
       case '&': outValue ~= "&amp;"; break;
       case '<': outValue ~= "&lt;"; break;
       case '>': outValue ~= "&gt;"; break;
@@ -197,9 +197,63 @@ unittest {
 
 unittest {
   IXMPPStanza decoded;
-  assert(xmppTryDecodeStanza("<message id='m-2' to='bob@example.org' from='alice@example.org' type='chat'><body>hi</body></message>", decoded));
+  assert(
+    xmppTryDecodeStanza(
+      "<message id='m-2' to='bob@example.org' from='alice@example.org' type='chat'><body>hi</body></message>",
+      decoded
+    )
+  );
   assert(decoded !is null);
   assert(decoded.kind() == XMPPStanzaKind.message);
   assert(decoded.id() == "m-2");
   assert(decoded.body() == "hi");
+}
+
+unittest {
+  auto presence = XMPPStanza(XMPPStanzaKind.presence)
+    .fromJid("alice@example.org")
+    .stanzaType("unavailable");
+  auto xml = xmppEncodeStanza(presence);
+  assert(indexOf(xml, "from='alice@example.org'") >= 0);
+  assert(indexOf(xml, "type='unavailable'") >= 0);
+  assert(indexOf(xml, "<presence") == 0);
+
+  IXMPPStanza decoded;
+  assert(xmppTryDecodeStanza("<presence from='bob@example.com' type='subscribe'/>", decoded));
+  assert(decoded.kind() == XMPPStanzaKind.presence);
+  assert(decoded.fromJid() == "bob@example.com");
+  assert(decoded.stanzaType() == "subscribe");
+  
+  assert(xmppEscapeXml("< > & \" '") == "&lt; &gt; &amp; &quot; &apos;");
+}
+
+unittest {
+  // Test IQ encoding without payload
+  auto iq = XMPPStanza(XMPPStanzaKind.iq).id("req-1").stanzaType("get");
+  auto xml = xmppEncodeStanza(iq);
+  assert(xml == "<iq id='req-1' type='get'/>");
+
+  // Test malformed decoding
+  IXMPPStanza decoded;
+  assert(!xmppTryDecodeStanza("", decoded));
+  assert(!xmppTryDecodeStanza("not xml", decoded));
+  assert(!xmppTryDecodeStanza("<unknown/>", decoded));
+
+  // Test encoding null
+  assert(xmppEncodeStanza(null) == "");
+
+  // Test presence without type
+  assert(xmppTryDecodeStanza("<presence from='alice@example.com'/>", decoded));
+  assert(decoded.kind() == XMPPStanzaKind.presence);
+  assert(decoded.fromJid() == "alice@example.com");
+
+  // Test double quotes in attributes
+  assert(
+    xmppTryDecodeStanza(
+      "<message to=\"bob@example.com\" type=\"chat\"><body>Hi</body></message>",
+      decoded
+    )
+  );
+  assert(decoded.toJid() == "bob@example.com");
+  assert(decoded.stanzaType() == "chat");
 }

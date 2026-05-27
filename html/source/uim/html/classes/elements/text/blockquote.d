@@ -25,7 +25,7 @@ mixin(ShowModule!());
   * </blockquote>
   * ```
   */
-@StringAttribute("cite")
+@UDAStringAttribute("cite")
 class H5Blockquote : HtmlElement {
   mixin(HtmlTemplate!(H5Blockquote, "Blockquote", "blockquote", false));
 }

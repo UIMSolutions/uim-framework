@@ -33,9 +33,9 @@ mixin(ShowModule!());
   *   </tr>
   * </table>
   */
-@StringAttribute("border")
-@StringAttribute("cellspacing")
-@StringAttribute("cellpadding")
+@UDAStringAttribute("border")
+@UDAStringAttribute("cellspacing")
+@UDAStringAttribute("cellpadding")
 class H5Table : HtmlElement {
   mixin(HtmlTemplate!(H5Table, "Table", "table", false));
 }

@@ -22,8 +22,8 @@ mixin(ShowModule!());
   *   <base href="https://example.com/" target="_blank">
   * </head>
   */
-@StringAttribute("href")
-@StringAttribute("target")
+@UDAStringAttribute("href")
+@UDAStringAttribute("target")
 class H5Base : HtmlElement {
   mixin(HtmlTemplate!(H5Base, "Base", "base", true));
 }

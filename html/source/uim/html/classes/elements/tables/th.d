@@ -31,8 +31,8 @@ mixin(ShowModule!());
   * </table>
   * ```
   */
-  @StringAttribute("colspan")
-  @StringAttribute("rowspan")
+  @UDAStringAttribute("colspan")
+  @UDAStringAttribute("rowspan")
 class H5Th : HtmlElement {
   mixin(HtmlTemplate!(H5Th, "Th", "th", false));
 

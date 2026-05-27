@@ -23,12 +23,12 @@ mixin(ShowModule!());
   *   Your browser does not support the video tag.
   * </video>
   */
-  @StringAttribute("srcset")
-  @StringAttribute("media")
-  @StringAttribute("type")
-  @StringAttribute("sizes")
-  @StringAttribute("width")
-  @StringAttribute("height")
+  @UDAStringAttribute("srcset")
+  @UDAStringAttribute("media")
+  @UDAStringAttribute("type")
+  @UDAStringAttribute("sizes")
+  @UDAStringAttribute("width")
+  @UDAStringAttribute("height")
 class H5Source : HtmlElement {
   mixin(HtmlTemplate!(H5Source, "Source", "source", false));
 }

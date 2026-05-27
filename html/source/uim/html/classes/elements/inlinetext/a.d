@@ -19,8 +19,8 @@ mixin(ShowModule!());
   * auto link = H5A("Click here").href("https://example.com").targetBlank();
   * This creates a hyperlink with the text "Click here" that points to "https://example.com" and opens in a new tab.
 */
-@StringAttribute("href") // The 'href' attribute specifies the URL of the page the link goes to.
-@StringAttribute("target") // The 'target' attribute specifies where to open the linked document. 
+@UDAStringAttribute("href") // The 'href' attribute specifies the URL of the page the link goes to.
+@UDAStringAttribute("target") // The 'target' attribute specifies where to open the linked document. 
 
 class H5A : HtmlElement {
   mixin(HtmlTemplate!(H5A, "A", "a", false));

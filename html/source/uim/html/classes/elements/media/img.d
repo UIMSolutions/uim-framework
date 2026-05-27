@@ -25,10 +25,10 @@ mixin(ShowModule!());
     * <img src="image.jpg" alt="A description of the image" width="500" height="300">
     * ```
     */
-    @StringAttribute("src")
-    @StringAttribute("alt")
-    @StringAttribute("width")
-    @StringAttribute("height")
+    @UDAStringAttribute("src")
+    @UDAStringAttribute("alt")
+    @UDAStringAttribute("width")
+    @UDAStringAttribute("height")
 class H5Img : HtmlElement {
   mixin(HtmlTemplate!(H5Img, "Img", "img", true));
 }
