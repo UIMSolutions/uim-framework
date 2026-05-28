@@ -32,6 +32,7 @@ dependency ":xmpp" version="*"
 dependency ":numerical" version="*"
 dependency ":oop" version="*"
 dependency ":services" version="*"
+dependency ":grpc" version="*"
 
 // OData
 dependency ":odata" version="*"
@@ -62,6 +63,7 @@ subPackage "services"
 subPackage "odata"
 subPackage "filesystems"
 subPackage "odbc"
+subPackage "grpc"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"
