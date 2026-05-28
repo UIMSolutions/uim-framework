@@ -135,7 +135,7 @@ ADatP-3 Message Exchange
 | Typed ADatP-3 model | Implemented | Message class and interfaces |
 | JSON codec | Implemented | Reversible message serialization |
 | Async transport shim | Implemented | Callback dispatch with runTask |
-| HTTP integration | Planned | Real endpoint delivery over HTTP |
+| HTTP integration | Implemented | Async endpoint delivery using vibe-http requestHTTP |
 | Validation profiles | Planned | Field-level schema/constraint checks |
 
 ## L - Logical Model

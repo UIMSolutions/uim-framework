@@ -10,6 +10,7 @@ A lightweight NATO ADatP-3 messaging library for dlang using vibe.d patterns. Th
 - Message type and precedence enums (`ADatP3MessageType`, `ADatP3Priority`)
 - ADatP-3 JSON codec (`adatp3EncodeJson`, `adatp3DecodeJson`)
 - Async transport abstraction (`IADatP3Transport`)
+- HTTP POST/ACK transport flow using vibe-http `requestHTTP`
 - vibe.d-based task dispatch in transport implementation (`runTask`)
 
 ## Installation
@@ -65,4 +66,4 @@ void main() {
 
 ## Notes
 
-The default transport implementation is an async loopback transport for integration and testing workflows. It can be replaced with a real network transport while preserving the same interfaces.
+The default transport implementation uses async HTTP POST to the configured endpoint and expects a JSON ADatP-3 response body for ACK/response processing. The same interface can still be implemented for alternate transports.

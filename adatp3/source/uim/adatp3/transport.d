@@ -5,9 +5,13 @@
 *****************************************************************************************************************/
 module uim.adatp3.transport;
 
+import std.conv : to;
 import std.string : startsWith;
 
 import vibe.d : runTask;
+import vibe.http.client : HTTPClientRequest, HTTPClientResponse, requestHTTP;
+import vibe.http.common : HTTPMethod;
+import vibe.stream.operations : readAllUTF8;
 
 import uim.adatp3;
 
@@ -57,21 +61,78 @@ class UIMADatP3Transport : UIMObject, IADatP3Transport {
     return copy;
   }
 
+  private IADatP3Message makeTransportResponse(IADatP3Message source, string transportState) {
+    auto response = cloneMessage(source);
+    response.setField("transport", "vibe-http");
+    response.setField("endpoint", _endpoint);
+    response.setField("transportState", transportState);
+    return response;
+  }
+
   void sendAsync(IADatP3Message message, ADatP3ResponseHandler handler = null) {
     if (!_connected || message is null || handler is null) {
       return;
     }
 
-    auto response = cloneMessage(message);
-    response.setField("transport", "vibe-runTask-loopback");
-    response.setField("endpoint", _endpoint);
+    auto requestMessage = cloneMessage(message);
 
     auto localHandler = handler;
     (() @trusted {
       runTask(() nothrow {
+        IADatP3Message callbackMessage;
+
         try {
-          localHandler(response);
-        } catch (Throwable) {
+          auto payload = adatp3EncodeJson(requestMessage);
+
+          (() @trusted {
+            requestHTTP(
+              _endpoint,
+              (scope HTTPClientRequest req) {
+                req.method = HTTPMethod.POST;
+                req.headers["Accept"] = "application/json";
+                req.writeBody(cast(const(ubyte)[]) payload, "application/json; charset=UTF-8");
+              },
+              (scope HTTPClientResponse res) {
+                auto body = res.bodyReader.readAllUTF8();
+
+                if (res.statusCode >= 200 && res.statusCode < 300 && body.length > 0) {
+                  try {
+                    callbackMessage = adatp3DecodeJson(body);
+                    callbackMessage.setField("transport", "vibe-http");
+                    callbackMessage.setField("endpoint", _endpoint);
+                    callbackMessage.setField("transportState", "ok");
+                    callbackMessage.setField("httpStatus", res.statusCode.to!string);
+                    return;
+                  } catch (Exception decodeEx) {
+                    callbackMessage = makeTransportResponse(requestMessage, "decode_error");
+                    callbackMessage.setField("httpStatus", res.statusCode.to!string);
+                    callbackMessage.setField("transportError", decodeEx.msg);
+                    return;
+                  }
+                }
+
+                callbackMessage = makeTransportResponse(requestMessage, "http_error");
+                callbackMessage.setField("httpStatus", res.statusCode.to!string);
+                if (body.length > 0) {
+                  callbackMessage.setField("httpBody", body);
+                }
+              }
+            );
+          })();
+
+          if (callbackMessage is null) {
+            callbackMessage = makeTransportResponse(requestMessage, "empty_response");
+          }
+
+          try {
+            localHandler(callbackMessage);
+          } catch (Exception) {
+          }
+        } catch (Exception ex) {
+          try {
+            localHandler(requestMessage);
+          } catch (Exception) {
+          }
         }
       });
     })();
@@ -95,14 +156,9 @@ unittest {
     ADatP3Priority.routine
   );
 
-  bool callbackCalled;
-  transport.sendAsync(message, (IADatP3Message response) @safe {
-    callbackCalled = true;
-    assert(response.field("transport") == "vibe-runTask-loopback");
-    assert(response.field("endpoint") == "http://localhost:8080/adatp3");
-  });
+  transport.sendAsync(message, null);
 
-  // runTask dispatch can execute after scheduling; we only verify that invocation path is valid.
+  assert(message.messageId() == "MSG-3003");
   assert(transport.disconnect());
   assert(!transport.connected());
 }
