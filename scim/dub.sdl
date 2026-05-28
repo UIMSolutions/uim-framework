@@ -1,7 +1,7 @@
 name "scim"
 description "uim library to work with SCIM 2.0 using vibe.d"
 homepage "https://www.sueel.de"
-authors "Ozan Nurettin Suel"
+authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 

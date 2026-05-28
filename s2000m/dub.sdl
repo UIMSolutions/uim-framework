@@ -1,7 +1,7 @@
 name "s2000m"
 description "uim library to work with S2000M data exchange using vibe.d"
 homepage "https://www.s-series.org/s2000m/"
-authors "Ozan Nurettin Suel"
+authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 

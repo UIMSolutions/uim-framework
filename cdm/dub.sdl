@@ -1,7 +1,7 @@
 name "cdm"
 description "uim library to work with Common Data Model using vibe.d"
 homepage "https://www.sueel.de"
-authors "Ozan Nurettin Suel"
+authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
