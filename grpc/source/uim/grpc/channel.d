@@ -65,6 +65,17 @@ class UIMGrpcUnaryChannel : UIMObject, IGrpcUnaryChannel {
     }
   }
 
+  private GrpcUnaryResponse invokeNoThrow(GrpcUnaryRequest request) nothrow @trusted {
+    try {
+      return invoke(request);
+    } catch (Throwable) {
+      GrpcUnaryResponse response;
+      response.status = GrpcStatusCode.internal;
+      response.statusMessage = grpcStatusText(GrpcStatusCode.internal);
+      return response;
+    }
+  }
+
   void invokeAsync(GrpcUnaryRequest request, GrpcUnaryCallback callback) @trusted {
     if (callback is null) {
       return;
@@ -74,16 +85,11 @@ class UIMGrpcUnaryChannel : UIMObject, IGrpcUnaryChannel {
     auto localCallback = callback;
 
     runTask(() nothrow {
-      GrpcUnaryResponse response;
-      try {
-        response = invoke(localRequest);
-      } catch (Exception ex) {
-        response = GrpcError(GrpcStatusCode.internal, ex.msg);
-      }
+      auto response = invokeNoThrow(localRequest);
 
       try {
         localCallback(response);
-      } catch (Exception) {
+      } catch (Throwable) {
       }
     });
   }

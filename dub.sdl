@@ -33,6 +33,7 @@ dependency ":numerical" version="*"
 dependency ":oop" version="*"
 dependency ":services" version="*"
 dependency ":grpc" version="*"
+dependency ":sql" version="*"
 
 // OData
 dependency ":odata" version="*"
@@ -64,6 +65,7 @@ subPackage "odata"
 subPackage "filesystems"
 subPackage "odbc"
 subPackage "grpc"
+subPackage "sql"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"
