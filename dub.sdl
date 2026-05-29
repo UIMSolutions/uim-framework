@@ -46,6 +46,7 @@ dependency ":gis" version="*"
 dependency ":jc3iedm" version="*"
 dependency ":opf" version="*"
 dependency ":oas" version="*"
+dependency ":openapi" version="*"
 
 // OData
 dependency ":odata" version="*"
@@ -90,6 +91,7 @@ subPackage "gis"
 subPackage "jc3iedm"
 subPackage "opf"
 subPackage "oas"
+subPackage "openapi"
 
 buildRequirements "allowWarnings" "silenceDeprecations"
 buildOptions "ignoreDeprecations" "debugInfo"
