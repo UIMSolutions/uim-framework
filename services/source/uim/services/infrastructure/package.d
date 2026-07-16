@@ -5,6 +5,7 @@
 *****************************************************************************************************************/
 module uim.services.infrastructure;
 
-public:
+public {
     import uim.services.infrastructure.integrations;
-    import uim.services.infrastructure.persistence;    
+    import uim.services.infrastructure.persistence;
+}

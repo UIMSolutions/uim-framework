@@ -6,3 +6,7 @@
 module uim.services.presentation;
 
 
+import uim.services.mixins.imports;
+public {
+    mixin(GenerateImports!("uim.services.presentation", ["http", "cli", "gui", "web"]));
+}

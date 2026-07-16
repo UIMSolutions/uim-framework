@@ -14,23 +14,15 @@ mixin(ShowModule!());
 /// UsecaseResult represents the result of a use case execution.
 struct UsecaseResult {
   /// Indicates whether the use case was successful.
-  bool success;
+  bool success  = false;
   /// The ID of the resource affected by the use case, if applicable.
-  string id;
+  string id  = "";
   /// A message providing additional information about the use case result.
-  string message;
+  string message  = "";
   /// An optional error code associated with the use case result.
-  size_t code;
+  size_t code  = 0;
   /// A JSON representation of the UsecaseResult.
   Json data = Json.emptyObject;
-  ///
-  this() {
-    this.success = false;
-    this.id = "";
-    this.message = "";
-    this.code = 0;
-    this.data = Json.emptyObject;
-  }
 
   this(bool success, string id = "", string message = "", size_t code = 0, Json data = Json.emptyObject) {
     this.success = success;
