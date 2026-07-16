@@ -8,6 +8,7 @@ license "Apache-2.0"
 // target
 targetName "uim-services"
 targetType "library"
+targetPath "build"
 
 // dependencies
 dependency "uim-framework:errors" version="*"

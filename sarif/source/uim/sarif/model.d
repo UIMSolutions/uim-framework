@@ -487,7 +487,6 @@ struct SarifLog {
 		foreach (runValue; sarifArrayOrEmpty(value, "runs")) {
 			parsedRuns ~= SarifRun.fromJson(runValue);
 		}
-
 		return SarifLog(
 			sarifVersionFromString(sarifString(value, "version", "2.1.0")),
 			parsedRuns

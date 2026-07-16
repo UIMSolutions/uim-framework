@@ -52,8 +52,10 @@ ScimListRequest scimListSorted(string sortBy, string sortOrder = "ascending") no
   r.sortOrder = sortOrder;
   return r;
 }
-
+///
 unittest {
+  mixin(ShowTest!("SCIM List Request/Response"));
+  
   auto r1 = scimListRequest();
   assert(!r1.hasFilter);
   assert(r1.startIndex == 1);
