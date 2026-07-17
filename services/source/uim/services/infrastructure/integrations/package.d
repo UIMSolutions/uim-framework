@@ -5,4 +5,5 @@
 *****************************************************************************************************************/
 module uim.services.infrastructure.integrations;
 
-
+public:
+    import uim.services.infrastructure.integrations.integration;

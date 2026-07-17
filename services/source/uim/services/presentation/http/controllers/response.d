@@ -143,7 +143,7 @@ Json successResponse(Json json, string message = "Success", int code = 200, Json
         .set("data", data) : successResponse(message, code);
 }
 
-Json successResponse(string message = "Success", int code = 200, CommandResult result) {
+Json successResponse(string message = "Success", int code = 200, UsecaseResult result) {
     return Json.emptyObject
         .set("status", "success")
         .set("message", message)
@@ -158,7 +158,7 @@ Json successResponse(string message = "Success", int code = 200, CommandResult r
 unittest {
     auto baseJson = Json.emptyObject.set("info", "Additional info");
     auto data = Json.emptyObject.set("id", 123).set("name", "Test");
-    // auto response = successResponse("Operation successful", 200, CommandResult(true, "Operation completed", 123));
+    // auto response = successResponse("Operation successful", 200, UsecaseResult(true, "Operation completed", 123));
     // assert(response.getString("status") == "success");
     // assert(response.getString("message") == "Operation successful");
     // assert(response.getInteger("code") == 200);

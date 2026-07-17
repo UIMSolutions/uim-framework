@@ -11,6 +11,7 @@ mixin(ShowModule!());
 
 @safe:
 
+/// Base class for HTTP controllers
 class HttpController {
   this() {
     initialize();
@@ -29,17 +30,11 @@ class HttpController {
   bool initialize(Json[string] initData = null) {
     // Initialization logic for the controller
 
-    _requiredTenant = initData.getBoolean("requiredTenant", true);
     return true;
   }
 
   void registerRoutes(URLRouter router) {
     // Register HTTP routes and handlers here
-  }
-
-  protected bool _requiredTenant = true; // Tenant is required for manage controllers
-  bool requiredTenant() {
-    return _requiredTenant;
   }
 
   Json precheckHandler(HTTPServerRequest req) {
@@ -54,14 +49,6 @@ class HttpController {
 
     if (req is null)
       return errorResponse("Request is required", 400);
-
-    if (requiredTenant()) {
-      auto tenantId = TenantId(req.headers.get("X-Tenant-Id", "default"));
-      if (tenantId.isNull)
-        return errorResponse("Tenant ID is required", 400);
-
-      precheck["tenantId"] = tenantId.value;
-    }
 
     Json params = Json.emptyObject;
     req.params.byKeyValue.each!(kv => params[kv.key] = kv.value);
@@ -90,8 +77,6 @@ class HttpController {
     // writeln("Precheck result in listHandler: ", precheck);
     if (precheck.hasError)
       return precheck; // Return error response from precheck
-
-    precheck["id"] = extractIdFromPath(precheck.path);
 
     return successResponse(precheck, "Get handler not implemented", 200);
   }
@@ -147,8 +132,6 @@ class HttpController {
     if (precheck.hasError)
       return precheck; // Return error response from precheck
 
-    precheck["path"] = req.requestPath.to!string;
-    precheck["id"] = extractIdFromPath(precheck.path);
     return successResponse(precheck, "Delete handler not implemented", 200);
   }
 

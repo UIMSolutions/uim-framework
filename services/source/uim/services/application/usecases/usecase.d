@@ -11,7 +11,8 @@ mixin(ShowModule!());
 
 @safe:
 
+/// Represents a use case in the application layer.
 class UseCase {
-  /// Executes the use case with the given input and returns a CommandResult.
-  abstract UsecaseResult execute(string input);
+  /// Executes the use case with the given input and returns a UsecaseResult.
+  abstract UsecaseResult execute(Json input);
 }

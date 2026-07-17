@@ -8,6 +8,6 @@ module uim.services.presentation.http.controllers;
 public:
   import uim.services.presentation.http.controllers.health;
   import uim.services.presentation.http.controllers.controller;
-  import uim.services.presentation.http.controllers.manage;
+  import uim.services.presentation.http.controllers.crud;
   import uim.services.presentation.http.controllers.response;
 
