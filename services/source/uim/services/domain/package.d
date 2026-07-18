@@ -7,4 +7,4 @@ module uim.services.domain;
 
 public:
     import uim.services.domain.entities;
-    import uim.services.domain.repositories;
+    import uim.services.domain.ports;

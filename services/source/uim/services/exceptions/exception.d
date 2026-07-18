@@ -7,6 +7,8 @@ module uim.services.exceptions.exception;
 
 import uim.services;
 
+mixin(ShowModule!());
+
 @safe:
 
 /* class ServiceException : UIMException {

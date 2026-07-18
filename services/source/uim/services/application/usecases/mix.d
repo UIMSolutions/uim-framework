@@ -11,3 +11,21 @@ mixin(ShowModule!());
 
 @safe:
 
+@safe:
+string usecaseThis(string name = null, bool overrideMemberNames = true) {
+    string fullName = name ~ "Usecase";
+    return objThis(fullName, overrideMemberNames);
+}
+
+template UsecaseThis(string name = null, bool overrideMemberNames = true) {
+    const char[] UsecaseThis = usecaseThis(name, overrideMemberNames);
+}
+
+string usecaseCalls(string name) {
+    string fullName = name ~ "Usecase";
+    return objCalls(fullName);
+}
+
+template UsecaseCalls(string name) {
+    const char[] UsecaseCalls = usecaseCalls(name);
+}
