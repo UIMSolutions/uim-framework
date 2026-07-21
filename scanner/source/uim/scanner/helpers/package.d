@@ -6,3 +6,4 @@
 module uim.scanner.helpers;
 
 public import uim.scanner.helpers.codec;
+public import uim.scanner.helpers.json;

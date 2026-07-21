@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.scanner.helpers.codec;
 
-import std.array : split;
 import std.algorithm.searching : canFind, countUntil, endsWith, startsWith;
 import std.string : strip;
 
@@ -121,6 +120,88 @@ bool scannerLooksLikeFunction(string line) {
   return clean.endsWith("{") || clean.endsWith(";") || clean.canFind("=>") || clean.canFind("{");
 }
 
+bool scannerLooksLikeFunctionStart(string line) {
+  auto clean = scannerStripLineComment(line);
+  if (clean.length == 0 || !clean.canFind("(")) {
+    return false;
+  }
+
+  if (clean.startsWith("if ") || clean.startsWith("for ") || clean.startsWith("foreach ") || clean.startsWith("while ") || clean.startsWith("switch ")) {
+    return false;
+  }
+
+  return true;
+}
+
+bool scannerLooksLikeDeclarationStart(string line) {
+  auto clean = scannerStripLineComment(line);
+  if (clean.length == 0) {
+    return false;
+  }
+
+  return clean.startsWith("class ")
+    || clean.startsWith("struct ")
+    || clean.startsWith("interface ")
+    || clean.startsWith("enum ")
+    || clean.startsWith("union ")
+    || clean.startsWith("template ")
+    || clean.startsWith("alias ")
+    || clean.startsWith("mixin template ")
+    || scannerLooksLikeFunctionStart(clean);
+}
+
+bool scannerDeclarationTerminated(string line) {
+  auto clean = scannerStripLineComment(line);
+  if (clean.length == 0) {
+    return false;
+  }
+
+  return clean.endsWith(";") || clean.endsWith("{") || clean.endsWith("}") || clean.canFind("=>");
+}
+
+int scannerParenBalanceDelta(string line) {
+  int delta;
+  auto clean = scannerStripLineComment(line);
+
+  foreach (ch; clean) {
+    if (ch == '(') {
+      delta++;
+    } else if (ch == ')') {
+      delta--;
+    }
+  }
+
+  return delta;
+}
+
+string scannerNormalizeSignature(string signature) {
+  auto clean = signature.strip();
+  if (clean.length == 0) {
+    return "";
+  }
+
+  string normalized;
+  bool previousWhitespace;
+  foreach (ch; clean) {
+    if (ch == ' ' || ch == '\t' || ch == '\n' || ch == '\r') {
+      if (!previousWhitespace) {
+        normalized ~= ' ';
+      }
+      previousWhitespace = true;
+    } else {
+      normalized ~= ch;
+      previousWhitespace = false;
+    }
+  }
+
+  return normalized.strip();
+}
+
+bool scannerIsPrivateDeclaration(string line) {
+  auto clean = scannerStripLineComment(line);
+  return clean.startsWith("private ") || clean.startsWith("protected ") || clean.startsWith("package ");
+}
+
 string scannerExtractFunctionName(string line) {
   auto open = line.countUntil("(");
   if (open <= 0) {
@@ -190,4 +271,10 @@ unittest {
   auto f = scannerParseDeclaration("bool validate(string value) {", 33);
   assert(f.kind == DSymbolKind.function_);
   assert(f.name == "validate");
+
+  auto delta = scannerParenBalanceDelta("bool validate(string value");
+  assert(delta > 0);
+
+  assert(scannerLooksLikeDeclarationStart("bool validate(string value"));
+  assert(scannerDeclarationTerminated("bool validate(string value) {"));
 }

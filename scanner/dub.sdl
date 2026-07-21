@@ -43,3 +43,9 @@ configuration "verbose" {
 	targetType "library"
 	versions "show_module" "show_test" "show_init" "show_function"
 }
+
+configuration "example_scan_folder" {
+	targetType "executable"
+	sourcePaths "source" "examples"
+	sourceFiles "examples/scan_folder.d"
+}

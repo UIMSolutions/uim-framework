@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.scanner.models.scanner;
 
+import std.algorithm.searching : countUntil;
+
 import uim.scanner;
 
 mixin(ShowModule!());
@@ -24,6 +26,30 @@ class UIMDCodeScannerService : UIMObject, IDCodeScannerService {
     return scannerScanDirectory(rootPath, recursive, options);
   }
 
+  string scanSourceAsJson(string source, string filePath = "", DScanOptions options = DScanOptions.init) {
+    return scannerScanSourceAsJson(source, filePath, options);
+  }
+
+  string scanFileAsJson(string filePath, DScanOptions options = DScanOptions.init) {
+    return scannerScanFileAsJson(filePath, options);
+  }
+
+  string scanDirectoryAsJson(string rootPath, bool recursive = true, DScanOptions options = DScanOptions.init) {
+    return scannerScanDirectoryAsJson(rootPath, recursive, options);
+  }
+
+  string scanSourceAsPrettyJson(string source, string filePath = "", DScanOptions options = DScanOptions.init) {
+    return scannerScanSourceAsPrettyJson(source, filePath, options);
+  }
+
+  string scanFileAsPrettyJson(string filePath, DScanOptions options = DScanOptions.init) {
+    return scannerScanFileAsPrettyJson(filePath, options);
+  }
+
+  string scanDirectoryAsPrettyJson(string rootPath, bool recursive = true, DScanOptions options = DScanOptions.init) {
+    return scannerScanDirectoryAsPrettyJson(rootPath, recursive, options);
+  }
+
   bool scanSourceAsync(string source, DScanResultHandler handler, string filePath = "", DScanOptions options = DScanOptions.init) {
     return scannerScanSourceAsync(source, handler, filePath, options);
   }
@@ -41,4 +67,10 @@ unittest {
   assert(result.moduleName == "sample.test");
   assert(result.imports.length == 1);
   assert(result.symbols.length >= 2);
+
+  auto json = scanner.scanSourceAsJson(code, "sample.d");
+  assert(json.countUntil("\"moduleName\":\"sample.test\"") >= 0);
+
+  auto pretty = scanner.scanSourceAsPrettyJson(code, "sample.d");
+  assert(pretty.countUntil("\n") >= 0);
 }

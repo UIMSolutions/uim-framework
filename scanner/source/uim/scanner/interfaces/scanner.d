@@ -36,6 +36,7 @@ struct DSymbolEntry {
 struct DScanOptions {
   bool includeFunctions = true;
   bool includePrivate = true;
+  bool strictMode = false;
 }
 
 struct DScanResult {
@@ -61,5 +62,11 @@ interface IDCodeScannerService {
   DScanResult scanSource(string source, string filePath = "", DScanOptions options = DScanOptions.init);
   DScanResult scanFile(string filePath, DScanOptions options = DScanOptions.init);
   DDirectoryScanResult scanDirectory(string rootPath, bool recursive = true, DScanOptions options = DScanOptions.init);
+  string scanSourceAsJson(string source, string filePath = "", DScanOptions options = DScanOptions.init);
+  string scanFileAsJson(string filePath, DScanOptions options = DScanOptions.init);
+  string scanDirectoryAsJson(string rootPath, bool recursive = true, DScanOptions options = DScanOptions.init);
+  string scanSourceAsPrettyJson(string source, string filePath = "", DScanOptions options = DScanOptions.init);
+  string scanFileAsPrettyJson(string filePath, DScanOptions options = DScanOptions.init);
+  string scanDirectoryAsPrettyJson(string rootPath, bool recursive = true, DScanOptions options = DScanOptions.init);
   bool scanSourceAsync(string source, DScanResultHandler handler, string filePath = "", DScanOptions options = DScanOptions.init);
 }
