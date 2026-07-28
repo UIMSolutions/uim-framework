@@ -6,3 +6,4 @@
 module uim.cdc.helpers;
 
 public import uim.cdc.helpers.codec;
+public import uim.cdc.helpers.serial;
