@@ -8,3 +8,6 @@ module uim.services.domain;
 public:
     import uim.services.domain.entities;
     import uim.services.domain.ports;
+    import uim.services.domain.enumerations;
+    import uim.services.domain.types;
+    import uim.services.domain.mixins;

@@ -5,4 +5,6 @@
 *****************************************************************************************************************/
 module uim.services.domain.ports.stores;
 
-
+public:
+    import uim.services.domain.ports.stores.result;
+    import uim.services.domain.ports.stores.store;
