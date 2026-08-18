@@ -5,7 +5,8 @@
 *****************************************************************************************************************/
 module uim.services.helpers;
 
-public {
+public:
     import uim.services.helpers.registry;
     import uim.services.helpers.factory;
-}
+    import uim.services.helpers.request;
+    import uim.services.helpers.tenant;

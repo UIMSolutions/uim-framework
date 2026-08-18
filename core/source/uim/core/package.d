@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core;
 
-public {
+public:
   import std.algorithm;
   import std.array;
   // import std.ascii;
@@ -46,19 +46,19 @@ public {
   import vibe.d;
   import consolecolors;
   import dlib;
-}
 
-public {
+
+public:
   import uim.core.constants;
   import uim.core.containers;
   import uim.core.datatypes;
   import uim.core.enumerations;
   import uim.core.helpers;
+  import uim.core.html;
   import uim.core.logging;
   import uim.core.mixins;
   import uim.core.paths;
   import uim.core.vibe;
   import uim.core.tests;
-}
 
 
