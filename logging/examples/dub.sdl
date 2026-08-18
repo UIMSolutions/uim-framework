@@ -1,2 +1,0 @@
-name "logging-test"
-dependency "uim-framework:logging" path=".."
