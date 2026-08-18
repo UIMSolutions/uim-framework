@@ -9,7 +9,7 @@ import uim.oop;
 
 @safe:
 
-/** Marks a type as a generic IoC component. */
+/** Marks a type as a generic IoC UDAComponent. */
 struct UDAComponent {
   string name;
 
@@ -18,7 +18,7 @@ struct UDAComponent {
   }
 }
 
-/** Marks a type as a service component. */
+/** Marks a type as a service UDAComponent. */
 struct UDAService {
   string name;
 
@@ -27,7 +27,7 @@ struct UDAService {
   }
 }
 
-/** Marks a type as a repository component. */
+/** Marks a type as a repository UDAComponent. */
 struct UDARepository {
   string name;
 
@@ -36,7 +36,7 @@ struct UDARepository {
   }
 }
 
-/** Marks a type as a web/controller component. */
+/** Marks a type as a web/controller UDAComponent. */
 struct UDAWebController {
   string name;
 
@@ -89,7 +89,7 @@ struct UDAValue {
   }
 }
 
-/** Declares component scope, e.g. singleton/prototype. */
+/** Declares UDAComponent scope, e.g. singleton/prototype. */
 struct UDAScope {
   string name;
 
@@ -98,7 +98,7 @@ struct UDAScope {
   }
 }
 
-/** Marks a component for lazy initialization. */
+/** Marks a UDAComponent for lazy initialization. */
 struct UDALazy {
   bool enabled = true;
 
@@ -284,22 +284,22 @@ struct PatchMapping {
   }
 }
 
-/** Checks whether a type has Spring-style component stereotype UDAs. */
+/** Checks whether a type has Spring-style UDAComponent stereotype UDAs. */
 template hasComponentAttribute(T) {
   import std.traits : hasUDA;
 
-  enum hasComponentAttribute = hasUDA!(T, Component)
+  enum hasComponentAttribute = hasUDA!(T, UDAComponent)
     || hasUDA!(T, UDAService)
     || hasUDA!(T, UDARepository)
     || hasUDA!(T, UDAWebController);
 }
 
-/** Returns the configured component name (empty when not specified). */
+/** Returns the configured UDAComponent name (empty when not specified). */
 template getComponentName(T) {
   import std.traits : getUDAs, hasUDA;
 
-  static if (hasUDA!(T, Component)) {
-    enum getComponentName = getUDAs!(T, Component)[0].name;
+  static if (hasUDA!(T, UDAComponent)) {
+    enum getComponentName = getUDAs!(T, UDAComponent)[0].name;
   } else static if (hasUDA!(T, UDAService)) {
     enum getComponentName = getUDAs!(T, UDAService)[0].name;
   } else static if (hasUDA!(T, UDARepository)) {

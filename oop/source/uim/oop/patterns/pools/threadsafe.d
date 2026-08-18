@@ -18,7 +18,7 @@ mixin(ShowModule!());
 class ThreadSafeObjectPool(T) : IObjectPool!T, IPoolStatistics {
   private {
     ObjectPool!T _pool;
-    Mutex _mutex;
+    core.sync.mutex.Mutex _mutex;
   }
 
   /**
@@ -30,7 +30,7 @@ class ThreadSafeObjectPool(T) : IObjectPool!T, IPoolStatistics {
    */
   this(T delegate() @safe factory, size_t initialCapacity = 10, size_t maxCapacity = 100) {
     _pool = new ObjectPool!T(factory, initialCapacity, maxCapacity);
-    _mutex = new Mutex();
+    _mutex = new core.sync.mutex.Mutex();
   }
 
   /**
