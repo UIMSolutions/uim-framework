@@ -8,6 +8,11 @@ license "Apache-2.0"
 // target
 targetName "uim-errors"
 targetType "library"
+targetPath "build"
+
+// sourceFiles
+sourcePaths "source"
+importPaths "source"
 
 // uim dependencies
 dependency "uim-framework:oop" path=".."

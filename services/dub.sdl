@@ -10,6 +10,10 @@ targetName "uim-services"
 targetType "library"
 targetPath "build"
 
+// Source and import paths
+sourcePaths "source"
+importPaths "source"
+
 // dependencies
 dependency "uim-framework:errors" version="*"
 dependency "vibe-d" version="~>0.10.3"
