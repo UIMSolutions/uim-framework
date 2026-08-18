@@ -22,7 +22,7 @@ mixin(ShowModule!());
   *   If the array is empty, both values in the tuple will be the default value of type T.
   * ```
   */
-Tuple!(T, T) minMax(T)(T[] arr) {
+std.typecons.Tuple!(T, T) minMax(T)(T[] arr) {
   if (arr.length == 0) {
     return tuple(T.init, T.init);
   }

@@ -45,6 +45,7 @@ public {
 
   import vibe.d;
   import consolecolors;
+  import dlib;
 }
 
 public {
@@ -56,6 +57,7 @@ public {
   import uim.core.logging;
   import uim.core.mixins;
   import uim.core.paths;
+  import uim.core.vibe;
   import uim.core.tests;
 }
 

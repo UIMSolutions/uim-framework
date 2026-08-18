@@ -23,7 +23,7 @@ mixin(ShowModule!());
   * Returns:
   *   An array containing the removed elements, or `null` if `times` is zero.
   */
-Tuple!(T[], T[]) shiftMany(T)(T[] values, size_t times = 1) {
+std.typecons.Tuple!(T[], T[]) shiftMany(T)(T[] values, size_t times = 1) {
   if (values.length == 0 || times == 0) {
     return tuple((T[]).init, values);
   }
@@ -70,7 +70,7 @@ unittest {
   * Returns:
   *   The removed element, or the default value of type `T` if the array is empty.
   */  
-Tuple!(T, T[]) shift(T)(T[] values) {
+std.typecons.Tuple!(T, T[]) shift(T)(T[] values) {
   if (values.length == 0) {
     return tuple(T.init, values);
   }

@@ -22,21 +22,21 @@ mixin(ShowModule!());
   *   and the second array contains the second elements of the tuples.
   * ```
   */
-Tuple!(T1[], T2[]) unzip(T1, T2)(Tuple!(T1, T2)[] zipped) {
-  T1[] firsts;
-  T2[] seconds;
-  foreach (item; zipped) {
-    firsts ~= item[0];
-    seconds ~= item[1];
-  }
-  return tuple(firsts, seconds);
-}
-///
-unittest {
-  mixin(ShowTest!"Testing unzip");
+// std.typecons.Tuple!(T1[], T2[]) unzip(T1, T2)(std.typecons.Tuple!(T1, T2)[] zipped) {
+//   T1[] firsts;
+//   T2[] seconds;
+//   foreach (item; zipped) {
+//     firsts ~= item[0];
+//     seconds ~= item[1];
+//   }
+//   return tuple(firsts, seconds);
+// }
+// ///
+// unittest {
+//   mixin(ShowTest!"Testing unzip");
 
-  auto zipped = [tuple(1, "a"), tuple(2, "b"), tuple(3, "c")];
-  auto result = unzip(zipped);
-  assert(result[0] == [1, 2, 3]);
-  assert(result[1] == ["a", "b", "c"]);
-}
+//   auto zipped = [tuple(1, "a"), tuple(2, "b"), tuple(3, "c")];
+//   auto result = unzip(zipped);
+//   assert(result[0] == [1, 2, 3]);
+//   assert(result[1] == ["a", "b", "c"]);
+// }
