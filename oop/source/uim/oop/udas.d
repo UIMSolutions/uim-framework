@@ -494,14 +494,51 @@ unittest {
 
   @UDAScope("prototype")
   @UDALazy(true)
-  class ProtoService {}
-  
+  class ProtoService {
+  }
+
   import std.traits : getUDAs, hasUDA;
+
   static assert(hasUDA!(ProtoService, UDAScope));
   static assert(getUDAs!(ProtoService, UDAScope)[0].name == "prototype");
   static assert(getUDAs!(ProtoService, UDALazy)[0].enabled == true);
 
-  class UnmarkedClass {}
+  class UnmarkedClass {
+  }
+
   static assert(!hasComponentAttribute!UnmarkedClass);
   static assert(getComponentName!UnmarkedClass == "");
+}
+
+mixin template AutoProperties() {
+  mixin(() {
+    string code;
+    static foreach (memberName; __traits(allMembers, typeof(this))) {
+      static if (__traits(compiles, __traits(getMember, typeof(this), memberName))) {
+        alias field = __traits(getMember, typeof(this), memberName);
+
+        static if (isField!field) {
+          enum propName = (memberName[0] == '_') ? memberName[1 .. $] : memberName;
+
+          // Synthesize Getter if field has @getter struct
+          static if (hasUDA!(field, getter)) {
+            code ~= "@property auto " ~ propName ~ "() const { return " ~ memberName ~ "; }\n";
+          }
+
+          // Synthesize Setter with optional validation check
+          static if (hasUDA!(field, setter)) {
+            enum sMeta = getUDAs!(field, setter)[0];
+
+            code ~= "@property void " ~ propName ~ "(typeof(" ~ memberName ~ ") val) {\n";
+            static if (sMeta.validatePositive) {
+              code ~= "    if (val < 0) throw new Exception(\"Value must be positive!\");\n";
+            }
+            code ~= "    " ~ memberName ~ " = val;\n";
+            code ~= "}\n";
+          }
+        }
+      }
+    }
+    return code;
+  }());
 }

@@ -1,6 +1,8 @@
 module uim.services;
 
 public {
+  import uim.core;
+  import uim.oop;
   import uim.errors;
   
   import uim.services.application;

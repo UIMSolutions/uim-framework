@@ -30,7 +30,13 @@ class HttpController {
   bool initialize(Json[string] initData = null) {
     // Initialization logic for the controller
 
+    _requiredTenant = initData.getBoolean("requiredTenant", true);
     return true;
+  }
+
+  protected bool _requiredTenant = true; // Tenant is required for manage controllers
+  bool requiredTenant() {
+    return _requiredTenant;
   }
 
   void registerRoutes(URLRouter router) {
@@ -49,6 +55,14 @@ class HttpController {
 
     if (req is null)
       return errorResponse("Request is required", 400);
+
+    if (requiredTenant()) {
+      auto tenantId = TenantId(req.headers.get("X-Tenant-Id", "default"));
+      if (tenantId.isNull)
+        return errorResponse("Tenant ID is required", 400);
+
+      precheck["tenantId"] = tenantId.value;
+    }
 
     Json params = Json.emptyObject;
     req.params.byKeyValue.each!(kv => params[kv.key] = kv.value);

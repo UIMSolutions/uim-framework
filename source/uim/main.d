@@ -14,4 +14,8 @@ public {
 
 public {
   import uim.core;
+  import uim.oop;
+  import uim.errors;
+  import uim.jsons;
+  import uim.services;
 }

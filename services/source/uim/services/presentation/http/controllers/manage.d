@@ -73,7 +73,7 @@ class ManageHttpController : HttpController {
     if (precheck.hasError)
       return precheck; // Return error response from precheck 
 
-    precheck["id"] = extractIdFromPath(precheck.path);
+    precheck["id"] = extractId(precheck.path);
     auto id = precheck.id;
     if (id.isEmpty)
       return errorResponse("ID is required", 400);
