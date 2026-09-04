@@ -1,0 +1,7 @@
+name: "My D Application"
+port: 8080
+debug: true
+tags:
+  - web
+  - dlang
+  - api

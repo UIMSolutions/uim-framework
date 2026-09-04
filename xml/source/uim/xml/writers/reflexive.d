@@ -44,7 +44,7 @@ private:
                 static if (__traits(compiles, __traits(getMember, value, member))) {
                     alias field = __traits(getMember, T, member);
 
-                    static if (uim.core.uda.helpers.isField!field && !hasUDA!(field, XmlIgnore)) {
+                    static if (isField!field && !hasUDA!(field, XmlIgnore)) {
                         static if (hasUDA!(field, XmlAttribute)) {
                             enum attrName = getUDAValue!(field, XmlAttribute, member);
                             auto fieldValue = __traits(getMember, value, member);
@@ -65,16 +65,20 @@ private:
 
     // 2. Pass: alle übrigen Felder als Kind-Elemente (oder Text) schreiben
     void writeChildren(T)(auto ref T value) {
+
+        /// Writes all child elements (or text) for the given value.
         static foreach (string member; __traits(allMembers, T)) {
             {
                 static if (__traits(compiles, __traits(getMember, value, member))) {
                     alias field = __traits(getMember, T, member);
 
-                    static if (uim.core.uda.helpers.isField!field && !hasUDA!(field, XmlIgnore) && !hasUDA!(field, XmlAttribute)) {
+                    /// Determines if the current field should be written as a child element.
+                    static if (isField!field && !hasUDA!(field, XmlIgnore) && !hasUDA!(field, XmlAttribute)) {
                         auto fieldValue = __traits(getMember, value, member);
                         alias FieldType = typeof(fieldValue);
                         enum elemName = getUDAValue!(field, XmlElement, member);
 
+                        /// Writes the current field as a child element or text based on its attributes and type.
                         static if (hasUDA!(field, XmlText)) {
                             writer.writeText(fieldValue.to!string);
                         } else static if (isNullable!FieldType) {
@@ -116,118 +120,94 @@ private:
             writer.writeTaggedText(tag, val.to!string);
         }
     }
+}
+// --- Meta-Programming / CTFE Helpers ---
 
-    // --- Meta-Programming / CTFE Helpers ---
+/// Convenience-Factory Analog zu dxml.writer.xmlWriter
+auto reflectiveXmlWriter(Output)(Output output) {
+    return new ReflectiveXmlWriter!Output(output);
+}
 
-    /// Checks if the given symbol represents a field (i.e., not a type, not callable, and can be compiled).
-   
+unittest {
+    import std.algorithm.searching : canFind;
 
-    template getUDAValue(alias field, UDA, string fallbackName) {
-        /// Retrieves the value of the specified user-defined attribute (UDA) for a field.
-        /// If the UDA is not present, returns the provided fallback name.
-        static if (hasUDA!(field, UDA)) {
-            /// Works with both @Uda(...) instances and symbol-style @Uda annotations.
-            alias firstUDA = getUDAs!(field, UDA)[0];
-            static if (__traits(compiles, { enum n = firstUDA.name; })) {
-                        enum nameValue = firstUDA.name;
-                        static if (nameValue != "")
-                            enum getUDAValue = nameValue;
-                        else
-                            enum getUDAValue = fallbackName;
-                    } else {
-                    enum getUDAValue = fallbackName;
-                }
-                } else {
-                    enum getUDAValue = fallbackName;
-                }
-                }
-                }
+    class StringSink {
+        string data;
 
-                /// Convenience-Factory Analog zu dxml.writer.xmlWriter
-                auto reflectiveXmlWriter(Output)(Output output) {
-                    return new ReflectiveXmlWriter!Output(output);
-                }
+        @safe void put(char ch) {
+            data ~= ch;
+        }
 
-                unittest {
-                    import std.algorithm.searching : canFind;
+        @safe void put(const(char)[] text) {
+            data ~= text;
+        }
+    }
 
-                    class StringSink {
-                        string data;
+    struct Root {
+        @XmlText string text;
+    }
 
-                        @safe void put(char ch) {
-                            data ~= ch;
-                        }
+    auto output = new StringSink();
+    auto writer = reflectiveXmlWriter(output);
+    writer.write("root", Root("Hello, World!"));
 
-                        @safe void put(const(char)[] text) {
-                            data ~= text;
-                        }
-                    }
+    assert(output.data.canFind("<root"));
+    assert(output.data.canFind("Hello, World!"));
+    assert(output.data.canFind("</root>"));
 
-                    struct Root {
-                        @XmlText string text;
-                    }
+    // import std.stdio : writeln;
+    // writeln(output.data);
 
-                    auto output = new StringSink();
-                    auto writer = reflectiveXmlWriter(output);
-                    writer.write("root", Root("Hello, World!"));
+    // Resulting XML:
+    // <root>
+    //     Hello, World!
+    // </root>
 
-                    assert(output.data.canFind("<root"));
-                    assert(output.data.canFind("Hello, World!"));
-                    assert(output.data.canFind("</root>"));
+    auto output2 = new StringSink();
+    auto writer2 = reflectiveXmlWriter(output2);
+    writer2.write("root", Root("Hello, World!"));
 
-                    // import std.stdio : writeln;
-                    // writeln(output.data);
+    // import std.stdio : writeln;
+    // writeln(output.data);
 
-                    // Resulting XML:
-                    // <root>
-                    //     Hello, World!
-                    // </root>
+    // Resulting XML:
+    // <root>
+    //     Hello, World!
+    // </root>
 
-                    auto output2 = new StringSink();
-                    auto writer2 = reflectiveXmlWriter(output2);
-                    writer2.write("root", Root("Hello, World!"));
+    assert(output2.data.canFind("<root"));
+    assert(output2.data.canFind("Hello, World!"));
+    assert(output2.data.canFind("</root>"));
 
-                    // import std.stdio : writeln;
-                    // writeln(output.data);
+    struct Root2 {
+        @XmlElement
+        string element;
 
-                    // Resulting XML:
-                    // <root>
-                    //     Hello, World!
-                    // </root>
+        @XmlAttribute
+        string attribute;
 
-                    assert(output2.data.canFind("<root"));
-                    assert(output2.data.canFind("Hello, World!"));
-                    assert(output2.data.canFind("</root>"));
+        @XmlElement
+        string anotherElement;
 
-                    struct Root2 {
-                        @XmlElement
-                        string element;
+        @XmlElement
+        string yetAnotherElement;
 
-                        @XmlAttribute
-                        string attribute;
+        @XmlIgnore
+        string ignoredElement;
 
-                        @XmlElement
-                        string anotherElement;
+        @XmlText string text;
+    }
 
-                        @XmlElement
-                        string yetAnotherElement;
+    auto output3 = new StringSink();
+    auto writer3 = reflectiveXmlWriter(output3);
+    writer3.write("root2", Root2("elementValue", "attributeValue", "anotherElementValue", "yetAnotherElementValue", "ignoredElementValue", "Text content"));
 
-                        @XmlIgnore
-                        string ignoredElement;
+    assert(output3.data.canFind("<root2"));
+    assert(output3.data.canFind("elementValue"));
+    assert(output3.data.canFind("attributeValue"));
+    assert(output3.data.canFind("anotherElementValue"));
+    assert(output3.data.canFind("yetAnotherElementValue"));
+    assert(!output3.data.canFind("ignoredElementValue"));
+    assert(output3.data.canFind("Text content"));
 
-                        @XmlText string text;
-                    }
-
-                    auto output3 = new StringSink();
-                    auto writer3 = reflectiveXmlWriter(output3);
-                    writer3.write("root2", Root2("elementValue", "attributeValue", "anotherElementValue", "yetAnotherElementValue", "ignoredElementValue", "Text content"));
-
-                    assert(output3.data.canFind("<root2"));
-                    assert(output3.data.canFind("elementValue"));
-                    assert(output3.data.canFind("attributeValue"));
-                    assert(output3.data.canFind("anotherElementValue"));
-                    assert(output3.data.canFind("yetAnotherElementValue"));
-                    assert(!output3.data.canFind("ignoredElementValue"));
-                    assert(output3.data.canFind("Text content"));
-
-                }
+}

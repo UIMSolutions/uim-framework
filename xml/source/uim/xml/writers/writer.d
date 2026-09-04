@@ -1,6 +1,101 @@
 module uim.xml.writers.writer;
 
+import uim.core;
 import dxml.writer;
+
+@safe:
+
+alias StringAppender = Appender!string;
+
+class OOPXMLWriter(T = string) {
+    alias StringAppender = Appender!T;
+
+    private StringAppender _appender;
+    private XMLWriter!StringAppender _writer;
+
+    private bool _inStartTag = false;
+    private string[] _elementStack;
+
+    this() {
+        _appender = appender!T;
+        _writer = XMLWriter!StringAppender(_appender);
+    }
+
+    /// Stellt sicher, dass das aktuelle Start-Tag (mit `>`) geschlossen wird,
+    /// bevor Kinder, Text oder das End-Tag geschrieben werden.
+    private void ensureStartTagClosed() {
+        if (_inStartTag) {
+            _writer.closeStartTag();
+            _inStartTag = false;
+        }
+    }
+
+    auto addElement(string name) {
+        ensureStartTagClosed();
+        _writer.openStartTag(name); // Schreiben von `<name`
+        _inStartTag = true;
+        _elementStack ~= name;
+        return this;
+    }
+
+    auto addAttribute(string name, string value) {
+        if (_inStartTag) {
+            _writer.writeAttr(name, value); // Funktioniert jetzt, da Start-Tag offen ist!
+        }
+        return this;
+    }
+
+    auto addAttributes(string[string] attrs) {
+        foreach (name, value; attrs) {
+            addAttribute(name, value);
+        }
+        return this;
+    }
+
+    auto endElement() {
+        ensureStartTagClosed();
+        if (_elementStack.length > 0) {
+            string tagName = _elementStack[$ - 1];
+            _elementStack.popBack();
+            _writer.writeEndTag(tagName);
+        }
+        return this;
+    }
+
+    auto addComment(string text) {
+        ensureStartTagClosed();
+        _writer.writeComment(text);
+        return this;
+    }
+
+    auto addText(string content) {
+        ensureStartTagClosed();
+        _writer.writeText(content);
+        return this;
+    }
+
+    override string toString() {
+        ensureStartTagClosed();
+        while (_elementStack.length > 0) {
+            endElement();
+        }
+        return _appender.data.idup;
+    }
+}
+
+unittest {
+    auto writer = new OOPXMLWriter!string();
+    writer.addElement("mvc:View")
+        .addAttribute("controllerName", "projects.app.controller.App")
+        .addAttribute("xmlns:mvc", "sap.ui.core.mvc")
+        .addAttributes(["xmlns":"sap.m", 
+                        "displayBlock":"true"])
+        .addComment("This is a comment")
+        .addElement("SplitApp")
+        .endElement()
+    .endElement();
+    writeln(writer.toString());
+}
 
 // @safe:
 // class XMLWriter(OR = Appender!string) {
