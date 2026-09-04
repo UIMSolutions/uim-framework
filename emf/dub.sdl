@@ -1,0 +1,35 @@
+name "emf"
+description "EMF (Entity Management Framework) is a D programming language library for managing entities and their relationships in a structured and efficient manner. It provides tools for defining, storing, and manipulating entities, making it easier to build applications that require complex data models."
+homepage "https://www.....de/uim/emf"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018 - 2026, ONS"
+license "Apache-2.0"
+dependency "uim-framework" version="~>26.8.3"
+
+targetType "library"
+targetName "uim-platform-emf"
+targetPath "build"
+
+configuration "default" {
+	targetType "library"
+}
+configuration "modules" {
+	targetType "library"
+	versions "show_module"
+}
+configuration "tests" {
+	targetType "library"
+	versions "show_module" "show_test"
+}
+configuration "inits" {
+	targetType "library"
+	versions "show_module" "show_init"
+}
+configuration "calls" {
+	targetType "library"
+	versions "show_module" "show_test" "show_function"
+}
+configuration "verbose" {
+	targetType "library"
+	versions "show_module" "show_test" "show_init" "show_function"
+}
