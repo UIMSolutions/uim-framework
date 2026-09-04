@@ -59,4 +59,5 @@ public:
   import uim.core.mixins;
   import uim.core.paths;
   import uim.core.tests;
+  import uim.core.uda;
 

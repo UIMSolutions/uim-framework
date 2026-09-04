@@ -311,21 +311,29 @@ template getComponentName(T) {
   }
 }
 
-/** Checks whether a member is marked for dependency injection. */
+/// Checks whether a member is marked for dependency injection.
 template hasInjectionAttribute(alias member) {
   import std.traits : hasUDA;
 
   enum hasInjectionAttribute = hasUDA!(member, UDAAutowired) || hasUDA!(member, UDAInject);
 }
+unittest {
+  class TestClass {
+    @UDAAutowired
+    string dependency;
+  }
 
-/** Returns true when a method is marked as bean factory. */
+  static assert(hasInjectionAttribute!(TestClass.dependency));
+}
+
+/// Returns true when a method is marked as bean factory.
 template hasBeanAttribute(alias member) {
   import std.traits : hasUDA;
 
   enum hasBeanAttribute = hasUDA!(member, UDABean);
 }
 
-/** Returns bean name from @UDABean("...") or an empty string. */
+/// Returns bean name from @UDABean("...") or an empty string.
 template getBeanName(alias member) {
   import std.traits : getUDAs;
 
@@ -336,7 +344,7 @@ template getBeanName(alias member) {
   }
 }
 
-/** Checks whether a member has an HTTP mapping UDA. */
+/// Checks whether a member has an HTTP mapping UDA.
 template hasRequestMapping(alias member) {
   import std.traits : hasUDA;
 
@@ -348,21 +356,21 @@ template hasRequestMapping(alias member) {
     || hasUDA!(member, PatchMapping);
 }
 
-/** Checks whether a member has a getter marker UDA. */
+/// Checks whether a member has a getter marker UDA.
 template hasGetterAttribute(alias member) {
   import std.traits : hasUDA;
 
   enum hasGetterAttribute = hasUDA!(member, Getter) || hasUDA!(member, Accessor);
 }
 
-/** Checks whether a member has a setter marker UDA. */
+/// Checks whether a member has a setter marker UDA.
 template hasSetterAttribute(alias member) {
   import std.traits : hasUDA;
 
   enum hasSetterAttribute = hasUDA!(member, Setter) || hasUDA!(member, Accessor);
 }
 
-/** Checks whether a member has both getter and setter semantics. */
+/// Checks whether a member has both getter and setter semantics.
 template hasAccessorAttribute(alias member) {
   import std.traits : hasUDA;
 
@@ -370,7 +378,7 @@ template hasAccessorAttribute(alias member) {
     || (hasUDA!(member, Getter) && hasUDA!(member, Setter));
 }
 
-/** Returns mapped path for request mapping UDAs. */
+/// Returns mapped path for request mapping UDAs.
 template getRequestPath(alias member) {
   import std.traits : getUDAs, hasUDA;
 
@@ -391,7 +399,7 @@ template getRequestPath(alias member) {
   }
 }
 
-/** Returns mapped HTTP method for request mapping UDAs. */
+/// Returns mapped HTTP method for request mapping UDAs.
 template getRequestMethod(alias member) {
   import std.traits : getUDAs, hasUDA;
 
