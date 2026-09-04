@@ -6,24 +6,24 @@ version (unittest) {
 } else {
     void main() {
         // ----------------------------
-        // Metamodell
+        // Metamodel
         // ----------------------------
 
         auto person = new EClass("Person")
-            .addAttribute(new EAttribute("name", typeid(string)))
-            .addAttribute(new EAttribute("age", typeid(int)));
+            .addAttribute(new EAttribute("name", stringType))
+            .addAttribute(new EAttribute("age", intType));
 
         auto company = new EClass("Company")
-            .addAttribute(new EAttribute("name", typeid(string)))
+            .addAttribute(new EAttribute("name", stringType))
             .addReference(new EReference("employees", person, true, true));
 
         // ----------------------------
-        // Instanzen
+        // Instances
         // ----------------------------
 
         auto alice = person.create()
-            .set("name", "Alice")
-            .set("age", 42);
+            .set("name", Json("Alice"))
+            .set("age", Json(42));
 
         auto bob = person.create()
             .set("name", Json("Bob"))
@@ -33,7 +33,7 @@ version (unittest) {
             .set("name", Json("ACME"));
 
         // ----------------------------
-        // Beziehungen
+        // Relationships
         // ----------------------------
 
         auto dynamicCompany =
@@ -43,7 +43,7 @@ version (unittest) {
         dynamicCompany.add("employees", bob);
 
         // ----------------------------
-        // Ausgabe
+        // Output
         // ----------------------------
 
         writeln(

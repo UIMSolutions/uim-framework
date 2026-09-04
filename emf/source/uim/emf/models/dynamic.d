@@ -16,13 +16,15 @@ class DynamicEObject : EObject {
         _class = type;
     }
 
-    override
-    EClass eClass() {
+    override EClass eClass() {
         return _class;
     }
 
-    override
-    Json get(string featureName) {
+    bool hasFeature(string featureName) {
+        return _class.hasFeature(featureName);
+    }
+
+    override Json get(string featureName) {
         auto feature = _class.getFeature(featureName);
 
         if (feature is null) {
@@ -40,17 +42,17 @@ class DynamicEObject : EObject {
         return (featureName in _values) ? _values[featureName] : Json(null);
     }
 
-    override
-    void set(string featureName, Object value) {
-        setValue(featureName, value);
+    // override
+    // void set(string featureName, Object value) {
+    //     setValue(featureName, value);
+    // }
+
+    auto set(string featureName, Json value) {
+        return setValue(featureName, value);
+        return this;
     }
 
-    void set(T)(string featureName, auto ref T value)
-            if (!is(T : Object)) {
-        setValue(featureName, value);
-    }
-
-    private void setValue(T)(string featureName, auto ref T value) {
+    auto setValue(string featureName, Json value) {
         auto feature = _class.getFeature(featureName);
 
         if (feature is null) {
@@ -60,17 +62,21 @@ class DynamicEObject : EObject {
         }
 
         if (feature.many) {
-            throw new Exception(
-                "Feature '" ~ featureName ~
-                    "' is multi-valued; use add() instead");
+            if (featureName !in _values) {
+                _values[featureName] = Json.emptyArray;
+            }
+            _values[featureName] ~= value;
+            return;
         }
 
-        validate(feature, value);
+        // validate(feature, value);
 
         _values[featureName] = toJson(value);
+        return this;
+
     }
 
-    void add(string featureName, Object value) {
+    auto add(string featureName, Json value) {
         auto feature = _class.getFeature(featureName);
 
         if (feature is null) {
@@ -79,93 +85,135 @@ class DynamicEObject : EObject {
                     "' on class '" ~ _class.name ~ "'");
         }
 
-        if (!feature.many) {
-            throw new Exception(
-                "Feature '" ~ featureName ~
-                    "' is not multi-valued");
-        }
-
-        validate(feature, value);
-
-        Json[] values;
-
-        if (featureName in _values) {
-            auto existing = _values[featureName];
-
-            if (existing.type != Json.Type.array) {
-                throw new Exception(
-                    "Feature '" ~ featureName ~
-                        "' is expected to store a JSON array");
+        if (feature.many) {
+            if (featureName !in _values) {
+                _values[featureName] = Json.emptyArray;
             }
-
-            values = existing.get!(Json[]);
+            _values[featureName] ~= value;
+            return;
         }
 
-        values ~= toJson(value);
+        // validate(feature, value);
 
-        _values[featureName] = Json(values);
-        // return this;
+        // Json[] values;
+
+        // if (featureName in _values) {
+        //     auto existing = _values[featureName];
+
+        //     if (!existing.isArray) {
+        //         throw new Exception(
+        //             "Feature '" ~ featureName ~
+        //                 "' is expected to store a JSON array");
+        //     }
+
+        //     values = existing.get!(Json[]);
+        // }
+
+        // values ~= toJson(value);
+
+        // _values[featureName] = Json(values);
+        return this;
     }
 
-    override
-    bool isSet(string featureName) {
+    auto add(string featureName, string key, Json value) {
+        auto feature = _class.getFeature(featureName);
+
+        if (feature is null) {
+            throw new Exception(
+                "Unknown feature '" ~ featureName ~
+                    "' on class '" ~ _class.name ~ "'");
+        }
+
+        if (feature.many) {
+            if (featureName !in _values) {
+                _values[featureName] = Json.emptyObject;
+            }
+            _values[featureName][key] = value;
+        }
+
+        // if (!feature.many) {
+        //     throw new Exception(
+        //         "Feature '" ~ featureName ~
+        //             "' is not multi-valued");
+        // }
+
+        // validate(feature, value);
+
+        // Json[] values;
+
+        // if (featureName in _values) {
+        //     auto existing = _values[featureName];
+
+        //     if (!existing.isArray) {
+        //         throw new Exception(
+        //             "Feature '" ~ featureName ~
+        //                 "' is expected to store a JSON array");
+        //     }
+
+        //     values = existing.get!(Json[]);
+        // }
+
+        // values ~= toJson(value);
+
+        // _values[featureName] = Json(values);
+        return this;
+    }
+
+    override bool isSet(string featureName) {
         return (featureName in _values) ? true : false;
     }
 
-    override
-    void unset(string featureName) {
+    override auto unset(string featureName) {
         _values.remove(featureName);
+        return this;
     }
 
-    private void validate(
-        EStructuralFeature feature,
-        Object value) {
-        if (value is null)
+    private void validate(EStructuralFeature feature, Json value) {
+        if (value.isNull)
             return;
 
-        if (auto reference = cast(EReference)feature) {
-            auto object = cast(EObject)value;
+        // if (auto reference = cast(EReference)feature) {
+        //     auto object = cast(EObject)value;
 
-            if (object is null) {
-                throw new Exception(
-                    "Reference '" ~ feature.name ~
-                        "' requires an EObject");
-            }
-        }
+        //     if (object is null) {
+        //         throw new Exception(
+        //             "Reference '" ~ feature.name ~
+        //                 "' requires an EObject");
+        //     }
+        // }
     }
 
-    private void validate(T)(
-        EStructuralFeature feature,
-        auto ref T value)
-            if (!is(T : Object)) {
-        if (auto reference = cast(EReference)feature) {
-            throw new Exception(
-                "Reference '" ~ feature.name ~
-                    "' requires an EObject");
-        }
-    }
+    // private void validate(T)(
+    //     EStructuralFeature feature,
+    //     auto ref T value)
+    //         if (!is(T : Object)) {
+    //     if (auto reference = cast(EReference)feature) {
+    //         throw new Exception(
+    //             "Reference '" ~ feature.name ~
+    //                 "' requires an EObject");
+    //     }
+    // }
 
-    private Json toJson(Object value) {
-        if (value is null)
-            return Json(null);
+    // private Json toJson(Object value) {
+    //     if (value is null)
+    //         return Json(null);
 
-        if (auto eObject = cast(EObject)value) {
-            auto referenceValue = Json.emptyObject;
-            referenceValue["eClass"] = Json(eObject.eClass.name);
-            return referenceValue;
-        }
+    //     if (auto eObject = cast(EObject)value) {
+    //         auto referenceValue = Json.emptyObject;
+    //         referenceValue["eClass"] = Json(eObject.eClass.name);
+    //         return referenceValue;
+    //     }
 
-        return Json(value.classinfo.name);
-    }
+    //     return Json(value.classinfo.name);
+    // }
 
-    private Json toJson(T)(auto ref T value)
-            if (!is(T : Object)) {
-        static if (is(T == Json))
-            return value;
-
-        return Json(value);
+    private Json toJson(Json value) {
+        Json result = Json.emptyObject;
+        _values.toKeyValue.each!((key, value) { result[key] = value; });
+        return result;
     }
 }
+
 unittest {
     auto person = new EClass("Person")
         .addAttribute(new EAttribute("name", typeid(string)));

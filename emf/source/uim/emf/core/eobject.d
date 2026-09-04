@@ -10,7 +10,9 @@ interface EObject {
 
     Json get(string featureName);
 
-    void set(string featureName, Object value);
+    // void set(string featureName, Object value);
+
+    void set(string featureName, Json value);
 
     bool isSet(string featureName);
 

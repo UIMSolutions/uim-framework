@@ -51,6 +51,9 @@ class EClass : EClassifier {
         return this;
     }
 
+    bool hasFeature(string name)
+        => _features.any!(f => f.name == name);
+
     EStructuralFeature getFeature(string name) {
         foreach (feature; _features) {
             if (feature.name == name)
@@ -82,8 +85,8 @@ class EClass : EClassifier {
 ///
 unittest {
     auto person = new EClass("Person")
-        .addAttribute(new EAttribute("name", typeid(string)))
-        .addAttribute(new EAttribute("age", typeid(int)));
+        .addAttribute(new EAttribute("name", stringType))
+        .addAttribute(new EAttribute("age", intType));
 
     assert(person.name == "Person");
     assert(person.features.length == 2);

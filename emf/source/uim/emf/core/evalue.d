@@ -1,4 +1,4 @@
-module uim.emf.core.IValue;
+module uim.emf.core.evalue;
 
 import uim.emf;
 
