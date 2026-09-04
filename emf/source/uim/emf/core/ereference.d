@@ -40,6 +40,7 @@ class EReference : EStructuralFeature {
         return _containment;
     }
 }
+///
 unittest {
     auto personClass = new EClass("Person");
     auto addressClass = new EClass("Address");

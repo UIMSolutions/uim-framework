@@ -1,1 +1,0 @@
-module uim.emf.resources;

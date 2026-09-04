@@ -78,9 +78,9 @@ class EClass : EClassifier {
         return _superTypes;
     }
 
-    EObject create() {
-        return new DynamicEObject(this);
-    }
+    // EObject create() {
+    //     return new DynamicEObject(this);
+    // }
 }
 ///
 unittest {

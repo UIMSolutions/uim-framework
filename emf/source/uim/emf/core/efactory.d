@@ -14,10 +14,10 @@ import uim.emf;
 /// It provides a create method that takes an EClass as input and returns a new instance of the corresponding EObject.
 /// EFactory is used to instantiate EObjects in the EMF model, allowing for dynamic creation of objects based on their defined classes.
 class EFactory {
-    EObject create(EClass type) {
-        if (type is null)
-            throw new Exception("EClass must not be null");
+    // EObject create(EClass type) {
+    //     if (type is null)
+    //         throw new Exception("EClass must not be null");
 
-        return type.create();
-    }
+    //     return type.create();
+    // }
 }

@@ -19,6 +19,7 @@ class EEnum : EClassifierBase {
         return _literals;
     }
 }
+///
 unittest {  
     auto colorEnum = new EEnum("Color");
     colorEnum.addLiteral("Red");

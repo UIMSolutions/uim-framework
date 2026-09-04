@@ -1,4 +1,4 @@
-module uim.emf.core.eobject;
+module uim.emf.core.EObject;
 
 import uim.emf;
 
@@ -12,10 +12,11 @@ interface EObject {
 
     // void set(string featureName, Object value);
 
-    void set(string featureName, Json value);
+    EObject set(string featureName, Json value);
+    EObject add(string featureName, Json value);
+    EObject add(string featureName, string key, Json value);
 
     bool isSet(string featureName);
-
-    void unset(string featureName);
+    EObject unset(string featureName);
 }
 
