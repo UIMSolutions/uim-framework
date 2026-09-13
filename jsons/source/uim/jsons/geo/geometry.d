@@ -11,19 +11,6 @@ mixin(ShowModule!());
 
 @safe:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 /**
  * Parse a geometry from Json
  */
