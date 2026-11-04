@@ -7,5 +7,5 @@ module uim.ui5.views;
 
 public:
     import uim.ui5.views.view;
-    import uim.ui5.views.xmlviews;
+    import uim.ui5.views.xml;
     

@@ -20,7 +20,6 @@ public:
     import uim.ui5.fragments;
     import uim.ui5.helpers;
     import uim.ui5.html;
-    import uim.ui5.i18nbundle;
     import uim.ui5.i18ns;
     import uim.ui5.libraries;
     import uim.ui5.manifests;
@@ -29,4 +28,3 @@ public:
     import uim.ui5.services;
     import uim.ui5.tests;
     import uim.ui5.views;
-    import uim.ui5.xmlviews;
