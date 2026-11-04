@@ -36,3 +36,5 @@ xml/build/xml-test-default
 xml/build/xml-test-tests
 xml/build/xml-test-verbose
 web/build/web-test-default
+uim-framework-test-library
+xml/build/xml-test-default
