@@ -7,3 +7,4 @@ public:
     import uim.xml.builders;
     import uim.xml.readers;
     import uim.xml.helpers;
+    import uim.xml.xpath;

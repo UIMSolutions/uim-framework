@@ -24,6 +24,16 @@ public:
         return _attributes.canFind!(a => a.name == name);
     }
 
+    // Returns the value of the attribute with the given name, null if absent
+    string attributeValue(string name) const {
+        foreach (item; _attributes) {
+            if (item.name == name) {
+                return item.value;
+            }
+        }
+        return null;
+    }
+
     unittest {
         auto node = element("Label").attribute("id", "nameLabel").attribute("name", "Name");
         assert(node.hasAttribute("id"));

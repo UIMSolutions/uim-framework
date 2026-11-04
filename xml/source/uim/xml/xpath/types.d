@@ -10,6 +10,18 @@ enum TokenType {
     Axis,
     NodeTest,
     Wildcard,
+    Slash,
+    DoubleSlash,
+    At,
+    Dot,
+    DoubleDot,
+    LBracket,
+    RBracket,
+    LParen,
+    RParen,
+    Equals,
+    Comma,
+    EndOfInput,
     Error
 }
 
@@ -32,4 +44,10 @@ struct XPathError {
     ErrorCode code;
     string message;
     size_t position;
+}
+
+class XPathException : Exception {
+    this(string msg, string file = __FILE__, size_t line = __LINE__) {
+        super(msg, file, line);
+    }
 }
