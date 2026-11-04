@@ -31,6 +31,7 @@ abstract class CssNode {
   }
 }
 
+
 /// A CSS rule: a selector with a block of declarations.
 class CssRule : CssNode {
   this(string selector) {

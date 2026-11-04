@@ -107,6 +107,30 @@ auto api = urlBuilder("https", "api.example.com")
 // https://api.example.com/v1/users?limit=10
 ```
 
+### 📱 PWA (`uim.web.pwa`)
+
+Build Progressive Web Apps:
+
+- **Manifest**: `PwaManifest` with icons, shortcuts, display modes, colors — renders `manifest.json` and the matching HTML head tags
+- **Service worker**: `ServiceWorkerScript` builder with precaching, offline fallback, runtime caching routes (`cacheFirst`, `networkFirst`, `staleWhileRevalidate`, ...), cache cleanup and push notifications
+- **Registration**: service worker registration/update scripts, install prompt capture, online/offline handlers, push subscription
+- **Setup**: `PwaSetup` applies manifest links and scripts to an `HtmlDocument`
+
+```d
+auto manifest = pwaManifest("Task Manager")
+  .shortName("Tasks")
+  .themeColor("#2c3e50")
+  .icon("/icon-192.png", "192x192", "image/png");
+
+auto sw = serviceWorkerScript("tasks-v1")
+  .precacheAll("/app", "/app/style.css")
+  .offlinePage("/offline.html")
+  .route(`/api/`, CacheStrategy.networkFirst);
+
+auto doc = htmlDocument("Task Manager");
+pwaSetup(manifest).serviceWorker("/sw.js").applyTo(doc);
+```
+
 ## License
 
 Apache-2.0 — see [LICENSE](../LICENSE)

@@ -11,137 +11,453 @@ mixin(ShowModule!());
 
 @safe:
 
-/// Class selector, e.g. cssClass("button") -> ".button"
+/**
+ * Returns a CSS class selector for the given class name.
+ *
+ * Params:
+ *   name = The class name.
+ *
+ * Returns:
+ *   A string representing the CSS class selector.
+ *
+ * Example:
+ *   cssClass("button") -> ".button"
+ */
 string cssClass(string name) {
   return "." ~ name;
 }
 
-/// Id selector, e.g. cssId("main") -> "#main"
+/** 
+ * Returns a CSS id selector for the given id.
+ *
+ * Params:
+ *   name = The id name.
+ *
+ * Returns:
+ *   A string representing the CSS id selector.
+ *
+ * Example:
+ *   cssId("main") -> "#main"
+ */
 string cssId(string name) {
   return "#" ~ name;
 }
 
-/// Universal selector "*"
+/** 
+ * Returns the universal CSS selector "*".
+ *
+ * Returns:
+ *   A string representing the universal CSS selector.
+ *
+ * Example:
+ *   universal() -> "*"
+ */
 string universal() {
   return "*";
 }
 
-/// Combines a tag with a class, e.g. tagClass("div", "active") -> "div.active"
+/**
+ * Returns a CSS selector combining the tag and class.
+ *
+ * Params:
+ *   tag = The HTML tag name.
+ *   className = The class name.
+ *
+ * Returns:
+ *   A string representing the combined tag and class selector.
+ *
+ * Example:
+ *   tagClass("div", "active") -> "div.active"
+ */
 string tagClass(string tag, string className) {
   return tag ~ "." ~ className;
 }
 
-/// Combines a tag with an id, e.g. tagId("div", "main") -> "div#main"
+/**
+ * Returns a CSS selector combining the tag and id.
+ *
+ * Params:
+ *   tag = The HTML tag name.
+ *   id = The id name.
+ *
+ * Returns:
+ *   A string representing the combined tag and id selector.
+ *
+ * Example:
+ *   tagId("div", "main") -> "div#main"
+ */
+  
 string tagId(string tag, string id) {
   return tag ~ "#" ~ id;
 }
 
-/// Descendant combinator, e.g. descendant("div", "p") -> "div p"
+/**
+ * Returns a CSS selector for the descendant combinator.
+ *
+ * Params:
+ *   parent = The parent element selector.
+ *   child = The child element selector.
+ *
+ * Returns:
+ *   A string representing the descendant combinator selector.
+ *
+ * Example:
+ *   descendant("div", "p") -> "div p"
+ */
 string descendant(string parent, string child) {
   return parent ~ " " ~ child;
 }
 
-/// Child combinator, e.g. child("ul", "li") -> "ul > li"
+/**
+ * Returns a CSS selector for the child combinator.
+ *
+ * Params:
+ *   parent = The parent element selector.
+ *   childSelector = The child element selector.
+ *
+ * Returns:
+ *   A string representing the child combinator selector.
+ *
+ * Example:
+ *   child("ul", "li") -> "ul > li"
+ */
 string child(string parent, string childSelector) {
   return parent ~ " > " ~ childSelector;
 }
 
-/// Adjacent sibling combinator, e.g. adjacent("h1", "p") -> "h1 + p"
+/**
+ * Returns a CSS selector for the adjacent sibling combinator.
+ *
+ * Params:
+ *   first = The first element selector.
+ *   second = The adjacent sibling element selector.
+ *
+ * Returns:
+ *   A string representing the adjacent sibling combinator selector.
+ *
+ * Example:
+ *   adjacent("h1", "p") -> "h1 + p"
+ */
 string adjacent(string first, string second) {
   return first ~ " + " ~ second;
 }
 
-/// General sibling combinator, e.g. siblings("h1", "p") -> "h1 ~ p"
+/**
+ * Returns a CSS selector for the general sibling combinator.
+ *
+ * Params:
+ *   first = The first element selector.
+ *   second = The general sibling element selector.
+ *
+ * Returns:
+ *   A string representing the general sibling combinator selector.
+ *
+ * Example:
+ *   siblings("h1", "p") -> "h1 ~ p"
+ */
 string siblings(string first, string second) {
   return first ~ " ~ " ~ second;
 }
 
-/// Groups selectors with a comma, e.g. group("h1", "h2") -> "h1, h2"
+/**
+ * Groups multiple CSS selectors with a comma.
+ *
+ * Params:
+ *   selectors = The list of selectors to group.
+ *
+ * Returns:
+ *   A string representing the grouped selectors.
+ *
+ * Example:
+ *   group("h1", "h2") -> "h1, h2"
+ */
 string group(string[] selectors...) {
   return selectors.join(", ");
 }
 
-/// Pseudo class selector, e.g. pseudo("a", "hover") -> "a:hover"
+/**
+ * Returns a CSS selector for a pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   pseudoClass = The pseudo class name.
+ *
+ * Returns:
+ *   A string representing the pseudo class selector.
+ *
+ * Example:
+ *   pseudo("a", "hover") -> "a:hover"
+ */
 string pseudo(string base, string pseudoClass) {
   return base ~ ":" ~ pseudoClass;
 }
 
-/// Pseudo element selector, e.g. pseudoElement("p", "first-line") -> "p::first-line"
+/**
+ * Returns a CSS selector for a pseudo element.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   element = The pseudo element name.
+ *
+ * Returns:
+ *   A string representing the pseudo element selector.
+ *
+ * Example:
+ *   pseudoElement("p", "first-line") -> "p::first-line"
+ */
 string pseudoElement(string base, string element) {
   return base ~ "::" ~ element;
 }
 
-/// :hover pseudo class
+/**
+ * Returns a CSS selector for the :hover pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :hover pseudo class selector.
+ *
+ * Example:
+ *   hover("a") -> "a:hover"
+ */
 string hover(string base) {
   return pseudo(base, "hover");
 }
 
-/// :focus pseudo class
+/**
+ * Returns a CSS selector for the :focus pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :focus pseudo class selector.
+ *
+ * Example:
+ *   focus("input") -> "input:focus"
+ */
 string focus(string base) {
   return pseudo(base, "focus");
 }
 
-/// :active pseudo class
+/**
+ * Returns a CSS selector for the :active pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :active pseudo class selector.
+ *
+ * Example:
+ *   active("button") -> "button:active"
+ */
 string active(string base) {
   return pseudo(base, "active");
 }
 
-/// :visited pseudo class
+/**
+ * Returns a CSS selector for the :visited pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :visited pseudo class selector.
+ *
+ * Example:
+ *   visited("a") -> "a:visited"
+ */
 string visited(string base) {
   return pseudo(base, "visited");
 }
 
-/// :first-child pseudo class
+/**
+ * Returns a CSS selector for the :first-child pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :first-child pseudo class selector.
+ *
+ * Example:
+ *   firstChild("li") -> "li:first-child"
+ */
 string firstChild(string base) {
   return pseudo(base, "first-child");
 }
 
-/// :last-child pseudo class
+/**
+ * Returns a CSS selector for the :last-child pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *
+ * Returns:
+ *   A string representing the :last-child pseudo class selector.
+ *
+ * Example:
+ *   lastChild("li") -> "li:last-child"
+ */
 string lastChild(string base) {
   return pseudo(base, "last-child");
 }
 
-/// :nth-child() pseudo class, e.g. nthChild("li", 2) -> "li:nth-child(2)"
+/**
+ * Returns a CSS selector for the :nth-child() pseudo class with an integer.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   n = The child index.
+ *
+ * Returns:
+ *   A string representing the :nth-child() pseudo class selector.
+ *
+ * Example:
+ *   nthChild("li", 2) -> "li:nth-child(2)"
+ */
 string nthChild(string base, int n) {
   return "%s:nth-child(%s)".format(base, n);
 }
 
-/// :nth-child() with a formula, e.g. nthChild("li", "2n+1") -> "li:nth-child(2n+1)"
+/**
+ * Returns a CSS selector for the :nth-child() pseudo class with a formula.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   formula = The formula for the nth child.
+ *
+ * Returns:
+ *   A string representing the :nth-child() pseudo class selector.
+ *
+ * Example:
+ *   nthChild("li", "2n+1") -> "li:nth-child(2n+1)"
+ */
 string nthChild(string base, string formula) {
   return "%s:nth-child(%s)".format(base, formula);
 }
 
-/// :nth-of-type() pseudo class
+/**
+ * Returns a CSS selector for the :nth-of-type() pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   n = The child index.
+ *
+ * Returns:
+ *   A string representing the :nth-of-type() pseudo class selector.
+ *
+ * Example:
+ *   nthOfType("li", 2) -> "li:nth-of-type(2)"
+ */
 string nthOfType(string base, int n) {
   return "%s:nth-of-type(%s)".format(base, n);
 }
 
-/// :not() pseudo class, e.g. not("p", ".intro") -> "p:not(.intro)"
+/**
+ * Returns a CSS selector for the :not() pseudo class.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   selector = The selector to negate.
+ *
+ * Returns:
+ *   A string representing the :not() pseudo class selector.
+ *
+ * Example:
+ *   not("p", ".intro") -> "p:not(.intro)"
+ */
 string not(string base, string selector) {
   return "%s:not(%s)".format(base, selector);
 }
 
-/// Attribute presence selector, e.g. attr("input", "type") -> "input[type]"
+/**
+ * Returns a CSS selector for an attribute presence.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   attribute = The attribute name.
+ *
+ * Returns:
+ *   A string representing the attribute presence selector.
+ *
+ * Example:
+ *   attr("input", "type") -> "input[type]"
+ */
 string attr(string base, string attribute) {
   return "%s[%s]".format(base, attribute);
 }
 
-/// Attribute value selector, e.g. attr("input", "type", "text") -> "input[type=\"text\"]"
+/**
+ * Returns a CSS selector for an attribute with a specific value.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   attribute = The attribute name.
+ *   value = The attribute value.
+ *
+ * Returns:
+ *   A string representing the attribute value selector.
+ *
+ * Example:
+ *   attr("input", "type", "text") -> "input[type=\"text\"]"
+ */
 string attr(string base, string attribute, string value) {
   return "%s[%s=%s]".format(base, attribute, cssString(value));
 }
 
-/// Attribute "begins with" selector, e.g. attrStartsWith("a", "href", "https") -> "a[href^=\"https\"]"
+/**
+ * Returns a CSS selector for an attribute that begins with a specific value.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   attribute = The attribute name.
+ *   value = The attribute value.
+ *
+ * Returns:
+ *   A string representing the attribute "begins with" selector.
+ *
+ * Example:
+ *   attrStartsWith("a", "href", "https") -> "a[href^=\"https\"]"
+ */
 string attrStartsWith(string base, string attribute, string value) {
   return "%s[%s^=%s]".format(base, attribute, cssString(value));
 }
 
-/// Attribute "ends with" selector, e.g. attrEndsWith("a", "href", ".pdf") -> "a[href$=\".pdf\"]"
+/**
+ * Returns a CSS selector for an attribute that ends with a specific value.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   attribute = The attribute name.
+ *   value = The attribute value.
+ *
+ * Returns:
+ *   A string representing the attribute "ends with" selector.
+ *
+ * Example:
+ *   attrEndsWith("a", "href", ".pdf") -> "a[href$=\".pdf\"]"
+ */
 string attrEndsWith(string base, string attribute, string value) {
   return "%s[%s$=%s]".format(base, attribute, cssString(value));
 }
 
-/// Attribute "contains" selector, e.g. attrContains("a", "href", "example") -> "a[href*=\"example\"]"
+/**
+ * Returns a CSS selector for an attribute that contains a specific value.
+ *
+ * Params:
+ *   base = The base element selector.
+ *   attribute = The attribute name.
+ *   value = The attribute value.
+ *
+ * Returns:
+ *   A string representing the attribute "contains" selector.
+ *
+ * Example:
+ *   attrContains("a", "href", "example") -> "a[href*=\"example\"]"
+ */
 string attrContains(string base, string attribute, string value) {
   return "%s[%s*=%s]".format(base, attribute, cssString(value));
 }

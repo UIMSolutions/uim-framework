@@ -7,4 +7,6 @@ public:
     import uim.web.html;
     import uim.web.http;
     import uim.web.js;
+    import uim.web.pwa;
+    import uim.web.pwa;
     import uim.web.url;

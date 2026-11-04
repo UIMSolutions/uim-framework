@@ -32,8 +32,22 @@ string cssString(string value) {
 string cssUrl(string url) {
   return "url(%s)".format(cssString(url));
 }
+///
+unittest {
+  mixin(ShowTest!"cssUrl");
 
-/// Escapes a class name or id for use in a selector, e.g. cssEscape("md:flex") -> `md\:flex`
+  assert(cssUrl("bg.png") == `url("bg.png")`);
+}
+
+/** 
+ * Escapes a class name or id for use in a selector.
+ *
+ * Params:
+ *   identifier = The class name or id to escape
+ *
+ * Returns:
+ *   The escaped identifier
+ */
 string cssEscape(string identifier) {
   auto result = appender!string;
   size_t index;
@@ -52,25 +66,98 @@ string cssEscape(string identifier) {
   }
   return result.data;
 }
+///
+unittest {
+  mixin(ShowTest!"cssEscape");
 
-/// CSS calc() function, e.g. cssCalc("100% - 2rem") -> "calc(100% - 2rem)"
+  assert(cssEscape("button") == "button");
+  assert(cssEscape("md:flex") == `md\:flex`);
+  assert(cssEscape("w-1/2") == `w-1\/2`);
+  assert(cssEscape("1a") == `\31 a`);
+  assert(cssEscape("-1a") == `-\31 a`);
+  assert(cssEscape("a1") == "a1");
+  assert(cssEscape("größe") == "größe");
+}
+
+/**
+ * CSS calc() function, e.g. cssCalc("100% - 2rem") -> "calc(100% - 2rem)"
+ *
+ * Params:
+ *   expression = The expression to use inside calc()
+ *
+ * Returns:
+ *   The calc() function as a string
+ */
 string cssCalc(string expression) {
   return "calc(%s)".format(expression);
 }
+///
+unittest {
+  mixin(ShowTest!"cssCalc");
 
-/// CSS clamp() function, e.g. cssClamp(rem(1), vw(2), rem(3)) -> "clamp(1rem, 2vw, 3rem)"
+  assert(cssCalc("100% - 2rem") == "calc(100% - 2rem)");
+  assert(cssCalc("50% + 1rem") == "calc(50% + 1rem)");
+}
+
+/**
+ * CSS clamp() function, e.g. cssClamp(rem(1), vw(2), rem(3)) -> "clamp(1rem, 2vw, 3rem)"
+ *
+ * Params:
+ *   minimum = The minimum value
+ *   preferred = The preferred value
+ *   maximum = The maximum value
+ *
+ * Returns:
+ *   The clamp() function as a string
+ */
 string cssClamp(string minimum, string preferred, string maximum) {
   return "clamp(%s, %s, %s)".format(minimum, preferred, maximum);
 }
+///
+unittest {
+  mixin(ShowTest!"cssClamp");
 
-/// CSS min() function, e.g. cssMin(percent(100), px(600)) -> "min(100%, 600px)"
+  assert(cssClamp(rem(1), vw(2), rem(3)) == "clamp(1rem, 2vw, 3rem)");
+  assert(cssClamp(rem(2), vw(3), rem(4)) == "clamp(2rem, 3vw, 4rem)");
+}
+
+/**
+ * CSS min() function, e.g. cssMin(percent(100), px(600)) -> "min(100%, 600px)"
+ *
+ * Params:
+ *   values = The values to use inside min()
+ *
+ * Returns:
+ *   The min() function as a string
+ */
 string cssMin(string[] values...) {
   return "min(%s)".format(values.join(", "));
 }
+///
+unittest {
+  mixin(ShowTest!"cssMin");
+
+  assert(cssMin(percent(100), px(600)) == "min(100%, 600px)");
+}
 
 /// CSS max() function
+/**
+ * CSS max() function, e.g. cssMax(px(1), px(2), px(3)) -> "max(1px, 2px, 3px)"
+ *
+ * Params:
+ *   values = The values to use inside max()
+ *
+ * Returns:
+ *   The max() function as a string
+ */
 string cssMax(string[] values...) {
   return "max(%s)".format(values.join(", "));
+}
+///
+unittest {
+  mixin(ShowTest!"cssMax");
+
+  assert(cssMax(px(1), px(2), px(3)) == "max(1px, 2px, 3px)"); 
 }
 
 /**
@@ -88,6 +175,14 @@ CssRule cssFontFace(string family, string source, string weight = null, string d
     .set("src", source)
     .set("font-display", display);
   return weight.length > 0 ? rule.set("font-weight", weight) : rule;
+}
+///
+unittest {
+  mixin(ShowTest!"cssFontFace");
+
+  assert(
+    cssFontFace("Inter", cssUrl("inter.woff2")).toString
+      == `@font-face { font-family: "Inter"; src: url("inter.woff2"); font-display: swap; }`);
 }
 
 ///

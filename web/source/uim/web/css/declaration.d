@@ -107,6 +107,7 @@ private string[] splitDeclarations(string text) {
   if (start < text.length) {
     parts ~= text[start .. $];
   }
+  
   return parts;
 }
 
