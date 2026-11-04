@@ -7,6 +7,7 @@ module uim.services.presentation.odata.v2;
 
 public {
   import uim.services.presentation.odata.v2.edm;
+  import uim.services.presentation.odata.v2.enumerations;
   import uim.services.presentation.odata.v2.payload;
   import uim.services.presentation.odata.v2.service;
   import uim.services.presentation.odata.v2.uri;
