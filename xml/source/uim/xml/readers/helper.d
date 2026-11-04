@@ -9,8 +9,14 @@ import uim.xml;
 
 @safe:
 
-/// Escapes special XML characters in a string.
-/// Converts &, <, >, ", and ' to their corresponding XML entities.
+/**
+ * Escapes special XML characters in a string.
+ *
+ * @param value The string to escape.
+ * @return The escaped string with special XML characters replaced by their corresponding entities.
+ * @example
+ * auto escaped = escapeXml("<tag>"); // "&lt;tag&gt;"
+ */
 string escapeXml(string value) {
     auto result = appender!string();
     result.reserve(value.length);
@@ -40,7 +46,7 @@ string escapeXml(string value) {
 
     return result.data;
 }
-
+/// Unit tests for the escapeXml function.
 unittest {
     assert(escapeXml("") == "");
     assert(escapeXml("hello") == "hello");
