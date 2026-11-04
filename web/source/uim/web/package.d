@@ -5,4 +5,6 @@ public:
     
     import uim.web.css;
     import uim.web.html;
+    import uim.web.http;
     import uim.web.js;
+    import uim.web.url;
