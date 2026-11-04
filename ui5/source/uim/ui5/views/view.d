@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class UI5View {
+class Ui5View {
     this() {
         this.initialize();
     }

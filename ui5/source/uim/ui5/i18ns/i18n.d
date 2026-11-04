@@ -6,7 +6,7 @@ mixin(ShowModule!());
 
 @safe:
 
-class UI5I18n {
+class Ui5I18n {
     this() {
         this.initialize();
     }
