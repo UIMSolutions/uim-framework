@@ -56,6 +56,60 @@ CssDeclaration cssDeclImportant(string property, string value) {
   return new CssDeclaration(property, value, true);
 }
 
+/**
+ * Parses declarations, e.g. the output of the helpers in uim.web.css.properties.
+ *
+ * Semicolons inside strings and parentheses, as in url("a;b"), do not end a declaration.
+ */
+CssDeclaration[] parseCssDeclarations(string declarations) {
+  enum important = "!important";
+
+  CssDeclaration[] result;
+  foreach (part; splitDeclarations(declarations)) {
+    auto colonIndex = part.indexOf(':');
+    if (colonIndex <= 0) {
+      continue;
+    }
+    string value = part[colonIndex + 1 .. $].strip;
+    bool isImportant = value.endsWith(important);
+    if (isImportant) {
+      value = value[0 .. $ - important.length].stripRight;
+    }
+    result ~= new CssDeclaration(part[0 .. colonIndex].strip, value, isImportant);
+  }
+  return result;
+}
+
+private string[] splitDeclarations(string text) {
+  string[] parts;
+  size_t start;
+  int depth;
+  char quote = 0;
+  for (size_t i; i < text.length; i++) {
+    char c = text[i];
+    if (quote != 0) {
+      if (c == '\\') {
+        i++;
+      } else if (c == quote) {
+        quote = 0;
+      }
+    } else if (c == '"' || c == '\'') {
+      quote = c;
+    } else if (c == '(') {
+      depth++;
+    } else if (c == ')') {
+      depth--;
+    } else if (c == ';' && depth <= 0) {
+      parts ~= text[start .. i];
+      start = i + 1;
+    }
+  }
+  if (start < text.length) {
+    parts ~= text[start .. $];
+  }
+  return parts;
+}
+
 /// Renders a property/value pair directly, e.g. cssProperty("color", "red") -> "color: red;"
 string cssProperty(string property, string value) {
   return "%s: %s;".format(property, value);
@@ -82,4 +136,17 @@ unittest {
   assert(cssDeclImportant("margin", "0").toString == "margin: 0 !important;");
   assert(cssProperty("padding", "1rem") == "padding: 1rem;");
   assert(cssPropertyImportant("padding", "1rem") == "padding: 1rem !important;");
+
+  // parsing
+  auto parsed = parseCssDeclarations("color: red; margin: 0 !important;");
+  assert(parsed.length == 2);
+  assert(parsed[0].toString == "color: red;");
+  assert(parsed[1].important);
+  assert(parsed[1].value == "0");
+
+  assert(parseCssDeclarations(`background: url("a;b.png"); content: "x;y"`).length == 2);
+  assert(parseCssDeclarations("background: url(data:image/png;base64,AA==); color: red").length == 2);
+  assert(parseCssDeclarations(`content: "a\\"; b"; color: red`).length == 2);
+  assert(parseCssDeclarations("").length == 0);
+  assert(parseCssDeclarations("no colon here").length == 0);
 }

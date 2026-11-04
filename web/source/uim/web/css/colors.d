@@ -6,6 +6,7 @@
 module uim.web.css.colors;
 
 import std.ascii : isDigit;
+import std.exception : assertThrown, enforce;
 
 import uim.web;
 
@@ -98,7 +99,7 @@ unittest {
 }
 
 /**
- * Normalizes a hex color string to the form "#rrggbb" (lowercase, 6 digits)
+ * Normalizes a hex color string to the form "#rrggbb" or "#rrggbbaa" (lowercase, short forms expanded)
  *
  * Params:
  *   hexColor = Hex color string, e.g. "#fff", "ff0000"
@@ -110,7 +111,7 @@ string normalizeHex(string hexColor) {
   if (result.startsWith("#")) {
     result = result[1 .. $];
   }
-  if (result.length == 3) {
+  if (result.length == 3 || result.length == 4) {
     result = result.map!(c => "%c%c".format(c, c)).join;
   }
   return "#" ~ result.toLower;
@@ -136,19 +137,24 @@ bool isHexColor(string value) {
 }
 
 /**
- * Converts a hex color ("#rrggbb") to a CSS rgb() function string.
+ * Converts a hex color to a CSS rgb() function string, or rgba() if it has an alpha channel.
  *
  * Params:
- *   hexColor = Hex color string, e.g. "#ff0000"
+ *   hexColor = Hex color string, e.g. "#ff0000" or "#ff000080"
  *
- * Returns: CSS rgb() color string, e.g. "rgb(255, 0, 0)"
+ * Returns: CSS color string, e.g. "rgb(255, 0, 0)"
+ *
+ * Throws: Exception if the string is not a hex color
  */
 string hexToRgb(string hexColor) {
+  enforce(isHexColor(hexColor), "Invalid hex color: " ~ hexColor);
   string hex = normalizeHex(hexColor)[1 .. $];
   auto red = hex[0 .. 2].to!ubyte(16);
   auto green = hex[2 .. 4].to!ubyte(16);
   auto blue = hex[4 .. 6].to!ubyte(16);
-  return rgb(red, green, blue);
+  return hex.length == 8
+    ? rgba(red, green, blue, hex[6 .. 8].to!ubyte(16) / 255.0)
+    : rgb(red, green, blue);
 }
 
 /// Converts red/green/blue components to a hex color string "#rrggbb"
@@ -234,4 +240,15 @@ unittest {
 
   assert(currentColor() == "currentColor");
   assert(transparent()  == "transparent");
+
+  // alpha channel
+  assert(normalizeHex("#f00a") == "#ff0000aa");
+  assert(hexToRgb("#fff") == "rgb(255, 255, 255)");
+  assert(hexToRgb("#fff0") == "rgba(255, 255, 255, 0)");
+  assert(hexToRgb("#ff000080") == "rgba(255, 0, 0, 0.502)");
+  assert(hexToRgb("#ff0000ff") == "rgba(255, 0, 0, 1)");
+
+  // invalid colors are an ordinary error, not a slice violation
+  assertThrown(hexToRgb("zz"));
+  assertThrown(hexToRgb("#ff"));
 }

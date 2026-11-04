@@ -47,9 +47,19 @@ string vh(int value) {
   return "%svh".format(value);
 }
 
+/// CSS viewport height unit for fractional values
+string vh(double value) {
+  return "%svh".format(trimNumber(value));
+}
+
 /// CSS viewport width unit
 string vw(int value) {
   return "%svw".format(value);
+}
+
+/// CSS viewport width unit for fractional values
+string vw(double value) {
+  return "%svw".format(trimNumber(value));
 }
 
 /// CSS vmin unit (smaller of viewport width and height)
@@ -60,6 +70,31 @@ string vmin(int value) {
 /// CSS vmax unit (larger of viewport width and height)
 string vmax(int value) {
   return "%svmax".format(value);
+}
+
+/// CSS dynamic viewport height unit, which follows collapsing browser toolbars
+string dvh(double value) {
+  return "%sdvh".format(trimNumber(value));
+}
+
+/// CSS small viewport height unit
+string svh(double value) {
+  return "%ssvh".format(trimNumber(value));
+}
+
+/// CSS large viewport height unit
+string lvh(double value) {
+  return "%slvh".format(trimNumber(value));
+}
+
+/// CSS container query width unit
+string cqw(double value) {
+  return "%scqw".format(trimNumber(value));
+}
+
+/// CSS container query height unit
+string cqh(double value) {
+  return "%scqh".format(trimNumber(value));
 }
 
 /// CSS ch unit (width of the "0" glyph of the current font)
@@ -156,14 +191,8 @@ string fr(double value) {
 
 /// Formats a double without trailing zeros, e.g. trimNumber(1.50) -> "1.5"
 string trimNumber(double value) {
-  string result = "%.4f".format(value);
-  while (result.canFind(".") && result.endsWith("0")) {
-    result = result[0 .. $ - 1];
-  }
-  if (result.endsWith(".")) {
-    result = result[0 .. $ - 1];
-  }
-  return result;
+  string result = "%.4f".format(value).stripRight("0").stripRight(".");
+  return result == "-0" ? "0" : result;
 }
 
 /// Joins multiple values with a space, e.g. cssValues(px(1), "solid", "red")
@@ -203,4 +232,17 @@ unittest {
   assert(trimNumber(2.0) == "2");
   assert(trimNumber(2.50) == "2.5");
   assert(cssValues(px(1), "solid", "red") == "1px solid red");
+
+  assert(trimNumber(100) == "100");
+  assert(trimNumber(0) == "0");
+  assert(trimNumber(-0.00001) == "0");
+  assert(trimNumber(-1.5) == "-1.5");
+
+  assert(vh(12.5) == "12.5vh");
+  assert(vw(33.3) == "33.3vw");
+  assert(dvh(100) == "100dvh");
+  assert(svh(100) == "100svh");
+  assert(lvh(100) == "100lvh");
+  assert(cqw(50) == "50cqw");
+  assert(cqh(50) == "50cqh");
 }

@@ -44,8 +44,12 @@ class JsFetch {
 
   /// Sets a JSON body from a Json value (fluent interface)
   auto jsonBody(Json json) {
-    _headers["Content-Type"] = "application/json";
-    _body = jsValue(json);
+    return jsonBody(json.toString);
+  }
+
+  /// Sets the credentials mode: "omit", "same-origin" or "include" (fluent interface)
+  auto credentials(string mode) {
+    _credentials = mode;
     return this;
   }
 
@@ -65,6 +69,20 @@ class JsFetch {
   auto thenJson(string body, string parameter = "data") {
     _thens ~= jsArrow(["response"], "response.json()");
     _thens ~= jsArrowBlock([parameter], body);
+    return this;
+  }
+
+  /// Adds a handler extracting the text body (fluent interface)
+  auto thenText(string body, string parameter = "text") {
+    _thens ~= jsArrow(["response"], "response.text()");
+    _thens ~= jsArrowBlock([parameter], body);
+    return this;
+  }
+
+  /// Adds a handler rejecting responses outside the 2xx range, which fetch() does not do itself (fluent interface)
+  auto ensureOk() {
+    _thens ~= jsArrowBlock(["response"],
+      "if (!response.ok) { throw new Error('HTTP ' + response.status); } return response;");
     return this;
   }
 
@@ -98,6 +116,9 @@ class JsFetch {
     if (_headers.length > 0) {
       parts ~= "headers: %s".format(jsObject(_headers.dup));
     }
+    if (_credentials.length > 0) {
+      parts ~= "credentials: %s".format(jsString(_credentials));
+    }
     if (_body.length > 0) {
       parts ~= "body: %s".format(_body);
     }
@@ -107,6 +128,7 @@ class JsFetch {
   private string _url;
   private string _method;
   private string[string] _headers;
+  private string _credentials;
   private string _body;
   private string[] _thens;
   private string _catch;
@@ -141,7 +163,7 @@ string fetchDelete(string url) {
 unittest {
   // simple calls
   assert(fetchGet("/api") == `fetch('/api', {method: 'GET'});`);
-  assert(fetchPost("/api", `{"a":1}`) == `fetch('/api', {method: 'POST', headers: {Content-Type: 'application/json'}, body: '{"a":1}'});`);
+  assert(fetchPost("/api", `{"a":1}`) == `fetch('/api', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: '{"a":1}'});`);
   assert(fetchPut("/api/1", `{"a":2}`).canFind(`method: 'PUT'`));
   assert(fetchDelete("/api/1") == `fetch('/api/1', {method: 'DELETE'});`);
 
@@ -157,7 +179,7 @@ unittest {
   assert(rendered.canFind(`fetch('/api/users'`) || rendered.canFind(`fetch('/api/users',`));
   assert(rendered.canFind(`method: 'POST'`));
   assert(rendered.canFind(`Authorization: 'Bearer token'`));
-  assert(rendered.canFind(`Content-Type: 'application/json'`));
+  assert(rendered.canFind(`'Content-Type': 'application/json'`));
   assert(rendered.canFind(`.then((response) => response.json())`));
   assert(rendered.canFind(`.then((data) => { render(data); })`));
   assert(rendered.canFind(`.catch((error) => { showError(error); })`));
@@ -179,5 +201,12 @@ unittest {
   auto json = Json.emptyObject;
   json["name"] = "uim";
   auto withJson = jsFetch("/api").method("POST").jsonBody(json);
-  assert(withJson.toString.canFind(`body: {'name': 'uim'}`));
+  assert(withJson.toString.canFind(`body: '{"name":"uim"}'`));
+
+  // further options and handlers
+  auto advanced = jsFetch("/api").credentials("include").ensureOk.thenText("show(text);");
+  assert(advanced.toString.canFind(`{credentials: 'include'}`));
+  assert(advanced.toString.canFind(`if (!response.ok)`));
+  assert(advanced.toString.canFind(`.then((response) => response.text())`));
+  assert(advanced.toString.canFind(`.then((text) => { show(text); })`));
 }

@@ -12,7 +12,7 @@ mixin(ShowModule!());
 @safe:
 
 /// A CSS @keyframes rule describing an animation.
-class CssKeyframes {
+class CssKeyframes : CssNode {
   this(string name) {
     _name = name;
   }
@@ -24,12 +24,7 @@ class CssKeyframes {
 
   /// Adds a step (e.g. "from", "to", "50%") with declarations (fluent interface)
   auto step(string offset, string[string] declarations) {
-    auto rule = new CssRule(offset);
-    foreach (property, value; declarations) {
-      rule.set(property, value);
-    }
-    _steps ~= rule;
-    return this;
+    return step(new CssRule(offset, declarations));
   }
 
   /// Adds a step rule (fluent interface)
@@ -43,10 +38,18 @@ class CssKeyframes {
     return _steps.dup;
   }
 
-  /// Renders the keyframes rule
-  override string toString() const {
-    string body = _steps.map!(step => step.toString).join(" ");
-    return "@keyframes %s { %s }".format(_name, body);
+  /// Writes the keyframes rule to a sink
+  override void render(ref Appender!string sink, bool minified) const {
+    sink.put("@keyframes ");
+    sink.put(_name);
+    sink.put(minified ? "{" : " {");
+    foreach (rule; _steps) {
+      if (!minified) {
+        sink.put(' ');
+      }
+      rule.render(sink, minified);
+    }
+    sink.put(minified ? "}" : " }");
   }
 
   private string _name;
@@ -84,4 +87,6 @@ unittest {
     .step(cssRule("100%").set("top", "0"));
   assert(bounce.steps.length == 3);
   assert(bounce.toString.canFind("50% { top: 100px; }"));
+
+  assert(fadeIn.minify == "@keyframes fadeIn{from{opacity:0}to{opacity:1}}");
 }

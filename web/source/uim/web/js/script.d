@@ -12,8 +12,12 @@ mixin(ShowModule!());
 @safe:
 
 /// Inline script element, e.g. scriptTag("alert('hi');") -> "<script>alert('hi');</script>"
-string scriptTag(string code) {
-  return "<script>%s</script>".format(code);
+string scriptTag(string code, string nonce = null) {
+  auto element = new HtmlElement("script").raw(escapeRawText(code, "script"));
+  if (nonce.length > 0) {
+    element.attr("nonce", nonce);
+  }
+  return element.toString;
 }
 
 /// External script element, e.g. scriptSrc("app.js") -> `<script src="app.js"></script>`
@@ -40,7 +44,7 @@ string noscript(string content) {
 
 /// Event handler attribute, e.g. onEvent("click", "save()") -> `onclick="save()"`
 string onEvent(string event, string code) {
-  return `on%s="%s"`.format(event, escapeHtmlAttribute(code));
+  return htmlAttr("on" ~ event, code);
 }
 
 /// onclick attribute
@@ -102,6 +106,10 @@ unittest {
   assert(scriptSrc("app.js", false, true) == `<script src="app.js" async></script>`);
   assert(scriptModule("app.js") == `<script type="module" src="app.js"></script>`);
   assert(noscript("No JS") == "<noscript>No JS</noscript>");
+
+  // inline code cannot close its element
+  assert(scriptTag("a = '</script><b>';") == `<script>a = '<\/script><b>';</script>`);
+  assert(scriptTag("a();", "abc") == `<script nonce="abc">a();</script>`);
 
   // event handler attributes
   assert(onEvent("click", "save()") == `onclick="save()"`);

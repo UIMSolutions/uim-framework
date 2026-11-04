@@ -17,7 +17,7 @@ string doctype() {
 }
 
 /// A complete HTML5 document with head and body.
-class HtmlDocument {
+class HtmlDocument : HtmlNode {
   this(string title = null) {
     _title = title;
   }
@@ -46,6 +46,12 @@ class HtmlDocument {
     return this;
   }
 
+  /// Adds several raw strings to the head, e.g. the result of openGraphTags (fluent interface)
+  auto addHead(string[] contents) {
+    _headEntries ~= contents;
+    return this;
+  }
+
   /// Adds a meta tag with name/content to the head (fluent interface)
   auto meta(string name, string content) {
     return addHead(metaName(name, content));
@@ -67,7 +73,12 @@ class HtmlDocument {
 
   /// Adds an inline script to the head (fluent interface)
   auto script(string code) {
-    return addHead(rawScript(code));
+    return addHead(scriptTag(code));
+  }
+
+  /// Adds an inline stylesheet to the head (fluent interface)
+  auto inlineStyle(string css) {
+    return addHead(styleTag(css));
   }
 
   /// Adds a favicon to the head (fluent interface)
@@ -81,22 +92,20 @@ class HtmlDocument {
     return this;
   }
 
-  /// Adds an element to the body (fluent interface)
-  auto add(HtmlElement element) {
-    _bodyEntries ~= element.toString;
+  /// Adds a node to the body (fluent interface). It is rendered with the document, so it can still change.
+  auto add(HtmlNode node) {
+    _bodyEntries ~= node;
     return this;
   }
 
   /// Adds raw HTML to the body (fluent interface)
   auto raw(string html) {
-    _bodyEntries ~= html;
-    return this;
+    return add(new HtmlRaw(html));
   }
 
   /// Adds escaped text to the body (fluent interface)
   auto text(string content) {
-    _bodyEntries ~= escapeHtml(content);
-    return this;
+    return add(new HtmlText(content));
   }
 
   /// The document title
@@ -119,13 +128,35 @@ class HtmlDocument {
 
   /// Renders the body section
   string renderBody() const {
-    return "<body>\n  %s\n</body>".format(_bodyEntries.join("\n  "));
+    auto sink = appender!string;
+    putBody(sink);
+    return sink.data;
   }
 
-  /// Renders the complete document
-  override string toString() const {
-    string htmlAttrs = _lang.length > 0 ? ` lang="%s"`.format(_lang) : "";
-    return "%s\n<html%s>\n%s\n%s\n</html>".format(doctype, htmlAttrs, renderHead, renderBody);
+  /// Writes the complete document to a sink
+  override void render(ref Appender!string sink) const {
+    sink.put(doctype);
+    sink.put("\n<html");
+    if (_lang.length > 0) {
+      sink.put(' ');
+      putHtmlAttr(sink, "lang", _lang);
+    }
+    sink.put(">\n");
+    sink.put(renderHead);
+    sink.put('\n');
+    putBody(sink);
+    sink.put("\n</html>");
+  }
+
+  private void putBody(ref Appender!string sink) const {
+    sink.put("<body>\n  ");
+    foreach (i, node; _bodyEntries) {
+      if (i > 0) {
+        sink.put("\n  ");
+      }
+      node.render(sink);
+    }
+    sink.put("\n</body>");
   }
 
   private string _title;
@@ -133,7 +164,7 @@ class HtmlDocument {
   private string _charset = "utf-8";
   private bool _withViewport = true;
   private string[] _headEntries;
-  private string[] _bodyEntries;
+  private HtmlNode[] _bodyEntries;
 }
 
 /// Creates an HTML document builder
@@ -144,10 +175,6 @@ HtmlDocument htmlDocument(string title = null) {
 /// Renders a minimal HTML5 page in one call
 string htmlPage(string title, string bodyContent, string lang = "en") {
   return new HtmlDocument(title).lang(lang).raw(bodyContent).toString;
-}
-
-private string rawScript(string code) {
-  return "<script>%s</script>".format(code);
 }
 
 ///
@@ -199,4 +226,24 @@ unittest {
   assert(page.canFind("<p>Hi</p>"));
 
   assert(htmlDocument.toString.canFind("<!DOCTYPE html>"));
+
+  // added elements stay live until the document is rendered
+  auto content = mainElement();
+  auto live = htmlDocument("T").add(content);
+  content.text("added later");
+  assert(live.renderBody.canFind("<main>added later</main>"));
+
+  // any node can be added
+  assert(htmlDocument("T").add(htmlTable()).toString.canFind("<table>"));
+
+  // attribute values are escaped
+  assert(htmlDocument.lang(`"><script>`).toString.canFind(`<html lang="&quot;&gt;&lt;script&gt;">`));
+
+  // inline content cannot close its element
+  auto inlined = htmlDocument.script("x = '</script>';").inlineStyle("a{content:'</style>'}").renderHead;
+  assert(inlined.canFind(`<script>x = '<\/script>';</script>`));
+  assert(inlined.canFind(`<style>a{content:'<\/style>'}</style>`));
+
+  // tag lists
+  assert(htmlDocument.addHead(openGraphTags("T", "website", "https://u")).renderHead.canFind("og:url"));
 }

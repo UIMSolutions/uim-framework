@@ -128,22 +128,22 @@ string attr(string base, string attribute) {
 
 /// Attribute value selector, e.g. attr("input", "type", "text") -> "input[type=\"text\"]"
 string attr(string base, string attribute, string value) {
-  return "%s[%s=\"%s\"]".format(base, attribute, value);
+  return "%s[%s=%s]".format(base, attribute, cssString(value));
 }
 
 /// Attribute "begins with" selector, e.g. attrStartsWith("a", "href", "https") -> "a[href^=\"https\"]"
 string attrStartsWith(string base, string attribute, string value) {
-  return "%s[%s^=\"%s\"]".format(base, attribute, value);
+  return "%s[%s^=%s]".format(base, attribute, cssString(value));
 }
 
 /// Attribute "ends with" selector, e.g. attrEndsWith("a", "href", ".pdf") -> "a[href$=\".pdf\"]"
 string attrEndsWith(string base, string attribute, string value) {
-  return "%s[%s$=\"%s\"]".format(base, attribute, value);
+  return "%s[%s$=%s]".format(base, attribute, cssString(value));
 }
 
 /// Attribute "contains" selector, e.g. attrContains("a", "href", "example") -> "a[href*=\"example\"]"
 string attrContains(string base, string attribute, string value) {
-  return "%s[%s*=\"%s\"]".format(base, attribute, value);
+  return "%s[%s*=%s]".format(base, attribute, cssString(value));
 }
 
 ///
@@ -178,4 +178,7 @@ unittest {
   assert(attrStartsWith("a", "href", "https") == "a[href^=\"https\"]");
   assert(attrEndsWith("a", "href", ".pdf") == "a[href$=\".pdf\"]");
   assert(attrContains("a", "href", "example") == "a[href*=\"example\"]");
+
+  // values are escaped
+  assert(attr("a", "title", `x"]{}`) == `a[title="x\"]{}"]`);
 }

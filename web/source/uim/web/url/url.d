@@ -5,6 +5,9 @@
 *****************************************************************************************************************/
 module uim.web.url.url;
 
+import std.ascii : isAlpha, isAlphaNum, isDigit;
+import std.exception : assertThrown, enforce;
+
 import uim.web;
 
 mixin(ShowModule!());
@@ -38,9 +41,20 @@ class Url {
     return _port;
   }
 
-  /// The path, e.g. "/users/1"
+  /// The user information of the authority, e.g. "user:secret", as it appears in the URL
+  string userInfo() const {
+    return _userInfo;
+  }
+
+  /// The scheme-specific part of a URL without authority, e.g. "a@b.c" of "mailto:a@b.c"
+  string opaque() const {
+    return _opaque;
+  }
+
+  /// The decoded path, e.g. "/users/1"
   string path() const {
-    return "/" ~ _segments.join("/");
+    string joined = "/" ~ _segments.join("/");
+    return _trailingSlash && _segments.length > 0 ? joined ~ "/" : joined;
   }
 
   /// The path segments
@@ -76,15 +90,30 @@ class Url {
     return this;
   }
 
-  /// Sets the path from a string (fluent interface)
-  auto setPath(string value) {
-    _segments = value.split("/").filter!(segment => segment.length > 0).array;
+  /// Sets the user information, which must already be percent-encoded (fluent interface)
+  auto setUserInfo(string value) {
+    _userInfo = value;
     return this;
   }
 
-  /// Appends a path segment (fluent interface)
+  /// Sets the path from a decoded string (fluent interface)
+  auto setPath(string value) {
+    _trailingSlash = value.endsWith("/");
+    string[] parts = value.split("/");
+    if (parts.length > 0 && value.startsWith("/")) {
+      parts = parts[1 .. $];
+    }
+    if (parts.length > 0 && _trailingSlash) {
+      parts = parts[0 .. $ - 1];
+    }
+    _segments = parts;
+    return this;
+  }
+
+  /// Appends a decoded path segment (fluent interface)
   auto addSegment(string segment) {
     _segments ~= segment;
+    _trailingSlash = false;
     return this;
   }
 
@@ -117,75 +146,185 @@ class Url {
     }
   }
 
+  /// The origin of the URL, e.g. "https://example.com:8080"
+  string origin() const {
+    auto result = appender!string;
+    putOrigin(result);
+    return result.data;
+  }
+
   /// Renders the complete URL
   override string toString() const {
     auto result = appender!string;
-    if (_scheme.length > 0) {
-      result.put(_scheme ~ "://");
-    }
-    result.put(_host);
-    if (_port > 0 && _port != defaultPort) {
-      result.put(":%s".format(_port));
-    }
-    if (_segments.length > 0) {
-      result.put("/" ~ _segments.map!(segment => percentEncode(segment)).join("/"));
+    if (_opaque.length > 0) {
+      result.put(_scheme);
+      result.put(':');
+      result.put(_opaque);
+    } else {
+      putOrigin(result, true);
+      foreach (segment; _segments) {
+        result.put('/');
+        result.put(encodePathSegment(segment));
+      }
+      if (_trailingSlash) {
+        result.put('/');
+      }
     }
     string queryString = _query.toString;
     if (queryString.length > 0) {
-      result.put("?" ~ queryString);
+      result.put('?');
+      result.put(queryString);
     }
     if (_fragment.length > 0) {
-      result.put("#" ~ percentEncode(_fragment));
+      result.put('#');
+      result.put(encodeFragment(_fragment));
     }
     return result.data;
+  }
+
+  private void putOrigin(ref Appender!string result, bool withUserInfo = false) const {
+    if (_scheme.length > 0) {
+      result.put(_scheme);
+      result.put("://");
+    } else if (_protocolRelative) {
+      result.put("//");
+    }
+    if (withUserInfo && _userInfo.length > 0) {
+      result.put(_userInfo);
+      result.put('@');
+    }
+    result.put(_host);
+    if (_port > 0 && _port != defaultPort) {
+      result.put(':');
+      result.put(_port.to!string);
+    }
   }
 
   private void parse(string url) {
     string rest = url;
 
     // fragment
-    auto hashIndex = rest.countUntil('#');
+    auto hashIndex = rest.indexOf('#');
     if (hashIndex >= 0) {
       _fragment = percentDecode(rest[hashIndex + 1 .. $]);
       rest = rest[0 .. hashIndex];
     }
 
     // query
-    auto queryIndex = rest.countUntil('?');
+    auto queryIndex = rest.indexOf('?');
     if (queryIndex >= 0) {
       _query = parseQuery(rest[queryIndex + 1 .. $]);
       rest = rest[0 .. queryIndex];
     }
 
     // scheme
-    auto schemeIndex = rest.countUntil("://");
-    if (schemeIndex >= 0) {
+    auto schemeIndex = rest.indexOf("://");
+    auto colonIndex = rest.indexOf(':');
+    if (schemeIndex > 0 && isScheme(rest[0 .. schemeIndex])) {
       _scheme = rest[0 .. schemeIndex].toLower;
       rest = rest[schemeIndex + 3 .. $];
+    } else if (rest.startsWith("//")) {
+      _protocolRelative = true;
+      rest = rest[2 .. $];
+    } else if (colonIndex > 0 && isScheme(rest[0 .. colonIndex]) && !isPortThenPath(rest[colonIndex + 1 .. $])) {
+      // no authority, e.g. mailto:a@b.c (host:port without a scheme stays a host)
+      _scheme = rest[0 .. colonIndex].toLower;
+      _opaque = rest[colonIndex + 1 .. $];
+      return;
     }
 
-    // host and port (up to the first '/')
-    auto pathIndex = rest.countUntil('/');
-    string authority = pathIndex >= 0 ? rest[0 .. pathIndex] : rest;
-    string pathPart = pathIndex >= 0 ? rest[pathIndex .. $] : null;
+    // authority (up to the first '/') and path
+    auto pathIndex = rest.indexOf('/');
+    parseAuthority(pathIndex >= 0 ? rest[0 .. pathIndex] : rest);
+    if (pathIndex >= 0) {
+      // decode per segment: an encoded slash belongs to its segment
+      setPath(rest[pathIndex .. $]);
+      _segments = _segments.map!(segment => percentDecode(segment)).array;
+    }
+  }
 
-    auto colonIndex = authority.countUntil(':');
+  private void parseAuthority(string authority) {
+    auto atIndex = authority.lastIndexOf('@');
+    if (atIndex >= 0) {
+      _userInfo = authority[0 .. atIndex];
+      authority = authority[atIndex + 1 .. $];
+    }
+
+    // an IPv6 host contains colons of its own: [::1]:8080
+    auto hostEnd = authority.startsWith("[") ? authority.indexOf(']') + 1 : 0;
+    auto colonIndex = authority[hostEnd .. $].indexOf(':');
     if (colonIndex >= 0) {
-      _host = authority[0 .. colonIndex];
-      _port = authority[colonIndex + 1 .. $].to!int;
+      colonIndex += hostEnd;
+      _host = authority[0 .. colonIndex].toLower;
+      _port = parsePort(authority[colonIndex + 1 .. $]);
     } else {
-      _host = authority;
+      _host = authority.toLower;
     }
-
-    setPath(pathPart);
   }
 
   private string _scheme;
+  private string _userInfo;
   private string _host;
   private int _port;
+  private string _opaque;
+  private bool _protocolRelative;
   private string[] _segments;
+  private bool _trailingSlash;
   private QueryParams _query;
   private string _fragment;
+}
+
+/// RFC 3986 scheme: a letter followed by letters, digits, '+', '-' or '.'
+private bool isScheme(string value) {
+  return value.length > 0 && value[0].isAlpha
+    && value.representation.all!(b => (cast(char)b).isAlphaNum || b == '+' || b == '-' || b == '.');
+}
+
+// Whether the text after the first colon reads as a port, as in localhost:8080/path
+private bool isPortThenPath(string value) {
+  auto pathIndex = value.indexOf('/');
+  string port = pathIndex >= 0 ? value[0 .. pathIndex] : value;
+  return port.representation.all!(b => (cast(char)b).isDigit);
+}
+
+private int parsePort(string value) {
+  if (value.length == 0) {
+    return 0; // "host:" means the default port
+  }
+  enforce(value.length <= 5 && value.representation.all!(b => (cast(char)b).isDigit)
+      && value.to!int <= 65_535, "Invalid port: " ~ value);
+  return value.to!int;
+}
+
+/// Schemes isSafeUrl accepts by default
+immutable string[] safeUrlSchemes = ["http", "https", "mailto", "tel"];
+
+/**
+ * Checks whether a URL from an untrusted source is safe to use in href or src.
+ *
+ * Relative URLs and the allowed schemes pass; javascript:, data:, vbscript: and any other
+ * scheme do not. Whitespace and control characters are ignored first, as browsers ignore them.
+ */
+bool isSafeUrl(string value, const(string)[] allowedSchemes = safeUrlSchemes) {
+  import std.string : indexOfAny;
+
+  auto cleaned = appender!string;
+  foreach (char c; value) {
+    if (c > ' ' && c != 0x7F) {
+      cleaned.put(c);
+    }
+  }
+  string candidate = cleaned.data;
+  auto schemeEnd = candidate.indexOfAny(":/?#");
+  if (schemeEnd <= 0 || candidate[schemeEnd] != ':') {
+    return true;
+  }
+  return allowedSchemes.canFind(candidate[0 .. schemeEnd].toLower);
+}
+
+/// Returns a URL from an untrusted source if it is safe, a fallback otherwise
+string safeUrl(string value, string fallback = "#") {
+  return isSafeUrl(value) ? value : fallback;
 }
 
 /// Creates a URL by parsing a string, e.g. url("https://example.com/path")
@@ -202,8 +341,10 @@ Url urlBuilder(string scheme, string host) {
 /// Joins a base URL with path segments, e.g. urlJoin("https://api.example.com", "users", "1")
 string urlJoin(string base, string[] segments...) {
   auto result = new Url(base);
-  foreach (segment; segments) {
-    result.addSegment(segment);
+  foreach (segment; segments.map!(path => path.split("/")).joiner) {
+    if (segment.length > 0) {
+      result.addSegment(segment);
+    }
   }
   return result.toString;
 }
@@ -267,4 +408,82 @@ unittest {
   assert(url("ws://host").defaultPort == 80);
   assert(url("wss://host").isSecure);
   assert(url("custom://host").defaultPort == 0);
+
+  // percent-encoded segments are decoded once and encoded once
+  assert(url("https://x.io/a%20b").segments == ["a b"]);
+  assert(url("https://x.io/a%20b").path == "/a b");
+  assert(url("https://x.io/a%20b").toString == "https://x.io/a%20b");
+  assert(url("https://x.io/a%2Fb/c").segments == ["a/b", "c"]);
+  assert(url("https://x.io/a%2Fb/c").toString == "https://x.io/a%2Fb/c");
+
+  // paths round-trip
+  foreach (value; ["https://x.io/", "https://x.io/a/", "https://x.io/a//b", "https://x.io/a;v=1,2/b:c",
+      "https://x.io/#/route?a=1", "/relative/path", "/", "file:///etc/hosts", "//cdn.x.io/a.js",
+      "https://u:p@x.io:8080/a", "http://[::1]:8080/a", "http://[::1]/a", "mailto:a@b.c",
+      "tel:+49123", "mailto:a@b.c?subject=hi", "urn:isbn:123", "example.com:8080/a", "localhost:8080"]) {
+    assert(url(value).toString == value, value);
+  }
+  assert(url("https://x.io/a/").path == "/a/");
+  assert(url("https://x.io/a/").addSegment("b").toString == "https://x.io/a/b");
+  assert(url("https://x.io").setPath("/").toString == "https://x.io/");
+
+  // authority
+  auto full = url("https://u:p@EXAMPLE.com:8080/a");
+  assert(full.userInfo == "u:p");
+  assert(full.host == "example.com");
+  assert(full.port == 8080);
+  assert(full.origin == "https://example.com:8080");
+  assert(url("https://x.io:443/a").origin == "https://x.io");
+  assert(url("https://x.io").setUserInfo("u").toString == "https://u@x.io");
+  assert(url("http://u@p@x.io").userInfo == "u@p");
+
+  auto ipv6 = url("http://[::1]:8080/a");
+  assert(ipv6.host == "[::1]");
+  assert(ipv6.port == 8080);
+  assert(url("http://[::1]").port == 0);
+  assert(url("http://x.io:/a").port == 0);
+
+  auto protocolRelative = url("//x.io/a");
+  assert(protocolRelative.host == "x.io");
+  assert(protocolRelative.scheme is null);
+  assert(protocolRelative.segments == ["a"]);
+
+  // no authority
+  auto mail = url("mailto:a@b.c?subject=hi");
+  assert(mail.scheme == "mailto");
+  assert(mail.opaque == "a@b.c");
+  assert(mail.host is null);
+  assert(mail.query.get("subject") == "hi");
+
+  // host and port without a scheme
+  assert(url("localhost:8080/a").host == "localhost");
+  assert(url("localhost:8080/a").port == 8080);
+
+  // invalid ports are reported
+  assertThrown(url("http://x.io:abc/"));
+  assertThrown(url("http://x.io:99999/"));
+
+  // non-ASCII input is split at the right byte
+  auto unicode = url("https://x.io/ä/ö?ü=1#ß");
+  assert(unicode.segments == ["ä", "ö"]);
+  assert(unicode.query.get("ü") == "1");
+  assert(unicode.fragment == "ß");
+  assert(url("https://bücher.de:8080/a").port == 8080);
+
+  // join helper
+  assert(urlJoin("https://x.io/", "/a/", "b/c") == "https://x.io/a/b/c");
+  assert(urlJoin("https://x.io/base/", "c") == "https://x.io/base/c");
+
+  // untrusted URLs
+  foreach (safe; ["https://x.io", "HTTP://x.io", "/a", "a/b:c", "?a=b:c", "#a:b", "//x.io", "mailto:a@b.c", "tel:+49", ""]) {
+    assert(isSafeUrl(safe), safe);
+  }
+  foreach (unsafe; ["javascript:alert(1)", "JaVaScRiPt:alert(1)", " javascript:alert(1)", "java\tscript:alert(1)",
+      "java\nscript:alert(1)", "\x01javascript:alert(1)", "data:text/html,x", "vbscript:x", "file:///etc/passwd"]) {
+    assert(!isSafeUrl(unsafe), unsafe);
+  }
+  assert(isSafeUrl("data:image/png;base64,x", ["data"]));
+  assert(safeUrl("/a") == "/a");
+  assert(safeUrl("javascript:x") == "#");
+  assert(safeUrl("javascript:x", "/") == "/");
 }

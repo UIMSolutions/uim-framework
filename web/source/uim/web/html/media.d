@@ -72,7 +72,7 @@ string video(string[] sources, int width = 0, int height = 0, bool controls = tr
     element.attr("height", height.to!string);
   }
   foreach (src; sources) {
-    element.raw(new HtmlElement("source").attr("src", src).toString);
+    element.add(new HtmlElement("source").attr("src", src));
   }
   return element.toString;
 }
@@ -84,7 +84,7 @@ string audio(string[] sources, bool controls = true) {
     element.boolAttr("controls");
   }
   foreach (src; sources) {
-    element.raw(new HtmlElement("source").attr("src", src).toString);
+    element.add(new HtmlElement("source").attr("src", src));
   }
   return element.toString;
 }
@@ -114,7 +114,7 @@ string embed(string src, string type = null) {
 string picture(string[] sources, string fallbackSrc, string alt = null) {
   auto element = new HtmlElement("picture");
   foreach (src; sources) {
-    element.raw(new HtmlElement("source").attr("srcset", src).toString);
+    element.add(new HtmlElement("source").attr("srcset", src));
   }
   element.raw(img(fallbackSrc, alt));
   return element.toString;
@@ -125,7 +125,7 @@ unittest {
   // links
   assert(a("https://example.com", "Example") == `<a href="https://example.com">Example</a>`);
   assert(a("/x", "X", ["class": "link"]) == `<a class="link" href="/x">X</a>`);
-  assert(aBlank("https://example.com", "Ex") == `<a target="_blank" rel="noopener" href="https://example.com">Ex</a>`);
+  assert(aBlank("https://example.com", "Ex") == `<a rel="noopener" target="_blank" href="https://example.com">Ex</a>`);
   assert(mailto("a@b.c") == `<a href="mailto:a@b.c">a@b.c</a>`);
   assert(mailto("a@b.c", "Mail") == `<a href="mailto:a@b.c">Mail</a>`);
   assert(tel("+49123") == `<a href="tel:+49123">+49123</a>`);

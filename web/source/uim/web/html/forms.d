@@ -126,20 +126,26 @@ HtmlElement textarea(string name, string content = null, int rows = 0, int cols 
 
 /// Option element, e.g. option("de", "Germany") -> `<option value="de">Germany</option>`
 string option(string value, string content, bool selected = false) {
-  auto element = new HtmlElement("option").attr("value", value).text(content);
-  if (selected) {
-    element.boolAttr("selected");
-  }
-  return element.toString;
+  return optionElement(value, content, selected).toString;
 }
 
-/// Select element from value/label pairs
-HtmlElement select(string name, string[string] options, string selectedValue = null) {
+private HtmlElement optionElement(string value, string content, bool selected) {
+  auto element = new HtmlElement("option").attr("value", value).text(content);
+  return selected ? element.boolAttr("selected") : element;
+}
+
+/// Select element from value/label pairs, in the given order, e.g. select("c", [["de", "Germany"]])
+HtmlElement select(string name, string[2][] options, string selectedValue = null) {
   auto element = new HtmlElement("select").attr("name", name);
-  foreach (value, content; options) {
-    element.raw(option(value, content, value == selectedValue));
+  foreach (pair; options) {
+    element.add(optionElement(pair[0], pair[1], pair[0] == selectedValue));
   }
   return element;
+}
+
+/// Select element from an associative array, sorted by value
+HtmlElement select(string name, string[string] options, string selectedValue = null) {
+  return select(name, sortedPairs(options), selectedValue);
 }
 
 /// Button element, e.g. button("Save") -> "<button>Save</button>"
@@ -166,7 +172,7 @@ string legend(string content) {
 HtmlElement datalist(string id, string[] values) {
   auto element = new HtmlElement("datalist").id(id);
   foreach (value; values) {
-    element.raw(new HtmlElement("option").attr("value", value).toString);
+    element.add(new HtmlElement("option").attr("value", value));
   }
   return element;
 }
@@ -224,6 +230,12 @@ unittest {
   auto countrySelect = select("country", ["de": "Germany", "at": "Austria"], "at");
   assert(countrySelect.toString.canFind(`<select name="country">`));
   assert(countrySelect.toString.canFind(`<option value="at" selected>Austria</option>`));
+
+  // pairs keep their order, associative arrays are sorted
+  assert(select("c", [["z", "Z"], ["a", "A"]]).toString
+    == `<select name="c"><option value="z">Z</option><option value="a">A</option></select>`);
+  assert(select("c", ["z": "Z", "a": "A"]).toString
+    == `<select name="c"><option value="a">A</option><option value="z">Z</option></select>`);
 
   // button
   assert(button("Save") == `<button type="button">Save</button>`);

@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.web.html.element;
 
+import std.exception : assertThrown;
+
 import uim.web;
 
 mixin(ShowModule!());
@@ -22,23 +24,36 @@ bool isVoidElement(string tag) {
   return voidElements.canFind(tag.toLower);
 }
 
+/// Base class for renderable HTML nodes
+abstract class HtmlNode {
+  /// Writes the node to a sink. A whole tree renders into one buffer this way.
+  abstract void render(ref Appender!string sink) const;
+
+  /// Renders the node to a string
+  override string toString() const {
+    auto sink = appender!string;
+    render(sink);
+    return sink.data;
+  }
+}
+
 /// An HTML element with tag name, attributes and nested content.
 class HtmlElement : HtmlNode {
   this(string tag) {
-    _tag = tag;
+    _tag = checkHtmlName(tag);
+    _isVoid = isVoidElement(tag);
   }
 
   this(string tag, string content) {
     this(tag);
-    text(content);
-  }
-
-  this(string tag, string[string] attributes, string content = null) {
-    this(tag);
-    attrs(attributes);
     if (content.length > 0) {
       text(content);
     }
+  }
+
+  this(string tag, string[string] attributes, string content = null) {
+    this(tag, content);
+    attrs(attributes);
   }
 
   /// The tag name, e.g. "div"
@@ -46,54 +61,48 @@ class HtmlElement : HtmlNode {
     return _tag;
   }
 
-  /// Sets an attribute (fluent interface)
+  /// Sets an attribute (fluent interface). Throws if the name is not a valid HTML name.
   auto attr(string name, string value) {
-    _attributes[name] = value;
-    if (!_order.canFind(name)) {
-      _order ~= name;
-    }
-    return this;
+    return store(name, value, false);
   }
 
   /// Sets a boolean attribute without value (fluent interface)
   auto boolAttr(string name) {
-    _booleans[name] = true;
-    if (!_order.canFind(name)) {
-      _order ~= name;
-    }
-    return this;
+    return store(name, null, true);
   }
 
-  /// Sets all attributes of an associative array (fluent interface)
+  /// Sets all attributes of an associative array, sorted by name for stable output (fluent interface)
   auto attrs(string[string] attributes) {
-    foreach (name, value; attributes) {
-      attr(name, value);
+    foreach (name; attributes.keys.sort) {
+      attr(name, attributes[name]);
     }
     return this;
   }
 
   /// Removes an attribute (fluent interface)
   auto removeAttr(string name) {
-    _attributes.remove(name);
-    _booleans.remove(name);
-    _order = _order.filter!(n => n != name).array;
+    _attributes = _attributes.filter!(attribute => attribute.name != name).array;
     return this;
   }
 
   /// Checks whether an attribute is set
   bool hasAttr(string name) const {
-    return (name in _attributes) !is null || (name in _booleans) !is null;
+    return attrIndex(name) >= 0;
   }
 
   /// Returns the value of an attribute
   string getAttr(string name) const {
-    auto found = name in _attributes;
-    return found is null ? null : *found;
+    auto index = attrIndex(name);
+    return index < 0 ? null : _attributes[index].value;
   }
 
   /// All attribute names in insertion order
   string[] attrNames() const {
-    return _order.dup;
+    string[] names;
+    foreach (attribute; _attributes) {
+      names ~= attribute.name;
+    }
+    return names;
   }
 
   /// Sets the id attribute (fluent interface)
@@ -101,21 +110,41 @@ class HtmlElement : HtmlNode {
     return attr("id", value);
   }
 
-  /// Adds one or more classes to the class attribute (fluent interface)
+  /// All classes of the class attribute
+  string[] classes() const {
+    return getAttr("class").split;
+  }
+
+  /// Checks whether the element has a class
+  bool hasClass(string className) const {
+    return classes.canFind(className);
+  }
+
+  /// Adds classes to the class attribute, skipping those already present (fluent interface)
   auto addClass(string[] classNames...) {
-    auto existing = getAttr("class");
-    auto merged = existing is null
-      ? mergeClasses(classNames.array)
-      : mergeClasses([existing] ~ classNames.array);
-    return attr("class", merged);
+    auto merged = classes;
+    foreach (className; classNames.map!(names => names.split).joiner) {
+      if (!merged.canFind(className)) {
+        merged ~= className;
+      }
+    }
+    return merged.length > 0 ? attr("class", merged.join(" ")) : this;
+  }
+
+  /// Removes classes from the class attribute (fluent interface)
+  auto removeClass(string[] classNames...) {
+    auto remaining = classes.filter!(className => !classNames.canFind(className)).array;
+    return remaining.length > 0 ? attr("class", remaining.join(" ")) : removeAttr("class");
+  }
+
+  /// Adds a class if it is missing, removes it otherwise (fluent interface)
+  auto toggleClass(string className) {
+    return hasClass(className) ? removeClass(className) : addClass(className);
   }
 
   /// Sets the style attribute from declarations (fluent interface)
   auto style(string[string] declarations) {
-    string styleValue = declarations.keys.sort
-      .map!(property => "%s: %s;".format(property, declarations[property]))
-      .join(" ");
-    return attr("style", styleValue);
+    return attr("style", styleValue(declarations));
   }
 
   /// Sets a data-* attribute (fluent interface)
@@ -130,28 +159,23 @@ class HtmlElement : HtmlNode {
 
   /// Appends escaped text content (fluent interface)
   auto text(string content) {
-    _children ~= new HtmlText(content);
-    return this;
+    return add(new HtmlText(content));
   }
 
   /// Appends raw, unescaped HTML content (fluent interface)
   auto raw(string html) {
-    _children ~= new HtmlRaw(html);
-    return this;
+    return add(new HtmlRaw(html));
   }
 
-  /// Appends a child element (fluent interface)
-  auto add(HtmlElement childElement) {
-    _children ~= childElement;
+  /// Appends a child node (fluent interface)
+  auto add(HtmlNode child) {
+    _children ~= child;
     return this;
   }
 
   /// Creates and appends a child element
   HtmlElement add(string childTag, string content = null) {
-    auto childElement = new HtmlElement(childTag);
-    if (content.length > 0) {
-      childElement.text(content);
-    }
+    auto childElement = new HtmlElement(childTag, content);
     add(childElement);
     return childElement;
   }
@@ -161,39 +185,63 @@ class HtmlElement : HtmlNode {
     return _children.dup;
   }
 
-  /// Renders the element including its children
-  override string toString() const {
-    string attrs = _order
-      .map!((name) {
-        if (name in _booleans) {
-          return name;
-        }
-        return htmlAttr(name, _attributes[name]);
-      })
-      .join(" ");
+  /// Writes the element including its children to a sink
+  override void render(ref Appender!string sink) const {
+    sink.put('<');
+    sink.put(_tag);
+    foreach (attribute; _attributes) {
+      sink.put(' ');
+      if (attribute.isBoolean) {
+        sink.put(attribute.name);
+      } else {
+        putHtmlAttr(sink, attribute.name, attribute.value);
+      }
+    }
+    sink.put('>');
 
-    string openTag = attrs.length > 0
-      ? "<%s %s>".format(_tag, attrs)
-      : "<%s>".format(_tag);
-
-    if (isVoidElement(_tag)) {
-      return openTag;
+    if (_isVoid) {
+      return;
     }
 
-    string inner = _children.map!(childNode => childNode.toString).join;
-    return "%s%s</%s>".format(openTag, inner, _tag);
+    foreach (childNode; _children) {
+      childNode.render(sink);
+    }
+    sink.put("</");
+    sink.put(_tag);
+    sink.put('>');
+  }
+
+  private auto store(string name, string value, bool isBoolean) {
+    auto index = attrIndex(name);
+    if (index < 0) {
+      _attributes ~= Attribute(checkHtmlName(name), value, isBoolean);
+    } else {
+      _attributes[index].value = value;
+      _attributes[index].isBoolean = isBoolean;
+    }
+    return this;
+  }
+
+  // Elements carry few attributes: a linear scan beats a hash table and keeps insertion order for free
+  private ptrdiff_t attrIndex(string name) const {
+    foreach (i, attribute; _attributes) {
+      if (attribute.name == name) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  private static struct Attribute {
+    string name;
+    string value;
+    bool isBoolean;
   }
 
   private string _tag;
-  private string[string] _attributes;
-  private bool[string] _booleans;
-  private string[] _order;
+  private bool _isVoid;
+  private Attribute[] _attributes;
   private HtmlNode[] _children;
-}
-
-/// Base class for renderable HTML nodes
-abstract class HtmlNode {
-  abstract override string toString() const;
 }
 
 /// Escaped text node
@@ -202,8 +250,8 @@ class HtmlText : HtmlNode {
     _content = content;
   }
 
-  override string toString() const {
-    return escapeHtml(_content);
+  override void render(ref Appender!string sink) const {
+    putHtmlText(sink, _content);
   }
 
   private string _content;
@@ -215,8 +263,8 @@ class HtmlRaw : HtmlNode {
     _html = html;
   }
 
-  override string toString() const {
-    return _html;
+  override void render(ref Appender!string sink) const {
+    sink.put(_html);
   }
 
   private string _html;
@@ -323,4 +371,40 @@ unittest {
   assert(htmlTag("p", "Hello") == "<p>Hello</p>");
   assert(htmlTag("p", ["class": "intro"], "Hello") == `<p class="intro">Hello</p>`);
   assert(htmlTag("hr") == "<hr>");
+
+  // text is escaped like uim.core's escapeHtml
+  assert(htmlTag("p", `a'b"c`) == escapeHtml(`a'b"c`).format!"<p>%s</p>");
+
+  // output does not depend on hash order
+  assert(htmlElement("a").attrs(["z": "1", "b": "2", "m": "3"]).attrNames == ["b", "m", "z"]);
+
+  // an attribute is either boolean or valued, the latest call wins
+  assert(htmlElement("a").boolAttr("x").attr("x", "1").toString == `<a x="1"></a>`);
+  assert(htmlElement("a").attr("x", "1").boolAttr("x").toString == `<a x></a>`);
+  assert(htmlElement("a").attr("x", "1").attr("x", "2").attrNames == ["x"]);
+
+  // classes
+  auto classy = htmlElement("div").addClass("a b", "c").addClass("a");
+  assert(classy.getAttr("class") == "a b c");
+  assert(classy.classes == ["a", "b", "c"]);
+  assert(classy.hasClass("b"));
+  assert(!classy.hasClass("ab"));
+  assert(classy.removeClass("b").getAttr("class") == "a c");
+  assert(classy.toggleClass("a").getAttr("class") == "c");
+  assert(classy.toggleClass("a").getAttr("class") == "c a");
+  assert(classy.removeClass("a", "c").toString == "<div></div>");
+  assert(htmlElement("div").addClass("").toString == "<div></div>");
+
+  // no empty text node for missing content
+  assert(new HtmlElement("p", cast(string)null).children.length == 0);
+
+  // invalid names are rejected instead of injected
+  assertThrown(htmlElement("a").attr("x onload=alert(1)", "1"));
+  assertThrown(htmlElement("a").boolAttr("x y"));
+  assertThrown(htmlElement("a").data("x y", "1"));
+  assertThrown(htmlElement("a><script"));
+
+  // any node can be a child
+  auto wrapped = htmlElement("div").add(htmlTable());
+  assert(wrapped.toString == "<div><table><tbody></tbody></table></div>");
 }

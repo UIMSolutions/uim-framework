@@ -6,6 +6,7 @@
 module uim.web.http;
 
 public {
+  import uim.web.http.cookies;
   import uim.web.http.headers;
   import uim.web.http.methods;
   import uim.web.http.mimetypes;

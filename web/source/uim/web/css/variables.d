@@ -27,7 +27,7 @@ string cssVar(string name, string fallback) {
 }
 
 /// A collection of CSS custom properties, renderable as declarations or a :root rule.
-class CssVariables {
+class CssVariables : CssNode {
   /// Defines a custom property (fluent interface), e.g. set("primary", "#3498db")
   auto set(string name, string value) {
     auto varName = cssVarName(name);
@@ -80,8 +80,13 @@ class CssVariables {
     return "%s { %s }".format(selector, toDeclarations);
   }
 
-  override string toString() const {
-    return toRule;
+  /// Writes the custom properties as a :root rule to a sink
+  override void render(ref Appender!string sink, bool minified) const {
+    auto rule = new CssRule(":root");
+    foreach (name; _order) {
+      rule.set(name, _variables[name]);
+    }
+    rule.render(sink, minified);
   }
 
   private string[string] _variables;
@@ -93,11 +98,11 @@ CssVariables cssVariables() {
   return new CssVariables;
 }
 
-/// Creates a collection of CSS custom properties from an associative array
+/// Creates a collection of CSS custom properties from an associative array, sorted by name
 CssVariables cssVariables(string[string] values) {
   auto variables = new CssVariables;
-  foreach (name, value; values) {
-    variables.set(name, value);
+  foreach (name; values.keys.sort) {
+    variables.set(name, values[name]);
   }
   return variables;
 }
@@ -133,4 +138,6 @@ unittest {
   assert(fromMap.length == 2);
   assert(fromMap.has("dark"));
   assert(fromMap.has("light"));
+  assert(fromMap.names == ["--dark", "--light"]);
+  assert(fromMap.minify == ":root{--dark:#111;--light:#eee}");
 }

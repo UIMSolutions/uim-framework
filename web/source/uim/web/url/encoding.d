@@ -13,12 +13,35 @@ mixin(ShowModule!());
 
 /// Percent-encodes a string for use in a URL (unreserved characters stay as-is)
 string percentEncode(string value) {
+  return encode!isUnreserved(value);
+}
+
+/// Percent-encodes a path segment: keeps the characters RFC 3986 allows there, encodes '/'
+string encodePathSegment(string value) {
+  return encode!isPathChar(value);
+}
+
+/// Percent-encodes a fragment: keeps the characters RFC 3986 allows there, e.g. "/route?a=1"
+string encodeFragment(string value) {
+  return encode!(b => b.isPathChar || b == '/' || b == '?')(value);
+}
+
+private string encode(alias keep, bool spaceAsPlus = false)(string value) {
+  auto bytes = value.representation;
+  if (bytes.all!keep) {
+    return value;
+  }
   auto result = appender!string;
-  foreach (ubyte b; value.representation) {
-    if (b.isUnreserved) {
+  result.reserve(value.length + value.length / 2);
+  foreach (ubyte b; bytes) {
+    if (keep(b)) {
       result.put(cast(char)b);
+    } else if (spaceAsPlus && b == ' ') {
+      result.put('+');
     } else {
-      result.put("%%%02X".format(b));
+      result.put('%');
+      result.put(hexDigits[b >> 4]);
+      result.put(hexDigits[b & 0xF]);
     }
   }
   return result.data;
@@ -26,13 +49,18 @@ string percentEncode(string value) {
 
 /// Decodes a percent-encoded string, e.g. percentDecode("a%20b") -> "a b"
 string percentDecode(string value) {
+  if (!value.canFind('%')) {
+    return value;
+  }
   auto result = appender!string;
+  result.reserve(value.length);
   size_t i;
   while (i < value.length) {
     if (value[i] == '%' && i + 2 < value.length) {
-      auto hexPart = value[i + 1 .. i + 3];
-      if (hexPart.all!(c => c.isHexDigit)) {
-        result.put(cast(char)hexPart.to!ubyte(16));
+      int high = hexValue(value[i + 1]);
+      int low = hexValue(value[i + 2]);
+      if (high >= 0 && low >= 0) {
+        result.put(cast(char)(high << 4 | low));
         i += 3;
         continue;
       }
@@ -45,17 +73,7 @@ string percentDecode(string value) {
 
 /// Form-encodes a string (application/x-www-form-urlencoded): spaces become '+'
 string formUrlEncode(string value) {
-  auto result = appender!string;
-  foreach (ubyte b; value.representation) {
-    if (b.isUnreserved) {
-      result.put(cast(char)b);
-    } else if (b == ' ') {
-      result.put('+');
-    } else {
-      result.put("%%%02X".format(b));
-    }
-  }
-  return result.data;
+  return encode!(isUnreserved, true)(value);
 }
 
 /// Decodes a form-encoded string: '+' becomes a space
@@ -70,8 +88,21 @@ private bool isUnreserved(ubyte b) {
     || b == '-' || b == '_' || b == '.' || b == '~';
 }
 
-private bool isHexDigit(dchar c) {
-  return (c >= '0' && c <= '9') || (c >= 'a' && c <= 'f') || (c >= 'A' && c <= 'F');
+private bool isPathChar(ubyte b) {
+  return b.isUnreserved || "!$&'()*+,;=:@".representation.canFind(b);
+}
+
+private immutable hexDigits = "0123456789ABCDEF";
+
+/// The value of a hex digit, -1 for any other character
+private int hexValue(char c) {
+  if (c >= '0' && c <= '9') {
+    return c - '0';
+  }
+  if (c >= 'a' && c <= 'f') {
+    return c - 'a' + 10;
+  }
+  return c >= 'A' && c <= 'F' ? c - 'A' + 10 : -1;
 }
 
 ///
@@ -104,4 +135,18 @@ unittest {
   assert(formUrlDecode("a+b") == "a b");
   assert(formUrlDecode("a%20b") == "a b");
   assert(formUrlDecode(formUrlEncode("a b&c")) == "a b&c");
+
+  // every byte survives a round trip
+  string allBytes;
+  foreach (b; 0 .. 256) {
+    allBytes ~= cast(char)b;
+  }
+  assert(percentDecode(percentEncode(allBytes)) == allBytes);
+  assert(formUrlDecode(formUrlEncode(allBytes)) == allBytes);
+
+  // components
+  assert(encodePathSegment("a b/c:d@e") == "a%20b%2Fc:d@e");
+  assert(encodePathSegment("x;y=1,2") == "x;y=1,2");
+  assert(encodeFragment("/route?a=1&b") == "/route?a=1&b");
+  assert(encodeFragment("a b#c") == "a%20b%23c");
 }

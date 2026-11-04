@@ -11,20 +11,22 @@ mixin(ShowModule!());
 
 @safe:
 
-/// A CSS @media block containing rules for a media condition.
-class CssMedia {
-  this(string condition) {
+/// A conditional group rule: an at-rule with a condition and a block of nested rules.
+class CssGroupRule : CssNode {
+  /// Params: keyword = The at-keyword without '@', e.g. "supports"
+  this(string keyword, string condition) {
+    _keyword = keyword;
     _condition = condition;
   }
 
-  /// The media condition, e.g. "(max-width: 600px)"
+  /// The condition, e.g. "(max-width: 600px)"
   string condition() const {
     return _condition;
   }
 
-  /// Adds a rule to the media block (fluent interface)
-  auto add(CssRule rule) {
-    _rules ~= rule;
+  /// Adds a nested rule or block (fluent interface)
+  auto add(CssNode node) {
+    _entries ~= node;
     return this;
   }
 
@@ -35,24 +37,66 @@ class CssMedia {
     return newRule;
   }
 
-  /// All rules of the media block
+  /// All rules of the block
   CssRule[] rules() {
-    return _rules.dup;
+    CssRule[] result;
+    foreach (entry; _entries) {
+      if (auto found = cast(CssRule)entry) {
+        result ~= found;
+      }
+    }
+    return result;
   }
 
-  /// Renders the media block
-  override string toString() const {
-    string body = _rules.map!(rule => rule.toString).join(" ");
-    return "@media %s { %s }".format(_condition, body);
+  /// Writes the block to a sink
+  override void render(ref Appender!string sink, bool minified) const {
+    sink.put('@');
+    sink.put(_keyword);
+    if (_condition.length > 0) {
+      sink.put(' ');
+      // conditions may contain strings, as in @supports (content: "a: b")
+      sink.put(minified && !_condition.canFind('"') ? _condition.replace(": ", ":") : _condition);
+    }
+    sink.put(minified ? "{" : " {");
+    foreach (entry; _entries) {
+      if (!minified) {
+        sink.put(' ');
+      }
+      entry.render(sink, minified);
+    }
+    sink.put(minified ? "}" : " }");
   }
 
+  private string _keyword;
   private string _condition;
-  private CssRule[] _rules;
+  private CssNode[] _entries;
+}
+
+/// A CSS @media block containing rules for a media condition.
+class CssMedia : CssGroupRule {
+  this(string condition) {
+    super("media", condition);
+  }
 }
 
 /// Creates a @media block, e.g. cssMedia("(max-width: 600px)")
 CssMedia cssMedia(string condition) {
   return new CssMedia(condition);
+}
+
+/// Creates a @supports block, e.g. cssSupports("(display: grid)")
+CssGroupRule cssSupports(string condition) {
+  return new CssGroupRule("supports", condition);
+}
+
+/// Creates a @container block, e.g. cssContainer("(min-width: 400px)") or cssContainer("sidebar (min-width: 400px)")
+CssGroupRule cssContainer(string condition) {
+  return new CssGroupRule("container", condition);
+}
+
+/// Creates a @layer block, e.g. cssLayer("base")
+CssGroupRule cssLayer(string name = null) {
+  return new CssGroupRule("layer", name);
 }
 
 /// Media condition for viewports up to a maximum width, e.g. maxWidth(px(600)) -> "(max-width: 600px)"
@@ -141,4 +185,20 @@ unittest {
   assert(prefersReducedMotion == "(prefers-reduced-motion: reduce)");
   assert(printMedia == "print");
   assert(screenMedia == "screen");
+
+  // minified
+  assert(cssMedia("(max-width: 600px)").add(cssRule("a").set("b", "1")).minify == "@media (max-width:600px){a{b:1}}");
+
+  // other group rules
+  auto supports = cssSupports("(display: grid)");
+  supports.rule(".a").set("display", "grid");
+  assert(supports.toString == "@supports (display: grid) { .a { display: grid; } }");
+  assert(cssSupports(`(content: "a: b")`).minify == `@supports (content: "a: b"){}`);
+  assert(cssContainer("(min-width: 400px)").minify == "@container (min-width:400px){}");
+  assert(cssLayer("base").add(cssRule("a")).toString == "@layer base { a { } }");
+  assert(cssLayer().minify == "@layer{}");
+
+  // nesting
+  assert(cssSupports("(display: grid)").add(cssMedia("print").add(cssRule("a").set("b", "1"))).minify
+    == "@supports (display:grid){@media print{a{b:1}}}");
 }

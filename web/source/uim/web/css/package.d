@@ -8,6 +8,7 @@ module uim.web.css;
 public {
   import uim.web.css.colors;
   import uim.web.css.declaration;
+  import uim.web.css.functions;
   import uim.web.css.keyframes;
   import uim.web.css.media;
   import uim.web.css.properties;

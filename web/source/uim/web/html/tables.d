@@ -27,21 +27,21 @@ string td(string content, size_t colspan) {
 }
 
 /// Table row from cell contents, e.g. tr(["a", "b"]) -> "<tr><td>a</td><td>b</td></tr>"
-string tr(string[] cells, string[string] attributes = null) {
-  auto row = new HtmlElement("tr").attrs(attributes);
-  foreach (cell; cells) {
-    row.add("td", cell);
-  }
-  return row.toString;
+string tr(in string[] cells, string[string] attributes = null) {
+  return rowElement("td", cells, attributes).toString;
 }
 
 /// Table row of header cells, e.g. trHeader(["a", "b"]) -> "<tr><th>a</th><th>b</th></tr>"
-string trHeader(string[] cells, string[string] attributes = null) {
+string trHeader(in string[] cells, string[string] attributes = null) {
+  return rowElement("th", cells, attributes).toString;
+}
+
+private HtmlElement rowElement(string cellTag, in string[] cells, string[string] attributes = null) {
   auto row = new HtmlElement("tr").attrs(attributes);
   foreach (cell; cells) {
-    row.add("th", cell);
+    row.add(cellTag, cell);
   }
-  return row.toString;
+  return row;
 }
 
 /// Table caption element
@@ -50,7 +50,7 @@ string caption(string content) {
 }
 
 /// A complete HTML table with header row and data rows.
-class HtmlTable {
+class HtmlTable : HtmlNode {
   this() {
   }
 
@@ -62,7 +62,7 @@ class HtmlTable {
 
   /// Sets the header row (fluent interface)
   auto header(string[] cells) {
-    _header = cells;
+    _header = cells.dup;
     return this;
   }
 
@@ -83,8 +83,8 @@ class HtmlTable {
     return this;
   }
 
-  /// Renders the table
-  override string toString() const {
+  /// Writes the table to a sink
+  override void render(ref Appender!string sink) const {
     auto table = new HtmlElement("table").attrs(_attributes.dup);
 
     if (_caption.length > 0) {
@@ -92,18 +92,15 @@ class HtmlTable {
     }
 
     if (_header.length > 0) {
-      auto thead = new HtmlElement("thead");
-      thead.raw(trHeader(_header.dup));
-      table.add(thead);
+      table.add("thead").add(rowElement("th", _header));
     }
 
-    auto tbody = new HtmlElement("tbody");
+    auto tbody = table.add("tbody");
     foreach (rowCells; _rows) {
-      tbody.raw(tr(rowCells.dup));
+      tbody.add(rowElement("td", rowCells));
     }
-    table.add(tbody);
 
-    return table.toString;
+    table.render(sink);
   }
 
   private string _caption;

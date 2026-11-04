@@ -104,6 +104,15 @@ string stylesheetLink(string href) {
   return new HtmlElement("link").attr("rel", "stylesheet").attr("href", href).toString;
 }
 
+/// Inline style element, e.g. styleTag("a { color: red; }")
+string styleTag(string css, string nonce = null) {
+  auto element = new HtmlElement("style").raw(escapeRawText(css, "style"));
+  if (nonce.length > 0) {
+    element.attr("nonce", nonce);
+  }
+  return element.toString;
+}
+
 /// Favicon link, e.g. favicon("favicon.ico")
 string favicon(string href, string type = null) {
   auto element = new HtmlElement("link").attr("rel", "icon").attr("href", href);
@@ -170,6 +179,9 @@ unittest {
   assert(preconnect("https://fonts.example.com") == `<link rel="preconnect" href="https://fonts.example.com">`);
   assert(baseTag("https://example.com/") == `<base href="https://example.com/">`);
   assert(baseTag("https://example.com/", "_blank") == `<base href="https://example.com/" target="_blank">`);
+
+  assert(styleTag("a { color: red; }") == "<style>a { color: red; }</style>");
+  assert(styleTag("a{}", "abc") == `<style nonce="abc">a{}</style>`);
 
   // content is escaped
   assert(metaDescription(`a "b"`) == `<meta name="description" content="a &quot;b&quot;">`);

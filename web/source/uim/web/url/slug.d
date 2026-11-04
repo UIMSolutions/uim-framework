@@ -23,7 +23,7 @@ string slugify(string value, string separator = "-") {
     } else if (auto replacement = c.transliterate) {
       result.put(replacement);
       lastWasSeparator = false;
-    } else if (!lastWasSeparator) {
+    } else if (!c.isCombiningMark && !lastWasSeparator) {
       result.put(separator);
       lastWasSeparator = true;
     }
@@ -38,30 +38,17 @@ string slugify(string value, string separator = "-") {
 
 /// Checks whether a string is a valid slug (lowercase alphanumeric with separators)
 bool isSlug(string value, string separator = "-") {
-  if (value.length == 0) {
-    return false;
-  }
-  if (value.startsWith(separator) || value.endsWith(separator)) {
-    return false;
-  }
-  bool lastWasSeparator = false;
-  foreach (dchar c; value) {
-    if (c.isSlugChar) {
-      lastWasSeparator = false;
-    } else if (value.length > 0 && separator.canFind(cast(char)c)) {
-      if (lastWasSeparator) {
-        return false;
-      }
-      lastWasSeparator = true;
-    } else {
-      return false;
-    }
-  }
-  return true;
+  auto words = separator.length > 0 ? value.split(separator) : [value];
+  return words.length > 0 && words.all!(word => word.length > 0 && word.all!isSlugChar);
 }
 
 private bool isSlugChar(dchar c) {
   return (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9');
+}
+
+// Combining marks carry no letter of their own, e.g. the accent of a decomposed "é"
+private bool isCombiningMark(dchar c) {
+  return c >= 0x0300 && c <= 0x036F;
 }
 
 /// Transliterates a non-ASCII character (e.g. German umlauts), returns null if unknown
@@ -72,15 +59,26 @@ private string transliterate(dchar c) {
     case 'ö': return "oe";
     case 'ü': return "ue";
     case 'ß': return "ss";
-    // French and others
-    case 'à', 'á', 'â', 'ã', 'å': return "a";
-    case 'è', 'é', 'ê', 'ë': return "e";
-    case 'ì', 'í', 'î', 'ï': return "i";
-    case 'ò', 'ó', 'ô', 'õ': return "o";
-    case 'ù', 'ú', 'û': return "u";
-    case 'ç': return "c";
-    case 'ñ': return "n";
+    // Latin letters with diacritics
+    case 'à', 'á', 'â', 'ã', 'å', 'ā', 'ă', 'ą': return "a";
+    case 'ç', 'ć', 'č': return "c";
+    case 'ď', 'đ', 'ð': return "d";
+    case 'è', 'é', 'ê', 'ë', 'ē', 'ė', 'ę', 'ě': return "e";
+    case 'ğ': return "g";
+    case 'ì', 'í', 'î', 'ï', 'ī', 'ı': return "i";
+    case 'ł': return "l";
+    case 'ñ', 'ń', 'ň': return "n";
+    case 'ò', 'ó', 'ô', 'õ', 'ø', 'ō', 'ő': return "o";
+    case 'ř': return "r";
+    case 'ś', 'ş', 'š': return "s";
+    case 'ť', 'ţ': return "t";
+    case 'ù', 'ú', 'û', 'ū', 'ů', 'ű': return "u";
     case 'ý', 'ÿ': return "y";
+    case 'ź', 'ż', 'ž': return "z";
+    // ligatures
+    case 'æ': return "ae";
+    case 'œ': return "oe";
+    case 'þ': return "th";
     default: return null;
   }
 }
@@ -121,4 +119,18 @@ unittest {
   assert(!isSlug("with space"));
   assert(!isSlug("with_underscore"));
   assert(isSlug("with_underscore", "_"));
+
+  // non-ASCII characters are never mistaken for the separator (U+012D ends in the byte of '-')
+  assert(!isSlug("a\u012Db"));
+
+  // multi-character separators
+  assert(isSlug("a--b", "--"));
+  assert(!isSlug("a-b", "--"));
+  assert(!isSlug("--a", "--"));
+
+  // further languages and combining marks
+  assert(slugify("Şükrü Iğdır İstanbul") == "suekrue-igdir-istanbul");
+  assert(slugify("Łódź") == "lodz");
+  assert(slugify("Dvořák Ærø") == "dvorak-aero");
+  assert(slugify("Cafe\u0301 au lait") == "cafe-au-lait");
 }

@@ -85,7 +85,9 @@ string classListToggle(string elementExpression, string className) {
 
 /// Sets a style property on an element, e.g. setStyle("el", "color", "red") -> `el.style.color = 'red';`
 string setStyle(string elementExpression, string property, string value) {
-  return "%s.style.%s = %s;".format(elementExpression, property, jsString(value));
+  return isJsIdentifier(property)
+    ? "%s.style.%s = %s;".format(elementExpression, property, jsString(value))
+    : "%s.style.setProperty(%s, %s);".format(elementExpression, jsString(property), jsString(value));
 }
 
 /// Appends a child element
@@ -167,6 +169,8 @@ unittest {
 
   // styles and structure
   assert(setStyle("el", "color", "red") == "el.style.color = 'red';");
+  assert(setStyle("el", "background-color", "red") == "el.style.setProperty('background-color', 'red');");
+  assert(setStyle("el", "--gap", "1px") == "el.style.setProperty('--gap', '1px');");
   assert(appendChild("parent", "child") == "parent.appendChild(child);");
   assert(removeElement("el") == "el.remove();");
   assert(focusElement("el") == "el.focus();");

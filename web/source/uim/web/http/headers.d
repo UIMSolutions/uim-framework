@@ -5,6 +5,8 @@
 *****************************************************************************************************************/
 module uim.web.http.headers;
 
+import std.exception : assertThrown, enforce;
+
 import uim.web;
 
 mixin(ShowModule!());
@@ -33,7 +35,9 @@ enum HttpHeader {
   lastModified = "Last-Modified",
   location = "Location",
   origin = "Origin",
+  permissionsPolicy = "Permissions-Policy",
   referer = "Referer",
+  referrerPolicy = "Referrer-Policy",
   server = "Server",
   setCookie = "Set-Cookie",
   strictTransportSecurity = "Strict-Transport-Security",
@@ -45,50 +49,84 @@ enum HttpHeader {
 }
 // #endregion common header names
 
-/// A collection of HTTP headers preserving insertion order.
+/// Checks whether a string is a valid header name (RFC 9110 token)
+bool isHeaderName(string name) {
+  return name.length > 0 && name.representation.all!(b => (b >= 'a' && b <= 'z') || (b >= 'A' && b <= 'Z')
+      || (b >= '0' && b <= '9') || "!#$%&'*+-.^_`|~".representation.canFind(b));
+}
+
+/// Removes the characters that would end a header line, so a value cannot inject further headers
+string sanitizeHeaderValue(string value) {
+  if (!value.any!(c => c == '\r' || c == '\n' || c == '\0')) {
+    return value;
+  }
+  return value.filter!(c => c != '\r' && c != '\n' && c != '\0').to!string;
+}
+
+/**
+ * A collection of HTTP headers preserving insertion order.
+ *
+ * Names are case-insensitive. Values are sanitized against header injection.
+ */
 class HttpHeaders {
-  /// Sets a header (fluent interface)
+  /// Sets a header, replacing existing values (fluent interface). Throws if the name is invalid.
   auto set(string name, string value) {
-    if (name !in _headers) {
-      _order ~= name;
+    enforce(isHeaderName(name), "Invalid header name: " ~ name);
+    auto key = name.toLower;
+    if (key !in _headers) {
+      _order ~= key;
     }
-    _headers[name] = value;
+    _headers[key] = Header(name, [sanitizeHeaderValue(value)]);
     return this;
   }
 
-  /// Adds another value to an existing header (comma-separated, fluent interface)
+  /// Adds another value: comma-separated, or a line of its own for Set-Cookie, which cannot be combined (fluent interface)
   auto add(string name, string value) {
-    auto existing = get(name);
-    return existing is null
-      ? set(name, value)
-      : set(name, existing ~ ", " ~ value);
+    auto key = name.toLower;
+    auto header = key in _headers;
+    if (header is null) {
+      return set(name, value);
+    }
+    if (key == "set-cookie") {
+      header.values ~= sanitizeHeaderValue(value);
+    } else {
+      header.values[0] ~= ", " ~ sanitizeHeaderValue(value);
+    }
+    return this;
   }
 
-  /// Removes a header (fluent interface)
+  /// Removes a header (case-insensitive, fluent interface)
   auto remove(string name) {
-    _headers.remove(name);
-    _order = _order.filter!(n => n != name).array;
+    auto key = name.toLower;
+    _headers.remove(key);
+    _order = _order.filter!(k => k != key).array;
     return this;
   }
 
   /// Checks whether a header is set (case-insensitive)
   bool has(string name) const {
-    return _headers.keys.any!(key => key.toLower == name.toLower);
+    return (name.toLower in _headers) !is null;
   }
 
   /// Returns the value of a header (case-insensitive)
   string get(string name) const {
-    foreach (key, value; _headers) {
-      if (key.toLower == name.toLower) {
-        return value;
-      }
-    }
-    return null;
+    auto header = name.toLower in _headers;
+    return header is null ? null : header.values[0];
+  }
+
+  /// Returns all values of a header (case-insensitive)
+  string[] getAll(string name) const {
+    auto header = name.toLower in _headers;
+    return header is null ? null : header.values.dup;
   }
 
   /// All header names in insertion order
   string[] names() const {
-    return _order.dup;
+    string[] result;
+    foreach (key; _order) {
+      result ~= _headers[key].name;
+    }
+    return result;
   }
 
   /// Number of headers
@@ -98,13 +136,27 @@ class HttpHeaders {
 
   /// Renders the headers as "Name: Value" lines separated by CRLF
   override string toString() const {
-    return _order
-      .filter!(name => name in _headers)
-      .map!(name => "%s: %s".format(name, _headers[name]))
-      .join("\r\n");
+    auto result = appender!string;
+    foreach (key; _order) {
+      auto header = key in _headers;
+      foreach (value; header.values) {
+        if (result.data.length > 0) {
+          result.put("\r\n");
+        }
+        result.put(header.name);
+        result.put(": ");
+        result.put(value);
+      }
+    }
+    return result.data;
   }
 
-  private string[string] _headers;
+  private static struct Header {
+    string name;
+    string[] values;
+  }
+
+  private Header[string] _headers; // by lowercase name
   private string[] _order;
 }
 
@@ -113,42 +165,59 @@ HttpHeaders httpHeaders() {
   return new HttpHeaders;
 }
 
-/// Creates a header collection from an associative array
+/// Creates a header collection from an associative array, sorted by name
 HttpHeaders httpHeaders(string[string] values) {
   auto headers = new HttpHeaders;
-  foreach (name, value; values) {
-    headers.set(name, value);
+  foreach (name; values.keys.sort) {
+    headers.set(name, values[name]);
   }
   return headers;
 }
 
-// #region well-known header values
-/// Content-Type header value for JSON
+/**
+ * Creates a header collection with defensive defaults for HTML responses.
+ *
+ * Params:
+ *   hstsMaxAge = Enables Strict-Transport-Security for that many seconds. Only use it on sites served entirely over HTTPS.
+ */
+HttpHeaders securityHeaders(int hstsMaxAge = 0) {
+  auto headers = httpHeaders()
+    .set(HttpHeader.xContentTypeOptions, "nosniff")
+    .set(HttpHeader.xFrameOptions, "DENY")
+    .set(HttpHeader.referrerPolicy, "strict-origin-when-cross-origin");
+  if (hstsMaxAge > 0) {
+    headers.set(HttpHeader.strictTransportSecurity, "max-age=%s; includeSubDomains".format(hstsMaxAge));
+  }
+  return headers;
+}
+
+// #region well-known header lines
+/// Content-Type header line for JSON
 string contentTypeJson() {
   return "Content-Type: application/json";
 }
 
-/// Content-Type header value for HTML
+/// Content-Type header line for HTML
 string contentTypeHtml() {
   return "Content-Type: text/html; charset=utf-8";
 }
 
-/// Content-Type header value for plain text
+/// Content-Type header line for plain text
 string contentTypeText() {
   return "Content-Type: text/plain; charset=utf-8";
 }
 
-/// Content-Type header value for form submissions
+/// Content-Type header line for form submissions
 string contentTypeForm() {
   return "Content-Type: application/x-www-form-urlencoded";
 }
 
-/// Authorization header value with a bearer token
+/// Authorization header line with a bearer token
 string bearerAuth(string token) {
-  return "Authorization: Bearer %s".format(token);
+  return "Authorization: Bearer %s".format(sanitizeHeaderValue(token));
 }
 
-/// Authorization header value with basic credentials
+/// Authorization header line with basic credentials
 string basicAuth(string username, string password) {
   import std.base64 : Base64;
 
@@ -156,21 +225,21 @@ string basicAuth(string username, string password) {
   return "Authorization: Basic %s".format(Base64.encode(cast(ubyte[])credentials.dup));
 }
 
-/// Cache-Control header value disabling caches
+/// Cache-Control header line disabling caches
 string noCache() {
   return "Cache-Control: no-cache, no-store, must-revalidate";
 }
 
-/// Cache-Control header value with a max-age in seconds
+/// Cache-Control header line with a max-age in seconds
 string cacheMaxAge(int seconds) {
   return "Cache-Control: max-age=%s".format(seconds);
 }
 
-/// Location header value for redirects
+/// Location header line for redirects
 string locationHeader(string url) {
-  return "Location: %s".format(url);
+  return "Location: %s".format(sanitizeHeaderValue(url));
 }
-// #endregion well-known header values
+// #endregion well-known header lines
 
 /// A builder for Content-Security-Policy header values.
 class CspBuilder {
@@ -213,6 +282,31 @@ class CspBuilder {
     return directive("font-src", sources);
   }
 
+  /// media-src directive (fluent interface)
+  auto mediaSrc(string[] sources...) {
+    return directive("media-src", sources);
+  }
+
+  /// object-src directive (fluent interface)
+  auto objectSrc(string[] sources...) {
+    return directive("object-src", sources);
+  }
+
+  /// frame-src directive (fluent interface)
+  auto frameSrc(string[] sources...) {
+    return directive("frame-src", sources);
+  }
+
+  /// base-uri directive (fluent interface)
+  auto baseUri(string[] sources...) {
+    return directive("base-uri", sources);
+  }
+
+  /// form-action directive (fluent interface)
+  auto formAction(string[] sources...) {
+    return directive("form-action", sources);
+  }
+
   /// frame-ancestors directive (fluent interface)
   auto frameAncestors(string[] sources...) {
     return directive("frame-ancestors", sources);
@@ -239,6 +333,11 @@ class CspBuilder {
 /// Creates a CSP builder
 CspBuilder csp() {
   return new CspBuilder;
+}
+
+/// CSP source for a nonce, e.g. cspNonce("abc") -> `'nonce-abc'`. Pass the same nonce to scriptTag or styleTag.
+string cspNonce(string nonce) {
+  return "'nonce-%s'".format(nonce);
 }
 
 ///
@@ -294,4 +393,50 @@ unittest {
   assert(csp().frameAncestors("'none'").toString == "frame-ancestors 'none'");
   assert(csp().styleSrc("'self'").connectSrc("https://api.example.com").fontSrc("'self'").toString
     == "style-src 'self'; connect-src https://api.example.com; font-src 'self'");
+
+  assert(csp().objectSrc("'none'").baseUri("'self'").formAction("'self'").mediaSrc("'self'").frameSrc("'none'").toString
+    == "object-src 'none'; base-uri 'self'; form-action 'self'; media-src 'self'; frame-src 'none'");
+  assert(csp().scriptSrc(cspNonce("abc")).toString == "script-src 'nonce-abc'");
+
+  // names are case-insensitive for every operation
+  auto mixedCase = httpHeaders().set("Content-Type", "a").set("content-type", "b");
+  assert(mixedCase.length == 1);
+  assert(mixedCase.get("CONTENT-TYPE") == "b");
+  assert(mixedCase.toString == "content-type: b");
+  assert(!httpHeaders().set("A", "1").remove("a").has("A"));
+  assert(httpHeaders().set("A", "1").add("a", "2").toString == "A: 1, 2");
+
+  // stable order from maps
+  assert(httpHeaders(["B": "2", "A": "1"]).names == ["A", "B"]);
+
+  // values cannot inject further headers
+  assert(httpHeaders().set("X", "a\r\nSet-Cookie: x=1").toString == "X: aSet-Cookie: x=1");
+  assert(httpHeaders().set("X", "a").add("X", "b\nc").get("X") == "a, bc");
+  assert(locationHeader("/a\r\nX: 1") == "Location: /aX: 1");
+  assert(bearerAuth("a\nb") == "Authorization: Bearer ab");
+  string cleanValue = "clean";
+  assert(sanitizeHeaderValue(cleanValue) is cleanValue);
+
+  // invalid names are rejected
+  assert(isHeaderName("X-Custom_1"));
+  assert(!isHeaderName(""));
+  assert(!isHeaderName("A B"));
+  assert(!isHeaderName("A:B"));
+  assert(!isHeaderName("A\r\nB"));
+  assertThrown(httpHeaders().set("A:B", "c"));
+
+  // Set-Cookie lines are never combined
+  auto cookies = httpHeaders().add("Set-Cookie", "a=1").add("set-cookie", "b=2");
+  assert(cookies.toString == "Set-Cookie: a=1\r\nSet-Cookie: b=2");
+  assert(cookies.getAll("Set-Cookie") == ["a=1", "b=2"]);
+  assert(cookies.getAll("missing") is null);
+  assert(cookies.get("Set-Cookie") == "a=1");
+
+  // security defaults
+  auto secure = securityHeaders();
+  assert(secure.get("X-Content-Type-Options") == "nosniff");
+  assert(secure.get("X-Frame-Options") == "DENY");
+  assert(secure.get("Referrer-Policy") == "strict-origin-when-cross-origin");
+  assert(!secure.has("Strict-Transport-Security"));
+  assert(securityHeaders(31_536_000).get("Strict-Transport-Security") == "max-age=31536000; includeSubDomains");
 }

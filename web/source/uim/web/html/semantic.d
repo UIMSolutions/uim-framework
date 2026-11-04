@@ -13,65 +13,37 @@ mixin(ShowModule!());
 
 /// Header element (page or section header)
 HtmlElement header(string content = null) {
-  auto element = new HtmlElement("header");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("header", content);
 }
 
 /// Nav element (navigation links)
 HtmlElement nav(string content = null) {
-  auto element = new HtmlElement("nav");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("nav", content);
 }
 
 /// Main element (dominant content of the document)
 HtmlElement mainElement(string content = null) {
-  auto element = new HtmlElement("main");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("main", content);
 }
 
 /// Section element (generic standalone section)
 HtmlElement section(string content = null) {
-  auto element = new HtmlElement("section");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("section", content);
 }
 
 /// Article element (self-contained composition)
 HtmlElement article(string content = null) {
-  auto element = new HtmlElement("article");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("article", content);
 }
 
 /// Aside element (content indirectly related to the main content)
 HtmlElement aside(string content = null) {
-  auto element = new HtmlElement("aside");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("aside", content);
 }
 
 /// Footer element
 HtmlElement footer(string content = null) {
-  auto element = new HtmlElement("footer");
-  if (content.length > 0) {
-    element.text(content);
-  }
-  return element;
+  return new HtmlElement("footer", content);
 }
 
 /// Figure element with optional figcaption

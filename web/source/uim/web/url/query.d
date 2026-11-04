@@ -74,15 +74,19 @@ class QueryParams {
 
   /// Renders the query string (form-encoded, without leading '?')
   override string toString() const {
-    string[] pairs;
+    auto result = appender!string;
     foreach (key; _order) {
-      if (auto values = key in _values) {
-        foreach (value; *values) {
-          pairs ~= "%s=%s".format(formUrlEncode(key), formUrlEncode(value));
+      string encodedKey = formUrlEncode(key);
+      foreach (value; _values[key]) {
+        if (result.data.length > 0) {
+          result.put('&');
         }
+        result.put(encodedKey);
+        result.put('=');
+        result.put(formUrlEncode(value));
       }
     }
-    return pairs.join("&");
+    return result.data;
   }
 
   private string[][string] _values;
@@ -94,11 +98,11 @@ QueryParams queryParams() {
   return new QueryParams;
 }
 
-/// Creates query parameters from an associative array
+/// Creates query parameters from an associative array, sorted by key for stable URLs
 QueryParams queryParams(string[string] values) {
   auto params = new QueryParams;
-  foreach (key, value; values) {
-    params.set(key, value);
+  foreach (key; values.keys.sort) {
+    params.set(key, values[key]);
   }
   return params;
 }
@@ -111,7 +115,7 @@ QueryParams parseQuery(string query) {
     if (pair.length == 0) {
       continue;
     }
-    auto eqIndex = pair.countUntil('=');
+    auto eqIndex = pair.indexOf('=');
     if (eqIndex < 0) {
       params.add(formUrlDecode(pair), "");
     } else {
@@ -158,7 +162,7 @@ unittest {
   // encoding
   assert(queryParams(["q": "a b"]).toString == "q=a+b");
   assert(queryParams(["q": "a&b"]).toString == "q=a%26b");
-  assert(queryString(["a": "1", "b": "2"]) == "a=1&b=2" || queryString(["a": "1", "b": "2"]).canFind("a=1"));
+  assert(queryString(["b": "2", "a": "1", "c": "3"]) == "a=1&b=2&c=3");
 
   // parsing
   auto parsed = parseQuery("page=2&filter=old&tag=x&tag=y");
@@ -181,4 +185,8 @@ unittest {
   auto original = queryParams(["name": "Hänschen", "city": "Köln"]);
   assert(parseQuery(original.toString).get("name") == "Hänschen");
   assert(parseQuery(original.toString).get("city") == "Köln");
+
+  // non-ASCII keys are split at the right byte
+  assert(parseQuery("ü=1&straße=2").get("ü") == "1");
+  assert(parseQuery("ü=1&straße=2").get("straße") == "2");
 }

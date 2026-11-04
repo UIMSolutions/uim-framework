@@ -118,12 +118,12 @@ string confirm(string message) {
   return jsCall("confirm", jsString(message));
 }
 
-/// setTimeout() call, e.g. setTimeout("f()", 1000) -> "setTimeout(f(), 1000);"
+/// setTimeout() call. The expression must evaluate to a function, e.g. setTimeout("f", 1000) or setTimeout("() => f(1)", 1000)
 string setTimeout(string expression, int milliseconds) {
   return jsCall("setTimeout", expression, milliseconds.to!string);
 }
 
-/// setInterval() call
+/// setInterval() call. The expression must evaluate to a function.
 string setInterval(string expression, int milliseconds) {
   return jsCall("setInterval", expression, milliseconds.to!string);
 }
@@ -167,6 +167,6 @@ unittest {
   assert(confirm("Sure?") == "confirm('Sure?');");
 
   // timers
-  assert(setTimeout("f()", 1000) == "setTimeout(f(), 1000);");
-  assert(setInterval("tick()", 500) == "setInterval(tick(), 500);");
+  assert(setTimeout("f", 1000) == "setTimeout(f, 1000);");
+  assert(setInterval("() => tick()", 500) == "setInterval(() => tick(), 500);");
 }

@@ -83,7 +83,7 @@ string backgroundColor(string color) {
 
 /// background-image with an url, e.g. backgroundImage("bg.png") -> "background-image: url(\"bg.png\");"
 string backgroundImage(string url) {
-  return cssProperty("background-image", `url("%s")`.format(url));
+  return cssProperty("background-image", cssUrl(url));
 }
 
 /// Linear gradient, e.g. linearGradient(deg(90), "red", "blue")
@@ -105,7 +105,7 @@ string radialGradient(string shape, string[] colorStops...) {
 
 /// background shorthand with color and image
 string background(string color, string imageUrl) {
-  return cssProperty("background", "%s url(\"%s\")".format(color, imageUrl));
+  return cssProperty("background", cssValues(color, cssUrl(imageUrl)));
 }
 // #endregion backgrounds
 
@@ -346,6 +346,7 @@ unittest {
   assert(linearGradient(180, "white", "black") == "linear-gradient(180deg, white, black)");
   assert(radialGradient("circle", "red", "blue") == "radial-gradient(circle, red, blue)");
   assert(background("#fff", "bg.png") == `background: #fff url("bg.png");`);
+  assert(backgroundImage(`a");}body{x:y`) == `background-image: url("a\");}body{x:y");`);
 
   // shadows
   assert(boxShadow(px(2), px(4), px(6), "black") == "box-shadow: 2px 4px 6px black;");
