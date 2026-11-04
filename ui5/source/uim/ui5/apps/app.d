@@ -1,4 +1,4 @@
-module uim.ui5.apps;
+module uim.ui5.apps.app;
 
 import uim.ui5;
 

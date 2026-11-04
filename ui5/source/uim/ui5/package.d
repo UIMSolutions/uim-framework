@@ -9,6 +9,7 @@ public:
     import uim.ui5.data;
     import uim.ui5.fragments;
     import uim.ui5.helpers;
+    import uim.ui5.i18ns;
     import uim.ui5.models;
     import uim.ui5.services;
     import uim.ui5.tests;
