@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.services.presentation;
 
-
 import uim.services.mixins.imports;
-public {
+public:
     mixin(GenerateImports!("uim.services.presentation", ["http", "cli", "gui", "web"]));
-}
+    import uim.services.presentation.odata;

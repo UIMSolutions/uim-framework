@@ -7,6 +7,7 @@ module uim.services.domain;
 
 public:
     import uim.services.domain.entities;
+    import uim.services.domain.exceptions;
     import uim.services.domain.ports;
     import uim.services.domain.enumerations;
     import uim.services.domain.types;
