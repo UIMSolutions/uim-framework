@@ -9,13 +9,11 @@ public:
     import uim.web;
 
     import uim.ui5.apps;
-    import uim.ui5.bootstrap;
     import uim.ui5.controllers;
     import uim.ui5.components;
     import uim.ui5.controls;
     import uim.ui5.css;
     import uim.ui5.data;
-    import uim.ui5.descriptor;
     import uim.ui5.enumerations;
     import uim.ui5.fragments;
     import uim.ui5.helpers;
@@ -23,7 +21,6 @@ public:
     import uim.ui5.i18ns;
     import uim.ui5.libraries;
     import uim.ui5.manifests;
-    import uim.ui5.modeldefs;
     import uim.ui5.models;
     import uim.ui5.services;
     import uim.ui5.tests;

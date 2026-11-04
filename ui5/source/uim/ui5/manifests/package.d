@@ -7,3 +7,4 @@ module uim.ui5.manifests;
 
 public:
     import uim.ui5.manifests.manifest;
+    import uim.ui5.manifests.descriptor;

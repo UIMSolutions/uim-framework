@@ -5,3 +5,7 @@
 *****************************************************************************************************************/
 module uim.ui5.models;
 
+public:
+    import uim.ui5.models.model;
+    import uim.ui5.models.modeldefs;
+

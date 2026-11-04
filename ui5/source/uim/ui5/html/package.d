@@ -6,4 +6,4 @@
 module uim.ui5.html;
 
 public:
-    import uim.ui5.html.index;
+    import uim.ui5.html.bootstrap;
