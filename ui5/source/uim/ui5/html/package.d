@@ -7,3 +7,4 @@ module uim.ui5.html;
 
 public:
     import uim.ui5.html.bootstrap;
+    import uim.ui5.html.enumerations;

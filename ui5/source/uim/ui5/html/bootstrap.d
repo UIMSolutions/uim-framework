@@ -11,54 +11,24 @@ mixin(ShowModule!());
 
 @safe:
 
-/// The UI5 distribution variant
-enum Ui5Variant {
-  openui5,
-  sapui5
-}
-
-/// Well-known UI5 themes
-enum Ui5Theme {
-  sapHorizon,
-  sapHorizonDark,
-  sapFiori3,
-  sapFiori3Dark,
-  sapBelize,
-  sapBelizeDeep,
-  sapQuartzLight,
-  sapQuartzDark
-}
-
-/// Converts a theme to its technical name, e.g. Ui5Theme.sapHorizon -> "sap_horizon"
-string toString(Ui5Theme theme) {
-  final switch (theme) {
-    case Ui5Theme.sapHorizon:
-      return "sap_horizon";
-    case Ui5Theme.sapHorizonDark:
-      return "sap_horizon_dark";
-    case Ui5Theme.sapFiori3:
-      return "sap_fiori_3";
-    case Ui5Theme.sapFiori3Dark:
-      return "sap_fiori_3_dark";
-    case Ui5Theme.sapBelize:
-      return "sap_belize";
-    case Ui5Theme.sapBelizeDeep:
-      return "sap_belize_deep";
-    case Ui5Theme.sapQuartzLight:
-      return "sap_quartz_light";
-    case Ui5Theme.sapQuartzDark:
-      return "sap_quartz_dark";
-  }
-}
-
 /// CDN base URL of a UI5 variant
-string cdnBase(Ui5Variant variant) {
+/** 
+ * Returns the CDN base URL for the specified UI5 variant.
+ * @param variant The UI5 variant (openui5 or sapui5)
+ * @return The CDN base URL for the specified UI5 variant
+ */
+ string cdnBase(Ui5Variant variant) {
   final switch (variant) {
     case Ui5Variant.openui5:
       return "https://sdk.openui5.org";
     case Ui5Variant.sapui5:
       return "https://sapui5.hana.ondemand.com";
   }
+}
+///
+unittest {
+  assert(cdnBase(Ui5Variant.openui5) == "https://sdk.openui5.org");
+  assert(cdnBase(Ui5Variant.sapui5) == "https://sapui5.hana.ondemand.com");
 }
 
 /// Resource root URL of a UI5 variant, e.g. cdnResourceRoot(Ui5Variant.openui5, "1.120.0")

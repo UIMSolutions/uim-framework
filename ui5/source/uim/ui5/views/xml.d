@@ -14,7 +14,16 @@ mixin(ShowModule!());
 /// A UI5 XML view (mvc:View) with namespaces, controller reference and content controls.
 class Ui5XmlView : Ui5View {
   this(string controllerName = null) {
+    super();
     _controllerName = controllerName;
+  }
+
+  override bool initialize(Json config = Json(null)) {
+    if (!super.initialize(config)) {
+      return false;
+    }
+
+    return true;
   }
 
   /// Sets the controller name, e.g. "my.app.controller.Main" (fluent interface)
