@@ -1,16 +1,17 @@
-module xpath_test;
+module uim.xml.xpath.tests.xpath_test;
 
-import xpath.parser;
-import xpath.evaluator;
-import xpath.lexer;
-import xpath.ast;
-import xpath.types;
+import uim.xml.xpath.parser;
+import uim.xml.xpath.evaluator;
+import uim.xml.xpath.lexer;
+import uim.xml.xpath.ast;
+import uim.xml.xpath.types;
 
 import std.stdio;
 import std.testing;
 
 void testParser() {
-    auto parser = new XPathParser();
+    auto lexer = new XPathLexer();
+    auto parser = new XPathParser(lexer);
     auto ast = parser.parse("/bookstore/book/title");
     // Add assertions to validate the structure of the AST
     assert(ast !is null);

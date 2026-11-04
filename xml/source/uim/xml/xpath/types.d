@@ -1,4 +1,4 @@
-module xpath.types;
+module uim.xml.xpath.types;
 
 enum TokenType {
     // Represents different types of tokens in XPath expressions

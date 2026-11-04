@@ -1,7 +1,8 @@
-module xpath;
+module uim.xml.xpath.lexer;
 
 import std.array;
 import std.string;
+import uim.xml.xpath.types;
 
 class XPathLexer {
     enum TokenType {

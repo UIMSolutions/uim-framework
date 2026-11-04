@@ -1,7 +1,8 @@
-module xpath.parser;
+module uim.xml.xpath.parser;
 
-import xpath.ast;
-import xpath.lexer;
+import uim.xml.xpath.ast;
+import uim.xml.xpath.lexer;
+import uim.xml.xpath.types;
 
 class XPathParser {
     private XPathLexer lexer;

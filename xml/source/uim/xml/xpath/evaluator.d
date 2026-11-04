@@ -1,7 +1,7 @@
-module xpath.evaluator;
+module uim.xml.xpath.evaluator;
 
-import xpath.ast;
-import xpath.types;
+import uim.xml.xpath.ast;
+import uim.xml.xpath.types;
 
 class XPathEvaluator {
     // Evaluates the given AST against the provided context node

@@ -1,10 +1,9 @@
 name "web"
-description "uim library to work with Xml"
+description "Type-safe builders and helpers for CSS, HTML, JavaScript, HTTP and URLs"
 homepage "https://www.sueel.de"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
-dependency "dxml" version="~>0.4.5"
 dependency "uim-framework:core" path=".."
 dependency "uim-framework:oop" path=".."
 

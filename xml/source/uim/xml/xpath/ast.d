@@ -1,4 +1,4 @@
-module xpath.ast;
+module uim.xml.xpath.ast;
 
 class ASTNode {
     // Base class for all AST nodes
