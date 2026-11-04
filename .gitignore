@@ -38,3 +38,4 @@ xml/build/xml-test-verbose
 web/build/web-test-default
 uim-framework-test-library
 xml/build/xml-test-default
+ui5/build/ui5-test-default
