@@ -1,6 +1,6 @@
 name "ui5"
 description "uim library to work with Xml"
-homepage "https://www.sueel.de"
+homepage "https://www.sueel.de/framework/ui5"
 authors "Ozan Nurettin Süel"
 copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"

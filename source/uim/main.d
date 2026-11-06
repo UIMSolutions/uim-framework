@@ -16,6 +16,6 @@ public:
   import uim.oop;
   import uim.errors;
   import uim.jsons;
-  import uim.services;
+  import uim.service;
   import uim.ui5;
   import uim.web;
