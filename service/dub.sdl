@@ -1,4 +1,4 @@
-name "services"
+name "service"
 description "uim library to work with SERVICES"
 homepage "https://www.sueel.de/uim/services"
 authors "Ozan Nurettin Süel"
@@ -6,7 +6,7 @@ copyright "Copyright © 2018 - 2026, ONS"
 license "Apache-2.0"
 
 // target
-targetName "uim-services"
+targetName "uim-service"
 targetType "library"
 targetPath "build"
 
