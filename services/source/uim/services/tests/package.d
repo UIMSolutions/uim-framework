@@ -1,5 +1,5 @@
-module uim.services.tests;
+module uim.service.tests;
 
 public {
-  import uim.services.tests.test;
+  import uim.service.tests.test;
 }

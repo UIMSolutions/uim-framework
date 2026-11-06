@@ -1,7 +1,7 @@
-module uim.services.infrastructure.persistence.tenants;
+module uim.service.infrastructure.persistence.tenants;
 
 public:
-    import uim.services.infrastructure.persistence.tenants.memory;
-    import uim.services.infrastructure.persistence.tenants.file;
-    import uim.services.infrastructure.persistence.tenants.tenant;
-    import uim.services.infrastructure.persistence.tenants.registry;
+    import uim.service.infrastructure.persistence.tenants.memory;
+    import uim.service.infrastructure.persistence.tenants.file;
+    import uim.service.infrastructure.persistence.tenants.tenant;
+    import uim.service.infrastructure.persistence.tenants.registry;

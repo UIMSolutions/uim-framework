@@ -1,4 +1,4 @@
-module uim.services.infrastructure.persistence.repositories;
+module uim.service.infrastructure.persistence.repositories;
 
 public:
-    import uim.services.infrastructure.persistence.repositories.repository;
+    import uim.service.infrastructure.persistence.repositories.repository;

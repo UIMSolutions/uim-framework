@@ -1,9 +1,9 @@
-module uim.services.domain.enumerations;
+module uim.service.domain.enumerations;
 
 public:
-    import uim.services.domain.enumerations.alertseverity;
-    import uim.services.domain.enumerations.authmethod;
-    import uim.services.domain.enumerations.httpmethod;
-    import uim.services.domain.enumerations.logginglevel;
-    import uim.services.domain.enumerations.persistencetype;
-    import uim.services.domain.enumerations.sso;
+    import uim.service.domain.enumerations.alertseverity;
+    import uim.service.domain.enumerations.authmethod;
+    import uim.service.domain.enumerations.httpmethod;
+    import uim.service.domain.enumerations.logginglevel;
+    import uim.service.domain.enumerations.persistencetype;
+    import uim.service.domain.enumerations.sso;

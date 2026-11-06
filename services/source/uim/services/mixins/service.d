@@ -1,2 +1,2 @@
-module uim.services.mixins.services;
+module uim.service.mixins.services;
 

@@ -1,6 +1,6 @@
-module uim.services.interfaces.configuration;
+module uim.service.interfaces.configuration;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

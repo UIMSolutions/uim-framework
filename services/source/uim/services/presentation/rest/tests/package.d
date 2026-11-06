@@ -1,1 +1,1 @@
-module uim.services.presentation.rest.tests;
+module uim.service.presentation.rest.tests;

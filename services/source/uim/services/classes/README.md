@@ -1,1 +1,1 @@
-# Package 📦 uim.services.classes
+# Package 📦 uim.service.classes

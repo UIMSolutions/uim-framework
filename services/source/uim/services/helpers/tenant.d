@@ -1,6 +1,6 @@
-module uim.services.helpers.tenant;
+module uim.service.helpers.tenant;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

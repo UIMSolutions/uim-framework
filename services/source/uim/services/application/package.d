@@ -1,5 +1,5 @@
-module uim.services.application;
+module uim.service.application;
 
 public:
-    import uim.services.application.usecases;
-    import uim.services.application.dto;
+    import uim.service.application.usecases;
+    import uim.service.application.dto;

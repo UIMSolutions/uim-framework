@@ -1,7 +1,7 @@
-module uim.services.presentation.http.helpers;
+module uim.service.presentation.http.helpers;
 
 public:
-  import uim.services.presentation.http.helpers.errors;
-  import uim.services.presentation.http.helpers.http;
-  import uim.services.presentation.http.helpers.json;
-  import uim.services.presentation.http.helpers.uuid;
+  import uim.service.presentation.http.helpers.errors;
+  import uim.service.presentation.http.helpers.http;
+  import uim.service.presentation.http.helpers.json;
+  import uim.service.presentation.http.helpers.uuid;

@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.presentation.odata.v2.payload;
+module uim.service.presentation.odata.v2.payload;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

@@ -1,1 +1,1 @@
-# Package 📦 uim.services.helpers
+# Package 📦 uim.service.helpers

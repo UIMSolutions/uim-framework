@@ -1,2 +1,2 @@
-module uim.services.presentation.socket;
+module uim.service.presentation.socket;
 

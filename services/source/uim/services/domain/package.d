@@ -3,12 +3,12 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.domain;
+module uim.service.domain;
 
 public:
-    import uim.services.domain.entities;
-    import uim.services.domain.exceptions;
-    import uim.services.domain.ports;
-    import uim.services.domain.enumerations;
-    import uim.services.domain.types;
-    import uim.services.domain.mixins;
+    import uim.service.domain.entities;
+    import uim.service.domain.exceptions;
+    import uim.service.domain.ports;
+    import uim.service.domain.enumerations;
+    import uim.service.domain.types;
+    import uim.service.domain.mixins;

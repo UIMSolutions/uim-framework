@@ -1,2 +1,2 @@
-module uim.services.presentation.gui;
+module uim.service.presentation.gui;
 

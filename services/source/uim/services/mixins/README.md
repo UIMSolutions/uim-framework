@@ -1,1 +1,1 @@
-# Package 📦 uim.services.mixins
+# Package 📦 uim.service.mixins

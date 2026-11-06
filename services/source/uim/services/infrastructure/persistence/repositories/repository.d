@@ -1,6 +1,6 @@
-module uim.services.infrastructure.persistence.repositories.repository;
+module uim.service.infrastructure.persistence.repositories.repository;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

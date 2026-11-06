@@ -1,6 +1,6 @@
-module uim.services.classes.configuration;
+module uim.service.classes.configuration;
 
-import uim.services.interfaces.configuration;
+import uim.service.interfaces.configuration;
 
 @safe:
 

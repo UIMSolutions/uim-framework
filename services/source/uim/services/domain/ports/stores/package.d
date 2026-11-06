@@ -3,8 +3,8 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.domain.ports.stores;
+module uim.service.domain.ports.stores;
 
 public:
-    import uim.services.domain.ports.stores.result;
-    import uim.services.domain.ports.stores.store;
+    import uim.service.domain.ports.stores.result;
+    import uim.service.domain.ports.stores.store;

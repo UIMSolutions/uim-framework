@@ -1,5 +1,5 @@
-module uim.services.domain.mixins;
+module uim.service.domain.mixins;
 
 public:
-    import uim.services.domain.mixins.id;
-    import uim.services.domain.mixins.enumerations;
+    import uim.service.domain.mixins.id;
+    import uim.service.domain.mixins.enumerations;

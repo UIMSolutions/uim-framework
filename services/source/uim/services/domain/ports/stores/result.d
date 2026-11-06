@@ -1,6 +1,6 @@
-module uim.services.domain.ports.stores.result;
+module uim.service.domain.ports.stores.result;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

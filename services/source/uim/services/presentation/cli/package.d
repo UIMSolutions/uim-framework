@@ -1,2 +1,2 @@
-module uim.services.presentation.cli;
+module uim.service.presentation.cli;
 

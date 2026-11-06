@@ -1,4 +1,4 @@
-module uim.services.domain.ports.usecases;
+module uim.service.domain.ports.usecases;
 
 public:
-    import uim.services.domain.ports.usecases.usecase;
+    import uim.service.domain.ports.usecases.usecase;

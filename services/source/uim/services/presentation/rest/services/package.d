@@ -1,2 +1,2 @@
-module uim.services.presentation.rest.services;
+module uim.service.presentation.rest.services;
 

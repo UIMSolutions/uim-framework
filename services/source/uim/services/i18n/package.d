@@ -3,9 +3,9 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.i18n;
+module uim.service.i18n;
 
 public {
-    import uim.services.i18n.interfaces;
-    import uim.services.i18n.translator;
+    import uim.service.i18n.interfaces;
+    import uim.service.i18n.translator;
 }

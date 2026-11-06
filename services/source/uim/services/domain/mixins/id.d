@@ -1,6 +1,6 @@
-module uim.services.domain.mixins.id;
+module uim.service.domain.mixins.id;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

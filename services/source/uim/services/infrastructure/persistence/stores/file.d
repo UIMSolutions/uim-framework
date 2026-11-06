@@ -1,6 +1,6 @@
-module uim.services.infrastructure.persistence.stores.file;
+module uim.service.infrastructure.persistence.stores.file;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

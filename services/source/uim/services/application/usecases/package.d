@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.application.usecases;
+module uim.service.application.usecases;
 
 public:
-    import uim.services.application.usecases.mix;
-    import uim.services.application.usecases.result;
-    import uim.services.application.usecases.test;
-    import uim.services.application.usecases.usecase;
+    import uim.service.application.usecases.mix;
+    import uim.service.application.usecases.result;
+    import uim.service.application.usecases.test;
+    import uim.service.application.usecases.usecase;

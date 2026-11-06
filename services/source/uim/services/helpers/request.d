@@ -1,6 +1,6 @@
-module uim.services.helpers.request;
+module uim.service.helpers.request;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

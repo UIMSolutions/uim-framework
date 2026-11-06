@@ -1,5 +1,5 @@
-module uim.services.infrastructure.persistence.stores;
+module uim.service.infrastructure.persistence.stores;
 
 public:
-    import uim.services.infrastructure.persistence.stores.memory;
-    import uim.services.infrastructure.persistence.stores.file;
+    import uim.service.infrastructure.persistence.stores.memory;
+    import uim.service.infrastructure.persistence.stores.file;

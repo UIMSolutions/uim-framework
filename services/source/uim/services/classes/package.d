@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.classes;
+module uim.service.classes;
 
 public {
-    import uim.services.interfaces;
-    import uim.services.classes.service;
-    import uim.services.classes.configuration;
+    import uim.service.interfaces;
+    import uim.service.classes.service;
+    import uim.service.classes.configuration;
 }

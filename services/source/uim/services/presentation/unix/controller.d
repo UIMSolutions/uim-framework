@@ -3,11 +3,11 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.presentation.unix.controller;
+module uim.service.presentation.unix.controller;
 
-import uim.services;
-import uim.services.presentation.unix.interfaces;
-import uim.services.presentation.unix.message;
+import uim.service;
+import uim.service.presentation.unix.interfaces;
+import uim.service.presentation.unix.message;
 
 mixin(ShowModule!());
 

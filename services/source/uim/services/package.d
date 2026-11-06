@@ -1,22 +1,22 @@
-module uim.services;
+module uim.service;
 
 public {
   import uim.core;
   import uim.oop;
   import uim.errors;
   
-  import uim.services.application;
-  import uim.services.classes;
-  import uim.services.config;
-  import uim.services.domain;
-  import uim.services.infrastructure;
-  import uim.services.exceptions;
-  import uim.services.helpers;
-  import uim.services.i18n;
-  import uim.services.interfaces;
-  import uim.services.loggers;
-  import uim.services.mixins;
-  import uim.services.tests;
-  import uim.services.vibeservice;
-  import uim.services.presentation;
+  import uim.service.application;
+  import uim.service.classes;
+  import uim.service.config;
+  import uim.service.domain;
+  import uim.service.infrastructure;
+  import uim.service.exceptions;
+  import uim.service.helpers;
+  import uim.service.i18n;
+  import uim.service.interfaces;
+  import uim.service.loggers;
+  import uim.service.mixins;
+  import uim.service.tests;
+  import uim.service.vibeservice;
+  import uim.service.presentation;
 }

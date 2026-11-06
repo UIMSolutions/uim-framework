@@ -1,7 +1,7 @@
-module uim.services.infrastructure.persistence;
+module uim.service.infrastructure.persistence;
 
 public:
-    import uim.services.infrastructure.persistence.repositories;
-    import uim.services.infrastructure.persistence.stores;
-    import uim.services.infrastructure.persistence.tenants;
-    import uim.services.infrastructure.persistence.tests;
+    import uim.service.infrastructure.persistence.repositories;
+    import uim.service.infrastructure.persistence.stores;
+    import uim.service.infrastructure.persistence.tenants;
+    import uim.service.infrastructure.persistence.tests;

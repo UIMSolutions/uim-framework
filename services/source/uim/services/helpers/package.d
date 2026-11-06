@@ -3,10 +3,10 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.helpers;
+module uim.service.helpers;
 
 public:
-    import uim.services.helpers.registry;
-    import uim.services.helpers.factory;
-    import uim.services.helpers.request;
-    import uim.services.helpers.tenant;
+    import uim.service.helpers.registry;
+    import uim.service.helpers.factory;
+    import uim.service.helpers.request;
+    import uim.service.helpers.tenant;

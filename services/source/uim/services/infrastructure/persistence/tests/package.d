@@ -1,4 +1,4 @@
-module uim.services.infrastructure.persistence.tests;
+module uim.service.infrastructure.persistence.tests;
 
 public:
-    import uim.services.infrastructure.persistence.tests.store;
+    import uim.service.infrastructure.persistence.tests.store;

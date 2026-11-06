@@ -1,1 +1,1 @@
-# Package 📦 uim.services.tests
+# Package 📦 uim.service.tests

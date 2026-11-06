@@ -1,6 +1,6 @@
-module uim.services.infrastructure.persistence.tenants.file;
+module uim.service.infrastructure.persistence.tenants.file;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

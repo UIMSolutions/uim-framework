@@ -13,7 +13,7 @@ The package now provides:
 
 - optimized service and configuration classes
 - explicit, lower-overhead imports in helpers
-- a `vibe.d` API module (`uim.services.vibeservice`)
+- a `vibe.d` API module (`uim.service.vibeservice`)
 - an executable target for containerized service runtime
 - Podman and Kubernetes assets for deployment
 

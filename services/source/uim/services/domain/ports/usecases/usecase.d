@@ -1,2 +1,2 @@
-module uim.services.domain.ports.usecases.usecase;
+module uim.service.domain.ports.usecases.usecase;
 

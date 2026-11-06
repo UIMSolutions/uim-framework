@@ -1,6 +1,6 @@
-module uim.services.domain.mixins.enumerations;
+module uim.service.domain.mixins.enumerations;
 
-import uim.services;
+import uim.service;
 
 mixin(ShowModule!());
 

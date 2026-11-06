@@ -1,5 +1,5 @@
-module uim.services.mixins;
+module uim.service.mixins;
 
 public:
-    import uim.services.mixins.imports;
-    import uim.services.mixins.handler;
+    import uim.service.mixins.imports;
+    import uim.service.mixins.handler;

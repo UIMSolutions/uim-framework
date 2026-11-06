@@ -3,15 +3,15 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file.
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.services.vibeservice;
+module uim.service.vibeservice;
 
 import std.process : environment;
 import std.conv : to;
 
 import vibe.d;
 
-import uim.services.classes.configuration;
-import uim.services.classes.service;
+import uim.service.classes.configuration;
+import uim.service.classes.service;
 
 @safe:
 

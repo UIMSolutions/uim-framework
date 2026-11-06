@@ -1,5 +1,5 @@
-module uim.services.tests.test;
+module uim.service.tests.test;
 
-import uim.services;
+import uim.service;
 
 @safe:
