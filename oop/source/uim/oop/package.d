@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.oop;
 
-// UIM libraries
-public import uim.core;
-
-public {
+public:
+  import uim.core;
+  
   import uim.oop.containers;
   import uim.oop.datatypes;
   import uim.oop.exceptions;
@@ -20,4 +19,3 @@ public {
   import uim.oop.registries;
   import uim.oop.repositories;
   import uim.oop.udas;
-}
