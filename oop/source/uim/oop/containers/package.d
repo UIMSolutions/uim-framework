@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.containers;
 
-public {
+public:
     import uim.oop.containers.list;
     import uim.oop.containers.map;
     import uim.oop.containers.set;
     import uim.oop.containers.plist;
-}

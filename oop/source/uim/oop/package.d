@@ -17,7 +17,6 @@ public {
   import uim.oop.helpers;
   import uim.oop.mixins;
   import uim.oop.network;
-  import uim.oop.patterns;
   import uim.oop.registries;
   import uim.oop.repositories;
   import uim.oop.udas;
