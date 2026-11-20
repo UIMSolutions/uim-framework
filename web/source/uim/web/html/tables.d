@@ -85,7 +85,7 @@ class HtmlTable : HtmlNode {
 
   /// Writes the table to a sink
   override void render(ref Appender!string sink) const {
-    auto table = new HtmlElement("table").attrs(_attributes.dup);
+    auto table = new HtmlElement("table").attrs(_attributes);
 
     if (_caption.length > 0) {
       table.add("caption", _caption);

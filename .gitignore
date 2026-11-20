@@ -40,3 +40,4 @@ uim-framework-test-library
 xml/build/xml-test-default
 ui5/build/ui5-test-default
 oop/build/oop-test-default
+service/build/service-test-default

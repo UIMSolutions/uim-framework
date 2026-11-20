@@ -72,8 +72,12 @@ class HtmlElement : HtmlNode {
   }
 
   /// Sets all attributes of an associative array, sorted by name for stable output (fluent interface)
-  auto attrs(string[string] attributes) {
-    foreach (name; attributes.keys.sort) {
+  auto attrs(const(string[string]) attributes) {
+    string[] names;
+    foreach (name, _; attributes) {
+      names ~= name;
+    }
+    foreach (name; names.sort) {
       attr(name, attributes[name]);
     }
     return this;
@@ -133,7 +137,12 @@ class HtmlElement : HtmlNode {
 
   /// Removes classes from the class attribute (fluent interface)
   auto removeClass(string[] classNames...) {
-    auto remaining = classes.filter!(className => !classNames.canFind(className)).array;
+    string[] remaining;
+    foreach (className; classes) {
+      if (!classNames.canFind(className)) {
+        remaining ~= className;
+      }
+    }
     return remaining.length > 0 ? attr("class", remaining.join(" ")) : removeAttr("class");
   }
 

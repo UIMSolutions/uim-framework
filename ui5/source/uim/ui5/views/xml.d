@@ -64,9 +64,13 @@ class Ui5XmlView : Ui5View {
     return _content.dup;
   }
 
-  /// The registered additional namespaces
+  /// The registered additional namespaces (a copy)
   string[string] namespaces() const {
-    return _namespaces.dup;
+    string[string] result;
+    foreach (prefix, uri; _namespaces) {
+      result[prefix] = uri;
+    }
+    return result;
   }
 
   /// Renders the XML view
@@ -129,6 +133,15 @@ class Ui5XmlFragment {
     return _content.dup;
   }
 
+  /// The registered additional namespaces (a copy)
+  string[string] namespaces() const {
+    string[string] result;
+    foreach (prefix, uri; _namespaces) {
+      result[prefix] = uri;
+    }
+    return result;
+  }
+
   /// Renders the XML fragment
   override string toString() const {
     auto result = appender!string;
@@ -170,6 +183,12 @@ unittest {
 
   assert(main.content.length == 1);
   assert(main.namespaces.length == 2);
+  assert(main.namespaces["f"] == "sap.f");
+
+  // namespaces() returns a copy, so changing it leaves the view untouched
+  auto copied = main.namespaces;
+  copied["extra"] = "sap.extra";
+  assert(main.namespaces.length == 2);
 
   string rendered = main.toString;
   assert(rendered.canFind(`<mvc:View controllerName="my.app.controller.Main"`));
@@ -189,6 +208,7 @@ unittest {
     .add(ui5Button("OK", ".onOk"));
 
   assert(fragment.content.length == 2);
+  assert(fragment.namespaces == ["form": "sap.ui.layout.form"]);
   string fragmentXml = fragment.toString;
   assert(fragmentXml.canFind(`<FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"`));
   assert(fragmentXml.canFind(`xmlns:form="sap.ui.layout.form"`));

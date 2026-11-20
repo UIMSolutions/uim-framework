@@ -141,9 +141,13 @@ string jsKey(string name) {
 }
 
 /// JavaScript object literal from string values, e.g. jsObject(["a": "b"]) -> `{a: 'b'}`
-string jsObject(string[string] values) {
+string jsObject(const(string[string]) values) {
+  string[] keys;
+  foreach (key, _; values) {
+    keys ~= key;
+  }
   return "{%s}".format(
-    values.keys.sort.map!(key => "%s: %s".format(jsKey(key), jsString(values[key]))).join(", "));
+    keys.sort.map!(key => "%s: %s".format(jsKey(key), jsString(values[key]))).join(", "));
 }
 
 /// JavaScript object literal from raw JS expressions (values not quoted)

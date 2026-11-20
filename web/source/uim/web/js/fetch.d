@@ -114,7 +114,7 @@ class JsFetch {
       parts ~= "method: %s".format(jsString(_method));
     }
     if (_headers.length > 0) {
-      parts ~= "headers: %s".format(jsObject(_headers.dup));
+      parts ~= "headers: %s".format(jsObject(_headers));
     }
     if (_credentials.length > 0) {
       parts ~= "credentials: %s".format(jsString(_credentials));
