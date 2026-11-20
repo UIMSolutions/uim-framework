@@ -52,8 +52,8 @@ class TypeUIMRegistry(Base) {
   }
 
   void clear() {
-    _items.clear();
-    _types.clear();
+    _items = null;
+    _types = null;
   }
 
   string[] keys() {

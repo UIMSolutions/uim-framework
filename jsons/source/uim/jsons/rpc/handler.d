@@ -70,7 +70,7 @@ class JsonRpcHandlerRegistry : UIMObject {
    * Clear all handlers.
    */
   void clear() {
-    _handlers.clear();
+    _handlers = null;
   }
 }
 

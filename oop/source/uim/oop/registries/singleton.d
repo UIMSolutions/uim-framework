@@ -55,8 +55,8 @@ class SingletonRegistry(K, V) : IRegistry!(K, V) {
   }
 
   IRegistry!(K, V) clear() {
-    _instances.clear();
-    _factories.clear();
+    _instances = null;
+    _factories = null;
     return this;
   }
 

@@ -37,7 +37,7 @@ class FactoryRegistry(T) {
   }
 
   static void clear() {
-    _factories.clear();
+    _factories = null;
   }
 
   static string[] registeredKeys() {

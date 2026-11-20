@@ -156,7 +156,11 @@ class TcpRequest : ITcpRequest {
   }
 
   string[string] headers() const {
-    return _headers.dup;
+    string[string] result;
+    foreach (key, value; _headers) {
+      result[key] = value;
+    }
+    return result;
   }
 
   string header(string name) const {
@@ -245,7 +249,11 @@ class TcpResponse : ITcpResponse {
   }
 
   string[string] headers() const {
-    return _headers.dup;
+    string[string] result;
+    foreach (key, value; _headers) {
+      result[key] = value;
+    }
+    return result;
   }
 
   ITcpResponse header(string name, string value) {

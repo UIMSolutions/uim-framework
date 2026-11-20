@@ -47,7 +47,7 @@ synchronized class ThreadSafeRegistry(K, V) : IRegistry!(K, V) {
 
   void clear() {
     synchronized (this) {
-      _items.clear();
+      _items = null;
     }
   }
 

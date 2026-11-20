@@ -54,7 +54,7 @@ class UIMRegistry(K, V) : IRegistry!(K, V) {
   }
 
   IRegistry!(K, V) clear() {
-    _items.clear();
+    _items = null;
     return this;
   }
 

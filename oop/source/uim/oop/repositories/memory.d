@@ -95,7 +95,7 @@ class MemoryRepository(K, V) : IRepository!(K, V) {
      * Clear all entities from the repository.
      */
     void clear() {
-        _entities.clear();
+        _entities = null;
     }
 }
 ///

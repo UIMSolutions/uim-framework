@@ -65,13 +65,13 @@ class LazyRegistry(K, V) : IRegistry!(K, V) {
   }
 
   IRegistry!(K, V) clear() {
-    _cache.clear();
-    _factories.clear();
+    _cache = null;
+    _factories = null;
     return this;
   }
 
   void clearCache() {
-    _cache.clear();
+    _cache = null;
   }
 
   K[] keys() {

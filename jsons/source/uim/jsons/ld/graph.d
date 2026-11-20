@@ -101,7 +101,7 @@ class JsonLDGraph : UIMObject {
    * Clear all nodes.
    */
   void clear() {
-    _nodes.clear();
+    _nodes = null;
   }
 
   /**

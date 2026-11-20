@@ -29,7 +29,11 @@ class UnixRequest : IUnixRequest {
   }
 
   string[string] headers() const {
-    return _headers.dup;
+    string[string] result;
+    foreach (key, value; _headers) {
+      result[key] = value;
+    }
+    return result;
   }
 
   string header(string name) const {
@@ -139,7 +143,11 @@ class UnixResponse : IUnixResponse {
   }
 
   string[string] headers() const {
-    return _headers.dup;
+    string[string] result;
+    foreach (key, value; _headers) {
+      result[key] = value;
+    }
+    return result;
   }
 
   IUnixResponse header(string name, string value) {

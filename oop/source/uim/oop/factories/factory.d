@@ -130,7 +130,7 @@ class UIMFactory(K, V) : IFactory!(K, V) {
      *     The factory instance for method chaining.
      */
   IFactory!(K, V) clearRegistry() {
-    _creators.clear();
+    _creators = null;
     return this;
   }
 }

@@ -229,7 +229,7 @@ class PropertyList {
      * Clears all data
      */
   void clear() {
-    _data.clear();
+    _data = null;
   }
 
   /**
