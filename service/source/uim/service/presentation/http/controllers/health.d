@@ -26,9 +26,25 @@ class HealthController : HttpController {
     this.serviceVersion = serviceVersion;
   }
 
+  this(string serviceName, string serviceVersion, string serviceDisplay) {
+    super();
+    this.serviceName = serviceName;
+    this.serviceVersion = serviceVersion;
+    this.serviceDisplay = serviceDisplay;
+  }
+
   protected string _serviceName = "service";
   @property string serviceName() {
     return _serviceName;
+  }
+
+  protected string _serviceDisplay = "Service";
+  @property string serviceDisplay() {
+    return _serviceDisplay;
+  }
+
+  @property void serviceDisplay(string display) {
+    _serviceDisplay = display;
   }
 
   @property void serviceName(string name) {

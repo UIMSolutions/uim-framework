@@ -6,6 +6,7 @@
 module uim.service.presentation.odata.v2.edm;
 
 import uim.service;
+import uim.service.presentation.odata.v2;
 
 mixin(ShowModule!());
 

@@ -6,6 +6,7 @@
 module uim.service.presentation.odata.v4.payload;
 
 import uim.service;
+import uim.service.presentation.odata.v4;
 
 mixin(ShowModule!());
 

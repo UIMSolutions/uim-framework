@@ -6,7 +6,9 @@
 module uim.service.application.usecases;
 
 public:
+    import uim.service.application.usecases.id;
     import uim.service.application.usecases.mix;
     import uim.service.application.usecases.result;
+    import uim.service.application.usecases.tenant;
     import uim.service.application.usecases.test;
     import uim.service.application.usecases.usecase;
