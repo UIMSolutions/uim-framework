@@ -59,19 +59,19 @@ unittest {
   }
 
   auto product = new ParameterizedProduct("Test", 42);
-  assert(product.name == "Test", "Product should store name");
-  assert(product.id == 42, "Product should store id");
+  assert(product.name() == "Test", "Product should store name");
+  assert(product.id() == 42, "Product should store id");
 }
 
 // Test factory registry
 unittest {
-  interface IService {
+  interface ITestService {
   }
 
-  class ServiceA : IService {
+  class ServiceA : ITestService {
   }
 
-  class ServiceB : IService {
+  class ServiceB : ITestService {
   }
 
   // Test that we can create different services
@@ -138,6 +138,6 @@ unittest {
     .setName("TestProduct")
     .setValue(100);
 
-  assert(product.name == "TestProduct", "Builder should set name");
-  assert(product.value == 100, "Builder should set value");
+  assert(product.name() == "TestProduct", "Builder should set name");
+  assert(product.value() == 100, "Builder should set value");
 }

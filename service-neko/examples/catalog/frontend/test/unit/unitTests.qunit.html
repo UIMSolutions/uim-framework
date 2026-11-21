@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Unit tests — Product Catalog</title>
+  <script id="sap-ui-bootstrap" src="https://ui5.sap.com/1.120.0/resources/sap-ui-core.js"
+    data-sap-ui-resource-roots='{ "uim.catalog": "../../" }' data-sap-ui-async="true"></script>
+  <link rel="stylesheet" href="https://ui5.sap.com/1.120.0/resources/sap/ui/thirdparty/qunit-2.css">
+  <script src="https://ui5.sap.com/1.120.0/resources/sap/ui/thirdparty/qunit-2.js"></script>
+  <script src="https://ui5.sap.com/1.120.0/resources/sap/ui/qunit/qunit-junit.js"></script>
+  <script>
+    QUnit.config.autostart = false;
+    sap.ui.require(["uim/catalog/test/unit/formatter.qunit"], function () { QUnit.start(); });
+  </script>
+</head>
+<body><div id="qunit"></div><div id="qunit-fixture"></div></body>
+</html>

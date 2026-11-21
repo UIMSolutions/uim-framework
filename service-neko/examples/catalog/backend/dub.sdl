@@ -1,0 +1,43 @@
+name "uim-catalog-example"
+description "Reference service for neko-platform:service — one EDM model, three front ends: OData v4 (SAP Fiori), CLI and GtkD GUI"
+authors "Ozan Nurettin Süel"
+copyright "Copyright © 2018-2026, Ozan Nurettin Süel"
+license "Apache-2.0"
+
+targetPath "build"
+sourcePaths "source"
+importPaths "source"
+
+dependency "service" path="../../.."
+
+buildRequirements "allowWarnings" "silenceDeprecations"
+
+// dub run                       → HTTP server (OData v4 + health) on :8080
+configuration "server" {
+	targetType "executable"
+	targetName "uim-catalog-server"
+	mainSourceFile "source/app.d"
+	excludedSourceFiles "source/cli.d" "source/gui.d"
+}
+
+// dub run --config=cli -- help
+configuration "cli" {
+	targetType "executable"
+	targetName "uim-catalog-cli"
+	mainSourceFile "source/cli.d"
+	excludedSourceFiles "source/app.d" "source/gui.d"
+}
+
+// dub run --config=gui          (needs a GTK 3 runtime and a display)
+configuration "gui" {
+	targetType "executable"
+	targetName "uim-catalog-gui"
+	mainSourceFile "source/gui.d"
+	excludedSourceFiles "source/app.d" "source/cli.d"
+}
+
+// dub test
+configuration "unittest" {
+	targetType "library"
+	excludedSourceFiles "source/app.d" "source/cli.d" "source/gui.d"
+}
