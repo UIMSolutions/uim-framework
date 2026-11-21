@@ -14,17 +14,17 @@ mixin(ShowModule!());
 
 class UIMEntity {
   this() {
-    initialize();
+    this.initialize();
   }
 
   this(Json initData) {
     if (initData.isObject) {
-      initialize(initData.toMap);
+      this.initialize(initData.toMap);
     }
   }
 
   this(Json[string] initData) {
-    initialize(initData);
+    this.initialize(initData);
   }
 
   bool initialize(Json[string] initData = null) {
