@@ -1,3 +1,8 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+*****************************************************************************************************************/
 module uim.service.helpers.filter;
 
 import uim.service;
@@ -12,15 +17,13 @@ TEntity[] filterPaged(TEntity)(TEntity[] items, size_t offset, size_t limit, boo
   if (offset >= items.length)
     return result;
 
-  foreach (e; items) {
-    if (pred(e)) {
-      if (idx >= offset && result.length < limit)
-        result ~= e;
-      idx++;
+  foreach (e; items.filter!(pred).array) {
+    if (idx >= offset && result.length < limit)
+      result ~= e;
+    idx++;
 
-      if (result.length >= limit)
-        break;
-    }
+    if (result.length >= limit)
+      break;
   }
   return result;
 }
