@@ -1,1 +1,0 @@
-module uim.service.tests.repositories.tenant;
