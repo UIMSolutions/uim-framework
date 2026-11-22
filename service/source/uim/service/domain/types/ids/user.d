@@ -3,7 +3,7 @@
 * License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
 * Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
 *****************************************************************************************************************/
-module uim.service.domain.types.ids.userid;
+module uim.service.domain.types.ids.user;
 
 import uim.service;
 
@@ -24,8 +24,8 @@ string[] toString(UserId[] ids)
 ///
 unittest {
     UserId[] userIds = toUserId(["1", "2", "3"]);
-    assert(hasUserId(userIds, UserId("1")));
-    assert(!hasUserId(userIds, UserId("4")));
-    assert(hasUserId(["1", "2", "3"], UserId("2")));
-    assert(!hasUserId(["1", "2", "3"], UserId("4")));
+    assert(hasId(userIds, UserId("1")));
+    assert(!hasId(userIds, UserId("4")));
+    assert(hasId(["1", "2", "3"], UserId("2")));
+    assert(!hasId(["1", "2", "3"], UserId("4")));
 }

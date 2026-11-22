@@ -27,6 +27,6 @@ unittest {
     assert(id.value == "XXX");
     assert(toGlobalAccountId(["XXX"])[0] == id);
     assert(toString([id])[0] == "XXX");
-    assert(hasGlobalAccountId([id], id));
-    assert(hasGlobalAccountId(["XXX"], id));
+    assert(hasId([id], id));
+    assert(hasId(["XXX"], id));
 }
