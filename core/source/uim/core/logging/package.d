@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.logging;
 
-public {
-    import uim.core.logging.loglevel;
-}
+public:
+  import uim.core.logging.loglevel;
 

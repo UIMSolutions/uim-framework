@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes;
 
-public {
+public:
   import uim.core.datatypes.booleans;
   import uim.core.datatypes.colors;
   import uim.core.datatypes.geo;
@@ -18,4 +18,3 @@ public {
   import uim.core.datatypes.nulls;
   import uim.core.datatypes.strings;
   import uim.core.datatypes.uuids;
-}

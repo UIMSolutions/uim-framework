@@ -21,6 +21,7 @@ Json structuredLogRecord(string level, string component, string message, Json fi
     .set("level", level)
     .set("logger", component)
     .set("msg", message);
+    
   if (fields.isObject)
     foreach (k, v; fields.get!(Json[string]))
       if (k !in record)

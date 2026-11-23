@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.containers.sequential.arrays;
 
-public {
+public:
   import uim.core.containers.sequential.arrays.array_;
   import uim.core.containers.sequential.arrays.aggregate;
   import uim.core.containers.sequential.arrays.check;
@@ -71,4 +71,4 @@ public {
   import uim.core.containers.sequential.arrays.unzip;
   import uim.core.containers.sequential.arrays.unique;
   import uim.core.containers.sequential.arrays.zip;
-}
+

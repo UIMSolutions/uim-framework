@@ -5,11 +5,10 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.geo;
 
-public {
+public:
     import uim.core.datatypes.geo.coordinate;
     import uim.core.datatypes.geo.bounds;
     import uim.core.datatypes.geo.circle;
-}
 
 
 

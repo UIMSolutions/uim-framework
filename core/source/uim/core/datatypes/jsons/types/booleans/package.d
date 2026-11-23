@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.booleans;
 
-public {
+public:
   import uim.core.datatypes.jsons.types.booleans.convert;
   import uim.core.datatypes.jsons.types.booleans.count;
   import uim.core.datatypes.jsons.types.booleans.filter;
@@ -13,4 +13,3 @@ public {
   import uim.core.datatypes.jsons.types.booleans.has;
   import uim.core.datatypes.jsons.types.booleans.remove;
   import uim.core.datatypes.jsons.types.booleans.typecheck;
-}

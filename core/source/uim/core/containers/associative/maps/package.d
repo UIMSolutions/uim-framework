@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.containers.associative.maps;
 
-public {
+public:
   import uim.core.containers.associative.maps.check;
   import uim.core.containers.associative.maps.convert;
   import uim.core.containers.associative.maps.every;
@@ -15,4 +15,3 @@ public {
   import uim.core.containers.associative.maps.pairs;
   import uim.core.containers.associative.maps.remove;
   import uim.core.containers.associative.maps.set;
-}

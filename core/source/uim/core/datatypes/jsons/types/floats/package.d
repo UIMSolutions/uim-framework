@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.floats;
 
-public {
+public:
   import uim.core.datatypes.jsons.types.floats.count;
   import uim.core.datatypes.jsons.types.floats.filter;
   import uim.core.datatypes.jsons.types.floats.get;
   import uim.core.datatypes.jsons.types.floats.remove;
   import uim.core.datatypes.jsons.types.floats.typecheck;
-}

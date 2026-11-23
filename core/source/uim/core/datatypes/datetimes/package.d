@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.datetimes;
 
-public {
+public:
   import uim.core.datatypes.datetimes.systime;
   import uim.core.datatypes.datetimes.timestamp;
-}

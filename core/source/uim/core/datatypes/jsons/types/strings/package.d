@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.strings;
 
-public {
+public: 
   import uim.core.datatypes.jsons.types.strings.filter;
   import uim.core.datatypes.jsons.types.strings.get;
   import uim.core.datatypes.jsons.types.strings.remove;
   import uim.core.datatypes.jsons.types.strings.typecheck;
-}

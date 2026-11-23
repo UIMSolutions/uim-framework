@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.files;
 
-public {
+public:
   import uim.core.datatypes.files.compare;
-}

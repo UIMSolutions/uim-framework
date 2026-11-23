@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons;
 
-public {
+public:
   import uim.core.datatypes.jsons.change;
   import uim.core.datatypes.jsons.check;
   import uim.core.datatypes.jsons.convert;
@@ -18,8 +18,5 @@ public {
   import uim.core.datatypes.jsons.remove;
   import uim.core.datatypes.jsons.set;
   import uim.core.datatypes.jsons.values;
-}
 
-public {
   import uim.core.datatypes.jsons.types;
-}

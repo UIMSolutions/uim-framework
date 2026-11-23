@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types;
 
-public {
+public: 
   import uim.core.datatypes.jsons.types.arrays;
   import uim.core.datatypes.jsons.types.booleans;
   import uim.core.datatypes.jsons.types.doubles;
@@ -18,4 +18,3 @@ public {
   import uim.core.datatypes.jsons.types.strings;
   import uim.core.datatypes.jsons.types.undefineds;
   import uim.core.datatypes.jsons.types.uuids;
-}

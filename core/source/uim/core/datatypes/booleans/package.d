@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.booleans;
 
-public {
+public:
   import uim.core.datatypes.booleans.toggle;
   import uim.core.datatypes.booleans.translate;
-}

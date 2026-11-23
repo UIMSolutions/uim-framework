@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.core.enumerations;
 
-public {
-    import uim.core.enumerations.enumerations;
-}
+public:
+  import uim.core.enumerations.enumerations;

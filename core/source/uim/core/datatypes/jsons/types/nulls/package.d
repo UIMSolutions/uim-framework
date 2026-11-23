@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.nulls;
 
-public {
+public: 
   import uim.core.datatypes.jsons.types.nulls.remove;
   import uim.core.datatypes.jsons.types.nulls.typecheck;
-}

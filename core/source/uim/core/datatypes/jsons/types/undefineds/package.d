@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.undefineds;
 
-public {
+public:
   import uim.core.datatypes.jsons.types.undefineds.typecheck;
-}

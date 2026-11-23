@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.strings;
 
-public {
+public:
   import uim.core.datatypes.strings.bind;
   import uim.core.datatypes.strings.camelize;
   import uim.core.datatypes.strings.capitalize;
@@ -26,7 +26,6 @@ public {
   import uim.core.datatypes.strings.tableize;
   import uim.core.datatypes.strings.underscore;
   import uim.core.datatypes.strings.upper;
-}
 
 static immutable string[string] singularIrregulars;
 static immutable string[string] pluralIrregulars;

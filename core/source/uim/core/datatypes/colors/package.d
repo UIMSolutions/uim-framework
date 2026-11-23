@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.colors;
 
-public {
+public:
     import uim.core.datatypes.colors.hsva;
     import uim.core.datatypes.colors.rgba;
     import uim.core.datatypes.colors.rgba8;
-}

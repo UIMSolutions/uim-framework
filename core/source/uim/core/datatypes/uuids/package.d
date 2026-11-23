@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.uuids;
 
-public {
+public:
     import uim.core.datatypes.uuids.convert;
     import uim.core.datatypes.uuids.nulls;
-}
 

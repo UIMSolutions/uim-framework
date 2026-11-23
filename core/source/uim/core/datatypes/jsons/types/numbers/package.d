@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.core.datatypes.jsons.types.numbers;
 
-public {
+public:
   import uim.core.datatypes.jsons.types.numbers.get;
   import uim.core.datatypes.jsons.types.numbers.remove;
   import uim.core.datatypes.jsons.types.numbers.typecheck;
-}
