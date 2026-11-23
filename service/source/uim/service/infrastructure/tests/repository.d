@@ -1,4 +1,4 @@
-module uim.service.authorization.tests.repository;
+module uim.service.infrastructure.tests.repository;
 
 import uim.service;
 

@@ -16,11 +16,11 @@ mixin(ShowModule!());
 
 /// Build a structured log record.
 Json structuredLogRecord(string level, string component, string message, Json fields = Json(null)) @trusted {
-  auto record = Json.emptyObject;
-  record["written_at"] = Clock.currTime(UTC()).toISOExtString;
-  record["level"] = level;
-  record["logger"] = component;
-  record["msg"] = message;
+  auto record = Json.emptyObject
+    .set("written_at", Clock.currTime(UTC()).toISOExtString)
+    .set("level", level)
+    .set("logger", component)
+    .set("msg", message);
   if (fields.isObject)
     foreach (k, v; fields.get!(Json[string]))
       if (k !in record)
@@ -50,20 +50,22 @@ void logStructured(string level, string component, string message, Json fields =
 HTTPServerRequestDelegate withRequestLogging(HTTPServerRequestDelegate handler, string component) {
   return (HTTPServerRequest req, HTTPServerResponse res) @trusted {
     auto started = MonoTime.currTime;
+
     scope (exit) {
-      auto fields = Json.emptyObject;
-      fields["method"] = req.method.to!string;
-      fields["request"] = req.requestPath.toString;
-      fields["status"] = res.statusCode;
-      fields["response_time_ms"] = (MonoTime.currTime - started).total!"msecs";
+      auto fields = Json.emptyObject
+      .set("method", req.method.to!string)
+      .set("request", req.requestPath.toString)
+      .set("status", res.statusCode)
+      .set("response_time_ms", (MonoTime.currTime - started).total!"msecs");
+      
       if (auto cid = "X-Correlation-Id" in req.headers)
         fields["correlation_id"] = *cid;
       logStructured(res.statusCode >= 500 ? "error" : "info", component, "request", fields);
     }
+
     handler(req, res);
   };
 }
-
 ///
 unittest {
   mixin(ShowTest!("structuredLogRecord"));

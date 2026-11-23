@@ -1,5 +1,5 @@
-module uim.service.authorization.tests;
+module uim.service.infrastructure.tests;
 
 public:
-    import uim.service.authorization.tests.repository;
-    import uim.service.authorization.tests.store;
+    import uim.service.infrastructure.tests.repository;
+    import uim.service.infrastructure.tests.store;

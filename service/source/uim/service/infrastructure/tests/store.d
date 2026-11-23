@@ -1,4 +1,4 @@
-module uim.service.authorization.tests.store;
+module uim.service.infrastructure.tests.store;
 
 import uim.service;
 
@@ -15,6 +15,5 @@ bool testIdStore() {
 }
 
 bool testTenantStore(TEntity, TId)(ITenantStore!(TEntity, TId) store) {
-    
     return true;
 }

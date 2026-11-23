@@ -1,4 +1,4 @@
-module uim.service.authorization.configs;
+module uim.service.infrastructure.configs;
 
 public:
-    import uim.service.authorization.configs.config;
+    import uim.service.infrastructure.configs.config;
