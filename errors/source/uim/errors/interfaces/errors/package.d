@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.errors;
 
-public {
+public:
   import uim.errors.interfaces.errors.error;
   import uim.errors.interfaces.errors.renderer;
-}
 
 

@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.errors.factories;
 
-public {
+public:
     import uim.errors.factories.error;
     import uim.errors.factories.formatter;
     import uim.errors.factories.renderer;
-}
 

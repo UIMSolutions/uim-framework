@@ -5,10 +5,9 @@
 *****************************************************************************************************************/
 module uim.errors.classes.middlewares;
 
-public {
+public:
   import uim.errors.classes.middlewares.middleware;
   import uim.errors.classes.middlewares.filtering;
   import uim.errors.classes.middlewares.logging;
   import uim.errors.classes.middlewares.pipeline;
   import uim.errors.classes.middlewares.transforming;
-}

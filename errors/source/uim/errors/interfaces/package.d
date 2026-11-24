@@ -5,8 +5,7 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces;
 
-public {
-
+public:
   import uim.errors.interfaces.controller;
   import uim.errors.interfaces.debugger;
   import uim.errors.interfaces.formatter;
@@ -15,8 +14,6 @@ public {
   import uim.errors.interfaces.middleware;
   import uim.errors.interfaces.node;
 
-  // 
   import uim.errors.interfaces.errors;
   import uim.errors.interfaces.middlewares;
-}
 

@@ -5,11 +5,10 @@
 *****************************************************************************************************************/
 module uim.errors.classes.errors.renderers;
 
-public { // Main
+public: // Main
   import uim.errors.classes.errors.renderers.error;
-}
 
-public {
+public:
   import uim.errors.classes.errors.renderers.console;
   import uim.errors.classes.errors.renderers.html;
   import uim.errors.classes.errors.renderers.json;
@@ -17,5 +16,4 @@ public {
   import uim.errors.classes.errors.renderers.web;
   import uim.errors.classes.errors.renderers.xml;
   import uim.errors.classes.errors.renderers.yaml;
-}
 

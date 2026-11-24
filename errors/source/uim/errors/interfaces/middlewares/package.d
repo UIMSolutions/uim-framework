@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.errors.interfaces.middlewares;
 
-public {
+public:
   import uim.errors.interfaces.middlewares.middleware;
-}
