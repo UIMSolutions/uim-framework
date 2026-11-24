@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.containers.associative;
 
-public {
+public:
     import uim.core.containers.associative.maps;
     import uim.core.containers.associative.sets;
-}

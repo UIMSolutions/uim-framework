@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.constants;
 
-public {
+public:
   import uim.core.constants.filesystem;
   import uim.core.constants.sort;
-}
