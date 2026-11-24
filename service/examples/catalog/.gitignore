@@ -1,0 +1,10 @@
+# local secrets — never commit or deploy
+approuter/default-env.json
+approuter/node_modules/
+approuter/resources/
+backend/build/
+backend/data/
+backend/dist/
+backend/.dub/
+mta_archives/
+*.mtar

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml"><edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/></edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml"><edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/></edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml"><edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/></edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml"><edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/></edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="uim.catalog" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="Product">
+        <Key><PropertyRef Name="id"/></Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="tenantId" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="3"/>
+        <Property Name="createdBy" Type="Edm.String"/>
+        <Property Name="updatedAt" Type="Edm.DateTimeOffset" Precision="3"/>
+        <Property Name="updatedBy" Type="Edm.String"/>
+        <Property Name="sku" Type="Edm.String" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" Nullable="false"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="categoryId" Type="Edm.String"/>
+        <Property Name="price" Type="Edm.Decimal" Scale="variable"/>
+        <Property Name="currency" Type="Edm.String"/>
+        <Property Name="stock" Type="Edm.Int32"/>
+        <Property Name="status" Type="Edm.String"/>
+        <Property Name="releaseDate" Type="Edm.Date"/>
+        <Property Name="tags" Type="Collection(Edm.String)"/>
+      </EntityType>
+      <EntityType Name="Category">
+        <Key><PropertyRef Name="id"/></Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="tenantId" Type="Edm.String"/>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="3"/>
+        <Property Name="createdBy" Type="Edm.String"/>
+        <Property Name="updatedAt" Type="Edm.DateTimeOffset" Precision="3"/>
+        <Property Name="updatedBy" Type="Edm.String"/>
+        <Property Name="name" Type="Edm.String" Nullable="false"/>
+        <Property Name="description" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Statistic">
+        <Key><PropertyRef Name="tenantId"/></Key>
+        <Property Name="tenantId" Type="Edm.String" Nullable="false"/>
+        <Property Name="products" Type="Edm.Int32"/>
+        <Property Name="activeProducts" Type="Edm.Int32"/>
+        <Property Name="categories" Type="Edm.Int32"/>
+        <Property Name="unitsInStock" Type="Edm.Int64"/>
+        <Property Name="stockValue" Type="Edm.Decimal" Scale="variable"/>
+      </EntityType>
+      <ComplexType Name="RepriceResult">
+        <Property Name="changed" Type="Edm.Int32"/>
+        <Property Name="percent" Type="Edm.Decimal" Scale="variable"/>
+      </ComplexType>
+      <Action Name="Reprice" IsBound="false">
+        <Parameter Name="percent" Type="Edm.Decimal" Nullable="false"/>
+        <Parameter Name="categoryId" Type="Edm.String"/>
+        <ReturnType Type="uim.catalog.RepriceResult"/>
+      </Action>
+      <EntityContainer Name="CatalogService">
+        <EntitySet Name="Products" EntityType="uim.catalog.Product"/>
+        <EntitySet Name="Categories" EntityType="uim.catalog.Category"/>
+        <Singleton Name="Statistics" Type="uim.catalog.Statistic"/>
+        <ActionImport Name="Reprice" Action="uim.catalog.Reprice"/>
+      </EntityContainer>
+      <Annotations Target="uim.catalog.RepriceResult/changed"><Annotation Term="Common.Label" String="Changed Products"/></Annotations>
+      <Annotations Target="uim.catalog.RepriceResult/percent"><Annotation Term="Common.Label" String="Percent"/></Annotations>
+      <Annotations Target="uim.catalog.Product/id"><Annotation Term="Common.Label" String="ID"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/tenantId"><Annotation Term="Common.Label" String="Tenant"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/createdAt"><Annotation Term="Common.Label" String="Created At"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/createdBy"><Annotation Term="Common.Label" String="Created By"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/updatedAt"><Annotation Term="Common.Label" String="Changed At"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/updatedBy"><Annotation Term="Common.Label" String="Changed By"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/sku"><Annotation Term="Common.Label" String="SKU"/><Annotation Term="Core.Immutable" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Product/name"><Annotation Term="Common.Label" String="Name"/></Annotations>
+      <Annotations Target="uim.catalog.Product/description"><Annotation Term="Common.Label" String="Description"/></Annotations>
+      <Annotations Target="uim.catalog.Product/categoryId"><Annotation Term="Common.Label" String="Category"/></Annotations>
+      <Annotations Target="uim.catalog.Product/price"><Annotation Term="Common.Label" String="Price"/></Annotations>
+      <Annotations Target="uim.catalog.Product/currency"><Annotation Term="Common.Label" String="Currency"/></Annotations>
+      <Annotations Target="uim.catalog.Product/stock"><Annotation Term="Common.Label" String="Stock"/></Annotations>
+      <Annotations Target="uim.catalog.Product/status"><Annotation Term="Common.Label" String="Status"/></Annotations>
+      <Annotations Target="uim.catalog.Product/releaseDate"><Annotation Term="Common.Label" String="Release Date"/></Annotations>
+      <Annotations Target="uim.catalog.Product/tags"><Annotation Term="Common.Label" String="Tags"/></Annotations>
+      <Annotations Target="uim.catalog.Product">
+        <Annotation Term="UI.HeaderInfo"><Record Type="UI.HeaderInfoType"><PropertyValue Property="TypeName" String="Product"/><PropertyValue Property="TypeNamePlural" String="Products"/><PropertyValue Property="Title"><Record Type="UI.DataField"><PropertyValue Property="Value" Path="name"/></Record></PropertyValue><PropertyValue Property="Description"><Record Type="UI.DataField"><PropertyValue Property="Value" Path="sku"/></Record></PropertyValue></Record></Annotation>
+        <Annotation Term="UI.LineItem"><Collection><Record Type="UI.DataField"><PropertyValue Property="Value" Path="sku"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="name"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="price"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="currency"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="stock"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="status"/></Record></Collection></Annotation>
+        <Annotation Term="UI.SelectionFields"><Collection><PropertyPath>sku</PropertyPath><PropertyPath>name</PropertyPath><PropertyPath>status</PropertyPath><PropertyPath>categoryId</PropertyPath></Collection></Annotation>
+      </Annotations>
+      <Annotations Target="uim.catalog.CatalogService/Products">
+        <Annotation Term="Capabilities.InsertRestrictions"><Record><PropertyValue Property="Insertable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions"><Record><PropertyValue Property="Updatable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions"><Record><PropertyValue Property="Deletable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.SearchRestrictions"><Record><PropertyValue Property="Searchable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.CountRestrictions"><Record><PropertyValue Property="Countable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.NavigationRestrictions"><Record><PropertyValue Property="Navigability"><EnumMember>Capabilities.NavigationType/None</EnumMember></PropertyValue></Record></Annotation>
+      </Annotations>
+      <Annotations Target="uim.catalog.Category/id"><Annotation Term="Common.Label" String="ID"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/tenantId"><Annotation Term="Common.Label" String="Tenant"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/createdAt"><Annotation Term="Common.Label" String="Created At"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/createdBy"><Annotation Term="Common.Label" String="Created By"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/updatedAt"><Annotation Term="Common.Label" String="Changed At"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/updatedBy"><Annotation Term="Common.Label" String="Changed By"/><Annotation Term="Core.Computed" Bool="true"/></Annotations>
+      <Annotations Target="uim.catalog.Category/name"><Annotation Term="Common.Label" String="Name"/></Annotations>
+      <Annotations Target="uim.catalog.Category/description"><Annotation Term="Common.Label" String="Description"/></Annotations>
+      <Annotations Target="uim.catalog.Category">
+        <Annotation Term="UI.HeaderInfo"><Record Type="UI.HeaderInfoType"><PropertyValue Property="TypeName" String="Category"/><PropertyValue Property="TypeNamePlural" String="Categories"/><PropertyValue Property="Title"><Record Type="UI.DataField"><PropertyValue Property="Value" Path="name"/></Record></PropertyValue></Record></Annotation>
+        <Annotation Term="UI.LineItem"><Collection><Record Type="UI.DataField"><PropertyValue Property="Value" Path="name"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="description"/></Record></Collection></Annotation>
+      </Annotations>
+      <Annotations Target="uim.catalog.CatalogService/Categories">
+        <Annotation Term="Capabilities.InsertRestrictions"><Record><PropertyValue Property="Insertable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions"><Record><PropertyValue Property="Updatable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions"><Record><PropertyValue Property="Deletable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.SearchRestrictions"><Record><PropertyValue Property="Searchable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.CountRestrictions"><Record><PropertyValue Property="Countable" Bool="true"/></Record></Annotation>
+        <Annotation Term="Capabilities.NavigationRestrictions"><Record><PropertyValue Property="Navigability"><EnumMember>Capabilities.NavigationType/None</EnumMember></PropertyValue></Record></Annotation>
+      </Annotations>
+      <Annotations Target="uim.catalog.Statistic/tenantId"><Annotation Term="Common.Label" String="Tenant"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic/products"><Annotation Term="Common.Label" String="Products"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic/activeProducts"><Annotation Term="Common.Label" String="Active Products"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic/categories"><Annotation Term="Common.Label" String="Categories"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic/unitsInStock"><Annotation Term="Common.Label" String="Units in Stock"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic/stockValue"><Annotation Term="Common.Label" String="Stock Value"/></Annotations>
+      <Annotations Target="uim.catalog.Statistic">
+        <Annotation Term="UI.HeaderInfo"><Record Type="UI.HeaderInfoType"><PropertyValue Property="TypeName" String="Statistic"/><PropertyValue Property="TypeNamePlural" String="Statistics"/><PropertyValue Property="Title"><Record Type="UI.DataField"><PropertyValue Property="Value" Path="tenantId"/></Record></PropertyValue></Record></Annotation>
+        <Annotation Term="UI.LineItem"><Collection><Record Type="UI.DataField"><PropertyValue Property="Value" Path="products"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="activeProducts"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="categories"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="unitsInStock"/></Record><Record Type="UI.DataField"><PropertyValue Property="Value" Path="stockValue"/></Record></Collection></Annotation>
+      </Annotations>
+      <Annotations Target="uim.catalog.CatalogService"><Annotation Term="Capabilities.BatchSupported" Bool="true"/><Annotation Term="Capabilities.BatchSupport"><Record><PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="false"/><PropertyValue Property="SupportedFormats"><Collection><String>multipart/mixed</String><String>application/json</String></Collection></PropertyValue></Record></Annotation><Annotation Term="Common.Label" String="Product Catalog"/></Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

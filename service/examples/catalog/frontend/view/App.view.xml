@@ -1,0 +1,118 @@
+<mvc:View
+  controllerName="uim.catalog.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:core="sap.ui.core"
+  displayBlock="true">
+  <App id="app">
+    <f:DynamicPage id="page" headerExpanded="true" showFooter="false">
+      <f:title>
+        <f:DynamicPageTitle>
+          <f:heading>
+            <Title text="{i18n>appTitle}" />
+          </f:heading>
+          <f:actions>
+            <Button text="{i18n>reprice}" icon="sap-icon://lead" press=".onOpenReprice" />
+            <Button text="{i18n>refresh}" icon="sap-icon://refresh" press=".onRefresh" />
+          </f:actions>
+        </f:DynamicPageTitle>
+      </f:title>
+
+      <!-- Statistics singleton -->
+      <f:header>
+        <f:DynamicPageHeader pinnable="true">
+          <HBox id="statistics" binding="{/Statistics}" wrap="Wrap">
+            <VBox class="sapUiMediumMarginEnd">
+              <Label text="{i18n>productsTotal}" />
+              <ObjectNumber number="{products}" />
+            </VBox>
+            <VBox class="sapUiMediumMarginEnd">
+              <Label text="{i18n>activeProducts}" />
+              <ObjectNumber number="{activeProducts}" state="Success" />
+            </VBox>
+            <VBox class="sapUiMediumMarginEnd">
+              <Label text="{i18n>unitsInStock}" />
+              <ObjectNumber number="{unitsInStock}" />
+            </VBox>
+            <VBox>
+              <Label text="{i18n>stockValue}" />
+              <ObjectNumber number="{stockValue}" />
+            </VBox>
+          </HBox>
+        </f:DynamicPageHeader>
+      </f:header>
+
+      <f:content>
+        <Table id="products"
+          items="{path: '/Products', parameters: {$count: true, $orderby: 'sku'}}"
+          mode="MultiSelect" growing="true" growingThreshold="50" sticky="ColumnHeaders,HeaderToolbar">
+          <headerToolbar>
+            <OverflowToolbar>
+              <Title id="productsTitle" text="{i18n>products}" level="H2" />
+              <ToolbarSpacer />
+              <SearchField id="search" width="18rem" placeholder="{i18n>searchPlaceholder}" search=".onSearch" />
+              <Button text="{i18n>create}" icon="sap-icon://add" type="Emphasized" press=".onOpenCreate" />
+              <Button text="{i18n>delete}" icon="sap-icon://delete" press=".onDelete" />
+            </OverflowToolbar>
+          </headerToolbar>
+          <columns>
+            <Column><Text text="{i18n>sku}" /></Column>
+            <Column><Text text="{i18n>name}" /></Column>
+            <Column hAlign="End"><Text text="{i18n>price}" /></Column>
+            <Column hAlign="End" minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>stock}" /></Column>
+            <Column minScreenWidth="Tablet" demandPopin="true"><Text text="{i18n>status}" /></Column>
+          </columns>
+          <items>
+            <ColumnListItem>
+              <ObjectIdentifier title="{sku}" />
+              <Text text="{name}" />
+              <ObjectNumber number="{price}" unit="{currency}" />
+              <ObjectNumber number="{stock}" state="{path: 'stock', formatter: '.formatter.stockState'}" />
+              <ObjectStatus text="{status}" state="{path: 'status', formatter: '.formatter.statusState'}" />
+            </ColumnListItem>
+          </items>
+        </Table>
+      </f:content>
+    </f:DynamicPage>
+
+    <dependents>
+      <!-- create dialog -->
+      <Dialog id="createDialog" title="{i18n>newProduct}" contentWidth="28rem">
+        <content>
+          <VBox class="sapUiSmallMargin">
+            <Label text="{i18n>sku}" required="true" labelFor="newSku" />
+            <Input id="newSku" value="{view>/newProduct/sku}" placeholder="BOLT-M8" />
+            <Label text="{i18n>name}" required="true" labelFor="newName" />
+            <Input id="newName" value="{view>/newProduct/name}" />
+            <Label text="{i18n>price}" labelFor="newPrice" />
+            <Input id="newPrice" value="{view>/newProduct/price}" type="Number" />
+            <Label text="{i18n>currency}" labelFor="newCurrency" />
+            <Input id="newCurrency" value="{view>/newProduct/currency}" maxLength="3" />
+            <Label text="{i18n>stock}" labelFor="newStock" />
+            <StepInput id="newStock" value="{view>/newProduct/stock}" min="0" />
+            <Label text="{i18n>status}" labelFor="newStatus" />
+            <Select id="newStatus" selectedKey="{view>/newProduct/status}">
+              <core:Item key="draft" text="draft" />
+              <core:Item key="active" text="active" />
+            </Select>
+          </VBox>
+        </content>
+        <beginButton><Button text="{i18n>save}" type="Emphasized" press=".onCreate" /></beginButton>
+        <endButton><Button text="{i18n>cancel}" press=".onCloseDialog" /></endButton>
+      </Dialog>
+
+      <!-- reprice dialog (unbound action) -->
+      <Dialog id="repriceDialog" title="{i18n>repriceTitle}">
+        <content>
+          <VBox class="sapUiSmallMargin">
+            <Label text="{i18n>repricePercent}" labelFor="percent" />
+            <StepInput id="percent" value="{view>/repricePercent}" min="-99" max="1000" displayValuePrecision="1" step="0.5" />
+          </VBox>
+        </content>
+        <beginButton><Button text="{i18n>reprice}" type="Emphasized" press=".onReprice" /></beginButton>
+        <endButton><Button text="{i18n>cancel}" press=".onCloseDialog" /></endButton>
+      </Dialog>
+    </dependents>
+  </App>
+</mvc:View>
