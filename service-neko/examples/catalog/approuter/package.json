@@ -1,9 +1,0 @@
-{
-  "name": "uim-catalog-approuter",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Approuter of the neko-platform catalog reference service (XSUAA login, routing, CSRF)",
-  "engines": { "node": ">=20" },
-  "scripts": { "start": "node node_modules/@sap/approuter/approuter.js" },
-  "dependencies": { "@sap/approuter": "^20.0.0" }
-}
