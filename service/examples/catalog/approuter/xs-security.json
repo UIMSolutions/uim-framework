@@ -1,0 +1,18 @@
+{
+  "xsappname": "uim-catalog",
+  "tenant-mode": "dedicated",
+  "description": "Product catalog reference service",
+  "scopes": [
+    { "name": "$XSAPPNAME.Read", "description": "Read products, categories and statistics" },
+    { "name": "$XSAPPNAME.Write", "description": "Maintain products and categories, reprice" }
+  ],
+  "role-templates": [
+    { "name": "Viewer", "description": "Read the catalog", "scope-references": ["$XSAPPNAME.Read"] },
+    { "name": "Manager", "description": "Maintain the catalog", "scope-references": ["$XSAPPNAME.Read", "$XSAPPNAME.Write"] }
+  ],
+  "role-collections": [
+    { "name": "CatalogViewer", "role-template-references": ["$XSAPPNAME.Viewer"] },
+    { "name": "CatalogManager", "role-template-references": ["$XSAPPNAME.Manager"] }
+  ],
+  "oauth2-configuration": { "redirect-uris": ["https://*.hana.ondemand.com/**", "http://localhost:5000/**"] }
+}
