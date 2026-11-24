@@ -5,12 +5,10 @@
 *****************************************************************************************************************/
 module uim.jsons.ld;
 
-public {
+public:
   import uim.jsons.ld.helpers;
   import uim.jsons.ld.interfaces;
-}
 
-public {
   import uim.jsons.ld.context;
   import uim.jsons.ld.document;
   import uim.jsons.ld.node;
@@ -19,4 +17,3 @@ public {
   import uim.jsons.ld.keywords;
   import uim.jsons.ld.types;
   import uim.jsons.ld.exceptions;
-}

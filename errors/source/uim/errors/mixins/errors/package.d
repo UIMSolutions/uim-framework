@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.errors.mixins.errors;
 
-public {
+public:
     import uim.errors.mixins.errors.error;    
-}
 

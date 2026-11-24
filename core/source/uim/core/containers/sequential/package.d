@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.core.containers.sequential;
 
-public {
+public:
   import uim.core.containers.sequential.arrays;
   // import uim.core.containers.sequential.lists;
-}

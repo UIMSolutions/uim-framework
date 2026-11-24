@@ -5,17 +5,16 @@
 *****************************************************************************************************************/
 module uim.errors.classes.debuggers.formatters;
 
-public { // Main
+public: // Main
   import uim.errors.classes.debuggers.formatters.init;
   import uim.errors.classes.debuggers.formatters.formatter;
-}
 
-public { // Sub
+
+public: // Sub
   import uim.errors.classes.debuggers.formatters.console;
   import uim.errors.classes.debuggers.formatters.html;
   import uim.errors.classes.debuggers.formatters.json;
   import uim.errors.classes.debuggers.formatters.text;
   import uim.errors.classes.debuggers.formatters.xml;
   import uim.errors.classes.debuggers.formatters.yaml;
-}
 

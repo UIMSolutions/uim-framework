@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.errors.enumerations;
 
-public {
+public:
     import uim.errors.enumerations.errors;
-}

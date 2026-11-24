@@ -8,15 +8,13 @@ module uim.jsons.rpc;
 // UIM libraries
 public import uim.oop;
 
-public {
+public:
   import uim.jsons.rpc.errors;
   import uim.jsons.rpc.exceptions;
   import uim.jsons.rpc.helpers;
   import uim.jsons.rpc.interfaces;
   import uim.jsons.rpc.tests;
-}
 
-public {
   import uim.jsons.rpc.request;
   import uim.jsons.rpc.response;
   import uim.jsons.rpc.error;
@@ -25,4 +23,4 @@ public {
   import uim.jsons.rpc.server;
   import uim.jsons.rpc.client;
   import uim.jsons.rpc.handler;
-}
+  
