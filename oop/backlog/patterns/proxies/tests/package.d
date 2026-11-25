@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.proxies.tests;
 
-public {
+public:
   import uim.oop.patterns.proxies.tests.test;
-}

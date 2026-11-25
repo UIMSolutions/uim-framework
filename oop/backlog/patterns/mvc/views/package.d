@@ -5,9 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.mvc.views;
 
-public {
+public:
     import uim.oop.patterns.mvc.views.json;
     import uim.oop.patterns.mvc.views.html;
     import uim.oop.patterns.mvc.views.template_;
     import uim.oop.patterns.mvc.views.view;
-}

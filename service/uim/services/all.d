@@ -20,5 +20,4 @@ public {
 // UIM libraries
 public import uim.core;
 
-public {
-}
+public:

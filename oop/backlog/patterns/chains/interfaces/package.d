@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.chains.interfaces;
 
-public {
+public:
     import uim.oop.patterns.chains.interfaces.async;
     import uim.oop.patterns.chains.interfaces.builder;
     import uim.oop.patterns.chains.interfaces.condition;
@@ -18,4 +18,3 @@ public {
     import uim.oop.patterns.chains.interfaces.priority;
     import uim.oop.patterns.chains.interfaces.request;
     import uim.oop.patterns.chains.interfaces.response;
-}

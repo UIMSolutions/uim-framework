@@ -5,14 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.pools;
 
-public {
+public:
   import uim.oop.patterns.pools.helpers;
-}
 
-public {
   import uim.oop.patterns.pools.interfaces;
   import uim.oop.patterns.pools.pool;
   import uim.oop.patterns.pools.pooled;
   import uim.oop.patterns.pools.threadsafe;
   import uim.oop.patterns.pools.scoped;
-}
+

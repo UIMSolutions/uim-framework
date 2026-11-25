@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.observers.tests;
 
-public {
+public:
   import uim.oop.patterns.observers.tests.test;
-}
