@@ -1,6 +1,11 @@
+/****************************************************************************************************************
+* Copyright: © 2018-2026 Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*) 
+* License: Subject to the terms of the Apache 2.0 license, as written in the included LICENSE.txt file. 
+* Authors: Ozan Nurettin Süel (aka UI-Manufaktur UG *R.I.P*)
+*****************************************************************************************************************/
 module uim.oop.patterns.interpreters.interfaces.expressions;
 
-public {
+public:
   import uim.oop.patterns.interpreters.interfaces.expressions.expression;
 
   import uim.oop.patterns.interpreters.interfaces.expressions.binary;
@@ -13,4 +18,3 @@ public {
   import uim.oop.patterns.interpreters.interfaces.expressions.variable;
   import uim.oop.patterns.interpreters.interfaces.expressions.visitor;
   
-}

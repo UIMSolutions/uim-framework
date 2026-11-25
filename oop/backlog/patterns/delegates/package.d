@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.delegates;
 
-public {
+public:
   import uim.oop.patterns.delegates.interfaces;
   import uim.oop.patterns.delegates.delegate_;
   import uim.oop.patterns.delegates.services;
-}
+

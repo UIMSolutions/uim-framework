@@ -5,15 +5,17 @@
 *****************************************************************************************************************/
 module uim.errors.classes.errors;
 
-public { // Main class
+public: 
+  // Main class
   import uim.errors.classes.errors.error;
-}
 
-public { // Helper modules
+
+public: 
+  // Helper modules
   // import uim.errors.errors.handler;    
   import uim.errors.classes.errors.error;
   import uim.errors.classes.errors.renderers;
   import uim.errors.classes.errors.invalidargument;
   import uim.errors.classes.errors.unknowneditor;
-}
+
 

@@ -5,6 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.flyweights.helpers;
 
-public {
+public:
+  // Flyweight helpers, such as factories for creating and managing flyweight instances.
   import uim.oop.patterns.flyweights.helpers.factory;
-}

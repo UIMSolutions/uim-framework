@@ -5,7 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.errors.subclasses;
 
-public {
+public:
   import uim.oop.patterns.commands.errors.subclasses.notcreate;
   import uim.oop.patterns.commands.errors.subclasses.notfind;
-}

@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.locators;
 
-public {
+public:
   import uim.oop.patterns.locators.interfaces;
   import uim.oop.patterns.locators.locator;
-}
+

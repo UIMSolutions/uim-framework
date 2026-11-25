@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.helpers;
 
-public {
+public:
   // import uim.oop.commands.helpers.directory;
   import uim.oop.patterns.commands.helpers.factory;
   import uim.oop.patterns.commands.helpers.functions;
@@ -14,4 +14,3 @@ public {
   import uim.oop.patterns.commands.helpers.mixins;
   import uim.oop.patterns.commands.helpers.registry;
   import uim.oop.patterns.commands.helpers.set;
-}

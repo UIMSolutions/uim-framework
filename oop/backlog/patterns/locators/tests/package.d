@@ -5,6 +5,6 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.locators.tests;
 
-public {
+public:
   import uim.oop.patterns.locators.tests.test;
-}
+

@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.flyweights.examples;
 
-public {
+public:
     import uim.oop.patterns.flyweights.examples.glyphdata;
-}

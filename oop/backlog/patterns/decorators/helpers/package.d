@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.decorators.helpers;
 
-public {
+public:
   import uim.oop.patterns.decorators.helpers.functional;
-}

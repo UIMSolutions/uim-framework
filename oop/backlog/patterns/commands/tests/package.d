@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.tests;
 
-public {
+public:
   import uim.oop.patterns.commands.tests.mixins;
   import uim.oop.patterns.commands.tests.test;
-}
+

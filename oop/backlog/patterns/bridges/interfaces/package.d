@@ -5,6 +5,5 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.bridges.interfaces;
 
-public {
+public:
     import uim.oop.patterns.bridges.interfaces.interfaces;
-}

@@ -5,13 +5,12 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands;
 
-public {
+public:
   import uim.oop.patterns.commands.helpers;
   import uim.oop.patterns.commands.interfaces;
   import uim.oop.patterns.commands.tests;
-}
 
-public {
+public:
   import uim.oop.patterns.commands.base;
   import uim.oop.patterns.commands.command;
   import uim.oop.patterns.commands.composite;
@@ -21,4 +20,3 @@ public {
   import uim.oop.patterns.commands.queue;
   import uim.oop.patterns.commands.result;
   import uim.oop.patterns.commands.undoable;
-}

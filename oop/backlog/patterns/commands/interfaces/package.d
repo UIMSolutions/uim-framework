@@ -5,7 +5,7 @@
 *****************************************************************************************************************/
 module uim.oop.patterns.commands.interfaces;
 
-public {
+public:
   import uim.oop.patterns.commands.interfaces.command;
   import uim.oop.patterns.commands.interfaces.composite;
   import uim.oop.patterns.commands.interfaces.history;
@@ -16,5 +16,4 @@ public {
   import uim.oop.patterns.commands.interfaces.receiver;
   import uim.oop.patterns.commands.interfaces.transactional;
   import uim.oop.patterns.commands.interfaces.undoable;
-}
 

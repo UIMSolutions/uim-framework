@@ -5,8 +5,8 @@
 *****************************************************************************************************************/
 module uim.core.containers;
 
-public {
+public:
   import uim.core.containers.associative;
   import uim.core.containers.sequential;
   import uim.core.containers.unordered;
-}
+
