@@ -9,7 +9,7 @@ license "Apache-2.0"
 dependency "dlib" version="~>1.4.1"
 dependency "colored" version="~>0.0.31"
 dependency "dyaml" version="~>0.10.0"
-dependency "vibe-d" version="~>0.10.3"
+dependency "vibe-d" version="~>0.10.6"
 
 targetType "library"
 targetName "uim-framework"

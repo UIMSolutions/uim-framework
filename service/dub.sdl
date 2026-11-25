@@ -18,7 +18,6 @@ importPaths "source"
 dependency "uim-framework:errors" path=".."
 dependency "uim-framework:core" path=".."
 dependency "uim-framework:oop" path=".."
-dependency "vibe-d" version="~>0.10.3"
 
 // configurations
 configuration "default" {
